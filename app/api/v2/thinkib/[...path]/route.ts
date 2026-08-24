@@ -4,7 +4,8 @@ export async function GET(
   request: NextRequest,
   { params }: { params: { path: string[] } }
 ) {
-  const origin = request.nextUrl.origin;
-  // Redirect directly to the native InThinking Syllabus & Revision Database
-  return NextResponse.redirect(`${origin}/thinkib`, 307);
+  const subpath = params.path ? params.path.join('/') : '';
+  const targetUrl = `https://fr3ddykru3g3r.github.io/ThinkIB-Websites/${subpath}`;
+  
+  return NextResponse.redirect(targetUrl, 307);
 }

@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import { Search, Download, ExternalLink, FileText, Eye, ArrowLeft, BookOpen } from 'lucide-react';
+import { Search, Download, ExternalLink, FileText, Eye, ArrowLeft } from 'lucide-react';
 
-const MOCK_SUITE = [
+const HANDBOOKS = [
   {
     name: 'IB Math AA HL Ultimate Revision Handbook',
     category: 'Master Guide',
@@ -27,82 +27,65 @@ const MOCK_SUITE = [
     category: 'Formula Booklet',
     level: 'SL/HL',
     src: '/local-vault/aa_formula_booklet.pdf'
-  },
-  {
-    name: 'Math AA HL 2025 Paper 1 (May Session TZ1)',
-    category: 'Exam Mock',
-    level: 'HL',
-    src: '/api/past-papers/Mathematics/Mathematics_analysis_and_approaches_paper_1_TZ1_HL.pdf'
-  },
-  {
-    name: 'Math AA HL 2025 Paper 1 Markscheme (May Session TZ1)',
-    category: 'Worked Solution',
-    level: 'HL',
-    src: '/api/past-papers/Mathematics/Mathematics_analysis_and_approaches_paper_1_TZ1_HL_markscheme.pdf'
-  },
-  {
-    name: 'Math AA HL 2025 Paper 2 (May Session TZ1)',
-    category: 'Exam Mock',
-    level: 'HL',
-    src: '/api/past-papers/Mathematics/Mathematics_analysis_and_approaches_paper_2_TZ1_HL.pdf'
-  },
-  {
-    name: 'Math AA HL 2025 Paper 2 Markscheme (May Session TZ1)',
-    category: 'Worked Solution',
-    level: 'HL',
-    src: '/api/past-papers/Mathematics/Mathematics_analysis_and_approaches_paper_2_TZ1_HL_markscheme.pdf'
-  },
-  {
-    name: 'Math AA HL 2025 Paper 3 Extended Investigation (TZ1)',
-    category: 'Exam Mock',
-    level: 'HL',
-    src: '/api/past-papers/Mathematics/Mathematics_analysis_and_approaches_paper_3_TZ1_HL.pdf'
-  },
-  {
-    name: 'Math AA HL 2025 Paper 3 Markscheme (TZ1)',
-    category: 'Worked Solution',
-    level: 'HL',
-    src: '/api/past-papers/Mathematics/Mathematics_analysis_and_approaches_paper_3_TZ1_HL_markscheme.pdf'
-  },
-  {
-    name: 'Math AA SL 2025 Paper 1 (May Session TZ1)',
-    category: 'Exam Mock',
-    level: 'SL',
-    src: '/api/past-papers/Mathematics/Mathematics_analysis_and_approaches_paper_1_TZ1_SL.pdf'
-  },
-  {
-    name: 'Math AA SL 2025 Paper 1 Markscheme (May Session TZ1)',
-    category: 'Worked Solution',
-    level: 'SL',
-    src: '/api/past-papers/Mathematics/Mathematics_analysis_and_approaches_paper_1_TZ1_SL_markscheme.pdf'
-  },
-  {
-    name: 'Math AA SL 2025 Paper 2 (May Session TZ1)',
-    category: 'Exam Mock',
-    level: 'SL',
-    src: '/api/past-papers/Mathematics/Mathematics_analysis_and_approaches_paper_2_TZ1_SL.pdf'
-  },
-  {
-    name: 'Math AA SL 2025 Paper 2 Markscheme (May Session TZ1)',
-    category: 'Worked Solution',
-    level: 'SL',
-    src: '/api/past-papers/Mathematics/Mathematics_analysis_and_approaches_paper_2_TZ1_SL_markscheme.pdf'
   }
 ];
 
-export default function MathMocksBrowser() {
-  const [levelFilter, setLevelFilter] = useState<'ALL' | 'HL' | 'SL'>('ALL');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedMock, setSelectedMock] = useState<typeof MOCK_SUITE[0] | null>(MOCK_SUITE[0]);
+const AAHL_MOCKS = [
+  "AAHL P1 B Questions.pdf", "AAHL P1 B Worked Solutions.pdf", "AAHL P1 C Questions.pdf", "AAHL P1 C Worked solutions.pdf",
+  "AAHL P1 D Questions.pdf", "AAHL P1 D Worked Solutions.pdf", "AAHL P1 E Questions.pdf", "AAHL P1 E Worked solutions.pdf",
+  "AAHL P1 F Questions.pdf", "AAHL P1 F Worked solutions.pdf", "AAHL P2 A Questions.pdf", "AAHL P2 A Worked Solutions.pdf",
+  "AAHL P2 B Questions.pdf", "AAHL P2 B Worked Solutions.pdf", "AAHL P2 C Markscheme.pdf", "AAHL P2 C Questions.pdf",
+  "AAHL P2 C Worked solutions.pdf", "AAHL P2 D Questions.pdf", "AAHL P2 D Worked Solutions.pdf", "AAHL P2 E Questions.pdf",
+  "AAHL P2 E Worked solutions.pdf", "AAHL P2 F Questions.pdf", "AAHL P2 F Worked solutions.pdf", "AAHL P3 A Questions.pdf",
+  "AAHL P3 A Worked Solutions.pdf", "AAHL P3 B Questions.pdf", "AAHL P3 B Worked solutions.pdf", "AAHL P3 C Questions.pdf",
+  "AAHL P3 C Worked Solutions.pdf", "AAHL P3 D Questions.pdf", "AAHL P3 D Worked Solutions.pdf", "AAHL P3 E Questions.pdf",
+  "AAHL P3 E Worked solutions.pdf", "AAHL P3 F Questions.pdf", "AAHL P3 F Worked Solutions.pdf"
+].map(f => ({
+  name: f.replace('.pdf', ''),
+  category: f.toLowerCase().includes('worked') || f.toLowerCase().includes('mark') ? 'Worked Solution' : 'Question Paper',
+  level: 'HL' as const,
+  src: `/vault/math-mocks/AAHL/${encodeURIComponent(f)}`
+}));
 
-  const filteredMocks = useMemo(() => {
-    return MOCK_SUITE.filter(item => {
-      const matchesLevel = levelFilter === 'ALL' || item.level === levelFilter || item.level === 'SL/HL';
+const AASL_MOCKS = [
+  "AASL P1 A Markscheme.pdf", "AASL P1 A Questions.pdf", "AASL P1 A Worked Solutions.pdf", "AASL P1 B Questions.pdf",
+  "AASL P1 B Worked Solutions.pdf", "AASL P1 C Questions.pdf", "AASL P1 C Worked Solutions.pdf", "AASL P1 D Questions.pdf",
+  "AASL P1 D Worked solutions.pdf", "AASL P1 E Questions.pdf", "AASL P1 E Worked solutions.pdf", "AASL P1 F Questions.pdf",
+  "AASL P1 F Worked solutions.pdf", "AASL P2 A Markcheme.pdf", "AASL P2 A Questions.pdf", "AASL P2 A Worked Solutions.pdf",
+  "AASL P2 B Questions.pdf", "AASL P2 B Worked Solutions.pdf", "AASL P2 C Questions.pdf", "AASL P2 C Worked Solutions.pdf",
+  "AASL P2 D Questions.pdf", "AASL P2 D Worked solutions.pdf", "AASL P2 E Questions.pdf", "AASL P2 E Worked solutions.pdf",
+  "AASL P2 F Questions.pdf", "AASL P2 F Worked solutions.pdf"
+].map(f => ({
+  name: f.replace('.pdf', ''),
+  category: f.toLowerCase().includes('worked') || f.toLowerCase().includes('mark') ? 'Worked Solution' : 'Question Paper',
+  level: 'SL' as const,
+  src: `/vault/math-mocks/AASL/${encodeURIComponent(f)}`
+}));
+
+const ALL_MOCK_DOCUMENTS = [...HANDBOOKS, ...AAHL_MOCKS, ...AASL_MOCKS];
+
+export default function MathMocksBrowser() {
+  const [levelFilter, setLevelFilter] = useState<'ALL' | 'HL' | 'SL' | 'HANDBOOKS'>('ALL');
+  const [categoryFilter, setCategoryFilter] = useState<'ALL' | 'PAPERS' | 'SOLUTIONS'>('ALL');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedDoc, setSelectedDoc] = useState<typeof ALL_MOCK_DOCUMENTS[0] | null>(ALL_MOCK_DOCUMENTS[0]);
+
+  const filteredDocs = useMemo(() => {
+    return ALL_MOCK_DOCUMENTS.filter(item => {
+      if (levelFilter === 'HANDBOOKS' && !item.category.includes('Guide') && !item.category.includes('Sheet') && !item.category.includes('Booklet')) return false;
+      if (levelFilter === 'HL' && item.level !== 'HL') return false;
+      if (levelFilter === 'SL' && item.level !== 'SL') return false;
+
+      if (categoryFilter === 'PAPERS' && item.category !== 'Question Paper') return false;
+      if (categoryFilter === 'SOLUTIONS' && item.category !== 'Worked Solution') return false;
+
       const q = searchQuery.toLowerCase().trim();
-      const matchesQuery = !q || item.name.toLowerCase().includes(q) || item.category.toLowerCase().includes(q);
-      return matchesLevel && matchesQuery;
+      if (q) {
+        return item.name.toLowerCase().includes(q) || item.category.toLowerCase().includes(q);
+      }
+      return true;
     });
-  }, [levelFilter, searchQuery]);
+  }, [levelFilter, categoryFilter, searchQuery]);
 
   return (
     <div>
@@ -112,7 +95,7 @@ export default function MathMocksBrowser() {
           <span className="tech-label">[DATABASE_MOUNT: INTHINKING_MATH_SIMULATOR]</span>
           <h1 style={{ fontFamily: 'var(--font-display)', fontSize: '2.4rem', margin: '0.2rem 0' }}>Mathematics Mock Simulator</h1>
           <p style={{ color: 'var(--muted)', fontSize: '0.95rem', margin: 0 }}>
-            Mock question papers, step-by-step worked markschemes, formula sheets, and comprehensive AA HL handbooks.
+            61 genuine InThinking mock papers (Papers 1, 2 & 3), step-by-step worked solutions, and formula handbooks for AA SL & HL.
           </p>
         </div>
         <a href="/" className="filter-btn active" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
@@ -120,30 +103,45 @@ export default function MathMocksBrowser() {
         </a>
       </div>
 
-      {/* Tabs and Search Bar */}
+      {/* Filter Toolbar */}
       <div className="panel" style={{ marginBottom: '1.5rem' }}>
-        <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap', marginBottom: '1.25rem' }}>
-          {(['ALL', 'HL', 'SL'] as const).map(lvl => (
+        <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
+          {(['ALL', 'HL', 'SL', 'HANDBOOKS'] as const).map(lvl => (
             <button
               key={lvl}
               className={`filter-btn ${levelFilter === lvl ? 'active' : ''}`}
               onClick={() => setLevelFilter(lvl)}
               style={{ padding: '0.4rem 0.9rem', fontSize: '0.8rem' }}
             >
-              {lvl === 'ALL' ? 'All Resources' : `Analysis & Approaches ${lvl}`}
+              {lvl === 'ALL' ? 'All Mocks & Guides (65)' : lvl === 'HL' ? 'Analysis & Approaches HL (35)' : lvl === 'SL' ? 'Analysis & Approaches SL (26)' : 'Handbooks & Formulae (4)'}
             </button>
           ))}
         </div>
 
-        <div className="search-wrapper">
-          <Search size={18} style={{ position: 'absolute', left: '1rem', color: 'var(--muted)', pointerEvents: 'none' }} />
-          <input
-            type="text"
-            placeholder="Search mock question sheets, worked solutions, or formula booklets..."
-            className="search-input"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
+        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
+          <div className="search-wrapper" style={{ flex: 1, minWidth: '240px' }}>
+            <Search size={18} style={{ position: 'absolute', left: '1rem', color: 'var(--muted)', pointerEvents: 'none' }} />
+            <input
+              type="text"
+              placeholder="Search mock question sheets (e.g. AAHL P1 C, AASL P2 Worked Solutions)..."
+              className="search-input"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div>
+
+          <div style={{ display: 'flex', gap: '0.4rem' }}>
+            {(['ALL', 'PAPERS', 'SOLUTIONS'] as const).map(cat => (
+              <button
+                key={cat}
+                className={`filter-btn ${categoryFilter === cat ? 'active' : ''}`}
+                onClick={() => setCategoryFilter(cat)}
+                style={{ padding: '0.35rem 0.75rem', fontSize: '0.75rem' }}
+              >
+                {cat === 'ALL' ? 'All Types' : cat === 'PAPERS' ? 'Question Papers' : 'Worked Solutions'}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -151,15 +149,16 @@ export default function MathMocksBrowser() {
       <div className="split-screen" style={{ height: 'calc(100vh - 270px)', minHeight: '620px' }}>
         <div className="panel browser-panel" style={{ overflowY: 'auto' }}>
           <span className="tech-label" style={{ display: 'block', marginBottom: '0.75rem' }}>
-            [AVAILABLE_DOCUMENTS: {filteredMocks.length}]
+            [MOCK_PAPERS_CATALOG: {filteredDocs.length}]
           </span>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-            {filteredMocks.map((file, idx) => {
-              const isActive = selectedMock?.src === file.src;
+            {filteredDocs.map((doc, idx) => {
+              const isActive = selectedDoc?.src === doc.src;
+              const isSolution = doc.category === 'Worked Solution';
               return (
                 <div
                   key={idx}
-                  onClick={() => setSelectedMock(file)}
+                  onClick={() => setSelectedDoc(doc)}
                   style={{
                     display: 'flex',
                     justifyContent: 'space-between',
@@ -175,15 +174,15 @@ export default function MathMocksBrowser() {
                 >
                   <div style={{ overflow: 'hidden', paddingRight: '0.5rem' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '2px' }}>
-                      <span style={{ fontSize: '0.68rem', padding: '1px 5px', borderRadius: '3px', background: isActive ? 'var(--rust)' : 'rgba(28,28,30,0.06)', color: isActive ? '#fff' : 'var(--muted)', fontWeight: 600 }}>
-                        {file.category}
+                      <span style={{ fontSize: '0.68rem', padding: '1px 5px', borderRadius: '3px', background: isSolution ? '#059669' : isActive ? 'var(--rust)' : 'rgba(28,28,30,0.06)', color: isSolution || isActive ? '#fff' : 'var(--muted)', fontWeight: 600 }}>
+                        {doc.category}
                       </span>
                       <span style={{ fontSize: '0.7rem', color: 'var(--muted)', fontFamily: 'var(--font-mono)' }}>
-                        [{file.level}]
+                        [{doc.level}]
                       </span>
                     </div>
                     <span style={{ fontSize: '0.88rem', fontWeight: isActive ? 600 : 500, color: 'var(--ink)', display: 'block', lineHeight: '1.25' }}>
-                      {file.name}
+                      {doc.name}
                     </span>
                   </div>
                   <FileText size={14} style={{ color: isActive ? 'var(--rust)' : 'var(--muted)', flexShrink: 0 }} />
@@ -195,29 +194,29 @@ export default function MathMocksBrowser() {
 
         {/* PDF Viewer Panel */}
         <div className="viewer-panel">
-          {selectedMock ? (
+          {selectedDoc ? (
             <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.85rem 1rem', background: 'var(--panel-light)', borderBottom: '1px solid var(--border)' }}>
                 <span className="tech-label" style={{ maxWidth: '60%', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                  {selectedMock.name}
+                  {selectedDoc.name}
                 </span>
                 <div style={{ display: 'flex', gap: '0.5rem' }}>
-                  <a href={selectedMock.src} download className="filter-btn active" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', textDecoration: 'none', padding: '4px 10px', fontSize: '0.75rem' }}>
+                  <a href={selectedDoc.src} download className="filter-btn active" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', textDecoration: 'none', padding: '4px 10px', fontSize: '0.75rem' }}>
                     <Download size={12} /> DOWNLOAD
                   </a>
-                  <a href={selectedMock.src} target="_blank" rel="noopener noreferrer" className="filter-btn" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', textDecoration: 'none', padding: '4px 10px', fontSize: '0.75rem' }}>
+                  <a href={selectedDoc.src} target="_blank" rel="noopener noreferrer" className="filter-btn" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', textDecoration: 'none', padding: '4px 10px', fontSize: '0.75rem' }}>
                     <ExternalLink size={12} /> NEW TAB
                   </a>
                 </div>
               </div>
-              <iframe src={selectedMock.src} className="viewer-iframe" title="Math Mock Viewer" />
+              <iframe src={selectedDoc.src} className="viewer-iframe" title="Math Mock Document Viewer" />
             </div>
           ) : (
             <div className="viewer-placeholder">
               <Eye size={44} style={{ color: 'var(--rust)', marginBottom: '1rem', opacity: 0.5 }} />
-              <h3>No Document Mounted</h3>
+              <h3>No Mock Paper Mounted</h3>
               <p style={{ maxWidth: '280px', marginTop: '0.5rem', fontSize: '0.9rem', color: 'var(--muted)' }}>
-                Select a mock examination paper, worked solutions sheet, or handbook from the directory sidebar.
+                Select an InThinking mock examination paper, worked solutions sheet, or handbook from the catalog.
               </p>
             </div>
           )}
