@@ -235,23 +235,23 @@ export default function ArcadeSuitePopup() {
       const k = e.key.toLowerCase();
       keysPressed.current[k] = true;
 
+      // Block background page scroll on all arcade control keys while the popup is open
+      if (['w', 's', 'a', 'd', 'arrowup', 'arrowdown', 'arrowleft', 'arrowright', ' ', 'space'].includes(k)) {
+        e.preventDefault();
+      }
+
       if (activeGame === 'dino') {
         if (k === ' ' || k === 'arrowup' || k === 'w') {
-          e.preventDefault();
           jumpDino();
         }
       } else if (activeGame === 'tetris') {
         if (k === 'arrowleft' || k === 'a') {
-          e.preventDefault();
           if (!checkTetrisCollision(-1, 0)) tetrisState.current.piece!.x--;
         } else if (k === 'arrowright' || k === 'd') {
-          e.preventDefault();
           if (!checkTetrisCollision(1, 0)) tetrisState.current.piece!.x++;
         } else if (k === 'arrowdown' || k === 's') {
-          e.preventDefault();
           if (!checkTetrisCollision(0, 1)) tetrisState.current.piece!.y++;
         } else if (k === 'arrowup' || k === 'w') {
-          e.preventDefault();
           rotateTetrisPiece();
         }
       }
