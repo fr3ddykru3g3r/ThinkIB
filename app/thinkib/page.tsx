@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ArrowLeft, ExternalLink, RefreshCw, Maximize2, Sparkles, BookOpen, Layers } from 'lucide-react';
+import { ArrowLeft, ExternalLink, RefreshCw, Layers } from 'lucide-react';
 
 interface SubjectEntry {
   id: string;
@@ -17,7 +17,7 @@ const INTHINKING_SUBJECTS: SubjectEntry[] = [
     name: 'Chemistry',
     badge: 'SL / HL',
     path: 'chem/chemistry.html',
-    description: 'Complete 2025 structure and reactivity guides, reaction mechanisms, and worked questions.'
+    description: 'Complete structure and reactivity guides, reaction mechanisms, and worked questions.'
   },
   {
     id: 'biology',
@@ -72,7 +72,7 @@ const INTHINKING_SUBJECTS: SubjectEntry[] = [
     id: 'englishb',
     name: 'English B',
     badge: 'SL / HL',
-    path: 'englishb/englishb/index.html',
+    path: 'englishb/index.html',
     description: 'Language acquisition, text types, listening advice, and speaking tasks.'
   }
 ];
