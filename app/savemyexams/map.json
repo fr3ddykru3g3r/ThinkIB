@@ -1,0 +1,1669 @@
+{
+  "Maths AA SL": {
+    "3. Geometry & Trigonometry": {
+      "files": [
+        {
+          "name": "3.1-geometry-toolkit.pdf",
+          "path": "vault/savemyexams/Maths AA SL/3. Geometry & Trigonometry/3.1-geometry-toolkit.pdf",
+          "size": 1777521
+        },
+        {
+          "name": "3.10-vector-equations-of-lines.pdf",
+          "path": "vault/savemyexams/Maths AA SL/3. Geometry & Trigonometry/3.10-vector-equations-of-lines.pdf",
+          "size": 1939053
+        },
+        {
+          "name": "3.11-vector-planes.pdf",
+          "path": "vault/savemyexams/Maths AA SL/3. Geometry & Trigonometry/3.11-vector-planes.pdf",
+          "size": 2586252
+        },
+        {
+          "name": "3.2-geometry-of-3d-shapes.pdf",
+          "path": "vault/savemyexams/Maths AA SL/3. Geometry & Trigonometry/3.2-geometry-of-3d-shapes.pdf",
+          "size": 1212822
+        },
+        {
+          "name": "3.3-trigonometry-toolkit.pdf",
+          "path": "vault/savemyexams/Maths AA SL/3. Geometry & Trigonometry/3.3-trigonometry-toolkit.pdf",
+          "size": 3885213
+        },
+        {
+          "name": "3.4-trigonometry.pdf",
+          "path": "vault/savemyexams/Maths AA SL/3. Geometry & Trigonometry/3.4-trigonometry.pdf",
+          "size": 1492072
+        },
+        {
+          "name": "3.5-trigonometric-functions-&-graphs.pdf",
+          "path": "vault/savemyexams/Maths AA SL/3. Geometry & Trigonometry/3.5-trigonometric-functions-&-graphs.pdf",
+          "size": 1487609
+        },
+        {
+          "name": "3.6-trigonometric-equations-&-identities.pdf",
+          "path": "vault/savemyexams/Maths AA SL/3. Geometry & Trigonometry/3.6-trigonometric-equations-&-identities.pdf",
+          "size": 1928092
+        },
+        {
+          "name": "3.7-inverse-&-reciprocal-trig-functions.pdf",
+          "path": "vault/savemyexams/Maths AA SL/3. Geometry & Trigonometry/3.7-inverse-&-reciprocal-trig-functions.pdf",
+          "size": 1368788
+        },
+        {
+          "name": "3.8-further-trigonometry.pdf",
+          "path": "vault/savemyexams/Maths AA SL/3. Geometry & Trigonometry/3.8-further-trigonometry.pdf",
+          "size": 1021282
+        },
+        {
+          "name": "3.9-vector-properties.pdf",
+          "path": "vault/savemyexams/Maths AA SL/3. Geometry & Trigonometry/3.9-vector-properties.pdf",
+          "size": 4094893
+        }
+      ]
+    },
+    "5. Calculus": {
+      "files": [
+        {
+          "name": "5.1-differentiation.pdf",
+          "path": "vault/savemyexams/Maths AA SL/5. Calculus/5.1-differentiation.pdf",
+          "size": 1586743
+        },
+        {
+          "name": "5.10-differential-equations.pdf",
+          "path": "vault/savemyexams/Maths AA SL/5. Calculus/5.10-differential-equations.pdf",
+          "size": 1890160
+        },
+        {
+          "name": "5.11-maclaurin-series.pdf",
+          "path": "vault/savemyexams/Maths AA SL/5. Calculus/5.11-maclaurin-series.pdf",
+          "size": 1642345
+        },
+        {
+          "name": "5.12-further-limits-(inc-l'ha\u0303\u00b4pital's-rule).pdf",
+          "path": "vault/savemyexams/Maths AA SL/5. Calculus/5.12-further-limits-(inc-l'ha\u0303\u00b4pital's-rule).pdf",
+          "size": 650406
+        },
+        {
+          "name": "5.2-further-differentiation.pdf",
+          "path": "vault/savemyexams/Maths AA SL/5. Calculus/5.2-further-differentiation.pdf",
+          "size": 4059295
+        },
+        {
+          "name": "5.3-integration.pdf",
+          "path": "vault/savemyexams/Maths AA SL/5. Calculus/5.3-integration.pdf",
+          "size": 928208
+        },
+        {
+          "name": "5.4-further-integration.pdf",
+          "path": "vault/savemyexams/Maths AA SL/5. Calculus/5.4-further-integration.pdf",
+          "size": 3235188
+        },
+        {
+          "name": "5.5-optimisation.pdf",
+          "path": "vault/savemyexams/Maths AA SL/5. Calculus/5.5-optimisation.pdf",
+          "size": 733933
+        },
+        {
+          "name": "5.6-kinematics.pdf",
+          "path": "vault/savemyexams/Maths AA SL/5. Calculus/5.6-kinematics.pdf",
+          "size": 1268530
+        },
+        {
+          "name": "5.7-basic-limits-&-continuity.pdf",
+          "path": "vault/savemyexams/Maths AA SL/5. Calculus/5.7-basic-limits-&-continuity.pdf",
+          "size": 1144513
+        },
+        {
+          "name": "5.8-advanced-differentiation.pdf",
+          "path": "vault/savemyexams/Maths AA SL/5. Calculus/5.8-advanced-differentiation.pdf",
+          "size": 2598588
+        },
+        {
+          "name": "5.9-advanced-integration.pdf",
+          "path": "vault/savemyexams/Maths AA SL/5. Calculus/5.9-advanced-integration.pdf",
+          "size": 3647555
+        }
+      ]
+    },
+    "4. Statistics & Probability": {
+      "files": [
+        {
+          "name": "4.1-statistics-toolkit.pdf",
+          "path": "vault/savemyexams/Maths AA SL/4. Statistics & Probability/4.1-statistics-toolkit.pdf",
+          "size": 2516187
+        },
+        {
+          "name": "4.2-correlation-&-regression.pdf",
+          "path": "vault/savemyexams/Maths AA SL/4. Statistics & Probability/4.2-correlation-&-regression.pdf",
+          "size": 877695
+        },
+        {
+          "name": "4.3-probability.pdf",
+          "path": "vault/savemyexams/Maths AA SL/4. Statistics & Probability/4.3-probability.pdf",
+          "size": 2269951
+        },
+        {
+          "name": "4.4-probability-distributions.pdf",
+          "path": "vault/savemyexams/Maths AA SL/4. Statistics & Probability/4.4-probability-distributions.pdf",
+          "size": 954427
+        },
+        {
+          "name": "4.5-binomial-distribution.pdf",
+          "path": "vault/savemyexams/Maths AA SL/4. Statistics & Probability/4.5-binomial-distribution.pdf",
+          "size": 1118662
+        },
+        {
+          "name": "4.6-normal-distribution.pdf",
+          "path": "vault/savemyexams/Maths AA SL/4. Statistics & Probability/4.6-normal-distribution.pdf",
+          "size": 1140142
+        },
+        {
+          "name": "4.7-further-probability-distributions.pdf",
+          "path": "vault/savemyexams/Maths AA SL/4. Statistics & Probability/4.7-further-probability-distributions.pdf",
+          "size": 1130931
+        }
+      ]
+    },
+    "2. Functions": {
+      "files": [
+        {
+          "name": "2.1-linear-functions-&-graphs.pdf",
+          "path": "vault/savemyexams/Maths AA SL/2. Functions/2.1-linear-functions-&-graphs.pdf",
+          "size": 743327
+        },
+        {
+          "name": "2.2-quadratic-functions-&-graphs.pdf",
+          "path": "vault/savemyexams/Maths AA SL/2. Functions/2.2-quadratic-functions-&-graphs.pdf",
+          "size": 1792044
+        },
+        {
+          "name": "2.3-functions-toolkit.pdf",
+          "path": "vault/savemyexams/Maths AA SL/2. Functions/2.3-functions-toolkit.pdf",
+          "size": 3181118
+        },
+        {
+          "name": "2.4-other-functions-&-graphs.pdf",
+          "path": "vault/savemyexams/Maths AA SL/2. Functions/2.4-other-functions-&-graphs.pdf",
+          "size": 1324518
+        },
+        {
+          "name": "2.5-reciprocal-&-rational-functions.pdf",
+          "path": "vault/savemyexams/Maths AA SL/2. Functions/2.5-reciprocal-&-rational-functions.pdf",
+          "size": 877344
+        },
+        {
+          "name": "2.6-transformations-of-graphs.pdf",
+          "path": "vault/savemyexams/Maths AA SL/2. Functions/2.6-transformations-of-graphs.pdf",
+          "size": 2698145
+        },
+        {
+          "name": "2.7-polynomial-functions.pdf",
+          "path": "vault/savemyexams/Maths AA SL/2. Functions/2.7-polynomial-functions.pdf",
+          "size": 2681861
+        },
+        {
+          "name": "2.8-inequalities.pdf",
+          "path": "vault/savemyexams/Maths AA SL/2. Functions/2.8-inequalities.pdf",
+          "size": 420555
+        },
+        {
+          "name": "2.9-further-functions-&-graphs.pdf",
+          "path": "vault/savemyexams/Maths AA SL/2. Functions/2.9-further-functions-&-graphs.pdf",
+          "size": 1362238
+        }
+      ]
+    },
+    "1. Number & Algebra": {
+      "files": [
+        {
+          "name": "1.1-number-&-algebra-toolkit.pdf",
+          "path": "vault/savemyexams/Maths AA SL/1. Number & Algebra/1.1-number-&-algebra-toolkit.pdf",
+          "size": 1391727
+        },
+        {
+          "name": "1.10-systems-of-linear-equations.pdf",
+          "path": "vault/savemyexams/Maths AA SL/1. Number & Algebra/1.10-systems-of-linear-equations.pdf",
+          "size": 764839
+        },
+        {
+          "name": "1.2-exponentials-&-logs.pdf",
+          "path": "vault/savemyexams/Maths AA SL/1. Number & Algebra/1.2-exponentials-&-logs.pdf",
+          "size": 1144097
+        },
+        {
+          "name": "1.3-sequences-&-series.pdf",
+          "path": "vault/savemyexams/Maths AA SL/1. Number & Algebra/1.3-sequences-&-series.pdf",
+          "size": 2416107
+        },
+        {
+          "name": "1.4-simple-proof-&-reasoning.pdf",
+          "path": "vault/savemyexams/Maths AA SL/1. Number & Algebra/1.4-simple-proof-&-reasoning.pdf",
+          "size": 970918
+        },
+        {
+          "name": "1.5-further-proof-&-reasoning.pdf",
+          "path": "vault/savemyexams/Maths AA SL/1. Number & Algebra/1.5-further-proof-&-reasoning.pdf",
+          "size": 781850
+        },
+        {
+          "name": "1.6-binomial-theorem.pdf",
+          "path": "vault/savemyexams/Maths AA SL/1. Number & Algebra/1.6-binomial-theorem.pdf",
+          "size": 1062117
+        },
+        {
+          "name": "1.7-permutations-&-combinations.pdf",
+          "path": "vault/savemyexams/Maths AA SL/1. Number & Algebra/1.7-permutations-&-combinations.pdf",
+          "size": 911379
+        },
+        {
+          "name": "1.8-complex-numbers.pdf",
+          "path": "vault/savemyexams/Maths AA SL/1. Number & Algebra/1.8-complex-numbers.pdf",
+          "size": 1393526
+        },
+        {
+          "name": "1.9-further-complex-numbers.pdf",
+          "path": "vault/savemyexams/Maths AA SL/1. Number & Algebra/1.9-further-complex-numbers.pdf",
+          "size": 2783715
+        }
+      ]
+    }
+  },
+  "Chemistry HL 2025": {
+    "Tools": {
+      "files": [
+        {
+          "name": "tool-1--experimental-techniques.pdf",
+          "path": "vault/savemyexams/Chemistry HL 2025/Tools/tool-1--experimental-techniques.pdf",
+          "size": 2585734
+        },
+        {
+          "name": "tool-2--technology.pdf",
+          "path": "vault/savemyexams/Chemistry HL 2025/Tools/tool-2--technology.pdf",
+          "size": 781614
+        },
+        {
+          "name": "tool-3--mathematics.pdf",
+          "path": "vault/savemyexams/Chemistry HL 2025/Tools/tool-3--mathematics.pdf",
+          "size": 2595600
+        }
+      ]
+    },
+    "How Much, How Fast & How Far": {
+      "files": [
+        {
+          "name": "how-far--the-extent-of-chemical-change.pdf",
+          "path": "vault/savemyexams/Chemistry HL 2025/How Much, How Fast & How Far/how-far--the-extent-of-chemical-change.pdf",
+          "size": 1615349
+        },
+        {
+          "name": "how-fast--the-rate-of-chemical-change.pdf",
+          "path": "vault/savemyexams/Chemistry HL 2025/How Much, How Fast & How Far/how-fast--the-rate-of-chemical-change.pdf",
+          "size": 7549793
+        },
+        {
+          "name": "how-much--the-amount-of-chemical-change.pdf",
+          "path": "vault/savemyexams/Chemistry HL 2025/How Much, How Fast & How Far/how-much--the-amount-of-chemical-change.pdf",
+          "size": 530617
+        }
+      ]
+    },
+    "What are the Mechanisms of Chemical Change?": {
+      "files": [
+        {
+          "name": "electron-pair-sharing-reactions.pdf",
+          "path": "vault/savemyexams/Chemistry HL 2025/What are the Mechanisms of Chemical Change?/electron-pair-sharing-reactions.pdf",
+          "size": 5067251
+        },
+        {
+          "name": "electron-sharing-reactions.pdf",
+          "path": "vault/savemyexams/Chemistry HL 2025/What are the Mechanisms of Chemical Change?/electron-sharing-reactions.pdf",
+          "size": 764963
+        },
+        {
+          "name": "electron-transfer-reactions.pdf",
+          "path": "vault/savemyexams/Chemistry HL 2025/What are the Mechanisms of Chemical Change?/electron-transfer-reactions.pdf",
+          "size": 4787479
+        },
+        {
+          "name": "proton-transfer-reactions.pdf",
+          "path": "vault/savemyexams/Chemistry HL 2025/What are the Mechanisms of Chemical Change?/proton-transfer-reactions.pdf",
+          "size": 5040408
+        }
+      ]
+    },
+    "Models of Bonding & Structure": {
+      "files": [
+        {
+          "name": "from-models-to-materials.pdf",
+          "path": "vault/savemyexams/Chemistry HL 2025/Models of Bonding & Structure/from-models-to-materials.pdf",
+          "size": 3860652
+        },
+        {
+          "name": "the-covalent-model.pdf",
+          "path": "vault/savemyexams/Chemistry HL 2025/Models of Bonding & Structure/the-covalent-model.pdf",
+          "size": 9541515
+        },
+        {
+          "name": "the-ionic-model.pdf",
+          "path": "vault/savemyexams/Chemistry HL 2025/Models of Bonding & Structure/the-ionic-model.pdf",
+          "size": 1168209
+        },
+        {
+          "name": "the-metallic-model.pdf",
+          "path": "vault/savemyexams/Chemistry HL 2025/Models of Bonding & Structure/the-metallic-model.pdf",
+          "size": 1376991
+        }
+      ]
+    },
+    "Classification of Matter": {
+      "files": [
+        {
+          "name": "functional-groups--classification-of-organic-compounds.pdf",
+          "path": "vault/savemyexams/Chemistry HL 2025/Classification of Matter/functional-groups--classification-of-organic-compounds.pdf",
+          "size": 8156654
+        },
+        {
+          "name": "the-periodic-table--classification-of-elements.pdf",
+          "path": "vault/savemyexams/Chemistry HL 2025/Classification of Matter/the-periodic-table--classification-of-elements.pdf",
+          "size": 4810876
+        }
+      ]
+    },
+    "Models of the Particulate Nature of Matter": {
+      "files": [
+        {
+          "name": "counting-particles-by-mass--the-mole.pdf",
+          "path": "vault/savemyexams/Chemistry HL 2025/Models of the Particulate Nature of Matter/counting-particles-by-mass--the-mole.pdf",
+          "size": 689989
+        },
+        {
+          "name": "electronic-configurations.pdf",
+          "path": "vault/savemyexams/Chemistry HL 2025/Models of the Particulate Nature of Matter/electronic-configurations.pdf",
+          "size": 3990290
+        },
+        {
+          "name": "ideal-gases.pdf",
+          "path": "vault/savemyexams/Chemistry HL 2025/Models of the Particulate Nature of Matter/ideal-gases.pdf",
+          "size": 2027710
+        },
+        {
+          "name": "introduction-to-the-particulate-nature-of-matter.pdf",
+          "path": "vault/savemyexams/Chemistry HL 2025/Models of the Particulate Nature of Matter/introduction-to-the-particulate-nature-of-matter.pdf",
+          "size": 2148123
+        },
+        {
+          "name": "the-nuclear-atom.pdf",
+          "path": "vault/savemyexams/Chemistry HL 2025/Models of the Particulate Nature of Matter/the-nuclear-atom.pdf",
+          "size": 735971
+        }
+      ]
+    },
+    "What Drives Chemical Reactions?": {
+      "files": [
+        {
+          "name": "energy-cycles-in-reactions.pdf",
+          "path": "vault/savemyexams/Chemistry HL 2025/What Drives Chemical Reactions?/energy-cycles-in-reactions.pdf",
+          "size": 3302754
+        },
+        {
+          "name": "energy-from-fuels.pdf",
+          "path": "vault/savemyexams/Chemistry HL 2025/What Drives Chemical Reactions?/energy-from-fuels.pdf",
+          "size": 1777279
+        },
+        {
+          "name": "entropy-&-spontaneity.pdf",
+          "path": "vault/savemyexams/Chemistry HL 2025/What Drives Chemical Reactions?/entropy-&-spontaneity.pdf",
+          "size": 1560099
+        },
+        {
+          "name": "measuring-enthalpy-change.pdf",
+          "path": "vault/savemyexams/Chemistry HL 2025/What Drives Chemical Reactions?/measuring-enthalpy-change.pdf",
+          "size": 1821712
+        }
+      ]
+    }
+  },
+  "Chemistry SL 2025": {
+    "Tools": {
+      "files": [
+        {
+          "name": "tool-1--experimental-techniques.pdf",
+          "path": "vault/savemyexams/Chemistry SL 2025/Tools/tool-1--experimental-techniques.pdf",
+          "size": 2585765
+        },
+        {
+          "name": "tool-2--technology.pdf",
+          "path": "vault/savemyexams/Chemistry SL 2025/Tools/tool-2--technology.pdf",
+          "size": 781624
+        },
+        {
+          "name": "tool-3--mathematics.pdf",
+          "path": "vault/savemyexams/Chemistry SL 2025/Tools/tool-3--mathematics.pdf",
+          "size": 2595668
+        }
+      ]
+    },
+    "What are the Mechanisms of Chemical Change?": {
+      "files": [
+        {
+          "name": "electron-pair-sharing-reactions.pdf",
+          "path": "vault/savemyexams/Chemistry SL 2025/What are the Mechanisms of Chemical Change?/electron-pair-sharing-reactions.pdf",
+          "size": 1220562
+        },
+        {
+          "name": "electron-sharing-reactions.pdf",
+          "path": "vault/savemyexams/Chemistry SL 2025/What are the Mechanisms of Chemical Change?/electron-sharing-reactions.pdf",
+          "size": 764960
+        },
+        {
+          "name": "electron-transfer-reactions.pdf",
+          "path": "vault/savemyexams/Chemistry SL 2025/What are the Mechanisms of Chemical Change?/electron-transfer-reactions.pdf",
+          "size": 3754265
+        },
+        {
+          "name": "proton-transfer-reactions.pdf",
+          "path": "vault/savemyexams/Chemistry SL 2025/What are the Mechanisms of Chemical Change?/proton-transfer-reactions.pdf",
+          "size": 3378842
+        }
+      ]
+    },
+    "Models of Bonding & Structure": {
+      "files": [
+        {
+          "name": "from-models-to-materials.pdf",
+          "path": "vault/savemyexams/Chemistry SL 2025/Models of Bonding & Structure/from-models-to-materials.pdf",
+          "size": 2719990
+        },
+        {
+          "name": "the-covalent-model.pdf",
+          "path": "vault/savemyexams/Chemistry SL 2025/Models of Bonding & Structure/the-covalent-model.pdf",
+          "size": 5977989
+        },
+        {
+          "name": "the-ionic-model.pdf",
+          "path": "vault/savemyexams/Chemistry SL 2025/Models of Bonding & Structure/the-ionic-model.pdf",
+          "size": 1168227
+        },
+        {
+          "name": "the-metallic-model.pdf",
+          "path": "vault/savemyexams/Chemistry SL 2025/Models of Bonding & Structure/the-metallic-model.pdf",
+          "size": 1096139
+        }
+      ]
+    },
+    "How Much, How Fast & How Far": {
+      "files": [
+        {
+          "name": "how-far--the-extent-of-chemical-change.pdf",
+          "path": "vault/savemyexams/Chemistry SL 2025/How Much, How Fast & How Far/how-far--the-extent-of-chemical-change.pdf",
+          "size": 1373408
+        },
+        {
+          "name": "how-fast--the-rate-of-chemical-change.pdf",
+          "path": "vault/savemyexams/Chemistry SL 2025/How Much, How Fast & How Far/how-fast--the-rate-of-chemical-change.pdf",
+          "size": 4588386
+        },
+        {
+          "name": "how-much--the-amount-of-chemical-change.pdf",
+          "path": "vault/savemyexams/Chemistry SL 2025/How Much, How Fast & How Far/how-much--the-amount-of-chemical-change.pdf",
+          "size": 530641
+        }
+      ]
+    },
+    "Classification of Matter": {
+      "files": [
+        {
+          "name": "functional-groups--classification-of-organic-compounds.pdf",
+          "path": "vault/savemyexams/Chemistry SL 2025/Classification of Matter/functional-groups--classification-of-organic-compounds.pdf",
+          "size": 3580063
+        },
+        {
+          "name": "the-periodic-table--classification-of-elements.pdf",
+          "path": "vault/savemyexams/Chemistry SL 2025/Classification of Matter/the-periodic-table--classification-of-elements.pdf",
+          "size": 3353361
+        }
+      ]
+    },
+    "Models of the Particulate Nature of Matter": {
+      "files": [
+        {
+          "name": "counting-particles-by-mass--the-mole.pdf",
+          "path": "vault/savemyexams/Chemistry SL 2025/Models of the Particulate Nature of Matter/counting-particles-by-mass--the-mole.pdf",
+          "size": 690002
+        },
+        {
+          "name": "electronic-configurations.pdf",
+          "path": "vault/savemyexams/Chemistry SL 2025/Models of the Particulate Nature of Matter/electronic-configurations.pdf",
+          "size": 3200869
+        },
+        {
+          "name": "ideal-gases.pdf",
+          "path": "vault/savemyexams/Chemistry SL 2025/Models of the Particulate Nature of Matter/ideal-gases.pdf",
+          "size": 2027465
+        },
+        {
+          "name": "introduction-to-the-particulate-nature-of-matter.pdf",
+          "path": "vault/savemyexams/Chemistry SL 2025/Models of the Particulate Nature of Matter/introduction-to-the-particulate-nature-of-matter.pdf",
+          "size": 2148141
+        },
+        {
+          "name": "the-nuclear-atom.pdf",
+          "path": "vault/savemyexams/Chemistry SL 2025/Models of the Particulate Nature of Matter/the-nuclear-atom.pdf",
+          "size": 631188
+        }
+      ]
+    },
+    "What Drives Chemical Reactions?": {
+      "files": [
+        {
+          "name": "energy-cycles-in-reactions.pdf",
+          "path": "vault/savemyexams/Chemistry SL 2025/What Drives Chemical Reactions?/energy-cycles-in-reactions.pdf",
+          "size": 1238816
+        },
+        {
+          "name": "energy-from-fuels.pdf",
+          "path": "vault/savemyexams/Chemistry SL 2025/What Drives Chemical Reactions?/energy-from-fuels.pdf",
+          "size": 1777279
+        },
+        {
+          "name": "measuring-enthalpy-change.pdf",
+          "path": "vault/savemyexams/Chemistry SL 2025/What Drives Chemical Reactions?/measuring-enthalpy-change.pdf",
+          "size": 1821748
+        }
+      ]
+    }
+  },
+  "Maths AA HL": {
+    "3. Geometry & Trigonometry": {
+      "files": [
+        {
+          "name": "3.1-geometry-toolkit.pdf",
+          "path": "vault/savemyexams/Maths AA HL/3. Geometry & Trigonometry/3.1-geometry-toolkit.pdf",
+          "size": 1777521
+        },
+        {
+          "name": "3.10-vector-equations-of-lines.pdf",
+          "path": "vault/savemyexams/Maths AA HL/3. Geometry & Trigonometry/3.10-vector-equations-of-lines.pdf",
+          "size": 1939053
+        },
+        {
+          "name": "3.11-vector-planes.pdf",
+          "path": "vault/savemyexams/Maths AA HL/3. Geometry & Trigonometry/3.11-vector-planes.pdf",
+          "size": 2586252
+        },
+        {
+          "name": "3.2-geometry-of-3d-shapes.pdf",
+          "path": "vault/savemyexams/Maths AA HL/3. Geometry & Trigonometry/3.2-geometry-of-3d-shapes.pdf",
+          "size": 1212822
+        },
+        {
+          "name": "3.3-trigonometry-toolkit.pdf",
+          "path": "vault/savemyexams/Maths AA HL/3. Geometry & Trigonometry/3.3-trigonometry-toolkit.pdf",
+          "size": 3885213
+        },
+        {
+          "name": "3.4-trigonometry.pdf",
+          "path": "vault/savemyexams/Maths AA HL/3. Geometry & Trigonometry/3.4-trigonometry.pdf",
+          "size": 1492072
+        },
+        {
+          "name": "3.5-trigonometric-functions-&-graphs.pdf",
+          "path": "vault/savemyexams/Maths AA HL/3. Geometry & Trigonometry/3.5-trigonometric-functions-&-graphs.pdf",
+          "size": 1487609
+        },
+        {
+          "name": "3.6-trigonometric-equations-&-identities.pdf",
+          "path": "vault/savemyexams/Maths AA HL/3. Geometry & Trigonometry/3.6-trigonometric-equations-&-identities.pdf",
+          "size": 1928092
+        },
+        {
+          "name": "3.7-inverse-&-reciprocal-trig-functions.pdf",
+          "path": "vault/savemyexams/Maths AA HL/3. Geometry & Trigonometry/3.7-inverse-&-reciprocal-trig-functions.pdf",
+          "size": 1368788
+        },
+        {
+          "name": "3.8-further-trigonometry.pdf",
+          "path": "vault/savemyexams/Maths AA HL/3. Geometry & Trigonometry/3.8-further-trigonometry.pdf",
+          "size": 1021282
+        },
+        {
+          "name": "3.9-vector-properties.pdf",
+          "path": "vault/savemyexams/Maths AA HL/3. Geometry & Trigonometry/3.9-vector-properties.pdf",
+          "size": 4094893
+        }
+      ]
+    },
+    "5. Calculus": {
+      "files": [
+        {
+          "name": "5.1-differentiation.pdf",
+          "path": "vault/savemyexams/Maths AA HL/5. Calculus/5.1-differentiation.pdf",
+          "size": 1586743
+        },
+        {
+          "name": "5.10-differential-equations.pdf",
+          "path": "vault/savemyexams/Maths AA HL/5. Calculus/5.10-differential-equations.pdf",
+          "size": 1890160
+        },
+        {
+          "name": "5.11-maclaurin-series.pdf",
+          "path": "vault/savemyexams/Maths AA HL/5. Calculus/5.11-maclaurin-series.pdf",
+          "size": 1642345
+        },
+        {
+          "name": "5.12-further-limits-(inc-l'ha\u0303\u00b4pital's-rule).pdf",
+          "path": "vault/savemyexams/Maths AA HL/5. Calculus/5.12-further-limits-(inc-l'ha\u0303\u00b4pital's-rule).pdf",
+          "size": 650406
+        },
+        {
+          "name": "5.2-further-differentiation.pdf",
+          "path": "vault/savemyexams/Maths AA HL/5. Calculus/5.2-further-differentiation.pdf",
+          "size": 4059295
+        },
+        {
+          "name": "5.3-integration.pdf",
+          "path": "vault/savemyexams/Maths AA HL/5. Calculus/5.3-integration.pdf",
+          "size": 928208
+        },
+        {
+          "name": "5.4-further-integration.pdf",
+          "path": "vault/savemyexams/Maths AA HL/5. Calculus/5.4-further-integration.pdf",
+          "size": 3235188
+        },
+        {
+          "name": "5.5-optimisation.pdf",
+          "path": "vault/savemyexams/Maths AA HL/5. Calculus/5.5-optimisation.pdf",
+          "size": 733933
+        },
+        {
+          "name": "5.6-kinematics.pdf",
+          "path": "vault/savemyexams/Maths AA HL/5. Calculus/5.6-kinematics.pdf",
+          "size": 1268530
+        },
+        {
+          "name": "5.7-basic-limits-&-continuity.pdf",
+          "path": "vault/savemyexams/Maths AA HL/5. Calculus/5.7-basic-limits-&-continuity.pdf",
+          "size": 1144513
+        },
+        {
+          "name": "5.8-advanced-differentiation.pdf",
+          "path": "vault/savemyexams/Maths AA HL/5. Calculus/5.8-advanced-differentiation.pdf",
+          "size": 2598588
+        },
+        {
+          "name": "5.9-advanced-integration.pdf",
+          "path": "vault/savemyexams/Maths AA HL/5. Calculus/5.9-advanced-integration.pdf",
+          "size": 3647555
+        }
+      ]
+    },
+    "4. Statistics & Probability": {
+      "files": [
+        {
+          "name": "4.1-statistics-toolkit.pdf",
+          "path": "vault/savemyexams/Maths AA HL/4. Statistics & Probability/4.1-statistics-toolkit.pdf",
+          "size": 2516187
+        },
+        {
+          "name": "4.2-correlation-&-regression.pdf",
+          "path": "vault/savemyexams/Maths AA HL/4. Statistics & Probability/4.2-correlation-&-regression.pdf",
+          "size": 877695
+        },
+        {
+          "name": "4.3-probability.pdf",
+          "path": "vault/savemyexams/Maths AA HL/4. Statistics & Probability/4.3-probability.pdf",
+          "size": 2269951
+        },
+        {
+          "name": "4.4-probability-distributions.pdf",
+          "path": "vault/savemyexams/Maths AA HL/4. Statistics & Probability/4.4-probability-distributions.pdf",
+          "size": 954427
+        },
+        {
+          "name": "4.5-binomial-distribution.pdf",
+          "path": "vault/savemyexams/Maths AA HL/4. Statistics & Probability/4.5-binomial-distribution.pdf",
+          "size": 1118662
+        },
+        {
+          "name": "4.6-normal-distribution.pdf",
+          "path": "vault/savemyexams/Maths AA HL/4. Statistics & Probability/4.6-normal-distribution.pdf",
+          "size": 1140142
+        },
+        {
+          "name": "4.7-further-probability-distributions.pdf",
+          "path": "vault/savemyexams/Maths AA HL/4. Statistics & Probability/4.7-further-probability-distributions.pdf",
+          "size": 1130931
+        }
+      ]
+    },
+    "2. Functions": {
+      "files": [
+        {
+          "name": "2.1-linear-functions-&-graphs.pdf",
+          "path": "vault/savemyexams/Maths AA HL/2. Functions/2.1-linear-functions-&-graphs.pdf",
+          "size": 743327
+        },
+        {
+          "name": "2.2-quadratic-functions-&-graphs.pdf",
+          "path": "vault/savemyexams/Maths AA HL/2. Functions/2.2-quadratic-functions-&-graphs.pdf",
+          "size": 1792044
+        },
+        {
+          "name": "2.3-functions-toolkit.pdf",
+          "path": "vault/savemyexams/Maths AA HL/2. Functions/2.3-functions-toolkit.pdf",
+          "size": 3181118
+        },
+        {
+          "name": "2.4-other-functions-&-graphs.pdf",
+          "path": "vault/savemyexams/Maths AA HL/2. Functions/2.4-other-functions-&-graphs.pdf",
+          "size": 1324518
+        },
+        {
+          "name": "2.5-reciprocal-&-rational-functions.pdf",
+          "path": "vault/savemyexams/Maths AA HL/2. Functions/2.5-reciprocal-&-rational-functions.pdf",
+          "size": 877344
+        },
+        {
+          "name": "2.6-transformations-of-graphs.pdf",
+          "path": "vault/savemyexams/Maths AA HL/2. Functions/2.6-transformations-of-graphs.pdf",
+          "size": 2698145
+        },
+        {
+          "name": "2.7-polynomial-functions.pdf",
+          "path": "vault/savemyexams/Maths AA HL/2. Functions/2.7-polynomial-functions.pdf",
+          "size": 2681861
+        },
+        {
+          "name": "2.8-inequalities.pdf",
+          "path": "vault/savemyexams/Maths AA HL/2. Functions/2.8-inequalities.pdf",
+          "size": 420555
+        },
+        {
+          "name": "2.9-further-functions-&-graphs.pdf",
+          "path": "vault/savemyexams/Maths AA HL/2. Functions/2.9-further-functions-&-graphs.pdf",
+          "size": 1362238
+        }
+      ]
+    },
+    "1. Number & Algebra": {
+      "files": [
+        {
+          "name": "1.1-number-&-algebra-toolkit.pdf",
+          "path": "vault/savemyexams/Maths AA HL/1. Number & Algebra/1.1-number-&-algebra-toolkit.pdf",
+          "size": 1391727
+        },
+        {
+          "name": "1.10-systems-of-linear-equations.pdf",
+          "path": "vault/savemyexams/Maths AA HL/1. Number & Algebra/1.10-systems-of-linear-equations.pdf",
+          "size": 764839
+        },
+        {
+          "name": "1.2-exponentials-&-logs.pdf",
+          "path": "vault/savemyexams/Maths AA HL/1. Number & Algebra/1.2-exponentials-&-logs.pdf",
+          "size": 1144097
+        },
+        {
+          "name": "1.3-sequences-&-series.pdf",
+          "path": "vault/savemyexams/Maths AA HL/1. Number & Algebra/1.3-sequences-&-series.pdf",
+          "size": 2416107
+        },
+        {
+          "name": "1.4-simple-proof-&-reasoning.pdf",
+          "path": "vault/savemyexams/Maths AA HL/1. Number & Algebra/1.4-simple-proof-&-reasoning.pdf",
+          "size": 970918
+        },
+        {
+          "name": "1.5-further-proof-&-reasoning.pdf",
+          "path": "vault/savemyexams/Maths AA HL/1. Number & Algebra/1.5-further-proof-&-reasoning.pdf",
+          "size": 781850
+        },
+        {
+          "name": "1.6-binomial-theorem.pdf",
+          "path": "vault/savemyexams/Maths AA HL/1. Number & Algebra/1.6-binomial-theorem.pdf",
+          "size": 1062117
+        },
+        {
+          "name": "1.7-permutations-&-combinations.pdf",
+          "path": "vault/savemyexams/Maths AA HL/1. Number & Algebra/1.7-permutations-&-combinations.pdf",
+          "size": 911379
+        },
+        {
+          "name": "1.8-complex-numbers.pdf",
+          "path": "vault/savemyexams/Maths AA HL/1. Number & Algebra/1.8-complex-numbers.pdf",
+          "size": 1393526
+        },
+        {
+          "name": "1.9-further-complex-numbers.pdf",
+          "path": "vault/savemyexams/Maths AA HL/1. Number & Algebra/1.9-further-complex-numbers.pdf",
+          "size": 2783715
+        }
+      ]
+    }
+  },
+  "Psychology HL": {
+    "Health Psychology": {
+      "files": [
+        {
+          "name": "determinants-of-health.pdf",
+          "path": "vault/savemyexams/Psychology HL/Health Psychology/determinants-of-health.pdf",
+          "size": 1429679
+        },
+        {
+          "name": "health-problems.pdf",
+          "path": "vault/savemyexams/Psychology HL/Health Psychology/health-problems.pdf",
+          "size": 1027783
+        },
+        {
+          "name": "how-to-answer-the-ib-health-psychology-question.pdf",
+          "path": "vault/savemyexams/Psychology HL/Health Psychology/how-to-answer-the-ib-health-psychology-question.pdf",
+          "size": 232189
+        },
+        {
+          "name": "promoting-health.pdf",
+          "path": "vault/savemyexams/Psychology HL/Health Psychology/promoting-health.pdf",
+          "size": 583134
+        }
+      ]
+    },
+    "The Cognitive Approach": {
+      "files": [
+        {
+          "name": "cognitive-processing-in-a-technical-world.pdf",
+          "path": "vault/savemyexams/Psychology HL/The Cognitive Approach/cognitive-processing-in-a-technical-world.pdf",
+          "size": 1011153
+        },
+        {
+          "name": "cognitive-processing.pdf",
+          "path": "vault/savemyexams/Psychology HL/The Cognitive Approach/cognitive-processing.pdf",
+          "size": 173770
+        },
+        {
+          "name": "cognitive-schema.pdf",
+          "path": "vault/savemyexams/Psychology HL/The Cognitive Approach/cognitive-schema.pdf",
+          "size": 321476
+        },
+        {
+          "name": "emotion-&-cognition.pdf",
+          "path": "vault/savemyexams/Psychology HL/The Cognitive Approach/emotion-&-cognition.pdf",
+          "size": 310642
+        },
+        {
+          "name": "key-studies-of-reliability-of-cognitive-processes.pdf",
+          "path": "vault/savemyexams/Psychology HL/The Cognitive Approach/key-studies-of-reliability-of-cognitive-processes.pdf",
+          "size": 82830
+        },
+        {
+          "name": "key-studies-of-reliability-of-the-effect-of-emotion-on-cognition.pdf",
+          "path": "vault/savemyexams/Psychology HL/The Cognitive Approach/key-studies-of-reliability-of-the-effect-of-emotion-on-cognition.pdf",
+          "size": 82781
+        },
+        {
+          "name": "key-studies-on-cognitive-processing.pdf",
+          "path": "vault/savemyexams/Psychology HL/The Cognitive Approach/key-studies-on-cognitive-processing.pdf",
+          "size": 79789
+        },
+        {
+          "name": "models-of-memory.pdf",
+          "path": "vault/savemyexams/Psychology HL/The Cognitive Approach/models-of-memory.pdf",
+          "size": 286311
+        },
+        {
+          "name": "reliability-of-cognitive-processes.pdf",
+          "path": "vault/savemyexams/Psychology HL/The Cognitive Approach/reliability-of-cognitive-processes.pdf",
+          "size": 1078084
+        },
+        {
+          "name": "thinking-&-decision-making.pdf",
+          "path": "vault/savemyexams/Psychology HL/The Cognitive Approach/thinking-&-decision-making.pdf",
+          "size": 230352
+        }
+      ]
+    },
+    "Abnormal Psychology": {
+      "files": [
+        {
+          "name": "etiology-of-abnormal-psychology--explanations-for-disorders.pdf",
+          "path": "vault/savemyexams/Psychology HL/Abnormal Psychology/etiology-of-abnormal-psychology--explanations-for-disorders.pdf",
+          "size": 1533909
+        },
+        {
+          "name": "etiology-of-abnormal-psychology--prevalence-rates-&-disorders.pdf",
+          "path": "vault/savemyexams/Psychology HL/Abnormal Psychology/etiology-of-abnormal-psychology--prevalence-rates-&-disorders.pdf",
+          "size": 412806
+        },
+        {
+          "name": "exam-tips-&-guidance.pdf",
+          "path": "vault/savemyexams/Psychology HL/Abnormal Psychology/exam-tips-&-guidance.pdf",
+          "size": 247291
+        },
+        {
+          "name": "factors-influencing-diagnosis--classification-systems.pdf",
+          "path": "vault/savemyexams/Psychology HL/Abnormal Psychology/factors-influencing-diagnosis--classification-systems.pdf",
+          "size": 751207
+        },
+        {
+          "name": "factors-influencing-diagnosis--normality-vs-abnormality.pdf",
+          "path": "vault/savemyexams/Psychology HL/Abnormal Psychology/factors-influencing-diagnosis--normality-vs-abnormality.pdf",
+          "size": 671520
+        },
+        {
+          "name": "factors-influencing-diagnosis--the-role-of-clinical-biases-in-diagnosis.pdf",
+          "path": "vault/savemyexams/Psychology HL/Abnormal Psychology/factors-influencing-diagnosis--the-role-of-clinical-biases-in-diagnosis.pdf",
+          "size": 284408
+        },
+        {
+          "name": "factors-influencing-diagnosis--validity-&-reliability-of-diagnosis.pdf",
+          "path": "vault/savemyexams/Psychology HL/Abnormal Psychology/factors-influencing-diagnosis--validity-&-reliability-of-diagnosis.pdf",
+          "size": 337354
+        },
+        {
+          "name": "treatment-of-disorders--biological-treatments-of-mdd-&-phobias.pdf",
+          "path": "vault/savemyexams/Psychology HL/Abnormal Psychology/treatment-of-disorders--biological-treatments-of-mdd-&-phobias.pdf",
+          "size": 565841
+        },
+        {
+          "name": "treatment-of-disorders--psychological-treatments-of-mdd-&-phobias.pdf",
+          "path": "vault/savemyexams/Psychology HL/Abnormal Psychology/treatment-of-disorders--psychological-treatments-of-mdd-&-phobias.pdf",
+          "size": 453634
+        },
+        {
+          "name": "treatment-of-disorders--summary-of-treatments.pdf",
+          "path": "vault/savemyexams/Psychology HL/Abnormal Psychology/treatment-of-disorders--summary-of-treatments.pdf",
+          "size": 134953
+        },
+        {
+          "name": "treatment-of-disorders--the-role-of-culture-in-treatment.pdf",
+          "path": "vault/savemyexams/Psychology HL/Abnormal Psychology/treatment-of-disorders--the-role-of-culture-in-treatment.pdf",
+          "size": 758560
+        }
+      ]
+    },
+    "The Biological Approach": {
+      "files": [
+        {
+          "name": "ethical-considerations-in-animal-research.pdf",
+          "path": "vault/savemyexams/Psychology HL/The Biological Approach/ethical-considerations-in-animal-research.pdf",
+          "size": 533254
+        },
+        {
+          "name": "evolutionary-explanations.pdf",
+          "path": "vault/savemyexams/Psychology HL/The Biological Approach/evolutionary-explanations.pdf",
+          "size": 235643
+        },
+        {
+          "name": "genetic-similarity.pdf",
+          "path": "vault/savemyexams/Psychology HL/The Biological Approach/genetic-similarity.pdf",
+          "size": 328604
+        },
+        {
+          "name": "genetics-&-behaviour---animals.pdf",
+          "path": "vault/savemyexams/Psychology HL/The Biological Approach/genetics-&-behaviour---animals.pdf",
+          "size": 264742
+        },
+        {
+          "name": "genetics-&-behaviour.pdf",
+          "path": "vault/savemyexams/Psychology HL/The Biological Approach/genetics-&-behaviour.pdf",
+          "size": 488438
+        },
+        {
+          "name": "hormones-&-pheromones---animals.pdf",
+          "path": "vault/savemyexams/Psychology HL/The Biological Approach/hormones-&-pheromones---animals.pdf",
+          "size": 358610
+        },
+        {
+          "name": "hormones-&-pheromones.pdf",
+          "path": "vault/savemyexams/Psychology HL/The Biological Approach/hormones-&-pheromones.pdf",
+          "size": 799455
+        },
+        {
+          "name": "key-studies-on-genetics-&-behaviour.pdf",
+          "path": "vault/savemyexams/Psychology HL/The Biological Approach/key-studies-on-genetics-&-behaviour.pdf",
+          "size": 81976
+        },
+        {
+          "name": "key-studies-on-the-brain-&-behaviour.pdf",
+          "path": "vault/savemyexams/Psychology HL/The Biological Approach/key-studies-on-the-brain-&-behaviour.pdf",
+          "size": 93208
+        },
+        {
+          "name": "localisation-of-function.pdf",
+          "path": "vault/savemyexams/Psychology HL/The Biological Approach/localisation-of-function.pdf",
+          "size": 304564
+        },
+        {
+          "name": "neuroplasticity.pdf",
+          "path": "vault/savemyexams/Psychology HL/The Biological Approach/neuroplasticity.pdf",
+          "size": 805465
+        },
+        {
+          "name": "neurotransmitters-&-their-effect-on-behaviour.pdf",
+          "path": "vault/savemyexams/Psychology HL/The Biological Approach/neurotransmitters-&-their-effect-on-behaviour.pdf",
+          "size": 1233471
+        },
+        {
+          "name": "techniques-used-to-study-the-brain.pdf",
+          "path": "vault/savemyexams/Psychology HL/The Biological Approach/techniques-used-to-study-the-brain.pdf",
+          "size": 1167762
+        },
+        {
+          "name": "the-brain-&-behaviour---animals.pdf",
+          "path": "vault/savemyexams/Psychology HL/The Biological Approach/the-brain-&-behaviour---animals.pdf",
+          "size": 298125
+        },
+        {
+          "name": "the-brain-&-behaviour.pdf",
+          "path": "vault/savemyexams/Psychology HL/The Biological Approach/the-brain-&-behaviour.pdf",
+          "size": 966062
+        },
+        {
+          "name": "the-use-of-animals-in-research.pdf",
+          "path": "vault/savemyexams/Psychology HL/The Biological Approach/the-use-of-animals-in-research.pdf",
+          "size": 239755
+        }
+      ]
+    },
+    "The Sociocultural Approach": {
+      "files": [
+        {
+          "name": "cultural-influences-on-individual-behaviour.pdf",
+          "path": "vault/savemyexams/Psychology HL/The Sociocultural Approach/cultural-influences-on-individual-behaviour.pdf",
+          "size": 245909
+        },
+        {
+          "name": "cultural-origins-of-behaviour-&-cognition.pdf",
+          "path": "vault/savemyexams/Psychology HL/The Sociocultural Approach/cultural-origins-of-behaviour-&-cognition.pdf",
+          "size": 1136415
+        },
+        {
+          "name": "key-studies-of-cultural-origins-of-behaviour-&-cognition.pdf",
+          "path": "vault/savemyexams/Psychology HL/The Sociocultural Approach/key-studies-of-cultural-origins-of-behaviour-&-cognition.pdf",
+          "size": 80706
+        },
+        {
+          "name": "key-studies-of-the-individual-&-the-group.pdf",
+          "path": "vault/savemyexams/Psychology HL/The Sociocultural Approach/key-studies-of-the-individual-&-the-group.pdf",
+          "size": 84194
+        },
+        {
+          "name": "the-effect-of-the-interaction-of-local-&-global-influences-on-behaviour.pdf",
+          "path": "vault/savemyexams/Psychology HL/The Sociocultural Approach/the-effect-of-the-interaction-of-local-&-global-influences-on-behaviour.pdf",
+          "size": 724582
+        },
+        {
+          "name": "the-individual-&-the-group.pdf",
+          "path": "vault/savemyexams/Psychology HL/The Sociocultural Approach/the-individual-&-the-group.pdf",
+          "size": 669132
+        }
+      ]
+    }
+  },
+  "Biology HL 2025": {
+    "Tools": {
+      "files": [
+        {
+          "name": "tool-1--experimental-techniques.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Tools/tool-1--experimental-techniques.pdf",
+          "size": 639762
+        },
+        {
+          "name": "tool-2--technology.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Tools/tool-2--technology.pdf",
+          "size": 519675
+        },
+        {
+          "name": "tool-3--mathematics.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Tools/tool-3--mathematics.pdf",
+          "size": 1564286
+        }
+      ]
+    },
+    "Unity & Diversity": {
+      "files": [
+        {
+          "name": "cell-structure.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Unity & Diversity/cell-structure.pdf",
+          "size": 8217095
+        },
+        {
+          "name": "classification-&-cladistics.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Unity & Diversity/classification-&-cladistics.pdf",
+          "size": 1604153
+        },
+        {
+          "name": "conservation-of-biodiversity.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Unity & Diversity/conservation-of-biodiversity.pdf",
+          "size": 2900779
+        },
+        {
+          "name": "diversity-of-organisms.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Unity & Diversity/diversity-of-organisms.pdf",
+          "size": 4176290
+        },
+        {
+          "name": "evolution-&-speciation.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Unity & Diversity/evolution-&-speciation.pdf",
+          "size": 4732024
+        },
+        {
+          "name": "nucleic-acids.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Unity & Diversity/nucleic-acids.pdf",
+          "size": 4544724
+        },
+        {
+          "name": "origins-of-cells.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Unity & Diversity/origins-of-cells.pdf",
+          "size": 2501626
+        },
+        {
+          "name": "viruses.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Unity & Diversity/viruses.pdf",
+          "size": 2325974
+        },
+        {
+          "name": "water.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Unity & Diversity/water.pdf",
+          "size": 1386746
+        }
+      ]
+    },
+    "Continuity & Change": {
+      "files": [
+        {
+          "name": "cell-&-nuclear-division.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Continuity & Change/cell-&-nuclear-division.pdf",
+          "size": 8294038
+        },
+        {
+          "name": "climate-change.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Continuity & Change/climate-change.pdf",
+          "size": 3572104
+        },
+        {
+          "name": "dna-replication.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Continuity & Change/dna-replication.pdf",
+          "size": 2325159
+        },
+        {
+          "name": "gene-expression.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Continuity & Change/gene-expression.pdf",
+          "size": 2054323
+        },
+        {
+          "name": "homeostasis.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Continuity & Change/homeostasis.pdf",
+          "size": 6488499
+        },
+        {
+          "name": "inheritance.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Continuity & Change/inheritance.pdf",
+          "size": 6119465
+        },
+        {
+          "name": "mutations-&-gene-editing.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Continuity & Change/mutations-&-gene-editing.pdf",
+          "size": 1204992
+        },
+        {
+          "name": "natural-selection.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Continuity & Change/natural-selection.pdf",
+          "size": 4815612
+        },
+        {
+          "name": "protein-synthesis.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Continuity & Change/protein-synthesis.pdf",
+          "size": 3764067
+        },
+        {
+          "name": "reproduction.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Continuity & Change/reproduction.pdf",
+          "size": 10707457
+        },
+        {
+          "name": "stability-&-change.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Continuity & Change/stability-&-change.pdf",
+          "size": 3835123
+        },
+        {
+          "name": "water-potential.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Continuity & Change/water-potential.pdf",
+          "size": 3617084
+        }
+      ]
+    },
+    "Form & Function": {
+      "files": [
+        {
+          "name": "adaptation-to-environment.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Form & Function/adaptation-to-environment.pdf",
+          "size": 4739401
+        },
+        {
+          "name": "carbohydrates-&-lipids.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Form & Function/carbohydrates-&-lipids.pdf",
+          "size": 3916464
+        },
+        {
+          "name": "cell-specialisation.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Form & Function/cell-specialisation.pdf",
+          "size": 4610393
+        },
+        {
+          "name": "ecological-niches.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Form & Function/ecological-niches.pdf",
+          "size": 2920076
+        },
+        {
+          "name": "gas-exchange.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Form & Function/gas-exchange.pdf",
+          "size": 6164179
+        },
+        {
+          "name": "membranes-&-membrane-transport.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Form & Function/membranes-&-membrane-transport.pdf",
+          "size": 4807490
+        },
+        {
+          "name": "muscle-&-motility.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Form & Function/muscle-&-motility.pdf",
+          "size": 3317727
+        },
+        {
+          "name": "organelles-&-compartmentalisation.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Form & Function/organelles-&-compartmentalisation.pdf",
+          "size": 2450114
+        },
+        {
+          "name": "proteins.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Form & Function/proteins.pdf",
+          "size": 3403512
+        },
+        {
+          "name": "transport.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Form & Function/transport.pdf",
+          "size": 8751895
+        }
+      ]
+    },
+    "Interaction & Interdependence": {
+      "files": [
+        {
+          "name": "cell-respiration.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Interaction & Interdependence/cell-respiration.pdf",
+          "size": 3098276
+        },
+        {
+          "name": "chemical-signalling.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Interaction & Interdependence/chemical-signalling.pdf",
+          "size": 4083876
+        },
+        {
+          "name": "defence-against-disease.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Interaction & Interdependence/defence-against-disease.pdf",
+          "size": 4310264
+        },
+        {
+          "name": "enzymes-&-metabolism.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Interaction & Interdependence/enzymes-&-metabolism.pdf",
+          "size": 4336061
+        },
+        {
+          "name": "integration-of-body-systems.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Interaction & Interdependence/integration-of-body-systems.pdf",
+          "size": 6786272
+        },
+        {
+          "name": "neural-signalling.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Interaction & Interdependence/neural-signalling.pdf",
+          "size": 3966668
+        },
+        {
+          "name": "photosynthesis.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Interaction & Interdependence/photosynthesis.pdf",
+          "size": 3717325
+        },
+        {
+          "name": "populations-&-communities.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Interaction & Interdependence/populations-&-communities.pdf",
+          "size": 5122010
+        },
+        {
+          "name": "transfer-of-energy-&-matter.pdf",
+          "path": "vault/savemyexams/Biology HL 2025/Interaction & Interdependence/transfer-of-energy-&-matter.pdf",
+          "size": 4900279
+        }
+      ]
+    }
+  },
+  "Physics HL 2025": {
+    "Space, Time & Motion": {
+      "files": [
+        {
+          "name": "forces-&-momentum.pdf",
+          "path": "vault/savemyexams/Physics HL 2025/Space, Time & Motion/forces-&-momentum.pdf",
+          "size": 11279141
+        },
+        {
+          "name": "galilean-&-special-relativity.pdf",
+          "path": "vault/savemyexams/Physics HL 2025/Space, Time & Motion/galilean-&-special-relativity.pdf",
+          "size": 5581701
+        },
+        {
+          "name": "kinematics.pdf",
+          "path": "vault/savemyexams/Physics HL 2025/Space, Time & Motion/kinematics.pdf",
+          "size": 6194976
+        },
+        {
+          "name": "rigid-body-mechanics.pdf",
+          "path": "vault/savemyexams/Physics HL 2025/Space, Time & Motion/rigid-body-mechanics.pdf",
+          "size": 3729083
+        },
+        {
+          "name": "work,-energy-&-power.pdf",
+          "path": "vault/savemyexams/Physics HL 2025/Space, Time & Motion/work,-energy-&-power.pdf",
+          "size": 4246241
+        }
+      ]
+    },
+    "Tools": {
+      "files": [
+        {
+          "name": "measurements-in-physics.pdf",
+          "path": "vault/savemyexams/Physics HL 2025/Tools/measurements-in-physics.pdf",
+          "size": 1727945
+        },
+        {
+          "name": "processing-uncertainties.pdf",
+          "path": "vault/savemyexams/Physics HL 2025/Tools/processing-uncertainties.pdf",
+          "size": 1879235
+        },
+        {
+          "name": "scalars-&-vectors.pdf",
+          "path": "vault/savemyexams/Physics HL 2025/Tools/scalars-&-vectors.pdf",
+          "size": 2977757
+        }
+      ]
+    },
+    "Nuclear & Quantum Physics": {
+      "files": [
+        {
+          "name": "fission.pdf",
+          "path": "vault/savemyexams/Physics HL 2025/Nuclear & Quantum Physics/fission.pdf",
+          "size": 2721911
+        },
+        {
+          "name": "fusion-&-stars.pdf",
+          "path": "vault/savemyexams/Physics HL 2025/Nuclear & Quantum Physics/fusion-&-stars.pdf",
+          "size": 4325862
+        },
+        {
+          "name": "quantum-physics.pdf",
+          "path": "vault/savemyexams/Physics HL 2025/Nuclear & Quantum Physics/quantum-physics.pdf",
+          "size": 3734107
+        },
+        {
+          "name": "radioactive-decay.pdf",
+          "path": "vault/savemyexams/Physics HL 2025/Nuclear & Quantum Physics/radioactive-decay.pdf",
+          "size": 8565385
+        },
+        {
+          "name": "structure-of-the-atom.pdf",
+          "path": "vault/savemyexams/Physics HL 2025/Nuclear & Quantum Physics/structure-of-the-atom.pdf",
+          "size": 2563116
+        }
+      ]
+    },
+    "The Particulate Nature of Matter": {
+      "files": [
+        {
+          "name": "current-&-circuits.pdf",
+          "path": "vault/savemyexams/Physics HL 2025/The Particulate Nature of Matter/current-&-circuits.pdf",
+          "size": 4836847
+        },
+        {
+          "name": "gas-laws.pdf",
+          "path": "vault/savemyexams/Physics HL 2025/The Particulate Nature of Matter/gas-laws.pdf",
+          "size": 1924312
+        },
+        {
+          "name": "greenhouse-effect.pdf",
+          "path": "vault/savemyexams/Physics HL 2025/The Particulate Nature of Matter/greenhouse-effect.pdf",
+          "size": 2541324
+        },
+        {
+          "name": "thermal-energy-transfers.pdf",
+          "path": "vault/savemyexams/Physics HL 2025/The Particulate Nature of Matter/thermal-energy-transfers.pdf",
+          "size": 6254651
+        },
+        {
+          "name": "thermodynamics.pdf",
+          "path": "vault/savemyexams/Physics HL 2025/The Particulate Nature of Matter/thermodynamics.pdf",
+          "size": 3199869
+        }
+      ]
+    },
+    "Fields": {
+      "files": [
+        {
+          "name": "electric-&-magnetic-fields.pdf",
+          "path": "vault/savemyexams/Physics HL 2025/Fields/electric-&-magnetic-fields.pdf",
+          "size": 7317606
+        },
+        {
+          "name": "gravitational-fields.pdf",
+          "path": "vault/savemyexams/Physics HL 2025/Fields/gravitational-fields.pdf",
+          "size": 4227782
+        },
+        {
+          "name": "induction.pdf",
+          "path": "vault/savemyexams/Physics HL 2025/Fields/induction.pdf",
+          "size": 2702675
+        },
+        {
+          "name": "motion-in-electromagnetic-fields.pdf",
+          "path": "vault/savemyexams/Physics HL 2025/Fields/motion-in-electromagnetic-fields.pdf",
+          "size": 2700680
+        }
+      ]
+    },
+    "Wave Behaviour": {
+      "files": [
+        {
+          "name": "doppler-effect.pdf",
+          "path": "vault/savemyexams/Physics HL 2025/Wave Behaviour/doppler-effect.pdf",
+          "size": 2585876
+        },
+        {
+          "name": "simple-harmonic-motion.pdf",
+          "path": "vault/savemyexams/Physics HL 2025/Wave Behaviour/simple-harmonic-motion.pdf",
+          "size": 4640576
+        },
+        {
+          "name": "standing-waves-&-resonance.pdf",
+          "path": "vault/savemyexams/Physics HL 2025/Wave Behaviour/standing-waves-&-resonance.pdf",
+          "size": 3317597
+        },
+        {
+          "name": "wave-model.pdf",
+          "path": "vault/savemyexams/Physics HL 2025/Wave Behaviour/wave-model.pdf",
+          "size": 2500290
+        },
+        {
+          "name": "wave-phenomena.pdf",
+          "path": "vault/savemyexams/Physics HL 2025/Wave Behaviour/wave-phenomena.pdf",
+          "size": 13580406
+        }
+      ]
+    }
+  },
+  "Economics HL 2022": {
+    "Microeconomics": {
+      "files": [
+        {
+          "name": "2.1-demand.pdf",
+          "path": "vault/savemyexams/Economics HL 2022/Microeconomics/2.1-demand.pdf",
+          "size": 520888
+        },
+        {
+          "name": "2.10-market-failure--asymmetric-information.pdf",
+          "path": "vault/savemyexams/Economics HL 2022/Microeconomics/2.10-market-failure--asymmetric-information.pdf",
+          "size": 200861
+        },
+        {
+          "name": "2.11-market-failure--market-power.pdf",
+          "path": "vault/savemyexams/Economics HL 2022/Microeconomics/2.11-market-failure--market-power.pdf",
+          "size": 2352271
+        },
+        {
+          "name": "2.12-the-marketa\u0302\u20ac\u2122s-inability-to-achieve-equity.pdf",
+          "path": "vault/savemyexams/Economics HL 2022/Microeconomics/2.12-the-marketa\u0302\u20ac\u2122s-inability-to-achieve-equity.pdf",
+          "size": 379125
+        },
+        {
+          "name": "2.2-supply.pdf",
+          "path": "vault/savemyexams/Economics HL 2022/Microeconomics/2.2-supply.pdf",
+          "size": 296082
+        },
+        {
+          "name": "2.3-competitive-market-equilibrium.pdf",
+          "path": "vault/savemyexams/Economics HL 2022/Microeconomics/2.3-competitive-market-equilibrium.pdf",
+          "size": 1410933
+        },
+        {
+          "name": "2.4-critique-of-the-maximizing-behaviour-of-consumers-&-producers.pdf",
+          "path": "vault/savemyexams/Economics HL 2022/Microeconomics/2.4-critique-of-the-maximizing-behaviour-of-consumers-&-producers.pdf",
+          "size": 1432421
+        },
+        {
+          "name": "2.5-elasticities-of-demand.pdf",
+          "path": "vault/savemyexams/Economics HL 2022/Microeconomics/2.5-elasticities-of-demand.pdf",
+          "size": 670647
+        },
+        {
+          "name": "2.6-price-elasticity-of-supply-(pes).pdf",
+          "path": "vault/savemyexams/Economics HL 2022/Microeconomics/2.6-price-elasticity-of-supply-(pes).pdf",
+          "size": 193518
+        },
+        {
+          "name": "2.7-the-role-of-government-in-microeconomics.pdf",
+          "path": "vault/savemyexams/Economics HL 2022/Microeconomics/2.7-the-role-of-government-in-microeconomics.pdf",
+          "size": 1818662
+        },
+        {
+          "name": "2.8-market-failure--externalities-&-common-pool-(access)-resources.pdf",
+          "path": "vault/savemyexams/Economics HL 2022/Microeconomics/2.8-market-failure--externalities-&-common-pool-(access)-resources.pdf",
+          "size": 2725418
+        },
+        {
+          "name": "2.9-market-failure--public-goods.pdf",
+          "path": "vault/savemyexams/Economics HL 2022/Microeconomics/2.9-market-failure--public-goods.pdf",
+          "size": 99101
+        }
+      ]
+    },
+    "The Global Economy": {
+      "files": [
+        {
+          "name": "4.1-benefits-of-international-trade.pdf",
+          "path": "vault/savemyexams/Economics HL 2022/The Global Economy/4.1-benefits-of-international-trade.pdf",
+          "size": 794802
+        },
+        {
+          "name": "4.10-economic-growth-&-development-strategies.pdf",
+          "path": "vault/savemyexams/Economics HL 2022/The Global Economy/4.10-economic-growth-&-development-strategies.pdf",
+          "size": 706298
+        },
+        {
+          "name": "4.2-types-of-trade-protection.pdf",
+          "path": "vault/savemyexams/Economics HL 2022/The Global Economy/4.2-types-of-trade-protection.pdf",
+          "size": 820860
+        },
+        {
+          "name": "4.3-arguments-for-&-against-trade-protection.pdf",
+          "path": "vault/savemyexams/Economics HL 2022/The Global Economy/4.3-arguments-for-&-against-trade-protection.pdf",
+          "size": 262723
+        },
+        {
+          "name": "4.4-economic-integration.pdf",
+          "path": "vault/savemyexams/Economics HL 2022/The Global Economy/4.4-economic-integration.pdf",
+          "size": 686328
+        },
+        {
+          "name": "4.5-exchange-rates.pdf",
+          "path": "vault/savemyexams/Economics HL 2022/The Global Economy/4.5-exchange-rates.pdf",
+          "size": 1307385
+        },
+        {
+          "name": "4.6-balance-of-payments.pdf",
+          "path": "vault/savemyexams/Economics HL 2022/The Global Economy/4.6-balance-of-payments.pdf",
+          "size": 616869
+        },
+        {
+          "name": "4.7-sustainable-development.pdf",
+          "path": "vault/savemyexams/Economics HL 2022/The Global Economy/4.7-sustainable-development.pdf",
+          "size": 491694
+        },
+        {
+          "name": "4.8-measuring-economic-development.pdf",
+          "path": "vault/savemyexams/Economics HL 2022/The Global Economy/4.8-measuring-economic-development.pdf",
+          "size": 1167024
+        },
+        {
+          "name": "4.9-barriers-to-economic-growth-&-development.pdf",
+          "path": "vault/savemyexams/Economics HL 2022/The Global Economy/4.9-barriers-to-economic-growth-&-development.pdf",
+          "size": 428357
+        }
+      ]
+    },
+    "Introduction to Economics": {
+      "files": [
+        {
+          "name": "1.1-what-is-economics-.pdf",
+          "path": "vault/savemyexams/Economics HL 2022/Introduction to Economics/1.1-what-is-economics-.pdf",
+          "size": 807004
+        },
+        {
+          "name": "1.2-how-do-economists-approach-the-world-.pdf",
+          "path": "vault/savemyexams/Economics HL 2022/Introduction to Economics/1.2-how-do-economists-approach-the-world-.pdf",
+          "size": 546556
+        }
+      ]
+    },
+    "Macroeconomics": {
+      "files": [
+        {
+          "name": "3.1-measuring-economic-activity.pdf",
+          "path": "vault/savemyexams/Economics HL 2022/Macroeconomics/3.1-measuring-economic-activity.pdf",
+          "size": 1132748
+        },
+        {
+          "name": "3.2-variations-in-economic-activity-(ad-&-as).pdf",
+          "path": "vault/savemyexams/Economics HL 2022/Macroeconomics/3.2-variations-in-economic-activity-(ad-&-as).pdf",
+          "size": 1680465
+        },
+        {
+          "name": "3.3-macroeconomic-objectives.pdf",
+          "path": "vault/savemyexams/Economics HL 2022/Macroeconomics/3.3-macroeconomic-objectives.pdf",
+          "size": 2610040
+        },
+        {
+          "name": "3.4-inequality-&-poverty.pdf",
+          "path": "vault/savemyexams/Economics HL 2022/Macroeconomics/3.4-inequality-&-poverty.pdf",
+          "size": 809989
+        },
+        {
+          "name": "3.5-demand-management--monetary-policy.pdf",
+          "path": "vault/savemyexams/Economics HL 2022/Macroeconomics/3.5-demand-management--monetary-policy.pdf",
+          "size": 986229
+        },
+        {
+          "name": "3.6-demand-management--fiscal-policy.pdf",
+          "path": "vault/savemyexams/Economics HL 2022/Macroeconomics/3.6-demand-management--fiscal-policy.pdf",
+          "size": 511937
+        },
+        {
+          "name": "3.7-supply-side-policies.pdf",
+          "path": "vault/savemyexams/Economics HL 2022/Macroeconomics/3.7-supply-side-policies.pdf",
+          "size": 481164
+        }
+      ]
+    }
+  }
+}
