@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { 
   ArrowLeft, 
   ExternalLink, 
@@ -8,13 +8,10 @@ import {
   Layers, 
   Search, 
   BookOpen, 
-  AlertCircle, 
   Home, 
   Compass, 
-  FileText, 
   ChevronDown, 
   ChevronUp, 
-  Sparkles,
   GraduationCap
 } from 'lucide-react';
 import mathTopicsData from './math_topics.json';
@@ -35,6 +32,7 @@ interface TopicItem {
   path: string;
 }
 
+// English B is completely removed
 const INTHINKING_SUBJECTS: SubjectEntry[] = [
   {
     id: 'mathanalysis',
@@ -91,17 +89,8 @@ const INTHINKING_SUBJECTS: SubjectEntry[] = [
     badge: 'Paper 1 & 2',
     path: 'englisha/englishalanglit.html',
     description: 'Guided textual analysis strategies and comparative essay structures.'
-  },
-  {
-    id: 'englishb',
-    name: 'English B',
-    badge: 'SL / HL',
-    path: 'englishb/index.html',
-    description: 'Language acquisition, text types, listening advice, and speaking tasks.'
   }
 ];
-
-const GITHUB_PAGES_BASE = 'https://fr3ddykru3g3r.github.io/ThinkIB-Websites';
 
 const MATH_CATEGORIES = [
   'All',
@@ -124,7 +113,18 @@ export default function ThinkIBPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedMathCategory, setSelectedMathCategory] = useState('All');
   const [isExplorerOpen, setIsExplorerOpen] = useState(true);
-  const [dismissNotice, setDismissNotice] = useState(false);
+
+  // Listen for search events dispatched from inside the iframe
+  useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      if (event.data && event.data.type === 'THINKIB_SEARCH' && event.data.query) {
+        setSearchQuery(event.data.query);
+        setIsExplorerOpen(true);
+      }
+    };
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, []);
 
   const handleSubjectChange = (sub: SubjectEntry) => {
     setSelectedSubject(sub);
@@ -134,7 +134,9 @@ export default function ThinkIBPage() {
     setKey(k => k + 1);
   };
 
-  const iframeSrc = `${GITHUB_PAGES_BASE}/${currentPath}`;
+  // Uses same-origin proxy to eliminate cross-origin blocks and 404s
+  const iframeSrc = `/api/v2/thinkib/${currentPath}`;
+  const externalSrc = `https://fr3ddykru3g3r.github.io/ThinkIB-Websites/${currentPath}`;
 
   const reloadIframe = () => setKey(k => k + 1);
 
@@ -172,7 +174,7 @@ export default function ThinkIBPage() {
                 selectedSubject.id;
     const items = ((topicsIndexData as Record<string, TopicItem[]>)[key] || []);
     const q = searchQuery.toLowerCase();
-    return items.filter(t => t.title.toLowerCase().includes(q)).slice(0, 15);
+    return items.filter(t => t.title.toLowerCase().includes(q)).slice(0, 20);
   }, [searchQuery, selectedSubject]);
 
   return (
@@ -202,36 +204,6 @@ export default function ThinkIBPage() {
         </div>
       </div>
 
-      {/* Static Search / 404 Advisory Banner */}
-      {!dismissNotice && (
-        <div 
-          className="panel" 
-          style={{ 
-            marginBottom: '1.25rem', 
-            background: 'rgba(184, 74, 57, 0.04)', 
-            border: '1px solid rgba(184, 74, 57, 0.2)',
-            display: 'flex', 
-            justifyContent: 'space-between', 
-            alignItems: 'flex-start',
-            gap: '1rem',
-            padding: '0.9rem 1.25rem'
-          }}
-        >
-          <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
-            <AlertCircle size={18} style={{ color: 'var(--rust)', flexShrink: 0, marginTop: '2px' }} />
-            <div style={{ fontSize: '0.85rem', color: 'var(--ink)' }}>
-              <strong>Notice regarding InThinking Search & Navigation:</strong> The built-in search box inside the scraped website header (e.g. <code>search?s=...</code>) relies on an external server-side script and returns <strong>404 on static GitHub Pages</strong>. Please use the <strong>Portal Topic Navigator & Search</strong> below to jump directly to any topic without broken links.
-            </div>
-          </div>
-          <button 
-            onClick={() => setDismissNotice(true)} 
-            style={{ background: 'none', border: 'none', color: 'var(--muted)', cursor: 'pointer', fontSize: '0.8rem', textDecoration: 'underline' }}
-          >
-            Dismiss
-          </button>
-        </div>
-      )}
-
       {/* Subject Navigation Bar */}
       <div className="panel" style={{ marginBottom: '1.25rem' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '0.75rem' }}>
@@ -254,7 +226,7 @@ export default function ThinkIBPage() {
               <RefreshCw size={12} /> Reload Frame
             </button>
             <a
-              href={iframeSrc}
+              href={externalSrc}
               target="_blank"
               rel="noopener noreferrer"
               className="filter-btn active"
@@ -492,7 +464,6 @@ export default function ThinkIBPage() {
             background: '#ffffff'
           }}
           title={`InThinking - ${selectedSubject.name}`}
-          sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
         />
       </div>
     </div>
