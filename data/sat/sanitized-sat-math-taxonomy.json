@@ -1,0 +1,61 @@
+{
+  "exam": "Digital SAT Math",
+  "domains": [
+    {
+      "domain": "Algebra",
+      "skills": [
+        { "skill": "linear equations", "difficulty": "easy", "archetype": "equation-solve", "conceptLabel": "solve and interpret", "count": 46, "originalWdcFocus": "Build context-first linear equations and solve for the requested quantity." },
+        { "skill": "systems", "difficulty": "medium", "archetype": "intersection-model", "conceptLabel": "shared solution", "count": 30, "originalWdcFocus": "Use elimination, substitution, or graph logic to find the common solution." },
+        { "skill": "inequalities", "difficulty": "medium", "archetype": "constraint-model", "conceptLabel": "range and comparison", "count": 26, "originalWdcFocus": "Track sign changes and interval language carefully." },
+        { "skill": "equivalent expressions", "difficulty": "medium", "archetype": "rewrite-and-compare", "conceptLabel": "algebraic form", "count": 24, "originalWdcFocus": "Choose equivalent expressions that reveal structure without changing value." },
+        { "skill": "word problems", "difficulty": "easy", "archetype": "context-to-equation", "conceptLabel": "model construction", "count": 34, "originalWdcFocus": "Turn scenario language into algebra before solving." }
+      ],
+      "notes": [
+        "Do not copy official item wording or numeric setups.",
+        "Vary contexts, units, and unknowns to prevent same-template questions."
+      ]
+    },
+    {
+      "domain": "Advanced Math",
+      "skills": [
+        { "skill": "quadratics", "difficulty": "medium", "archetype": "factor-form-vertex-form", "conceptLabel": "parabola structure", "count": 36, "originalWdcFocus": "Use factors, vertex, and intercepts as structural clues." },
+        { "skill": "functions", "difficulty": "medium", "archetype": "function-interpretation", "conceptLabel": "input-output", "count": 34, "originalWdcFocus": "Test what f(x), g(x), and transformations mean in context." },
+        { "skill": "exponential models", "difficulty": "medium", "archetype": "growth-decay", "conceptLabel": "multiplicative change", "count": 22, "originalWdcFocus": "Model repeated percent change and compare growth factors." },
+        { "skill": "nonlinear equations", "difficulty": "hard", "archetype": "solve-nonlinear", "conceptLabel": "structure and roots", "count": 20, "originalWdcFocus": "Decide when factoring, substitution, or rewriting exposes the solution." },
+        { "skill": "advanced algebra", "difficulty": "hard", "archetype": "symbolic-reasoning", "conceptLabel": "expression structure", "count": 18, "originalWdcFocus": "Manipulate expressions while preserving meaning and domain." }
+      ],
+      "notes": [
+        "Reward form recognition before computation.",
+        "Keep answer explanations tied to the structure that makes the solution efficient."
+      ]
+    },
+    {
+      "domain": "Problem-Solving and Data Analysis",
+      "skills": [
+        { "skill": "ratios and percentages", "difficulty": "easy", "archetype": "percent-change", "conceptLabel": "relative change", "count": 32, "originalWdcFocus": "Use a clear baseline and interpret percent language correctly." },
+        { "skill": "data interpretation", "difficulty": "medium", "archetype": "table-chart-read", "conceptLabel": "graph and table reading", "count": 36, "originalWdcFocus": "Read units, scales, and trends before calculating." },
+        { "skill": "statistics", "difficulty": "medium", "archetype": "mean-median-spread", "conceptLabel": "central tendency", "count": 22, "originalWdcFocus": "Distinguish average, center, and variability." },
+        { "skill": "probability", "difficulty": "medium", "archetype": "counting-probability", "conceptLabel": "favorable over total", "count": 20, "originalWdcFocus": "Track sample spaces and conditions carefully." },
+        { "skill": "word problems", "difficulty": "medium", "archetype": "rate-and-unit", "conceptLabel": "unit consistency", "count": 22, "originalWdcFocus": "Convert between units, rates, and totals consistently." }
+      ],
+      "notes": [
+        "Make units visible in the prompt and explanation.",
+        "Ask about trend, rate, or proportion rather than repeating the same setup."
+      ]
+    },
+    {
+      "domain": "Geometry and Trigonometry",
+      "skills": [
+        { "skill": "geometry", "difficulty": "easy", "archetype": "shape-measure", "conceptLabel": "length-area-volume", "count": 28, "originalWdcFocus": "Test triangles, circles, and solids with clean geometry reasoning." },
+        { "skill": "circles", "difficulty": "medium", "archetype": "radius-diameter-arc", "conceptLabel": "circle relationships", "count": 18, "originalWdcFocus": "Use radius, diameter, and arc relationships precisely." },
+        { "skill": "triangles", "difficulty": "medium", "archetype": "triangle-reasoning", "conceptLabel": "Pythagorean and similarity", "count": 24, "originalWdcFocus": "Apply similarity, angle logic, and side relationships." },
+        { "skill": "trigonometry", "difficulty": "medium", "archetype": "right-triangle-trig", "conceptLabel": "ratio relationships", "count": 20, "originalWdcFocus": "Use sine, cosine, and tangent with the correct reference angle." },
+        { "skill": "geometry", "difficulty": "hard", "archetype": "3d-application", "conceptLabel": "surface area and volume", "count": 14, "originalWdcFocus": "Apply area and volume formulas in 2D and 3D settings." }
+      ],
+      "notes": [
+        "Use sketches and unit labels in the workup.",
+        "Avoid copying exact numeric shapes from official items."
+      ]
+    }
+  ]
+}

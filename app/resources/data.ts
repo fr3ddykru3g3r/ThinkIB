@@ -46,8 +46,71 @@ export const resourcesData: ResourceItem[] = [
     meta: 'PDF • 3.3 MB',
     rating: '4.8 ★'
   },
+  {
+    name: 'Sevenoaks School Prized Writing (IB Extended Essays)',
+    category: 'local_vault',
+    subject: 'Multiple',
+    description: '10 authentic unedited 4,000-word Grade A Extended Essays across Math, Sciences, Economics, and Arts with supervisor comments.',
+    url: '/vault/ee-guides/sevenoaks-prized-ees-2015.pdf',
+    meta: 'PDF • 7.9 MB (284 Pages)',
+    rating: '5.0 ★ Authentic Exemplars'
+  },
+  {
+    name: 'Extended Essay: Skills for Success (Hodder 2025)',
+    category: 'local_vault',
+    subject: 'Core',
+    description: 'Complete 2025 curriculum textbook by Paul Hoang & Joseph Koszary covering the 5-phase EE process, RPPF forms, and examiner rubrics.',
+    url: '/vault/ee-guides/ee-hodder-2025-hoang.pdf',
+    meta: 'PDF • 76.7 MB (Hodder 2025)',
+    rating: '5.0 ★ Essential Textbook'
+  },
+  {
+    name: 'Oxford Extended Essay Course Companion (Oxford 2025)',
+    category: 'local_vault',
+    subject: 'Core',
+    description: 'Comprehensive 2025 guide by Kosta Lekanides on research design, supervisor dialogues, academic honesty, and achieving 34/34 Grade A.',
+    url: '/vault/ee-guides/ee-oxford-2025-lekanides.pdf',
+    meta: 'PDF • 79.1 MB (Oxford 2025)',
+    rating: '5.0 ★ Essential Guide'
+  },
 
   // Verified High-Yield Study Portals & Archives
+  {
+    name: 'Official IBO Extended Essay Assessed Student Work',
+    category: 'portal',
+    subject: 'Core',
+    description: 'The International Baccalaureate Organization\'s official digital repository of real assessed student Extended Essays with examiner marks.',
+    url: 'https://ibpublishing.ibo.org/extendedessay/apps/dpapp/assessment.html?doc=d_0_eeyyy_gui_1602_1_e&part=1&chapter=1',
+    meta: 'Official IBO Marking Archive',
+    rating: '5.0 ★ Essential'
+  },
+  {
+    name: 'Official IBO Teacher Support Material (TSM) IA Repository',
+    category: 'portal',
+    subject: 'Multiple',
+    description: 'Moderated collection of official IBO Internal Assessment student samples across all subjects with teacher marks and examiner feedback.',
+    url: 'https://repo.pirateib.sh/index.php?p=IB+TEACHER+SUPPORT+MATERIAL',
+    meta: 'Official Moderated IAs',
+    rating: '5.0 ★ Essential'
+  },
+  {
+    name: 'IB Academy Free Revision Study Guides',
+    category: 'portal',
+    subject: 'Multiple',
+    description: 'High-yield student revision study guides and topic summaries published by IB Academy.',
+    url: 'https://ib-academy.nl/free-resources',
+    meta: 'Free Student Guides',
+    rating: '4.9 ★'
+  },
+  {
+    name: 'ZNotes IB Diploma Programme',
+    category: 'portal',
+    subject: 'Multiple',
+    description: 'Condensed, student-contributed revision notes and cheat sheets across DP subjects.',
+    url: 'https://znotes.org/ib/diploma-programme/',
+    meta: 'Condensed Study Notes',
+    rating: '4.8 ★'
+  },
   {
     name: 'PirateIB Official Portal & Repo',
     category: 'portal',

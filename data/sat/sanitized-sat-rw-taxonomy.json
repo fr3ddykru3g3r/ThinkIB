@@ -1,0 +1,61 @@
+{
+  "exam": "Digital SAT Reading and Writing",
+  "domains": [
+    {
+      "domain": "Information and Ideas",
+      "skills": [
+        { "skill": "words in context", "difficulty": "easy", "archetype": "vocabulary-in-context", "conceptLabel": "contextual meaning", "count": 28, "originalWdcFocus": "Use local context, contrast, and syntax to select the meaning the passage actually supports." },
+        { "skill": "central ideas", "difficulty": "medium", "archetype": "main-idea", "conceptLabel": "claim and scope", "count": 42, "originalWdcFocus": "Test whether the answer captures the author's central claim without exaggeration." },
+        { "skill": "textual evidence", "difficulty": "medium", "archetype": "evidence-link", "conceptLabel": "proof and support", "count": 36, "originalWdcFocus": "Choose the line or detail that directly supports the claim being made." },
+        { "skill": "inference", "difficulty": "hard", "archetype": "best-supported-conclusion", "conceptLabel": "careful inference", "count": 30, "originalWdcFocus": "Make the smallest defensible inference and avoid unsupported leaps." },
+        { "skill": "rhetorical synthesis", "difficulty": "hard", "archetype": "note-synthesis", "conceptLabel": "purposeful selection", "count": 24, "originalWdcFocus": "Select the note or fact that most directly serves the writer's stated goal." }
+      ],
+      "notes": [
+        "Do not copy official stems, answer choices, rationales, or passages.",
+        "Use each archetype to vary WDC-original practice prompts and explanations.",
+        "Focus on scope, support, and answer-choice traps."
+      ]
+    },
+    {
+      "domain": "Craft and Structure",
+      "skills": [
+        { "skill": "transitions", "difficulty": "medium", "archetype": "relationship-logic", "conceptLabel": "idea connection", "count": 34, "originalWdcFocus": "Build prompts around contrast, cause, example, sequence, and concession." },
+        { "skill": "form, structure, and sense", "difficulty": "medium", "archetype": "sentence-function", "conceptLabel": "rhetorical role", "count": 26, "originalWdcFocus": "Test how a sentence fits the paragraph's logic or flow." },
+        { "skill": "command of evidence", "difficulty": "hard", "archetype": "best-line-match", "conceptLabel": "support selection", "count": 18, "originalWdcFocus": "Match the claim to the detail that proves it most directly." },
+        { "skill": "logical completion", "difficulty": "medium", "archetype": "completion-choice", "conceptLabel": "logical closure", "count": 20, "originalWdcFocus": "Ask what must be true for the sentence to read logically and coherently." },
+        { "skill": "concise revision", "difficulty": "easy", "archetype": "brevity-edit", "conceptLabel": "tight revision", "count": 18, "originalWdcFocus": "Prefer the shortest option that preserves the exact meaning and tone." }
+      ],
+      "notes": [
+        "Avoid repeated two-text skeletons by varying context, relationship, and sentence role.",
+        "Keep explanations specific to the rhetorical job being performed."
+      ]
+    },
+    {
+      "domain": "Expression of Ideas",
+      "skills": [
+        { "skill": "student notes", "difficulty": "medium", "archetype": "note-selection", "conceptLabel": "note usefulness", "count": 24, "originalWdcFocus": "Choose the note that best supports the writer's target claim or purpose." },
+        { "skill": "transitions", "difficulty": "easy", "archetype": "transition-match", "conceptLabel": "logic word", "count": 26, "originalWdcFocus": "Make the transition reflect the exact relation between sentences." },
+        { "skill": "concise revision", "difficulty": "easy", "archetype": "concise-edit", "conceptLabel": "economy and clarity", "count": 20, "originalWdcFocus": "Trim redundancy while preserving meaning and tone." },
+        { "skill": "organization", "difficulty": "medium", "archetype": "sentence-placement", "conceptLabel": "sequence", "count": 22, "originalWdcFocus": "Place information where it best serves sequence and emphasis." }
+      ],
+      "notes": [
+        "Use varied essay and report contexts so prompts do not feel cloned.",
+        "Explanations should name the relationship being tested."
+      ]
+    },
+    {
+      "domain": "Standard English Conventions",
+      "skills": [
+        { "skill": "punctuation", "difficulty": "easy", "archetype": "boundary-mark", "conceptLabel": "clause boundary", "count": 34, "originalWdcFocus": "Test commas, semicolons, colons, and dashes as structure tools." },
+        { "skill": "subject-verb agreement", "difficulty": "easy", "archetype": "agreement", "conceptLabel": "subject shape", "count": 28, "originalWdcFocus": "Strip away interrupting phrases and match the true subject." },
+        { "skill": "pronoun agreement", "difficulty": "medium", "archetype": "reference-clarity", "conceptLabel": "referent match", "count": 18, "originalWdcFocus": "Ensure pronouns match number and point clearly to a noun." },
+        { "skill": "modifier placement", "difficulty": "medium", "archetype": "modifier-logic", "conceptLabel": "descriptive attachment", "count": 20, "originalWdcFocus": "Make sure modifiers attach to the noun they describe." },
+        { "skill": "verb tense/form", "difficulty": "medium", "archetype": "timeline-check", "conceptLabel": "time consistency", "count": 18, "originalWdcFocus": "Choose verb form based on timeline, not isolated endings." }
+      ],
+      "notes": [
+        "Keep grammar explanations sentence-level and specific.",
+        "Avoid reusing the same subject-verb or punctuation shell across the whole bank."
+      ]
+    }
+  ]
+}

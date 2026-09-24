@@ -1,8 +1,10 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import { ChevronRight, FileText, Search, Download, ExternalLink, SlidersHorizontal, Eye, ArrowLeft } from 'lucide-react';
+import { ChevronRight, FileText, Search, Download, ExternalLink, SlidersHorizontal, Eye, ArrowLeft, BookOpen, HelpCircle } from 'lucide-react';
 import rawMap from './map.json';
+import IBBookletViewerModal from '@/app/components/IBBookletViewerModal';
+import IBCommandTermsModal from '@/app/components/IBCommandTermsModal';
 
 interface FileInfo {
   name: string;
@@ -55,6 +57,8 @@ export default function PastPapersBrowser() {
   const [subjectFilter, setSubjectFilter] = useState('');
   const [yearFilter, setYearFilter] = useState('');
   const [paperTypeFilter, setPaperTypeFilter] = useState('');
+  const [showBookletModal, setShowBookletModal] = useState(false);
+  const [showCommandTermsModal, setShowCommandTermsModal] = useState(false);
 
   const mapData = rawMap as MapNode;
 
@@ -64,12 +68,14 @@ export default function PastPapersBrowser() {
     
     function recurse(node: MapNode, pathAcc: string[]) {
       if (node.files) {
-        node.files.forEach(file => {
-          list.push({ name: file, path: [...pathAcc, file] });
-        });
+        node.files
+          .filter(f => !f.toLowerCase().endsWith('.html') && !f.toLowerCase().endsWith('.htm'))
+          .forEach(file => {
+            list.push({ name: file, path: [...pathAcc, file] });
+          });
       }
       Object.keys(node).forEach(key => {
-        if (key !== 'files') {
+        if (key !== 'files' && key.toLowerCase() !== 'html') {
           recurse(node[key], [...pathAcc, key]);
         }
       });
@@ -143,11 +149,13 @@ export default function PastPapersBrowser() {
   }, [mapData, currentPath]);
 
   const folders = useMemo(() => {
-    return Object.keys(currentNode).filter(key => key !== 'files').sort();
+    return Object.keys(currentNode)
+      .filter(key => key !== 'files' && key.toLowerCase() !== 'html' && !key.toLowerCase().endsWith('.html'))
+      .sort();
   }, [currentNode]);
 
   const files = useMemo(() => {
-    return currentNode.files || [];
+    return (currentNode.files || []).filter(f => !f.toLowerCase().endsWith('.html') && !f.toLowerCase().endsWith('.htm'));
   }, [currentNode]);
 
   const handleFolderClick = (folder: string) => {
@@ -241,6 +249,48 @@ export default function PastPapersBrowser() {
               ))}
             </select>
           </div>
+
+          <button
+            type="button"
+            onClick={() => setShowBookletModal(true)}
+            style={{
+              alignSelf: 'flex-end',
+              padding: '0.55rem 0.95rem',
+              borderRadius: '6px',
+              border: '1px solid var(--border)',
+              background: '#fff',
+              fontSize: '0.82rem',
+              fontWeight: 600,
+              color: 'var(--ink)',
+              cursor: 'pointer',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+            }}
+          >
+            <BookOpen size={14} style={{ color: 'var(--accent)' }} /> Official Formula Booklets
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setShowCommandTermsModal(true)}
+            style={{
+              alignSelf: 'flex-end',
+              padding: '0.55rem 0.95rem',
+              borderRadius: '6px',
+              border: '1px solid var(--border)',
+              background: '#fff',
+              fontSize: '0.82rem',
+              fontWeight: 600,
+              color: 'var(--ink)',
+              cursor: 'pointer',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+            }}
+          >
+            <HelpCircle size={14} style={{ color: 'var(--rust)' }} /> Command Terms & Rules
+          </button>
 
           {isSearching && (
             <button
@@ -401,6 +451,18 @@ export default function PastPapersBrowser() {
           )}
         </div>
       </div>
+
+      {/* IB FORMULA & DATA BOOKLET VIEWER */}
+      <IBBookletViewerModal
+        isOpen={showBookletModal}
+        onClose={() => setShowBookletModal(false)}
+      />
+
+      {/* IB COMMAND TERMS & MARKSCHEME MATRIX */}
+      <IBCommandTermsModal
+        isOpen={showCommandTermsModal}
+        onClose={() => setShowCommandTermsModal(false)}
+      />
     </div>
   );
 }

@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import { Search, Download, ExternalLink, FileText, Eye, ArrowLeft } from 'lucide-react';
+import { Search, Download, ExternalLink, FileText, Eye, ArrowLeft, BookOpen } from 'lucide-react';
+import IBBookletViewerModal from '@/app/components/IBBookletViewerModal';
 
 const HANDBOOKS = [
   {
@@ -69,6 +70,7 @@ export default function MathMocksBrowser() {
   const [categoryFilter, setCategoryFilter] = useState<'ALL' | 'PAPERS' | 'SOLUTIONS'>('ALL');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedDoc, setSelectedDoc] = useState<typeof ALL_MOCK_DOCUMENTS[0] | null>(ALL_MOCK_DOCUMENTS[0]);
+  const [showBookletModal, setShowBookletModal] = useState(false);
 
   const filteredDocs = useMemo(() => {
     return ALL_MOCK_DOCUMENTS.filter(item => {
@@ -98,9 +100,18 @@ export default function MathMocksBrowser() {
             61 genuine InThinking mock papers (Papers 1, 2 & 3), step-by-step worked solutions, and formula handbooks for AA SL & HL.
           </p>
         </div>
-        <a href="/" className="filter-btn active" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-          <ArrowLeft size={14} /> Back to Dashboard
-        </a>
+        <div style={{ display: 'flex', gap: '0.6rem', alignItems: 'center' }}>
+          <button
+            onClick={() => setShowBookletModal(true)}
+            className="filter-btn"
+            style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', cursor: 'pointer', background: 'var(--panel-light)', borderColor: 'var(--rust)', color: 'var(--rust)', fontWeight: 600 }}
+          >
+            <BookOpen size={14} /> Official Formula Booklets
+          </button>
+          <a href="/" className="filter-btn active" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+            <ArrowLeft size={14} /> Back to Dashboard
+          </a>
+        </div>
       </div>
 
       {/* Filter Toolbar */}
@@ -222,6 +233,12 @@ export default function MathMocksBrowser() {
           )}
         </div>
       </div>
+
+      <IBBookletViewerModal
+        isOpen={showBookletModal}
+        onClose={() => setShowBookletModal(false)}
+        defaultSubject="math-aa"
+      />
     </div>
   );
 }

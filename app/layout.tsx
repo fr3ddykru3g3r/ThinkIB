@@ -1,11 +1,12 @@
 import './globals.css';
+import 'katex/dist/katex.min.css';
 import React from 'react';
+import HeaderNav from './components/HeaderNav';
 import CustomCursor from './components/CustomCursor';
-import PongPopup from './components/PongPopup';
 
 export const metadata = {
-  title: 'The Archive — IB Study & Revision Repository',
-  description: 'A curated repository of resources, past papers, and academic notes.',
+  title: 'The Archive — Collaborative Academic Vault & SAT Practicer',
+  description: 'A curated repository of resources, discussion forums, past papers, and Digital SAT practice testing.',
 };
 
 export default function RootLayout({
@@ -20,19 +21,26 @@ export default function RootLayout({
         <link rel="shortcut icon" href="/favicon.svg" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+          rel="stylesheet"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                const theme = localStorage.getItem('thinkib_theme');
+                if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                  document.documentElement.setAttribute('data-theme', 'dark');
+                }
+              } catch (e) {}
+            `,
+          }}
+        />
       </head>
       <body>
         <CustomCursor />
-        <header>
-          <div className="header-content">
-            <a href="/" className="logo">THE ARCHIVE</a>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem' }}>
-              <span className="academic-edition">IBDP COLLABORATIVE VAULT</span>
-              <PongPopup />
-            </div>
-          </div>
-        </header>
+        <HeaderNav />
         <main className="container">
           {children}
         </main>

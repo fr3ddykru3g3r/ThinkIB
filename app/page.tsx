@@ -18,7 +18,7 @@ const subjects = [
 export default function PortalHome() {
   const [view, setView] = useState<'home' | 'thinkib'>('home');
   const [search, setSearch] = useState('');
-  const [categoryFilter, setCategoryFilter] = useState<'all' | 'local_vault' | 'youtube' | 'quizlet'>('all');
+  const [categoryFilter, setCategoryFilter] = useState<'all' | 'local_vault' | 'youtube' | 'quizlet' | 'portal'>('all');
 
   const filteredResources = useMemo(() => {
     return resourcesData.filter(item => {
@@ -45,12 +45,34 @@ export default function PortalHome() {
         <div>
           {/* Gateways Grid */}
           <div className="portal-grid">
+            <a href="/sat" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <div className="portal-card" style={{ borderColor: 'var(--rust)', background: 'rgba(184, 74, 57, 0.04)' }}>
+                <span className="section-label" style={{ color: 'var(--rust)' }}>PRACTICE & PREP</span>
+                <h3>Digital SAT Practicer</h3>
+                <p>Adaptive timed exam simulations, targeted domain drills, prep books, and reference guides.</p>
+                <div className="portal-card-arrow" style={{ color: 'var(--rust)' }}>
+                  Launch SAT Suite <ArrowRight size={14} style={{ display: 'inline', marginLeft: '4px', verticalAlign: 'middle' }} />
+                </div>
+              </div>
+            </a>
+
+            <a href="/forum" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <div className="portal-card" style={{ borderColor: 'var(--ink)', background: 'rgba(28, 28, 30, 0.02)' }}>
+                <span className="section-label" style={{ color: 'var(--ink)' }}>COMMUNITY</span>
+                <h3>Discussion Forum</h3>
+                <p>Discuss exam problems, share solutions, and submit study resources for weekly review.</p>
+                <div className="portal-card-arrow">
+                  Join Discussion <ArrowRight size={14} style={{ display: 'inline', marginLeft: '4px', verticalAlign: 'middle' }} />
+                </div>
+              </div>
+            </a>
+
             <a href="/savemyexams" style={{ textDecoration: 'none', color: 'inherit' }}>
-              <div className="portal-card" style={{ borderColor: 'var(--rust)', background: 'rgba(184, 74, 57, 0.03)' }}>
-                <span className="section-label" style={{ color: 'var(--rust)' }}>NEW VAULT</span>
+              <div className="portal-card">
+                <span className="section-label">NOTES REVISION</span>
                 <h3>SaveMyExams Notes Archive</h3>
                 <p>270+ topic revision guides with diagrams and explanations for Bio, Chem, Physics, Math, Econ & Psych.</p>
-                <div className="portal-card-arrow" style={{ color: 'var(--rust)' }}>
+                <div className="portal-card-arrow">
                   Browse Notes Vault <ArrowRight size={14} style={{ display: 'inline', marginLeft: '4px', verticalAlign: 'middle' }} />
                 </div>
               </div>
@@ -58,6 +80,7 @@ export default function PortalHome() {
 
             <a href="/thinkib" style={{ textDecoration: 'none', color: 'inherit' }}>
               <div className="portal-card">
+                <span className="section-label">CURRICULUM VAULT</span>
                 <h3>InThinking Database</h3>
                 <p>Explore complete syllabus notes, teacher keys, and chemistry/biology tutorials directly from the scraped databases.</p>
                 <div className="portal-card-arrow">
@@ -68,6 +91,7 @@ export default function PortalHome() {
 
             <a href="/past-papers" style={{ textDecoration: 'none', color: 'inherit' }}>
               <div className="portal-card">
+                <span className="section-label">EXAMINATION ARCHIVE</span>
                 <h3>Past Papers Archive</h3>
                 <p>Browse year-by-year past papers and markschemes (2021–2025) with a split-screen PDF previewer.</p>
                 <div className="portal-card-arrow">
@@ -78,10 +102,33 @@ export default function PortalHome() {
 
             <a href="/math-mocks" style={{ textDecoration: 'none', color: 'inherit' }}>
               <div className="portal-card">
+                <span className="section-label">TEST SIMULATOR</span>
                 <h3>Math Mock Simulator</h3>
                 <p>Practice simulated mock papers with comprehensive worked solutions for AASL & AAHL levels.</p>
                 <div className="portal-card-arrow">
                   Start Simulator <ArrowRight size={14} style={{ display: 'inline', marginLeft: '4px', verticalAlign: 'middle' }} />
+                </div>
+              </div>
+            </a>
+
+            <a href="/syllabus-tracker" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <div className="portal-card" style={{ borderColor: '#059669', background: 'rgba(5, 150, 105, 0.03)' }}>
+                <span className="section-label" style={{ color: '#059669' }}>INTERACTIVE CHECKLIST</span>
+                <h3>Syllabus & Practice Tracker</h3>
+                <p>3-state mastery checklist across Math, Physics, Chem & Bio linked directly to free Revision Village practice.</p>
+                <div className="portal-card-arrow" style={{ color: '#059669' }}>
+                  Track Syllabus <ArrowRight size={14} style={{ display: 'inline', marginLeft: '4px', verticalAlign: 'middle' }} />
+                </div>
+              </div>
+            </a>
+
+            <a href="/exemplars" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <div className="portal-card" style={{ borderColor: 'var(--rust)', background: 'rgba(184, 74, 57, 0.03)' }}>
+                <span className="section-label" style={{ color: 'var(--rust)' }}>7/7 ASSESSMENT VAULT</span>
+                <h3>IA & EE Exemplars</h3>
+                <p>Grade 7 sample IAs and Grade A Extended Essays with criterion rubric breakdowns and examiner rationales.</p>
+                <div className="portal-card-arrow" style={{ color: 'var(--rust)' }}>
+                  Explore Exemplars <ArrowRight size={14} style={{ display: 'inline', marginLeft: '4px', verticalAlign: 'middle' }} />
                 </div>
               </div>
             </a>
