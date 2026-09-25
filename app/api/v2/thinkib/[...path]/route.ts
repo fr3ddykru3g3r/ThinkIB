@@ -244,7 +244,12 @@ export async function GET(
     const pathParts = subpath.split('/');
     pathParts.pop();
     const dirPath = pathParts.join('/');
-    const baseHref = dirPath ? `${GITHUB_BASE}/${dirPath}/` : `${GITHUB_BASE}/`;
+    const baseHref = `/api/v2/thinkib/${dirPath ? dirPath + '/' : ''}`;
+
+    // Rewrite any hardcoded links in the HTML
+    html = html.replace(/href=["']https?:\/\/(?:www\.)?thinkib\.net\/([^"']+)["']/gi, 'href="/api/v2/thinkib/$1"');
+    html = html.replace(/href=["']https?:\/\/fr3ddykru3g3r\.github\.io\/ThinkIB-Websites\/([^"']+)["']/gi, 'href="/api/v2/thinkib/$1"');
+    html = html.replace(/href=["']https?:\/\/fr3ddykru3g3r\.github\.io\/([^"']+)["']/gi, 'href="/api/v2/thinkib/$1"');
 
     // Load full client search script
     const searchScriptCode = getSearchScript();
@@ -271,6 +276,32 @@ export async function GET(
       }
     });
   } catch (error) {
-    return NextResponse.redirect(`${GITHUB_BASE}/${subpath}`, 307);
+    return new NextResponse(
+      `<!DOCTYPE html>
+      <html>
+      <head>
+        <title>ThinkIB Portal - Error</title>
+        <meta charset="utf-8">
+        <style>
+          body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; display: flex; align-items: center; justify-content: center; min-height: 80vh; margin: 0; background: #0f172a; color: #f8fafc; }
+          .box { background: #1e293b; padding: 2.5rem; border-radius: 12px; border: 1px solid #334155; max-width: 480px; text-align: center; box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+          h2 { color: #f97316; margin-top: 0; }
+          p { color: #94a3b8; font-size: 0.95rem; line-height: 1.5; }
+          button { background: #f97316; color: #fff; border: none; padding: 0.6rem 1.4rem; border-radius: 8px; font-weight: 600; cursor: pointer; margin-top: 1rem; }
+        </style>
+      </head>
+      <body>
+        <div class="box">
+          <h2>Notice</h2>
+          <p>Failed to load the requested page (<code>${escapeHtml(subpath)}</code>).</p>
+          <button onclick="window.history.back()">Go Back</button>
+        </div>
+      </body>
+      </html>`,
+      {
+        status: 200,
+        headers: { 'Content-Type': 'text/html; charset=utf-8' }
+      }
+    );
   }
 }

@@ -403,6 +403,30 @@
         a.href = baseRoot + 'mathanalysis/index.html';
       }
     });
+
+    // Intercept clicks on links so navigation never escapes to GitHub Pages root or external ThinkIB
+    document.addEventListener('click', function(e) {
+      var target = e.target && e.target.closest ? e.target.closest('a') : null;
+      if (!target) return;
+      var rawHref = target.getAttribute('href');
+      if (!rawHref || rawHref.startsWith('#') || rawHref.startsWith('javascript:')) return;
+
+      var clean = null;
+      if (rawHref.indexOf('https://fr3ddykru3g3r.github.io/ThinkIB-Websites/') !== -1) {
+        clean = rawHref.replace('https://fr3ddykru3g3r.github.io/ThinkIB-Websites/', '');
+      } else if (rawHref.indexOf('https://fr3ddykru3g3r.github.io/') !== -1) {
+        clean = rawHref.replace('https://fr3ddykru3g3r.github.io/', '');
+      } else if (/^https?:\/\/(?:www\.)?thinkib\.net\//i.test(rawHref)) {
+        clean = rawHref.replace(/^https?:\/\/(?:www\.)?thinkib\.net\//i, '');
+      } else if (rawHref.startsWith('/') && !rawHref.startsWith('/api/v2/thinkib/')) {
+        clean = rawHref.replace(/^\//, '');
+      }
+
+      if (clean !== null) {
+        e.preventDefault();
+        window.location.href = '/api/v2/thinkib/' + clean;
+      }
+    }, true);
   }
 
   if (document.readyState === 'loading') {

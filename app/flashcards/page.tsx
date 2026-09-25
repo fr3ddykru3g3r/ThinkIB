@@ -285,6 +285,30 @@ export default function FlashcardsPage() {
   const masteredCount = deckCards.filter((c) => masteredMap[c.id]).length;
   const progressPercent = Math.round((masteredCount / deckCards.length) * 100);
 
+  // Keyboard navigation: Space to flip, ArrowLeft to prev, ArrowRight to next
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (target && ['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName)) return;
+
+      if (e.code === 'Space' || e.key === ' ') {
+        e.preventDefault();
+        setIsFlipped((prev) => !prev);
+      } else if (e.code === 'ArrowLeft' || e.key === 'ArrowLeft') {
+        e.preventDefault();
+        setIsFlipped(false);
+        setCurrentIndex((prev) => (prev > 0 ? prev - 1 : deckCards.length - 1));
+      } else if (e.code === 'ArrowRight' || e.key === 'ArrowRight') {
+        e.preventDefault();
+        setIsFlipped(false);
+        setCurrentIndex((prev) => (prev < deckCards.length - 1 ? prev + 1 : 0));
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [deckCards.length]);
+
   return (
     <div style={{ maxWidth: '850px', margin: '0 auto', paddingBottom: '5rem' }}>
       {/* Top Breadcrumb */}
@@ -361,10 +385,11 @@ export default function FlashcardsPage() {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
-            background: isFlipped ? 'rgba(184, 74, 57, 0.03)' : '#ffffff',
-            borderColor: isFlipped ? 'rgba(184, 74, 57, 0.3)' : 'var(--border)',
+            background: isFlipped ? 'var(--surface-hover)' : 'var(--surface)',
+            borderColor: isFlipped ? 'var(--accent)' : 'var(--border)',
+            borderRadius: '12px',
             transition: 'all 0.25s ease',
-            boxShadow: '0 10px 30px rgba(0,0,0,0.05)',
+            boxShadow: '0 10px 30px rgba(0,0,0,0.08)',
           }}
         >
           {/* Card Top Meta */}
@@ -383,18 +408,20 @@ export default function FlashcardsPage() {
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '4px',
-                  padding: '0.25rem 0.6rem',
-                  borderRadius: '4px',
-                  border: isMastered ? '1px solid #059669' : '1px solid var(--border)',
-                  background: isMastered ? '#ecfdf5' : '#fff',
-                  color: isMastered ? '#059669' : 'var(--muted)',
-                  fontSize: '0.75rem',
+                  gap: '5px',
+                  padding: '0.35rem 0.75rem',
+                  borderRadius: '6px',
+                  border: isMastered ? '1px solid #10b981' : '1px solid var(--border)',
+                  background: isMastered ? 'rgba(16, 185, 129, 0.15)' : 'var(--surface-hover)',
+                  color: isMastered ? '#10b981' : 'var(--ink)',
+                  fontSize: '0.78rem',
+                  fontWeight: 600,
                   fontFamily: 'var(--font-mono)',
                   cursor: 'pointer',
+                  transition: 'all 0.15s ease',
                 }}
               >
-                {isMastered ? <Check size={12} /> : null}
+                {isMastered ? <Check size={13} /> : null}
                 <span>{isMastered ? 'Mastered' : 'Mark Mastered'}</span>
               </button>
             </div>
@@ -444,13 +471,15 @@ export default function FlashcardsPage() {
             display: 'inline-flex',
             alignItems: 'center',
             gap: '6px',
-            padding: '0.6rem 1rem',
-            background: 'var(--panel-light, #fff)',
+            padding: '0.65rem 1.15rem',
+            background: 'var(--surface)',
             color: 'var(--ink)',
             border: '1px solid var(--border)',
-            borderRadius: '6px',
-            fontSize: '0.85rem',
+            borderRadius: '10px',
+            fontSize: '0.86rem',
+            fontWeight: 500,
             cursor: 'pointer',
+            transition: 'all 0.15s ease',
           }}
         >
           <Shuffle size={14} /> Shuffle Deck
@@ -464,13 +493,15 @@ export default function FlashcardsPage() {
               display: 'inline-flex',
               alignItems: 'center',
               gap: '6px',
-              padding: '0.65rem 1.25rem',
+              padding: '0.65rem 1.35rem',
               background: 'var(--surface)',
               color: 'var(--ink)',
               border: '1px solid var(--border)',
               borderRadius: '10px',
               fontSize: '0.88rem',
+              fontWeight: 500,
               cursor: 'pointer',
+              transition: 'all 0.15s ease',
             }}
           >
             <ChevronLeft size={16} /> Prev
@@ -480,7 +511,7 @@ export default function FlashcardsPage() {
             type="button"
             onClick={() => setIsFlipped(!isFlipped)}
             style={{
-              padding: '0.65rem 1.4rem',
+              padding: '0.65rem 1.5rem',
               background: 'var(--accent)',
               color: '#ffffff',
               border: 'none',
@@ -488,7 +519,8 @@ export default function FlashcardsPage() {
               fontSize: '0.88rem',
               fontWeight: 600,
               cursor: 'pointer',
-              boxShadow: '0 2px 6px rgba(0,0,0,0.1)'
+              boxShadow: '0 3px 10px rgba(0,0,0,0.15)',
+              transition: 'transform 0.15s ease',
             }}
           >
             {isFlipped ? 'Show Front' : 'Flip Card'}
@@ -501,13 +533,15 @@ export default function FlashcardsPage() {
               display: 'inline-flex',
               alignItems: 'center',
               gap: '6px',
-              padding: '0.65rem 1.25rem',
+              padding: '0.65rem 1.35rem',
               background: 'var(--surface)',
               color: 'var(--ink)',
               border: '1px solid var(--border)',
               borderRadius: '10px',
               fontSize: '0.88rem',
+              fontWeight: 500,
               cursor: 'pointer',
+              transition: 'all 0.15s ease',
             }}
           >
             Next <ChevronRight size={16} />
