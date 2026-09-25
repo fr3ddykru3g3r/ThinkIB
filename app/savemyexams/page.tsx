@@ -123,7 +123,7 @@ export default function SaveMyExamsPage() {
       {/* Header */}
       <div className="panel" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '2rem' }}>
         <div>
-          <span className="tech-label">[VAULT_MOUNT: SAVEMYEXAMS_NOTES]</span>
+          <span className="section-label">Revision Notes</span>
           <h1 style={{ fontFamily: 'var(--display)', fontSize: '2.4rem', margin: '0.2rem 0' }}>SaveMyExams Revision Archive</h1>
           <p style={{ color: 'var(--ink-soft)', fontSize: '0.95rem', margin: 0 }}>Full high-resolution revision notes, diagrams, and topic summaries (2022–2025).</p>
         </div>
@@ -172,8 +172,8 @@ export default function SaveMyExamsPage() {
         <div className="panel browser-panel" style={{ overflowY: 'auto' }}>
           {isSearching || selectedSubject === 'all' ? (
             <div>
-              <span className="tech-label" style={{ display: 'block', marginBottom: '0.75rem' }}>
-                [{isSearching ? `SEARCH_RESULTS: ${filteredNotes.length}` : `ALL_NOTES_CATALOG: ${allNotes.length}`}]
+              <span style={{ fontSize: '0.78rem', color: 'var(--muted)', fontWeight: 500, display: 'block', marginBottom: '0.75rem' }}>
+                {isSearching ? `${filteredNotes.length} results found` : `${allNotes.length} revision notes available`}
               </span>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
                 {(isSearching ? filteredNotes : allNotes.slice(0, 100)).map((item, idx) => {
@@ -190,7 +190,7 @@ export default function SaveMyExamsPage() {
                         background: isActive ? 'var(--earth-soft)' : 'var(--paper-card)',
                         color: 'var(--ink)',
                         border: isActive ? '1px solid rgba(154, 106, 62, 0.45)' : '1px solid var(--hairline)',
-                        borderRadius: '3px',
+                        borderRadius: '8px',
                         cursor: 'pointer',
                         transition: 'all 0.15s ease'
                       }}
@@ -227,7 +227,7 @@ export default function SaveMyExamsPage() {
               {/* Finder Folder Grid View */}
               {subFolders.length > 0 && (
                 <div style={{ marginBottom: '1.5rem' }}>
-                  <span className="tech-label" style={{ display: 'block', marginBottom: '0.5rem' }}>UNIT FOLDERS ({subFolders.length})</span>
+                  <span className="section-label" style={{ display: 'block', marginBottom: '0.5rem' }}>Unit Topics ({subFolders.length})</span>
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(130px, 1fr))', gap: '0.6rem' }}>
                     {subFolders.map((folder, idx) => (
                       <div
@@ -242,7 +242,7 @@ export default function SaveMyExamsPage() {
                           padding: '1rem 0.5rem',
                           background: 'var(--paper-card)',
                           border: '1px solid var(--hairline)',
-                          borderRadius: '3px',
+                          borderRadius: '8px',
                           cursor: 'pointer',
                           textAlign: 'center',
                           transition: 'all 0.15s ease'
@@ -261,7 +261,7 @@ export default function SaveMyExamsPage() {
               {/* Note PDF Files List */}
               {currentFiles.length > 0 && (
                 <div>
-                  <span className="tech-label" style={{ display: 'block', marginBottom: '0.5rem' }}>TOPIC GUIDES ({currentFiles.length})</span>
+                  <span className="section-label" style={{ display: 'block', marginBottom: '0.5rem' }}>Revision Guides ({currentFiles.length})</span>
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(130px, 1fr))', gap: '0.6rem' }}>
                     {currentFiles.map((file: NoteItem, idx: number) => {
                       const isActive = selectedNote?.path === file.path;
@@ -278,7 +278,7 @@ export default function SaveMyExamsPage() {
                             padding: '1rem 0.5rem',
                             background: isActive ? 'var(--earth-soft)' : 'var(--paper-card)',
                             border: isActive ? '1px solid rgba(154, 106, 62, 0.45)' : '1px solid var(--hairline)',
-                            borderRadius: '3px',
+                            borderRadius: '8px',
                             cursor: 'pointer',
                             textAlign: 'center',
                             transition: 'all 0.15s ease'
@@ -320,9 +320,9 @@ export default function SaveMyExamsPage() {
           ) : (
             <div className="viewer-placeholder">
               <Eye size={44} style={{ color: 'var(--earth)', marginBottom: '1rem', opacity: 0.5 }} />
-              <h3 style={{ fontFamily: 'var(--display)' }}>No Notes Mounted</h3>
-              <p style={{ maxWidth: '280px', marginTop: '0.5rem', fontSize: '0.9rem', color: 'var(--ink-soft)' }}>
-                Select a SaveMyExams revision guide from the left sidebar to open and study the document inline.
+              <h3 style={{ fontFamily: 'var(--display)', fontSize: '1.4rem' }}>No Revision Guide Selected</h3>
+              <p style={{ maxWidth: '320px', marginTop: '0.5rem', fontSize: '0.9rem', color: 'var(--ink-soft)' }}>
+                Select a topic guide from the catalog on the left to read and review the full notes inline.
               </p>
             </div>
           )}

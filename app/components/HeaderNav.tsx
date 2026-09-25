@@ -100,7 +100,7 @@ export default function HeaderNav() {
                   background: active ? 'rgba(184, 74, 57, 0.08)' : 'transparent',
                   textDecoration: 'none',
                   padding: '0.35rem 0.65rem',
-                  borderRadius: '4px',
+                  borderRadius: '8px',
                   whiteSpace: 'nowrap',
                   transition: 'all 0.15s ease'
                 }}
@@ -130,7 +130,7 @@ export default function HeaderNav() {
             style={{
               background: 'transparent',
               border: '1px solid var(--border)',
-              borderRadius: '6px',
+              borderRadius: '8px',
               padding: '0.35rem',
               color: 'var(--ink)',
               cursor: 'pointer'

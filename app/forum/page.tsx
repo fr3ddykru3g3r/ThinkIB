@@ -275,25 +275,51 @@ export default function ForumPage() {
       </div>
 
       {/* Main Tab Switcher */}
-      <div style={{ display: 'flex', gap: '1.5rem', borderBottom: '1px solid var(--border)', marginBottom: '2rem' }}>
+      <div style={{ display: 'flex', gap: '0.75rem', borderBottom: '1px solid var(--border)', marginBottom: '2rem' }}>
         <button
           type="button"
           onClick={() => { setActiveTab('discussions'); setSelectedThread(null); }}
-          className={`filter-btn ${activeTab === 'discussions' ? 'active' : ''}`}
-          style={{ fontSize: '0.95rem', paddingBottom: '0.75rem' }}
+          style={{
+            fontSize: '0.92rem',
+            padding: '0.65rem 1.1rem',
+            background: activeTab === 'discussions' ? 'rgba(184, 74, 57, 0.08)' : 'transparent',
+            color: activeTab === 'discussions' ? 'var(--accent)' : 'var(--muted)',
+            border: 'none',
+            borderBottom: activeTab === 'discussions' ? '2px solid var(--accent)' : '2px solid transparent',
+            borderRadius: '8px 8px 0 0',
+            fontWeight: activeTab === 'discussions' ? 600 : 500,
+            cursor: 'pointer',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px',
+            transition: 'all 0.15s ease'
+          }}
         >
-          <MessageSquare size={16} style={{ display: 'inline', marginRight: '6px', verticalAlign: 'text-bottom' }} />
-          Discussions ({threads.length})
+          <MessageSquare size={16} />
+          <span>Discussions ({threads.length})</span>
         </button>
 
         <button
           type="button"
           onClick={() => { setActiveTab('submissions'); setSelectedThread(null); }}
-          className={`filter-btn ${activeTab === 'submissions' ? 'active' : ''}`}
-          style={{ fontSize: '0.95rem', paddingBottom: '0.75rem' }}
+          style={{
+            fontSize: '0.92rem',
+            padding: '0.65rem 1.1rem',
+            background: activeTab === 'submissions' ? 'rgba(184, 74, 57, 0.08)' : 'transparent',
+            color: activeTab === 'submissions' ? 'var(--accent)' : 'var(--muted)',
+            border: 'none',
+            borderBottom: activeTab === 'submissions' ? '2px solid var(--accent)' : '2px solid transparent',
+            borderRadius: '8px 8px 0 0',
+            fontWeight: activeTab === 'submissions' ? 600 : 500,
+            cursor: 'pointer',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px',
+            transition: 'all 0.15s ease'
+          }}
         >
-          <Sparkles size={16} style={{ display: 'inline', marginRight: '6px', verticalAlign: 'text-bottom' }} />
-          Curated Submissions ({submissions.length})
+          <Sparkles size={16} />
+          <span>Curated Submissions ({submissions.length})</span>
         </button>
       </div>
 
@@ -315,9 +341,9 @@ export default function ForumPage() {
                 style={{
                   width: '100%',
                   padding: '0.65rem 1rem 0.65rem 2.5rem',
-                  borderRadius: '6px',
+                  borderRadius: '10px',
                   border: '1px solid var(--border)',
-                  background: '#fff',
+                  background: 'var(--surface)',
                   fontFamily: 'var(--font-body)',
                   fontSize: '0.9rem',
                   outline: 'none',
@@ -325,7 +351,7 @@ export default function ForumPage() {
               />
             </div>
 
-            {/* Post Discussion Button */}
+            {/* Action Buttons */}
             <div style={{ display: 'flex', gap: '0.75rem' }}>
               <Link
                 href="/forum/submit"
@@ -335,9 +361,9 @@ export default function ForumPage() {
                   alignItems: 'center',
                   gap: '6px',
                   padding: '0.65rem 1rem',
-                  background: '#fff',
+                  background: 'var(--surface)',
                   border: '1px solid var(--border)',
-                  borderRadius: '6px',
+                  borderRadius: '10px',
                   color: 'var(--ink)',
                   fontSize: '0.85rem',
                   fontWeight: 600,
@@ -356,14 +382,15 @@ export default function ForumPage() {
                   alignItems: 'center',
                   gap: '6px',
                   padding: '0.65rem 1.1rem',
-                  background: 'var(--ink)',
-                  color: '#fff',
+                  background: 'var(--accent)',
+                  color: '#ffffff',
                   border: 'none',
-                  borderRadius: '6px',
+                  borderRadius: '10px',
                   fontSize: '0.85rem',
                   fontWeight: 600,
                   cursor: 'pointer',
                   transition: 'all 0.2s ease',
+                  boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
                 }}
               >
                 <MessageSquare size={15} />
@@ -434,9 +461,9 @@ export default function ForumPage() {
                     alignItems: 'center',
                     gap: '4px',
                     padding: '0.6rem 0.9rem',
-                    borderRadius: '6px',
+                    borderRadius: '10px',
                     border: '1px solid var(--border)',
-                    background: '#fff',
+                    background: 'var(--surface)',
                     cursor: 'pointer',
                   }}
                 >
@@ -451,7 +478,7 @@ export default function ForumPage() {
                   margin: '1.5rem 0',
                   padding: '1.25rem',
                   background: 'rgba(28,28,30,0.02)',
-                  borderRadius: '6px',
+                  borderRadius: '10px',
                   border: '1px solid var(--border)',
                   lineHeight: '1.7',
                   whiteSpace: 'pre-wrap',
@@ -469,7 +496,7 @@ export default function ForumPage() {
                     style={{
                       fontFamily: 'var(--font-mono)',
                       fontSize: '0.72rem',
-                      background: '#fff',
+                      background: 'var(--surface)',
                       border: '1px solid var(--border)',
                       padding: '3px 8px',
                       borderRadius: '4px',
@@ -500,7 +527,7 @@ export default function ForumPage() {
                         key={r.id}
                         style={{
                           padding: '1rem',
-                          borderRadius: '6px',
+                          borderRadius: '10px',
                           border: r.isSolution ? '1px solid var(--accent)' : '1px solid var(--border)',
                           background: r.isSolution ? 'rgba(184, 74, 57, 0.03)' : '#fff',
                         }}
@@ -540,7 +567,7 @@ export default function ForumPage() {
                         alignItems: 'center',
                         gap: '8px',
                         padding: '0.65rem 0.85rem',
-                        borderRadius: '6px',
+                        borderRadius: '10px',
                         background: '#fef2f2',
                         border: '1px solid #fecaca',
                         color: '#991b1b',
@@ -574,9 +601,9 @@ export default function ForumPage() {
                       style={{
                         flex: '1',
                         padding: '0.6rem 0.85rem',
-                        borderRadius: '6px',
+                        borderRadius: '10px',
                         border: '1px solid var(--border)',
-                        background: '#fff',
+                        background: 'var(--surface)',
                         fontSize: '0.85rem',
                       }}
                     />
@@ -590,9 +617,9 @@ export default function ForumPage() {
                     style={{
                       width: '100%',
                       padding: '0.85rem',
-                      borderRadius: '6px',
+                      borderRadius: '10px',
                       border: '1px solid var(--border)',
-                      background: '#fff',
+                      background: 'var(--surface)',
                       fontFamily: 'var(--font-body)',
                       fontSize: '0.9rem',
                       outline: 'none',
@@ -610,7 +637,7 @@ export default function ForumPage() {
                       background: submittingReply ? 'var(--muted)' : 'var(--ink)',
                       color: '#fff',
                       border: 'none',
-                      borderRadius: '6px',
+                      borderRadius: '10px',
                       fontSize: '0.85rem',
                       fontWeight: 600,
                       cursor: submittingReply ? 'not-allowed' : 'pointer',
@@ -651,13 +678,14 @@ export default function ForumPage() {
                     onClick={() => setShowNewThreadModal(true)}
                     style={{
                       padding: '0.65rem 1.35rem',
-                      background: 'var(--ink)',
-                      color: '#fff',
-                      borderRadius: '6px',
+                      background: 'var(--accent)',
+                      color: '#ffffff',
+                      borderRadius: '10px',
                       border: 'none',
                       cursor: 'pointer',
                       fontWeight: 600,
                       fontSize: '0.88rem',
+                      boxShadow: '0 2px 6px rgba(0,0,0,0.1)'
                     }}
                   >
                     Start a Discussion
@@ -672,8 +700,8 @@ export default function ForumPage() {
                       style={{
                         padding: '1.4rem',
                         border: '1px solid var(--border)',
-                        borderRadius: '6px',
-                        background: '#ffffff',
+                        borderRadius: '10px',
+                        background: 'var(--surface)',
                         cursor: 'pointer',
                         transition: 'all 0.2s ease',
                       }}
@@ -743,9 +771,9 @@ export default function ForumPage() {
                             alignItems: 'center',
                             gap: '4px',
                             padding: '0.5rem 0.8rem',
-                            borderRadius: '6px',
+                            borderRadius: '10px',
                             border: '1px solid var(--border)',
-                            background: '#fff',
+                            background: 'var(--surface)',
                             cursor: 'pointer',
                           }}
                         >
@@ -791,7 +819,7 @@ export default function ForumPage() {
                     padding: '0.6rem 1.1rem',
                     background: 'var(--accent)',
                     color: '#fff',
-                    borderRadius: '6px',
+                    borderRadius: '10px',
                     fontSize: '0.85rem',
                     fontWeight: 600,
                   }}
@@ -809,9 +837,9 @@ export default function ForumPage() {
                     justifyContent: 'center',
                     gap: '6px',
                     padding: '0.6rem 1.1rem',
-                    background: '#fff',
+                    background: 'var(--surface)',
                     border: '1px solid var(--border)',
-                    borderRadius: '6px',
+                    borderRadius: '10px',
                     fontSize: '0.82rem',
                     fontWeight: 600,
                     cursor: curating ? 'wait' : 'pointer',
@@ -824,7 +852,7 @@ export default function ForumPage() {
             </div>
 
             {curateMessage && (
-              <div style={{ marginTop: '1rem', padding: '0.75rem 1rem', background: '#fff', borderRadius: '4px', border: '1px solid var(--border)', fontSize: '0.85rem', color: 'var(--ink)' }}>
+              <div style={{ marginTop: '1rem', padding: '0.75rem 1rem', background: 'var(--surface)', borderRadius: '4px', border: '1px solid var(--border)', fontSize: '0.85rem', color: 'var(--ink)' }}>
                 {curateMessage}
               </div>
             )}
@@ -880,8 +908,8 @@ export default function ForumPage() {
                     style={{
                       padding: '1.5rem',
                       border: '1px solid var(--border)',
-                      borderRadius: '6px',
-                      background: '#ffffff',
+                      borderRadius: '10px',
+                      background: 'var(--surface)',
                     }}
                   >
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '0.75rem' }}>
@@ -948,7 +976,7 @@ export default function ForumPage() {
                           padding: '0.4rem 0.75rem',
                           borderRadius: '4px',
                           border: '1px solid var(--border)',
-                          background: '#fff',
+                          background: 'var(--surface)',
                         }}
                       >
                         Visit Source <ExternalLink size={12} />
@@ -1003,7 +1031,7 @@ export default function ForumPage() {
         >
           <div
             style={{
-              background: '#ffffff',
+              background: 'var(--surface)',
               borderRadius: '8px',
               maxWidth: '620px',
               width: '100%',
@@ -1022,7 +1050,7 @@ export default function ForumPage() {
                   alignItems: 'center',
                   gap: '8px',
                   padding: '0.75rem 1rem',
-                  borderRadius: '6px',
+                  borderRadius: '10px',
                   background: '#fef2f2',
                   border: '1px solid #fecaca',
                   color: '#991b1b',
@@ -1079,7 +1107,7 @@ export default function ForumPage() {
                   style={{
                     width: '100%',
                     padding: '0.75rem',
-                    borderRadius: '6px',
+                    borderRadius: '10px',
                     border: '1px solid var(--border)',
                     fontSize: '0.95rem',
                   }}
@@ -1098,7 +1126,7 @@ export default function ForumPage() {
                   style={{
                     width: '100%',
                     padding: '0.75rem',
-                    borderRadius: '6px',
+                    borderRadius: '10px',
                     border: '1px solid var(--border)',
                     fontSize: '0.9rem',
                   }}
@@ -1118,7 +1146,7 @@ export default function ForumPage() {
                   style={{
                     width: '100%',
                     padding: '0.75rem',
-                    borderRadius: '6px',
+                    borderRadius: '10px',
                     border: '1px solid var(--border)',
                     fontSize: '0.9rem',
                     fontFamily: 'var(--font-body)',
@@ -1139,7 +1167,7 @@ export default function ForumPage() {
                   style={{
                     width: '100%',
                     padding: '0.75rem',
-                    borderRadius: '6px',
+                    borderRadius: '10px',
                     border: '1px solid var(--border)',
                     fontSize: '0.85rem',
                   }}
@@ -1154,7 +1182,7 @@ export default function ForumPage() {
                     padding: '0.65rem 1.25rem',
                     background: 'transparent',
                     border: '1px solid var(--border)',
-                    borderRadius: '6px',
+                    borderRadius: '10px',
                     cursor: 'pointer',
                     fontSize: '0.85rem',
                   }}
@@ -1169,7 +1197,7 @@ export default function ForumPage() {
                     background: submittingThread ? 'var(--muted)' : 'var(--ink)',
                     color: '#fff',
                     border: 'none',
-                    borderRadius: '6px',
+                    borderRadius: '10px',
                     cursor: submittingThread ? 'not-allowed' : 'pointer',
                     fontSize: '0.85rem',
                     fontWeight: 600,

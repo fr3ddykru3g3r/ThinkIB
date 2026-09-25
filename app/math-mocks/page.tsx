@@ -159,8 +159,8 @@ export default function MathMocksBrowser() {
       {/* Directory Split Screen */}
       <div className="split-screen" style={{ height: 'calc(100vh - 270px)', minHeight: '620px' }}>
         <div className="panel browser-panel" style={{ overflowY: 'auto' }}>
-          <span className="tech-label" style={{ display: 'block', marginBottom: '0.75rem' }}>
-            [MOCK_PAPERS_CATALOG: {filteredDocs.length}]
+          <span style={{ fontSize: '0.78rem', color: 'var(--muted)', fontWeight: 500, display: 'block', marginBottom: '0.75rem' }}>
+            {filteredDocs.length} mock documents available
           </span>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
             {filteredDocs.map((doc, idx) => {
@@ -178,14 +178,14 @@ export default function MathMocksBrowser() {
                     background: isActive ? 'rgba(184, 74, 57, 0.08)' : 'var(--panel-light)',
                     color: 'var(--ink)',
                     border: isActive ? '1.5px solid var(--rust)' : '1px solid var(--border)',
-                    borderRadius: '4px',
+                    borderRadius: '8px',
                     cursor: 'pointer',
                     transition: 'all 0.15s ease'
                   }}
                 >
                   <div style={{ overflow: 'hidden', paddingRight: '0.5rem' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '2px' }}>
-                      <span style={{ fontSize: '0.68rem', padding: '1px 5px', borderRadius: '3px', background: isSolution ? '#059669' : isActive ? 'var(--rust)' : 'rgba(28,28,30,0.06)', color: isSolution || isActive ? '#fff' : 'var(--muted)', fontWeight: 600 }}>
+                      <span style={{ fontSize: '0.68rem', padding: '1px 5px', borderRadius: '6px', background: isSolution ? '#059669' : isActive ? 'var(--rust)' : 'rgba(28,28,30,0.06)', color: isSolution || isActive ? '#fff' : 'var(--muted)', fontWeight: 600 }}>
                         {doc.category}
                       </span>
                       <span style={{ fontSize: '0.7rem', color: 'var(--muted)', fontFamily: 'var(--font-mono)' }}>
@@ -207,7 +207,7 @@ export default function MathMocksBrowser() {
         <div className="viewer-panel">
           {selectedDoc ? (
             <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.85rem 1rem', background: 'var(--panel-light)', borderBottom: '1px solid var(--border)' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.85rem 1rem', background: 'var(--surface)', borderBottom: '1px solid var(--border)' }}>
                 <span className="tech-label" style={{ maxWidth: '60%', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                   {selectedDoc.name}
                 </span>
@@ -225,9 +225,9 @@ export default function MathMocksBrowser() {
           ) : (
             <div className="viewer-placeholder">
               <Eye size={44} style={{ color: 'var(--rust)', marginBottom: '1rem', opacity: 0.5 }} />
-              <h3>No Mock Paper Mounted</h3>
-              <p style={{ maxWidth: '280px', marginTop: '0.5rem', fontSize: '0.9rem', color: 'var(--muted)' }}>
-                Select an InThinking mock examination paper, worked solutions sheet, or handbook from the catalog.
+              <h3 style={{ fontFamily: 'var(--display)', fontSize: '1.4rem' }}>No Mock Paper Selected</h3>
+              <p style={{ maxWidth: '320px', marginTop: '0.5rem', fontSize: '0.9rem', color: 'var(--muted)' }}>
+                Select an InThinking mock examination paper or worked solution from the catalog on the left to study inline.
               </p>
             </div>
           )}

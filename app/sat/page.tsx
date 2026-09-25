@@ -263,8 +263,8 @@ export default function SATHubPage() {
             className="portal-card"
             style={{
               padding: '1.75rem',
-              borderColor: 'var(--ink)',
-              background: 'rgba(28, 28, 30, 0.02)',
+              borderColor: 'var(--border)',
+              background: 'var(--surface)',
               height: '100%',
               display: 'flex',
               flexDirection: 'column',
@@ -273,10 +273,10 @@ export default function SATHubPage() {
           >
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
-                <span className="section-label" style={{ color: 'var(--ink)', margin: 0 }}>
+                <span className="section-label" style={{ color: 'var(--accent)', margin: 0 }}>
                   PRACTICE DRILLS
                 </span>
-                <Target size={18} style={{ color: 'var(--ink)' }} />
+                <Target size={18} style={{ color: 'var(--accent)' }} />
               </div>
               <h2 style={{ fontSize: '1.45rem', marginBottom: '0.5rem' }}>Targeted Practice</h2>
               <p style={{ color: 'var(--card-desc, #52525b)', fontSize: '0.88rem', lineHeight: '1.5' }}>

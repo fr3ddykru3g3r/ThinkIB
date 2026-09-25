@@ -121,7 +121,7 @@ export default function PrintableWorksheetModal({
       <div
         id="printable-worksheet"
         style={{
-          background: '#ffffff',
+          background: 'var(--surface)',
           color: '#111827',
           width: '100%',
           maxWidth: '850px',
@@ -266,7 +266,7 @@ export default function PrintableWorksheetModal({
               </h3>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(70px, 1fr))', gap: '0.5rem', fontFamily: 'var(--font-mono)', fontSize: '0.82rem' }}>
                 {questions.map((q, idx) => (
-                  <div key={idx} style={{ padding: '4px 6px', background: '#fff', border: '1px solid #e5e7eb', borderRadius: '3px', textAlign: 'center' }}>
+                  <div key={idx} style={{ padding: '4px 6px', background: 'var(--surface)', border: '1px solid #e5e7eb', borderRadius: '6px', textAlign: 'center' }}>
                     <span style={{ color: '#6b7280' }}>{idx + 1}: </span>
                     <strong style={{ color: '#b84a39' }}>{q.correctAnswer}</strong>
                   </div>

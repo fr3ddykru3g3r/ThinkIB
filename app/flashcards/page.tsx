@@ -465,10 +465,10 @@ export default function FlashcardsPage() {
               alignItems: 'center',
               gap: '6px',
               padding: '0.65rem 1.25rem',
-              background: 'var(--panel-light, #fff)',
+              background: 'var(--surface)',
               color: 'var(--ink)',
               border: '1px solid var(--border)',
-              borderRadius: '6px',
+              borderRadius: '10px',
               fontSize: '0.88rem',
               cursor: 'pointer',
             }}
@@ -481,13 +481,14 @@ export default function FlashcardsPage() {
             onClick={() => setIsFlipped(!isFlipped)}
             style={{
               padding: '0.65rem 1.4rem',
-              background: 'var(--ink)',
-              color: 'var(--bg, #fff)',
+              background: 'var(--accent)',
+              color: '#ffffff',
               border: 'none',
-              borderRadius: '6px',
+              borderRadius: '10px',
               fontSize: '0.88rem',
               fontWeight: 600,
               cursor: 'pointer',
+              boxShadow: '0 2px 6px rgba(0,0,0,0.1)'
             }}
           >
             {isFlipped ? 'Show Front' : 'Flip Card'}
@@ -501,10 +502,10 @@ export default function FlashcardsPage() {
               alignItems: 'center',
               gap: '6px',
               padding: '0.65rem 1.25rem',
-              background: 'var(--panel-light, #fff)',
+              background: 'var(--surface)',
               color: 'var(--ink)',
               border: '1px solid var(--border)',
-              borderRadius: '6px',
+              borderRadius: '10px',
               fontSize: '0.88rem',
               cursor: 'pointer',
             }}

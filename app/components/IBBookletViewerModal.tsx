@@ -101,7 +101,7 @@ export default function IBBookletViewerModal({
     >
       <div
         style={{
-          background: '#ffffff',
+          background: 'var(--surface)',
           borderRadius: isFullscreen ? '0' : '8px',
           width: isFullscreen ? '100vw' : '94vw',
           maxWidth: isFullscreen ? '100vw' : '1100px',
@@ -156,7 +156,7 @@ export default function IBBookletViewerModal({
               onClick={() => setIsFullscreen(!isFullscreen)}
               title={isFullscreen ? 'Exit full screen' : 'Expand full screen'}
               style={{
-                background: '#fff',
+                background: 'var(--surface)',
                 border: '1px solid var(--border)',
                 borderRadius: '4px',
                 padding: '0.35rem 0.6rem',
@@ -267,7 +267,7 @@ export default function IBBookletViewerModal({
         <div style={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
           {subject === 'math-aa' && (
             <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-              <div style={{ padding: '0.6rem 1.5rem', background: '#fff', borderBottom: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div style={{ padding: '0.6rem 1.5rem', background: 'var(--surface)', borderBottom: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <span style={{ fontSize: '0.8rem', color: 'var(--muted)', fontFamily: 'var(--font-mono)' }}>
                   Mathematics: Analysis and Approaches Formula Booklet (First Assessment 2021)
                 </span>
@@ -297,7 +297,7 @@ export default function IBBookletViewerModal({
 
           {subject === 'math-ai' && (
             <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-              <div style={{ padding: '0.6rem 1.5rem', background: '#fff', borderBottom: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div style={{ padding: '0.6rem 1.5rem', background: 'var(--surface)', borderBottom: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <span style={{ fontSize: '0.8rem', color: 'var(--muted)', fontFamily: 'var(--font-mono)' }}>
                   Mathematics AA HL Ultimate Comprehensive Formula Sheet
                 </span>
@@ -333,9 +333,9 @@ export default function IBBookletViewerModal({
                     key={idx}
                     style={{
                       border: '1px solid var(--border)',
-                      borderRadius: '6px',
+                      borderRadius: '10px',
                       padding: '1.25rem',
-                      background: '#fff',
+                      background: 'var(--surface)',
                     }}
                   >
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>

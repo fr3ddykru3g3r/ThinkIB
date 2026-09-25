@@ -550,11 +550,11 @@ export default function ExemplarsPage() {
       >
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.3rem' }}>
-            <span className="tech-label" style={{ color: 'var(--rust)', borderColor: 'var(--rust)' }}>
-              [OFFICIAL_STANDARDS_VAULT]
+            <span className="section-label" style={{ marginBottom: 0 }}>
+              Exemplar Vault
             </span>
-            <span style={{ fontSize: '0.75rem', color: 'var(--muted)', fontFamily: 'var(--font-mono)' }}>
-              AUTHENTIC GRADE 7 & GRADE A WORK • 2025 CURRICULUM
+            <span style={{ fontSize: '0.75rem', color: 'var(--muted)' }}>
+              Authentic Grade 7 & Grade A Work • 2025 Curriculum
             </span>
           </div>
           <h1 style={{ fontFamily: 'var(--font-display)', fontSize: '2.3rem', margin: '0.2rem 0' }}>
@@ -637,7 +637,7 @@ export default function ExemplarsPage() {
           >
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.35rem' }}>
-                <span style={{ fontSize: '0.68rem', fontWeight: 700, padding: '1px 6px', borderRadius: '3px', background: 'var(--rust)', color: '#fff' }}>
+                <span style={{ fontSize: '0.68rem', fontWeight: 700, padding: '1px 6px', borderRadius: '6px', background: 'var(--rust)', color: '#fff' }}>
                   REAL STUDENT WORK
                 </span>
                 <span style={{ fontSize: '0.72rem', color: 'var(--muted)' }}>7.9 MB • 284 Pages</span>
@@ -683,7 +683,7 @@ export default function ExemplarsPage() {
           >
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.35rem' }}>
-                <span style={{ fontSize: '0.68rem', fontWeight: 700, padding: '1px 6px', borderRadius: '3px', background: '#059669', color: '#fff' }}>
+                <span style={{ fontSize: '0.68rem', fontWeight: 700, padding: '1px 6px', borderRadius: '6px', background: '#059669', color: '#fff' }}>
                   2025 TEXTBOOK
                 </span>
                 <span style={{ fontSize: '0.72rem', color: 'var(--muted)' }}>76.7 MB • Hodder</span>
@@ -729,7 +729,7 @@ export default function ExemplarsPage() {
           >
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.35rem' }}>
-                <span style={{ fontSize: '0.68rem', fontWeight: 700, padding: '1px 6px', borderRadius: '3px', background: '#2563eb', color: '#fff' }}>
+                <span style={{ fontSize: '0.68rem', fontWeight: 700, padding: '1px 6px', borderRadius: '6px', background: '#2563eb', color: '#fff' }}>
                   OXFORD 2025
                 </span>
                 <span style={{ fontSize: '0.72rem', color: 'var(--muted)' }}>79.1 MB • Lekanides</span>
@@ -775,7 +775,7 @@ export default function ExemplarsPage() {
           >
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.35rem' }}>
-                <span style={{ fontSize: '0.68rem', fontWeight: 700, padding: '1px 6px', borderRadius: '3px', background: '#8b5cf6', color: '#fff' }}>
+                <span style={{ fontSize: '0.68rem', fontWeight: 700, padding: '1px 6px', borderRadius: '6px', background: '#8b5cf6', color: '#fff' }}>
                   OFFICIAL IBO
                 </span>
                 <span style={{ fontSize: '0.72rem', color: 'var(--muted)' }}>Live Public Repositories</span>
@@ -891,7 +891,7 @@ export default function ExemplarsPage() {
                         fontSize: '0.7rem',
                         fontWeight: 700,
                         padding: '1px 6px',
-                        borderRadius: '3px',
+                        borderRadius: '6px',
                         background: ex.type === 'EE' ? '#2563eb' : 'var(--rust)',
                         color: '#fff'
                       }}
@@ -912,7 +912,7 @@ export default function ExemplarsPage() {
                           color: '#2563eb',
                           background: 'rgba(37, 99, 235, 0.1)',
                           padding: '1px 5px',
-                          borderRadius: '3px'
+                          borderRadius: '6px'
                         }}
                       >
                         PDF In-Book
@@ -925,7 +925,7 @@ export default function ExemplarsPage() {
                         color: '#059669',
                         background: 'rgba(5, 150, 105, 0.1)',
                         padding: '1px 7px',
-                        borderRadius: '3px'
+                        borderRadius: '6px'
                       }}
                     >
                       ★ {ex.score}
@@ -1111,7 +1111,7 @@ export default function ExemplarsPage() {
                           {crit.name}
                         </td>
                         <td style={{ padding: '0.65rem 0.8rem' }}>
-                          <span style={{ fontWeight: 700, color: '#059669', background: 'rgba(5, 150, 105, 0.1)', padding: '2px 6px', borderRadius: '3px' }}>
+                          <span style={{ fontWeight: 700, color: '#059669', background: 'rgba(5, 150, 105, 0.1)', padding: '2px 6px', borderRadius: '6px' }}>
                             {crit.score} / {crit.maxScore}
                           </span>
                         </td>

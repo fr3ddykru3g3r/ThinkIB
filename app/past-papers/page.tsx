@@ -256,9 +256,9 @@ export default function PastPapersBrowser() {
             style={{
               alignSelf: 'flex-end',
               padding: '0.55rem 0.95rem',
-              borderRadius: '6px',
+              borderRadius: '8px',
               border: '1px solid var(--border)',
-              background: '#fff',
+              background: 'var(--surface)',
               fontSize: '0.82rem',
               fontWeight: 600,
               color: 'var(--ink)',
@@ -277,9 +277,9 @@ export default function PastPapersBrowser() {
             style={{
               alignSelf: 'flex-end',
               padding: '0.55rem 0.95rem',
-              borderRadius: '6px',
+              borderRadius: '8px',
               border: '1px solid var(--border)',
-              background: '#fff',
+              background: 'var(--surface)',
               fontSize: '0.82rem',
               fontWeight: 600,
               color: 'var(--ink)',
@@ -309,12 +309,12 @@ export default function PastPapersBrowser() {
         <div className="panel browser-panel" style={{ overflowY: 'auto' }}>
           {isSearching ? (
             <div>
-              <span className="tech-label" style={{ display: 'block', marginBottom: '0.75rem' }}>
-                [SEARCH_RESULTS: {filteredSearch.length}]
+              <span style={{ fontSize: '0.78rem', color: 'var(--muted)', fontWeight: 500, display: 'block', marginBottom: '0.75rem' }}>
+                {filteredSearch.length} examinations found
               </span>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
                 {filteredSearch.length === 0 ? (
-                  <div style={{ color: 'var(--ink-faint)', textAlign: 'center', padding: '2rem 0', fontFamily: 'var(--font-mono)', fontSize: '0.85rem' }}>
+                  <div style={{ color: 'var(--ink-faint)', textAlign: 'center', padding: '2rem 0', fontSize: '0.85rem' }}>
                     No papers matching search parameters.
                   </div>
                 ) : (
@@ -332,7 +332,7 @@ export default function PastPapersBrowser() {
                           background: isActive ? 'var(--earth-soft)' : 'var(--paper-card)',
                           color: 'var(--ink)',
                           border: isActive ? '1px solid rgba(154, 106, 62, 0.45)' : '1px solid var(--hairline)',
-                          borderRadius: '3px',
+                          borderRadius: '8px',
                           cursor: 'pointer',
                           transition: 'all 0.15s ease'
                         }}
@@ -351,8 +351,8 @@ export default function PastPapersBrowser() {
                   })
                 )}
                 {filteredSearch.length > 100 && (
-                  <div className="tech-label" style={{ textAlign: 'center', marginTop: '0.75rem' }}>
-                    + {filteredSearch.length - 100} MORE RESULTS. REFINE FILTERS.
+                  <div style={{ textAlign: 'center', marginTop: '0.75rem', fontSize: '0.75rem', color: 'var(--muted)' }}>
+                    + {filteredSearch.length - 100} more papers. Refine search filters.
                   </div>
                 )}
               </div>
@@ -360,7 +360,9 @@ export default function PastPapersBrowser() {
           ) : (
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', borderBottom: '1px solid var(--hairline)', paddingBottom: '0.75rem' }}>
-                <span className="tech-label">[DIRECTORY: {currentPath.length > 0 ? currentPath.join(' / ') : 'ROOT'}]</span>
+                <span className="section-label" style={{ margin: 0 }}>
+                  {currentPath.length > 0 ? currentPath.join(' › ') : 'Examination Subjects'}
+                </span>
                 {currentPath.length > 0 && (
                   <button onClick={handleBackClick} className="filter-btn" style={{ padding: '0.2rem 0.6rem' }}>
                     ← Back
@@ -380,7 +382,7 @@ export default function PastPapersBrowser() {
                       padding: '0.75rem 0.9rem',
                       background: 'var(--paper-card)',
                       border: '1px solid var(--hairline)',
-                      borderRadius: '3px',
+                      borderRadius: '6px',
                       cursor: 'pointer',
                       transition: 'all 0.15s ease'
                     }}
@@ -404,7 +406,7 @@ export default function PastPapersBrowser() {
                         background: isActive ? 'var(--earth-soft)' : 'var(--paper-card)',
                         color: 'var(--ink)',
                         border: isActive ? '1px solid rgba(154, 106, 62, 0.45)' : '1px solid var(--hairline)',
-                        borderRadius: '3px',
+                        borderRadius: '6px',
                         cursor: 'pointer',
                         transition: 'all 0.15s ease'
                       }}
@@ -443,9 +445,9 @@ export default function PastPapersBrowser() {
           ) : (
             <div className="viewer-placeholder">
               <Eye size={44} style={{ color: 'var(--earth)', marginBottom: '1rem', opacity: 0.5 }} />
-              <h3 style={{ fontFamily: 'var(--display)' }}>No Document Mounted</h3>
-              <p style={{ maxWidth: '280px', marginTop: '0.5rem', fontSize: '0.9rem', color: 'var(--ink-soft)' }}>
-                Select an examination paper or markscheme from the directory sidebar to load it in the viewport.
+              <h3 style={{ fontFamily: 'var(--display)', fontSize: '1.4rem' }}>No Examination Paper Selected</h3>
+              <p style={{ maxWidth: '320px', marginTop: '0.5rem', fontSize: '0.9rem', color: 'var(--ink-soft)' }}>
+                Select a past examination paper or markscheme from the directory on the left to preview and study the document inline.
               </p>
             </div>
           )}

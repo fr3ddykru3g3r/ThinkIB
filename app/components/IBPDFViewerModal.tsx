@@ -134,7 +134,7 @@ export default function IBPDFViewerModal({ isOpen, onClose, activeDocId = 'seven
                       background: 'var(--rust)',
                       color: '#fff',
                       padding: '1px 6px',
-                      borderRadius: '3px'
+                      borderRadius: '6px'
                     }}
                   >
                     Page {currentPage}

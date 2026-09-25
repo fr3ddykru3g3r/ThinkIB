@@ -57,8 +57,8 @@ export default function PortalHome() {
             </a>
 
             <a href="/forum" style={{ textDecoration: 'none', color: 'inherit' }}>
-              <div className="portal-card" style={{ borderColor: 'var(--ink)', background: 'rgba(28, 28, 30, 0.02)' }}>
-                <span className="section-label" style={{ color: 'var(--ink)' }}>COMMUNITY</span>
+              <div className="portal-card" style={{ borderColor: 'var(--border)', background: 'var(--surface)' }}>
+                <span className="section-label">COMMUNITY</span>
                 <h3>Discussion Forum</h3>
                 <p>Discuss exam problems, share solutions, and submit study resources for weekly review.</p>
                 <div className="portal-card-arrow">
@@ -82,7 +82,7 @@ export default function PortalHome() {
               <div className="portal-card">
                 <span className="section-label">CURRICULUM VAULT</span>
                 <h3>InThinking Database</h3>
-                <p>Explore complete syllabus notes, teacher keys, and chemistry/biology tutorials directly from the scraped databases.</p>
+                <p>Explore complete syllabus notes, teacher keys, and chemistry/biology tutorials directly from the subject databases.</p>
                 <div className="portal-card-arrow">
                   Open Database <ArrowRight size={14} style={{ display: 'inline', marginLeft: '4px', verticalAlign: 'middle' }} />
                 </div>
@@ -95,7 +95,7 @@ export default function PortalHome() {
                 <h3>Past Papers Archive</h3>
                 <p>Browse year-by-year past papers and markschemes (2021–2025) with a split-screen PDF previewer.</p>
                 <div className="portal-card-arrow">
-                  Mount Archive <ArrowRight size={14} style={{ display: 'inline', marginLeft: '4px', verticalAlign: 'middle' }} />
+                  Open Archive <ArrowRight size={14} style={{ display: 'inline', marginLeft: '4px', verticalAlign: 'middle' }} />
                 </div>
               </div>
             </a>

@@ -627,10 +627,10 @@ export default function FullSATExamSimulator() {
               style={{
                 width: '100%',
                 padding: '0.9rem',
-                background: 'var(--ink)',
-                color: '#fff',
+                background: 'var(--accent)',
+                color: '#ffffff',
                 border: 'none',
-                borderRadius: '6px',
+                borderRadius: '10px',
                 fontSize: '1rem',
                 fontWeight: 600,
                 cursor: loading ? 'wait' : 'pointer',
@@ -638,6 +638,7 @@ export default function FullSATExamSimulator() {
                 alignItems: 'center',
                 justifyContent: 'center',
                 gap: '8px',
+                boxShadow: '0 2px 6px rgba(0,0,0,0.1)'
               }}
             >
               <span>{loading ? 'Preparing Questions...' : 'Start Adaptive Exam'}</span>
@@ -707,10 +708,10 @@ export default function FullSATExamSimulator() {
                       display: 'inline-flex',
                       alignItems: 'center',
                       gap: '4px',
-                      background: '#fff',
+                      background: 'var(--surface)',
                       border: '1px solid var(--border)',
                       padding: '0.4rem 0.75rem',
-                      borderRadius: '6px',
+                      borderRadius: '10px',
                       fontSize: '0.8rem',
                       fontFamily: 'var(--font-mono)',
                       cursor: 'pointer',
@@ -726,10 +727,10 @@ export default function FullSATExamSimulator() {
                       display: 'inline-flex',
                       alignItems: 'center',
                       gap: '4px',
-                      background: '#fff',
+                      background: 'var(--surface)',
                       border: '1px solid var(--border)',
                       padding: '0.4rem 0.75rem',
-                      borderRadius: '6px',
+                      borderRadius: '10px',
                       fontSize: '0.8rem',
                       fontFamily: 'var(--font-mono)',
                       cursor: 'pointer',
@@ -747,7 +748,7 @@ export default function FullSATExamSimulator() {
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '4px',
-                  background: '#fff',
+                  background: 'var(--surface)',
                   border: '1px solid var(--border)',
                   padding: '0.4rem 0.75rem',
                   borderRadius: '6px',
@@ -912,10 +913,10 @@ export default function FullSATExamSimulator() {
               type="button"
               onClick={() => setShowNavGridModal(true)}
               style={{
-                background: '#fff',
+                background: 'var(--surface)',
                 border: '1px solid var(--border)',
                 padding: '0.55rem 1rem',
-                borderRadius: '6px',
+                borderRadius: '10px',
                 fontSize: '0.85rem',
                 fontFamily: 'var(--font-mono)',
                 cursor: 'pointer',
@@ -931,9 +932,9 @@ export default function FullSATExamSimulator() {
                 disabled={currentQuestionIdx === 0}
                 style={{
                   padding: '0.6rem 1.2rem',
-                  borderRadius: '6px',
+                  borderRadius: '10px',
                   border: '1px solid var(--border)',
-                  background: '#fff',
+                  background: 'var(--surface)',
                   cursor: currentQuestionIdx === 0 ? 'not-allowed' : 'pointer',
                   opacity: currentQuestionIdx === 0 ? 0.5 : 1,
                   fontSize: '0.85rem',
@@ -948,13 +949,14 @@ export default function FullSATExamSimulator() {
                   onClick={() => switchQuestion(currentQuestionIdx + 1)}
                   style={{
                     padding: '0.6rem 1.4rem',
-                    borderRadius: '6px',
+                    borderRadius: '10px',
                     border: 'none',
-                    background: 'var(--ink)',
-                    color: '#fff',
+                    background: 'var(--accent)',
+                    color: '#ffffff',
                     fontWeight: 600,
                     fontSize: '0.85rem',
                     cursor: 'pointer',
+                    boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
                   }}
                 >
                   Next
@@ -968,13 +970,14 @@ export default function FullSATExamSimulator() {
                   }}
                   style={{
                     padding: '0.6rem 1.4rem',
-                    borderRadius: '6px',
+                    borderRadius: '10px',
                     border: 'none',
                     background: 'var(--accent)',
-                    color: '#fff',
+                    color: '#ffffff',
                     fontWeight: 600,
                     fontSize: '0.85rem',
                     cursor: 'pointer',
+                    boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
                   }}
                 >
                   Review & Submit Module
@@ -1000,7 +1003,7 @@ export default function FullSATExamSimulator() {
             >
               <div
                 style={{
-                  background: '#fff',
+                  background: 'var(--surface)',
                   borderRadius: '8px',
                   padding: '2rem',
                   maxWidth: '560px',
@@ -1091,7 +1094,7 @@ export default function FullSATExamSimulator() {
             >
               <div
                 style={{
-                  background: '#fff',
+                  background: 'var(--surface)',
                   borderRadius: '8px',
                   width: '90vw',
                   height: '80vh',
@@ -1210,7 +1213,7 @@ export default function FullSATExamSimulator() {
                 padding: '0.7rem 1.25rem',
                 borderRadius: '6px',
                 border: '1px solid var(--border)',
-                background: '#fff',
+                background: 'var(--surface)',
                 fontSize: '0.85rem',
                 cursor: 'pointer',
               }}
@@ -1441,12 +1444,13 @@ export default function FullSATExamSimulator() {
               onClick={handleStartFreshExam}
               style={{
                 padding: '0.75rem 1.5rem',
-                background: 'var(--ink)',
-                color: '#fff',
-                borderRadius: '6px',
+                background: 'var(--accent)',
+                color: '#ffffff',
+                borderRadius: '10px',
                 border: 'none',
                 fontWeight: 600,
                 cursor: 'pointer',
+                boxShadow: '0 2px 6px rgba(0,0,0,0.1)'
               }}
             >
               Take Another Adaptive Exam
@@ -1471,7 +1475,7 @@ export default function FullSATExamSimulator() {
               style={{
                 textDecoration: 'none',
                 padding: '0.75rem 1.5rem',
-                background: '#fff',
+                background: 'var(--surface)',
                 border: '1px solid var(--border)',
                 borderRadius: '6px',
                 color: 'var(--ink)',

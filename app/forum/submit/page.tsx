@@ -93,9 +93,9 @@ export default function ResourceSubmitPage() {
               style={{
                 textDecoration: 'none',
                 padding: '0.65rem 1.25rem',
-                background: 'var(--ink)',
-                color: '#fff',
-                borderRadius: '6px',
+                background: 'var(--accent)',
+                color: '#ffffff',
+                borderRadius: '8px',
                 fontSize: '0.85rem',
                 fontWeight: 600,
               }}
@@ -112,9 +112,9 @@ export default function ResourceSubmitPage() {
               }}
               style={{
                 padding: '0.65rem 1.25rem',
-                background: '#fff',
+                background: 'var(--surface)',
                 border: '1px solid var(--border)',
-                borderRadius: '6px',
+                borderRadius: '10px',
                 fontSize: '0.85rem',
                 fontWeight: 600,
                 cursor: 'pointer',
@@ -317,10 +317,10 @@ export default function ResourceSubmitPage() {
             style={{
               width: '100%',
               padding: '0.85rem',
-              background: 'var(--ink)',
-              color: '#fff',
+              background: 'var(--accent)',
+              color: '#ffffff',
               border: 'none',
-              borderRadius: '6px',
+              borderRadius: '10px',
               fontSize: '0.95rem',
               fontWeight: 600,
               cursor: submitting ? 'wait' : 'pointer',

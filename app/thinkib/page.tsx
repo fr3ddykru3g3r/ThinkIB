@@ -365,7 +365,7 @@ export default function ThinkIBPage() {
                           {topic.category}
                         </span>
                         {isCurrent && (
-                          <span style={{ fontSize: '0.65rem', background: 'var(--rust)', color: '#fff', padding: '1px 5px', borderRadius: '3px' }}>
+                          <span style={{ fontSize: '0.65rem', background: 'var(--rust)', color: '#fff', padding: '1px 5px', borderRadius: '6px' }}>
                             ACTIVE
                           </span>
                         )}
@@ -429,11 +429,11 @@ export default function ThinkIBPage() {
       )}
 
       {/* Full Web Page Viewer Frame */}
-      <div className="panel" style={{ padding: '0.5rem', background: '#ffffff', borderRadius: '6px', border: '1px solid var(--border)', overflow: 'hidden' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.45rem 0.85rem', borderBottom: '1px solid var(--border)', background: 'var(--panel-light)', marginBottom: '0.5rem', borderRadius: '4px 4px 0 0' }}>
+      <div className="panel" style={{ padding: '0.5rem', background: 'var(--surface)', borderRadius: '12px', border: '1px solid var(--border)', overflow: 'hidden' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.45rem 0.85rem', borderBottom: '1px solid var(--border)', background: 'var(--surface-raised, var(--panel-light))', marginBottom: '0.5rem', borderRadius: '10px 10px 0 0' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <span style={{ fontSize: '0.72rem', padding: '2px 7px', background: 'var(--rust)', color: '#fff', borderRadius: '3px', fontWeight: 700, fontFamily: 'var(--font-mono)' }}>
-              LIVE_VIEW
+            <span style={{ fontSize: '0.72rem', padding: '2px 8px', background: 'var(--rust)', color: '#fff', borderRadius: '6px', fontWeight: 600 }}>
+              Active Portal
             </span>
             <span style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--ink)' }}>
               {selectedSubject.name} — InThinking Mirror

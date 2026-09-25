@@ -491,7 +491,7 @@ export default function IBCommandTermsModal({
                               fontSize: '0.7rem',
                               fontWeight: 700,
                               padding: '2px 8px',
-                              borderRadius: '3px',
+                              borderRadius: '6px',
                               background: 'rgba(0,0,0,0.06)',
                               color: aoColor,
                               border: `1px solid ${aoColor}40`
@@ -502,7 +502,7 @@ export default function IBCommandTermsModal({
                         </div>
                         <div style={{ display: 'flex', gap: '0.35rem' }}>
                           {ct.subjects.map(s => (
-                            <span key={s} style={{ fontSize: '0.68rem', color: 'var(--muted)', background: 'var(--panel)', padding: '2px 6px', borderRadius: '3px', border: '1px solid var(--border)' }}>
+                            <span key={s} style={{ fontSize: '0.68rem', color: 'var(--muted)', background: 'var(--panel)', padding: '2px 6px', borderRadius: '6px', border: '1px solid var(--border)' }}>
                               {s}
                             </span>
                           ))}

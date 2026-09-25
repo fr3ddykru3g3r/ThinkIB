@@ -541,16 +541,14 @@ export default function SATTargetedDrillPage() {
                 <button
                   type="button"
                   onClick={() => { setDrillMode('standard'); setSection('reading-writing'); }}
-                  className="filter-btn active"
-                  style={{ padding: '0.6rem 1.25rem', borderRadius: '6px', background: 'var(--ink)', color: '#fff', fontWeight: 600, border: 'none', cursor: 'pointer' }}
+                  style={{ padding: '0.65rem 1.3rem', borderRadius: '10px', background: 'var(--accent)', color: '#ffffff', fontWeight: 600, border: 'none', cursor: 'pointer' }}
                 >
                   Start Reading & Writing Drills
                 </button>
                 <button
                   type="button"
                   onClick={() => { setDrillMode('standard'); setSection('math'); }}
-                  className="filter-btn"
-                  style={{ padding: '0.6rem 1.25rem', borderRadius: '6px', border: '1px solid var(--border)', background: 'var(--panel)', color: 'var(--ink)', fontWeight: 600, cursor: 'pointer' }}
+                  style={{ padding: '0.65rem 1.3rem', borderRadius: '10px', border: '1px solid var(--border)', background: 'var(--surface)', color: 'var(--ink)', fontWeight: 600, cursor: 'pointer' }}
                 >
                   Start Math Drills
                 </button>
@@ -568,8 +566,7 @@ export default function SATTargetedDrillPage() {
               <button
                 type="button"
                 onClick={() => setSection(section === 'reading-writing' ? 'math' : 'reading-writing')}
-                className="filter-btn active"
-                style={{ padding: '0.6rem 1.25rem', borderRadius: '6px', background: 'var(--ink)', color: '#fff', fontWeight: 600, border: 'none', cursor: 'pointer' }}
+                style={{ padding: '0.65rem 1.3rem', borderRadius: '10px', background: 'var(--accent)', color: '#ffffff', fontWeight: 600, border: 'none', cursor: 'pointer' }}
               >
                 Switch to {section === 'reading-writing' ? 'Mathematics' : 'Reading & Writing'}
               </button>
@@ -585,11 +582,11 @@ export default function SATTargetedDrillPage() {
               type="button"
               onClick={() => { setDomain(''); setDifficulty(''); }}
               style={{
-                padding: '0.6rem 1.25rem',
-                background: 'var(--ink)',
-                color: '#fff',
+                padding: '0.65rem 1.3rem',
+                background: 'var(--accent)',
+                color: '#ffffff',
                 border: 'none',
-                borderRadius: '6px',
+                borderRadius: '10px',
                 fontSize: '0.85rem',
                 fontWeight: 600,
                 cursor: 'pointer',
@@ -898,14 +895,15 @@ export default function SATTargetedDrillPage() {
                   disabled={!selectedAnswer && !userSubmittedAnswer.trim()}
                   style={{
                     padding: '0.65rem 1.4rem',
-                    background: 'var(--ink)',
-                    color: 'var(--bg, #fff)',
-                    borderRadius: '6px',
+                    background: 'var(--accent)',
+                    color: '#ffffff',
+                    borderRadius: '10px',
                     border: 'none',
                     fontWeight: 600,
                     fontSize: '0.9rem',
                     cursor: !selectedAnswer && !userSubmittedAnswer.trim() ? 'not-allowed' : 'pointer',
                     opacity: !selectedAnswer && !userSubmittedAnswer.trim() ? 0.5 : 1,
+                    boxShadow: '0 1px 4px rgba(0,0,0,0.1)'
                   }}
                 >
                   Check Answer

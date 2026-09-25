@@ -288,7 +288,7 @@ export default function DesmosVisualPreview({ id }: DesmosVisualPreviewProps) {
 
 // UI Mockup Styles
 const containerStyle: React.CSSProperties = {
-  background: '#ffffff',
+  background: 'var(--surface)',
   border: '1px solid #cbd5e1',
   borderRadius: '6px',
   overflow: 'hidden',
@@ -330,13 +330,13 @@ const bodyStyle: React.CSSProperties = {
   display: 'grid',
   gridTemplateColumns: '170px 1fr',
   minHeight: '120px',
-  background: '#ffffff',
+  background: 'var(--surface)',
 };
 
 const sidebarStyle: React.CSSProperties = {
   borderRight: '1px solid #e2e8f0',
   padding: '8px',
-  background: '#ffffff',
+  background: 'var(--surface)',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',

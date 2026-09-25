@@ -454,11 +454,11 @@ export default function SyllabusTrackerPage() {
       >
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.3rem' }}>
-            <span className="tech-label" style={{ color: 'var(--rust)', borderColor: 'var(--rust)' }}>
-              [SYLLABUS_PROGRESS_TRACKER]
+            <span className="section-label" style={{ marginBottom: 0 }}>
+              Curriculum Checklist
             </span>
-            <span style={{ fontSize: '0.75rem', color: 'var(--muted)', fontFamily: 'var(--font-mono)' }}>
-              PERSISTENT LOCAL STORAGE ENGINE • {currentSubjectData?.syllabusYear}
+            <span style={{ fontSize: '0.75rem', color: 'var(--muted)' }}>
+              Official IBDP Syllabus • {currentSubjectData?.syllabusYear}
             </span>
           </div>
           <h1 style={{ fontFamily: 'var(--font-display)', fontSize: '2.4rem', margin: '0.2rem 0' }}>
@@ -728,7 +728,7 @@ export default function SyllabusTrackerPage() {
                                 fontSize: '0.65rem',
                                 fontWeight: 700,
                                 padding: '1px 5px',
-                                borderRadius: '3px',
+                                borderRadius: '6px',
                                 background: st.level === 'HL' ? 'var(--rust)' : 'rgba(0,0,0,0.06)',
                                 color: st.level === 'HL' ? '#fff' : 'var(--muted)'
                               }}

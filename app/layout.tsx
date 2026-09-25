@@ -2,7 +2,6 @@ import './globals.css';
 import 'katex/dist/katex.min.css';
 import React from 'react';
 import HeaderNav from './components/HeaderNav';
-import CustomCursor from './components/CustomCursor';
 
 export const metadata = {
   title: 'The Archive — Collaborative Academic Vault & SAT Practicer',
@@ -39,7 +38,6 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <CustomCursor />
         <HeaderNav />
         <main className="container">
           {children}
