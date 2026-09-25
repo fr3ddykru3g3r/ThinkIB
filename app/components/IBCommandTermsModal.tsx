@@ -569,7 +569,7 @@ export default function IBCommandTermsModal({
           /* Rules & Guidelines View */
           <div style={{ flex: 1, overflowY: 'auto', padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
             <div>
-              <span className="tech-label">[EXAMINER_DISCLOSURE]</span>
+              <span className="section-label" style={{ margin: 0 }}>EXAMINER GRADING PRINCIPLES</span>
               <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.6rem', margin: '0.3rem 0 0.5rem' }}>
                 Universal IB Examination Grading Principles
               </h3>

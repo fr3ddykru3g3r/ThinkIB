@@ -132,6 +132,17 @@ export default function PortalHome() {
                 </div>
               </div>
             </a>
+
+            <a href="/flashcards" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <div className="portal-card" style={{ borderColor: '#0284c7', background: 'rgba(2, 132, 199, 0.03)' }}>
+                <span className="section-label" style={{ color: '#0284c7' }}>ACTIVE RECALL</span>
+                <h3>Memory Flashcards</h3>
+                <p>Interactive 3D retrieval flip-cards for math formulas, SAT grammar conventions, and IB command terms.</p>
+                <div className="portal-card-arrow" style={{ color: '#0284c7' }}>
+                  Study Flashcards <ArrowRight size={14} style={{ display: 'inline', marginLeft: '4px', verticalAlign: 'middle' }} />
+                </div>
+              </div>
+            </a>
           </div>
 
           {/* Resources Catalog */}

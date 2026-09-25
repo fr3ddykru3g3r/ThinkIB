@@ -182,7 +182,7 @@ export default function ThinkIBPage() {
       {/* Top Header */}
       <div className="panel" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.25rem' }}>
         <div>
-          <span className="tech-label">[VAULT_MOUNT: INTHINKING_OFFICIAL_WEBSITES]</span>
+          <span className="section-label" style={{ marginBottom: '0.4rem' }}>CURRICULUM VAULT</span>
           <h1 style={{ fontFamily: 'var(--font-display)', fontSize: '2.4rem', margin: '0.2rem 0' }}>
             InThinking Subject Portals
           </h1>

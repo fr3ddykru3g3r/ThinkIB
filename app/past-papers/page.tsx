@@ -183,7 +183,7 @@ export default function PastPapersBrowser() {
       {/* Header */}
       <div className="panel" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '2rem' }}>
         <div>
-          <span className="tech-label">[VAULT_MOUNT: PAST_PAPERS]</span>
+          <span className="section-label" style={{ marginBottom: '0.4rem' }}>OFFICIAL EXAMINATION ARCHIVE</span>
           <h1 style={{ fontFamily: 'var(--display)', fontSize: '2.4rem', margin: '0.2rem 0' }}>Past Examinations Vault</h1>
           <p style={{ color: 'var(--ink-soft)', fontSize: '0.95rem', margin: 0 }}>Examination papers, markschemes, and audio files across 16 examination sessions (2010–2025).</p>
         </div>

@@ -94,7 +94,7 @@ export default function MathMocksBrowser() {
       {/* Header */}
       <div className="panel" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '2rem' }}>
         <div>
-          <span className="tech-label">[DATABASE_MOUNT: INTHINKING_MATH_SIMULATOR]</span>
+          <span className="section-label" style={{ marginBottom: '0.5rem' }}>INTHINKING MOCK SIMULATOR</span>
           <h1 style={{ fontFamily: 'var(--font-display)', fontSize: '2.4rem', margin: '0.2rem 0' }}>Mathematics Mock Simulator</h1>
           <p style={{ color: 'var(--muted)', fontSize: '0.95rem', margin: 0 }}>
             61 genuine InThinking mock papers (Papers 1, 2 & 3), step-by-step worked solutions, and formula handbooks for AA SL & HL.
