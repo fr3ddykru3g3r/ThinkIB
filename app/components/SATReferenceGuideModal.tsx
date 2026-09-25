@@ -1,13 +1,13 @@
 'use client';
 
 import React, { useState } from 'react';
-import { X, BookOpen, Calculator, Sparkles, CheckCircle2 } from 'lucide-react';
+import { X, BookOpen, Calculator, Sparkles, CheckCircle2, Printer } from 'lucide-react';
 import MathView from './MathView';
 
 interface SATReferenceGuideModalProps {
   isOpen: boolean;
   onClose: () => void;
-  defaultTab?: 'math' | 'english';
+  defaultTab?: 'math' | 'english' | 'cheat-sheet';
 }
 
 export default function SATReferenceGuideModal({
@@ -15,7 +15,7 @@ export default function SATReferenceGuideModal({
   onClose,
   defaultTab = 'math',
 }: SATReferenceGuideModalProps) {
-  const [activeTab, setActiveTab] = useState<'math' | 'english'>(defaultTab);
+  const [activeTab, setActiveTab] = useState<'math' | 'english' | 'cheat-sheet'>(defaultTab);
 
   if (!isOpen) return null;
 
@@ -106,9 +106,52 @@ export default function SATReferenceGuideModal({
                   boxShadow: activeTab === 'english' ? '0 1px 3px rgba(0,0,0,0.12)' : 'none',
                 }}
               >
-                English Convention Rules
+                English Rules
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveTab('cheat-sheet')}
+                style={{
+                  padding: '0.4rem 0.85rem',
+                  borderRadius: '4px',
+                  border: 'none',
+                  background: activeTab === 'cheat-sheet' ? 'var(--bg, #fff)' : 'transparent',
+                  color: activeTab === 'cheat-sheet' ? '#059669' : 'var(--muted)',
+                  fontFamily: 'var(--font-body)',
+                  fontSize: '0.82rem',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '4px',
+                  boxShadow: activeTab === 'cheat-sheet' ? '0 1px 3px rgba(0,0,0,0.12)' : 'none',
+                }}
+              >
+                <Sparkles size={12} /> 1-Page Cram Sheet
               </button>
             </div>
+
+            <button
+              type="button"
+              onClick={() => window.print()}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '5px',
+                padding: '0.4rem 0.75rem',
+                borderRadius: '6px',
+                border: '1px solid var(--border)',
+                background: 'var(--panel-light, #fff)',
+                color: 'var(--ink)',
+                fontSize: '0.78rem',
+                fontWeight: 600,
+                cursor: 'pointer',
+              }}
+              title="Print or Save to PDF"
+            >
+              <Printer size={13} />
+              <span>Print Sheet</span>
+            </button>
 
             <button
               type="button"
@@ -356,6 +399,136 @@ export default function SATReferenceGuideModal({
                     Specifically<br />
                     To illustrate<br />
                     In particular
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* ==================================================== */}
+          {/* TAB 3: HIGH-DENSITY 1-PAGE CRAM CHEAT SHEET           */}
+          {/* ==================================================== */}
+          {activeTab === 'cheat-sheet' && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem', background: 'rgba(5, 150, 105, 0.08)', padding: '0.75rem 1rem', borderRadius: '6px', border: '1px solid rgba(5, 150, 105, 0.25)' }}>
+                <div style={{ fontSize: '0.84rem', color: '#047857', fontWeight: 600 }}>
+                  📄 1-Page Pre-Exam Cram Sheet: Formatted for instant printing or single-page PDF saving (8.5×11 A4 format).
+                </div>
+                <button
+                  type="button"
+                  onClick={() => window.print()}
+                  style={{
+                    padding: '0.35rem 0.75rem',
+                    background: '#059669',
+                    color: '#fff',
+                    border: 'none',
+                    borderRadius: '4px',
+                    fontSize: '0.78rem',
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '4px'
+                  }}
+                >
+                  <Printer size={12} /> Print Now
+                </button>
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))', gap: '1rem' }}>
+                {/* Column 1: Math Super-Summary */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+                  <div style={{ background: 'var(--panel)', border: '1px solid var(--border)', borderRadius: '6px', padding: '1rem' }}>
+                    <div style={{ fontWeight: 700, fontSize: '0.9rem', color: 'var(--accent)', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '5px' }}>
+                      <Calculator size={15} /> 1. Quadratics & Parabolas
+                    </div>
+                    <ul style={{ margin: 0, paddingLeft: '1.2rem', fontSize: '0.82rem', lineHeight: '1.55', color: 'var(--ink)' }}>
+                      <li><strong>Standard Form:</strong> y = ax² + bx + c | <strong>Vertex:</strong> h = -b/(2a), k = f(h)</li>
+                      <li><strong>Vertex Form:</strong> y = a(x - h)² + k (Apex at (h, k))</li>
+                      <li><strong>Factored Form:</strong> y = a(x - r₁)(x - r₂) | Roots average: h = (r₁ + r₂)/2</li>
+                      <li><strong>Discriminant:</strong> b² - 4ac (&gt;0: 2 real, =0: 1 double, &lt;0: 0 real)</li>
+                      <li><strong>Vieta's Formulas:</strong> Sum of roots = -b/a | Product of roots = c/a</li>
+                    </ul>
+                  </div>
+
+                  <div style={{ background: 'var(--panel)', border: '1px solid var(--border)', borderRadius: '6px', padding: '1rem' }}>
+                    <div style={{ fontWeight: 700, fontSize: '0.9rem', color: 'var(--accent)', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '5px' }}>
+                      <Calculator size={15} /> 2. Circle Geometry & Powers
+                    </div>
+                    <ul style={{ margin: 0, paddingLeft: '1.2rem', fontSize: '0.82rem', lineHeight: '1.55', color: 'var(--ink)' }}>
+                      <li><strong>Standard Circle:</strong> (x - h)² + (y - k)² = r² (Center: (h, k), Radius: r)</li>
+                      <li><strong>Completing Square:</strong> (x² + Bx + (B/2)²) + (y² + Dy + (D/2)²) = C + (B/2)² + (D/2)²</li>
+                      <li><strong>Arc Length:</strong> s = rθ (θ in radians) | Sector Area: A = ½ r² θ</li>
+                      <li><strong>Fractional Powers:</strong> x^(a/b) = b-th root of (x^a) (Numerator = Power, Denom = Root)</li>
+                    </ul>
+                  </div>
+
+                  <div style={{ background: 'rgba(2, 132, 199, 0.05)', border: '1px solid rgba(2, 132, 199, 0.25)', borderRadius: '6px', padding: '1rem' }}>
+                    <div style={{ fontWeight: 700, fontSize: '0.9rem', color: '#0369a1', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '5px' }}>
+                      <Sparkles size={15} /> 3. Top 4 Desmos 15-Sec Keystrokes
+                    </div>
+                    <ul style={{ margin: 0, paddingLeft: '1.2rem', fontSize: '0.82rem', lineHeight: '1.55', color: 'var(--ink)' }}>
+                      <li><strong>Intersections:</strong> Type both equations verbatim. Click gray dots for (x, y).</li>
+                      <li><strong>Linear Regression:</strong> Add table (x₁, y₁). Type y₁ ~ mx₁ + b to find slope m.</li>
+                      <li><strong>Quadratic Max/Min:</strong> Type function. Click apex dot for (h, k).</li>
+                      <li><strong>Sliders:</strong> Type equation with parameter k (e.g. y = 2x + k). Slide k until matching line.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Column 2: English Grammar Super-Summary */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+                  <div style={{ background: 'var(--panel)', border: '1px solid var(--border)', borderRadius: '6px', padding: '1rem' }}>
+                    <div style={{ fontWeight: 700, fontSize: '0.9rem', color: 'var(--rust)', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '5px' }}>
+                      <BookOpen size={15} /> 1. The Punctuation Hierarchy
+                    </div>
+                    <ul style={{ margin: 0, paddingLeft: '1.2rem', fontSize: '0.82rem', lineHeight: '1.55', color: 'var(--ink)' }}>
+                      <li><strong>STOP Punctuation (Equal Power):</strong> Period (.), Semicolon (;), Comma + FANBOYS. Can ONLY link [Ind] + [Ind].</li>
+                      <li><strong>Colon (:) & Single Dash (—):</strong> MUST be preceded by a complete independent clause. Following part can be phrase, list, or clause.</li>
+                      <li><strong>Pair of Commas / Dashes:</strong> Non-essential appositive clause. Sentence must make full sense if removed.</li>
+                      <li><strong>Subject & Verb:</strong> NEVER place a single comma between a subject and its main verb.</li>
+                    </ul>
+                  </div>
+
+                  <div style={{ background: 'var(--panel)', border: '1px solid var(--border)', borderRadius: '6px', padding: '1rem' }}>
+                    <div style={{ fontWeight: 700, fontSize: '0.9rem', color: 'var(--rust)', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '5px' }}>
+                      <BookOpen size={15} /> 2. Modifier & Verb Agreement Traps
+                    </div>
+                    <ul style={{ margin: 0, paddingLeft: '1.2rem', fontSize: '0.82rem', lineHeight: '1.55', color: 'var(--ink)' }}>
+                      <li><strong>Dangling Modifiers:</strong> The noun being described by an introductory participle clause MUST immediately follow the comma.</li>
+                      <li><strong>Subject-Verb Agreement:</strong> Cross out prepositional phrases between subject and verb (e.g. <em>The box [of chocolates] is...</em>).</li>
+                      <li><strong>Restrictive Names:</strong> When title precedes name without commas (e.g. <em>Author Toni Morrison</em>), do NOT add commas.</li>
+                      <li><strong>Pronoun Clarity:</strong> "They" requires plural referent; "which" requires noun antecedent, not entire clause.</li>
+                    </ul>
+                  </div>
+
+                  <div style={{ background: 'rgba(245, 158, 11, 0.08)', border: '1px solid rgba(245, 158, 11, 0.3)', borderRadius: '6px', padding: '1rem' }}>
+                    <div style={{ fontWeight: 700, fontSize: '0.9rem', color: '#b45309', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '5px' }}>
+                      <Sparkles size={15} /> 3. Transition 3-Category Elimination
+                    </div>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.5rem', fontSize: '0.78rem', color: 'var(--ink)' }}>
+                      <div>
+                        <strong>Contrast:</strong><br />
+                        However<br />
+                        Nevertheless<br />
+                        In contrast<br />
+                        Conversely
+                      </div>
+                      <div>
+                        <strong>Cause / Effect:</strong><br />
+                        Therefore<br />
+                        Consequently<br />
+                        As a result<br />
+                        Thus
+                      </div>
+                      <div>
+                        <strong>Addition:</strong><br />
+                        Furthermore<br />
+                        Moreover<br />
+                        Additionally<br />
+                        In addition
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

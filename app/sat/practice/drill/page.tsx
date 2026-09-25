@@ -18,6 +18,9 @@ import {
   Printer,
   Copy,
   Check,
+  Lightbulb,
+  AlertTriangle,
+  Zap,
 } from 'lucide-react';
 import { SATQuestion, SATTaxonomy } from '@/lib/sat';
 import MathView from '@/app/components/MathView';
@@ -26,6 +29,7 @@ import DesmosMasterKeyModal from '@/app/components/DesmosMasterKeyModal';
 import PrintableWorksheetModal from '@/app/components/PrintableWorksheetModal';
 import DesmosVisualPreview from '@/app/components/DesmosVisualPreview';
 import { getDesmosShortcutForQuestion } from '@/lib/desmos-shortcuts';
+import { getSocraticHints } from '@/lib/socratic-hints';
 import {
   saveMistake,
   getMistakeVault,
@@ -64,6 +68,11 @@ export default function SATTargetedDrillPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showRationale, setShowRationale] = useState(false);
   const [strikeThroughs, setStrikeThroughs] = useState<Record<string, boolean>>({});
+
+  // Socratic Hint Ladder & Dual-Method Rationale State
+  const [showHintDrawer, setShowHintDrawer] = useState(false);
+  const [unlockedHintLevel, setUnlockedHintLevel] = useState<number>(1);
+  const [solutionTab, setSolutionTab] = useState<'algebraic' | 'desmos'>('desmos');
 
   // Score stats in session
   const [correctCount, setCorrectCount] = useState(0);
@@ -121,6 +130,9 @@ export default function SATTargetedDrillPage() {
       setUserSubmittedAnswer('');
       setShowRationale(false);
       setStrikeThroughs({});
+      setShowHintDrawer(false);
+      setUnlockedHintLevel(1);
+      setSolutionTab('desmos');
 
       if (drillMode === 'mistakes') {
         const vault = getMistakeVault();
@@ -204,12 +216,20 @@ export default function SATTargetedDrillPage() {
   const desmosShortcut = useMemo(() => {
     return currentQ ? getDesmosShortcutForQuestion(currentQ) : null;
   }, [currentQ]);
+  const socraticHints = useMemo(() => {
+    return currentQ ? getSocraticHints(currentQ) : null;
+  }, [currentQ]);
 
   // Check correctness & auto-save to Mistake Vault
   const handleCheckAnswer = () => {
     if (!currentQ || isSubmitted) return;
     setIsSubmitted(true);
     setShowRationale(true);
+    if (section === 'math' && desmosShortcut) {
+      setSolutionTab('desmos');
+    } else {
+      setSolutionTab('algebraic');
+    }
 
     const isMultipleChoice = currentQ.choices && currentQ.choices.length > 0;
     let isCorrect = false;
@@ -280,6 +300,9 @@ export default function SATTargetedDrillPage() {
       setUserSubmittedAnswer('');
       setShowRationale(false);
       setStrikeThroughs({});
+      setShowHintDrawer(false);
+      setUnlockedHintLevel(1);
+      setSolutionTab('desmos');
     }
   };
 
@@ -291,6 +314,9 @@ export default function SATTargetedDrillPage() {
       setUserSubmittedAnswer('');
       setShowRationale(false);
       setStrikeThroughs({});
+      setShowHintDrawer(false);
+      setUnlockedHintLevel(1);
+      setSolutionTab('desmos');
     }
   };
 
@@ -662,7 +688,7 @@ export default function SATTargetedDrillPage() {
             style={{
               fontSize: '1.08rem',
               lineHeight: '1.7',
-              marginBottom: '2rem',
+              marginBottom: '1.75rem',
               color: 'var(--ink)',
               fontFamily: 'var(--font-body)',
               whiteSpace: 'pre-wrap',
@@ -670,6 +696,137 @@ export default function SATTargetedDrillPage() {
           >
             <MathView content={currentQ.prompt} />
           </div>
+
+          {/* Socratic Hint Ladder (Revision Village Newton AI Equivalent) */}
+          {showHintDrawer && socraticHints && (
+            <div
+              style={{
+                marginBottom: '1.75rem',
+                padding: '1.25rem 1.4rem',
+                borderRadius: '10px',
+                background: 'rgba(254, 243, 199, 0.28)',
+                border: '1px solid rgba(245, 158, 11, 0.35)',
+              }}
+            >
+              {/* Ladder Header */}
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.5rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <div style={{ background: '#f59e0b', color: '#fff', borderRadius: '50%', width: '22px', height: '22px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 700 }}>
+                    💡
+                  </div>
+                  <span style={{ fontWeight: 700, fontSize: '0.92rem', color: '#92400e' }}>
+                    Socratic Coaching Ladder
+                  </span>
+                </div>
+                <div style={{ fontSize: '0.76rem', fontFamily: 'var(--font-mono)', color: '#b45309', background: 'rgba(245, 158, 11, 0.15)', padding: '2px 8px', borderRadius: '4px' }}>
+                  Level {unlockedHintLevel} of 3 Active
+                </div>
+              </div>
+
+              {/* Progressive Hints Container */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                {/* Level 1: Concept & Formula Trigger */}
+                <div style={{ padding: '0.85rem 1rem', borderRadius: '8px', background: 'var(--panel-light, #fff)', border: '1px solid var(--border)' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '0.35rem', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>
+                    <span style={{ background: 'rgba(16, 185, 129, 0.12)', color: '#047857', padding: '1px 6px', borderRadius: '4px', fontSize: '0.72rem', fontFamily: 'var(--font-mono)', fontWeight: 700 }}>
+                      LEVEL 1 • CONCEPT
+                    </span>
+                    <span>{socraticHints.level1Concept.title}</span>
+                  </div>
+                  <p style={{ margin: '0 0 0.4rem', fontSize: '0.88rem', lineHeight: '1.5', color: 'var(--ink)' }}>
+                    {socraticHints.level1Concept.description}
+                  </p>
+                  {socraticHints.level1Concept.formulaOrRule && (
+                    <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', padding: '0.4rem 0.65rem', background: 'rgba(28,28,30,0.03)', borderRadius: '4px', color: 'var(--accent)' }}>
+                      <strong>Rule / Formula:</strong> {socraticHints.level1Concept.formulaOrRule}
+                    </div>
+                  )}
+                </div>
+
+                {/* Level 2: Distractor Elimination */}
+                {unlockedHintLevel >= 2 ? (
+                  <div style={{ padding: '0.85rem 1rem', borderRadius: '8px', background: 'var(--panel-light, #fff)', border: '1px solid var(--border)' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '0.35rem', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>
+                      <span style={{ background: 'rgba(234, 179, 8, 0.18)', color: '#b45309', padding: '1px 6px', borderRadius: '4px', fontSize: '0.72rem', fontFamily: 'var(--font-mono)', fontWeight: 700 }}>
+                        LEVEL 2 • ELIMINATION
+                      </span>
+                      <span>{socraticHints.level2Elimination.title}</span>
+                    </div>
+                    <p style={{ margin: '0 0 0.4rem', fontSize: '0.88rem', lineHeight: '1.5', color: 'var(--ink)' }}>
+                      {socraticHints.level2Elimination.description}
+                    </p>
+                    <div style={{ fontSize: '0.82rem', color: '#b45309', fontWeight: 500 }}>
+                      ⚡ <strong>Pitfall Avoidance:</strong> {socraticHints.level2Elimination.pitfallAvoidance}
+                    </div>
+                  </div>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => setUnlockedHintLevel(2)}
+                    style={{
+                      padding: '0.65rem 1rem',
+                      borderRadius: '8px',
+                      border: '1px dashed rgba(245, 158, 11, 0.4)',
+                      background: 'rgba(255,255,255,0.7)',
+                      color: 'var(--ink)',
+                      cursor: 'pointer',
+                      fontSize: '0.82rem',
+                      textAlign: 'left',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      transition: 'all 0.15s ease',
+                    }}
+                  >
+                    <span>🔒 Unlock Level 2: Distractor Elimination Strategy</span>
+                    <span style={{ fontWeight: 600, color: 'var(--accent)' }}>Reveal Hint +</span>
+                  </button>
+                )}
+
+                {/* Level 3: Setup & First Step */}
+                {unlockedHintLevel >= 3 ? (
+                  <div style={{ padding: '0.85rem 1rem', borderRadius: '8px', background: 'var(--panel-light, #fff)', border: '1px solid var(--border)' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '0.35rem', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>
+                      <span style={{ background: 'rgba(59, 130, 246, 0.12)', color: '#1d4ed8', padding: '1px 6px', borderRadius: '4px', fontSize: '0.72rem', fontFamily: 'var(--font-mono)', fontWeight: 700 }}>
+                        LEVEL 3 • FIRST STEP SETUP
+                      </span>
+                      <span>{socraticHints.level3Setup.title}</span>
+                    </div>
+                    <p style={{ margin: '0 0 0.4rem', fontSize: '0.88rem', lineHeight: '1.5', color: 'var(--ink)' }}>
+                      {socraticHints.level3Setup.description}
+                    </p>
+                    <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.82rem', color: '#1d4ed8', background: 'rgba(59, 130, 246, 0.05)', padding: '0.4rem 0.65rem', borderRadius: '4px' }}>
+                      ▶ <strong>Step 1:</strong> {socraticHints.level3Setup.firstStep}
+                    </div>
+                  </div>
+                ) : (
+                  unlockedHintLevel >= 2 && (
+                    <button
+                      type="button"
+                      onClick={() => setUnlockedHintLevel(3)}
+                      style={{
+                        padding: '0.65rem 1rem',
+                        borderRadius: '8px',
+                        border: '1px dashed rgba(59, 130, 246, 0.4)',
+                        background: 'rgba(255,255,255,0.7)',
+                        color: 'var(--ink)',
+                        cursor: 'pointer',
+                        fontSize: '0.82rem',
+                        textAlign: 'left',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        transition: 'all 0.15s ease',
+                      }}
+                    >
+                      <span>🔒 Unlock Level 3: Setup & Execution Operation</span>
+                      <span style={{ fontWeight: 600, color: 'var(--accent)' }}>Reveal Setup +</span>
+                    </button>
+                  )
+                )}
+              </div>
+            </div>
+          )}
 
           {/* Choices or Free-Response Input */}
           {currentQ.choices && currentQ.choices.length > 0 ? (
@@ -868,6 +1025,34 @@ export default function SATTargetedDrillPage() {
                 </button>
               )}
 
+              {/* Socratic Hints Ladder Button */}
+              <button
+                type="button"
+                onClick={() => setShowHintDrawer(!showHintDrawer)}
+                style={{
+                  padding: '0.65rem 1rem',
+                  background: showHintDrawer ? 'rgba(234, 179, 8, 0.12)' : 'var(--panel-light, #fff)',
+                  color: showHintDrawer ? '#b45309' : 'var(--ink)',
+                  border: showHintDrawer ? '1px solid rgba(234, 179, 8, 0.4)' : '1px solid var(--border)',
+                  borderRadius: '6px',
+                  fontSize: '0.85rem',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  transition: 'all 0.15s ease',
+                }}
+              >
+                <Lightbulb size={15} style={{ color: '#d97706' }} />
+                <span>{showHintDrawer ? 'Hide Hints' : 'Socratic Hints'}</span>
+                {!showHintDrawer && (
+                  <span style={{ fontSize: '0.7rem', padding: '1px 5px', borderRadius: '4px', background: 'rgba(234,179,8,0.2)', color: '#b45309' }}>
+                    1-3
+                  </span>
+                )}
+              </button>
+
               <button
                 type="button"
                 onClick={() => setShowRefModal(true)}
@@ -939,7 +1124,7 @@ export default function SATTargetedDrillPage() {
               style={{
                 marginTop: '1.75rem',
                 padding: '1.5rem',
-                borderRadius: '6px',
+                borderRadius: '8px',
                 background: 'rgba(28, 28, 30, 0.02)',
                 border: '1px solid var(--border)',
               }}
@@ -947,7 +1132,7 @@ export default function SATTargetedDrillPage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
                 <HelpCircle size={16} style={{ color: 'var(--accent)' }} />
                 <span className="section-label" style={{ margin: 0 }}>
-                  OFFICIAL COLLEGE BOARD RATIONALE
+                  OFFICIAL COLLEGE BOARD RATIONALE & DUAL-METHOD
                 </span>
               </div>
 
@@ -955,17 +1140,100 @@ export default function SATTargetedDrillPage() {
                 Correct Answer: {currentQ.correctAnswer}
               </div>
 
-              <div style={{ fontSize: '0.94rem', lineHeight: '1.65', color: 'var(--ink)', whiteSpace: 'pre-wrap' }}>
-                <MathView content={currentQ.rationale || 'No extended rationale provided.'} />
-              </div>
-
-              {/* Contextual Desmos Shortcut Method for Math */}
-              {section === 'math' && desmosShortcut && (
+              {/* 1. EXAMINER TRAP & MISCONCEPTION (Save My Exams Smart Mark) */}
+              {socraticHints && socraticHints.examinerTrap && (
                 <div
                   style={{
-                    marginTop: '1.5rem',
+                    marginBottom: '1.25rem',
+                    padding: '1rem 1.25rem',
+                    borderRadius: '8px',
+                    background: 'rgba(245, 158, 11, 0.08)',
+                    border: '1px solid rgba(245, 158, 11, 0.35)',
+                    color: 'var(--ink)',
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#b45309', fontWeight: 700, fontSize: '0.88rem', marginBottom: '0.4rem' }}>
+                    <AlertTriangle size={16} />
+                    <span>EXAMINER TRAP & MISCONCEPTION: {socraticHints.examinerTrap.headline.toUpperCase()}</span>
+                  </div>
+                  <div style={{ fontSize: '0.92rem', lineHeight: '1.55', marginBottom: '0.5rem', color: 'var(--ink)' }}>
+                    {socraticHints.examinerTrap.explanation}
+                  </div>
+                  <div style={{ fontSize: '0.8rem', color: 'var(--muted)', fontStyle: 'italic' }}>
+                    ⚡ Cognitive Vulnerability: {socraticHints.examinerTrap.psychologicalTrigger}
+                  </div>
+                </div>
+              )}
+
+              {/* 2. DUAL-METHOD SEGMENTED SWITCHER (1600.io / UWorld Innovation) */}
+              {section === 'math' && desmosShortcut && (
+                <div style={{ marginBottom: '1.25rem' }}>
+                  <div
+                    style={{
+                      display: 'inline-flex',
+                      padding: '3px',
+                      background: 'rgba(28,28,30,0.06)',
+                      borderRadius: '8px',
+                      border: '1px solid var(--border)',
+                      gap: '4px',
+                    }}
+                  >
+                    <button
+                      type="button"
+                      onClick={() => setSolutionTab('algebraic')}
+                      style={{
+                        padding: '0.45rem 0.9rem',
+                        borderRadius: '6px',
+                        border: 'none',
+                        background: solutionTab === 'algebraic' ? 'var(--panel-light, #fff)' : 'transparent',
+                        color: solutionTab === 'algebraic' ? 'var(--ink)' : 'var(--muted)',
+                        fontWeight: 600,
+                        fontSize: '0.84rem',
+                        cursor: 'pointer',
+                        boxShadow: solutionTab === 'algebraic' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
+                      }}
+                    >
+                      📐 Standard Algebraic Steps
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setSolutionTab('desmos')}
+                      style={{
+                        padding: '0.45rem 0.9rem',
+                        borderRadius: '6px',
+                        border: 'none',
+                        background: solutionTab === 'desmos' ? 'var(--panel-light, #fff)' : 'transparent',
+                        color: solutionTab === 'desmos' ? '#0284c7' : 'var(--muted)',
+                        fontWeight: 600,
+                        fontSize: '0.84rem',
+                        cursor: 'pointer',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                        boxShadow: solutionTab === 'desmos' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
+                      }}
+                    >
+                      <Sparkles size={13} />
+                      <span>⚡ Desmos 15-Sec Shortcut</span>
+                      <span style={{ fontSize: '0.7rem', padding: '1px 5px', borderRadius: '4px', background: '#0284c7', color: '#fff' }}>
+                        Saves ~75s
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {/* RATIONALE CONTENT: Standard Algebraic or Desmos */}
+              {(!desmosShortcut || solutionTab === 'algebraic') ? (
+                <div style={{ fontSize: '0.94rem', lineHeight: '1.65', color: 'var(--ink)', whiteSpace: 'pre-wrap' }}>
+                  <MathView content={currentQ.rationale || 'No extended rationale provided.'} />
+                </div>
+              ) : (
+                /* Desmos Shortcut Solution Method */
+                <div
+                  style={{
                     padding: '1.25rem',
-                    borderRadius: '6px',
+                    borderRadius: '8px',
                     background: 'rgba(2, 132, 199, 0.05)',
                     border: '1px solid rgba(2, 132, 199, 0.25)',
                   }}

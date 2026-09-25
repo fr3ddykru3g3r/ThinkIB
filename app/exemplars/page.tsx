@@ -17,6 +17,7 @@ interface RubricCriterion {
   score: number;
   maxScore: number;
   comment: string;
+  pdfPage?: number;
 }
 
 interface Exemplar {
@@ -63,11 +64,11 @@ const EXEMPLARS: Exemplar[] = [
       'Wolfram Mathematica Demonstration Algorithm (Included in Appendix)'
     ],
     rubricBreakdown: [
-      { code: 'A', name: 'Focus and Method', score: 6, maxScore: 6, comment: 'Crisp research question with immediate practical relevance to computer vision. Rigorous mathematical formulation from base cases to general 3D reconstruction.' },
-      { code: 'B', name: 'Knowledge and Understanding', score: 6, maxScore: 6, comment: 'Exceptional grasp of linear algebra, matrix transformations, and 3D coordinate systems extending significantly beyond syllabus limits.' },
-      { code: 'C', name: 'Critical Thinking', score: 12, maxScore: 12, comment: 'Superb analysis of error propagation caused by pixel quantization and optical lens distortion when matching 2D feature coordinates.' },
-      { code: 'D', name: 'Presentation', score: 4, maxScore: 4, comment: 'Flawless academic typography, vector ray diagrams, numbered equations, and complete commented Mathematica script in the appendix.' },
-      { code: 'E', name: 'Engagement (RPPF)', score: 6, maxScore: 6, comment: 'Supervisor noted profound personal passion and resilience: started from dense computer vision papers and successfully developed an accessible base-case model.' }
+      { code: 'A', name: 'Focus and Method', score: 6, maxScore: 6, pdfPage: 123, comment: 'Crisp research question with immediate practical relevance to computer vision. Rigorous mathematical formulation from base cases to general 3D reconstruction.' },
+      { code: 'B', name: 'Knowledge and Understanding', score: 6, maxScore: 6, pdfPage: 125, comment: 'Exceptional grasp of linear algebra, matrix transformations, and 3D coordinate systems extending significantly beyond syllabus limits.' },
+      { code: 'C', name: 'Critical Thinking', score: 12, maxScore: 12, pdfPage: 128, comment: 'Superb analysis of error propagation caused by pixel quantization and optical lens distortion when matching 2D feature coordinates.' },
+      { code: 'D', name: 'Presentation', score: 4, maxScore: 4, pdfPage: 132, comment: 'Flawless academic typography, vector ray diagrams, numbered equations, and complete commented Mathematica script in the appendix.' },
+      { code: 'E', name: 'Engagement (RPPF)', score: 6, maxScore: 6, pdfPage: 135, comment: 'Supervisor noted profound personal passion and resilience: started from dense computer vision papers and successfully developed an accessible base-case model.' }
     ],
     examinerNotes: 'Sevenoaks School Prized Extended Essay 2015. Supervisor Charley Openshaw & Senior Examiner praised this paper as an exemplary synthesis of rigorous vector mathematics and creative algorithmic implementation.',
     pitfallsAvoided: [
@@ -139,11 +140,11 @@ const EXEMPLARS: Exemplar[] = [
       'Toxicological Risk Assessment against WHO & Chinese Pharmacopoeia Limits'
     ],
     rubricBreakdown: [
-      { code: 'A', name: 'Focus and Method', score: 6, maxScore: 6, comment: 'Clear, compelling public health research question. Rigorous lab safety precautions when handling toxic heavy metals and concentrated acids.' },
-      { code: 'B', name: 'Knowledge and Understanding', score: 6, maxScore: 6, comment: 'Deep understanding of atomic emission transitions, plasma ionization mechanics, and precipitation equilibria.' },
-      { code: 'C', name: 'Critical Thinking', score: 11, maxScore: 12, comment: 'Exemplary critical reflection on the limitations of nitric acid digestion compared to microwave bombs for refractory mineral residues.' },
-      { code: 'D', name: 'Presentation', score: 4, maxScore: 4, comment: 'Standard IUPAC nomenclature, accurate uncertainty budgets with instrumental tolerances, and professional chemical data tables.' },
-      { code: 'E', name: 'Engagement (RPPF)', score: 6, maxScore: 6, comment: 'Candidate demonstrated immense laboratory resilience through multiple failed precipitations before mastering sulfide stoichiometric control.' }
+      { code: 'A', name: 'Focus and Method', score: 6, maxScore: 6, pdfPage: 231, comment: 'Clear, compelling public health research question. Rigorous lab safety precautions when handling toxic heavy metals and concentrated acids.' },
+      { code: 'B', name: 'Knowledge and Understanding', score: 6, maxScore: 6, pdfPage: 233, comment: 'Deep understanding of atomic emission transitions, plasma ionization mechanics, and precipitation equilibria.' },
+      { code: 'C', name: 'Critical Thinking', score: 11, maxScore: 12, pdfPage: 236, comment: 'Exemplary critical reflection on the limitations of nitric acid digestion compared to microwave bombs for refractory mineral residues.' },
+      { code: 'D', name: 'Presentation', score: 4, maxScore: 4, pdfPage: 240, comment: 'Standard IUPAC nomenclature, accurate uncertainty budgets with instrumental tolerances, and professional chemical data tables.' },
+      { code: 'E', name: 'Engagement (RPPF)', score: 6, maxScore: 6, pdfPage: 242, comment: 'Candidate demonstrated immense laboratory resilience through multiple failed precipitations before mastering sulfide stoichiometric control.' }
     ],
     examinerNotes: 'Sevenoaks School Prized Extended Essay 2015. Author Laura Lau conducted university-grade analytical chemistry. Examiner highlighted the sophisticated discussion of organic matrix interferences in emission spectroscopy.',
     pitfallsAvoided: [
@@ -215,11 +216,11 @@ const EXEMPLARS: Exemplar[] = [
       'Field GPS Mapping & Statistical Hypothesis Testing'
     ],
     rubricBreakdown: [
-      { code: 'A', name: 'Focus and Method', score: 6, maxScore: 6, comment: 'Authentic conservation biology research question. Highly rigorous field sampling protocol minimizing observational bias.' },
-      { code: 'B', name: 'Knowledge and Understanding', score: 6, maxScore: 6, comment: 'Comprehensive ecological context: thermoregulation, predator avoidance, and floristic composition of dry deciduous forests.' },
-      { code: 'C', name: 'Critical Thinking', score: 12, maxScore: 12, comment: 'Evaluated the subtle confounding factors of seasonal deciduous leaf-drop and food availability on tree selection.' },
-      { code: 'D', name: 'Presentation', score: 4, maxScore: 4, comment: 'Superb statistical graphs, maps of Mariarano forest reserves, and thorough citations adhering to APA format.' },
-      { code: 'E', name: 'Engagement (RPPF)', score: 6, maxScore: 6, comment: 'Candidate reflected on the physical and logistical hurdles of field conservation and the critical importance of primary ecological data.' }
+      { code: 'A', name: 'Focus and Method', score: 6, maxScore: 6, pdfPage: 67, comment: 'Authentic conservation biology research question. Highly rigorous field sampling protocol minimizing observational bias.' },
+      { code: 'B', name: 'Knowledge and Understanding', score: 6, maxScore: 6, pdfPage: 69, comment: 'Comprehensive ecological context: thermoregulation, predator avoidance, and floristic composition of dry deciduous forests.' },
+      { code: 'C', name: 'Critical Thinking', score: 12, maxScore: 12, pdfPage: 72, comment: 'Evaluated the subtle confounding factors of seasonal deciduous leaf-drop and food availability on tree selection.' },
+      { code: 'D', name: 'Presentation', score: 4, maxScore: 4, pdfPage: 76, comment: 'Superb statistical graphs, maps of Mariarano forest reserves, and thorough citations adhering to APA format.' },
+      { code: 'E', name: 'Engagement (RPPF)', score: 6, maxScore: 6, pdfPage: 78, comment: 'Candidate reflected on the physical and logistical hurdles of field conservation and the critical importance of primary ecological data.' }
     ],
     examinerNotes: 'Sevenoaks School Prized Extended Essay 2015. Author Ale Baranowski demonstrated field ecological methods rarely seen before postgraduate studies. Examiner awarded maximum marks across all rubrics.',
     pitfallsAvoided: [
@@ -255,11 +256,11 @@ const EXEMPLARS: Exemplar[] = [
       'Counterfactual Multi-Variable Economic Assessment'
     ],
     rubricBreakdown: [
-      { code: 'A', name: 'Focus and Method', score: 6, maxScore: 6, comment: 'Focused macroeconomic research question anchored in a precise temporal window (May-December 2013). High quality macroeconomic data series.' },
-      { code: 'B', name: 'Knowledge and Understanding', score: 6, maxScore: 6, comment: 'Nuanced understanding of monetary transmission channels, carry trade unwinding, and foreign exchange reserves.' },
-      { code: 'C', name: 'Critical Thinking', score: 11, maxScore: 12, comment: 'Refused to adopt a single-cause explanation: systematically disentangled the Federal Reserve shock from India\'s structural fiscal and trade deficits.' },
-      { code: 'D', name: 'Presentation', score: 4, maxScore: 4, comment: 'Clean macroeconomic diagrams, properly indexed time-series graphs with clear event tags, and impeccable referencing.' },
-      { code: 'E', name: 'Engagement (RPPF)', score: 6, maxScore: 6, comment: 'Supervisor noted intellectual maturity in dealing with fluctuating macroeconomic indicators and complex global monetary policy.' }
+      { code: 'A', name: 'Focus and Method', score: 6, maxScore: 6, pdfPage: 203, comment: 'Focused macroeconomic research question anchored in a precise temporal window (May-December 2013). High quality macroeconomic data series.' },
+      { code: 'B', name: 'Knowledge and Understanding', score: 6, maxScore: 6, pdfPage: 205, comment: 'Nuanced understanding of monetary transmission channels, carry trade unwinding, and foreign exchange reserves.' },
+      { code: 'C', name: 'Critical Thinking', score: 11, maxScore: 12, pdfPage: 208, comment: 'Refused to adopt a single-cause explanation: systematically disentangled the Federal Reserve shock from India\'s structural fiscal and trade deficits.' },
+      { code: 'D', name: 'Presentation', score: 4, maxScore: 4, pdfPage: 212, comment: 'Clean macroeconomic diagrams, properly indexed time-series graphs with clear event tags, and impeccable referencing.' },
+      { code: 'E', name: 'Engagement (RPPF)', score: 6, maxScore: 6, pdfPage: 214, comment: 'Supervisor noted intellectual maturity in dealing with fluctuating macroeconomic indicators and complex global monetary policy.' }
     ],
     examinerNotes: 'Sevenoaks School Prized Extended Essay 2015. Author Max Kitson constructed an exceptionally sophisticated evaluation comparing external Fed announcements with domestic structural weaknesses.',
     pitfallsAvoided: [
@@ -295,11 +296,11 @@ const EXEMPLARS: Exemplar[] = [
       'Structural Engineering Evaluation of High-Wind Modern Super-Tall Buildings'
     ],
     rubricBreakdown: [
-      { code: 'A', name: 'Focus and Method', score: 6, maxScore: 6, comment: 'Clear, elegant architectural research question investigated through both primary site observations and structural literature.' },
-      { code: 'B', name: 'Knowledge and Understanding', score: 6, maxScore: 6, comment: 'Superb command of architectural terminology, traditional Dougong wooden brackets, and modern steel-concrete core designs.' },
-      { code: 'C', name: 'Critical Thinking', score: 12, maxScore: 12, comment: 'Masterful synthesis: concluded that while the outward skin and structural skeleton are Western engineering, the spatial rhythm and cultural soul are deeply Chinese.' },
-      { code: 'D', name: 'Presentation', score: 4, maxScore: 4, comment: 'Photographic documentation of site visits, detailed comparative elevations, and flawless academic citations.' },
-      { code: 'E', name: 'Engagement (RPPF)', score: 6, maxScore: 6, comment: 'Supervisor Charley Openshaw highlighted the student\'s passionate personal exploration and coolly disciplined analysis of monumental form.' }
+      { code: 'A', name: 'Focus and Method', score: 6, maxScore: 6, pdfPage: 5, comment: 'Clear, elegant architectural research question investigated through both primary site observations and structural literature.' },
+      { code: 'B', name: 'Knowledge and Understanding', score: 6, maxScore: 6, pdfPage: 7, comment: 'Superb command of architectural terminology, traditional Dougong wooden brackets, and modern steel-concrete core designs.' },
+      { code: 'C', name: 'Critical Thinking', score: 12, maxScore: 12, pdfPage: 10, comment: 'Masterful synthesis: concluded that while the outward skin and structural skeleton are Western engineering, the spatial rhythm and cultural soul are deeply Chinese.' },
+      { code: 'D', name: 'Presentation', score: 4, maxScore: 4, pdfPage: 14, comment: 'Photographic documentation of site visits, detailed comparative elevations, and flawless academic citations.' },
+      { code: 'E', name: 'Engagement (RPPF)', score: 6, maxScore: 6, pdfPage: 16, comment: 'Supervisor Charley Openshaw highlighted the student\'s passionate personal exploration and coolly disciplined analysis of monumental form.' }
     ],
     examinerNotes: 'Sevenoaks School Prized Extended Essay 2015. Author Rory Alexander demonstrated mature architectural critique that impressed both senior examiners and university architecture faculties.',
     pitfallsAvoided: [
@@ -1116,7 +1117,31 @@ export default function ExemplarsPage() {
                           </span>
                         </td>
                         <td style={{ padding: '0.65rem 0.8rem', color: 'var(--ink)', lineHeight: '1.45' }}>
-                          {crit.comment}
+                          <div>{crit.comment}</div>
+                          {selectedExemplar.isRealStudentPdf && selectedExemplar.pdfDocId && (
+                            <button
+                              type="button"
+                              onClick={() => openPDFViewer(selectedExemplar.pdfDocId!, crit.pdfPage || selectedExemplar.pdfPage || 1)}
+                              style={{
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '5px',
+                                marginTop: '6px',
+                                padding: '3px 8px',
+                                borderRadius: '4px',
+                                background: 'rgba(37, 99, 235, 0.08)',
+                                border: '1px solid rgba(37, 99, 235, 0.25)',
+                                color: '#2563eb',
+                                fontSize: '0.74rem',
+                                fontWeight: 600,
+                                cursor: 'pointer',
+                                transition: 'all 0.15s ease'
+                              }}
+                            >
+                              <ExternalLink size={11} />
+                              <span>View Evidence in Authentic Paper (p. {crit.pdfPage || selectedExemplar.pdfPage})</span>
+                            </button>
+                          )}
                         </td>
                       </tr>
                     ))}
