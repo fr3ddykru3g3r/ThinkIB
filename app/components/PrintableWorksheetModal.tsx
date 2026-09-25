@@ -1,10 +1,11 @@
 'use client';
 
 import React, { useState } from 'react';
-import { X, Printer, CheckCircle, FileText } from 'lucide-react';
+import { X, Printer, CheckCircle, FileText, AlertTriangle } from 'lucide-react';
 import { SATQuestion } from '@/lib/sat';
 import MathView from './MathView';
 import { getDesmosShortcutForQuestion } from '@/lib/desmos-shortcuts';
+import { getSocraticHints } from '@/lib/socratic-hints';
 
 interface PrintableWorksheetModalProps {
   isOpen: boolean;
@@ -278,6 +279,7 @@ export default function PrintableWorksheetModal({
             <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
               {questions.map((q, idx) => {
                 const desmos = getDesmosShortcutForQuestion(q);
+                const hints = getSocraticHints(q);
                 return (
                   <div
                     key={idx}
@@ -296,6 +298,12 @@ export default function PrintableWorksheetModal({
                     <div style={{ fontSize: '0.88rem', lineHeight: '1.6', color: '#374151', marginBottom: '0.75rem', whiteSpace: 'pre-wrap' }}>
                       <MathView content={q.rationale || 'Refer to standard curriculum principles.'} />
                     </div>
+
+                    {hints && hints.examinerTrap && (
+                      <div style={{ background: '#fffbeb', border: '1px solid #fde68a', borderRadius: '4px', padding: '0.5rem 0.8rem', fontSize: '0.82rem', color: '#92400e', marginBottom: '0.75rem', lineHeight: '1.5' }}>
+                        <strong>⚠️ Examiner Trap & Misconception ({hints.examinerTrap.headline}):</strong> {hints.examinerTrap.explanation}
+                      </div>
+                    )}
 
                     {desmos && (
                       <div style={{ background: '#f0f9ff', border: '1px solid #bae6fd', borderRadius: '4px', padding: '0.65rem 0.85rem', fontSize: '0.82rem', color: '#0369a1' }}>

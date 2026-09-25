@@ -15,6 +15,8 @@ import {
   Check,
   X,
   Volume2,
+  Lightbulb,
+  AlertTriangle,
 } from 'lucide-react';
 import MathView from '@/app/components/MathView';
 
@@ -24,6 +26,7 @@ interface Flashcard {
   frontHint?: string;
   back: string;
   backExample?: string;
+  examinerTrap?: string;
   category: string;
   tag: string;
 }
@@ -49,6 +52,7 @@ const DECKS: Deck[] = [
         frontHint: 'Connecting two independent clauses (complete sentences)',
         back: 'A comma splice occurs when two independent clauses are joined with only a comma. \n\nFix with one of 4 methods:\n1. Period: Clause 1. Clause 2.\n2. Semicolon: Clause 1; Clause 2.\n3. Comma + FANBOYS: Clause 1, and Clause 2.\n4. Subordination: Although Clause 1, Clause 2.',
         backExample: 'Incorrect: The experiment succeeded, the hypothesis was verified.\nCorrect: The experiment succeeded; the hypothesis was verified.',
+        examinerTrap: 'Assuming a comma can connect any two thoughts if there is a natural pause in speech. On the SAT, a comma alone between two independent clauses is an automatic comma splice.',
         category: 'Punctuation',
         tag: 'Punctuation',
       },
@@ -58,6 +62,7 @@ const DECKS: Deck[] = [
         frontHint: 'Requirements before and after the colon',
         back: 'The clause BEFORE a colon MUST be a complete independent sentence.\n\nThe clause after the colon can be an explanation, list, single word, or elaboration.',
         backExample: 'Correct: She needed one quality to pass: determination.\nIncorrect: The required ingredients are: flour, yeast, and water. (Before is not independent)',
+        examinerTrap: 'Placing a colon after verbs like "such as", "including", or "are". A colon can ONLY follow a clause that could stand alone as a complete sentence.',
         category: 'Punctuation',
         tag: 'Punctuation',
       },
@@ -67,6 +72,7 @@ const DECKS: Deck[] = [
         frontHint: 'Introductory participial phrase modifying the wrong subject',
         back: 'An introductory descriptive phrase MUST be immediately followed by the noun it actually describes.',
         backExample: 'Dangling: Walking through the forest, the trees were beautiful. (The trees weren’t walking!)\nCorrect: Walking through the forest, Elena admired the beautiful trees.',
+        examinerTrap: 'Assuming the modifier describes the overall situation rather than the specific physical noun that must directly follow the comma.',
         category: 'Syntax & Modifiers',
         tag: 'Modifiers',
       },
@@ -76,6 +82,7 @@ const DECKS: Deck[] = [
         frontHint: 'Possession vs Contraction',
         back: '• It’s = It is (or It has) [Contraction]\n• Its = Belonging to it [Possessive pronoun - no apostrophe!]\n• Its’ = DOES NOT EXIST in the English language.',
         backExample: 'Correct: The spacecraft rotated on its axis because it’s out of fuel.',
+        examinerTrap: 'Assuming possessive "its" needs an apostrophe because nouns do (e.g. John’s). Possessive pronouns (his, hers, its, ours) NEVER use apostrophes.',
         category: 'Apostrophes',
         tag: 'Apostrophes',
       },
@@ -85,6 +92,7 @@ const DECKS: Deck[] = [
         frontHint: 'Pairs of commas, dashes, or parentheses',
         back: 'If information can be removed without altering the grammatical core of the sentence, it must be set off by matching punctuation:\n• Two commas: The scientist, who was late, arrived.\n• Two dashes: The scientist—who was late—arrived.\n• Never mix a comma and a dash!',
         backExample: 'Incorrect: Dr. Vance, an astronomer—discovered a new comet.\nCorrect: Dr. Vance—an astronomer—discovered a new comet.',
+        examinerTrap: 'Mismatched punctuation: opening with a comma and closing with a dash, or putting commas around essential identifying names.',
         category: 'Punctuation',
         tag: 'Punctuation',
       },
@@ -94,6 +102,7 @@ const DECKS: Deck[] = [
         frontHint: 'Finding the true subject across prepositional phrases',
         back: 'The subject of a sentence is NEVER inside a prepositional phrase (e.g., "of...", "in...", "with..."). Ignore modifying phrases to find the real subject.',
         backExample: 'Example: The collection of rare coins (was / were) preserved.\nTrue subject is "collection" (singular) -> "was preserved".',
+        examinerTrap: 'Matching the verb to the noun right before it (coins) instead of the true subject (collection).',
         category: 'Agreement',
         tag: 'Subject-Verb',
       },
@@ -102,6 +111,7 @@ const DECKS: Deck[] = [
         front: 'Transition Words: Categorization Strategy',
         frontHint: 'Continuance vs Contrast vs Causation',
         back: 'Group transitions by direction:\n1. Continuance: Furthermore, moreover, in addition\n2. Contrast: However, nevertheless, conversely, on the other hand\n3. Cause/Effect: Consequently, therefore, thus, as a result\n\nIf two options belong to the exact same category and tone, both are usually wrong.',
+        examinerTrap: 'Choosing "however" whenever a surprising fact appears, even when the following sentence simply explains or elaborates rather than contradicts.',
         category: 'Transitions',
         tag: 'Transitions',
       },
@@ -119,6 +129,7 @@ const DECKS: Deck[] = [
         frontHint: 'Given center (h, k) and radius r',
         back: '(x - h)^2 + (y - k)^2 = r^2\n\n• Center is at (h, k) — note the negative signs!\n• Radius is r (square root of the right side).',
         backExample: 'If (x + 3)^2 + (y - 5)^2 = 36:\nCenter = (-3, 5), Radius = √36 = 6.',
+        examinerTrap: 'Forgetting that the constant term equals r², not r. If the equation ends in = 36, the radius is 6, not 36!',
         category: 'Geometry',
         tag: 'Circles',
       },
@@ -127,6 +138,7 @@ const DECKS: Deck[] = [
         front: 'Quadratic Vertex Form & Axis of Symmetry',
         frontHint: 'Finding vertex (h, k) and maximum/minimum',
         back: 'y = a(x - h)^2 + k\n\n• Vertex is at (h, k)\n• Axis of symmetry: x = h\n• In standard form y = ax^2 + bx + c:\nh = -b / (2a)\nk = f(-b / (2a))',
+        examinerTrap: 'Confusing "where the maximum occurs" (x-value) with "what the maximum value is" (y-value). Also watch out for inverted signs: (x - 4)² means h = +4, NOT -4.',
         category: 'Algebra',
         tag: 'Quadratics',
       },
@@ -135,6 +147,7 @@ const DECKS: Deck[] = [
         front: 'The Discriminant & Number of Real Solutions',
         frontHint: 'For ax^2 + bx + c = 0',
         back: 'Discriminant: \\Delta = b^2 - 4ac\n\n• If \\Delta > 0: Exactly 2 distinct real solutions (2 x-intercepts)\n• If \\Delta = 0: Exactly 1 real solution (vertex touches x-axis)\n• If \\Delta < 0: No real solutions (0 x-intercepts)',
+        examinerTrap: 'Forgetting that when asked for "at least one real solution", the condition is discriminant >= 0 (both >0 and =0 qualify).',
         category: 'Algebra',
         tag: 'Quadratics',
       },
@@ -144,6 +157,7 @@ const DECKS: Deck[] = [
         frontHint: 'For ax^2 + bx + c = 0 with roots r1 and r2',
         back: 'Sum of roots: r_1 + r_2 = -\\frac{b}{a}\n\nProduct of roots: r_1 \\cdot r_2 = \\frac{c}{a}',
         backExample: 'For 3x^2 - 12x + 5 = 0:\nSum of solutions = -(-12) / 3 = 4 (found in 2 seconds without quadratic formula!).',
+        examinerTrap: 'Dropping the negative sign in the sum of roots formula -b/a, or confusing sum (-b/a) with product (+c/a).',
         category: 'Advanced Math',
         tag: 'Vieta',
       },
@@ -219,6 +233,7 @@ export default function FlashcardsPage() {
   const [selectedDeckId, setSelectedDeckId] = useState<string>('sat-grammar');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
+  const [showCardHint, setShowCardHint] = useState(false);
   const [masteredMap, setMasteredMap] = useState<Record<string, boolean>>({});
   const [deckCards, setDeckCards] = useState<Flashcard[]>(DECKS[0].cards);
 
@@ -241,6 +256,7 @@ export default function FlashcardsPage() {
     setDeckCards(activeDeck.cards);
     setCurrentIndex(0);
     setIsFlipped(false);
+    setShowCardHint(false);
   }, [selectedDeckId]);
 
   const currentCard = deckCards[currentIndex] || deckCards[0];
@@ -259,6 +275,7 @@ export default function FlashcardsPage() {
 
   const handleNext = () => {
     setIsFlipped(false);
+    setShowCardHint(false);
     if (currentIndex < deckCards.length - 1) {
       setCurrentIndex((prev) => prev + 1);
     } else {
@@ -268,6 +285,7 @@ export default function FlashcardsPage() {
 
   const handlePrev = () => {
     setIsFlipped(false);
+    setShowCardHint(false);
     if (currentIndex > 0) {
       setCurrentIndex((prev) => prev - 1);
     } else {
@@ -277,6 +295,7 @@ export default function FlashcardsPage() {
 
   const shuffleDeck = () => {
     setIsFlipped(false);
+    setShowCardHint(false);
     const shuffled = [...deckCards].sort(() => Math.random() - 0.5);
     setDeckCards(shuffled);
     setCurrentIndex(0);
@@ -297,10 +316,12 @@ export default function FlashcardsPage() {
       } else if (e.code === 'ArrowLeft' || e.key === 'ArrowLeft') {
         e.preventDefault();
         setIsFlipped(false);
+        setShowCardHint(false);
         setCurrentIndex((prev) => (prev > 0 ? prev - 1 : deckCards.length - 1));
       } else if (e.code === 'ArrowRight' || e.key === 'ArrowRight') {
         e.preventDefault();
         setIsFlipped(false);
+        setShowCardHint(false);
         setCurrentIndex((prev) => (prev < deckCards.length - 1 ? prev + 1 : 0));
       }
     };
@@ -435,9 +456,42 @@ export default function FlashcardsPage() {
                   <MathView content={currentCard?.front || ''} />
                 </h2>
                 {currentCard?.frontHint && (
-                  <p style={{ color: 'var(--muted)', fontSize: '0.92rem', fontStyle: 'italic', margin: 0 }}>
-                    Hint: {currentCard.frontHint}
-                  </p>
+                  <div style={{ marginTop: '0.85rem' }} onClick={(e) => e.stopPropagation()}>
+                    {showCardHint ? (
+                      <div style={{ background: 'rgba(234, 179, 8, 0.12)', border: '1px solid rgba(234, 179, 8, 0.35)', borderRadius: '6px', padding: '0.65rem 0.9rem', color: '#92400e', fontSize: '0.86rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                        <span>💡 <strong>Socratic Clue:</strong> {currentCard.frontHint}</span>
+                        <button
+                          type="button"
+                          onClick={() => setShowCardHint(false)}
+                          style={{ background: 'transparent', border: 'none', color: '#92400e', cursor: 'pointer', fontSize: '0.75rem', fontWeight: 600, padding: '2px 6px' }}
+                        >
+                          Hide
+                        </button>
+                      </div>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => setShowCardHint(true)}
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '5px',
+                          background: 'rgba(234, 179, 8, 0.12)',
+                          border: '1px solid rgba(234, 179, 8, 0.35)',
+                          color: '#b45309',
+                          padding: '0.35rem 0.75rem',
+                          borderRadius: '6px',
+                          fontSize: '0.78rem',
+                          fontWeight: 600,
+                          cursor: 'pointer',
+                          transition: 'all 0.15s ease',
+                        }}
+                      >
+                        <Lightbulb size={13} />
+                        <span>Need a Socratic Hint?</span>
+                      </button>
+                    )}
+                  </div>
                 )}
               </div>
             ) : (
@@ -446,8 +500,24 @@ export default function FlashcardsPage() {
                   <MathView content={currentCard?.back || ''} />
                 </div>
                 {currentCard?.backExample && (
-                  <div style={{ background: 'rgba(128,128,128,0.08)', padding: '0.85rem 1rem', borderRadius: '6px', fontSize: '0.86rem', color: 'var(--ink)', fontFamily: 'var(--font-mono)', whiteSpace: 'pre-wrap' }}>
+                  <div style={{ background: 'rgba(128,128,128,0.08)', padding: '0.85rem 1rem', borderRadius: '6px', fontSize: '0.86rem', color: 'var(--ink)', fontFamily: 'var(--font-mono)', whiteSpace: 'pre-wrap', marginBottom: currentCard?.examinerTrap ? '1rem' : 0 }}>
                     {currentCard.backExample}
+                  </div>
+                )}
+                {currentCard?.examinerTrap && (
+                  <div style={{
+                    marginTop: '1rem',
+                    background: 'rgba(245, 158, 11, 0.08)',
+                    border: '1px solid rgba(245, 158, 11, 0.3)',
+                    borderRadius: '6px',
+                    padding: '0.75rem 1rem',
+                    fontSize: '0.84rem',
+                    color: 'var(--ink)'
+                  }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#b45309', fontWeight: 700, fontSize: '0.82rem', marginBottom: '3px' }}>
+                      <AlertTriangle size={14} /> EXAMINER TRAP & COMMON MISCONCEPTION
+                    </div>
+                    <div style={{ lineHeight: '1.5' }}>{currentCard.examinerTrap}</div>
                   </div>
                 )}
               </div>
