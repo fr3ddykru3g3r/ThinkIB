@@ -11,6 +11,7 @@ import CommandPalette from './CommandPalette';
 const NAV_ITEMS = [
   { label: 'Directory', href: '/' },
   { label: 'SAT Prep', href: '/sat' },
+  { label: 'AMC / AIME', href: '/amc-aime' },
   { label: 'Flashcards', href: '/flashcards' },
   { label: 'Syllabus & RV', href: '/syllabus-tracker' },
   { label: 'IA Vault', href: '/exemplars' },

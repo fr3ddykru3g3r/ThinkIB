@@ -18,6 +18,7 @@ import {
   MessageSquare
 } from 'lucide-react';
 import { resourcesData } from './resources/data';
+import { getSRSStats, syncFromSATVault, syncFromAMCVault } from '@/lib/srs-engine';
 
 const subjects = [
   { name: 'Chemistry', path: '/api/v2/thinkib/chem/chemistry.html', badge: 'SL/HL' },
@@ -44,6 +45,18 @@ export default function PortalHome() {
       return matchesSearch && matchesCategory;
     });
   }, [search, categoryFilter]);
+
+  const [srsStats, setSrsStats] = useState<{ totalCount: number; dueTodayCount: number; retentionRate: number } | null>(null);
+
+  React.useEffect(() => {
+    try {
+      syncFromSATVault();
+      syncFromAMCVault();
+      setSrsStats(getSRSStats());
+    } catch (e) {
+      // ignore SSR
+    }
+  }, []);
 
   const openCommandPalette = () => {
     window.dispatchEvent(new CustomEvent('open-command-palette'));
@@ -109,8 +122,80 @@ export default function PortalHome() {
             </div>
           </div>
 
+          {/* FSRS Spaced Repetition Due Today Banner */}
+          {srsStats && srsStats.dueTodayCount > 0 && (
+            <div 
+              style={{ 
+                marginTop: '0.85rem', 
+                padding: '0.75rem 1rem', 
+                borderRadius: '10px', 
+                background: 'linear-gradient(135deg, rgba(184, 74, 57, 0.08) 0%, rgba(9, 105, 218, 0.08) 100%)',
+                border: '1px solid rgba(184, 74, 57, 0.25)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                gap: '0.75rem',
+                flexWrap: 'wrap'
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <Sparkles size={16} color="var(--rust, #b84a39)" />
+                <div>
+                  <div style={{ fontWeight: 700, fontSize: '0.85rem' }}>
+                    {srsStats.dueTodayCount} Questions Due for Active Recall (FSRS Engine)
+                  </div>
+                  <div style={{ fontSize: '0.72rem', color: 'var(--muted)' }}>
+                    Estimated retention: {srsStats.retentionRate}% across SAT & Contest Vaults
+                  </div>
+                </div>
+              </div>
+              <Link 
+                href="/sat/practice/drill?mode=mistakes"
+                style={{
+                  fontSize: '0.78rem',
+                  fontWeight: 700,
+                  color: 'var(--rust, #b84a39)',
+                  textDecoration: 'none',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.25rem'
+                }}
+              >
+                Review Now <ArrowRight size={12} />
+              </Link>
+            </div>
+          )}
+
           {/* Quick jump pills */}
           <div style={{ display: 'flex', gap: '0.4rem', marginTop: '0.75rem', flexWrap: 'wrap' }}>
+            <Link
+              href="/amc-aime"
+              style={{
+                fontSize: '0.75rem',
+                fontWeight: 600,
+                padding: '0.25rem 0.6rem',
+                borderRadius: '6px',
+                background: 'rgba(130, 80, 223, 0.08)',
+                color: '#8250df',
+                border: '1px solid rgba(130, 80, 223, 0.25)'
+              }}
+            >
+              🏆 AMC / AIME Hub
+            </Link>
+            <Link
+              href="/past-papers/workspace"
+              style={{
+                fontSize: '0.75rem',
+                fontWeight: 600,
+                padding: '0.25rem 0.6rem',
+                borderRadius: '6px',
+                background: 'rgba(9, 105, 218, 0.08)',
+                color: '#0969da',
+                border: '1px solid rgba(9, 105, 218, 0.25)'
+              }}
+            >
+              ⚡ Split-Screen Exam
+            </Link>
             <Link
               href="/sat/practice/exam"
               style={{

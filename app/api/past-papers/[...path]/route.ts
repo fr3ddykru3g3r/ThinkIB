@@ -101,6 +101,24 @@ import map2025 from '../../../../public/2025_past_papers_map.json';
 
 const map2025Record = map2025 as Record<string, string>;
 
+/**
+ * Normalizes paper keys by lowercasing, replacing [_\-+%20\s]+ with single space,
+ * and stripping redundant session prefixes.
+ */
+function normalizePaperKey(str: string): string {
+  return (str || '')
+    .toLowerCase()
+    .replace(/\.pdf$/i, '')
+    .replace(/(?:may|nov|november|may-june|specimen|m25|n25|2025)[_\s\-]*/gi, '')
+    .replace(/[_\-+%20\s]+/g, ' ')
+    .trim();
+}
+
+const normalizedMap2025 = new Map<string, string>();
+for (const [key, val] of Object.entries(map2025Record)) {
+  normalizedMap2025.set(normalizePaperKey(key), val);
+}
+
 export async function GET(
   request: NextRequest,
   { params }: { params: { path: string[] } }
@@ -114,9 +132,25 @@ export async function GET(
   });
   const filename = pathSegments[pathSegments.length - 1];
 
-  // 1. Instant check in 2025-past-papers vault via pre-indexed static map
-  if (filename && map2025Record[filename]) {
-    return NextResponse.redirect(`${request.nextUrl.origin}${map2025Record[filename]}`, 307);
+  // 1. Instant check in 2025-past-papers vault via pre-indexed static map (exact + normalized)
+  if (filename) {
+    if (map2025Record[filename]) {
+      return NextResponse.redirect(`${request.nextUrl.origin}${map2025Record[filename]}`, 307);
+    }
+    const normKey = normalizePaperKey(filename);
+    if (normalizedMap2025.has(normKey)) {
+      return NextResponse.redirect(`${request.nextUrl.origin}${normalizedMap2025.get(normKey)}`, 307);
+    }
+  }
+
+  // Also check if joined path matches a normalized 2025 paper
+  const fullNormKey = normalizePaperKey(pathSegments.join(' '));
+  if (fullNormKey.length > 5) {
+    for (const [normKey, targetUrl] of Array.from(normalizedMap2025.entries())) {
+      if (normKey.length > 5 && (fullNormKey.includes(normKey) || normKey.includes(fullNormKey))) {
+        return NextResponse.redirect(`${request.nextUrl.origin}${targetUrl}`, 307);
+      }
+    }
   }
 
   // 2. Check local static copy in public/vault/past-papers/

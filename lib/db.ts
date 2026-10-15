@@ -44,8 +44,6 @@ export interface ResourceSubmission {
   standardizedTitle?: string;
 }
 
-const DATA_DIR = path.join(process.cwd(), 'data');
-
 const INITIAL_THREADS: ForumThread[] = [];
 const INITIAL_REPLIES: ForumReply[] = [];
 
@@ -152,26 +150,66 @@ const INITIAL_SUBMISSIONS: ResourceSubmission[] = [
   },
 ];
 
-function ensureDataDir(): void {
+const DATA_DIR = path.join(process.cwd(), 'data');
+const TMP_DATA_DIR = path.join('/tmp', 'thinkib-data');
+let usingTmpFallback = false;
+
+export function isUsingEphemeralStorage(): boolean {
+  return usingTmpFallback;
+}
+
+function ensureDirectory(dir: string): boolean {
   try {
-    if (!fs.existsSync(DATA_DIR)) {
-      fs.mkdirSync(DATA_DIR, { recursive: true });
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
     }
-  } catch (e) {
-    // In restricted environments, fallback gracefully
+    return true;
+  } catch (err: any) {
+    if (err?.code === 'EROFS' || err?.code === 'EACCES') {
+      usingTmpFallback = true;
+    }
+    return false;
   }
 }
 
 function readJSONFile<T>(filename: string, fallback: T): T {
-  ensureDataDir();
+  // First check if a session-modified copy exists in /tmp/thinkib-data/
+  const tmpFilePath = path.join(TMP_DATA_DIR, filename);
+  try {
+    if (fs.existsSync(tmpFilePath)) {
+      const raw = fs.readFileSync(tmpFilePath, 'utf-8');
+      return JSON.parse(raw) as T;
+    }
+  } catch {
+    // continue to normal path
+  }
+
+  // Next check regular data directory
   const filePath = path.join(DATA_DIR, filename);
   try {
-    if (!fs.existsSync(filePath)) {
-      fs.writeFileSync(filePath, JSON.stringify(fallback, null, 2), 'utf-8');
-      return fallback;
+    if (fs.existsSync(filePath)) {
+      const raw = fs.readFileSync(filePath, 'utf-8');
+      return JSON.parse(raw) as T;
     }
-    const raw = fs.readFileSync(filePath, 'utf-8');
-    return JSON.parse(raw) as T;
+    // Attempt to seed initial file if possible
+    try {
+      if (ensureDirectory(DATA_DIR)) {
+        fs.writeFileSync(filePath, JSON.stringify(fallback, null, 2), 'utf-8');
+      } else {
+        usingTmpFallback = true;
+        ensureDirectory(TMP_DATA_DIR);
+        fs.writeFileSync(tmpFilePath, JSON.stringify(fallback, null, 2), 'utf-8');
+      }
+    } catch (writeErr: any) {
+      if (writeErr?.code === 'EROFS' || writeErr?.code === 'EACCES') {
+        usingTmpFallback = true;
+        ensureDirectory(TMP_DATA_DIR);
+        try {
+          fs.writeFileSync(tmpFilePath, JSON.stringify(fallback, null, 2), 'utf-8');
+        } catch {}
+      }
+    }
+    return fallback;
   } catch (err) {
     console.warn(`[DB] Error reading ${filename}, using fallback:`, err);
     return fallback;
@@ -179,12 +217,31 @@ function readJSONFile<T>(filename: string, fallback: T): T {
 }
 
 function writeJSONFile<T>(filename: string, data: T): void {
-  ensureDataDir();
   const filePath = path.join(DATA_DIR, filename);
+  const tmpFilePath = path.join(TMP_DATA_DIR, filename);
+
+  if (!usingTmpFallback) {
+    try {
+      if (ensureDirectory(DATA_DIR)) {
+        fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8');
+        return;
+      }
+    } catch (err: any) {
+      if (err?.code === 'EROFS' || err?.code === 'EACCES') {
+        usingTmpFallback = true;
+        console.warn(`[DB EROFS Fallback] Vercel read-only filesystem detected for ${filename}. Mirroring session writes to ${TMP_DATA_DIR}`);
+      } else {
+        console.warn(`[DB] Error writing ${filename}:`, err);
+      }
+    }
+  }
+
+  // Fallback write to /tmp/thinkib-data/
   try {
-    fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8');
-  } catch (err) {
-    console.warn(`[DB] Error writing ${filename}:`, err);
+    ensureDirectory(TMP_DATA_DIR);
+    fs.writeFileSync(tmpFilePath, JSON.stringify(data, null, 2), 'utf-8');
+  } catch (tmpErr) {
+    console.warn(`[DB] Error writing to /tmp for ${filename}:`, tmpErr);
   }
 }
 

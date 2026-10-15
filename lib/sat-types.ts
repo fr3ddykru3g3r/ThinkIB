@@ -24,6 +24,19 @@ export type SATBlock =
 
 export type SATDifficulty = 'Easy' | 'Medium' | 'Hard';
 
+export type SATExamDifficultyMode =
+  | 'adaptive'       // Standard Bluebook: Mixed Mod 1 -> IRT-routed Mod 2
+  | 'medium'         // Foundation Builder (600-700 target): 75% Medium, 25% Hard
+  | 'hard'           // High-Scorer Track (700-760 target): 25% Medium, 75% Hard, Force Upper Mod 2
+  | 'hard_gauntlet'; // 750-800 Gauntlet: 100% Hard + Examiner Trap priority across both modules
+
+export interface SATExamConfig {
+  section: 'full' | 'math' | 'rw';
+  difficultyMode: SATExamDifficultyMode;
+  excludeSeenQuestions?: boolean;
+  timerMode?: 'standard' | 'untimed' | 'accelerated_0.8x';
+}
+
 export interface SATQuestion {
   questionId: string;
   section?: 'reading-writing' | 'math';

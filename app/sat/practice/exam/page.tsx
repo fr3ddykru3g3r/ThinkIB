@@ -13,6 +13,8 @@ import { Rationale } from '@/app/components/sat/SATContent';
 import DesmosPanel from '@/app/components/sat/DesmosPanel';
 import SATReferenceGuideModal from '@/app/components/SATReferenceGuideModal';
 
+import type { SATExamDifficultyMode, SATExamConfig } from '@/lib/sat-types';
+
 type Phase = 'intro' | 'active' | 'review' | 'break' | 'report';
 const STORAGE_KEY = 'sat_exam_v3';
 const BREAK_SECONDS = 10 * 60;
@@ -58,6 +60,11 @@ export default function SATExamPage() {
   const [showRef, setShowRef] = useState(false);
   const [showGrid, setShowGrid] = useState(false);
   const [saved, setSaved] = useState<SavedState | null>(null);
+
+  // Difficulty & Exam Configuration Options
+  const [difficultyMode, setDifficultyMode] = useState<SATExamDifficultyMode>('adaptive');
+  const [sectionScope, setSectionScope] = useState<'full' | 'math' | 'rw'>('full');
+  const [timerMode, setTimerMode] = useState<'standard' | 'accelerated_0.8x' | 'untimed'>('standard');
   const [report, setReport] = useState<SATScoreReport | null>(null);
   const [rows, setRows] = useState<ReviewRow[]>([]);
   const [tiers, setTiers] = useState<{ rw?: string; math?: string }>({});
@@ -141,6 +148,8 @@ export default function SATExamPage() {
               items: modItems,
               excludeIds: mod.questions.map((q) => q.questionId),
               seenIds: getSeenIds(),
+              difficultyMode: exam.difficultyMode || difficultyMode,
+              timerMode: exam.timerMode || timerMode,
             }),
           });
           const data = await res.json();
@@ -180,7 +189,7 @@ export default function SATExamPage() {
       setBusy(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [exam, mod, moduleIdx, answers, bankTime]);
+  }, [exam, mod, moduleIdx, answers, bankTime, difficultyMode, timerMode]);
 
   const startModule = () => {
     if (!exam) return;
@@ -233,7 +242,7 @@ export default function SATExamPage() {
     }
     markSeen(out.map((r) => r.q.questionId));
     recordAttempts(out.filter((r) => !r.q.pretest).map((r) => ({ section: r.module.section, domain: r.q.domain, skill: r.q.skill, correct: r.correct })));
-    const rep = scoreExam(rw, math);
+    const rep = scoreExam(rw, math, finalExam.difficultyMode || difficultyMode);
     const avg = (sec: 'math' | 'rw') => {
       const list = out.filter((r) => (r.module.section === 'math') === (sec === 'math'));
       return list.length ? Math.round(list.reduce((a, r) => a + r.seconds, 0) / list.length) : 0;
@@ -255,7 +264,16 @@ export default function SATExamPage() {
     setBusy(true);
     setError(null);
     try {
-      const res = await fetch('/api/sat/exam', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'new_exam', seenIds: getSeenIds() }) });
+      const config: SATExamConfig = {
+        section: sectionScope,
+        difficultyMode,
+        timerMode,
+      };
+      const res = await fetch('/api/sat/exam', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'new_exam', seenIds: getSeenIds(), config }),
+      });
       const data = await res.json();
       if (!data.success) throw new Error(data.error || 'Could not build exam');
       localStorage.removeItem(STORAGE_KEY);
@@ -344,26 +362,155 @@ export default function SATExamPage() {
           </div>
         )}
 
-        <div className="panel" style={{ padding: '1.5rem', marginBottom: '1.5rem' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem' }}>
-            <thead>
-              <tr style={{ textAlign: 'left', color: 'var(--muted)', fontFamily: 'var(--font-mono)', fontSize: '0.75rem' }}>
-                <th style={{ padding: '0 0 0.5rem' }}>Section</th><th>Module 1</th><th>Module 2</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr style={{ borderTop: '1px solid var(--border)' }}><td style={{ padding: '0.6rem 0' }}><strong>Reading and Writing</strong></td><td>27 questions · 32 min</td><td>27 questions · 32 min</td></tr>
-              <tr style={{ borderTop: '1px solid var(--border)' }}><td style={{ padding: '0.6rem 0', color: 'var(--muted)' }}>10-minute break</td><td colSpan={2} style={{ color: 'var(--muted)' }}>Skippable</td></tr>
-              <tr style={{ borderTop: '1px solid var(--border)' }}><td style={{ padding: '0.6rem 0' }}><strong>Math</strong> (calculator allowed)</td><td>22 questions · 35 min</td><td>22 questions · 35 min</td></tr>
-            </tbody>
-          </table>
-          <ul style={{ margin: '1rem 0 0', paddingLeft: '1.2rem', fontSize: '0.86rem', color: 'var(--ink-soft)', lineHeight: 1.7 }}>
-            <li>Module 2 is chosen from how you do on Module 1: strong performance gets the harder module (higher score ceiling), otherwise the easier one.</li>
-            <li>Each module contains 2 <strong>unscored</strong> trial questions you can't tell apart, exactly like the real test. They're marked in your review afterwards.</li>
-            <li>You can't return to a module once you submit it, and it auto-submits when time runs out.</li>
-            <li>Scores are <strong>estimates</strong>. College Board keeps its exact scoring tables private, so expect ±30 points per section.</li>
-            <li>Shortcuts: <kbd>A</kbd>–<kbd>D</kbd> to answer, <kbd>←</kbd> <kbd>→</kbd> to move.</li>
-          </ul>
+        {/* Configuration Controls: Section Scope & Timer */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem', marginBottom: '1.5rem' }}>
+          {/* Section Scope */}
+          <div className="panel" style={{ padding: '1rem 1.25rem' }}>
+            <span style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', fontWeight: 700, color: 'var(--muted)', textTransform: 'uppercase' }}>
+              Exam Scope
+            </span>
+            <div style={{ display: 'flex', gap: 6, marginTop: '0.5rem' }}>
+              {([
+                ['full', 'Full Test (RW + Math)'],
+                ['math', 'Math Only'],
+                ['rw', 'Reading & Writing Only'],
+              ] as const).map(([s, label]) => (
+                <button
+                  key={s}
+                  type="button"
+                  onClick={() => setSectionScope(s)}
+                  style={{
+                    flex: 1,
+                    padding: '0.45rem 0.5rem',
+                    fontSize: '0.78rem',
+                    fontWeight: 600,
+                    borderRadius: 6,
+                    border: sectionScope === s ? '1.5px solid var(--accent)' : '1px solid var(--border)',
+                    background: sectionScope === s ? 'rgba(184, 74, 57, 0.08)' : 'var(--surface, #fff)',
+                    color: sectionScope === s ? 'var(--accent)' : 'var(--ink)',
+                    cursor: 'pointer',
+                  }}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Timer Pacing */}
+          <div className="panel" style={{ padding: '1rem 1.25rem' }}>
+            <span style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', fontWeight: 700, color: 'var(--muted)', textTransform: 'uppercase' }}>
+              Timer &amp; Pacing
+            </span>
+            <div style={{ display: 'flex', gap: 6, marginTop: '0.5rem' }}>
+              {([
+                ['standard', 'Standard Time'],
+                ['accelerated_0.8x', '⚡ 0.8x Accelerated'],
+                ['untimed', 'Untimed'],
+              ] as const).map(([t, label]) => (
+                <button
+                  key={t}
+                  type="button"
+                  onClick={() => setTimerMode(t)}
+                  style={{
+                    flex: 1,
+                    padding: '0.45rem 0.5rem',
+                    fontSize: '0.78rem',
+                    fontWeight: 600,
+                    borderRadius: 6,
+                    border: timerMode === t ? '1.5px solid var(--accent)' : '1px solid var(--border)',
+                    background: timerMode === t ? 'rgba(184, 74, 57, 0.08)' : 'var(--surface, #fff)',
+                    color: timerMode === t ? 'var(--accent)' : 'var(--ink)',
+                    cursor: 'pointer',
+                  }}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Difficulty Mode 4-Card Selector Grid */}
+        <div style={{ marginBottom: '1.5rem' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.6rem' }}>
+            <span style={{ fontSize: '0.8rem', fontFamily: 'var(--font-mono)', fontWeight: 700, color: 'var(--muted)', textTransform: 'uppercase' }}>
+              Select Difficulty Mode
+            </span>
+            <span style={{ fontSize: '0.75rem', color: 'var(--muted)' }}>Official College Board Quotas Preserved</span>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '0.9rem' }}>
+            {[
+              {
+                id: 'adaptive' as const,
+                title: 'Official Adaptive',
+                badge: 'Bluebook Standard',
+                desc: 'Standard 2-stage routing. Module 1 mixed items (30% E, 45% M, 25% H) route to Hard Module 2 if score is above threshold.',
+                accent: 'var(--border)',
+              },
+              {
+                id: 'medium' as const,
+                title: 'Medium Focus',
+                badge: '600–700 Builder',
+                desc: '75% Medium, 25% Hard. Eliminates trivial Easy items to build rock-solid fundamentals across all domains.',
+                accent: '#2563eb',
+              },
+              {
+                id: 'hard' as const,
+                title: 'Hard Mode',
+                badge: '700+ Upper-Track Lock',
+                desc: '25% Medium, 75% Hard. Module 2 is force-locked to the Upper Track so you always experience the 700+ difficulty ceiling.',
+                accent: '#7c3aed',
+              },
+              {
+                id: 'hard_gauntlet' as const,
+                title: '750+ Gauntlet',
+                badge: '100% Level-3 Hard',
+                desc: '100% Hard questions across both modules with Examiner Trap priority. The ultimate high-scorer challenge.',
+                accent: 'var(--rust)',
+              },
+            ].map((m) => {
+              const active = difficultyMode === m.id;
+              return (
+                <div
+                  key={m.id}
+                  onClick={() => setDifficultyMode(m.id)}
+                  style={{
+                    padding: '1.1rem 1.1rem',
+                    borderRadius: 8,
+                    border: active ? `2px solid ${m.accent}` : '1px solid var(--border)',
+                    background: active ? 'rgba(0,0,0,0.02)' : 'var(--surface, #fff)',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                    boxShadow: active ? '0 4px 12px rgba(0,0,0,0.08)' : 'none',
+                    transition: 'all 0.15s ease',
+                  }}
+                >
+                  <div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
+                      <span style={{ fontSize: '0.68rem', fontFamily: 'var(--font-mono)', fontWeight: 700, color: m.accent }}>
+                        {m.badge}
+                      </span>
+                      {active && <span style={{ width: 8, height: 8, borderRadius: '50%', background: m.accent }} />}
+                    </div>
+                    <h3 style={{ fontSize: '1.05rem', margin: '0 0 0.4rem 0' }}>{m.title}</h3>
+                    <p style={{ fontSize: '0.78rem', color: 'var(--muted)', lineHeight: 1.45, margin: 0 }}>
+                      {m.desc}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="panel" style={{ padding: '1.25rem', marginBottom: '1.5rem', fontSize: '0.86rem', color: 'var(--ink-soft)', lineHeight: 1.6 }}>
+          <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap' }}>
+            <span><strong>Configured Test:</strong> {sectionScope === 'full' ? 'Full Test (RW + Math)' : sectionScope === 'math' ? 'Math Only' : 'Reading & Writing Only'} · {difficultyMode === 'hard_gauntlet' ? '750+ Gauntlet' : difficultyMode === 'hard' ? 'Hard Mode' : difficultyMode === 'medium' ? 'Medium Focus' : 'Official Adaptive'} · {timerMode === 'accelerated_0.8x' ? 'Accelerated 0.8x' : timerMode === 'untimed' ? 'Untimed' : 'Standard Timing'}</span>
+          </div>
         </div>
 
         {history0 && (
@@ -375,7 +522,7 @@ export default function SATExamPage() {
         {error && <p role="alert" style={{ color: '#b91c1c' }}>{error}</p>}
         {!saved && (
           <button type="button" onClick={startFresh} disabled={busy} style={{ ...btnPrimary, width: '100%', justifyContent: 'center', padding: '0.9rem', fontSize: '1rem', cursor: busy ? 'wait' : 'pointer' }}>
-            {busy ? 'Building your test…' : 'Start test'} <ArrowRight size={16} />
+            {busy ? 'Building your customized test…' : `Start ${difficultyMode === 'hard_gauntlet' ? '750+ Gauntlet' : difficultyMode === 'hard' ? 'Hard Test' : difficultyMode === 'medium' ? 'Medium Focus Test' : 'Adaptive Test'}`} <ArrowRight size={16} />
           </button>
         )}
       </div>
@@ -523,7 +670,7 @@ export default function SATExamPage() {
             </div>
           </div>
         )}
-        {showCalc && <DesmosPanel onClose={() => setShowCalc(false)} />}
+        {showCalc && <DesmosPanel onClose={() => setShowCalc(false)} questionId={question?.questionId} />}
         <SATReferenceGuideModal isOpen={showRef} onClose={() => setShowRef(false)} defaultTab={mod.section === 'math' ? 'math' : 'english'} />
       </div>
     );
@@ -540,6 +687,36 @@ export default function SATExamPage() {
         <p style={{ color: 'var(--muted)', marginBottom: '1.8rem', fontSize: '0.9rem' }}>
           An estimate from a model of the Digital SAT's adaptive scoring; your real score can differ by roughly ±30 points per section.
         </p>
+
+        {/* Mode & Projected Accuracy Banner */}
+        {report.equivalentAdaptiveAccuracy && (
+          <div
+            className="panel"
+            style={{
+              padding: '1.25rem 1.5rem',
+              marginBottom: '1.5rem',
+              background: 'rgba(37, 99, 235, 0.05)',
+              border: '1.5px solid rgba(37, 99, 235, 0.2)',
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: '0.4rem', flexWrap: 'wrap' }}>
+              <span className="section-label" style={{ margin: 0, color: 'var(--accent)' }}>
+                DIFFICULTY-ADJUSTED IRT CALIBRATION
+              </span>
+              <span style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', background: 'var(--accent)', color: '#fff', padding: '1px 6px', borderRadius: 4 }}>
+                {report.difficultyMode ? report.difficultyMode.toUpperCase().replace('_', ' ') : 'ADAPTIVE'}
+              </span>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '0.75rem', fontSize: '0.88rem', color: 'var(--ink)' }}>
+              <div>
+                <strong>Reading &amp; Writing:</strong> {report.equivalentAdaptiveAccuracy.rw}
+              </div>
+              <div>
+                <strong>Math:</strong> {report.equivalentAdaptiveAccuracy.math}
+              </div>
+            </div>
+          </div>
+        )}
 
         <div className="panel" style={{ padding: '2rem', display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap', gap: '1.5rem', marginBottom: '1.5rem' }}>
           <div style={{ textAlign: 'center' }}>

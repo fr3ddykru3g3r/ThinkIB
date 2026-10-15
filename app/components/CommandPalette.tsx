@@ -54,6 +54,48 @@ export default function CommandPalette() {
   };
 
   const ITEMS: CommandItem[] = useMemo(() => [
+    // AMC & AIME
+    {
+      id: 'amc-home',
+      title: 'AMC 12 & AIME Concept-to-Synthesis Hub',
+      category: 'Mocks & Tests',
+      subtitle: 'AoPS Vol 1 & 2 curriculum, trigger signals, and USA(J)MO Index calculator',
+      badge: 'Contest Math',
+      href: '/amc-aime',
+      icon: Award,
+      keywords: ['amc', 'amc 12', 'aime', 'olympiad', 'aops', 'contest', 'usamo']
+    },
+    {
+      id: 'amc-simulator',
+      title: 'Start AMC 12 / AIME Timed Contest Simulation',
+      category: 'Mocks & Tests',
+      subtitle: 'Timed contest simulation with live game-theory EV guessing analysis',
+      badge: 'Contest Simulator',
+      href: '/amc-aime/simulator',
+      icon: Award,
+      keywords: ['amc simulator', 'timed', 'aime test', 'ev guess', 'contest']
+    },
+    {
+      id: 'amc-synthesis',
+      title: '8×8 Cross-Topic Olympiad Synthesis Matrix',
+      category: 'Mocks & Tests',
+      subtitle: 'Bridge identities between Number Theory, Geometry, Logs, and Complex numbers',
+      badge: 'Synthesis Matrix',
+      href: '/amc-aime/synthesis',
+      icon: Sparkles,
+      keywords: ['synthesis', 'bridge', 'recipes', 'cross topic', 'olympiad']
+    },
+    // PAST PAPERS SPLIT-SCREEN WORKSPACE
+    {
+      id: 'past-papers-workspace',
+      title: 'Split-Screen IB Past Paper Workspace & M1/A1 Grader',
+      category: 'Past Papers',
+      subtitle: '5-minute reading countdown, Formula Booklet tab, and M1/A1/R1 score tally',
+      badge: 'Interactive Workspace',
+      href: '/past-papers/workspace',
+      icon: FileText,
+      keywords: ['split screen', 'workspace', 'grader', 'markscheme', 'reading time', 'data booklet', 'm1 a1']
+    },
     // SAT PREP
     {
       id: 'sat-home',

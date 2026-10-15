@@ -18,7 +18,7 @@ import {
 } from 'lucide-react';
 import SATReferenceGuideModal from '@/app/components/SATReferenceGuideModal';
 import DesmosMasterKeyModal from '@/app/components/DesmosMasterKeyModal';
-import { getSkillStats, SkillStat, getMistakeVault, getExamHistory, ExamHistoryEntry, MistakeEntry } from '@/lib/sat-storage';
+import { getSkillStats, SkillStat, getMistakeVault, getExamHistory, ExamHistoryEntry, MistakeEntry, getMistakeErrorTagStats } from '@/lib/sat-storage';
 
 const KHAN_RESOURCES = [
   {
@@ -106,10 +106,13 @@ export default function SATHubPage() {
   const [mistakes, setMistakes] = useState<MistakeEntry[]>([]);
   const [skills, setSkills] = useState<SkillStat[]>([]);
 
+  const [errorTagStats, setErrorTagStats] = useState({ concept_gap: 0, examiner_trap: 0, careless_calc: 0, time_pressure: 0 });
+
   React.useEffect(() => {
     setExamHistory(getExamHistory());
     setMistakes(getMistakeVault());
     setSkills(getSkillStats());
+    setErrorTagStats(getMistakeErrorTagStats());
   }, []);
   const weakSkills = skills.filter((s) => s.total >= 3).sort((a, b) => a.correct / a.total - b.correct / b.total).slice(0, 3);
 
@@ -242,6 +245,42 @@ export default function SATHubPage() {
         </div>
       )}
 
+      {mistakes.length > 0 && (
+        <div className="panel" style={{ padding: '1.4rem 1.75rem', marginBottom: '2.5rem' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.6rem', flexWrap: 'wrap', gap: 8 }}>
+            <span className="section-label" style={{ margin: 0 }}>METACOGNITIVE ERROR TAXONOMY</span>
+            <Link href="/sat/practice/drill?mode=mistakes" style={{ fontSize: '0.8rem', color: 'var(--rust)', textDecoration: 'none', fontWeight: 600 }}>
+              Review Mistake Vault ({mistakes.length}) →
+            </Link>
+          </div>
+          <p style={{ fontSize: '0.85rem', color: 'var(--muted)', margin: '0 0 1rem' }}>
+            Root cause classification of unmastered questions across drills and adaptive exams.
+          </p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.85rem' }}>
+            <div style={{ padding: '0.75rem 1rem', borderRadius: 8, border: '1px solid var(--border)', background: 'rgba(37,99,235,0.04)' }}>
+              <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--accent)' }}>🧠 Concept Gap</div>
+              <div style={{ fontSize: '1.4rem', fontWeight: 800, marginTop: 4 }}>{errorTagStats.concept_gap}</div>
+              <div style={{ fontSize: '0.72rem', color: 'var(--muted)' }}>Unfamiliar theorem or rule</div>
+            </div>
+            <div style={{ padding: '0.75rem 1rem', borderRadius: 8, border: '1px solid var(--border)', background: 'rgba(245,158,11,0.04)' }}>
+              <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#f59e0b' }}>🪤 Examiner Trap</div>
+              <div style={{ fontSize: '1.4rem', fontWeight: 800, marginTop: 4 }}>{errorTagStats.examiner_trap}</div>
+              <div style={{ fontSize: '0.72rem', color: 'var(--muted)' }}>Distractor option caught you</div>
+            </div>
+            <div style={{ padding: '0.75rem 1rem', borderRadius: 8, border: '1px solid var(--border)', background: 'rgba(239,68,68,0.04)' }}>
+              <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#ef4444' }}>🔢 Careless Execution</div>
+              <div style={{ fontSize: '1.4rem', fontWeight: 800, marginTop: 4 }}>{errorTagStats.careless_calc}</div>
+              <div style={{ fontSize: '0.72rem', color: 'var(--muted)' }}>Arithmetic or algebra slip</div>
+            </div>
+            <div style={{ padding: '0.75rem 1rem', borderRadius: 8, border: '1px solid var(--border)', background: 'rgba(130,80,223,0.04)' }}>
+              <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#8250df' }}>⏱️ Time Pressure</div>
+              <div style={{ fontSize: '1.4rem', fontWeight: 800, marginTop: 4 }}>{errorTagStats.time_pressure}</div>
+              <div style={{ fontSize: '0.72rem', color: 'var(--muted)' }}>Rushed in final minutes</div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Main Gateways (4-card grid) */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.5rem', marginBottom: '3rem' }}>
         {/* Full Exam Card */}
@@ -267,7 +306,7 @@ export default function SATHubPage() {
               </div>
               <h2 style={{ fontSize: '1.45rem', marginBottom: '0.5rem' }}>Full Practice Test</h2>
               <p style={{ color: 'var(--card-desc, #52525b)', fontSize: '0.88rem', lineHeight: '1.5' }}>
-                Timed 4-module test with adaptive difficulty routing, Desmos calculator, and score report.
+                Selectable difficulty: Official Adaptive, Medium Focus (600–700), Hard Track (700+), and 750+ Gauntlet with Bayesian IRT scoring.
               </p>
             </div>
             <div className="portal-card-arrow" style={{ color: 'var(--rust)', borderBottomColor: 'var(--rust)' }}>

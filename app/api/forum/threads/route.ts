@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getThreads, createThread } from '@/lib/db';
+import { getThreads, createThread, isUsingEphemeralStorage } from '@/lib/db';
 import { getClientIP, checkThreadRateLimit, validateThreadContent } from '@/lib/anti-spam';
 
 export async function GET(request: NextRequest) {
@@ -74,7 +74,12 @@ export async function POST(request: NextRequest) {
       tags: Array.isArray(tags) ? tags.slice(0, 5).map((t: string) => String(t).trim().slice(0, 25)) : [],
     });
 
-    return NextResponse.json({ success: true, thread }, { status: 201 });
+    const headers: Record<string, string> = {};
+    if (isUsingEphemeralStorage()) {
+      headers['x-persistence'] = 'ephemeral-tmp';
+    }
+
+    return NextResponse.json({ success: true, thread }, { status: 201, headers });
   } catch (err: any) {
     return NextResponse.json(
       { success: false, error: err.message || 'Server error' },

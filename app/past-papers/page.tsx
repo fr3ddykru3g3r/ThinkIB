@@ -187,9 +187,28 @@ export default function PastPapersBrowser() {
           <h1 style={{ fontFamily: 'var(--display)', fontSize: '2.4rem', margin: '0.2rem 0' }}>Past Examinations Vault</h1>
           <p style={{ color: 'var(--ink-soft)', fontSize: '0.95rem', margin: 0 }}>Examination papers, markschemes, and audio files across 16 examination sessions (2010–2025).</p>
         </div>
-        <a href="/" className="filter-btn active" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-          <ArrowLeft size={14} /> Back to Dashboard
-        </a>
+        <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
+          <a 
+            href="/past-papers/workspace" 
+            style={{ 
+              textDecoration: 'none', 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '0.4rem', 
+              background: '#0969da', 
+              color: '#ffffff', 
+              padding: '0.45rem 0.9rem', 
+              borderRadius: '6px', 
+              fontWeight: 600, 
+              fontSize: '0.85rem' 
+            }}
+          >
+            ⚡ Launch Split-Screen Workspace
+          </a>
+          <a href="/" className="filter-btn active" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+            <ArrowLeft size={14} /> Back to Dashboard
+          </a>
+        </div>
       </div>
 
       {/* Grid Inputs & Filters */}

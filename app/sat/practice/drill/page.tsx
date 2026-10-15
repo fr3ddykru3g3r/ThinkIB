@@ -7,10 +7,10 @@ import type { SATQuestion } from '@/lib/sat-types';
 import { isAnswerCorrect, formatCorrectAnswer, isSPR, validateSPR } from '@/lib/sat-grading';
 import { getSocraticHints } from '@/lib/socratic-hints';
 import { getDesmosShortcutForQuestion } from '@/lib/desmos-shortcuts';
-import { recordAttempts, saveMistake, getMistakeVault, markMistakeMastered, removeMistake, clearMistakeVault, MistakeEntry } from '@/lib/sat-storage';
+import { recordAttempts, saveMistake, getMistakeVault, markMistakeMastered, removeMistake, clearMistakeVault, MistakeEntry, updateMistakeErrorTag, SatErrorTag } from '@/lib/sat-storage';
 import QuestionBody from '@/app/components/sat/QuestionBody';
 import { Rationale } from '@/app/components/sat/SATContent';
-import DesmosPanel from '@/app/components/sat/DesmosPanel';
+import DesmosPanel, { dispatchDesmosLoad } from '@/app/components/sat/DesmosPanel';
 import SATReferenceGuideModal from '@/app/components/SATReferenceGuideModal';
 import PrintableWorksheetModal from '@/app/components/PrintableWorksheetModal';
 
@@ -45,12 +45,15 @@ export default function DrillPage() {
   const [correctCount, setCorrectCount] = useState(0);
   const [answered, setAnswered] = useState(0);
 
+  const [errorTag, setErrorTag] = useState<SatErrorTag | null>(null);
+
   const resetQuestionState = () => {
     setAnswer('');
     setChecked(false);
     setStruck({});
     setHintLevel(0);
     setShowStrategy(false);
+    setErrorTag(null);
   };
 
   useEffect(() => {
@@ -274,6 +277,39 @@ export default function DrillPage() {
                 {isAnswerCorrect(q, answer) ? <CheckCircle2 size={18} /> : <XCircle size={18} />}
                 {isAnswerCorrect(q, answer) ? 'Correct' : `Not quite. The answer is ${formatCorrectAnswer(q)}`}
               </div>
+              {!isAnswerCorrect(q, answer) && (
+                <div style={{ marginBottom: '1rem', paddingBottom: '0.75rem', borderBottom: '1px dashed var(--border)', display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+                  <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--muted)' }}>Root cause:</span>
+                  <button
+                    type="button"
+                    style={{ ...pill, fontSize: '0.78rem', background: errorTag === 'concept_gap' ? 'rgba(37,99,235,0.12)' : 'transparent', borderColor: errorTag === 'concept_gap' ? 'var(--accent)' : 'var(--border)' }}
+                    onClick={() => { setErrorTag('concept_gap'); updateMistakeErrorTag(q.questionId, 'concept_gap'); }}
+                  >
+                    🧠 Concept Gap
+                  </button>
+                  <button
+                    type="button"
+                    style={{ ...pill, fontSize: '0.78rem', background: errorTag === 'examiner_trap' ? 'rgba(245,158,11,0.12)' : 'transparent', borderColor: errorTag === 'examiner_trap' ? '#f59e0b' : 'var(--border)' }}
+                    onClick={() => { setErrorTag('examiner_trap'); updateMistakeErrorTag(q.questionId, 'examiner_trap'); }}
+                  >
+                    🪤 Examiner Trap
+                  </button>
+                  <button
+                    type="button"
+                    style={{ ...pill, fontSize: '0.78rem', background: errorTag === 'careless_calc' ? 'rgba(239,68,68,0.12)' : 'transparent', borderColor: errorTag === 'careless_calc' ? '#ef4444' : 'var(--border)' }}
+                    onClick={() => { setErrorTag('careless_calc'); updateMistakeErrorTag(q.questionId, 'careless_calc'); }}
+                  >
+                    🔢 Careless Execution
+                  </button>
+                  <button
+                    type="button"
+                    style={{ ...pill, fontSize: '0.78rem', background: errorTag === 'time_pressure' ? 'rgba(130,80,223,0.12)' : 'transparent', borderColor: errorTag === 'time_pressure' ? '#8250df' : 'var(--border)' }}
+                    onClick={() => { setErrorTag('time_pressure'); updateMistakeErrorTag(q.questionId, 'time_pressure'); }}
+                  >
+                    ⏱️ Time Pressure
+                  </button>
+                </div>
+              )}
               <Rationale q={q} />
               {(hints?.examinerTrap?.explanation || shortcut) && (
                 <div style={{ marginTop: '1rem' }}>
@@ -281,7 +317,24 @@ export default function DrillPage() {
                   {showStrategy && (
                     <div style={{ marginTop: 10, fontSize: '0.88rem', lineHeight: 1.6 }}>
                       {hints?.examinerTrap?.explanation && <p style={{ margin: '0 0 8px' }}><strong>Watch for:</strong> {hints.examinerTrap.explanation}</p>}
-                      {shortcut && <p style={{ margin: 0 }}><strong>{shortcut.title.replace(/^⚡\s*/, '')}:</strong> {shortcut.proTip}</p>}
+                      {shortcut && (
+                        <div style={{ margin: '8px 0 0', padding: '10px 12px', background: 'rgba(37,99,235,0.05)', borderRadius: 8, border: '1px solid rgba(37,99,235,0.15)' }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4, flexWrap: 'wrap', gap: 6 }}>
+                            <strong>{shortcut.title}:</strong>
+                            <button
+                              type="button"
+                              style={{ ...pill, fontSize: '0.78rem', background: 'var(--accent)', color: '#fff', border: 'none' }}
+                              onClick={() => {
+                                setShowCalc(true);
+                                dispatchDesmosLoad(shortcut.autoLoadExpressions);
+                              }}
+                            >
+                              <Sparkles size={12} /> ⚡ Load in Desmos
+                            </button>
+                          </div>
+                          <p style={{ margin: 0, fontSize: '0.85rem' }}>{shortcut.proTip || shortcut.triggerPatternExplanation}</p>
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>
@@ -291,7 +344,7 @@ export default function DrillPage() {
         </div>
       )}
 
-      {showCalc && <DesmosPanel onClose={() => setShowCalc(false)} />}
+      {showCalc && <DesmosPanel onClose={() => setShowCalc(false)} questionId={q?.questionId} />}
       <SATReferenceGuideModal isOpen={showRef} onClose={() => setShowRef(false)} defaultTab={section === 'math' ? 'math' : 'english'} />
       <PrintableWorksheetModal isOpen={showPrint} onClose={() => setShowPrint(false)} questions={questions}
         title={mode === 'mistakes' ? 'Mistake Review Worksheet' : `${section === 'math' ? 'Math' : 'Reading & Writing'} Practice Worksheet`}

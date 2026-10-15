@@ -1,5 +1,7 @@
 'use client';
 
+export type SatErrorTag = 'concept_gap' | 'examiner_trap' | 'careless_calc' | 'time_pressure';
+
 export interface MistakeEntry {
   questionId: string;
   section: 'reading-writing' | 'math';
@@ -15,6 +17,7 @@ export interface MistakeEntry {
   missedAt: number; // unix timestamp
   attemptsCount: number;
   mastered: boolean;
+  errorTag?: SatErrorTag;
 }
 
 export interface ExamHistoryEntry {
@@ -218,4 +221,34 @@ export function recordAttempts(items: { section: 'reading-writing' | 'math'; dom
   } catch {
     /* quota / private mode */
   }
+}
+
+export function updateMistakeErrorTag(questionId: string, tag: SatErrorTag): void {
+  if (typeof window === 'undefined') return;
+  try {
+    const vault = getMistakeVault();
+    const entry = vault.find((m) => m.questionId === questionId);
+    if (entry) {
+      entry.errorTag = tag;
+      localStorage.setItem(MISTAKES_KEY, JSON.stringify(vault));
+    }
+  } catch (err) {
+    console.warn('Failed to update mistake error tag', err);
+  }
+}
+
+export function getMistakeErrorTagStats(): Record<SatErrorTag, number> {
+  const stats: Record<SatErrorTag, number> = {
+    concept_gap: 0,
+    examiner_trap: 0,
+    careless_calc: 0,
+    time_pressure: 0,
+  };
+  const vault = getMistakeVault();
+  vault.forEach((m) => {
+    if (m.errorTag && stats[m.errorTag] !== undefined) {
+      stats[m.errorTag]++;
+    }
+  });
+  return stats;
 }

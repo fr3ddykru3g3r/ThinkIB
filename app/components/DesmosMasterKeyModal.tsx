@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   X,
   Copy,
@@ -129,6 +129,48 @@ export default function DesmosMasterKeyModal({
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [search, setSearch] = useState<string>('');
+  const [activeTab, setActiveTab] = useState<'cards' | 'sandbox'>('cards');
+  const [sandboxShortcut, setSandboxShortcut] = useState<DesmosShortcut>(DESMOS_SHORTCUTS[0]);
+  const sandboxHostRef = useRef<HTMLDivElement>(null);
+  const sandboxCalcRef = useRef<any>(null);
+
+  // Initialize or update sandbox calculator
+  useEffect(() => {
+    if (!isOpen || activeTab !== 'sandbox' || !sandboxHostRef.current) return;
+
+    const loadCalc = () => {
+      if (!sandboxHostRef.current || !window.Desmos) return;
+      if (!sandboxCalcRef.current) {
+        sandboxCalcRef.current = window.Desmos.GraphingCalculator(sandboxHostRef.current, {
+          keypad: true,
+          expressions: true,
+          settingsMenu: false,
+        });
+      }
+
+      // Load current shortcut expressions
+      if (sandboxCalcRef.current && sandboxShortcut) {
+        sandboxCalcRef.current.setBlank();
+        const lines = sandboxShortcut.desmosSyntax.split('\n').filter(Boolean);
+        lines.forEach((line, i) => {
+          sandboxCalcRef.current.setExpression({
+            id: `line_${i}`,
+            latex: line.replace(/\\\\/g, '\\'),
+          });
+        });
+      }
+    };
+
+    if (window.Desmos) {
+      loadCalc();
+    } else {
+      const s = document.createElement('script');
+      s.src = 'https://www.desmos.com/api/v1.11/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6';
+      s.async = true;
+      s.onload = loadCalc;
+      document.head.appendChild(s);
+    }
+  }, [isOpen, activeTab, sandboxShortcut]);
 
   if (!isOpen) return null;
 
@@ -170,8 +212,8 @@ export default function DesmosMasterKeyModal({
           color: 'var(--ink)',
           borderRadius: '8px',
           width: '100%',
-          maxWidth: '920px',
-          maxHeight: '88vh',
+          maxWidth: '960px',
+          height: '88vh',
           display: 'flex',
           flexDirection: 'column',
           boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
@@ -208,15 +250,56 @@ export default function DesmosMasterKeyModal({
             </div>
             <div>
               <h2 style={{ fontSize: '1.35rem', margin: 0, fontWeight: 700 }}>
-                Desmos Master Key: 10 Essential Digital SAT Shortcuts
+                Desmos Master Key: Digital SAT Shortcuts
               </h2>
               <span style={{ fontSize: '0.8rem', color: 'var(--muted)', fontFamily: 'var(--font-mono)' }}>
-                Official College Board Desmos Strategies & Regression Syntax
+                Official College Board Desmos Strategies & Live Interactive Sandbox
               </span>
             </div>
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            {/* Tab switch */}
+            <div style={{ display: 'flex', background: 'var(--surface-inset, rgba(0,0,0,0.06))', borderRadius: 6, padding: 2 }}>
+              <button
+                type="button"
+                onClick={() => setActiveTab('cards')}
+                style={{
+                  padding: '0.35rem 0.75rem',
+                  fontSize: '0.8rem',
+                  fontWeight: 600,
+                  border: 'none',
+                  borderRadius: 4,
+                  cursor: 'pointer',
+                  background: activeTab === 'cards' ? 'var(--surface, #fff)' : 'transparent',
+                  color: activeTab === 'cards' ? 'var(--ink)' : 'var(--muted)',
+                  boxShadow: activeTab === 'cards' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
+                }}
+              >
+                Cheat Sheet
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveTab('sandbox')}
+                style={{
+                  padding: '0.35rem 0.75rem',
+                  fontSize: '0.8rem',
+                  fontWeight: 600,
+                  border: 'none',
+                  borderRadius: 4,
+                  cursor: 'pointer',
+                  background: activeTab === 'sandbox' ? 'var(--surface, #fff)' : 'transparent',
+                  color: activeTab === 'sandbox' ? 'var(--ink)' : 'var(--muted)',
+                  boxShadow: activeTab === 'sandbox' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 4,
+                }}
+              >
+                <Sparkles size={12} /> Live Sandbox
+              </button>
+            </div>
+
             <a
               href="https://www.desmos.com/calculator"
               target="_blank"
@@ -235,7 +318,7 @@ export default function DesmosMasterKeyModal({
                 fontWeight: 600,
               }}
             >
-              Launch Desmos <ExternalLink size={12} />
+              External <ExternalLink size={12} />
             </a>
 
             <button
@@ -300,123 +383,213 @@ export default function DesmosMasterKeyModal({
           </div>
         </div>
 
-        {/* Shortcuts List */}
-        <div style={{ padding: '1.5rem 1.75rem', overflowY: 'auto', flex: 1, display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-          {filteredShortcuts.map((s, idx) => (
-            <div
-              key={s.id}
-              style={{
-                border: '1px solid var(--border)',
-                borderRadius: '6px',
-                padding: '1.25rem',
-                background: 'var(--panel-light, #fafafa)',
-              }}
-            >
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1rem', marginBottom: '0.5rem' }}>
-                <div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
-                    <span
+        {/* Content: Cheat Sheet Cards OR Live Sandbox */}
+        {activeTab === 'cards' ? (
+          <div style={{ padding: '1.5rem 1.75rem', overflowY: 'auto', flex: 1, display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+            {filteredShortcuts.map((s, idx) => (
+              <div
+                key={s.id}
+                style={{
+                  border: '1px solid var(--border)',
+                  borderRadius: '6px',
+                  padding: '1.25rem',
+                  background: 'var(--panel-light, #fafafa)',
+                }}
+              >
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1rem', marginBottom: '0.5rem' }}>
+                  <div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
+                      <span
+                        style={{
+                          fontFamily: 'var(--font-mono)',
+                          fontSize: '0.68rem',
+                          textTransform: 'uppercase',
+                          color: 'var(--accent)',
+                          background: 'rgba(184, 74, 57, 0.08)',
+                          padding: '2px 6px',
+                          borderRadius: '4px',
+                          fontWeight: 600,
+                        }}
+                      >
+                        {s.category}
+                      </span>
+                      <span style={{ fontSize: '0.75rem', color: 'var(--muted)', fontFamily: 'var(--font-mono)' }}>
+                        #{idx + 1}
+                      </span>
+                    </div>
+                    <h3 style={{ fontSize: '1.15rem', margin: '0 0 0.4rem 0' }}>{s.title}</h3>
+                  </div>
+
+                  <div style={{ display: 'flex', gap: 6 }}>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setSandboxShortcut(s);
+                        setActiveTab('sandbox');
+                      }}
                       style={{
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: '0.68rem',
-                        textTransform: 'uppercase',
-                        color: 'var(--accent)',
-                        background: 'rgba(184, 74, 57, 0.08)',
-                        padding: '2px 6px',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '4px',
+                        padding: '0.4rem 0.65rem',
                         borderRadius: '4px',
+                        border: '1px solid var(--border)',
+                        background: 'rgba(37,99,235,0.08)',
+                        color: 'var(--accent)',
+                        fontSize: '0.78rem',
                         fontWeight: 600,
+                        cursor: 'pointer',
                       }}
                     >
-                      {s.category}
-                    </span>
-                    <span style={{ fontSize: '0.75rem', color: 'var(--muted)', fontFamily: 'var(--font-mono)' }}>
-                      #{idx + 1}
-                    </span>
+                      <Sparkles size={12} /> Test in Sandbox
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleCopy(s.id, s.desmosSyntax)}
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '4px',
+                        padding: '0.4rem 0.75rem',
+                        borderRadius: '4px',
+                        border: '1px solid var(--border)',
+                        background: copiedId === s.id ? 'rgba(16, 185, 129, 0.1)' : 'var(--bg, #fff)',
+                        color: copiedId === s.id ? '#059669' : 'var(--ink)',
+                        fontSize: '0.78rem',
+                        fontFamily: 'var(--font-mono)',
+                        cursor: 'pointer',
+                        fontWeight: 600,
+                        transition: 'all 0.15s ease',
+                      }}
+                    >
+                      {copiedId === s.id ? (
+                        <>
+                          <Check size={12} /> Copied!
+                        </>
+                      ) : (
+                        <>
+                          <Copy size={12} /> Copy Syntax
+                        </>
+                      )}
+                    </button>
                   </div>
-                  <h3 style={{ fontSize: '1.15rem', margin: '0 0 0.4rem 0' }}>{s.title}</h3>
                 </div>
 
-                <button
-                  type="button"
-                  onClick={() => handleCopy(s.id, s.desmosSyntax)}
+                {/* SAT Trigger */}
+                <div style={{ fontSize: '0.84rem', color: 'var(--ink)', opacity: 0.85, marginBottom: '0.75rem' }}>
+                  <strong>SAT Question Trigger:</strong> <em>{s.satQuestionTrigger}</em>
+                </div>
+
+                {/* Syntax Display Box */}
+                <div
                   style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '4px',
-                    padding: '0.4rem 0.75rem',
+                    background: '#1c1917',
+                    color: '#f5f5f4',
                     borderRadius: '4px',
-                    border: '1px solid var(--border)',
-                    background: copiedId === s.id ? 'rgba(16, 185, 129, 0.1)' : 'var(--bg, #fff)',
-                    color: copiedId === s.id ? '#059669' : 'var(--ink)',
-                    fontSize: '0.78rem',
+                    padding: '0.75rem 1rem',
                     fontFamily: 'var(--font-mono)',
-                    cursor: 'pointer',
-                    fontWeight: 600,
-                    transition: 'all 0.15s ease',
+                    fontSize: '0.88rem',
+                    marginBottom: '0.75rem',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    lineHeight: '1.5',
+                    whiteSpace: 'pre-wrap',
                   }}
                 >
-                  {copiedId === s.id ? (
-                    <>
-                      <Check size={12} /> Copied!
-                    </>
-                  ) : (
-                    <>
-                      <Copy size={12} /> Copy Syntax
-                    </>
-                  )}
+                  <code>{s.desmosSyntax}</code>
+                </div>
+
+                {/* Visual Desmos Calculator Screenshot Mockup */}
+                <DesmosVisualPreview id={s.id} />
+
+                {/* How to use */}
+                <div style={{ fontSize: '0.88rem', color: 'var(--ink)', lineHeight: '1.5', marginBottom: '0.5rem' }}>
+                  {s.howToUse}
+                </div>
+
+                {/* Pro Tip Box */}
+                <div
+                  style={{
+                    padding: '0.5rem 0.75rem',
+                    background: 'rgba(234, 179, 8, 0.08)',
+                    borderRadius: '4px',
+                    border: '1px solid rgba(234, 179, 8, 0.25)',
+                    fontSize: '0.8rem',
+                    color: '#92400e',
+                    fontFamily: 'var(--font-mono)',
+                  }}
+                >
+                  <strong>PRO TIP:</strong> {s.proTip}
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div style={{ display: 'flex', flex: 1, minHeight: 0, overflow: 'hidden' }}>
+            {/* Sidebar list */}
+            <div style={{ width: '310px', borderRight: '1px solid var(--border)', overflowY: 'auto', padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.6rem', background: 'var(--surface-inset, rgba(0,0,0,0.01))' }}>
+              <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--muted)', textTransform: 'uppercase', marginBottom: '0.2rem' }}>
+                SAT Presets (Click to Test)
+              </div>
+              {DESMOS_SHORTCUTS.map((s) => {
+                const isSelected = sandboxShortcut.id === s.id;
+                return (
+                  <button
+                    key={s.id}
+                    type="button"
+                    onClick={() => setSandboxShortcut(s)}
+                    style={{
+                      textAlign: 'left',
+                      padding: '0.7rem',
+                      borderRadius: 6,
+                      border: isSelected ? '1.5px solid var(--accent)' : '1px solid var(--border)',
+                      background: isSelected ? 'rgba(37,99,235,0.06)' : 'var(--surface, #fff)',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    <div style={{ fontSize: '0.68rem', fontFamily: 'var(--font-mono)', color: 'var(--accent)', fontWeight: 600 }}>
+                      {s.category}
+                    </div>
+                    <div style={{ fontSize: '0.84rem', fontWeight: 600, color: 'var(--ink)', margin: '2px 0 4px' }}>
+                      {s.title}
+                    </div>
+                    <div style={{ fontSize: '0.75rem', color: 'var(--muted)', lineHeight: 1.35 }}>
+                      {s.satQuestionTrigger.slice(0, 65)}…
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Sandbox Calculator View */}
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0, background: '#fff' }}>
+              <div style={{ padding: '0.6rem 1rem', borderBottom: '1px solid var(--border)', background: 'var(--surface, #fafafa)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div>
+                  <strong style={{ fontSize: '0.86rem' }}>{sandboxShortcut.title}</strong>
+                  <span style={{ fontSize: '0.75rem', color: 'var(--muted)', marginLeft: 8 }}>
+                    {sandboxShortcut.howToUse}
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => handleCopy(sandboxShortcut.id, sandboxShortcut.desmosSyntax)}
+                  style={{
+                    padding: '0.35rem 0.65rem',
+                    fontSize: '0.75rem',
+                    border: '1px solid var(--border)',
+                    borderRadius: 4,
+                    background: '#fff',
+                    cursor: 'pointer',
+                  }}
+                >
+                  <Copy size={12} style={{ display: 'inline', marginRight: 4 }} /> Copy Syntax
                 </button>
               </div>
-
-              {/* SAT Trigger */}
-              <div style={{ fontSize: '0.84rem', color: 'var(--ink)', opacity: 0.85, marginBottom: '0.75rem' }}>
-                <strong>SAT Question Trigger:</strong> <em>{s.satQuestionTrigger}</em>
-              </div>
-
-              {/* Syntax Display Box */}
-              <div
-                style={{
-                  background: '#1c1917',
-                  color: '#f5f5f4',
-                  borderRadius: '4px',
-                  padding: '0.75rem 1rem',
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.88rem',
-                  marginBottom: '0.75rem',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  lineHeight: '1.5',
-                  whiteSpace: 'pre-wrap',
-                }}
-              >
-                <code>{s.desmosSyntax}</code>
-              </div>
-
-              {/* Visual Desmos Calculator Screenshot Mockup */}
-              <DesmosVisualPreview id={s.id} />
-
-              {/* How to use */}
-              <div style={{ fontSize: '0.88rem', color: 'var(--ink)', lineHeight: '1.5', marginBottom: '0.5rem' }}>
-                {s.howToUse}
-              </div>
-
-              {/* Pro Tip Box */}
-              <div
-                style={{
-                  padding: '0.5rem 0.75rem',
-                  background: 'rgba(234, 179, 8, 0.08)',
-                  borderRadius: '4px',
-                  border: '1px solid rgba(234, 179, 8, 0.25)',
-                  fontSize: '0.8rem',
-                  color: '#92400e',
-                  fontFamily: 'var(--font-mono)',
-                }}
-              >
-                <strong>PRO TIP:</strong> {s.proTip}
-              </div>
+              <div ref={sandboxHostRef} style={{ flex: 1, minHeight: 0 }} />
             </div>
-          ))}
-        </div>
+          </div>
+        )}
 
         {/* Modal Footer */}
         <div

@@ -1,8 +1,8 @@
 import fs from 'fs';
 import path from 'path';
-import type { SATQuestion } from './sat-types';
+import type { SATQuestion, SATExamDifficultyMode, SATExamConfig } from './sat-types';
 
-export type { SATQuestion } from './sat-types';
+export type { SATQuestion, SATExamDifficultyMode, SATExamConfig } from './sat-types';
 
 const DATA_DIR = path.join(process.cwd(), 'data', 'sat');
 
@@ -127,6 +127,8 @@ export interface FullSATExamModule {
   title: string;
   timeMinutes: number;
   tier: Tier;
+  difficultyMode?: SATExamDifficultyMode;
+  timerMode?: 'standard' | 'untimed' | 'accelerated_0.8x';
   questions: SATQuestion[];
 }
 
@@ -134,7 +136,35 @@ export interface FullSATExam {
   id: string;
   name: string;
   createdAt: string;
+  section?: 'full' | 'math' | 'rw';
+  difficultyMode?: SATExamDifficultyMode;
+  timerMode?: 'standard' | 'untimed' | 'accelerated_0.8x';
   modules: FullSATExamModule[];
+}
+
+function calculateDiffSplit(
+  n: number,
+  tier: Tier,
+  difficultyMode: SATExamDifficultyMode,
+  isRW: boolean,
+  moduleNumber: 1 | 2
+): DiffCounts {
+  if (difficultyMode === 'hard_gauntlet') {
+    return { Easy: 0, Medium: 0, Hard: n };
+  }
+  if (difficultyMode === 'hard') {
+    const medShare = isRW ? 0.25 : 0.20;
+    const med = Math.round(n * medShare);
+    return { Easy: 0, Medium: med, Hard: n - med };
+  }
+  if (difficultyMode === 'medium') {
+    const med = Math.round(n * 0.75);
+    return { Easy: 0, Medium: med, Hard: n - med };
+  }
+
+  // Standard adaptive mode
+  const effectiveTier: Tier = moduleNumber === 1 ? 'standard' : tier;
+  return splitDifficulty(n, effectiveTier);
 }
 
 export function generateAdaptiveModule(
@@ -142,11 +172,23 @@ export function generateAdaptiveModule(
   moduleNumber: 1 | 2,
   tier: Tier = 'standard',
   excludeIds: Set<string> = new Set(),
-  seenIds: Set<string> = new Set()
+  seenIds: Set<string> = new Set(),
+  difficultyMode: SATExamDifficultyMode = 'adaptive',
+  timerMode: 'standard' | 'untimed' | 'accelerated_0.8x' = 'standard'
 ): FullSATExamModule {
   const isRW = section === 'reading-writing';
   const spec = isRW ? RW_MODULE : MATH_MODULE;
-  const effectiveTier: Tier = moduleNumber === 1 ? 'standard' : tier;
+  
+  // Routing Override Rule:
+  // In hard and hard_gauntlet modes: Module 2 is force-routed to the Upper Track
+  // In medium mode: locked to Medium pool
+  let effectiveTier: Tier = moduleNumber === 1 ? 'standard' : tier;
+  if (difficultyMode === 'hard' || difficultyMode === 'hard_gauntlet') {
+    effectiveTier = 'hard';
+  } else if (difficultyMode === 'medium') {
+    effectiveTier = 'standard';
+  }
+
   const domainOrder = isRW ? RW_DOMAIN_ORDER : MATH_DOMAIN_ORDER;
   const quota = isRW ? RW_DOMAIN_QUOTA : MATH_DOMAIN_QUOTA[moduleNumber - 1];
 
@@ -160,8 +202,8 @@ export function generateAdaptiveModule(
   for (const q of [...unseen, ...seen]) buckets.get(q.domain)?.get(q.difficulty)?.push(q);
 
   // Difficulty is planned across the whole module first, then spread over domains,
-  // so a module's overall Easy/Medium/Hard mix matches its tier.
-  const modulePlan = splitDifficulty(spec.total, effectiveTier);
+  // respecting the selected difficulty mode quotas.
+  const modulePlan = calculateDiffSplit(spec.total, effectiveTier, difficultyMode, isRW, moduleNumber);
   const remaining: DiffCounts = { ...modulePlan };
 
   const picked: SATQuestion[] = [];
@@ -211,8 +253,9 @@ export function generateAdaptiveModule(
     }
   }
 
-  // Bluebook order: by domain, then skill group, easier before harder inside a skill.
-  const diffRank: Record<string, number> = { Easy: 0, Medium: 1, Hard: 2 };
+  // Within-Module Ordering Rule: Just like the real Digital SAT, sort selected questions within
+  // each module by ascending item difficulty parameter b_i within domains
+  const BI_WEIGHT: Record<string, number> = { Easy: -1.25, Medium: 0.1, Hard: 1.35 };
   const skillRank = (s: string) => {
     const i = SKILL_ORDER.indexOf(s);
     return i < 0 ? 999 : i;
@@ -220,38 +263,95 @@ export function generateAdaptiveModule(
   picked.sort(
     (a, b) =>
       domainOrder.indexOf(a.domain) - domainOrder.indexOf(b.domain) ||
-      skillRank(a.skill) - skillRank(b.skill) ||
-      diffRank[a.difficulty] - diffRank[b.difficulty]
+      (BI_WEIGHT[a.difficulty] || 0) - (BI_WEIGHT[b.difficulty] || 0) ||
+      skillRank(a.skill) - skillRank(b.skill)
   );
 
   // Two unscored pretest items per module, indistinguishable to the student.
   const pretestIdx = new Set(shuffle(picked.map((_, i) => i)).slice(0, 2));
   const questions = picked.map((q, i) => ({ ...q, pretest: pretestIdx.has(i) }));
 
+  // Timing: 0.8x accelerated mode gives 28m Math / 25m RW
+  let timeMinutes = spec.minutes;
+  if (timerMode === 'accelerated_0.8x') {
+    timeMinutes = isRW ? 25 : 28;
+  } else if (timerMode === 'untimed') {
+    timeMinutes = 999;
+  }
+
   return {
     id: `mod-${isRW ? 'rw' : 'math'}-${moduleNumber}`,
     section,
     moduleNumber,
     title: `${isRW ? 'Reading and Writing' : 'Math'}: Module ${moduleNumber}`,
-    timeMinutes: spec.minutes,
+    timeMinutes,
     tier: effectiveTier,
+    difficultyMode,
+    timerMode,
     questions,
   };
 }
 
-export function generateInitialFullSATExam(seenIds: Set<string> = new Set()): FullSATExam {
-  const m1RW = generateAdaptiveModule('reading-writing', 1, 'standard', new Set(), seenIds);
-  const m1Math = generateAdaptiveModule('math', 1, 'standard', new Set(), seenIds);
-  // Placeholders: the real Module 2 is generated after Module 1 is submitted (adaptive routing).
-  const m2RW = generateAdaptiveModule('reading-writing', 2, 'standard', new Set(m1RW.questions.map((q) => q.questionId)), seenIds);
-  const m2Math = generateAdaptiveModule('math', 2, 'standard', new Set(m1Math.questions.map((q) => q.questionId)), seenIds);
+export function generateSATExam(
+  config: SATExamConfig = { section: 'full', difficultyMode: 'adaptive', timerMode: 'standard' },
+  seenIds: Set<string> = new Set()
+): FullSATExam {
+  const { section = 'full', difficultyMode = 'adaptive', timerMode = 'standard' } = config;
+  const modules: FullSATExamModule[] = [];
+
+  const modeTitle =
+    difficultyMode === 'hard_gauntlet'
+      ? '750+ Hard Gauntlet'
+      : difficultyMode === 'hard'
+      ? 'Hard Mode'
+      : difficultyMode === 'medium'
+      ? 'Medium Focus'
+      : 'Official Adaptive';
+
+  const sectionTitle =
+    section === 'math' ? 'SAT Math Exam' : section === 'rw' ? 'SAT Reading & Writing Exam' : 'Digital SAT Practice Exam';
+
+  if (section === 'full' || section === 'rw') {
+    const m1RW = generateAdaptiveModule('reading-writing', 1, 'standard', new Set(), seenIds, difficultyMode, timerMode);
+    const m2RW = generateAdaptiveModule(
+      'reading-writing',
+      2,
+      difficultyMode === 'hard' || difficultyMode === 'hard_gauntlet' ? 'hard' : 'standard',
+      new Set(m1RW.questions.map((q) => q.questionId)),
+      seenIds,
+      difficultyMode,
+      timerMode
+    );
+    modules.push(m1RW, m2RW);
+  }
+
+  if (section === 'full' || section === 'math') {
+    const m1Math = generateAdaptiveModule('math', 1, 'standard', new Set(), seenIds, difficultyMode, timerMode);
+    const m2Math = generateAdaptiveModule(
+      'math',
+      2,
+      difficultyMode === 'hard' || difficultyMode === 'hard_gauntlet' ? 'hard' : 'standard',
+      new Set(m1Math.questions.map((q) => q.questionId)),
+      seenIds,
+      difficultyMode,
+      timerMode
+    );
+    modules.push(m1Math, m2Math);
+  }
 
   return {
     id: `exam-${Date.now()}-${Math.random().toString(36).substring(2, 6)}`,
-    name: 'Digital SAT Practice Exam',
+    name: `${sectionTitle} (${modeTitle})`,
     createdAt: new Date().toISOString(),
-    modules: [m1RW, m2RW, m1Math, m2Math],
+    section,
+    difficultyMode,
+    timerMode,
+    modules,
   };
+}
+
+export function generateInitialFullSATExam(seenIds: Set<string> = new Set()): FullSATExam {
+  return generateSATExam({ section: 'full', difficultyMode: 'adaptive', timerMode: 'standard' }, seenIds);
 }
 
 // ----------------------------------------------------------------------------

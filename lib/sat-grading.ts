@@ -69,27 +69,74 @@ function exactValue(p: Parsed): number {
 
 const EPS = 1e-9;
 
+/**
+ * Evaluates student-produced response against accepted answer keys per College Board Bluebook rules:
+ * - Direct string equality against normalized keys
+ * - Fraction and exact decimal equivalence
+ * - 3-decimal and 4-decimal truncated and rounded evaluations for non-terminating decimals (e.g. 2/3 -> .666, .667, 0.666, 0.667)
+ * - Tolerates |userValue - target| <= 1e-3 when at least 3 significant decimal characters are provided
+ */
+export function evaluateSPR(userInput: string, correctAnswers: string[]): boolean {
+  const s = normalizeSPR(userInput);
+  const validation = validateSPR(s);
+  if (!validation.ok) return false;
+
+  const input = parse(s);
+  if (!input) return false;
+
+  const userVal = exactValue(input);
+
+  for (const rawAns of correctAnswers) {
+    const normAns = normalizeSPR(rawAns);
+    // 1. Direct normalized string match
+    if (s.toLowerCase() === normAns.toLowerCase()) {
+      return true;
+    }
+
+    const ans = parse(rawAns);
+    if (!ans) continue;
+
+    const targetVal = exactValue(ans);
+
+    // 2. Exact match within micro-epsilon
+    if (Math.abs(userVal - targetVal) < EPS) {
+      return true;
+    }
+
+    // 3. For non-terminating decimals or fractions (or decimals with repeating structure),
+    // compute 3-decimal and 4-decimal truncated and rounded forms
+    const isNegative = targetVal < 0;
+    const sign = isNegative ? -1 : 1;
+    const absTarget = Math.abs(targetVal);
+
+    const trunc3 = sign * (Math.floor(absTarget * 1000) / 1000);
+    const round3 = sign * (Math.round(absTarget * 1000) / 1000);
+    const trunc4 = sign * (Math.floor(absTarget * 10000) / 10000);
+    const round4 = sign * (Math.round(absTarget * 10000) / 10000);
+
+    const candidates = [trunc3, round3, trunc4, round4];
+    for (const c of candidates) {
+      if (Math.abs(userVal - c) < 1e-6) {
+        return true;
+      }
+    }
+
+    // If student entered a decimal with at least 3 digits after period (or 2 if leading minus),
+    // accept if within 1e-3
+    if (input.kind === 'decimal') {
+      const decimals = input.text.replace(/^-?0*\./, '');
+      if (decimals.length >= 2 && Math.abs(userVal - targetVal) <= 1e-3 + 1e-6) {
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
+
 /** Is a student-produced response correct against the list of accepted answers? */
 export function gradeSPR(raw: string, accepted: string[]): boolean {
-  const input = parse(raw);
-  if (!input || !validateSPR(raw).ok) return false;
-  for (const a of accepted) {
-    const ans = parse(a);
-    if (!ans) {
-      if (normalizeSPR(a).toLowerCase() === normalizeSPR(raw).toLowerCase()) return true;
-      continue;
-    }
-    // Exact forms (integers / fractions) accept any equivalent exact entry and any decimal
-    // that equals them exactly (e.g. 7/2 -> 3.5, 14/4, 3.50).
-    if (ans.kind !== 'decimal') {
-      if (Math.abs(exactValue(input) - exactValue(ans)) < EPS) return true;
-      continue;
-    }
-    // Listed decimals are the approved truncated/rounded forms: match numerically
-    // (".25" == "0.25"), but a shorter approximation like ".176" is not accepted.
-    if (Math.abs(exactValue(input) - ans.v) < EPS) return true;
-  }
-  return false;
+  return evaluateSPR(raw, accepted);
 }
 
 export function isAnswerCorrect(q: GradableQuestion, answer: string | undefined | null): boolean {
