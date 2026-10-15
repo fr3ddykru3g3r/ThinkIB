@@ -70,11 +70,65 @@ function exactValue(p: Parsed): number {
 const EPS = 1e-9;
 
 /**
+ * Computes the exact valid Bluebook string representations for a target value.
+ * Non-terminating decimals (e.g. 2/3) must fill the 5-character grid (or 6 for negative).
+ * Under-filled approximations like ".66" or "0.67" are strictly rejected.
+ */
+function getValidBluebookRepresentations(targetVal: number): Set<string> {
+  const reps = new Set<string>();
+  const isNeg = targetVal < 0;
+  const abs = Math.abs(targetVal);
+
+  // Check if target is a terminating decimal with <= 4 decimal places (e.g. 0.25, 0.125)
+  const isTerminating = Math.abs(abs * 10000 - Math.round(abs * 10000)) < 1e-7;
+  if (isTerminating) {
+    const str = abs.toString();
+    if (isNeg) {
+      reps.add(`-${str}`);
+      if (str.startsWith('0.')) reps.add(`-.${str.slice(2)}`);
+    } else {
+      reps.add(str);
+      if (str.startsWith('0.')) reps.add(`.${str.slice(2)}`);
+    }
+  }
+
+  // Generate 3-decimal and 4-decimal truncated & rounded forms that fill the grid
+  if (!isNeg) {
+    const t3 = (Math.floor(abs * 1000) / 1000).toFixed(3); // e.g. "0.666"
+    const r3 = (Math.round(abs * 1000) / 1000).toFixed(3); // e.g. "0.667"
+    reps.add(t3);                   // "0.666" (5 chars)
+    reps.add(r3);                   // "0.667" (5 chars)
+    reps.add(t3.replace(/^0/, '')); // ".666"  (4 chars)
+    reps.add(r3.replace(/^0/, '')); // ".667"  (4 chars)
+
+    const t4 = (Math.floor(abs * 10000) / 10000).toFixed(4); // e.g. "0.6666"
+    const r4 = (Math.round(abs * 10000) / 10000).toFixed(4); // e.g. "0.6667"
+    reps.add(t4.replace(/^0/, '')); // ".6666" (5 chars)
+    reps.add(r4.replace(/^0/, '')); // ".6667" (5 chars)
+  } else {
+    // Negative numbers: max 6 characters including '-'
+    const t3 = (Math.floor(abs * 1000) / 1000).toFixed(3);
+    const r3 = (Math.round(abs * 1000) / 1000).toFixed(3);
+    reps.add(`-${t3}`);             // "-0.333" (6 chars)
+    reps.add(`-${r3}`);             // "-0.334" (6 chars)
+    reps.add(`-.${t3.slice(2)}`);   // "-.333"  (5 chars)
+    reps.add(`-.${r3.slice(2)}`);   // "-.334"  (5 chars)
+
+    const t4 = (Math.floor(abs * 10000) / 10000).toFixed(4);
+    const r4 = (Math.round(abs * 10000) / 10000).toFixed(4);
+    reps.add(`-.${t4.slice(2)}`);   // "-.3333" (6 chars)
+    reps.add(`-.${r4.slice(2)}`);   // "-.3334" (6 chars)
+  }
+
+  return reps;
+}
+
+/**
  * Evaluates student-produced response against accepted answer keys per College Board Bluebook rules:
  * - Direct string equality against normalized keys
- * - Fraction and exact decimal equivalence
- * - 3-decimal and 4-decimal truncated and rounded evaluations for non-terminating decimals (e.g. 2/3 -> .666, .667, 0.666, 0.667)
- * - Tolerates |userValue - target| <= 1e-3 when at least 3 significant decimal characters are provided
+ * - Equivalent fractions (e.g. 4/6 for 2/3)
+ * - Valid truncated and rounded decimals that fill the required character grid
+ * - Strict rejection of under-filled approximations like ".66" or "0.67"
  */
 export function evaluateSPR(userInput: string, correctAnswers: string[]): boolean {
   const s = normalizeSPR(userInput);
@@ -98,36 +152,22 @@ export function evaluateSPR(userInput: string, correctAnswers: string[]): boolea
 
     const targetVal = exactValue(ans);
 
-    // 2. Exact match within micro-epsilon
+    // 2. Exact match within micro-epsilon (for fractions and terminating decimals)
     if (Math.abs(userVal - targetVal) < EPS) {
+      // If user provided a fraction, any equivalent unreduced fraction is accepted
+      if (input.kind === 'fraction') {
+        return true;
+      }
+      // If user provided an integer, exact match is accepted
+      if (input.kind === 'integer') {
+        return true;
+      }
+    }
+
+    // 3. Decimal evaluation against official Bluebook representations
+    const validReps = getValidBluebookRepresentations(targetVal);
+    if (validReps.has(s)) {
       return true;
-    }
-
-    // 3. For non-terminating decimals or fractions (or decimals with repeating structure),
-    // compute 3-decimal and 4-decimal truncated and rounded forms
-    const isNegative = targetVal < 0;
-    const sign = isNegative ? -1 : 1;
-    const absTarget = Math.abs(targetVal);
-
-    const trunc3 = sign * (Math.floor(absTarget * 1000) / 1000);
-    const round3 = sign * (Math.round(absTarget * 1000) / 1000);
-    const trunc4 = sign * (Math.floor(absTarget * 10000) / 10000);
-    const round4 = sign * (Math.round(absTarget * 10000) / 10000);
-
-    const candidates = [trunc3, round3, trunc4, round4];
-    for (const c of candidates) {
-      if (Math.abs(userVal - c) < 1e-6) {
-        return true;
-      }
-    }
-
-    // If student entered a decimal with at least 3 digits after period (or 2 if leading minus),
-    // accept if within 1e-3
-    if (input.kind === 'decimal') {
-      const decimals = input.text.replace(/^-?0*\./, '');
-      if (decimals.length >= 2 && Math.abs(userVal - targetVal) <= 1e-3 + 1e-6) {
-        return true;
-      }
     }
   }
 

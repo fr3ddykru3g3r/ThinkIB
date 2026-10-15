@@ -64,4 +64,5 @@ export interface SATQuestion {
   conceptLabel?: string;
   /** Exam only: unscored pretest item (2 per module on the real test). */
   pretest?: boolean;
+  isPretest?: boolean;
 }

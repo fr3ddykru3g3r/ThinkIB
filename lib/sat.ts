@@ -6,9 +6,25 @@ export type { SATQuestion, SATExamDifficultyMode, SATExamConfig } from './sat-ty
 
 const DATA_DIR = path.join(process.cwd(), 'data', 'sat');
 
-let cachedRW: SATQuestion[] | null = null;
-let cachedMath: SATQuestion[] | null = null;
-let byId: Map<string, SATQuestion> | null = null;
+interface SatGlobalCache {
+  cachedRW: SATQuestion[] | null;
+  cachedMath: SATQuestion[] | null;
+  byId: Map<string, SATQuestion> | null;
+}
+
+declare global {
+  // eslint-disable-next-line no-var
+  var __SAT_CACHE__: SatGlobalCache | undefined;
+}
+
+const satCache: SatGlobalCache = globalThis.__SAT_CACHE__ || {
+  cachedRW: null,
+  cachedMath: null,
+  byId: null,
+};
+if (!globalThis.__SAT_CACHE__) {
+  globalThis.__SAT_CACHE__ = satCache;
+}
 
 function loadJSON<T>(filename: string): T | null {
   const filePath = path.join(DATA_DIR, filename);
@@ -28,21 +44,27 @@ function isUsable(q: SATQuestion): boolean {
 }
 
 export function getAllRWQuestions(): SATQuestion[] {
-  if (!cachedRW) cachedRW = (loadJSON<SATQuestion[]>('official-sat-reading-writing.json') || []).filter(isUsable);
-  return cachedRW;
+  if (!satCache.cachedRW) {
+    satCache.cachedRW = (loadJSON<SATQuestion[]>('official-sat-reading-writing.json') || []).filter(isUsable);
+  }
+  return satCache.cachedRW;
 }
 
 export function getAllMathQuestions(): SATQuestion[] {
-  if (!cachedMath) cachedMath = (loadJSON<SATQuestion[]>('official-sat-math.json') || []).filter(isUsable);
-  return cachedMath;
+  if (!satCache.cachedMath) {
+    satCache.cachedMath = (loadJSON<SATQuestion[]>('official-sat-math.json') || []).filter(isUsable);
+  }
+  return satCache.cachedMath;
 }
 
 export function getQuestionsByIds(ids: string[]): SATQuestion[] {
-  if (!byId) {
-    byId = new Map();
-    for (const q of [...getAllRWQuestions(), ...getAllMathQuestions()]) byId.set(q.questionId, q);
+  if (!satCache.byId) {
+    satCache.byId = new Map();
+    for (const q of [...getAllRWQuestions(), ...getAllMathQuestions()]) {
+      satCache.byId.set(q.questionId, q);
+    }
   }
-  return ids.map((id) => byId!.get(id)).filter((q): q is SATQuestion => !!q);
+  return ids.map((id) => satCache.byId!.get(id)).filter((q): q is SATQuestion => !!q);
 }
 
 // ----------------------------------------------------------------------------
@@ -269,7 +291,10 @@ export function generateAdaptiveModule(
 
   // Two unscored pretest items per module, indistinguishable to the student.
   const pretestIdx = new Set(shuffle(picked.map((_, i) => i)).slice(0, 2));
-  const questions = picked.map((q, i) => ({ ...q, pretest: pretestIdx.has(i) }));
+  const questions = picked.map((q, i) => {
+    const isP = pretestIdx.has(i);
+    return { ...q, pretest: isP, isPretest: isP };
+  });
 
   // Timing: 0.8x accelerated mode gives 28m Math / 25m RW
   let timeMinutes = spec.minutes;

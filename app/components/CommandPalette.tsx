@@ -180,6 +180,66 @@ export default function CommandPalette() {
 
     // PAST PAPERS
     {
+      id: 'physics-topicals-hub',
+      title: 'IB Physics Topical Past Papers (2025 Syllabus A–E)',
+      category: 'Past Papers',
+      subtitle: 'Themes A–E and 24 Sub-Topics pure & synthesis booklets with split markschemes',
+      badge: '2025 Syllabus',
+      href: '/past-papers?tab=physics-topical',
+      icon: Layers,
+      keywords: ['physics', 'topical', 'theme a', 'theme b', 'theme c', 'theme d', 'theme e', 'kinematics', 'mechanics', 'quantum', 'fields', 'waves']
+    },
+    {
+      id: 'physics-theme-a',
+      title: 'IB Physics Theme A: Space, Time and Motion',
+      category: 'Past Papers',
+      subtitle: 'A.1 Kinematics to A.5 Relativity • Pure & Synthesis Topical Booklets',
+      badge: 'Theme A',
+      href: '/past-papers?tab=physics-topical&theme=A',
+      icon: Layers,
+      keywords: ['theme a', 'physics kinematics', 'forces', 'momentum', 'rigid bodies', 'relativity', 'a.1', 'a.2', 'a.3', 'a.4', 'a.5']
+    },
+    {
+      id: 'physics-theme-b',
+      title: 'IB Physics Theme B: The Particulate Nature of Matter',
+      category: 'Past Papers',
+      subtitle: 'B.1 Thermal to B.5 Circuits • Pure & Synthesis Topical Booklets',
+      badge: 'Theme B',
+      href: '/past-papers?tab=physics-topical&theme=B',
+      icon: Layers,
+      keywords: ['theme b', 'thermal', 'greenhouse', 'gas laws', 'thermodynamics', 'circuits', 'b.1', 'b.2', 'b.3', 'b.4', 'b.5']
+    },
+    {
+      id: 'physics-theme-c',
+      title: 'IB Physics Theme C: Wave Behaviour',
+      category: 'Past Papers',
+      subtitle: 'C.1 SHM to C.5 Doppler Effect • Pure & Synthesis Topical Booklets',
+      badge: 'Theme C',
+      href: '/past-papers?tab=physics-topical&theme=C',
+      icon: Layers,
+      keywords: ['theme c', 'waves', 'shm', 'snell', 'diffraction', 'interference', 'standing waves', 'doppler', 'c.1', 'c.2', 'c.3', 'c.4', 'c.5']
+    },
+    {
+      id: 'physics-theme-d',
+      title: 'IB Physics Theme D: Fields',
+      category: 'Past Papers',
+      subtitle: 'D.1 Gravity to D.4 Electromagnetic Induction • Pure & Synthesis Booklets',
+      badge: 'Theme D',
+      href: '/past-papers?tab=physics-topical&theme=D',
+      icon: Layers,
+      keywords: ['theme d', 'fields', 'gravity', 'electric field', 'magnetic field', 'induction', 'faraday', 'd.1', 'd.2', 'd.3', 'd.4']
+    },
+    {
+      id: 'physics-theme-e',
+      title: 'IB Physics Theme E: Nuclear and Quantum Physics',
+      category: 'Past Papers',
+      subtitle: 'E.1 Atomic Structure to E.5 Stars & Fusion • Pure & Synthesis Booklets',
+      badge: 'Theme E',
+      href: '/past-papers?tab=physics-topical&theme=E',
+      icon: Layers,
+      keywords: ['theme e', 'nuclear', 'quantum', 'photoelectric', 'radioactive', 'fission', 'fusion', 'stars', 'astrophysics', 'e.1', 'e.2', 'e.3', 'e.4', 'e.5']
+    },
+    {
       id: 'past-papers-vault',
       title: 'Past Papers Vault (2010–2025)',
       category: 'Past Papers',

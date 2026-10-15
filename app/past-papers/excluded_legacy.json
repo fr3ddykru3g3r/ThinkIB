@@ -1,0 +1,1752 @@
+{
+  "total_excluded": 291,
+  "generated_at": "2026-10-15 19:48:49",
+  "excluded_questions": [
+    {
+      "id": "2024_Nov_SL_P1_Q27",
+      "source": "Nov 2024 TZ1 SL Paper 1 Q27",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: lepton, baryon)",
+      "preview": "27.\t The reaction \u009b0\u00a0\uf02b\u00a0p\u00a0\uf0ae\u00a0p\u00a0\uf02b\u00a0e\uf02d\u00a0\uf02b\u00a0ve is proposed. Three conservation laws in particle reactions are: I.\t conservation "
+    },
+    {
+      "id": "2024_Nov_SL_P3_Q8",
+      "source": "Nov 2024 TZ1 SL Paper 3 Opt C Q8",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "8.\t A real image, four times larger than the object, is formed 0.40\u2009m from a converging lens. (a)\t \tCalculate the focal "
+    },
+    {
+      "id": "2024_Nov_SL_P3_Q9",
+      "source": "Nov 2024 TZ1 SL Paper 3 Opt C Q9",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "9.\t (a) \t (i) \t Identify the optical components in an astronomical reflecting telescope with \t \t \t \t Newtonian mounting."
+    },
+    {
+      "id": "2024_Nov_SL_P3_Q10",
+      "source": "Nov 2024 TZ1 SL Paper 3 Opt C Q10",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "10.\t Light propagates along an optic fibre that has a core of refractive index 1.59 and a cladding  of refractive index "
+    },
+    {
+      "id": "2024_Nov_HL_P2_Q10",
+      "source": "Nov 2024 TZ1 HL Paper 2 Q10",
+      "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: transformer, primary coil, secondary coil)",
+      "preview": "10.\t The diagram shows an ideal transformer with an iron core. A resistor R is connected to the  secondary coil. R prima"
+    },
+    {
+      "id": "2024_Nov_HL_P3_Q12",
+      "source": "Nov 2024 TZ1 HL Paper 3 Opt C Q12",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "12.\t A real image, four times larger than the object, is formed 0.40\u2009m from a converging lens. (a)\t Calculate the focal "
+    },
+    {
+      "id": "2024_Nov_HL_P3_Q13",
+      "source": "Nov 2024 TZ1 HL Paper 3 Opt C Q13",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "13.\t (a) \t (i) \t Identify the optical components in an astronomical reflecting telescope with \t \t \t \t Newtonian mounting"
+    },
+    {
+      "id": "2024_Nov_HL_P3_Q14",
+      "source": "Nov 2024 TZ1 HL Paper 3 Opt C Q14",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "14.\t Light propagates along an optic fibre that has a core of refractive index 1.59 and a cladding  of refractive index "
+    },
+    {
+      "id": "2024_Nov_HL_P3_Q15",
+      "source": "Nov 2024 TZ1 HL Paper 3 Opt C Q15",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "15.\t (a) \t Distinguish between mass attenuation coefficient and linear attenuation coefficient as \t \t used in X-ray imag"
+    },
+    {
+      "id": "2024_Nov_HL_P3_Q16",
+      "source": "Nov 2024 TZ1 HL Paper 3 Opt C Q16",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "16.\t In a nuclear magnetic resonance (NMR) scanner, a patient is placed in a magnetic field  formed by combining gradien"
+    },
+    {
+      "id": "2024_Nov_HL_P1_Q21",
+      "source": "Nov 2024 TZ1 HL Paper 1 Q21",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: feynman diagram)",
+      "preview": "21.\t Which Feynman diagram shows beta minus (b-) decay? A. u d W+ e\u2212 ve time B. u d W\u2212 e\u2212 ve time C. u d W\u2212 e\u2212 ve time D"
+    },
+    {
+      "id": "2024_Nov_HL_P1_Q22",
+      "source": "Nov 2024 TZ1 HL Paper 1 Q22",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: quark, baryon)",
+      "preview": "22.\t The X\u20090 particle is a baryon. What is the quark structure of this particle? A.\t \u2009uus B.\t \u2009uss C.\t us D.\t \u2009us"
+    },
+    {
+      "id": "2024_Nov_HL_P1_Q37",
+      "source": "Nov 2024 TZ1 HL Paper 1 Q37",
+      "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: capacitance, capacitors)",
+      "preview": "37.\t Four 10\u2009mF capacitors are connected.   P Q What is the total capacitance between P and Q? A.\t 0.25\u2009mF B.\t 4.0\u2009mF C."
+    },
+    {
+      "id": "2024_May_SL_P3_Q9",
+      "source": "May 2024 TZ1 SL Paper 3 Opt C Q9",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "9.\t (a)\t \u0007The thin lens equation models rays passing through the centre of a lens as  undeflected. Outline why a ray pas"
+    },
+    {
+      "id": "2024_May_SL_P3_Q10",
+      "source": "May 2024 TZ1 SL Paper 3 Opt C Q10",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "10.\t An optical compound microscope in normal adjustment is composed of an objective lens of  focal length 0.82\u2009cm and a"
+    },
+    {
+      "id": "2024_May_SL_P3_Q11",
+      "source": "May 2024 TZ1 SL Paper 3 Opt C Q11",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "11.\t (a)\t \u0007Explain why the refractive index of the cladding in a step-index optical fibre is only  slightly less than th"
+    },
+    {
+      "id": "2024_May_SL_P2_Q6",
+      "source": "May 2024 TZ2 SL Paper 2 Q6",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: quark, quarks, baryon)",
+      "preview": "6.\t (a)\t Quarks are elementary particles.  (i)\t State what is meant by an elementary particle.\b [1] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2024_May_SL_P1_Q15",
+      "source": "May 2024 TZ2 SL Paper 1 Q15",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
+      "preview": "15.\t Unpolarized light is incident on two polarizers X and Y. The transmission axis of X is vertical and  that of Y is h"
+    },
+    {
+      "id": "2024_May_SL_P1_Q24",
+      "source": "May 2024 TZ2 SL Paper 1 Q24",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: meson, feynman diagram, gluon)",
+      "preview": "24.\t The Feynman diagram shows a possible decay of a K- meson. K \u2212 0 \u03c0 \u03c0\u2212 u d s u u u Which particle is represented by t"
+    },
+    {
+      "id": "2024_May_SL_P3_Q8",
+      "source": "May 2024 TZ2 SL Paper 3 Opt C Q8",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "8.\t In one arrangement an image that is half the height of a real object is produced by a lens of  focal length\u2007 f\u00a0. (a)"
+    },
+    {
+      "id": "2024_May_SL_P3_Q9",
+      "source": "May 2024 TZ2 SL Paper 3 Opt C Q9",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "9.\t (a)\t \u0007The focal length of the objective lens of a refracting telescope is 1.1\u2009m. The telescope is  used to observe t"
+    },
+    {
+      "id": "2024_May_SL_P3_Q10",
+      "source": "May 2024 TZ2 SL Paper 3 Opt C Q10",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "10.\t (a)\t \u0007Outline how dispersion affects the transmission of light in an optic fibre.\b [1] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2024_May_HL_P1_Q14",
+      "source": "May 2024 TZ1 HL Paper 1 Q14",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
+      "preview": "14.\t Unpolarized light is incident on a pair of polarizers.  The polarizing axis of the second polarizer is at 60\u00b0 to th"
+    },
+    {
+      "id": "2024_May_HL_P2_Q10",
+      "source": "May 2024 TZ1 HL Paper 2 Q10",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
+      "preview": "10.\t A 1.0\u2009mF capacitor is connected in series to a 2.3\u2009k\u03a9 resistor and a cell of negligible internal  resistance. 2.3 k"
+    },
+    {
+      "id": "2024_May_HL_P3_Q12",
+      "source": "May 2024 TZ2 HL Paper 3 Opt C Q12",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "12.\t In one arrangement an image that is half the height of a real object is produced by a lens of  focal length\u2007 f\u00a0. (a"
+    },
+    {
+      "id": "2024_May_HL_P3_Q13",
+      "source": "May 2024 TZ2 HL Paper 3 Opt C Q13",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "13.\t (a)\t \u0007The focal length of the objective lens of a refracting telescope is 1.1\u2009m. The telescope is  used to observe "
+    },
+    {
+      "id": "2024_May_HL_P3_Q14",
+      "source": "May 2024 TZ2 HL Paper 3 Opt C Q14",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "14.\t (a)\t \u0007Outline how dispersion affects the transmission of light in an optic fibre.\b [1] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2024_May_HL_P3_Q15",
+      "source": "May 2024 TZ2 HL Paper 3 Opt C Q15",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "15.\t The linear absorption coefficients \u03bc20 and \u03bc100 for bone and muscle are shown for two  incident X-ray energies of 2"
+    },
+    {
+      "id": "2024_May_HL_P3_Q16",
+      "source": "May 2024 TZ2 HL Paper 3 Opt C Q16",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "16.\t Ultrasound imaging is usually performed at frequencies in the range of 2\u201320\u2009MHz. (a)\t Outline why frequencies of 2."
+    },
+    {
+      "id": "2024_May_HL_P1_Q10",
+      "source": "May 2024 TZ2 HL Paper 1 Q10",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
+      "preview": "10.\t Unpolarized light is incident on two polarizers X and Y. The transmission axis of X is vertical and  that of Y is h"
+    },
+    {
+      "id": "2024_May_HL_P1_Q21",
+      "source": "May 2024 TZ2 HL Paper 1 Q21",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: meson, feynman diagram, gluon)",
+      "preview": "21.\t The Feynman diagram shows a possible decay of a K- meson. K \u2212 0 \u03c0 \u03c0\u2212 u d s u u u Which particle is represented by t"
+    },
+    {
+      "id": "2024_May_HL_P1_Q34",
+      "source": "May 2024 TZ2 HL Paper 1 Q34",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
+      "preview": "34.\t An ideal step-up transformer has 500 turns on the primary coil and 2000 turns on the secondary  coil. An alternatin"
+    },
+    {
+      "id": "2024_May_HL_P2_Q6",
+      "source": "May 2024 TZ2 HL Paper 2 Q6",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: quark, quarks, baryon)",
+      "preview": "6.\t (a)\t Quarks are elementary particles.  (i)\t State what is meant by an elementary particle.\b [1] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2024_May_HL_P2_Q9",
+      "source": "May 2024 TZ2 HL Paper 2 Q9",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
+      "preview": "9.\t (a)\t \u0007A conducting rod of length L is moved with speed v at right angles to a uniform  magnetic field of flux densit"
+    },
+    {
+      "id": "2024_May_HL_P3_Q13",
+      "source": "May 2024 TZ1 HL Paper 3 Opt C Q13",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "13.\t (a)\t \u0007The thin lens equation models rays passing through the centre of a lens as  undeflected. Outline why a ray pa"
+    },
+    {
+      "id": "2024_May_HL_P3_Q14",
+      "source": "May 2024 TZ1 HL Paper 3 Opt C Q14",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "14.\t An optical compound microscope in normal adjustment is composed of an objective lens of  focal length 0.82\u2009cm and a"
+    },
+    {
+      "id": "2024_May_HL_P3_Q15",
+      "source": "May 2024 TZ1 HL Paper 3 Opt C Q15",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "15.\t (a)\t \u0007Explain why the refractive index of the cladding in a step-index optical fibre is only  slightly less than th"
+    },
+    {
+      "id": "2024_May_HL_P3_Q16",
+      "source": "May 2024 TZ1 HL Paper 3 Opt C Q16",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "16.\t An X-ray image is taken of a patient\u2019s leg. Part of the beam, ray A, passes through soft\u00a0tissue  only and leaves th"
+    },
+    {
+      "id": "2023_Nov_SL_P3_Q8",
+      "source": "Nov 2023 TZ1 SL Paper 3 Opt C Q8",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "8.\t The diagram shows an object in front of a spherical converging mirror with a focal point F.  F (a)\t Construct a ray "
+    },
+    {
+      "id": "2023_Nov_SL_P3_Q9",
+      "source": "Nov 2023 TZ1 SL Paper 3 Opt C Q9",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "9.\t The single-dish radio telescope at Arecibo had a fixed spherical mirror M of diameter  of\u00a00.3\u2009km made up of a large "
+    },
+    {
+      "id": "2023_Nov_SL_P3_Q1",
+      "source": "Nov 2023 TZ1 SL Paper 3 Opt C Q1",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "1.\t \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2023_Nov_SL_P3_Q2",
+      "source": "Nov 2023 TZ1 SL Paper 3 Opt C Q2",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "2.\t \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2023_Nov_SL_P3_Q10",
+      "source": "Nov 2023 TZ1 SL Paper 3 Opt C Q10",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "10.\t A compound optical microscope has an objective lens with a focal length of 10.0\u2009mm and  an eyepiece\u00a0lens with a foc"
+    },
+    {
+      "id": "2023_Nov_SL_P3_Q11",
+      "source": "Nov 2023 TZ1 SL Paper 3 Opt C Q11",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "11.\t A step-index fibre has core refractive index of 1.47 and a cladding refractive index of\u00a01.45. (a)\t (i)\t Calculate t"
+    },
+    {
+      "id": "2023_Nov_SL_P1_Q27",
+      "source": "Nov 2023 TZ2 SL Paper 1 Q27",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: meson, exchange particle)",
+      "preview": "27.\t A \u03c0+ meson can decay as shown in the equation. \u03c0+\u00a0\u2192\u00a0X\u00a0+\u00a0\u00b5+ Which of the following is correct for particle X and the"
+    },
+    {
+      "id": "2023_Nov_SL_P3_Q8",
+      "source": "Nov 2023 TZ2 SL Paper 3 Opt C Q8",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "8.\t The diagram shows an object in front of a spherical converging mirror with a focal point F.  F (a)\t Construct a ray "
+    },
+    {
+      "id": "2023_Nov_SL_P3_Q9",
+      "source": "Nov 2023 TZ2 SL Paper 3 Opt C Q9",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "9.\t The single-dish radio telescope at Arecibo had a fixed spherical mirror M of diameter  of\u00a00.3\u2009km made up of a large "
+    },
+    {
+      "id": "2023_Nov_SL_P3_Q1",
+      "source": "Nov 2023 TZ2 SL Paper 3 Opt C Q1",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "1.\t \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2023_Nov_SL_P3_Q2",
+      "source": "Nov 2023 TZ2 SL Paper 3 Opt C Q2",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "2.\t \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2023_Nov_SL_P3_Q10",
+      "source": "Nov 2023 TZ2 SL Paper 3 Opt C Q10",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "10.\t A compound optical microscope has an objective lens with a focal length of 10.0\u2009mm and  an eyepiece\u00a0lens with a foc"
+    },
+    {
+      "id": "2023_Nov_SL_P3_Q11",
+      "source": "Nov 2023 TZ2 SL Paper 3 Opt C Q11",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "11.\t A step-index fibre has core refractive index of 1.47 and a cladding refractive index of\u00a01.45. (a)\t (i)\t Calculate t"
+    },
+    {
+      "id": "2023_Nov_SL_P1_Q27",
+      "source": "Nov 2023 TZ1 SL Paper 1 Q27",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: meson, exchange particle)",
+      "preview": "27.\t A \u03c0+ meson can decay as shown in the equation. \u03c0+\u00a0\u2192\u00a0X\u00a0+\u00a0\u00b5+ Which of the following is correct for particle X and the"
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q12",
+      "source": "Nov 2023 TZ1 HL Paper 1 Q12",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
+      "preview": "12.\t Unpolarized light of intensity \u2009I0\u2009 is incident on a polarizer with a vertical axis of polarization.  The\u00a0transmitt"
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q20",
+      "source": "Nov 2023 TZ1 HL Paper 1 Q20",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: meson, exchange particle)",
+      "preview": "20.\t A \u03c0+ meson can decay as shown in the equation. \u03c0+\u00a0\u2192\u00a0X\u00a0+\u00a0\u00b5+ Which of the following is correct for particle X and the"
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q33",
+      "source": "Nov 2023 TZ1 HL Paper 1 Q33",
+      "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: capacitance, capacitors)",
+      "preview": "33.\t Which of the following parallel plate capacitors has the greatest capacitance?  (All plates are drawn to the same s"
+    },
+    {
+      "id": "2023_Nov_HL_P2_Q6",
+      "source": "Nov 2023 TZ1 HL Paper 2 Q6",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
+      "preview": "6.\t A capacitor consists of two square metal plates, arranged parallel to each other and  connected across a power suppl"
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q12",
+      "source": "Nov 2023 TZ2 HL Paper 3 Opt C Q12",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "12.\t The diagram shows an object in front of a spherical converging mirror with a focal point F.  F (a)\t Construct a ray"
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q13",
+      "source": "Nov 2023 TZ2 HL Paper 3 Opt C Q13",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "13.\t The single-dish radio telescope at Arecibo had a fixed spherical mirror M of diameter  of\u00a00.3\u2009km made up of a large"
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q1",
+      "source": "Nov 2023 TZ2 HL Paper 3 Opt C Q1",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "1.\t \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q2",
+      "source": "Nov 2023 TZ2 HL Paper 3 Opt C Q2",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "2.\t \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q14",
+      "source": "Nov 2023 TZ2 HL Paper 3 Opt C Q14",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "14.\t A compound optical microscope has an objective lens with a focal length of 10.0\u2009mm and  an eyepiece\u00a0lens with a foc"
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q15",
+      "source": "Nov 2023 TZ2 HL Paper 3 Opt C Q15",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "15.\t A step-index fibre has core refractive index of 1.47 and a cladding refractive index of\u00a01.45. (a)\t (i)\t Calculate t"
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q16",
+      "source": "Nov 2023 TZ2 HL Paper 3 Opt C Q16",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "16.\t (a)\t (i)\t Describe how ultrasound is produced.\b [2] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q12",
+      "source": "Nov 2023 TZ2 HL Paper 1 Q12",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
+      "preview": "12.\t Unpolarized light of intensity \u2009I0\u2009 is incident on a polarizer with a vertical axis of polarization.  The\u00a0transmitt"
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q20",
+      "source": "Nov 2023 TZ2 HL Paper 1 Q20",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: meson, exchange particle)",
+      "preview": "20.\t A \u03c0+ meson can decay as shown in the equation. \u03c0+\u00a0\u2192\u00a0X\u00a0+\u00a0\u00b5+ Which of the following is correct for particle X and the"
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q33",
+      "source": "Nov 2023 TZ2 HL Paper 1 Q33",
+      "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: capacitance, capacitors)",
+      "preview": "33.\t Which of the following parallel plate capacitors has the greatest capacitance?  (All plates are drawn to the same s"
+    },
+    {
+      "id": "2023_Nov_HL_P2_Q6",
+      "source": "Nov 2023 TZ2 HL Paper 2 Q6",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
+      "preview": "6.\t A capacitor consists of two square metal plates, arranged parallel to each other and  connected across a power suppl"
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q12",
+      "source": "Nov 2023 TZ1 HL Paper 3 Opt C Q12",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "12.\t The diagram shows an object in front of a spherical converging mirror with a focal point F.  F (a)\t Construct a ray"
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q13",
+      "source": "Nov 2023 TZ1 HL Paper 3 Opt C Q13",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "13.\t The single-dish radio telescope at Arecibo had a fixed spherical mirror M of diameter  of\u00a00.3\u2009km made up of a large"
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q1",
+      "source": "Nov 2023 TZ1 HL Paper 3 Opt C Q1",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "1.\t \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q2",
+      "source": "Nov 2023 TZ1 HL Paper 3 Opt C Q2",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "2.\t \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q14",
+      "source": "Nov 2023 TZ1 HL Paper 3 Opt C Q14",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "14.\t A compound optical microscope has an objective lens with a focal length of 10.0\u2009mm and  an eyepiece\u00a0lens with a foc"
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q15",
+      "source": "Nov 2023 TZ1 HL Paper 3 Opt C Q15",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "15.\t A step-index fibre has core refractive index of 1.47 and a cladding refractive index of\u00a01.45. (a)\t (i)\t Calculate t"
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q16",
+      "source": "Nov 2023 TZ1 HL Paper 3 Opt C Q16",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "16.\t (a)\t (i)\t Describe how ultrasound is produced.\b [2] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2023_May_SL_P3_Q8",
+      "source": "May 2023 TZ1 SL Paper 3 Opt C Q8",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "8.\t A converging lens is placed between an object and a screen. An image of the object is  formed on the screen. diagram"
+    },
+    {
+      "id": "2023_May_SL_P3_Q9",
+      "source": "May 2023 TZ1 SL Paper 3 Opt C Q9",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "9.\t A ray of monochromatic light is incident on an optical fibre making an angle of \u03b8\u2009 with the  normal. The refractive "
+    },
+    {
+      "id": "2023_May_SL_P2_Q5",
+      "source": "May 2023 TZ2 SL Paper 2 Q5",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: quarks, hadrons)",
+      "preview": "5. The magnesium nuclide 12 27Mg decays by beta-minus (\u03b2-) decay to form a nuclide of aluminium (Al). (a) Write down the"
+    },
+    {
+      "id": "2023_May_SL_P1_Q28",
+      "source": "May 2023 TZ2 SL Paper 1 Q28",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: quark, lepton, baryon)",
+      "preview": "28.\t The following reaction is proposed for the collision of a proton\u00a0p and a neutron\u00a0n. p\u00a0+\u00a0n\u00a0\u2192\u00a0p\u00a0+\u00a0p0 The neutral pion"
+    },
+    {
+      "id": "2023_May_SL_P3_Q8",
+      "source": "May 2023 TZ2 SL Paper 3 Opt C Q8",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "8.\t An object is placed in front of a concave mirror with the focal point \u00a0f\u00a0 as shown. f object (a)\t Construct a ray di"
+    },
+    {
+      "id": "2023_May_SL_P3_Q9",
+      "source": "May 2023 TZ2 SL Paper 3 Opt C Q9",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "9.\t The eye of an observer has a near point of 25\u2009cm. A pencil is placed at the near point.  A\u00a0convex lens of focal leng"
+    },
+    {
+      "id": "2023_May_SL_P3_Q10",
+      "source": "May 2023 TZ2 SL Paper 3 Opt C Q10",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "10.\t Signals in an optic fibre require amplification when intensity levels in the fibre have fallen to  1.5\u2009% of the ori"
+    },
+    {
+      "id": "2023_May_SL_P2_Q5",
+      "source": "May 2023 TZ1 SL Paper 2 Q5",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: quarks, feynman diagram)",
+      "preview": "5.\t (a)\t \u0007Identify with ticks [\u2009\uf0fc\u2009] in the table, the forces that can act on electrons and the forces  that can act on q"
+    },
+    {
+      "id": "2023_May_SL_P1_Q27",
+      "source": "May 2023 TZ1 SL Paper 1 Q27",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: quark, baryon, strangeness)",
+      "preview": "27.\t This interaction between a proton and a pion violates two or more conservation laws. p\u00a0+\u00a0\u03c0-\u00a0\u2192\u00a0K\u2009-\u00a0+\u00a0\u03c0+ Quark compos"
+    },
+    {
+      "id": "2023_May_HL_P1_Q23",
+      "source": "May 2023 TZ1 HL Paper 1 Q23",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: quark, baryon, strangeness)",
+      "preview": "23.\t This interaction between a proton and a pion violates two or more conservation laws. p\u00a0+\u00a0\u03c0-\u00a0\u2192\u00a0K\u2009-\u00a0+\u00a0\u03c0+ Quark compos"
+    },
+    {
+      "id": "2023_May_HL_P2_Q5",
+      "source": "May 2023 TZ1 HL Paper 2 Q5",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: quarks, feynman diagram)",
+      "preview": "5.\t (a)\t \u0007Identify with ticks [\u2009\uf0fc\u2009] in the table, the forces that can act on electrons and the forces  that can act on q"
+    },
+    {
+      "id": "2023_May_HL_P2_Q7",
+      "source": "May 2023 TZ1 HL Paper 2 Q7",
+      "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: capacitance, capacitors)",
+      "preview": "7.\t A vertical rectangular loop of conducting wire is dropped in a region of horizontal magnetic  field. The diagram sho"
+    },
+    {
+      "id": "2023_May_HL_P3_Q12",
+      "source": "May 2023 TZ2 HL Paper 3 Opt C Q12",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "12.\t An object is placed in front of a concave mirror with the focal point \u00a0f\u00a0 as shown. f object (a)\t Construct a ray d"
+    },
+    {
+      "id": "2023_May_HL_P3_Q13",
+      "source": "May 2023 TZ2 HL Paper 3 Opt C Q13",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "13.\t The eye of an observer has a near point of 25\u2009cm. A pencil is placed at the near point.  A\u00a0convex lens of focal len"
+    },
+    {
+      "id": "2023_May_HL_P3_Q14",
+      "source": "May 2023 TZ2 HL Paper 3 Opt C Q14",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "14.\t Signals in an optic fibre require amplification when intensity levels in the fibre have fallen to  1.5\u2009% of the ori"
+    },
+    {
+      "id": "2023_May_HL_P3_Q15",
+      "source": "May 2023 TZ2 HL Paper 3 Opt C Q15",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "15.\t The X-ray attenuation coefficient values for bone and muscle at an energy of 100\u2009keV are shown. \t Bone attenuation "
+    },
+    {
+      "id": "2023_May_HL_P1_Q24",
+      "source": "May 2023 TZ2 HL Paper 1 Q24",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: quark, lepton, baryon)",
+      "preview": "24.\t The following reaction is proposed for the collision of a proton\u00a0p and a neutron\u00a0n. p\u00a0+\u00a0n\u00a0\u2192\u00a0p\u00a0+\u00a0p0 The neutral pion"
+    },
+    {
+      "id": "2023_May_HL_P1_Q34",
+      "source": "May 2023 TZ2 HL Paper 1 Q34",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
+      "preview": "34.\t Step-up transformers are used in the distribution of electrical energy to A.\t reduce the danger of electrical shock"
+    },
+    {
+      "id": "2023_May_HL_P1_Q35",
+      "source": "May 2023 TZ2 HL Paper 1 Q35",
+      "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: capacitance, capacitors)",
+      "preview": "35.\t Two capacitors C1 and C2 are connected in series to a cell as shown. The capacitance of C1 is four  times the capac"
+    },
+    {
+      "id": "2023_May_HL_P2_Q7",
+      "source": "May 2023 TZ2 HL Paper 2 Q7",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
+      "preview": "7.\t Three identical secondary coils, P, Q and R, are wound onto the iron core of a transformer.  The coils form a power "
+    },
+    {
+      "id": "2023_May_HL_P3_Q12",
+      "source": "May 2023 TZ1 HL Paper 3 Opt C Q12",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "12.\t A converging lens is placed between an object and a screen. An image of the object is  formed on the screen. diagra"
+    },
+    {
+      "id": "2023_May_HL_P3_Q13",
+      "source": "May 2023 TZ1 HL Paper 3 Opt C Q13",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "13.\t A ray of monochromatic light is incident on an optical fibre making an angle of \u03b8\u2009 with the  normal. The refractive"
+    },
+    {
+      "id": "2023_May_HL_P3_Q14",
+      "source": "May 2023 TZ1 HL Paper 3 Opt C Q14",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "14.\t (a)\t \u0007Describe, in the context of medical diagnosis, how an ultrasound A scan is produced.\b [2] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2022_Nov_HL_P2_Q9",
+      "source": "Nov 2022 TZ1 HL Paper 2 Q9",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
+      "preview": "9.\t A parallel-plate capacitor of capacitance 1.5\u00a0\u00d7\u00a010-10\u2009F is made from two metal plates  separated by an air gap of 1."
+    },
+    {
+      "id": "2022_Nov_HL_P2_Q10",
+      "source": "Nov 2022 TZ1 HL Paper 2 Q10",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: quark, quarks, baryon)",
+      "preview": "10.\t The Feynman diagram shows a delta baryon (\u0394) decaying into a neutron and particle X.  The\u00a0exchange particle involve"
+    },
+    {
+      "id": "2022_Nov_HL_P1_Q30",
+      "source": "Nov 2022 TZ1 HL Paper 1 Q30",
+      "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: capacitance, capacitor)",
+      "preview": "30.\t A parallel-plate capacitor is fully charged using a battery. X Y d The capacitor has a capacitance C and a charge Q"
+    },
+    {
+      "id": "2022_Nov_HL_P1_Q35",
+      "source": "Nov 2022 TZ1 HL Paper 1 Q35",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
+      "preview": "35.\t What is the purpose of using a step-up transformer at a power station? A.\t To step up the current to decrease the e"
+    },
+    {
+      "id": "2022_Nov_HL_P1_Q36",
+      "source": "Nov 2022 TZ1 HL Paper 1 Q36",
+      "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: capacitance, capacitor)",
+      "preview": "36.\t A student states three facts about the time constant of a resistor-capacitor series circuit. I.\t It is the time req"
+    },
+    {
+      "id": "2022_May_SL_P1_Q18",
+      "source": "May 2022 TZ2 SL Paper 1 Q18",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
+      "preview": "18.\t Unpolarized light with an intensity of 320\u2009W\u2009m\u22122 goes through a polarizer and an analyser,  originally aligned para"
+    },
+    {
+      "id": "2022_May_SL_P2_Q5",
+      "source": "May 2022 TZ1 SL Paper 2 Q5",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: quark, baryon, meson)",
+      "preview": "5.\t (a)\t Describe the quark structure of a baryon.\b [2] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2022_May_HL_P1_Q37",
+      "source": "May 2022 TZ1 HL Paper 1 Q37",
+      "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: capacitance, capacitors)",
+      "preview": "37.\t Three identical capacitors are connected together as shown. P Q R S What is the order of increasing total capacitan"
+    },
+    {
+      "id": "2022_May_HL_P2_Q5",
+      "source": "May 2022 TZ1 HL Paper 2 Q5",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: quark, baryon, meson)",
+      "preview": "5.\t (a)\t Describe the quark structure of a baryon.\b [2] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2022_May_HL_P2_Q8",
+      "source": "May 2022 TZ1 HL Paper 2 Q8",
+      "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: capacitance, capacitor, capacitors)",
+      "preview": "8.\t Two capacitors C1 and C2 of capacitance 28\u2009\u00b5F and 22\u2009\u00b5F respectively are connected in  a circuit with a two-way swit"
+    },
+    {
+      "id": "2022_May_HL_P1_Q15",
+      "source": "May 2022 TZ2 HL Paper 1 Q15",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
+      "preview": "15. Unpolarized light with an intensity of 320\u2009W\u2009m\u22122 goes through a polarizer and an analyser, originally aligned parall"
+    },
+    {
+      "id": "2022_May_HL_P1_Q36",
+      "source": "May 2022 TZ2 HL Paper 1 Q36",
+      "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: capacitance, capacitor, capacitors)",
+      "preview": "36.\t A circuit consists of three identical capacitors of capacitance C and a battery of voltage V.  Two capacitors are c"
+    },
+    {
+      "id": "2021_Nov_SL_P1_Q15",
+      "source": "Nov 2021 TZ1 SL Paper 1 Q15",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
+      "preview": "15.\t Horizontally polarized light is incident on a pair of polarizers \u2009X\u2009 and \u2009Y\u2009. The axis of  polarization of \u2009X\u2009 make"
+    },
+    {
+      "id": "2021_Nov_SL_P1_Q27",
+      "source": "Nov 2021 TZ1 SL Paper 1 Q27",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: hadron, higgs boson, higgs)",
+      "preview": "27.\t The Higgs boson was discovered in the Large Hadron Collider at CERN. Which statements  are correct about the discov"
+    },
+    {
+      "id": "2021_Nov_HL_P2_Q3",
+      "source": "Nov 2021 TZ1 HL Paper 2 Q3",
+      "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: capacitance, capacitor)",
+      "preview": "3.\t Two equal positive fixed point charges \u2009Q\u00a0=\u00a0+44\u2009\u00b5C and point \u2009P\u2009 are at the vertices of an  equilateral triangle of "
+    },
+    {
+      "id": "2021_Nov_HL_P1_Q12",
+      "source": "Nov 2021 TZ1 HL Paper 1 Q12",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
+      "preview": "12.\t Horizontally polarized light is incident on a pair of polarizers \u2009X\u2009 and \u2009Y\u2009. The axis of  polarization of \u2009X\u2009 make"
+    },
+    {
+      "id": "2021_Nov_HL_P1_Q22",
+      "source": "Nov 2021 TZ1 HL Paper 1 Q22",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: lepton, feynman diagram, exchange particle)",
+      "preview": "22.\t The Feynman diagram shows an interaction between a proton and an electron. X W n p e\u2212 time What is the charge of th"
+    },
+    {
+      "id": "2021_Nov_HL_P1_Q23",
+      "source": "Nov 2021 TZ1 HL Paper 1 Q23",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: hadron, higgs boson, higgs)",
+      "preview": "23.\t The Higgs boson was discovered in the Large Hadron Collider at CERN. Which statements  are correct about the discov"
+    },
+    {
+      "id": "2021_Nov_HL_P1_Q34",
+      "source": "Nov 2021 TZ1 HL Paper 1 Q34",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
+      "preview": "34.\t An alternating supply is connected to a diode bridge rectification circuit. P Q The conventional current in the loa"
+    },
+    {
+      "id": "2021_Nov_HL_P1_Q35",
+      "source": "Nov 2021 TZ1 HL Paper 1 Q35",
+      "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: transformer, primary coil, secondary coil)",
+      "preview": "35.\t The root mean square (rms) current in the primary coil of an ideal transformer is 2.0\u2009A.  The\u00a0rms voltage in the se"
+    },
+    {
+      "id": "2021_May_SL_P1_Q14",
+      "source": "May 2021 TZ2 SL Paper 1 Q14",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
+      "preview": "14.\t Unpolarized light of intensity I1 is incident on a polarizer. The light that passes through this  polarizer then pa"
+    },
+    {
+      "id": "2021_May_SL_P1_Q27",
+      "source": "May 2021 TZ2 SL Paper 1 Q27",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: quarks, lepton, baryon)",
+      "preview": "27.\t A kaon is made up of two quarks. What is the particle classification of a kaon? A.\t Exchange boson B.\t Baryon C.\t L"
+    },
+    {
+      "id": "2021_May_SL_P1_Q28",
+      "source": "May 2021 TZ2 SL Paper 1 Q28",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: lepton, meson, feynman diagram)",
+      "preview": "28.\t Consider the Feynman diagram below. e+ \u00b5\u2212 e\u2212 \u00b5+ X time What is the exchange particle X? A.\t Lepton B.\t Gluon C.\t Me"
+    },
+    {
+      "id": "2021_May_SL_P2_Q7",
+      "source": "May 2021 TZ1 SL Paper 2 Q7",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: baryon, meson)",
+      "preview": "7.\t Conservation of energy and conservation of momentum are two examples of conservation laws. (a)\t Outline the signific"
+    },
+    {
+      "id": "2021_May_SL_P1_Q27",
+      "source": "May 2021 TZ1 SL Paper 1 Q27",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: lepton, baryon)",
+      "preview": "27.\t A particle reaction is p + e-\u2009+ v\u0305\u00b5\u2009\u2192 n + \u00b5+\u2009+ ve\u2009. Which conservation law is violated by the reaction? A.\t Baryon "
+    },
+    {
+      "id": "2021_May_HL_P1_Q23",
+      "source": "May 2021 TZ1 HL Paper 1 Q23",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: feynman diagram)",
+      "preview": "23.\t Which Feynman diagram describes the annihilation of an electron and its antiparticle? A.\t time B.\t time C.\t time D."
+    },
+    {
+      "id": "2021_May_HL_P1_Q36",
+      "source": "May 2021 TZ1 HL Paper 1 Q36",
+      "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: capacitance, capacitor)",
+      "preview": "36.\t A capacitor of capacitance X is connected to a power supply of voltage V. At time t = 0, the  capacitor is disconne"
+    },
+    {
+      "id": "2021_May_HL_P2_Q5",
+      "source": "May 2021 TZ1 HL Paper 2 Q5",
+      "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: capacitance, capacitor, transformer)",
+      "preview": "5.\t A device sends an impulse of electrical energy to maintain a regular heartbeat in a person.  The device is powered b"
+    },
+    {
+      "id": "2021_May_HL_P2_Q9",
+      "source": "May 2021 TZ1 HL Paper 2 Q9",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: baryon, meson)",
+      "preview": "9.\t Conservation of energy and conservation of momentum are two examples of conservation laws. (a)\t Outline the signific"
+    },
+    {
+      "id": "2021_May_HL_P1_Q13",
+      "source": "May 2021 TZ2 HL Paper 1 Q13",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
+      "preview": "13.\t Unpolarized light of intensity I1 is incident on a polarizer. The light that passes through this  polarizer then pa"
+    },
+    {
+      "id": "2021_May_HL_P1_Q23",
+      "source": "May 2021 TZ2 HL Paper 1 Q23",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: lepton, meson, feynman diagram)",
+      "preview": "23.\t Consider the Feynman diagram below. e+ \u00b5\u2212 e\u2212 \u00b5+ X time What is the exchange particle X? A.\t Lepton B.\t Gluon C.\t Me"
+    },
+    {
+      "id": "2021_May_HL_P1_Q33",
+      "source": "May 2021 TZ2 HL Paper 1 Q33",
+      "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: capacitance, capacitor)",
+      "preview": "33.\t A parallel-plate capacitor is connected to a cell of constant emf. The capacitor plates are  then moved closer toge"
+    },
+    {
+      "id": "2021_May_HL_P1_Q36",
+      "source": "May 2021 TZ2 HL Paper 1 Q36",
+      "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: capacitance, capacitor)",
+      "preview": "36.\t A capacitor is charged with a constant current I. The graph shows the variation of potential  difference V across t"
+    },
+    {
+      "id": "2021_May_HL_P2_Q7",
+      "source": "May 2021 TZ2 HL Paper 2 Q7",
+      "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: transformer, primary coil, secondary coil)",
+      "preview": "7.\t (a)\t \u0007The primary coil of a transformer is connected to a 110\u2009V alternating current (ac) supply.  The secondary coil"
+    },
+    {
+      "id": "2020_Nov_SL_P1_Q30",
+      "source": "Nov 2020 TZ1 SL Paper 1 Q30",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: feynman diagram)",
+      "preview": "30.\t The Feynman diagram shows some of the changes in a proton\u2013proton collision. u u d d d u time What is the equation f"
+    },
+    {
+      "id": "2020_Nov_SL_P3_Q10",
+      "source": "Nov 2020 TZ1 SL Paper 3 Opt C Q10",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "10.\t The diagram represents a diverging mirror being used to view an object. centre of the mirror object eye (a)\t Constr"
+    },
+    {
+      "id": "2020_Nov_SL_P3_Q11",
+      "source": "Nov 2020 TZ1 SL Paper 3 Opt C Q11",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "11.\t A beam of monochromatic light from infinity is incident on a converging lens A. The diagram  shows three wavefronts"
+    },
+    {
+      "id": "2020_Nov_SL_P3_Q12",
+      "source": "Nov 2020 TZ1 SL Paper 3 Opt C Q12",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "12.\t (a)\t Outline the meaning of normal adjustment for a compound microscope.\b [1] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2020_Nov_SL_P3_Q13",
+      "source": "Nov 2020 TZ1 SL Paper 3 Opt C Q13",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "13.\t A single pulse of light enters an optic fibre which contains small impurities that scatter the  light. Explain the "
+    },
+    {
+      "id": "2020_Nov_HL_P3_Q13",
+      "source": "Nov 2020 TZ1 HL Paper 3 Opt C Q13",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "13.\t The diagram represents a diverging mirror being used to view an object. centre of the mirror object eye (a)\t Constr"
+    },
+    {
+      "id": "2020_Nov_HL_P3_Q14",
+      "source": "Nov 2020 TZ1 HL Paper 3 Opt C Q14",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "14.\t A beam of monochromatic light from infinity is incident on a converging lens A. The diagram  shows three wavefronts"
+    },
+    {
+      "id": "2020_Nov_HL_P3_Q15",
+      "source": "Nov 2020 TZ1 HL Paper 3 Opt C Q15",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "15.\t (a)\t \u0007Outline the meaning of normal adjustment for a compound microscope.\b [1] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2020_Nov_HL_P3_Q16",
+      "source": "Nov 2020 TZ1 HL Paper 3 Opt C Q16",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "16.  A single pulse of light enters an optic fi bre which contains small impurities that scatter the  light. Explain the"
+    },
+    {
+      "id": "2020_Nov_HL_P3_Q17",
+      "source": "Nov 2020 TZ1 HL Paper 3 Opt C Q17",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "17.  The photograph shows an X-ray image of a hand. (a)  Explain how attenuation causes the contrast between soft tissue"
+    },
+    {
+      "id": "2020_Nov_HL_P3_Q18",
+      "source": "Nov 2020 TZ1 HL Paper 3 Opt C Q18",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "18.\t (a)\t \u0007Explain the cause of the radio-frequency emissions from a patient\u2019s body during  nuclear magnetic resonance ("
+    },
+    {
+      "id": "2020_Nov_HL_P1_Q22",
+      "source": "Nov 2020 TZ1 HL Paper 1 Q22",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: feynman diagram)",
+      "preview": "22.\t The Feynman diagram shows some of the changes in a proton\u2013proton collision. u u d d d u time What is the equation f"
+    },
+    {
+      "id": "2020_Nov_HL_P1_Q36",
+      "source": "Nov 2020 TZ1 HL Paper 1 Q36",
+      "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: capacitance, capacitor)",
+      "preview": "36.\t A capacitor of capacitance C has initial charge Q. The capacitor is discharged through a  resistor of resistance R."
+    },
+    {
+      "id": "2019_Nov_SL_P3_Q7",
+      "source": "Nov 2019 TZ1 SL Paper 3 Opt C Q7",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "7.\t (a)\t \u0007The diagram, drawn to scale, shows an object O placed in front of a converging mirror.  The focal point of the"
+    },
+    {
+      "id": "2019_Nov_SL_P3_Q8",
+      "source": "Nov 2019 TZ1 SL Paper 3 Opt C Q8",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "8.\t A small object is placed at a distance of 2.0\u2009cm from the objective lens of an optical  compound microscope in norma"
+    },
+    {
+      "id": "2019_Nov_SL_P3_Q9",
+      "source": "Nov 2019 TZ1 SL Paper 3 Opt C Q9",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "9.\t Communication signals are transmitted over long distances through optic fibres. (a)\t Describe why a higher data tran"
+    },
+    {
+      "id": "2019_Nov_HL_P2_Q9",
+      "source": "Nov 2019 TZ1 HL Paper 2 Q9",
+      "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: capacitance, capacitor)",
+      "preview": "9.\t X has a capacitance of 18 \u00b5F. X is charged so that the one plate has a charge of 48 \u00b5C. X is  then connected to an u"
+    },
+    {
+      "id": "2019_Nov_HL_P3_Q11",
+      "source": "Nov 2019 TZ1 HL Paper 3 Opt C Q11",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "11.\t (a)\t \u0007The diagram, drawn to scale, shows an object O placed in front of a converging mirror.  The focal point of th"
+    },
+    {
+      "id": "2019_Nov_HL_P3_Q12",
+      "source": "Nov 2019 TZ1 HL Paper 3 Opt C Q12",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "12.\t A small object is placed at a distance of 2.0\u2009cm from the objective lens of an optical  compound microscope in norm"
+    },
+    {
+      "id": "2019_Nov_HL_P3_Q13",
+      "source": "Nov 2019 TZ1 HL Paper 3 Opt C Q13",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "13.\t Communication signals are transmitted over long distances through optic fibres. (a)\t Describe why a higher data tra"
+    },
+    {
+      "id": "2019_Nov_HL_P3_Q14",
+      "source": "Nov 2019 TZ1 HL Paper 3 Opt C Q14",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "14.\t (a)\t \u0007An X-ray beam, of intensity I0\u2009, is used to examine the flow of blood through an artery in  the leg of a pati"
+    },
+    {
+      "id": "2019_Nov_HL_P1_Q35",
+      "source": "Nov 2019 TZ1 HL Paper 1 Q35",
+      "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: capacitance, capacitor)",
+      "preview": "35.\t A capacitor of capacitance 1.0\u2009\u00b5F stores a charge of 15\u2009\u00b5C. The capacitor is discharged  through a 25\u2009\u2126 resistor. W"
+    },
+    {
+      "id": "2019_Nov_HL_P1_Q36",
+      "source": "Nov 2019 TZ1 HL Paper 1 Q36",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
+      "preview": "36.\t A diode bridge rectification circuit is constructed as shown. An alternating potential difference  is applied betwe"
+    },
+    {
+      "id": "2019_May_SL_P3_Q8",
+      "source": "May 2019 TZ1 SL Paper 3 Opt C Q8",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "8.\t Plane wavefronts in air are incident on the curved side of a transparent semi-circular block of  refractive index 2."
+    },
+    {
+      "id": "2019_May_SL_P3_Q9",
+      "source": "May 2019 TZ1 SL Paper 3 Opt C Q9",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "9.\t (a)\t \u0007An object O is placed in front of concave mirror. The centre of the mirror is labelled with  the letter C. C O"
+    },
+    {
+      "id": "2019_May_SL_P3_Q10",
+      "source": "May 2019 TZ1 SL Paper 3 Opt C Q10",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "10.\t (a)\t \u0007The diagram shows a light ray incident from air into the core of an optic fibre. The angle  of incidence is \u03b8"
+    },
+    {
+      "id": "2019_May_SL_P2_Q6",
+      "source": "May 2019 TZ2 SL Paper 2 Q6",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: quark, strangeness)",
+      "preview": "6.\t Deuterium, 2 1H, undergoes fusion according to the following reaction. 2 2 3 1 1 1 H H H X + \u2192 + (a)\t Identify parti"
+    },
+    {
+      "id": "2019_May_SL_P1_Q15",
+      "source": "May 2019 TZ2 SL Paper 1 Q15",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
+      "preview": "15.\t Unpolarized light is incident on two polarizers. The axes of polarization of both polarizers  are initially paralle"
+    },
+    {
+      "id": "2019_May_SL_P1_Q26",
+      "source": "May 2019 TZ2 SL Paper 1 Q26",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: lepton, baryon)",
+      "preview": "26.\t Three conservation laws in nuclear reactions are I.\t conservation of charge II.\t conservation of baryon number III."
+    },
+    {
+      "id": "2019_May_SL_P1_Q27",
+      "source": "May 2019 TZ2 SL Paper 1 Q27",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: feynman diagram)",
+      "preview": "27.\t Which Feynman diagram shows the emission of a photon by a charged antiparticle? A.\b time B.\b time C.\b time D.\b time"
+    },
+    {
+      "id": "2019_May_SL_P3_Q11",
+      "source": "May 2019 TZ2 SL Paper 3 Opt C Q11",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "11.\t (a)\t \u0007A student places an object 5.0\u2009cm from a converging lens of focal length 10.0\u2009cm. 10 cm 10 cm (i)\t Construct "
+    },
+    {
+      "id": "2019_May_SL_P3_Q12",
+      "source": "May 2019 TZ2 SL Paper 3 Opt C Q12",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "12.\t (a)\t \u0007Outline the differences between step-index and graded-index optic fibres.\b [2] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2019_May_SL_P2_Q2",
+      "source": "May 2019 TZ1 SL Paper 2 Q2",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: quark, quarks, hadron)",
+      "preview": "2.\t (a)\t Silicon-30 ( ) 30 14Si can be formed from phosphorus-30 ( ) 30 15P by a process of beta-plus decay. (i)\t Write "
+    },
+    {
+      "id": "2019_May_HL_P1_Q36",
+      "source": "May 2019 TZ1 HL Paper 1 Q36",
+      "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: capacitor, capacitors)",
+      "preview": "36.\t Two capacitors of 3\u2009\u00b5F and 6\u2009\u00b5F are connected in series and charged using a 9\u2009V battery. What charge is stored on e"
+    },
+    {
+      "id": "2019_May_HL_P2_Q2",
+      "source": "May 2019 TZ1 HL Paper 2 Q2",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: quark, quarks, hadron)",
+      "preview": "2.\t (a)\t A beam of electrons each of de Broglie wavelength 2.4\u00a0\u00d7\u00a010\u201315\u2009m is incident on a  thin film of silicon-30 ( ) 3"
+    },
+    {
+      "id": "2019_May_HL_P2_Q8",
+      "source": "May 2019 TZ1 HL Paper 2 Q8",
+      "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: capacitance, capacitor)",
+      "preview": "8.\t A student makes a parallel-plate capacitor of capacitance 68\u2009nF from aluminium foil and  plastic film by inserting o"
+    },
+    {
+      "id": "2019_May_HL_P3_Q15",
+      "source": "May 2019 TZ2 HL Paper 3 Opt C Q15",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "15.\t (a)\t \u0007A student places an object 5.0\u2009cm from a converging lens of focal length 10.0\u2009cm. 10 cm 10 cm (i)\t Construct "
+    },
+    {
+      "id": "2019_May_HL_P3_Q16",
+      "source": "May 2019 TZ2 HL Paper 3 Opt C Q16",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "16.\t (a)\t \u0007Outline the differences between step-index and graded-index optic fibres.\b [2] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2019_May_HL_P3_Q17",
+      "source": "May 2019 TZ2 HL Paper 3 Opt C Q17",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "17.\t (a)\t \u0007An ultrasound A-scan is performed on a patient. (i)\t State one advantage and one disadvantage of using ultras"
+    },
+    {
+      "id": "2019_May_HL_P1_Q18",
+      "source": "May 2019 TZ2 HL Paper 1 Q18",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
+      "preview": "18.\t Unpolarized light is incident on two polarizers. The axes of polarization of both polarizers  are initially paralle"
+    },
+    {
+      "id": "2019_May_HL_P1_Q26",
+      "source": "May 2019 TZ2 HL Paper 1 Q26",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
+      "preview": "26.\t The input to a diode bridge rectification circuit is sinusoidal with a time period of 20\u2009ms. X Y Which graph shows "
+    },
+    {
+      "id": "2019_May_HL_P1_Q27",
+      "source": "May 2019 TZ2 HL Paper 1 Q27",
+      "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: capacitance, capacitors)",
+      "preview": "27.\t Three identical capacitors are connected in series. The total capacitance of the arrangement is 1mF 9 .  The three "
+    },
+    {
+      "id": "2019_May_HL_P1_Q28",
+      "source": "May 2019 TZ2 HL Paper 1 Q28",
+      "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: transformer, primary coil, secondary coil)",
+      "preview": "28.\t A transformer with 600 turns in the primary coil is used to change an alternating root mean square  (rms) potential"
+    },
+    {
+      "id": "2019_May_HL_P1_Q34",
+      "source": "May 2019 TZ2 HL Paper 1 Q34",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: quark, meson)",
+      "preview": "34.\t The \u03c0+\u00a0meson contains an up (u) quark. What is the quark structure of the \u03c0-\u00a0meson? A.\t ud B.\t ud C.\t ud D.\t ud"
+    },
+    {
+      "id": "2019_May_HL_P1_Q35",
+      "source": "May 2019 TZ2 HL Paper 1 Q35",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: lepton, baryon)",
+      "preview": "35.\t Three conservation laws in nuclear reactions are I.\t conservation of charge II.\t conservation of baryon number III."
+    },
+    {
+      "id": "2019_May_HL_P2_Q4",
+      "source": "May 2019 TZ2 HL Paper 2 Q4",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
+      "preview": "4.\t Three identical light bulbs, X, Y and Z, each of resistance 4.0\u2009\u2126 are connected to a cell of  emf\u00a012\u2009V. The cell has"
+    },
+    {
+      "id": "2019_May_HL_P2_Q6",
+      "source": "May 2019 TZ2 HL Paper 2 Q6",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: quark, strangeness)",
+      "preview": "6.\t Deuterium, 2 1H, undergoes fusion according to the following reaction. 2 2 3 1 1 1 H H H X + \u2192 + (a)\t Identify parti"
+    },
+    {
+      "id": "2019_May_HL_P3_Q12",
+      "source": "May 2019 TZ1 HL Paper 3 Opt C Q12",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "12.\t Plane wavefronts in air are incident on the curved side of a transparent semi-circular block of  refractive index 2"
+    },
+    {
+      "id": "2019_May_HL_P3_Q13",
+      "source": "May 2019 TZ1 HL Paper 3 Opt C Q13",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "13.\t (a)\t \u0007An object O is placed in front of a concave mirror. The centre of the mirror is labelled  with the letter C. "
+    },
+    {
+      "id": "2019_May_HL_P3_Q14",
+      "source": "May 2019 TZ1 HL Paper 3 Opt C Q14",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "14.\t (a)\t \u0007The diagram shows a light ray incident from air into the core of an optic fibre. The angle  of incidence is \u03b8"
+    },
+    {
+      "id": "2019_May_HL_P3_Q15",
+      "source": "May 2019 TZ1 HL Paper 3 Opt C Q15",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "15.\t (a)\t Outline how ultrasound, in a medical context, is produced.\b [2] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2019_May_HL_P3_Q16",
+      "source": "May 2019 TZ1 HL Paper 3 Opt C Q16",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "16.\t (a)\t \u0007A parallel beam of X-rays travels through 7.8\u2009cm of tissue to reach the bowel surface.  Calculate the fractio"
+    },
+    {
+      "id": "2018_Nov_SL_P1_Q27",
+      "source": "Nov 2018 TZ1 SL Paper 1 Q27",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: quark, baryon, strangeness)",
+      "preview": "27.\t The following interaction is proposed between a proton and a pion. p\u200a+\u00a0\u00a0+\u00a0\u00a0\u200a\u03c0 \u2013\u00a0\u00a0\u200a\uf0ae\u00a0\u00a0K \u2013\u00a0\u00a0\u200a+\u00a0\u00a0\u03c0 +   The quark conte"
+    },
+    {
+      "id": "2018_Nov_SL_P3_Q8",
+      "source": "Nov 2018 TZ1 SL Paper 3 Opt C Q8",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "8.\t The refractive index of glass decreases with increasing wavelength.  The diagram shows  rays of light incident on a "
+    },
+    {
+      "id": "2018_Nov_SL_P3_Q9",
+      "source": "Nov 2018 TZ1 SL Paper 3 Opt C Q9",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "9.\t The diagram shows two light rays that form an intermediate image by the objective lens  of an optical compound micro"
+    },
+    {
+      "id": "2018_Nov_SL_P3_Q10",
+      "source": "Nov 2018 TZ1 SL Paper 3 Opt C Q10",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "10.\t (a)\t An optic fibre consists of a glass core of refractive index 1.52 surrounded by cladding  of refractive index n"
+    },
+    {
+      "id": "2018_Nov_HL_P2_Q2",
+      "source": "Nov 2018 TZ1 HL Paper 2 Q2",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
+      "preview": "2.\t A lighting system consists of two long metal rods with a potential difference maintained  between them.  Identical l"
+    },
+    {
+      "id": "2018_Nov_HL_P3_Q12",
+      "source": "Nov 2018 TZ1 HL Paper 3 Opt C Q12",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "12.\t The refractive index of glass decreases with increasing wavelength.  The diagram shows  rays of light incident on a"
+    },
+    {
+      "id": "2018_Nov_HL_P3_Q13",
+      "source": "Nov 2018 TZ1 HL Paper 3 Opt C Q13",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "13.\t The diagram shows two light rays that form an intermediate image by the objective lens  of an optical compound micr"
+    },
+    {
+      "id": "2018_Nov_HL_P3_Q14",
+      "source": "Nov 2018 TZ1 HL Paper 3 Opt C Q14",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "14.\t (a)\t An optic fibre consists of a glass core of refractive index 1.52 surrounded by cladding  of refractive index n"
+    },
+    {
+      "id": "2018_Nov_HL_P3_Q15",
+      "source": "Nov 2018 TZ1 HL Paper 3 Opt C Q15",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "15.\t In nuclear magnetic resonance imaging (NMR) a patient is exposed to a strong external  magnetic field so that the s"
+    },
+    {
+      "id": "2018_Nov_HL_P3_Q16",
+      "source": "Nov 2018 TZ1 HL Paper 3 Opt C Q16",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "16.\t A beam of ultrasound of intensity \u200aI0\u200a enters a layer of muscle of thickness 4.1\u200acm. muscle bone gel 4.1 cm beam of"
+    },
+    {
+      "id": "2018_Nov_HL_P1_Q35",
+      "source": "Nov 2018 TZ1 HL Paper 1 Q35",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
+      "preview": "35.  A current of 1.0\u00a0\u00d7\u00a010\u20133\u2009\u2009A\u200a flows in the primary coil of a step-up transformer.  The number of turns in  the primar"
+    },
+    {
+      "id": "2018_Nov_HL_P1_Q36",
+      "source": "Nov 2018 TZ1 HL Paper 1 Q36",
+      "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: capacitance, capacitors)",
+      "preview": "36.  Four identical capacitors of capacitance X are connected as shown in the diagram. X X X X P Q   What is the effecti"
+    },
+    {
+      "id": "2018_Nov_HL_P1_Q38",
+      "source": "Nov 2018 TZ1 HL Paper 1 Q38",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: feynman diagram)",
+      "preview": "38.  Which is the correct Feynman diagram for pair annihilation and pair production? e + e + e \u2013 e \u2013 e + e + e \u2013 e \u2013 A. "
+    },
+    {
+      "id": "2018_May_SL_P3_Q8",
+      "source": "May 2018 TZ1 SL Paper 3 Opt C Q8",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "8. (a)\t A converging (convex) lens forms an image of an object on a screen. diagram not to scale object converging lens "
+    },
+    {
+      "id": "2018_May_SL_P3_Q9",
+      "source": "May 2018 TZ1 SL Paper 3 Opt C Q9",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "9.\t A ray of light travelling in an optic fibre undergoes total internal reflection at point P. P cladding core The refr"
+    },
+    {
+      "id": "2018_May_SL_P2_Q6",
+      "source": "May 2018 TZ2 SL Paper 2 Q6",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: quark, feynman diagram)",
+      "preview": "6.\t (a)\t Rutherford constructed a model of the atom based on the results of the alpha particle  scattering experiment.  "
+    },
+    {
+      "id": "2018_May_SL_P3_Q8",
+      "source": "May 2018 TZ2 SL Paper 3 Opt C Q8",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "8.\t A ray diagram for a converging lens is shown.  The object is labelled O and the image is  labelled I. 2.0 cm O I con"
+    },
+    {
+      "id": "2018_May_SL_P3_Q9",
+      "source": "May 2018 TZ2 SL Paper 3 Opt C Q9",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "9.\t The diagram represents a simple optical astronomical reflecting telescope with the path of  some light rays shown. \t"
+    },
+    {
+      "id": "2018_May_SL_P3_Q10",
+      "source": "May 2018 TZ2 SL Paper 3 Opt C Q10",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "10.\t (a)\t An optic fibre of refractive index 1.4475 is surrounded by air.  The critical angle for  the\u00a0core\u200a\u2013\u200aair bounda"
+    },
+    {
+      "id": "2018_May_SL_P1_Q24",
+      "source": "May 2018 TZ1 SL Paper 1 Q24",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: feynman diagram)",
+      "preview": "24.\t Which Feynman diagram shows beta-plus (\u03b2+) decay? A.\b W+ e+ d u \u03bde B.\b W+ e+ d u \u03bde C.\b d u e+ W\u2212 \u03bde D.\b e+ d u W+ "
+    },
+    {
+      "id": "2018_May_HL_P1_Q19",
+      "source": "May 2018 TZ1 HL Paper 1 Q19",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: feynman diagram)",
+      "preview": "19. Which Feynman diagram shows beta-plus (\u03b2+) decay? A.\b W+ e+ d u \u03bde B. W+ e+ d u \u03bde C.\b d u e+ W\u2212 \u03bde D.\b e+ d u W+ \u03bde"
+    },
+    {
+      "id": "2018_May_HL_P1_Q21",
+      "source": "May 2018 TZ1 HL Paper 1 Q21",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: higgs boson, higgs)",
+      "preview": "21.\t What is correct about the Higgs Boson? A.\t It was predicted before it was observed. B.\t It was difficult to detect "
+    },
+    {
+      "id": "2018_May_HL_P1_Q34",
+      "source": "May 2018 TZ1 HL Paper 1 Q34",
+      "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: transformer, primary coil, secondary coil)",
+      "preview": "34.\t The graph shows the variation with time t of the current I in the primary coil of an ideal transformer. 0 0 I t The"
+    },
+    {
+      "id": "2018_May_HL_P1_Q35",
+      "source": "May 2018 TZ1 HL Paper 1 Q35",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
+      "preview": "35.\t The diagram shows a diode bridge rectification circuit and a load resistor.   load resistor output output The input"
+    },
+    {
+      "id": "2018_May_HL_P2_Q7",
+      "source": "May 2018 TZ1 HL Paper 2 Q7",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
+      "preview": "7.\t A capacitor consists of two parallel square plates separated by a vacuum.  The plates are  2.5\u2009cm \u00d7 2.5\u2009cm squares. "
+    },
+    {
+      "id": "2018_May_HL_P3_Q12",
+      "source": "May 2018 TZ2 HL Paper 3 Opt C Q12",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "12.\t A ray diagram for a converging lens is shown.  The object is labelled O and the image is  labelled I. 2.0 cm O I co"
+    },
+    {
+      "id": "2018_May_HL_P3_Q13",
+      "source": "May 2018 TZ2 HL Paper 3 Opt C Q13",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "13.\t The diagram represents a simple optical astronomical reflecting telescope with the path of  some light rays shown. "
+    },
+    {
+      "id": "2018_May_HL_P3_Q14",
+      "source": "May 2018 TZ2 HL Paper 3 Opt C Q14",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "14.\t (a)\t An optic fibre of refractive index 1.4475 is surrounded by air.  The critical angle for  the\u00a0core\u200a\u2013\u200aair bounda"
+    },
+    {
+      "id": "2018_May_HL_P3_Q15",
+      "source": "May 2018 TZ2 HL Paper 3 Opt C Q15",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "15.  (a)  Outline the formation of a B scan in medical ultrasound imaging. [3] . . . . . . . . . . . . . . . . . . . . ."
+    },
+    {
+      "id": "2018_May_HL_P1_Q20",
+      "source": "May 2018 TZ2 HL Paper 1 Q20",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: lepton, baryon, strangeness)",
+      "preview": "20. Identify the conservation law violated in the proposed reaction. p+\u00a0+\u00a0p+\u00a0\uf074\u00a0p+\u00a0+\u00a0n0 + \uf06d\u2009+ A. Strangeness B. Lepton nu"
+    },
+    {
+      "id": "2018_May_HL_P1_Q36",
+      "source": "May 2018 TZ2 HL Paper 1 Q36",
+      "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: capacitance, capacitors)",
+      "preview": "36.\t Three capacitors, each one with a capacitance C, are connected such that their combined  capacitance is 1.5C.  How "
+    },
+    {
+      "id": "2018_May_HL_P2_Q8",
+      "source": "May 2018 TZ2 HL Paper 2 Q8",
+      "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: capacitance, capacitor)",
+      "preview": "8.\t A negatively charged thundercloud above the Earth\u2019s surface may be modelled by a  parallel\u00a0plate capacitor. thunderc"
+    },
+    {
+      "id": "2018_May_HL_P2_Q9",
+      "source": "May 2018 TZ2 HL Paper 2 Q9",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: quark, feynman diagram)",
+      "preview": "9.\t (a)\t Rutherford constructed a model of the atom based on the results of the alpha particle  scattering experiment.  "
+    },
+    {
+      "id": "2018_May_HL_P3_Q12",
+      "source": "May 2018 TZ1 HL Paper 3 Opt C Q12",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "12. (a)\t A converging (convex) lens forms an image of an object on a screen. diagram not to scale object converging lens"
+    },
+    {
+      "id": "2018_May_HL_P3_Q13",
+      "source": "May 2018 TZ1 HL Paper 3 Opt C Q13",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "13.\t A ray of light travelling in an optic fibre undergoes total internal reflection at point P. P cladding core The ref"
+    },
+    {
+      "id": "2018_May_HL_P3_Q14",
+      "source": "May 2018 TZ1 HL Paper 3 Opt C Q14",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "14.\u00a0 (a)\t Outline how ultrasound is generated for medical imaging.\b [2] \t . . . . . . . . . . . . . . . . . . . . . . . "
+    },
+    {
+      "id": "2017_Nov_SL_P1_Q25",
+      "source": "Nov 2017 TZ1 SL Paper 1 Q25",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: feynman diagram)",
+      "preview": "25.  The Feynman diagram shows a particle interaction involving a W\u2009\u2013 boson. time \t U  X W\u2009\u2013 \t Z  Y   Which particles ar"
+    },
+    {
+      "id": "2017_Nov_SL_P2_Q2",
+      "source": "Nov 2017 TZ1 SL Paper 2 Q2",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: leptons, hadrons, feynman diagram)",
+      "preview": "2.\t The Feynman diagram shows electron capture. time n p \t W\u2009+ X e\u2013 \t (a)\t Deduce that X must be an electron neutrino. ["
+    },
+    {
+      "id": "2017_Nov_SL_P3_Q9",
+      "source": "Nov 2017 TZ1 SL Paper 3 Opt C Q9",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "9.\t A magnifying glass is constructed from a thin converging lens. \t (a)\t (i)\t Sketch a ray diagram to show how the magn"
+    },
+    {
+      "id": "2017_Nov_SL_P3_Q10",
+      "source": "Nov 2017 TZ1 SL Paper 3 Opt C Q10",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "10.\t An astronomical reflecting telescope is being used to observe the night sky. \t The diagram shows an incomplete refl"
+    },
+    {
+      "id": "2017_Nov_HL_P2_Q3",
+      "source": "Nov 2017 TZ1 HL Paper 2 Q3",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: leptons, hadrons, feynman diagram)",
+      "preview": "3. (a)\t The Feynman diagram shows electron capture. time n p \t W\u2009+ X e\u2013 (i) State and explain the nature of the particle"
+    },
+    {
+      "id": "2017_Nov_HL_P3_Q13",
+      "source": "Nov 2017 TZ1 HL Paper 3 Opt C Q13",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "13.\t A magnifying glass is constructed from a thin converging lens. \t (a)\t (i)\t Sketch a ray diagram to show how the mag"
+    },
+    {
+      "id": "2017_Nov_HL_P3_Q14",
+      "source": "Nov 2017 TZ1 HL Paper 3 Opt C Q14",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "14.\t An astronomical reflecting telescope is being used to observe the night sky. \t The diagram shows an incomplete refl"
+    },
+    {
+      "id": "2017_Nov_HL_P3_Q15",
+      "source": "Nov 2017 TZ1 HL Paper 3 Opt C Q15",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "15.\t Some optic fibres consist of a core surrounded by cladding as shown in the diagram. \t cladding \t O \t \uf061 \t \uf062 \t \uf068 axis"
+    },
+    {
+      "id": "2017_Nov_HL_P3_Q16",
+      "source": "Nov 2017 TZ1 HL Paper 3 Opt C Q16",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "16.\t An X-ray beam of intensity  0I is incident on lead.  After travelling a distance x through the  lead the intensity "
+    },
+    {
+      "id": "2017_Nov_HL_P1_Q22",
+      "source": "Nov 2017 TZ1 HL Paper 1 Q22",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: feynman diagram)",
+      "preview": "22.\t The Feynman diagram shows a particle interaction involving a W\u2009\u2013 boson. time \t U \t X W\u2009\u2013 \t Z \tY \t Which particles a"
+    },
+    {
+      "id": "2017_Nov_HL_P1_Q35",
+      "source": "Nov 2017 TZ1 HL Paper 1 Q35",
+      "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: transformer, primary coil, secondary coil)",
+      "preview": "35.\t The ratio  number of primary turns number of secondary turns for a transformer is 2.5. \t The primary coil of the tr"
+    },
+    {
+      "id": "2017_Nov_HL_P1_Q37",
+      "source": "Nov 2017 TZ1 HL Paper 1 Q37",
+      "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: capacitance, capacitors)",
+      "preview": "37.\t Six identical capacitors, each of value C, are connected as shown. \t What is the total capacitance? \t A.\t 6 C \t B.\t"
+    },
+    {
+      "id": "2017_Nov_HL_P1_Q38",
+      "source": "Nov 2017 TZ1 HL Paper 1 Q38",
+      "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: capacitance, capacitor)",
+      "preview": "38.\t A capacitor of capacitance C discharges through a resistor of resistance R.  The graph shows the  variation with ti"
+    },
+    {
+      "id": "2017_May_SL_P3_Q7",
+      "source": "May 2017 TZ1 SL Paper 3 Opt C Q7",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "7.\t (a)\t The diagram is a partially-completed ray diagram for a compound microscope that  consists of two thin convergin"
+    },
+    {
+      "id": "2017_May_SL_P3_Q8",
+      "source": "May 2017 TZ1 SL Paper 3 Opt C Q8",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "8.\t Communication signals are transmitted through optic fibres using infrared radiation. (a)\t (i)\t State two advantages "
+    },
+    {
+      "id": "2017_May_SL_P1_Q16",
+      "source": "May 2017 TZ2 SL Paper 1 Q16",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
+      "preview": "16.  A beam of unpolarized light is incident on the first of two parallel polarizers.  The transmission axes  of the two"
+    },
+    {
+      "id": "2017_May_SL_P1_Q27",
+      "source": "May 2017 TZ2 SL Paper 1 Q27",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: lepton, baryon, strangeness)",
+      "preview": "27.\t The reaction p+\u200a\u2009+\u200a\u2009n0\u200a\u2009t\u200a\u2009p+\u200a\u2009+\u200a\u2009o0 does not occur because it violates the conservation law of \t A.\t electric char"
+    },
+    {
+      "id": "2017_May_SL_P3_Q8",
+      "source": "May 2017 TZ2 SL Paper 3 Opt C Q8",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "8.\t The diagram shows planar wavefronts incident on a converging lens.  The focal point of the  lens is marked with the "
+    },
+    {
+      "id": "2017_May_SL_P3_Q9",
+      "source": "May 2017 TZ2 SL Paper 3 Opt C Q9",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "9.\t Two converging lenses placed a distance 90\u2009\u200acm apart are used as a simple astronomical  refracting telescope at norm"
+    },
+    {
+      "id": "2017_May_SL_P3_Q1",
+      "source": "May 2017 TZ2 SL Paper 3 Opt C Q1",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "1.\t . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . "
+    },
+    {
+      "id": "2017_May_SL_P3_Q2",
+      "source": "May 2017 TZ2 SL Paper 3 Opt C Q2",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "2.\t . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . "
+    },
+    {
+      "id": "2017_May_SL_P3_Q10",
+      "source": "May 2017 TZ2 SL Paper 3 Opt C Q10",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "10.\t (a)\t The diagram shows a ray of light in air that enters the core of an optic fibre. A cladding air \t \t The ray mak"
+    },
+    {
+      "id": "2017_May_SL_P2_Q5",
+      "source": "May 2017 TZ1 SL Paper 2 Q5",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: quark, baryon, meson)",
+      "preview": "5. (a)\t State the quark structures of a meson and a baryon. [2] \t Meson: . . . . . . . . . . . . . . . . . . . . . . . ."
+    },
+    {
+      "id": "2017_May_HL_P1_Q35",
+      "source": "May 2017 TZ1 HL Paper 1 Q35",
+      "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: capacitance, capacitor)",
+      "preview": "35.\t A capacitor is charged by a constant current of 2.5\u2009\u00b5A for 100\u2009s.  As a result the potential difference  across the"
+    },
+    {
+      "id": "2017_May_HL_P2_Q5",
+      "source": "May 2017 TZ1 HL Paper 2 Q5",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: quark, baryon, meson)",
+      "preview": "5. (a)\t State the quark structures of a meson and a baryon. [2] \t Meson: . . . . . . . . . . . . . . . . . . . . . . . ."
+    },
+    {
+      "id": "2017_May_HL_P2_Q8",
+      "source": "May 2017 TZ1 HL Paper 2 Q8",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
+      "preview": "8.\t (a)\t State Faraday\u2019s law of induction. [2] \t . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
+    },
+    {
+      "id": "2017_May_HL_P3_Q12",
+      "source": "May 2017 TZ2 HL Paper 3 Opt C Q12",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "12.\t The diagram shows planar wavefronts incident on a converging lens.  The focal point of the  lens is marked with the"
+    },
+    {
+      "id": "2017_May_HL_P3_Q13",
+      "source": "May 2017 TZ2 HL Paper 3 Opt C Q13",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "13.\t Two converging lenses placed a distance 90\u2009\u200acm apart are used as a simple astronomical  refracting telescope at nor"
+    },
+    {
+      "id": "2017_May_HL_P3_Q1",
+      "source": "May 2017 TZ2 HL Paper 3 Opt C Q1",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "1.\t . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . "
+    },
+    {
+      "id": "2017_May_HL_P3_Q2",
+      "source": "May 2017 TZ2 HL Paper 3 Opt C Q2",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "2.\t . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . "
+    },
+    {
+      "id": "2017_May_HL_P3_Q14",
+      "source": "May 2017 TZ2 HL Paper 3 Opt C Q14",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "14.\t (a)\t The diagram shows a ray of light in air that enters the core of an optic fibre. A cladding air \t \t The ray mak"
+    },
+    {
+      "id": "2017_May_HL_P3_Q15",
+      "source": "May 2017 TZ2 HL Paper 3 Opt C Q15",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "15.\t (a)\t State a typical frequency used in medical ultrasound imaging. [1] \t . . . . . . . . . . . . . . . . . . . . . "
+    },
+    {
+      "id": "2017_May_HL_P3_Q16",
+      "source": "May 2017 TZ2 HL Paper 3 Opt C Q16",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "16.\t In nuclear magnetic resonance (NMR) imaging radio frequency electromagnetic radiation is  detected by the imaging s"
+    },
+    {
+      "id": "2017_May_HL_P1_Q13",
+      "source": "May 2017 TZ2 HL Paper 1 Q13",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
+      "preview": "13.  A beam of unpolarized light is incident on the first of two parallel polarizers.  The transmission axes  of the two"
+    },
+    {
+      "id": "2017_May_HL_P1_Q22",
+      "source": "May 2017 TZ2 HL Paper 1 Q22",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: lepton, baryon, strangeness)",
+      "preview": "22.\t The reaction p+\u200a\u2009+\u200a\u2009n0\u200a\u2009t\u200a\u2009p+\u200a\u2009+\u200a\u2009o0 does not occur because it violates the conservation law of \t A.\t electric char"
+    },
+    {
+      "id": "2017_May_HL_P1_Q35",
+      "source": "May 2017 TZ2 HL Paper 1 Q35",
+      "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: capacitance, capacitor, capacitors)",
+      "preview": "35.\t Two capacitors of different capacitance are connected in series to a source of emf of negligible  internal resistan"
+    },
+    {
+      "id": "2017_May_HL_P2_Q3",
+      "source": "May 2017 TZ2 HL Paper 2 Q3",
+      "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: capacitance, capacitor)",
+      "preview": "3.\t The electrical circuit shown is used to investigate the temperature change in a wire that is  wrapped around a mercu"
+    },
+    {
+      "id": "2017_May_HL_P3_Q11",
+      "source": "May 2017 TZ1 HL Paper 3 Opt C Q11",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "11.\t (a)\t The diagram is a partially-completed ray diagram for a compound microscope that  consists of two thin convergi"
+    },
+    {
+      "id": "2017_May_HL_P3_Q12",
+      "source": "May 2017 TZ1 HL Paper 3 Opt C Q12",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "12.\t Communication signals are transmitted through optic fibres using infrared radiation. (a)\t (i)\t State two advantages"
+    },
+    {
+      "id": "2017_May_HL_P3_Q13",
+      "source": "May 2017 TZ1 HL Paper 3 Opt C Q13",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "13.\t (a)\t Outline why the fracture in a broken bone can be seen in a medical X-ray image. [2] \t . . . . . . . . . . . . "
+    },
+    {
+      "id": "2016_Nov_SL_P1_Q27",
+      "source": "Nov 2016 TZ1 SL Paper 1 Q27",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: quarks, hadron)",
+      "preview": "27.\t As quarks separate from each other within a hadron, the interaction between them becomes larger.  What is the natur"
+    },
+    {
+      "id": "2016_Nov_SL_P2_Q4",
+      "source": "Nov 2016 TZ1 SL Paper 2 Q4",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: quark, meson, feynman diagram)",
+      "preview": "4.\t (a)\t A particular K meson has a quark structure us.  State the charge on this\u00a0meson. [1] \t . . . . . . . . . . . . ."
+    },
+    {
+      "id": "2016_Nov_SL_P3_Q11",
+      "source": "Nov 2016 TZ1 SL Paper 3 Opt C Q11",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "11.\t Spherical converging mirrors are reflecting surfaces which are cut out of a sphere.  The  diagram shows a mirror, w"
+    },
+    {
+      "id": "2016_Nov_SL_P3_Q12",
+      "source": "Nov 2016 TZ1 SL Paper 3 Opt C Q12",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "12.\t A lamp is located 6.0\u2009\u200am from a screen. \t 6.0\u2009\u200am \tlamp\t screen \t Somewhere between the lamp and the screen, a lens "
+    },
+    {
+      "id": "2016_Nov_SL_P3_Q13",
+      "source": "Nov 2016 TZ1 SL Paper 3 Opt C Q13",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "13.\t Both optical refracting telescopes and compound microscopes consist of two converging  lenses. \t (a)\t Compare the f"
+    },
+    {
+      "id": "2016_Nov_SL_P3_Q14",
+      "source": "Nov 2016 TZ1 SL Paper 3 Opt C Q14",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "14.\t Optical fibres can be classified, based on the way the light travels through them, as  single-mode or multimode fib"
+    },
+    {
+      "id": "2016_Nov_HL_P2_Q4",
+      "source": "Nov 2016 TZ1 HL Paper 2 Q4",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: quark, baryon, meson)",
+      "preview": "4.\t (a)\t A particular K meson has a quark structure us.  State the charge, strangeness and  baryon number for this meson"
+    },
+    {
+      "id": "2016_Nov_HL_P2_Q10",
+      "source": "Nov 2016 TZ1 HL Paper 2 Q10",
+      "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: transformer, transformers)",
+      "preview": "10.  The following data are available for a natural gas power station that has a high efficiency. \t Rate of consumption "
+    },
+    {
+      "id": "2016_Nov_HL_P3_Q15",
+      "source": "Nov 2016 TZ1 HL Paper 3 Opt C Q15",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "15.\t Spherical converging mirrors are reflecting surfaces which are cut out of a sphere.  The  diagram shows a mirror, w"
+    },
+    {
+      "id": "2016_Nov_HL_P3_Q16",
+      "source": "Nov 2016 TZ1 HL Paper 3 Opt C Q16",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "16.\t A lamp is located 6.0\u2009\u200am from a screen. \t 6.0\u2009\u200am \tlamp\t screen \t Somewhere between the lamp and the screen, a lens "
+    },
+    {
+      "id": "2016_Nov_HL_P3_Q17",
+      "source": "Nov 2016 TZ1 HL Paper 3 Opt C Q17",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "17.\t Both optical refracting telescopes and compound microscopes consist of two converging  lenses. \t (a)\t Compare the f"
+    },
+    {
+      "id": "2016_Nov_HL_P3_Q18",
+      "source": "Nov 2016 TZ1 HL Paper 3 Opt C Q18",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "18.\t Optical fibres can be classified, based on the way the light travels through them, as  single-mode or multimode fib"
+    },
+    {
+      "id": "2016_Nov_HL_P3_Q19",
+      "source": "Nov 2016 TZ1 HL Paper 3 Opt C Q19",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "19.\t The linear attenuation coefficient \u00b5 of a material is affected by the energy of the X-ray beam  and by the density "
+    },
+    {
+      "id": "2016_Nov_HL_P3_Q20",
+      "source": "Nov 2016 TZ1 HL Paper 3 Opt C Q20",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "20.\t (a)\t State the property of protons used in nuclear magnetic resonance (NMR) imaging. [1] \t . . . . . . . . . . . . "
+    },
+    {
+      "id": "2016_Nov_HL_P1_Q34",
+      "source": "Nov 2016 TZ1 HL Paper 1 Q34",
+      "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: transformer, secondary coil)",
+      "preview": "34.\t The secondary coil of an alternating current (ac) transformer is connected to two diodes as shown. \t Which graph sh"
+    },
+    {
+      "id": "2016_Nov_HL_P1_Q35",
+      "source": "Nov 2016 TZ1 HL Paper 1 Q35",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
+      "preview": "35.\t A parallel-plate capacitor is connected to a battery.  What happens when a sheet of dielectric  material is inserte"
+    },
+    {
+      "id": "2016_Nov_HL_P1_Q36",
+      "source": "Nov 2016 TZ1 HL Paper 1 Q36",
+      "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: capacitance, capacitors)",
+      "preview": "36.\t Three capacitors are arranged as shown. \t 1.0\u2009F \t 2.0\u2009F \t 1.0\u2009F \t What is the total capacitance of the arrangement?"
+    },
+    {
+      "id": "2016_May_SL_P1_Q15",
+      "source": "May 2016 TZ1 SL Paper 1 Q15",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
+      "preview": "15.  Horizontally polarized light of intensity I0 enters a polarizer P whose polarization axis makes an  angle of \u03b8 degr"
+    },
+    {
+      "id": "2016_May_SL_P3_Q9",
+      "source": "May 2016 TZ1 SL Paper 3 Opt C Q9",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "9.\t The diagram shows a diverging mirror. mirror O 1 cm Object O has a height of 2.0\u2009cm and is 6.0\u2009cm from the mirror su"
+    },
+    {
+      "id": "2016_May_SL_P3_Q10",
+      "source": "May 2016 TZ1 SL Paper 3 Opt C Q10",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "10.  An astronomical telescope is used in normal adjustment.  The separation of the lenses in the  telescope is 0.84\u2009m. "
+    },
+    {
+      "id": "2016_May_SL_P3_Q11",
+      "source": "May 2016 TZ1 SL Paper 3 Opt C Q11",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "11.  A ray of monochromatic light enters a graded-index optic fibre. light ray central axis  cladding core (a)  Draw the"
+    },
+    {
+      "id": "2016_May_HL_P2_Q7",
+      "source": "May 2016 TZ1 HL Paper 2 Q7",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
+      "preview": "7.\t An uncharged capacitor in a vacuum is connected to a cell of emf 12\u2009V and negligible internal  resistance.  A resist"
+    },
+    {
+      "id": "2016_May_HL_P2_Q8",
+      "source": "May 2016 TZ1 HL Paper 2 Q8",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: quark, quarks, lepton)",
+      "preview": "8.\t In beta minus (\u03b2\u2009\u2212) decay a d quark decays into a u quark, an electron and an electron  antineutrino. (a)\t Show that"
+    },
+    {
+      "id": "2016_May_HL_P3_Q12",
+      "source": "May 2016 TZ1 HL Paper 3 Opt C Q12",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "12.\t The diagram shows a diverging mirror. mirror O 1 cm Object O has a height of 2.0\u2009cm and is 6.0\u2009cm from the mirror s"
+    },
+    {
+      "id": "2016_May_HL_P3_Q13",
+      "source": "May 2016 TZ1 HL Paper 3 Opt C Q13",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "13.  An astronomical telescope is used in normal adjustment.  The separation of the lenses in the  telescope is 0.84\u2009m. "
+    },
+    {
+      "id": "2016_May_HL_P3_Q14",
+      "source": "May 2016 TZ1 HL Paper 3 Opt C Q14",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "14.  A ray of monochromatic light enters a graded-index optic fibre. light ray central axis  cladding core (a)  Draw the"
+    },
+    {
+      "id": "2016_May_HL_P3_Q15",
+      "source": "May 2016 TZ1 HL Paper 3 Opt C Q15",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "15.\t In medical imaging, X-rays can be passed through aluminium before reaching the body.   The graph shows the variatio"
+    },
+    {
+      "id": "2016_May_HL_P3_Q16",
+      "source": "May 2016 TZ1 HL Paper 3 Opt C Q16",
+      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
+      "preview": "16.\t (a)\t State one advantage and one disadvantage of magnetic resonance imaging (MRI)  compared to X-ray imaging. [2] A"
+    },
+    {
+      "id": "2016_May_HL_P1_Q9",
+      "source": "May 2016 TZ1 HL Paper 1 Q9",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
+      "preview": "9.  Horizontally polarized light of intensity I0 enters a polarizer P whose polarization axis makes an  angle of \u03b8 degre"
+    },
+    {
+      "id": "2016_May_HL_P1_Q17",
+      "source": "May 2016 TZ1 HL Paper 1 Q17",
+      "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: quarks, leptons)",
+      "preview": "17.  Patterns in graphs help scientists make predictions.  What can be deduced from a graph of neutron  number versus pr"
+    },
+    {
+      "id": "2016_May_HL_P1_Q33",
+      "source": "May 2016 TZ1 HL Paper 1 Q33",
+      "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: capacitance, capacitor)",
+      "preview": "33.  A parallel-plate capacitor is connected to a cell of constant emf.  The capacitor plates are then  moved further ap"
+    },
+    {
+      "id": "2016_May_HL_P1_Q34",
+      "source": "May 2016 TZ1 HL Paper 1 Q34",
+      "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: capacitance, capacitors)",
+      "preview": "34.  Three identical capacitors, each of capacitance C, are connected as shown.  C C C What is the total capacitance of "
+    }
+  ]
+}

@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
+import { getSRSQueue } from '@/lib/srs-engine';
 import {
   ArrowLeft,
   RotateCcw,
@@ -230,14 +231,59 @@ const DECKS: Deck[] = [
 ];
 
 export default function FlashcardsPage() {
-  const [selectedDeckId, setSelectedDeckId] = useState<string>('sat-grammar');
+  const [srsCards, setSrsCards] = useState<Flashcard[]>([]);
+
+  useEffect(() => {
+    try {
+      const q = getSRSQueue();
+      if (q && q.length > 0) {
+        setSrsCards(
+          q.map((item) => ({
+            id: item.id,
+            front: item.title,
+            frontHint: item.prompt.slice(0, 140),
+            back: `${item.answer}${item.explanation ? '\n\n' + item.explanation : ''}`,
+            category: item.source === 'sat' ? 'Digital SAT' : item.source === 'amc' ? 'AMC & AIME' : 'IB Diploma',
+            tag: 'Crux Moves (FSRS)',
+          }))
+        );
+      }
+    } catch {
+      // ignore
+    }
+  }, []);
+
+  const allDecks: Deck[] = useMemo(() => {
+    const cruxDeck: Deck = {
+      id: 'fsrs-crux',
+      title: '🎯 Crux Moves & Saved Errors',
+      description: 'Active spaced repetition queue synced from SAT rationales and AMC/AIME crux moves.',
+      exam: 'General',
+      cards:
+        srsCards.length > 0
+          ? srsCards
+          : [
+              {
+                id: 'crux-intro',
+                front: '🎯 How do I save Crux Moves here?',
+                frontHint: 'FSRS active recall engine integration',
+                back: 'When reviewing SAT rationales or solving AMC 12 & AIME problems, click the "🎯 Save Crux to Flashcards" button.\n\nYour pivotal insights and crux moves will automatically sync here into your daily active recall queue!',
+                category: 'Active Recall',
+                tag: 'Getting Started',
+              },
+            ],
+    };
+    return [cruxDeck, ...DECKS];
+  }, [srsCards]);
+
+  const [selectedDeckId, setSelectedDeckId] = useState<string>('fsrs-crux');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   const [showCardHint, setShowCardHint] = useState(false);
   const [masteredMap, setMasteredMap] = useState<Record<string, boolean>>({});
-  const [deckCards, setDeckCards] = useState<Flashcard[]>(DECKS[0].cards);
 
-  const activeDeck = DECKS.find((d) => d.id === selectedDeckId) || DECKS[0];
+  const activeDeck = allDecks.find((d) => d.id === selectedDeckId) || allDecks[0];
+  const [deckCards, setDeckCards] = useState<Flashcard[]>(allDecks[0].cards);
 
   // Load mastered state from localStorage
   useEffect(() => {
@@ -251,13 +297,13 @@ export default function FlashcardsPage() {
     }
   }, []);
 
-  // Update deck cards when selected deck changes
+  // Update deck cards when selected deck changes or allDecks updates
   useEffect(() => {
     setDeckCards(activeDeck.cards);
     setCurrentIndex(0);
     setIsFlipped(false);
     setShowCardHint(false);
-  }, [selectedDeckId]);
+  }, [selectedDeckId, activeDeck]);
 
   const currentCard = deckCards[currentIndex] || deckCards[0];
   const isMastered = !!masteredMap[currentCard?.id];
@@ -362,7 +408,7 @@ export default function FlashcardsPage() {
 
       {/* Deck Selector Tabs */}
       <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginBottom: '2rem' }}>
-        {DECKS.map((d) => (
+        {allDecks.map((d) => (
           <button
             key={d.id}
             type="button"

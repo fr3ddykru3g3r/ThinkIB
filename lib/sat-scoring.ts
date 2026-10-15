@@ -17,6 +17,7 @@ export interface ScoredItem {
   correct: boolean;
   /** Unscored pretest items are excluded, as on the real test. */
   scored?: boolean;
+  isPretest?: boolean;
   /** Multiple-choice items can be guessed (c≈0.25); SPR items can't. */
   type?: 'mcq' | 'spr';
 }
@@ -33,7 +34,7 @@ function pCorrect(theta: number, it: ScoredItem): number {
 
 /** MAP ability estimate with mode-aware Bayesian priors (mu0, sigma0) */
 export function estimateTheta(items: ScoredItem[], difficultyMode: SATExamDifficultyMode = 'adaptive'): number {
-  const scored = items.filter((i) => i.scored !== false);
+  const scored = items.filter((i) => i.scored !== false && i.isPretest !== true);
   if (!scored.length) return -3;
 
   // Bayesian priors (mu0, sigma0) calibrated for difficulty modes
@@ -94,7 +95,7 @@ export function scoreSection(
   items: ScoredItem[],
   difficultyMode: SATExamDifficultyMode = 'adaptive'
 ): { score: number; theta: number; correct: number; total: number; equivAccuracy: string } {
-  const scored = items.filter((i) => i.scored !== false);
+  const scored = items.filter((i) => i.scored !== false && i.isPretest !== true);
   const correct = scored.filter((i) => i.correct).length;
   const theta = estimateTheta(items, difficultyMode);
   const score = thetaToSection(theta, scored.length > 0 && correct === scored.length, correct === 0);
@@ -201,7 +202,7 @@ export function routesToHardModule(m1: ScoredItem[], difficultyMode: SATExamDiff
   if (difficultyMode === 'medium') {
     return false; // Locked to Medium transition pool
   }
-  const scored = m1.filter((i) => i.scored !== false);
+  const scored = m1.filter((i) => i.scored !== false && i.isPretest !== true);
   if (!scored.length) return false;
   return estimateTheta(m1, difficultyMode) >= 0.3;
 }

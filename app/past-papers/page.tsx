@@ -1,10 +1,32 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
-import { ChevronRight, FileText, Search, Download, ExternalLink, SlidersHorizontal, Eye, ArrowLeft, BookOpen, HelpCircle } from 'lucide-react';
+import React, { useState, useMemo, useEffect } from 'react';
+import {
+  ChevronRight,
+  FileText,
+  Search,
+  Download,
+  ExternalLink,
+  SlidersHorizontal,
+  Eye,
+  ArrowLeft,
+  BookOpen,
+  HelpCircle,
+  Layers,
+  Sparkles,
+  Columns,
+  CheckCircle2,
+  Atom,
+  Clock,
+  Zap,
+  Info,
+  ChevronDown
+} from 'lucide-react';
 import rawMap from './map.json';
+import rawTopicalMap from './physics_topicals_map.json';
 import IBBookletViewerModal from '@/app/components/IBBookletViewerModal';
 import IBCommandTermsModal from '@/app/components/IBCommandTermsModal';
+import IBPDFViewerModal, { CustomPDFDoc } from '@/app/components/IBPDFViewerModal';
 
 interface FileInfo {
   name: string;
@@ -48,24 +70,61 @@ const YEARS = [
   })
 ];
 
+const THEME_ACCENTS: Record<string, { color: string; bg: string; border: string }> = {
+  A: { color: '#0969da', bg: 'rgba(9, 105, 218, 0.08)', border: 'rgba(9, 105, 218, 0.25)' },
+  B: { color: '#b84a39', bg: 'rgba(184, 74, 57, 0.08)', border: 'rgba(184, 74, 57, 0.25)' },
+  C: { color: '#1f883d', bg: 'rgba(31, 136, 61, 0.08)', border: 'rgba(31, 136, 61, 0.25)' },
+  D: { color: '#8250df', bg: 'rgba(130, 80, 223, 0.08)', border: 'rgba(130, 80, 223, 0.25)' },
+  E: { color: '#cf222e', bg: 'rgba(207, 34, 46, 0.08)', border: 'rgba(207, 34, 46, 0.25)' }
+};
+
 export default function PastPapersBrowser() {
+  // Primary Navigation Mode: 'archive' vs 'physics-topical'
+  const [activeTab, setActiveTab] = useState<'archive' | 'physics-topical'>('physics-topical');
+
+  // Archive Browser State
   const [currentPath, setCurrentPath] = useState<string[]>([]);
   const [selectedFile, setSelectedFile] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
-  
-  // Filter States
   const [subjectFilter, setSubjectFilter] = useState('');
   const [yearFilter, setYearFilter] = useState('');
   const [paperTypeFilter, setPaperTypeFilter] = useState('');
   const [showBookletModal, setShowBookletModal] = useState(false);
   const [showCommandTermsModal, setShowCommandTermsModal] = useState(false);
 
-  const mapData = rawMap as MapNode;
+  // Topical Physics State
+  const [activeThemeFilter, setActiveThemeFilter] = useState<'ALL' | 'A' | 'B' | 'C' | 'D' | 'E'>('ALL');
+  const [topicalSearch, setTopicalSearch] = useState('');
+  const [hlOnlyFilter, setHlOnlyFilter] = useState(false);
 
-  // Flatten all files for searching & filtering
+  // PDF Viewer Modal State
+  const [viewerModalOpen, setViewerModalOpen] = useState(false);
+  const [viewerDoc, setViewerDoc] = useState<CustomPDFDoc | undefined>(undefined);
+  const [viewerSplitView, setViewerSplitView] = useState(false);
+
+  // Check URL parameters on mount
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const tabParam = params.get('tab');
+      const themeParam = params.get('theme');
+      if (tabParam === 'physics-topical') {
+        setActiveTab('physics-topical');
+      } else if (tabParam === 'archive') {
+        setActiveTab('archive');
+      }
+      if (themeParam && ['A', 'B', 'C', 'D', 'E'].includes(themeParam.toUpperCase())) {
+        setActiveThemeFilter(themeParam.toUpperCase() as any);
+      }
+    }
+  }, []);
+
+  const mapData = rawMap as MapNode;
+  const topicalData = (rawTopicalMap as any) || { themes: {}, subtopics: {} };
+
+  // Flatten all archive files for searching & filtering
   const allFiles = useMemo(() => {
     const list: FileInfo[] = [];
-    
     function recurse(node: MapNode, pathAcc: string[]) {
       if (node.files) {
         node.files
@@ -80,12 +139,11 @@ export default function PastPapersBrowser() {
         }
       });
     }
-
     recurse(mapData, []);
     return list;
   }, [mapData]);
 
-  // Combined Search & Multi-Filter Logic
+  // Combined Search & Multi-Filter Logic for Archive
   const filteredSearch = useMemo(() => {
     const hasQuery = searchQuery.trim().length > 0;
     const hasSubject = subjectFilter.length > 0;
@@ -135,7 +193,7 @@ export default function PastPapersBrowser() {
 
   const isSearching = searchQuery.trim().length > 0 || subjectFilter.length > 0 || yearFilter.length > 0 || paperTypeFilter.length > 0;
 
-  // Folder navigation tree
+  // Folder navigation tree for Archive
   const currentNode = useMemo(() => {
     let node = mapData;
     for (const segment of currentPath) {
@@ -178,29 +236,78 @@ export default function PastPapersBrowser() {
     setPaperTypeFilter('');
   };
 
+  // Open viewer modal helper
+  const openViewer = (doc: CustomPDFDoc, splitView: boolean = false) => {
+    setViewerDoc(doc);
+    setViewerSplitView(splitView);
+    setViewerModalOpen(true);
+  };
+
+  // Filtered Subtopics for Topical Tab
+  const displayedThemes = useMemo(() => {
+    const themeKeys = ['A', 'B', 'C', 'D', 'E'];
+    const activeKeys = activeThemeFilter === 'ALL' ? themeKeys : [activeThemeFilter];
+    const sQuery = topicalSearch.trim().toLowerCase();
+
+    return activeKeys.map(themeKey => {
+      const themeMeta = topicalData.themes?.[themeKey] || {
+        theme: themeKey,
+        title: `Theme ${themeKey}`,
+        description: '',
+        total_questions: 0,
+        pure_count: 0,
+        intra_mixed_count: 0,
+        cross_synthesis_count: 0,
+        qp_path: `/vault/physics-topicals/Theme_${themeKey}_Master.pdf`,
+        ms_path: `/vault/physics-topicals/Theme_${themeKey}_Master_MS.pdf`
+      };
+
+      // Collect subtopics belonging to this theme
+      const subtopicList = Object.values(topicalData.subtopics || {})
+        .filter((st: any) => st.theme === themeKey)
+        .filter((st: any) => {
+          if (hlOnlyFilter && !st.hl_only) return false;
+          if (sQuery) {
+            const matchCode = st.code.toLowerCase().includes(sQuery);
+            const matchTitle = st.title.toLowerCase().includes(sQuery);
+            const matchDesc = st.description?.toLowerCase().includes(sQuery);
+            return matchCode || matchTitle || matchDesc;
+          }
+          return true;
+        });
+
+      return {
+        ...themeMeta,
+        filteredSubtopics: subtopicList
+      };
+    });
+  }, [topicalData, activeThemeFilter, topicalSearch, hlOnlyFilter]);
+
   return (
     <div>
-      {/* Header */}
-      <div className="panel" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '2rem' }}>
+      {/* Header Panel */}
+      <div className="panel" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.5rem' }}>
         <div>
-          <span className="section-label" style={{ marginBottom: '0.4rem' }}>OFFICIAL EXAMINATION ARCHIVE</span>
+          <span className="section-label" style={{ marginBottom: '0.4rem' }}>OFFICIAL EXAMINATION ARCHIVE & TOPICAL HUB</span>
           <h1 style={{ fontFamily: 'var(--display)', fontSize: '2.4rem', margin: '0.2rem 0' }}>Past Examinations Vault</h1>
-          <p style={{ color: 'var(--ink-soft)', fontSize: '0.95rem', margin: 0 }}>Examination papers, markschemes, and audio files across 16 examination sessions (2010–2025).</p>
+          <p style={{ color: 'var(--ink-soft)', fontSize: '0.95rem', margin: 0 }}>
+            Official examination papers across 16 sessions (2010–2025) and 2025 Syllabus IB Physics Topical Booklets.
+          </p>
         </div>
         <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
-          <a 
-            href="/past-papers/workspace" 
-            style={{ 
-              textDecoration: 'none', 
-              display: 'flex', 
-              alignItems: 'center', 
-              gap: '0.4rem', 
-              background: '#0969da', 
-              color: '#ffffff', 
-              padding: '0.45rem 0.9rem', 
-              borderRadius: '6px', 
-              fontWeight: 600, 
-              fontSize: '0.85rem' 
+          <a
+            href="/past-papers/workspace"
+            style={{
+              textDecoration: 'none',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.4rem',
+              background: '#0969da',
+              color: '#ffffff',
+              padding: '0.45rem 0.9rem',
+              borderRadius: '6px',
+              fontWeight: 600,
+              fontSize: '0.85rem'
             }}
           >
             ⚡ Launch Split-Screen Workspace
@@ -211,279 +318,888 @@ export default function PastPapersBrowser() {
         </div>
       </div>
 
-      {/* Grid Inputs & Filters */}
-      <div className="panel" style={{ marginBottom: '1.5rem' }}>
-        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '1.25rem' }}>
-          <div className="search-wrapper">
-            <Search size={18} style={{ position: 'absolute', left: '1rem', color: 'var(--ink-faint)', pointerEvents: 'none' }} />
-            <input
-              type="text"
-              placeholder="Search 4,400+ past papers... (e.g. Chemistry HL TZ1)"
-              className="search-input"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </div>
-        </div>
-
-        <div style={{ display: 'flex', gap: '0.8rem', flexWrap: 'wrap', alignItems: 'center' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
-            <span className="tech-label">Subject</span>
-            <select
-              value={subjectFilter}
-              onChange={(e) => setSubjectFilter(e.target.value)}
-              className="select-input"
-              style={{ width: '190px' }}
-            >
-              {IB_SUBJECTS.map((sub, idx) => (
-                <option key={idx} value={sub.value}>{sub.label}</option>
-              ))}
-            </select>
-          </div>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
-            <span className="tech-label">Year</span>
-            <select
-              value={yearFilter}
-              onChange={(e) => setYearFilter(e.target.value)}
-              className="select-input"
-              style={{ width: '130px' }}
-            >
-              {YEARS.map((yr, idx) => (
-                <option key={idx} value={yr.value}>{yr.label}</option>
-              ))}
-            </select>
-          </div>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
-            <span className="tech-label">Paper Type</span>
-            <select
-              value={paperTypeFilter}
-              onChange={(e) => setPaperTypeFilter(e.target.value)}
-              className="select-input"
-              style={{ width: '190px' }}
-            >
-              {PAPER_TYPES.map((type, idx) => (
-                <option key={idx} value={type.value}>{type.label}</option>
-              ))}
-            </select>
-          </div>
-
-          <button
-            type="button"
-            onClick={() => setShowBookletModal(true)}
+      {/* Primary Tab Navigation */}
+      <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.5rem', borderBottom: '1px solid var(--hairline)', paddingBottom: '0.75rem' }}>
+        <button
+          onClick={() => setActiveTab('physics-topical')}
+          style={{
+            padding: '0.65rem 1.25rem',
+            borderRadius: '8px',
+            border: activeTab === 'physics-topical' ? '1px solid #0969da' : '1px solid var(--border)',
+            background: activeTab === 'physics-topical' ? '#0969da' : 'var(--panel)',
+            color: activeTab === 'physics-topical' ? '#ffffff' : 'var(--ink)',
+            fontWeight: 700,
+            fontSize: '0.92rem',
+            cursor: 'pointer',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px',
+            boxShadow: activeTab === 'physics-topical' ? '0 4px 12px rgba(9, 105, 218, 0.25)' : 'none',
+            transition: 'all 0.15s ease'
+          }}
+        >
+          <Zap size={16} /> IB Physics Topical Past Papers (2025 Syllabus A–E)
+          <span
             style={{
-              alignSelf: 'flex-end',
-              padding: '0.55rem 0.95rem',
-              borderRadius: '8px',
-              border: '1px solid var(--border)',
-              background: 'var(--surface)',
-              fontSize: '0.82rem',
-              fontWeight: 600,
-              color: 'var(--ink)',
-              cursor: 'pointer',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '6px',
+              fontSize: '0.7rem',
+              fontWeight: 800,
+              background: activeTab === 'physics-topical' ? '#ffffff' : 'rgba(9, 105, 218, 0.12)',
+              color: activeTab === 'physics-topical' ? '#0969da' : '#0969da',
+              padding: '1px 6px',
+              borderRadius: '10px'
             }}
           >
-            <BookOpen size={14} style={{ color: 'var(--accent)' }} /> Official Formula Booklets
-          </button>
+            24 Topics • 5 Themes
+          </span>
+        </button>
 
-          <button
-            type="button"
-            onClick={() => setShowCommandTermsModal(true)}
-            style={{
-              alignSelf: 'flex-end',
-              padding: '0.55rem 0.95rem',
-              borderRadius: '8px',
-              border: '1px solid var(--border)',
-              background: 'var(--surface)',
-              fontSize: '0.82rem',
-              fontWeight: 600,
-              color: 'var(--ink)',
-              cursor: 'pointer',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '6px',
-            }}
-          >
-            <HelpCircle size={14} style={{ color: 'var(--rust)' }} /> Command Terms & Rules
-          </button>
-
-          {isSearching && (
-            <button
-              onClick={clearFilters}
-              className="filter-btn active"
-              style={{ alignSelf: 'flex-end', padding: '0.5rem 1rem' }}
-            >
-              Clear Filters
-            </button>
-          )}
-        </div>
+        <button
+          onClick={() => setActiveTab('archive')}
+          style={{
+            padding: '0.65rem 1.25rem',
+            borderRadius: '8px',
+            border: activeTab === 'archive' ? '1px solid #0969da' : '1px solid var(--border)',
+            background: activeTab === 'archive' ? '#0969da' : 'var(--panel)',
+            color: activeTab === 'archive' ? '#ffffff' : 'var(--ink)',
+            fontWeight: 600,
+            fontSize: '0.92rem',
+            cursor: 'pointer',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px',
+            transition: 'all 0.15s ease'
+          }}
+        >
+          <FileText size={16} /> Chronological Exam Vault (2010–2025)
+        </button>
       </div>
 
-      {/* Directory Split Screen */}
-      <div className="split-screen">
-        <div className="panel browser-panel" style={{ overflowY: 'auto' }}>
-          {isSearching ? (
-            <div>
-              <span style={{ fontSize: '0.78rem', color: 'var(--muted)', fontWeight: 500, display: 'block', marginBottom: '0.75rem' }}>
-                {filteredSearch.length} examinations found
-              </span>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                {filteredSearch.length === 0 ? (
-                  <div style={{ color: 'var(--ink-faint)', textAlign: 'center', padding: '2rem 0', fontSize: '0.85rem' }}>
-                    No papers matching search parameters.
+      {/* ========================================================================= */}
+      {/* VIEW 1: IB PHYSICS TOPICAL PAST PAPERS HUB (2025 SYLLABUS)               */}
+      {/* ========================================================================= */}
+      {activeTab === 'physics-topical' && (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.75rem' }}>
+          {/* Hero Banner with Stats */}
+          <div
+            className="panel"
+            style={{
+              background: 'linear-gradient(135deg, rgba(9, 105, 218, 0.04) 0%, rgba(130, 80, 223, 0.04) 100%)',
+              border: '1px solid rgba(9, 105, 218, 0.25)',
+              position: 'relative',
+              overflow: 'hidden'
+            }}
+          >
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1.25rem' }}>
+              <div>
+                <span
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '5px',
+                    fontSize: '0.72rem',
+                    fontWeight: 700,
+                    letterSpacing: '0.05em',
+                    textTransform: 'uppercase',
+                    color: '#0969da',
+                    background: 'rgba(9, 105, 218, 0.1)',
+                    padding: '3px 8px',
+                    borderRadius: '12px',
+                    marginBottom: '0.5rem'
+                  }}
+                >
+                  <Sparkles size={12} /> 2025 IB PHYSICS SYLLABUS • CRISP VECTOR CROPS
+                </span>
+                <h2 style={{ fontFamily: 'var(--display)', fontSize: '1.85rem', margin: '0.2rem 0' }}>
+                  Physics Topical Past Paper Generator
+                </h2>
+                <p style={{ color: 'var(--ink-soft)', fontSize: '0.92rem', maxWidth: '820px', lineHeight: 1.5, margin: 0 }}>
+                  Every IB Physics question & markscheme from 2016–2025 sliced as 100% crisp vector crops using PyMuPDF, classified into Themes A–E and Sub-Topics A.1–E.5, with retired syllabus items (old Topic 7.3 quarks, Topic 11.2 capacitors, polarization) excluded.
+                </p>
+              </div>
+
+              {/* Action Buttons */}
+              <div style={{ display: 'flex', gap: '0.6rem', alignItems: 'center', flexWrap: 'wrap' }}>
+                <button
+                  type="button"
+                  onClick={() => setShowBookletModal(true)}
+                  style={{
+                    padding: '0.55rem 0.95rem',
+                    borderRadius: '8px',
+                    border: '1px solid rgba(31, 136, 61, 0.35)',
+                    background: 'rgba(31, 136, 61, 0.08)',
+                    fontSize: '0.82rem',
+                    fontWeight: 600,
+                    color: '#1f883d',
+                    cursor: 'pointer',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '6px'
+                  }}
+                >
+                  <BookOpen size={14} /> IB Physics Formula Booklet
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setShowCommandTermsModal(true)}
+                  style={{
+                    padding: '0.55rem 0.95rem',
+                    borderRadius: '8px',
+                    border: '1px solid var(--border)',
+                    background: 'var(--surface)',
+                    fontSize: '0.82rem',
+                    fontWeight: 600,
+                    color: 'var(--ink)',
+                    cursor: 'pointer',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '6px'
+                  }}
+                >
+                  <HelpCircle size={14} style={{ color: 'var(--rust)' }} /> Command Terms
+                </button>
+              </div>
+            </div>
+
+            {/* Quick Stats Ribbon */}
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+                gap: '1rem',
+                marginTop: '1.25rem',
+                paddingTop: '1rem',
+                borderTop: '1px solid var(--hairline)'
+              }}
+            >
+              <div style={{ padding: '0.5rem', background: 'var(--paper-card)', borderRadius: '6px', border: '1px solid var(--hairline)' }}>
+                <span style={{ fontSize: '0.72rem', color: 'var(--ink-faint)', textTransform: 'uppercase', fontWeight: 600 }}>Total Questions</span>
+                <div style={{ fontSize: '1.4rem', fontWeight: 800, color: '#0969da', marginTop: '2px' }}>
+                  {topicalData.total_questions_harvested || '1,800+'}
+                </div>
+                <span style={{ fontSize: '0.7rem', color: 'var(--muted)' }}>Harvested & Classified</span>
+              </div>
+              <div style={{ padding: '0.5rem', background: 'var(--paper-card)', borderRadius: '6px', border: '1px solid var(--hairline)' }}>
+                <span style={{ fontSize: '0.72rem', color: 'var(--ink-faint)', textTransform: 'uppercase', fontWeight: 600 }}>Pure Sub-Topics</span>
+                <div style={{ fontSize: '1.4rem', fontWeight: 800, color: '#1f883d', marginTop: '2px' }}>
+                  24 Booklets
+                </div>
+                <span style={{ fontSize: '0.7rem', color: 'var(--muted)' }}>A.1 to E.5 Focus Papers</span>
+              </div>
+              <div style={{ padding: '0.5rem', background: 'var(--paper-card)', borderRadius: '6px', border: '1px solid var(--hairline)' }}>
+                <span style={{ fontSize: '0.72rem', color: 'var(--ink-faint)', textTransform: 'uppercase', fontWeight: 600 }}>Master Themes</span>
+                <div style={{ fontSize: '1.4rem', fontWeight: 800, color: '#8250df', marginTop: '2px' }}>
+                  5 Master Booklets
+                </div>
+                <span style={{ fontSize: '0.7rem', color: 'var(--muted)' }}>Pure + Mixed Synthesis</span>
+              </div>
+              <div style={{ padding: '0.5rem', background: 'var(--paper-card)', borderRadius: '6px', border: '1px solid var(--hairline)' }}>
+                <span style={{ fontSize: '0.72rem', color: 'var(--ink-faint)', textTransform: 'uppercase', fontWeight: 600 }}>Retired Exclusions</span>
+                <div style={{ fontSize: '1.4rem', fontWeight: 800, color: '#cf222e', marginTop: '2px' }}>
+                  {topicalData.total_excluded_legacy || '180+'} Excluded
+                </div>
+                <span style={{ fontSize: '0.7rem', color: 'var(--muted)' }}>Quarks & Capacitors Filtered</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Filtering Controls */}
+          <div className="panel" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
+            {/* Theme Filter Tabs */}
+            <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
+              <button
+                onClick={() => setActiveThemeFilter('ALL')}
+                className={`filter-btn ${activeThemeFilter === 'ALL' ? 'active' : ''}`}
+                style={{ padding: '0.4rem 0.9rem', fontSize: '0.82rem', fontWeight: 600 }}
+              >
+                All 5 Themes
+              </button>
+              {(['A', 'B', 'C', 'D', 'E'] as const).map(themeKey => (
+                <button
+                  key={themeKey}
+                  onClick={() => setActiveThemeFilter(themeKey)}
+                  className={`filter-btn ${activeThemeFilter === themeKey ? 'active' : ''}`}
+                  style={{
+                    padding: '0.4rem 0.9rem',
+                    fontSize: '0.82rem',
+                    fontWeight: 600,
+                    borderColor: activeThemeFilter === themeKey ? THEME_ACCENTS[themeKey].color : undefined,
+                    color: activeThemeFilter === themeKey ? '#fff' : undefined,
+                    background: activeThemeFilter === themeKey ? THEME_ACCENTS[themeKey].color : undefined
+                  }}
+                >
+                  Theme {themeKey}
+                </button>
+              ))}
+            </div>
+
+            {/* Search Input & HL Toggle */}
+            <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
+              <div className="search-wrapper" style={{ width: '280px' }}>
+                <Search size={16} style={{ position: 'absolute', left: '0.85rem', color: 'var(--ink-faint)', pointerEvents: 'none' }} />
+                <input
+                  type="text"
+                  placeholder="Filter sub-topics... (e.g. Doppler, A.1)"
+                  className="search-input"
+                  style={{ padding: '0.45rem 0.85rem 0.45rem 2.2rem', fontSize: '0.82rem' }}
+                  value={topicalSearch}
+                  onChange={(e) => setTopicalSearch(e.target.value)}
+                />
+              </div>
+
+              <label style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.82rem', color: 'var(--ink)', cursor: 'pointer', fontWeight: 500 }}>
+                <input
+                  type="checkbox"
+                  checked={hlOnlyFilter}
+                  onChange={(e) => setHlOnlyFilter(e.target.checked)}
+                  style={{ cursor: 'pointer' }}
+                />
+                HL Only Topics
+              </label>
+            </div>
+          </div>
+
+          {/* Master Themes & Sub-Topics Grid */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+            {displayedThemes.map(theme => {
+              const accent = THEME_ACCENTS[theme.theme] || THEME_ACCENTS.A;
+              return (
+                <div
+                  key={theme.theme}
+                  className="panel"
+                  style={{
+                    padding: '1.5rem',
+                    borderLeft: `5px solid ${accent.color}`,
+                    background: 'var(--panel)',
+                    boxShadow: '0 4px 20px rgba(0,0,0,0.04)'
+                  }}
+                >
+                  {/* Master Theme Header */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.25rem', borderBottom: '1px solid var(--hairline)', paddingBottom: '1rem' }}>
+                    <div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                        <span
+                          style={{
+                            fontSize: '0.75rem',
+                            fontWeight: 800,
+                            letterSpacing: '0.04em',
+                            background: accent.bg,
+                            color: accent.color,
+                            border: `1px solid ${accent.border}`,
+                            padding: '2px 8px',
+                            borderRadius: '6px'
+                          }}
+                        >
+                          THEME {theme.theme}
+                        </span>
+                        <h3 style={{ margin: 0, fontSize: '1.45rem', fontWeight: 800, color: 'var(--ink)' }}>
+                          {theme.title}
+                        </h3>
+                      </div>
+                      <p style={{ margin: '0.35rem 0 0 0', fontSize: '0.88rem', color: 'var(--ink-soft)' }}>
+                        {theme.description}
+                      </p>
+                      <div style={{ display: 'flex', gap: '0.6rem', marginTop: '0.6rem', flexWrap: 'wrap' }}>
+                        <span style={{ fontSize: '0.74rem', color: 'var(--muted)', background: 'var(--surface)', padding: '2px 7px', borderRadius: '4px', border: '1px solid var(--hairline)' }}>
+                          <strong>{theme.total_questions || 0}</strong> Total Questions
+                        </span>
+                        <span style={{ fontSize: '0.74rem', color: 'var(--muted)', background: 'var(--surface)', padding: '2px 7px', borderRadius: '4px', border: '1px solid var(--hairline)' }}>
+                          <strong>{theme.pure_count || 0}</strong> Pure Sub-Topic
+                        </span>
+                        <span style={{ fontSize: '0.74rem', color: 'var(--muted)', background: 'var(--surface)', padding: '2px 7px', borderRadius: '4px', border: '1px solid var(--hairline)' }}>
+                          <strong>{theme.intra_mixed_count || 0}</strong> Intra-Theme Mixed
+                        </span>
+                        <span style={{ fontSize: '0.74rem', color: 'var(--muted)', background: 'var(--surface)', padding: '2px 7px', borderRadius: '4px', border: '1px solid var(--hairline)' }}>
+                          <strong>{theme.cross_synthesis_count || 0}</strong> Cross-Theme Synthesis
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Master Actions */}
+                    <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
+                      <button
+                        onClick={() =>
+                          openViewer(
+                            {
+                              id: `theme-${theme.theme}`,
+                              title: `Theme ${theme.theme}: ${theme.title} (Master Booklet)`,
+                              subtitle: `Pure Sub-Topics + Intra & Cross-Theme Synthesis Questions`,
+                              url: theme.qp_path,
+                              msUrl: theme.ms_path,
+                              badge: `Theme ${theme.theme} Master`,
+                              category: 'topical'
+                            },
+                            false
+                          )
+                        }
+                        style={{
+                          background: accent.color,
+                          color: '#ffffff',
+                          border: 'none',
+                          padding: '0.55rem 1rem',
+                          borderRadius: '6px',
+                          fontSize: '0.82rem',
+                          fontWeight: 700,
+                          cursor: 'pointer',
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '6px',
+                          boxShadow: `0 3px 10px ${accent.border}`
+                        }}
+                      >
+                        <FileText size={14} /> Open Master Booklet
+                      </button>
+
+                      <button
+                        onClick={() =>
+                          openViewer(
+                            {
+                              id: `theme-${theme.theme}-split`,
+                              title: `Theme ${theme.theme}: ${theme.title} (Master Split-Screen)`,
+                              subtitle: `Side-by-side QP + Official Markscheme`,
+                              url: theme.qp_path,
+                              msUrl: theme.ms_path,
+                              badge: `Split-View`,
+                              category: 'topical'
+                            },
+                            true
+                          )
+                        }
+                        style={{
+                          background: 'var(--surface)',
+                          color: accent.color,
+                          border: `1px solid ${accent.border}`,
+                          padding: '0.55rem 0.95rem',
+                          borderRadius: '6px',
+                          fontSize: '0.82rem',
+                          fontWeight: 700,
+                          cursor: 'pointer',
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '6px'
+                        }}
+                      >
+                        <Columns size={14} /> Split-View with Markscheme
+                      </button>
+
+                      <a
+                        href={theme.qp_path}
+                        download
+                        className="filter-btn"
+                        title="Download Master Theme PDF"
+                        style={{ padding: '0.55rem 0.75rem', textDecoration: 'none' }}
+                      >
+                        <Download size={14} />
+                      </a>
+                    </div>
                   </div>
-                ) : (
-                  filteredSearch.slice(0, 100).map((file, idx) => {
-                    const isActive = selectedFile === `/api/past-papers/${file.path.map(encodeURIComponent).join('/')}`;
-                    return (
+
+                  {/* Sub-Topics Matrix Grid */}
+                  <div>
+                    <span style={{ fontSize: '0.74rem', color: 'var(--ink-faint)', textTransform: 'uppercase', letterSpacing: '0.04em', fontWeight: 700, display: 'block', marginBottom: '0.85rem' }}>
+                      SUB-TOPICS IN THEME {theme.theme} ({theme.filteredSubtopics.length} AVAILABLE)
+                    </span>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '0.9rem' }}>
+                      {theme.filteredSubtopics.map((st: any) => {
+                        return (
+                          <div
+                            key={st.code}
+                            style={{
+                              background: 'var(--paper-card)',
+                              border: '1px solid var(--hairline)',
+                              borderRadius: '8px',
+                              padding: '1rem',
+                              display: 'flex',
+                              flexDirection: 'column',
+                              justifyContent: 'space-between',
+                              transition: 'all 0.15s ease'
+                            }}
+                          >
+                            <div>
+                              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.35rem' }}>
+                                <span
+                                  style={{
+                                    fontSize: '0.85rem',
+                                    fontWeight: 800,
+                                    color: accent.color,
+                                    fontFamily: 'var(--font-mono)'
+                                  }}
+                                >
+                                  {st.code}
+                                </span>
+                                <div style={{ display: 'flex', gap: '0.3rem' }}>
+                                  {st.hl_only ? (
+                                    <span
+                                      style={{
+                                        fontSize: '0.68rem',
+                                        fontWeight: 800,
+                                        background: 'rgba(207, 34, 46, 0.12)',
+                                        color: '#cf222e',
+                                        padding: '1px 6px',
+                                        borderRadius: '4px'
+                                      }}
+                                    >
+                                      HL Only
+                                    </span>
+                                  ) : (
+                                    <span
+                                      style={{
+                                        fontSize: '0.68rem',
+                                        fontWeight: 700,
+                                        background: 'rgba(31, 136, 61, 0.12)',
+                                        color: '#1f883d',
+                                        padding: '1px 6px',
+                                        borderRadius: '4px'
+                                      }}
+                                    >
+                                      SL + HL
+                                    </span>
+                                  )}
+                                  <span
+                                    style={{
+                                      fontSize: '0.68rem',
+                                      fontWeight: 600,
+                                      background: 'var(--surface)',
+                                      color: 'var(--ink)',
+                                      border: '1px solid var(--hairline)',
+                                      padding: '1px 6px',
+                                      borderRadius: '4px'
+                                    }}
+                                  >
+                                    {st.total_questions || 0} Qs
+                                  </span>
+                                </div>
+                              </div>
+
+                              <h4 style={{ margin: '0.1rem 0 0.4rem 0', fontSize: '1.05rem', fontWeight: 700, color: 'var(--ink)' }}>
+                                {st.title}
+                              </h4>
+                              <p style={{ margin: 0, fontSize: '0.78rem', color: 'var(--ink-soft)', lineHeight: 1.4, maxHeight: '42px', overflow: 'hidden' }}>
+                                {st.description}
+                              </p>
+                              <div style={{ marginTop: '0.5rem', fontSize: '0.72rem', color: 'var(--muted)' }}>
+                                Breakdown: <strong>{st.mcq_count || 0} MCQs</strong> • <strong>{st.frq_count || 0} FRQs</strong>
+                              </div>
+                            </div>
+
+                            {/* Sub-Topic Action Buttons */}
+                            <div style={{ display: 'flex', gap: '0.4rem', marginTop: '1rem', paddingTop: '0.75rem', borderTop: '1px solid var(--hairline)' }}>
+                              <button
+                                onClick={() =>
+                                  openViewer(
+                                    {
+                                      id: `subtopic-${st.code}`,
+                                      title: `${st.code}: ${st.title}`,
+                                      subtitle: st.description,
+                                      url: st.qp_path,
+                                      msUrl: st.ms_path,
+                                      badge: `${st.code} Pure`,
+                                      category: 'topical'
+                                    },
+                                    false
+                                  )
+                                }
+                                style={{
+                                  flex: 1,
+                                  background: 'var(--surface)',
+                                  border: '1px solid var(--border)',
+                                  color: 'var(--ink)',
+                                  padding: '0.4rem 0.6rem',
+                                  borderRadius: '6px',
+                                  fontSize: '0.76rem',
+                                  fontWeight: 600,
+                                  cursor: 'pointer',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                  gap: '4px'
+                                }}
+                              >
+                                <FileText size={12} /> Pure QP
+                              </button>
+
+                              <button
+                                onClick={() =>
+                                  openViewer(
+                                    {
+                                      id: `subtopic-${st.code}-split`,
+                                      title: `${st.code}: ${st.title} (Split-Screen)`,
+                                      subtitle: `Question Paper + Official Markscheme`,
+                                      url: st.qp_path,
+                                      msUrl: st.ms_path,
+                                      badge: `${st.code} Split`,
+                                      category: 'topical'
+                                    },
+                                    true
+                                  )
+                                }
+                                style={{
+                                  flex: 1,
+                                  background: accent.bg,
+                                  border: `1px solid ${accent.border}`,
+                                  color: accent.color,
+                                  padding: '0.4rem 0.6rem',
+                                  borderRadius: '6px',
+                                  fontSize: '0.76rem',
+                                  fontWeight: 700,
+                                  cursor: 'pointer',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                  gap: '4px'
+                                }}
+                              >
+                                <Columns size={12} /> Split-View
+                              </button>
+
+                              <a
+                                href={st.qp_path}
+                                download
+                                className="filter-btn"
+                                title="Download Sub-Topic PDF"
+                                style={{ padding: '0.4rem 0.55rem', textDecoration: 'none' }}
+                              >
+                                <Download size={12} />
+                              </a>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* ========================================================================= */}
+      {/* VIEW 2: CHRONOLOGICAL ARCHIVE (2010–2025)                                 */}
+      {/* ========================================================================= */}
+      {activeTab === 'archive' && (
+        <>
+          {/* Grid Inputs & Filters */}
+          <div className="panel" style={{ marginBottom: '1.5rem' }}>
+            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '1.25rem' }}>
+              <div className="search-wrapper">
+                <Search size={18} style={{ position: 'absolute', left: '1rem', color: 'var(--ink-faint)', pointerEvents: 'none' }} />
+                <input
+                  type="text"
+                  placeholder="Search 4,400+ past papers... (e.g. Chemistry HL TZ1)"
+                  className="search-input"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', gap: '0.8rem', flexWrap: 'wrap', alignItems: 'center' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                <span className="tech-label">Subject</span>
+                <select
+                  value={subjectFilter}
+                  onChange={(e) => setSubjectFilter(e.target.value)}
+                  className="select-input"
+                  style={{ width: '190px' }}
+                >
+                  {IB_SUBJECTS.map((sub, idx) => (
+                    <option key={idx} value={sub.value}>{sub.label}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                <span className="tech-label">Year</span>
+                <select
+                  value={yearFilter}
+                  onChange={(e) => setYearFilter(e.target.value)}
+                  className="select-input"
+                  style={{ width: '130px' }}
+                >
+                  {YEARS.map((yr, idx) => (
+                    <option key={idx} value={yr.value}>{yr.label}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                <span className="tech-label">Paper Type</span>
+                <select
+                  value={paperTypeFilter}
+                  onChange={(e) => setPaperTypeFilter(e.target.value)}
+                  className="select-input"
+                  style={{ width: '190px' }}
+                >
+                  {PAPER_TYPES.map((type, idx) => (
+                    <option key={idx} value={type.value}>{type.label}</option>
+                  ))}
+                </select>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setShowBookletModal(true)}
+                style={{
+                  alignSelf: 'flex-end',
+                  padding: '0.55rem 0.95rem',
+                  borderRadius: '8px',
+                  border: '1px solid var(--border)',
+                  background: 'var(--surface)',
+                  fontSize: '0.82rem',
+                  fontWeight: 600,
+                  color: 'var(--ink)',
+                  cursor: 'pointer',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                }}
+              >
+                <BookOpen size={14} style={{ color: 'var(--accent)' }} /> Official Formula Booklets
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setShowCommandTermsModal(true)}
+                style={{
+                  alignSelf: 'flex-end',
+                  padding: '0.55rem 0.95rem',
+                  borderRadius: '8px',
+                  border: '1px solid var(--border)',
+                  background: 'var(--surface)',
+                  fontSize: '0.82rem',
+                  fontWeight: 600,
+                  color: 'var(--ink)',
+                  cursor: 'pointer',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                }}
+              >
+                <HelpCircle size={14} style={{ color: 'var(--rust)' }} /> Command Terms & Rules
+              </button>
+
+              {isSearching && (
+                <button
+                  onClick={clearFilters}
+                  className="filter-btn active"
+                  style={{ alignSelf: 'flex-end', padding: '0.5rem 1rem' }}
+                >
+                  Clear Filters
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* Directory Split Screen */}
+          <div className="split-screen">
+            <div className="panel browser-panel" style={{ overflowY: 'auto' }}>
+              {isSearching ? (
+                <div>
+                  <span style={{ fontSize: '0.78rem', color: 'var(--muted)', fontWeight: 500, display: 'block', marginBottom: '0.75rem' }}>
+                    {filteredSearch.length} examinations found
+                  </span>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                    {filteredSearch.length === 0 ? (
+                      <div style={{ color: 'var(--ink-faint)', textAlign: 'center', padding: '2rem 0', fontSize: '0.85rem' }}>
+                        No papers matching search parameters.
+                      </div>
+                    ) : (
+                      filteredSearch.slice(0, 100).map((file, idx) => {
+                        const isActive = selectedFile === `/api/past-papers/${file.path.map(encodeURIComponent).join('/')}`;
+                        return (
+                          <div
+                            key={idx}
+                            onClick={() => selectFile(file.path)}
+                            style={{
+                              display: 'flex',
+                              justifyContent: 'space-between',
+                              alignItems: 'center',
+                              padding: '0.75rem 0.9rem',
+                              background: isActive ? 'var(--earth-soft)' : 'var(--paper-card)',
+                              color: 'var(--ink)',
+                              border: isActive ? '1px solid rgba(154, 106, 62, 0.45)' : '1px solid var(--hairline)',
+                              borderRadius: '8px',
+                              cursor: 'pointer',
+                              transition: 'all 0.15s ease'
+                            }}
+                          >
+                            <div style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', paddingRight: '0.5rem' }}>
+                              <span style={{ fontSize: '0.9rem', display: 'block', fontWeight: 600, color: isActive ? 'var(--earth)' : 'var(--ink)' }}>
+                                {file.name.replace(/_/g, ' ')}
+                              </span>
+                              <span style={{ fontSize: '0.72rem', color: 'var(--ink-faint)', letterSpacing: '0.02em' }}>
+                                {file.path.slice(0, -1).join(' › ').replace(/_/g, ' ')}
+                              </span>
+                            </div>
+                            <ChevronRight size={14} style={{ color: isActive ? 'var(--earth)' : 'var(--ink-faint)', flexShrink: 0 }} />
+                          </div>
+                        );
+                      })
+                    )}
+                    {filteredSearch.length > 100 && (
+                      <div style={{ textAlign: 'center', marginTop: '0.75rem', fontSize: '0.75rem', color: 'var(--muted)' }}>
+                        + {filteredSearch.length - 100} more papers. Refine search filters.
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ) : (
+                <div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', borderBottom: '1px solid var(--hairline)', paddingBottom: '0.75rem' }}>
+                    <span className="section-label" style={{ margin: 0 }}>
+                      {currentPath.length > 0 ? currentPath.join(' › ') : 'Examination Subjects'}
+                    </span>
+                    {currentPath.length > 0 && (
+                      <button onClick={handleBackClick} className="filter-btn" style={{ padding: '0.2rem 0.6rem' }}>
+                        ← Back
+                      </button>
+                    )}
+                  </div>
+
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                    {folders.map((folder, idx) => (
                       <div
                         key={idx}
-                        onClick={() => selectFile(file.path)}
+                        onClick={() => handleFolderClick(folder)}
                         style={{
                           display: 'flex',
                           justifyContent: 'space-between',
                           alignItems: 'center',
                           padding: '0.75rem 0.9rem',
-                          background: isActive ? 'var(--earth-soft)' : 'var(--paper-card)',
-                          color: 'var(--ink)',
-                          border: isActive ? '1px solid rgba(154, 106, 62, 0.45)' : '1px solid var(--hairline)',
-                          borderRadius: '8px',
+                          background: 'var(--paper-card)',
+                          border: '1px solid var(--hairline)',
+                          borderRadius: '6px',
                           cursor: 'pointer',
                           transition: 'all 0.15s ease'
                         }}
                       >
-                        <div style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', paddingRight: '0.5rem' }}>
-                          <span style={{ fontSize: '0.9rem', display: 'block', fontWeight: 600, color: isActive ? 'var(--earth)' : 'var(--ink)' }}>
-                            {file.name.replace(/_/g, ' ')}
-                          </span>
-                          <span style={{ fontSize: '0.72rem', color: 'var(--ink-faint)', letterSpacing: '0.02em' }}>
-                            {file.path.slice(0, -1).join(' › ').replace(/_/g, ' ')}
-                          </span>
-                        </div>
-                        <ChevronRight size={14} style={{ color: isActive ? 'var(--earth)' : 'var(--ink-faint)', flexShrink: 0 }} />
+                        <span style={{ fontSize: '0.9rem', fontWeight: 500, color: 'var(--ink)' }}>{folder}</span>
+                        <ChevronRight size={14} style={{ color: 'var(--ink-faint)' }} />
                       </div>
-                    );
-                  })
-                )}
-                {filteredSearch.length > 100 && (
-                  <div style={{ textAlign: 'center', marginTop: '0.75rem', fontSize: '0.75rem', color: 'var(--muted)' }}>
-                    + {filteredSearch.length - 100} more papers. Refine search filters.
+                    ))}
+
+                    {files.map((file, idx) => {
+                      const isActive = selectedFile === `/api/past-papers/${[...currentPath, file].map(encodeURIComponent).join('/')}`;
+                      return (
+                        <div
+                          key={idx}
+                          onClick={() => selectFile([...currentPath, file])}
+                          style={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                            padding: '0.75rem 0.9rem',
+                            background: isActive ? 'var(--earth-soft)' : 'var(--paper-card)',
+                            color: 'var(--ink)',
+                            border: isActive ? '1px solid rgba(154, 106, 62, 0.45)' : '1px solid var(--hairline)',
+                            borderRadius: '6px',
+                            cursor: 'pointer',
+                            transition: 'all 0.15s ease'
+                          }}
+                        >
+                          <span style={{ fontSize: '0.9rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', fontWeight: isActive ? 600 : 400, color: isActive ? 'var(--earth)' : 'var(--ink)' }}>
+                            {file.replace(/_/g, ' ')}
+                          </span>
+                          <FileText size={14} style={{ color: isActive ? 'var(--earth)' : 'var(--ink-faint)', flexShrink: 0 }} />
+                        </div>
+                      );
+                    })}
                   </div>
-                )}
-              </div>
-            </div>
-          ) : (
-            <div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', borderBottom: '1px solid var(--hairline)', paddingBottom: '0.75rem' }}>
-                <span className="section-label" style={{ margin: 0 }}>
-                  {currentPath.length > 0 ? currentPath.join(' › ') : 'Examination Subjects'}
-                </span>
-                {currentPath.length > 0 && (
-                  <button onClick={handleBackClick} className="filter-btn" style={{ padding: '0.2rem 0.6rem' }}>
-                    ← Back
-                  </button>
-                )}
-              </div>
-
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                {folders.map((folder, idx) => (
-                  <div
-                    key={idx}
-                    onClick={() => handleFolderClick(folder)}
-                    style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      padding: '0.75rem 0.9rem',
-                      background: 'var(--paper-card)',
-                      border: '1px solid var(--hairline)',
-                      borderRadius: '6px',
-                      cursor: 'pointer',
-                      transition: 'all 0.15s ease'
-                    }}
-                  >
-                    <span style={{ fontSize: '0.9rem', fontWeight: 500, color: 'var(--ink)' }}>{folder}</span>
-                    <ChevronRight size={14} style={{ color: 'var(--ink-faint)' }} />
-                  </div>
-                ))}
-
-                {files.map((file, idx) => {
-                  const isActive = selectedFile === `/api/past-papers/${[...currentPath, file].map(encodeURIComponent).join('/')}`;
-                  return (
-                    <div
-                      key={idx}
-                      onClick={() => selectFile([...currentPath, file])}
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                        padding: '0.75rem 0.9rem',
-                        background: isActive ? 'var(--earth-soft)' : 'var(--paper-card)',
-                        color: 'var(--ink)',
-                        border: isActive ? '1px solid rgba(154, 106, 62, 0.45)' : '1px solid var(--hairline)',
-                        borderRadius: '6px',
-                        cursor: 'pointer',
-                        transition: 'all 0.15s ease'
-                      }}
-                    >
-                      <span style={{ fontSize: '0.9rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', fontWeight: isActive ? 600 : 400, color: isActive ? 'var(--earth)' : 'var(--ink)' }}>
-                        {file.replace(/_/g, ' ')}
-                      </span>
-                      <FileText size={14} style={{ color: isActive ? 'var(--earth)' : 'var(--ink-faint)', flexShrink: 0 }} />
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          )}
-        </div>
-
-        {/* PDF Viewer Panel */}
-        <div className="viewer-panel">
-          {selectedFile ? (
-            <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.85rem 1rem', background: 'var(--paper-panel)', borderBottom: '1px solid var(--hairline)' }}>
-                <span className="tech-label" style={{ maxWidth: '60%', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', color: 'var(--ink)' }}>
-                  {decodeURIComponent(selectedFile.split('/').pop() || '')}
-                </span>
-                <div style={{ display: 'flex', gap: '0.5rem' }}>
-                  <a href={selectedFile} download className="filter-btn active" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', textDecoration: 'none', padding: '4px 10px' }}>
-                    <Download size={12} /> DOWNLOAD
-                  </a>
-                  <a href={selectedFile} target="_blank" rel="noopener noreferrer" className="filter-btn" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', textDecoration: 'none', padding: '4px 10px' }}>
-                    <ExternalLink size={12} /> NEW TAB
-                  </a>
                 </div>
-              </div>
-              <iframe src={selectedFile} className="viewer-iframe" title="PDF Viewer" />
+              )}
             </div>
-          ) : (
-            <div className="viewer-placeholder">
-              <Eye size={44} style={{ color: 'var(--earth)', marginBottom: '1rem', opacity: 0.5 }} />
-              <h3 style={{ fontFamily: 'var(--display)', fontSize: '1.4rem' }}>No Examination Paper Selected</h3>
-              <p style={{ maxWidth: '320px', marginTop: '0.5rem', fontSize: '0.9rem', color: 'var(--ink-soft)' }}>
-                Select a past examination paper or markscheme from the directory on the left to preview and study the document inline.
-              </p>
-            </div>
-          )}
-        </div>
-      </div>
 
-      {/* IB FORMULA & DATA BOOKLET VIEWER */}
+            {/* PDF Viewer Panel */}
+            <div className="viewer-panel">
+              {selectedFile ? (
+                <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.85rem 1rem', background: 'var(--paper-panel)', borderBottom: '1px solid var(--hairline)' }}>
+                    <span className="tech-label" style={{ maxWidth: '60%', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', color: 'var(--ink)' }}>
+                      {decodeURIComponent(selectedFile.split('/').pop() || '')}
+                    </span>
+                    <div style={{ display: 'flex', gap: '0.5rem' }}>
+                      <a href={selectedFile} download className="filter-btn active" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', textDecoration: 'none', padding: '4px 10px' }}>
+                        <Download size={12} /> DOWNLOAD
+                      </a>
+                      <a href={selectedFile} target="_blank" rel="noopener noreferrer" className="filter-btn" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', textDecoration: 'none', padding: '4px 10px' }}>
+                        <ExternalLink size={12} /> NEW TAB
+                      </a>
+                    </div>
+                  </div>
+                  <iframe src={selectedFile} className="viewer-iframe" title="PDF Viewer" />
+                </div>
+              ) : (
+                <div className="viewer-placeholder">
+                  <Eye size={44} style={{ color: 'var(--earth)', marginBottom: '1rem', opacity: 0.5 }} />
+                  <h3 style={{ fontFamily: 'var(--display)', fontSize: '1.4rem' }}>No Examination Paper Selected</h3>
+                  <p style={{ maxWidth: '320px', marginTop: '0.5rem', fontSize: '0.9rem', color: 'var(--ink-soft)' }}>
+                    Select a past examination paper or markscheme from the directory on the left to preview and study the document inline.
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+        </>
+      )}
+
+      {/* MODALS */}
+      {/* 1. Topical / Custom Document Split-Screen Viewer */}
+      <IBPDFViewerModal
+        isOpen={viewerModalOpen}
+        onClose={() => setViewerModalOpen(false)}
+        customDoc={viewerDoc}
+        initialSplitView={viewerSplitView}
+      />
+
+      {/* 2. Official Formula Booklets Modal */}
       <IBBookletViewerModal
         isOpen={showBookletModal}
         onClose={() => setShowBookletModal(false)}
       />
 
-      {/* IB COMMAND TERMS & MARKSCHEME MATRIX */}
+      {/* 3. Command Terms Modal */}
       <IBCommandTermsModal
         isOpen={showCommandTermsModal}
         onClose={() => setShowCommandTermsModal(false)}
       />
+
+      {/* Floating Data Booklet Quick Launcher */}
+      <button
+        type="button"
+        onClick={() => setShowBookletModal(true)}
+        aria-label="Open IB Formula & Data Booklet"
+        style={{
+          position: 'fixed',
+          bottom: '24px',
+          right: '24px',
+          zIndex: 8000,
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          background: 'linear-gradient(135deg, #1f883d 0%, #15803d 100%)',
+          color: '#ffffff',
+          border: '1.5px solid rgba(255, 255, 255, 0.25)',
+          borderRadius: '50px',
+          padding: '12px 20px',
+          fontSize: '0.88rem',
+          fontWeight: 700,
+          boxShadow: '0 8px 24px rgba(21, 128, 61, 0.4), 0 2px 6px rgba(0,0,0,0.2)',
+          cursor: 'pointer',
+          transition: 'transform 0.15s ease, box-shadow 0.15s ease',
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.transform = 'translateY(-2px)';
+          e.currentTarget.style.boxShadow = '0 12px 28px rgba(21, 128, 61, 0.5), 0 4px 8px rgba(0,0,0,0.25)';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.transform = 'translateY(0)';
+          e.currentTarget.style.boxShadow = '0 8px 24px rgba(21, 128, 61, 0.4), 0 2px 6px rgba(0,0,0,0.2)';
+        }}
+      >
+        <BookOpen size={16} />
+        <span>Open Data Booklet</span>
+      </button>
     </div>
   );
 }

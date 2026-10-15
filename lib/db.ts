@@ -151,8 +151,9 @@ const INITIAL_SUBMISSIONS: ResourceSubmission[] = [
 ];
 
 const DATA_DIR = path.join(process.cwd(), 'data');
-const TMP_DATA_DIR = path.join('/tmp', 'thinkib-data');
-let usingTmpFallback = false;
+const TMP_DATA_DIR = path.join('/tmp', 'data');
+const IS_SERVERLESS = process.env.VERCEL === '1' || Boolean(process.env.AWS_LAMBDA_FUNCTION_NAME);
+let usingTmpFallback = IS_SERVERLESS;
 
 export function isUsingEphemeralStorage(): boolean {
   return usingTmpFallback;
@@ -172,8 +173,44 @@ function ensureDirectory(dir: string): boolean {
   }
 }
 
+/**
+ * On serverless cold start, ensure /tmp/data exists and copy seed data from process.cwd()/data
+ */
+function ensureTmpDataSeeded(filename: string, fallback: any): string {
+  ensureDirectory(TMP_DATA_DIR);
+  const tmpFilePath = path.join(TMP_DATA_DIR, filename);
+  const cwdFilePath = path.join(DATA_DIR, filename);
+
+  if (!fs.existsSync(tmpFilePath)) {
+    try {
+      if (fs.existsSync(cwdFilePath)) {
+        fs.copyFileSync(cwdFilePath, tmpFilePath);
+      } else {
+        fs.writeFileSync(tmpFilePath, JSON.stringify(fallback, null, 2), 'utf-8');
+      }
+    } catch (err) {
+      console.warn(`[DB] Could not seed /tmp/data/${filename}:`, err);
+    }
+  }
+  return tmpFilePath;
+}
+
 function readJSONFile<T>(filename: string, fallback: T): T {
-  // First check if a session-modified copy exists in /tmp/thinkib-data/
+  // If running on Vercel or EROFS has been triggered, always use /tmp/data/
+  if (usingTmpFallback) {
+    try {
+      const tmpFilePath = ensureTmpDataSeeded(filename, fallback);
+      if (fs.existsSync(tmpFilePath)) {
+        const raw = fs.readFileSync(tmpFilePath, 'utf-8');
+        return JSON.parse(raw) as T;
+      }
+    } catch (err) {
+      console.warn(`[DB] Error reading /tmp/data/${filename}:`, err);
+    }
+    return fallback;
+  }
+
+  // Local development: check /tmp first, then DATA_DIR
   const tmpFilePath = path.join(TMP_DATA_DIR, filename);
   try {
     if (fs.existsSync(tmpFilePath)) {
@@ -184,7 +221,6 @@ function readJSONFile<T>(filename: string, fallback: T): T {
     // continue to normal path
   }
 
-  // Next check regular data directory
   const filePath = path.join(DATA_DIR, filename);
   try {
     if (fs.existsSync(filePath)) {
@@ -197,15 +233,15 @@ function readJSONFile<T>(filename: string, fallback: T): T {
         fs.writeFileSync(filePath, JSON.stringify(fallback, null, 2), 'utf-8');
       } else {
         usingTmpFallback = true;
-        ensureDirectory(TMP_DATA_DIR);
-        fs.writeFileSync(tmpFilePath, JSON.stringify(fallback, null, 2), 'utf-8');
+        const tmpPath = ensureTmpDataSeeded(filename, fallback);
+        fs.writeFileSync(tmpPath, JSON.stringify(fallback, null, 2), 'utf-8');
       }
     } catch (writeErr: any) {
       if (writeErr?.code === 'EROFS' || writeErr?.code === 'EACCES') {
         usingTmpFallback = true;
-        ensureDirectory(TMP_DATA_DIR);
+        const tmpPath = ensureTmpDataSeeded(filename, fallback);
         try {
-          fs.writeFileSync(tmpFilePath, JSON.stringify(fallback, null, 2), 'utf-8');
+          fs.writeFileSync(tmpPath, JSON.stringify(fallback, null, 2), 'utf-8');
         } catch {}
       }
     }
@@ -217,26 +253,36 @@ function readJSONFile<T>(filename: string, fallback: T): T {
 }
 
 function writeJSONFile<T>(filename: string, data: T): void {
-  const filePath = path.join(DATA_DIR, filename);
-  const tmpFilePath = path.join(TMP_DATA_DIR, filename);
-
-  if (!usingTmpFallback) {
+  // If on serverless or EROFS has occurred, route directly to /tmp/data
+  if (usingTmpFallback) {
     try {
-      if (ensureDirectory(DATA_DIR)) {
-        fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8');
-        return;
-      }
-    } catch (err: any) {
-      if (err?.code === 'EROFS' || err?.code === 'EACCES') {
-        usingTmpFallback = true;
-        console.warn(`[DB EROFS Fallback] Vercel read-only filesystem detected for ${filename}. Mirroring session writes to ${TMP_DATA_DIR}`);
-      } else {
-        console.warn(`[DB] Error writing ${filename}:`, err);
-      }
+      const tmpFilePath = ensureTmpDataSeeded(filename, data);
+      fs.writeFileSync(tmpFilePath, JSON.stringify(data, null, 2), 'utf-8');
+      return;
+    } catch (tmpErr) {
+      console.warn(`[DB] Error writing to /tmp/data for ${filename}:`, tmpErr);
+      return;
     }
   }
 
-  // Fallback write to /tmp/thinkib-data/
+  const filePath = path.join(DATA_DIR, filename);
+  const tmpFilePath = path.join(TMP_DATA_DIR, filename);
+
+  try {
+    if (ensureDirectory(DATA_DIR)) {
+      fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8');
+      return;
+    }
+  } catch (err: any) {
+    if (err?.code === 'EROFS' || err?.code === 'EACCES') {
+      usingTmpFallback = true;
+      console.warn(`[DB EROFS Fallback] Vercel read-only filesystem detected for ${filename}. Mirroring session writes to ${TMP_DATA_DIR}`);
+    } else {
+      console.warn(`[DB] Error writing ${filename}:`, err);
+    }
+  }
+
+  // Fallback write to /tmp/data/
   try {
     ensureDirectory(TMP_DATA_DIR);
     fs.writeFileSync(tmpFilePath, JSON.stringify(data, null, 2), 'utf-8');

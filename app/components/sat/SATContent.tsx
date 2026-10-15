@@ -4,6 +4,8 @@ import React from 'react';
 import type { SATQuestion, SATBlock, SATSheet, SATRect } from '@/lib/sat-types';
 
 import katex from 'katex';
+import CruxMoveCard from '../CruxMoveCard';
+import { getDesmosShortcutForQuestion } from '@/lib/desmos-shortcuts';
 
 // PDF points → CSS pixels. Source text is ~9pt, so this renders it at ~18px,
 // matching the site's body copy. Sheets are rasterised at 2.5–3 px/pt, so crops stay
@@ -11,24 +13,69 @@ import katex from 'katex';
 const CSS_PX_PER_PT = 2.0;
 
 /** One crop out of a question's sprite sheet. Responsive: shrinks to fit narrow screens. */
+/** One crop out of a question's sprite sheet. Responsive: shrinks to fit narrow screens with ResizeObserver. */
 export function SheetCrop({ sheet, rect, alt }: { sheet: SATSheet; rect: SATRect; alt: string }) {
-  const cssWidth = (rect.w / sheet.scale) * CSS_PX_PER_PT;
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const [containerWidth, setContainerWidth] = React.useState<number | null>(null);
+
+  React.useEffect(() => {
+    const el = containerRef.current;
+    if (!el || typeof ResizeObserver === 'undefined') return;
+
+    const ro = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.contentBoxSize?.[0]) {
+          setContainerWidth(entry.contentBoxSize[0].inlineSize);
+        } else {
+          setContainerWidth(entry.contentRect.width);
+        }
+      }
+    });
+
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  const intrinsicWidth = (rect.w / sheet.scale) * CSS_PX_PER_PT;
+  const intrinsicHeight = (rect.h / sheet.scale) * CSS_PX_PER_PT;
+
+  const scale = containerWidth && containerWidth < intrinsicWidth
+    ? Math.max(0.1, containerWidth / intrinsicWidth)
+    : 1;
+
   const posX = sheet.w === rect.w ? 0 : (rect.x / (sheet.w - rect.w)) * 100;
   const posY = sheet.h === rect.h ? 0 : (rect.y / (sheet.h - rect.h)) * 100;
+
   return (
-    <span
-      role="img"
-      aria-label={alt || 'Question figure'}
-      className={`sat-crop sat-crop--${sheet.mode}`}
+    <div
+      ref={containerRef}
       style={{
         width: '100%',
-        maxWidth: `${cssWidth}px`,
-        aspectRatio: `${rect.w} / ${rect.h}`,
-        backgroundImage: `url(${sheet.src})`,
-        backgroundSize: `${(sheet.w / rect.w) * 100}% auto`,
-        backgroundPosition: `${posX}% ${posY}%`,
+        maxWidth: `${intrinsicWidth}px`,
+        height: scale < 1 ? `${intrinsicHeight * scale}px` : undefined,
+        overflow: 'hidden',
+        display: 'block',
+        margin: '0.4rem 0',
       }}
-    />
+    >
+      <span
+        role="img"
+        aria-label={alt || 'Question figure'}
+        className={`sat-crop sat-crop--${sheet.mode}`}
+        style={{
+          display: 'block',
+          width: `${intrinsicWidth}px`,
+          height: `${intrinsicHeight}px`,
+          aspectRatio: `${rect.w} / ${rect.h}`,
+          backgroundImage: `url(${sheet.src})`,
+          backgroundSize: `${(sheet.w / rect.w) * 100}% auto`,
+          backgroundPosition: `${posX}% ${posY}%`,
+          transform: scale < 1 ? `scale(${scale})` : undefined,
+          transformOrigin: 'top left',
+          maxWidth: 'none',
+        }}
+      />
+    </div>
   );
 }
 
@@ -177,15 +224,79 @@ export function ChoiceContent({ q, index }: { q: SATQuestion; index: number }) {
   return <RichText html={text} className="sat-choice-text" />;
 }
 
-export function Rationale({ q }: { q: SATQuestion }) {
-  if (q.rationaleBlocks && q.rationaleBlocks.length) {
-    return <Blocks blocks={q.rationaleBlocks} sheet={q.rationaleSheet} className="sat-rationale" />;
+function getSATCruxMove(q: SATQuestion): string {
+  const shortcut = q.section === 'math' ? getDesmosShortcutForQuestion(q) : null;
+  if (shortcut) {
+    return `${shortcut.title}: ${shortcut.whatToLookFor}`;
   }
+
+  const text = q.rationale || '';
+  if (text) {
+    const sentences = text.split(/(?<=[.!?])\s+/);
+    const keySentence = sentences.find((s) => {
+      const lower = s.toLowerCase();
+      return (
+        lower.includes('formula') ||
+        lower.includes('vertex') ||
+        lower.includes('discriminant') ||
+        lower.includes('substitut') ||
+        lower.includes('key to solving') ||
+        lower.includes('therefore') ||
+        lower.includes('independent clause') ||
+        lower.includes('semicolon') ||
+        lower.includes('transition')
+      );
+    });
+    if (keySentence && keySentence.length > 20 && keySentence.length < 240) {
+      return keySentence.trim();
+    }
+  }
+
+  if (q.skill?.includes('Linear')) {
+    return 'Identify the slope $m$ and $y$-intercept $b$. For infinite solutions, coefficients must be proportional; for no solution, slopes match but intercepts differ.';
+  }
+  if (q.skill?.includes('Nonlinear') || q.skill?.includes('quadratic')) {
+    return 'Use the vertex coordinate $x = -\\frac{b}{2a}$ or the discriminant $\\Delta = b^2 - 4ac$ to determine roots and extreme values instantly.';
+  }
+  if (q.skill?.includes('Boundaries')) {
+    return 'Identify clause boundaries: separate two complete independent clauses with a period, semicolon, or comma + FANBOYS coordinating conjunction.';
+  }
+  if (q.skill?.includes('Transitions')) {
+    return 'Determine the relationship between preceding and succeeding claims: Directional Contrast (However), Causation (Consequently), or Continuation (Furthermore).';
+  }
+  if (q.skill?.includes('Circle')) {
+    return 'Complete the square into standard form $(x - h)^2 + (y - k)^2 = r^2$ to read center $(h, k)$ and radius $r$.';
+  }
+  if (q.skill?.includes('Percentages') || q.skill?.includes('Ratios')) {
+    return 'Express percentage changes as decimal multipliers (e.g. 15% increase $\\to \\times 1.15$, 20% decrease $\\to \\times 0.80$).';
+  }
+
+  return `Pivotal Concept: Master the core requirements of ${q.skill || q.domain} by isolating variables directly and testing edge values.`;
+}
+
+export function Rationale({ q }: { q: SATQuestion }) {
+  const cruxText = getSATCruxMove(q);
+
   return (
     <div className="sat-rationale">
-      {(q.rationale || 'No rationale provided.').split(/\n{2,}/).map((p, i) => (
-        <p key={i} className="sat-para">{p}</p>
-      ))}
+      {q.rationaleBlocks && q.rationaleBlocks.length ? (
+        <Blocks blocks={q.rationaleBlocks} sheet={q.rationaleSheet} className="sat-rationale-blocks" />
+      ) : (
+        (q.rationale || 'No rationale provided.').split(/\n{2,}/).map((p, i) => (
+          <p key={i} className="sat-para">{p}</p>
+        ))
+      )}
+
+      {cruxText && (
+        <CruxMoveCard
+          id={`sat_crux_${q.questionId}`}
+          source="sat"
+          title={`${q.skill || q.domain} Crux Move`}
+          cruxText={cruxText}
+          synthesisBridge={q.skill ? `Domain: ${q.domain} · Skill: ${q.skill}` : undefined}
+          contextPrompt={q.prompt}
+        />
+      )}
     </div>
   );
 }

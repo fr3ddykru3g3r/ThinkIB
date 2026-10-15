@@ -56,15 +56,16 @@ SUBTOPICS = {
         "hl_only": False,
         "description": "SUVAT equations, projectile motion, graphs of motion, terminal velocity, and fluid resistance.",
         "keywords": [
-            "suvat", "projectile", "trajectory", "displacement-time", "velocity-time", "acceleration-time",
+            "suvat", "projectile", "projectile motion", "trajectory", "displacement-time", "velocity-time", "acceleration-time",
             "terminal velocity", "fluid resistance", "air resistance", "horizontal component",
             "vertical component", "parabolic", "free fall", "uniform acceleration", "stopping distance",
             "relative velocity", "initial speed", "range of projectile", "maximum height", "equations of motion",
-            "instantaneous speed", "average velocity", "accelerate from rest"
+            "instantaneous speed", "average velocity", "accelerate from rest", "falling object", "motion graph",
+            "initial velocity", "constant acceleration", "horizontal velocity", "vertical velocity", "speed of launch"
         ],
         "formulas": [
             r"\bu\s*\+\s*at\b", r"\but\s*\+\s*½\s*at\^?2\b", r"\bv\^?2\s*=\s*u\^?2\b",
-            r"\bs\s*=\s*ut\b", r"\b\(\s*u\s*\+\s*v\s*\)\s*t\s*/\s*2\b", r"\b9\.8\d?\b"
+            r"\bs\s*=\s*ut\b", r"\b\(\s*u\s*\+\s*v\s*\)\s*t\s*/\s*2\b"
         ],
         "weight_boost": 1.2
     },
@@ -74,12 +75,13 @@ SUBTOPICS = {
         "hl_only": False,
         "description": "Free-body diagrams, Newton's laws of motion, friction, impulse, linear momentum, collisions, and circular motion.",
         "keywords": [
-            "free-body diagram", "free body", "newton's first", "newton's second", "newton's third", "newton",
-            "friction", "static friction", "dynamic friction", "coefficient of friction", "normal reaction",
-            "impulse", "momentum", "conservation of momentum", "conservation of linear momentum",
+            "free-body diagram", "free body", "free body diagram", "newton's first", "newton's second", "newton's third", "newton's law",
+            "friction", "static friction", "dynamic friction", "coefficient of friction", "normal reaction", "normal force",
+            "impulse", "momentum", "conservation of momentum", "conservation of linear momentum", "linear momentum",
             "elastic collision", "inelastic collision", "centripetal", "centripetal acceleration",
             "centripetal force", "banked track", "circular motion", "angular speed", "tension in string",
-            "net force", "resultant force", "equilibrium of forces", "drag force", "collision"
+            "net force", "resultant force", "equilibrium of forces", "drag force", "collision", "collides with",
+            "change in momentum", "force-time", "uniform circular motion"
         ],
         "formulas": [
             r"\bF\s*=\s*ma\b", r"\bF\s*=\s*Δp/Δt\b", r"\bp\s*=\s*mv\b", r"\bv\^?2\s*/\s*r\b",
@@ -96,13 +98,14 @@ SUBTOPICS = {
             "kinetic energy", "gravitational potential energy", "elastic potential energy", "work done",
             "power", "efficiency", "sankey diagram", "sankey", "spring constant", "hooke's law",
             "conservation of energy", "useful work", "rate of doing work", "dissipated energy",
-            "energy transfer", "watt", "joule", "energy losses", "friction does work"
+            "energy transfer", "watt", "joule", "energy losses", "friction does work", "mechanical energy",
+            "useful power", "power output", "power input", "rate of energy"
         ],
         "formulas": [
             r"\b½\s*m\s*v\^?2\b", r"\bmgh\b", r"\b½\s*k\s*x\^?2\b", r"\bFd\s*cos\b",
             r"\bP\s*=\s*Fv\b", r"\bwork\s*done\b", r"\befficiency\b"
         ],
-        "weight_boost": 1.1
+        "weight_boost": 1.2
     },
     "A.4": {
         "theme": "A",
@@ -113,7 +116,8 @@ SUBTOPICS = {
             "torque", "moment of inertia", "angular momentum", "rotational kinetic energy",
             "rolling without slipping", "rolling", "angular acceleration", "angular velocity",
             "angular impulse", "couple", "flywheel", "rotational dynamics", "parallel axis theorem",
-            "cylinder rolling", "sphere rolling", "angular displacement", "rad s^-1", "rad s^-2"
+            "cylinder rolling", "sphere rolling", "angular displacement", "rad s^-1", "rad s^-2",
+            "rigid body", "rotational equilibrium"
         ],
         "formulas": [
             r"\bτ\s*=\s*I\s*α\b", r"\bI\s*ω\b", r"\b½\s*I\s*ω\^?2\b", r"\bFr\s*sin\b",
@@ -152,8 +156,9 @@ SUBTOPICS = {
             "internal energy", "kelvin", "absolute temperature", "specific heat capacity", "heat capacity",
             "specific latent heat", "latent heat of fusion", "latent heat of vaporization", "phase change",
             "thermal conduction", "thermal conductivity", "stefan-boltzmann", "wien's displacement",
-            "wien", "apparent brightness", "luminosity", "black body", "black-body", "emissivity",
-            "thermal equilibrium", "rate of heat transfer", "calorimeter", "melting", "boiling"
+            "wien", "apparent brightness", "black body", "black-body", "emissivity",
+            "thermal equilibrium", "rate of heat transfer", "calorimeter", "melting", "boiling",
+            "thermal energy", "conduction", "convection", "cooling curve", "temperature difference"
         ],
         "formulas": [
             r"\bmcΔT\b", r"\bmL\b", r"\bσ\s*A\s*T\^?4\b", r"\bλ_?max\s*T\b",
@@ -168,9 +173,9 @@ SUBTOPICS = {
         "description": "Albedo, solar constant, greenhouse gases, infrared absorption, planetary energy balance.",
         "keywords": [
             "greenhouse effect", "greenhouse gas", "greenhouse gases", "albedo", "solar constant",
-            "planetary energy balance", "emissivity", "infrared radiation", "infrared absorption",
+            "planetary energy balance", "emissivity of earth", "infrared radiation", "infrared absorption",
             "methane", "carbon dioxide", "surface temperature of earth", "radiative balance",
-            "re-radiation", "black body radiation of the earth"
+            "re-radiation", "black body radiation of the earth", "global warming"
         ],
         "formulas": [
             r"\balbedo\b", r"\bsolar\s*constant\b", r"\b136[0-8]\s*W\s*m\^-2\b"
@@ -184,15 +189,15 @@ SUBTOPICS = {
         "description": "Pressure, ideal gas law, Boyle's law, Charles's law, Gay-Lussac, root-mean-square speed, average kinetic energy, Avogadro.",
         "keywords": [
             "ideal gas", "ideal gas equation", "boyle's law", "charles's law", "gay-lussac",
-            "pressure", "root-mean-square", "rms speed", "rms velocity", "translational kinetic energy",
+            "root-mean-square", "rms speed", "rms velocity", "translational kinetic energy",
             "avogadro constant", "avogadro", "moles", "mole", "molar mass", "kelvin temperature",
-            "gas container", "rigid cylinder", "piston", "number of gas molecules"
+            "gas container", "rigid cylinder", "piston", "number of gas molecules", "kinetic theory of gases",
+            "ideal gas law", "gas molecules", "gas pressure"
         ],
         "formulas": [
-            r"\bPV\s*=\s*nRT\b", r"\bPV\s*=\s*Nk_?BT\b", r"\b3/2\s*k_?BT\b", r"\bc_?rms\b",
-            r"\bP\s*=\s*F/A\b"
+            r"\bPV\s*=\s*nRT\b", r"\bPV\s*=\s*Nk_?BT\b", r"\b3/2\s*k_?BT\b", r"\bc_?rms\b"
         ],
-        "weight_boost": 1.2
+        "weight_boost": 1.3
     },
     "B.4": {
         "theme": "B",
@@ -223,13 +228,14 @@ SUBTOPICS = {
             "terminal potential difference", "ohm's law", "ohmic", "non-ohmic", "resistivity",
             "kirchhoff's first law", "kirchhoff's second law", "kirchhoff", "series resistor",
             "parallel resistor", "potential divider", "potentiometer", "light-dependent resistor",
-            "ldr", "thermistor", "ammeter", "voltmeter", "drift speed", "drift velocity"
+            "ldr", "thermistor", "ammeter", "voltmeter", "drift speed", "drift velocity",
+            "resistor", "circuit", "cell", "electric cell", "internal resistance r"
         ],
         "formulas": [
             r"\bI\s*=\s*Δq/Δt\b", r"\bV\s*=\s*IR\b", r"\bε\s*=\s*I\s*\(?\s*R\s*\+\s*r\s*\)?\b",
             r"\bρ\s*=\s*RA/L\b", r"\bI\s*=\s*nAvq\b", r"\bP\s*=\s*VI\b", r"\bP\s*=\s*I\^?2\s*R\b"
         ],
-        "weight_boost": 1.2
+        "weight_boost": 1.3
     },
 
     # Theme C: Wave Behaviour
@@ -242,7 +248,8 @@ SUBTOPICS = {
             "simple harmonic motion", "shm", "restoring force", "acceleration proportional to displacement",
             "mass-spring", "spring-mass", "simple pendulum", "phase angle", "phase difference",
             "shm energy", "interchange of kinetic and potential energy", "angular frequency of oscillation",
-            "period of oscillation", "amplitude of oscillation", "oscillator", "undamped oscillation"
+            "period of oscillation", "amplitude of oscillation", "oscillator", "undamped oscillation",
+            "periodic motion", "oscillating"
         ],
         "formulas": [
             r"\ba\s*=\s*-\s*ω\^?2\s*x\b", r"\bT\s*=\s*2π\s*√\s*\(?\s*m/k\s*\)?\b",
@@ -258,14 +265,15 @@ SUBTOPICS = {
         "keywords": [
             "transverse wave", "longitudinal wave", "crest", "trough", "compression", "rarefaction",
             "wavelength", "wave speed", "wave frequency", "period of wave", "electromagnetic spectrum",
-            "sound wave", "ultrasound wave", "wavefront", "rays", "intensity of wave", "inverse square law",
-            "amplitude of wave", "mechanical wave", "speed of light in vacuum"
+            "sound wave", "sound waves", "wavefront", "rays", "intensity of wave", "inverse square law",
+            "amplitude of wave", "mechanical wave", "speed of light in vacuum", "displacement-distance graph",
+            "displacement-time graph of wave"
         ],
         "formulas": [
             r"\bv\s*=\s*f\s*λ\b", r"\bc\s*=\s*f\s*λ\b", r"\bT\s*=\s*1/f\b", r"\bI\s*∝\s*A\^?2\b",
             r"\bI\s*=\s*P/\(?4πr\^?2\)?\b"
         ],
-        "weight_boost": 1.1
+        "weight_boost": 1.2
     },
     "C.3": {
         "theme": "C",
@@ -277,7 +285,8 @@ SUBTOPICS = {
             "superposition", "interference", "constructive interference", "destructive interference",
             "path difference", "double-slit", "double slit", "young's double slit", "fringe spacing",
             "fringe separation", "single-slit diffraction", "diffraction grating", "grating",
-            "diffraction pattern", "central maximum", "secondary maximum", "ray diagram reflection"
+            "diffraction pattern", "central maximum", "secondary maximum", "ray diagram reflection",
+            "angle of incidence", "angle of refraction"
         ],
         "formulas": [
             r"\bn_?1\s*sin\s*θ_?1\s*=\s*n_?2\s*sin\s*θ_?2\b", r"\bs\s*=\s*λD/d\b",
@@ -291,7 +300,7 @@ SUBTOPICS = {
         "hl_only": False,
         "description": "Standing waves, nodes, antinodes, boundary conditions in strings and pipes, harmonics, damping, natural frequency, driven resonance.",
         "keywords": [
-            "standing wave", "stationary wave", "node", "nodes", "antinode", "antinodes",
+            "standing wave", "standing waves", "stationary wave", "node", "nodes", "antinode", "antinodes",
             "boundary conditions", "harmonics", "first harmonic", "fundamental frequency",
             "resonant frequency", "resonance", "driven resonance", "damping", "light damping",
             "critical damping", "overdamping", "string fixed at both ends", "pipe open at both ends",
@@ -300,7 +309,7 @@ SUBTOPICS = {
         "formulas": [
             r"\bλ\s*=\s*2L/n\b", r"\bλ\s*=\s*4L/n\b", r"\bf_?1\b", r"\bnode\b", r"\bantinode\b"
         ],
-        "weight_boost": 1.3
+        "weight_boost": 1.4
     },
     "C.5": {
         "theme": "C",
@@ -309,13 +318,20 @@ SUBTOPICS = {
         "description": "Doppler effect for sound and light, redshift, blueshift, moving source, moving observer frequency shift formulas.",
         "keywords": [
             "doppler effect", "doppler shift", "doppler frequency", "moving source", "moving observer",
+            "stationary observer", "observer receives sound", "frequency measured by the observer",
+            "frequency heard by the observer", "observed frequency", "detected frequency", "emitted frequency",
+            "moves towards a stationary observer", "moves away from a stationary observer",
+            "moves towards the observer", "moves away from the observer", "source moves with constant velocity",
+            "source moves", "source of sound moves", "approaching observer", "receding observer",
+            "approaches the observer", "recedes from the observer", "siren", "whistle",
             "redshift", "blueshift", "recessional speed", "apparent frequency", "frequency shift",
-            "acoustic doppler", "wavelength shift", "moving towards observer", "moving away from observer"
+            "acoustic doppler", "wavelength shift", "moving towards observer", "moving away from observer",
+            "change in observed frequency"
         ],
         "formulas": [
             r"\bΔλ/λ\b", r"\bv/c\b", r"\bf'\s*=\s*f\b", r"\bv\s*/\s*\(\s*v\s*[±+-]\s*u_?[so]\s*\)\b"
         ],
-        "weight_boost": 1.4
+        "weight_boost": 1.7
     },
 
     # Theme D: Fields
@@ -328,7 +344,7 @@ SUBTOPICS = {
             "gravitational field", "newton's law of gravitation", "gravitational force", "gravitational field strength",
             "kepler's third law", "gravitational potential", "gravitational potential energy", "equipotential",
             "escape speed", "escape velocity", "orbital speed", "orbital period", "satellite orbit",
-            "geostationary", "circular orbit", "point mass", "spherical mass"
+            "geostationary", "circular orbit", "point mass", "spherical mass", "orbit around planet"
         ],
         "formulas": [
             r"\bGMm/r\^?2\b", r"\bg\s*=\s*GM/r\^?2\b", r"\bV_?g\s*=\s*-\s*GM/r\b",
@@ -344,8 +360,9 @@ SUBTOPICS = {
         "keywords": [
             "coulomb's law", "electric field", "electric field strength", "electric field lines",
             "parallel plates", "uniform electric field", "electric potential", "electric potential energy",
-            "equipotential line", "magnetic field lines", "magnetic flux density", "solenoid",
-            "straight wire magnetic field", "permittivity of free space", "point charge"
+            "equipotential line", "magnetic field", "magnetic field lines", "magnetic flux density", "solenoid",
+            "straight wire magnetic field", "permittivity of free space", "point charge",
+            "direction of magnetic field", "magnetic field around wire", "wire normal to", "wire carrying current"
         ],
         "formulas": [
             r"\bkq_?1q_?2/r\^?2\b", r"\bE\s*=\s*F/q\b", r"\bE\s*=\s*V/d\b", r"\bV_?e\s*=\s*kQ/r\b",
@@ -362,13 +379,18 @@ SUBTOPICS = {
             "magnetic force", "lorentz force", "charge in magnetic field", "qvB", "circular path in magnetic field",
             "cyclotron radius", "current-carrying conductor", "current-carrying wire", "BIL",
             "force between parallel wires", "force between parallel conductors", "velocity selector",
-            "crossed fields", "mass spectrometer", "right-hand rule", "fleming's left-hand rule"
+            "crossed fields", "mass spectrometer", "right-hand rule", "fleming's left-hand rule",
+            "deflection of charge", "helical path", "particle enters a magnetic field",
+            "electron enters a magnetic field", "proton enters a magnetic field", "charged particle in a magnetic field",
+            "enters a region of uniform magnetic field", "magnetic field into the page", "magnetic field out of the page",
+            "path of the electron", "path of the proton", "radius of the circular path", "magnetic force on the charge",
+            "magnetic force on the electron"
         ],
         "formulas": [
             r"\bqvB\s*sin\b", r"\bBIL\s*sin\b", r"\bF\s*=\s*qvB\b", r"\bF\s*=\s*BIL\b",
             r"\bv\s*=\s*E/B\b", r"\br\s*=\s*mv/qB\b"
         ],
-        "weight_boost": 1.3
+        "weight_boost": 1.5
     },
     "D.4": {
         "theme": "D",
@@ -379,13 +401,17 @@ SUBTOPICS = {
             "electromagnetic induction", "magnetic flux", "magnetic flux linkage", "flux linkage",
             "faraday's law", "faraday", "lenz's law", "lenz", "induced emf", "induced current",
             "ac generator", "alternating current", "motional emf", "rotating coil", "peak voltage",
-            "peak current", "rms current", "rms voltage", "eddy currents"
+            "peak current", "rms current", "rms voltage", "eddy currents",
+            "magnetic flux through a coil", "rate of change of magnetic flux", "change in magnetic flux",
+            "induced electromotive force", "emf is induced", "conducting loop", "conducting rod",
+            "coil is rotated in a magnetic field", "variation with time of the induced emf",
+            "variation with time of the magnetic flux"
         ],
         "formulas": [
             r"\bΦ\s*=\s*BA\s*cos\b", r"\bN\s*Φ\b", r"\bε\s*=\s*-\s*N\s*ΔΦ/Δt\b",
             r"\bε\s*=\s*BvL\b", r"\bV_?rms\b", r"\bI_?rms\b"
         ],
-        "weight_boost": 1.4
+        "weight_boost": 1.6
     },
 
     # Theme E: Nuclear and Quantum Physics

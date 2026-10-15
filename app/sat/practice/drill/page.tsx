@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, ChevronLeft, ChevronRight, RotateCcw, Sparkles, BookOpen, Printer, Lightbulb, Calculator, CheckCircle2, XCircle } from 'lucide-react';
+import { ArrowLeft, ChevronLeft, ChevronRight, RotateCcw, Sparkles, BookOpen, Printer, Lightbulb, Calculator, CheckCircle2, XCircle, PenTool } from 'lucide-react';
 import type { SATQuestion } from '@/lib/sat-types';
 import { isAnswerCorrect, formatCorrectAnswer, isSPR, validateSPR } from '@/lib/sat-grading';
 import { getSocraticHints } from '@/lib/socratic-hints';
@@ -11,6 +11,7 @@ import { recordAttempts, saveMistake, getMistakeVault, markMistakeMastered, remo
 import QuestionBody from '@/app/components/sat/QuestionBody';
 import { Rationale } from '@/app/components/sat/SATContent';
 import DesmosPanel, { dispatchDesmosLoad } from '@/app/components/sat/DesmosPanel';
+import ScratchpadOverlay from '@/app/components/sat/ScratchpadOverlay';
 import SATReferenceGuideModal from '@/app/components/SATReferenceGuideModal';
 import PrintableWorksheetModal from '@/app/components/PrintableWorksheetModal';
 
@@ -42,10 +43,28 @@ export default function DrillPage() {
   const [showCalc, setShowCalc] = useState(false);
   const [showRef, setShowRef] = useState(false);
   const [showPrint, setShowPrint] = useState(false);
+  const [showScratchpad, setShowScratchpad] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
   const [answered, setAnswered] = useState(0);
 
   const [errorTag, setErrorTag] = useState<SatErrorTag | null>(null);
+
+  const qStartTime = useRef<number>(Date.now());
+
+  useEffect(() => {
+    qStartTime.current = Date.now();
+  }, [idx, questions]);
+
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.altKey && (e.key === 'w' || e.key === 'W')) {
+        e.preventDefault();
+        setShowScratchpad((v) => !v);
+      }
+    };
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, []);
 
   const resetQuestionState = () => {
     setAnswer('');
@@ -130,7 +149,17 @@ export default function DrillPage() {
         setVault(getMistakeVault());
       }
     } else {
-      saveMistake({ questionId: q.questionId, section: q.section || section, domain: q.domain, skill: q.skill, difficulty: q.difficulty, correctAnswer: q.correctAnswer, userAnswer: answer });
+      const elapsedMs = Date.now() - qStartTime.current;
+      saveMistake({
+        questionId: q.questionId,
+        section: q.section || section,
+        domain: q.domain,
+        skill: q.skill,
+        difficulty: q.difficulty,
+        correctAnswer: q.correctAnswer,
+        userAnswer: answer,
+        timeSpentMs: elapsedMs,
+      });
       setVault(getMistakeVault());
     }
   };
@@ -237,13 +266,19 @@ export default function DrillPage() {
           </button>
         </div>
       ) : (
-        <div className="panel" style={{ padding: 'clamp(1.1rem, 3vw, 2.2rem)' }}>
+        <div className="panel" style={{ padding: 'clamp(1.1rem, 3vw, 2.2rem)', position: 'relative' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8, flexWrap: 'wrap', borderBottom: '1px solid var(--border)', paddingBottom: '0.9rem', marginBottom: '1.3rem', fontSize: '0.78rem', fontFamily: 'var(--font-mono)' }}>
             <span style={{ color: 'var(--accent)', fontWeight: 600 }}>Question {idx + 1} of {questions.length} · {q.questionId}</span>
             <span style={{ color: 'var(--muted)' }}>{q.domain} · {q.skill} · <strong style={{ color: q.difficulty === 'Hard' ? '#b91c1c' : q.difficulty === 'Medium' ? '#b45309' : '#047857' }}>{q.difficulty}</strong></span>
           </div>
 
           <QuestionBody key={q.questionId} q={q} answer={answer} onAnswer={setAnswer} reveal={checked} struck={struck} onStrike={(l) => setStruck((p) => ({ ...p, [l]: !p[l] }))} />
+
+          <ScratchpadOverlay
+            questionId={q.questionId}
+            isOpen={showScratchpad}
+            onClose={() => setShowScratchpad(false)}
+          />
 
           {hintLevel > 0 && hints && !checked && (
             <div style={{ marginTop: '1.4rem', padding: '1rem 1.2rem', borderRadius: 10, background: 'rgba(245,158,11,0.09)', border: '1px solid rgba(245,158,11,0.35)', fontSize: '0.9rem', lineHeight: 1.55 }}>
@@ -261,6 +296,19 @@ export default function DrillPage() {
             </div>
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
               {!checked && <button type="button" style={pill} onClick={() => setHintLevel((l) => Math.max(1, l))}><Lightbulb size={14} style={{ color: '#d97706' }} /> Hint</button>}
+              <button
+                type="button"
+                style={{
+                  ...pill,
+                  background: showScratchpad ? 'var(--accent)' : 'var(--surface)',
+                  color: showScratchpad ? '#fff' : 'var(--ink)',
+                  borderColor: showScratchpad ? 'var(--accent)' : 'var(--border)',
+                }}
+                onClick={() => setShowScratchpad((v) => !v)}
+                title="Scratchpad & Freehand Pencil (Alt+W)"
+              >
+                <PenTool size={14} /> Scratchpad (Alt+W)
+              </button>
               {section === 'math' && <button type="button" style={pill} onClick={() => setShowCalc((v) => !v)}><Calculator size={14} /> Calculator</button>}
               <button type="button" style={pill} onClick={() => setShowRef(true)}><BookOpen size={14} /> Reference</button>
               {!checked ? (

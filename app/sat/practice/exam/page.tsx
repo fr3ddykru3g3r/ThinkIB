@@ -2,7 +2,7 @@
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
-import { Clock, Flag, ChevronLeft, ChevronRight, Calculator, FileText, ArrowRight, Play, RotateCcw, Coffee, Check } from 'lucide-react';
+import { Clock, Flag, ChevronLeft, ChevronRight, Calculator, FileText, ArrowRight, Play, RotateCcw, Coffee, Check, PenTool } from 'lucide-react';
 import type { SATQuestion } from '@/lib/sat-types';
 import type { FullSATExam, FullSATExamModule } from '@/lib/sat';
 import { isAnswerCorrect, formatCorrectAnswer, isSPR } from '@/lib/sat-grading';
@@ -11,6 +11,7 @@ import { recordAttempts, saveMistake, saveCompletedExam, getExamHistory, getSeen
 import QuestionBody from '@/app/components/sat/QuestionBody';
 import { Rationale } from '@/app/components/sat/SATContent';
 import DesmosPanel from '@/app/components/sat/DesmosPanel';
+import ScratchpadOverlay from '@/app/components/sat/ScratchpadOverlay';
 import SATReferenceGuideModal from '@/app/components/SATReferenceGuideModal';
 
 import type { SATExamDifficultyMode, SATExamConfig } from '@/lib/sat-types';
@@ -58,6 +59,7 @@ export default function SATExamPage() {
   const [showTimer, setShowTimer] = useState(true);
   const [showCalc, setShowCalc] = useState(false);
   const [showRef, setShowRef] = useState(false);
+  const [showScratchpad, setShowScratchpad] = useState(false);
   const [showGrid, setShowGrid] = useState(false);
   const [saved, setSaved] = useState<SavedState | null>(null);
 
@@ -80,6 +82,18 @@ export default function SATExamPage() {
   const mod = exam?.modules[moduleIdx] ?? null;
   const question = mod?.questions[qIdx] ?? null;
   const curKey = mod && question ? keyOf(mod, question) : '';
+
+  // Alt+W hotkey to toggle scratchpad
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.altKey && (e.key === 'w' || e.key === 'W')) {
+        e.preventDefault();
+        setShowScratchpad((v) => !v);
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
 
   // ---- detect saved exam
   useEffect(() => {
@@ -128,12 +142,16 @@ export default function SATExamPage() {
     setBusy(true);
     setError(null);
     try {
-      const modItems: ScoredItem[] = mod.questions.map((q) => ({
-        difficulty: q.difficulty,
-        type: q.type,
-        scored: !q.pretest,
-        correct: isAnswerCorrect(q, answers[keyOf(mod, q)]),
-      }));
+      const modItems: ScoredItem[] = mod.questions.map((q) => {
+        const isPre = Boolean(q.pretest || q.isPretest);
+        return {
+          difficulty: q.difficulty,
+          type: q.type,
+          scored: !isPre,
+          isPretest: isPre,
+          correct: isAnswerCorrect(q, answers[keyOf(mod, q)]),
+        };
+      });
       let nextExam = exam;
 
       // Module 1 -> route the section's Module 2 from Module 1's scored items
@@ -227,9 +245,10 @@ export default function SATExamPage() {
     for (const m of finalExam.modules) {
       for (const q of m.questions) {
         const answer = answers[keyOf(m, q)] || '';
+        const isPre = Boolean(q.pretest || q.isPretest);
         const correct = isAnswerCorrect(q, answer);
-        (m.section === 'math' ? math : rw).push({ difficulty: q.difficulty, type: q.type, scored: !q.pretest, correct });
-        if (!q.pretest) {
+        (m.section === 'math' ? math : rw).push({ difficulty: q.difficulty, type: q.type, scored: !isPre, isPretest: isPre, correct });
+        if (!isPre) {
           const d = (domains[q.domain] ||= [0, 0]);
           d[1]++;
           if (correct) d[0]++;
@@ -592,6 +611,19 @@ export default function SATExamPage() {
           </button>
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
             {mod.section === 'math' && <button type="button" style={btnGhost} onClick={() => setShowCalc((v) => !v)}><Calculator size={14} /> Calculator</button>}
+            <button
+              type="button"
+              style={{
+                ...btnGhost,
+                background: showScratchpad ? 'var(--accent)' : 'transparent',
+                color: showScratchpad ? '#fff' : 'var(--ink)',
+                borderColor: showScratchpad ? 'var(--accent)' : 'var(--border)',
+              }}
+              onClick={() => setShowScratchpad((v) => !v)}
+              title="Scratchpad & Freehand Pencil (Alt+W)"
+            >
+              <PenTool size={14} /> Scratchpad (Alt+W)
+            </button>
             <button type="button" style={btnGhost} onClick={() => setShowRef(true)}><FileText size={14} /> Reference</button>
             <button
               type="button"
@@ -633,7 +665,7 @@ export default function SATExamPage() {
           </button>
         </div>
 
-        <div className="panel" style={{ padding: 'clamp(1.1rem, 3vw, 2.2rem)', marginBottom: '1.5rem' }}>
+        <div className="panel" style={{ padding: 'clamp(1.1rem, 3vw, 2.2rem)', marginBottom: '1.5rem', position: 'relative' }}>
           <QuestionBody
             key={curKey}
             q={question}
@@ -641,6 +673,11 @@ export default function SATExamPage() {
             onAnswer={(a) => setAnswers((p) => ({ ...p, [curKey]: a }))}
             struck={struck[curKey] || {}}
             onStrike={(l) => setStruck((p) => ({ ...p, [curKey]: { ...(p[curKey] || {}), [l]: !p[curKey]?.[l] } }))}
+          />
+          <ScratchpadOverlay
+            questionId={question.questionId}
+            isOpen={showScratchpad}
+            onClose={() => setShowScratchpad(false)}
           />
         </div>
 
@@ -680,6 +717,30 @@ export default function SATExamPage() {
   if (phase === 'report' && report) {
     const domains = history0?.domains || {};
     const range = (r: [number, number]) => `${r[0]}–${r[1]}`;
+
+    const isTimeTrap = (r: ReviewRow) => {
+      const threshold = r.module.section === 'math' ? 120 : 90;
+      return !r.correct && r.seconds > threshold;
+    };
+
+    const timeTraps = rows.filter(isTimeTrap);
+
+    // Calculate Opportunity Cost
+    let cascadingVictimsCount = 0;
+    const modulesList = exam?.modules || [];
+    for (const m of modulesList) {
+      const modRows = rows.filter((r) => r.module.id === m.id);
+      let seenTrap = false;
+      for (const r of modRows) {
+        if (isTimeTrap(r)) {
+          seenTrap = true;
+        } else if (seenTrap && (!r.correct || r.seconds < 35)) {
+          cascadingVictimsCount++;
+        }
+      }
+    }
+    const estimatedPointsLost = Math.min(90, timeTraps.length * 20 + cascadingVictimsCount * 10);
+
     return (
       <div style={{ maxWidth: 860, margin: '2rem auto', paddingBottom: '4rem' }}>
         <span className="section-label">SCORE REPORT</span>
@@ -735,6 +796,50 @@ export default function SATExamPage() {
           ))}
         </div>
 
+        {/* TIME-TRAP TELEMETRY & OPPORTUNITY COST PANEL */}
+        {timeTraps.length > 0 && (
+          <div
+            className="panel"
+            style={{
+              padding: '1.5rem',
+              marginBottom: '1.5rem',
+              background: 'linear-gradient(135deg, rgba(220, 38, 38, 0.04) 0%, rgba(245, 158, 11, 0.04) 100%)',
+              border: '1.5px solid rgba(220, 38, 38, 0.25)',
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8, marginBottom: '0.75rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <span style={{ fontSize: '1.25rem' }}>⏱️</span>
+                <span className="section-label" style={{ margin: 0, color: '#dc2626' }}>
+                  TIME-TRAP TELEMETRY &amp; OPPORTUNITY COST ANALYSIS
+                </span>
+              </div>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', background: '#dc2626', color: '#fff', padding: '2px 8px', borderRadius: 4, fontWeight: 700 }}>
+                -{estimatedPointsLost} PTS ESTIMATED IMPACT
+              </span>
+            </div>
+            <p style={{ fontSize: '0.92rem', color: 'var(--ink)', lineHeight: 1.5, margin: '0 0 1rem' }}>
+              You encountered <strong>{timeTraps.length} Time Trap{timeTraps.length > 1 ? 's' : ''}</strong> (questions where you invested &gt;90s in RW or &gt;120s in Math and still missed the mark). Sinking excess time into these problems cascaded into <strong>{cascadingVictimsCount} subsequent rushed or missed question{cascadingVictimsCount === 1 ? '' : 's'}</strong> later in the module.
+            </p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', background: 'var(--surface)', padding: '1rem', borderRadius: 8, border: '1px solid var(--border)' }}>
+              <div>
+                <span className="tech-label">TIME TRAPS TRIGGERED</span>
+                <div style={{ fontSize: '1.6rem', fontWeight: 700, color: '#dc2626', fontFamily: 'var(--font-mono)' }}>{timeTraps.length}</div>
+              </div>
+              <div>
+                <span className="tech-label">SUBSEQUENT RUSHED / MISSED</span>
+                <div style={{ fontSize: '1.6rem', fontWeight: 700, color: '#d97706', fontFamily: 'var(--font-mono)' }}>{cascadingVictimsCount}</div>
+              </div>
+              <div>
+                <span className="tech-label">PACING RECOMMENDATION</span>
+                <div style={{ fontSize: '0.85rem', color: 'var(--ink)', marginTop: 4 }}>
+                  Set a strict 75s cutoff: flag, eliminate decoys, guess, and protect end-of-module points.
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
         {Object.keys(domains).length > 0 && (
           <div className="panel" style={{ padding: '1.5rem', marginBottom: '1.5rem' }}>
             <h3 style={{ marginTop: 0 }}>Where you lost points</h3>
@@ -770,6 +875,7 @@ export default function SATExamPage() {
           const id = `${r.module.id}_${r.q.questionId}`;
           const open = openRow === id;
           const idx = r.module.questions.findIndex((x) => x.questionId === r.q.questionId) + 1;
+          const trap = isTimeTrap(r);
           return (
             <div key={id} className="panel" style={{ marginBottom: 10, padding: 0 }}>
               <button type="button" onClick={() => setOpenRow(open ? null : id)} aria-expanded={open}
@@ -777,12 +883,26 @@ export default function SATExamPage() {
                 <span style={{ width: 22, height: 22, borderRadius: '50%', display: 'grid', placeItems: 'center', background: r.correct ? '#059669' : '#dc2626', color: '#fff', fontSize: 12, flexShrink: 0 }}>{r.correct ? '✓' : '✕'}</span>
                 <span style={{ flex: 1, fontSize: '0.88rem' }}>
                   <strong>{r.module.title} · Q{idx}</strong> · {r.q.skill} · {r.q.difficulty}
-                  {r.q.pretest && <span style={{ marginLeft: 8, fontSize: '0.72rem', padding: '1px 6px', borderRadius: 4, background: 'var(--surface-inset)' }}>unscored</span>}
+                  {(r.q.pretest || r.q.isPretest) && (
+                    <span style={{ marginLeft: 8, fontSize: '0.72rem', padding: '2px 7px', borderRadius: 4, background: 'rgba(184, 74, 57, 0.1)', color: 'var(--rust)', fontWeight: 600 }}>
+                      Unscored Experimental
+                    </span>
+                  )}
+                  {trap && (
+                    <span style={{ marginLeft: 8, fontSize: '0.72rem', padding: '2px 7px', borderRadius: 4, background: 'rgba(220, 38, 38, 0.1)', color: '#dc2626', fontWeight: 700, border: '1px solid rgba(220, 38, 38, 0.3)' }}>
+                      ⏱️ Time Trap ({r.seconds}s spent)
+                    </span>
+                  )}
                 </span>
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--muted)' }}>{r.seconds}s</span>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: trap ? '#dc2626' : 'var(--muted)', fontWeight: trap ? 700 : 400 }}>{r.seconds}s</span>
               </button>
               {open && (
                 <div style={{ padding: '0.5rem 1.4rem 1.4rem', borderTop: '1px solid var(--border)' }}>
+                  {trap && (
+                    <div style={{ margin: '0.8rem 0', padding: '0.75rem 1rem', background: 'rgba(220, 38, 38, 0.05)', border: '1px solid rgba(220, 38, 38, 0.2)', borderRadius: 6, fontSize: '0.85rem', color: '#991b1b' }}>
+                      <strong>⏱️ Time-Trap Post-Mortem:</strong> You invested {r.seconds}s on this question (recommended &lt;{r.module.section === 'math' ? '95s' : '71s'}). College Board designs these items to deplete your clock. Train yourself to recognize when you are spinning your wheels past 75s, mark for review, and move on to protect higher-probability points.
+                    </div>
+                  )}
                   <div style={{ margin: '1rem 0' }}>
                     <QuestionBody q={r.q} answer={r.answer} onAnswer={() => {}} reveal struck={{}} onStrike={() => {}} split={false} />
                   </div>

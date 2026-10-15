@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { getDomainById, getAllDomains, getAllPastProblems, AMCContestProblem, AMCSubtopic } from '@/lib/amc-aime';
 import MathView from '@/app/components/MathView';
+import CruxMoveCard from '@/app/components/CruxMoveCard';
 
 export default function AnatomyDeconstructorPage() {
   const params = useParams();
@@ -328,6 +329,19 @@ export default function AnatomyDeconstructorPage() {
                         );
                       })}
                     </div>
+                  )}
+
+                  {/* Crux Move Extraction Card */}
+                  {prob.anatomy?.cruxStep && (
+                    <CruxMoveCard
+                      id={`amc_crux_${prob.id}`}
+                      source="amc"
+                      title={`${prob.id} · ${prob.primaryTopic}`}
+                      cruxText={prob.anatomy.cruxStep}
+                      triggerClue={prob.anatomy.triggerClues?.[0]?.quoteFromStem}
+                      synthesisBridge={prob.anatomy.synthesisBridge}
+                      contextPrompt={prob.statementLatex}
+                    />
                   )}
 
                   {/* Socratic Step-by-Step Progressive Hint Reveal */}

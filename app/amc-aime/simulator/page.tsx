@@ -30,6 +30,7 @@ import {
   AMC12ScoreReport
 } from '@/lib/amc-aime';
 import MathView from '@/app/components/MathView';
+import CruxMoveCard from '@/app/components/CruxMoveCard';
 
 type ContestMode = 'AMC12' | 'AIME';
 type ErrorTag = 'concept_gap' | 'examiner_trap' | 'careless_calc' | 'time_pressure';
@@ -518,6 +519,18 @@ export default function AMCSimulatorPage() {
                       <div style={{ fontSize: '0.95rem', lineHeight: 1.5, marginBottom: '1rem' }}>
                         <MathView content={q.statementLatex} />
                       </div>
+
+                      {q.anatomy?.cruxStep && (
+                        <CruxMoveCard
+                          id={`amc_crux_${q.id}`}
+                          source="amc"
+                          title={`${q.id} · ${q.primaryTopic}`}
+                          cruxText={q.anatomy.cruxStep}
+                          triggerClue={q.anatomy.triggerClues?.[0]?.quoteFromStem}
+                          synthesisBridge={q.anatomy.synthesisBridge}
+                          contextPrompt={q.statementLatex}
+                        />
+                      )}
 
                       {/* 1-Click Error Classification Pills */}
                       {!isCorrect && (

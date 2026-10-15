@@ -239,6 +239,43 @@ export default function MathMocksBrowser() {
         onClose={() => setShowBookletModal(false)}
         defaultSubject="math-aa"
       />
+
+      {/* Floating Data Booklet Quick Launcher */}
+      <button
+        type="button"
+        onClick={() => setShowBookletModal(true)}
+        aria-label="Open IB Formula & Data Booklet"
+        style={{
+          position: 'fixed',
+          bottom: '24px',
+          right: '24px',
+          zIndex: 8000,
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          background: 'linear-gradient(135deg, #1f883d 0%, #15803d 100%)',
+          color: '#ffffff',
+          border: '1.5px solid rgba(255, 255, 255, 0.25)',
+          borderRadius: '50px',
+          padding: '12px 20px',
+          fontSize: '0.88rem',
+          fontWeight: 700,
+          boxShadow: '0 8px 24px rgba(21, 128, 61, 0.4), 0 2px 6px rgba(0,0,0,0.2)',
+          cursor: 'pointer',
+          transition: 'transform 0.15s ease, box-shadow 0.15s ease',
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.transform = 'translateY(-2px)';
+          e.currentTarget.style.boxShadow = '0 12px 28px rgba(21, 128, 61, 0.5), 0 4px 8px rgba(0,0,0,0.25)';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.transform = 'translateY(0)';
+          e.currentTarget.style.boxShadow = '0 8px 24px rgba(21, 128, 61, 0.4), 0 2px 6px rgba(0,0,0,0.2)';
+        }}
+      >
+        <BookOpen size={16} />
+        <span>Open Data Booklet</span>
+      </button>
     </div>
   );
 }

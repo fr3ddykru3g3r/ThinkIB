@@ -9,6 +9,14 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: false,
   },
+  experimental: {
+    outputFileTracingExcludes: {
+      '*': [
+        'public/vault/**/*',
+        '../ThinkIB 2/**/*',
+      ],
+    },
+  },
   async headers() {
     return [
       {

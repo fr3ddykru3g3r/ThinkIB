@@ -3,9 +3,40 @@ import fs from 'fs';
 import path from 'path';
 
 const GITHUB_BASE = 'https://fr3ddykru3g3r.github.io/ThinkIB-Websites';
+const LOCAL_DIR = path.join(process.cwd(), '../ThinkIB 2');
 
 let cachedSearchIndex: any[] | null = null;
 const cachedSubjectIndexes: Record<string, any[]> = {};
+let cachedTopicsIndex: Record<string, { title: string; path: string }[]> | null = null;
+let cachedMathTopics: any[] | null = null;
+
+function getTopicsIndex(): Record<string, { title: string; path: string }[]> {
+  if (!cachedTopicsIndex) {
+    try {
+      const p = path.join(process.cwd(), 'app/thinkib/topics_index.json');
+      if (fs.existsSync(p)) {
+        cachedTopicsIndex = JSON.parse(fs.readFileSync(p, 'utf-8'));
+      }
+    } catch (e) {
+      console.error('Error loading topics_index.json:', e);
+    }
+  }
+  return cachedTopicsIndex || {};
+}
+
+function getMathTopics(): any[] {
+  if (!cachedMathTopics) {
+    try {
+      const p = path.join(process.cwd(), 'app/thinkib/math_topics.json');
+      if (fs.existsSync(p)) {
+        cachedMathTopics = JSON.parse(fs.readFileSync(p, 'utf-8'));
+      }
+    } catch (e) {
+      console.error('Error loading math_topics.json:', e);
+    }
+  }
+  return cachedMathTopics || [];
+}
 
 function getSearchIndex(): any[] {
   if (!cachedSearchIndex) {
@@ -54,11 +85,171 @@ function getSearchScript(): string {
 }
 
 function escapeHtml(str: string): string {
-  return str
+  return (str || '')
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
+}
+
+function getMimeType(filePath: string): string {
+  const ext = path.extname(filePath).toLowerCase();
+  switch (ext) {
+    case '.css': return 'text/css';
+    case '.js': return 'application/javascript';
+    case '.json': return 'application/json';
+    case '.png': return 'image/png';
+    case '.jpg':
+    case '.jpeg': return 'image/jpeg';
+    case '.gif': return 'image/gif';
+    case '.svg': return 'image/svg+xml';
+    case '.webp': return 'image/webp';
+    case '.pdf': return 'application/pdf';
+    case '.woff': return 'font/woff';
+    case '.woff2': return 'font/woff2';
+    case '.ttf': return 'font/ttf';
+    default: return 'application/octet-stream';
+  }
+}
+
+function rewriteHtmlAssets(html: string, dirPath: string): string {
+  // Rewrite absolute ThinkIB / GitHub Pages links
+  html = html.replace(/href=["']https?:\/\/(?:[a-z0-9_-]+\.)?thinkib\.net\/([^"']+)["']/gi, 'href="/api/v2/thinkib/$1"');
+  html = html.replace(/href=["']https?:\/\/fr3ddykru3g3r\.github\.io\/ThinkIB-Websites\/([^"']+)["']/gi, 'href="/api/v2/thinkib/$1"');
+  html = html.replace(/href=["']https?:\/\/fr3ddykru3g3r\.github\.io\/([^"']+)["']/gi, 'href="/api/v2/thinkib/$1"');
+
+  const resolveRel = (url: string) => {
+    if (
+      !url ||
+      url.startsWith('http://') ||
+      url.startsWith('https://') ||
+      url.startsWith('//') ||
+      url.startsWith('data:') ||
+      url.startsWith('javascript:') ||
+      url.startsWith('mailto:') ||
+      url.startsWith('#') ||
+      url.startsWith('/api/v2/thinkib/')
+    ) {
+      return url;
+    }
+    if (url.startsWith('/')) {
+      return `/api/v2/thinkib${url}`;
+    }
+    const cleanDir = dirPath ? dirPath.replace(/\/+$/, '') + '/' : '';
+    return `/api/v2/thinkib/${cleanDir}${url}`;
+  };
+
+  // Rewrite relative <img src="...">
+  html = html.replace(/(<img\b[^>]*?\bsrc=["'])([^"']+)(["'][^>]*>)/gi, (_, prefix, src, suffix) => {
+    return `${prefix}${resolveRel(src)}${suffix}`;
+  });
+
+  // Rewrite relative <link href="...">
+  html = html.replace(/(<link\b[^>]*?\bhref=["'])([^"']+)(["'][^>]*>)/gi, (_, prefix, href, suffix) => {
+    return `${prefix}${resolveRel(href)}${suffix}`;
+  });
+
+  // Rewrite relative <script src="...">
+  html = html.replace(/(<script\b[^>]*?\bsrc=["'])([^"']+)(["'][^>]*>)/gi, (_, prefix, src, suffix) => {
+    return `${prefix}${resolveRel(src)}${suffix}`;
+  });
+
+  return html;
+}
+
+function renderFallbackTopicsPage(subpath: string, query = ''): string {
+  const allTopics = getTopicsIndex();
+  const mathTopics = getMathTopics();
+
+  let subjectKey = 'mathanalysis';
+  const pLower = subpath.toLowerCase();
+  for (const k of Object.keys(allTopics)) {
+    if (pLower.includes(k)) {
+      subjectKey = k;
+      break;
+    }
+  }
+
+  let topicList: { title: string; path: string }[] = allTopics[subjectKey] || [];
+  if (subjectKey === 'mathanalysis' && mathTopics.length > 0 && (!topicList || topicList.length === 0)) {
+    topicList = mathTopics.map((m) => ({ title: m.title, path: m.path }));
+  }
+
+  const subjectNames: Record<string, string> = {
+    mathanalysis: 'Math: Analysis & Approaches',
+    chem: 'Chemistry',
+    biology: 'Biology',
+    physics: 'Physics',
+    economics: 'Economics',
+    psychology: 'Psychology',
+    history: 'History',
+    englisha: 'English A: Literature',
+  };
+
+  const currentSubjectName = subjectNames[subjectKey] || subjectKey.toUpperCase();
+
+  const cardsHtml = topicList.slice(0, 40).map((t) => `
+    <div style="padding: 14px 18px; border: 1px solid #e2e8f0; border-radius: 8px; background: #ffffff; transition: transform 0.15s ease, box-shadow 0.15s ease; box-shadow: 0 1px 3px rgba(0,0,0,0.03);">
+      <a href="/api/v2/thinkib/${t.path}" style="font-size: 15px; font-weight: 600; color: #0284c7; text-decoration: none; display: block; line-height: 1.4;">
+        <i class="fa fa-book" style="margin-right: 8px; color: #3b82f6;"></i>
+        ${escapeHtml(t.title)}
+      </a>
+      <div style="font-size: 11px; color: #94a3b8; font-family: monospace; margin-top: 6px;">${escapeHtml(t.path)}</div>
+    </div>
+  `).join('');
+
+  const subjectPills = Object.keys(allTopics).map((k) => `
+    <a href="/api/v2/thinkib/${k}/index.html" style="padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; text-decoration: none; border: 1px solid ${k === subjectKey ? '#0284c7' : '#cbd5e1'}; background: ${k === subjectKey ? '#e0f2fe' : '#ffffff'}; color: ${k === subjectKey ? '#0369a1' : '#475569'};">
+      ${escapeHtml(subjectNames[k] || k)}
+    </a>
+  `).join('');
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>${escapeHtml(currentSubjectName)} - ThinkIB Directory</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    body { background: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; color: #0f172a; margin: 0; padding: 24px; }
+    .container { max-width: 1040px; margin: 0 auto; }
+    .banner { background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px; padding: 14px 18px; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; color: #92400e; font-size: 14px; }
+    .header-box { background: #ffffff; padding: 24px; border-radius: 10px; border: 1px solid #e2e8f0; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 14px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="banner">
+      <i class="fa fa-info-circle fa-lg" style="color: #d97706;"></i>
+      <div>
+        <strong>ThinkIB Offline Mirror Directory:</strong> The requested route (<code>${escapeHtml(subpath)}</code>) was not found directly in the static server bundle. Below is the indexed syllabus directory for <strong>${escapeHtml(currentSubjectName)}</strong>.
+      </div>
+    </div>
+
+    <div class="header-box">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
+        <h1 style="margin: 0; font-size: 22px; color: #0f172a;">
+          <i class="fa fa-graduation-cap" style="color: #0284c7; margin-right: 8px;"></i>
+          ${escapeHtml(currentSubjectName)} Syllabus Topics
+        </h1>
+        <button onclick="window.history.back()" style="background: #f1f5f9; border: 1px solid #cbd5e1; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-weight: 600; color: #334155;">
+          <i class="fa fa-arrow-left"></i> Back
+        </button>
+      </div>
+
+      <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
+        ${subjectPills}
+      </div>
+    </div>
+
+    <div class="grid">
+      ${cardsHtml}
+    </div>
+  </div>
+</body>
+</html>`;
 }
 
 function renderServerSearchPage(query: string, subpath: string): string {
@@ -187,7 +378,7 @@ export async function GET(
   request: NextRequest,
   { params }: { params: { path: string[] } }
 ) {
-  const subpath = params.path
+  const rawSubpath = params.path
     ? params.path
         .map((seg) => {
           try {
@@ -198,6 +389,9 @@ export async function GET(
         })
         .join('/')
     : '';
+
+  // Prevent directory traversal
+  const subpath = path.normalize(rawSubpath).replace(/^(\.\.[\/\\])+/, '');
   const isHtml = subpath.endsWith('.html') || !subpath.includes('.');
   const searchParam = request.nextUrl.searchParams.get('s');
 
@@ -214,6 +408,49 @@ export async function GET(
         'Vercel-CDN-Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=604800',
       }
     });
+  }
+
+  // Check if file exists locally in ../ThinkIB 2 (for development / local-first setups)
+  const localFilePath = path.join(LOCAL_DIR, subpath);
+  if (fs.existsSync(localFilePath) && fs.statSync(localFilePath).isFile()) {
+    if (isHtml) {
+      let localHtml = fs.readFileSync(localFilePath, 'utf-8');
+      const pathParts = subpath.split('/');
+      pathParts.pop();
+      const dirPath = pathParts.join('/');
+      const baseHref = `/api/v2/thinkib/${dirPath ? dirPath + '/' : ''}`;
+
+      localHtml = rewriteHtmlAssets(localHtml, dirPath);
+      const searchScriptCode = getSearchScript();
+      const injection = `
+        <base href="${baseHref}">
+        <script>
+          ${searchScriptCode}
+        </script>
+      `;
+      if (localHtml.includes('<head>')) {
+        localHtml = localHtml.replace('<head>', `<head>\n${injection}`);
+      } else {
+        localHtml = injection + localHtml;
+      }
+
+      return new NextResponse(localHtml, {
+        status: 200,
+        headers: {
+          'Content-Type': 'text/html; charset=utf-8',
+          'Cache-Control': 'public, max-age=86400, s-maxage=604800',
+        }
+      });
+    } else {
+      const buffer = fs.readFileSync(localFilePath);
+      return new NextResponse(buffer, {
+        status: 200,
+        headers: {
+          'Content-Type': getMimeType(localFilePath),
+          'Cache-Control': 'public, max-age=604800',
+        }
+      });
+    }
   }
 
   // For non-HTML assets (images, css, pdf, js), redirect directly to GitHub Pages CDN
@@ -241,53 +478,29 @@ export async function GET(
         });
       }
 
-      return new NextResponse(
-        `<!DOCTYPE html>
-        <html>
-        <head>
-          <title>ThinkIB Portal - Resource Guide</title>
-          <meta charset="utf-8">
-          <style>
-            body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; display: flex; align-items: center; justify-content: center; min-height: 80vh; margin: 0; background: #fcfbfa; color: #1c1c1e; }
-            .box { background: #fff; padding: 2.5rem; border-radius: 8px; border: 1px solid rgba(28,28,30,0.1); max-width: 480px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-            h2 { color: #b84a39; margin-top: 0; }
-            p { color: #767679; font-size: 0.95rem; line-height: 1.5; }
-            button { background: #b84a39; color: #fff; border: none; padding: 0.6rem 1.2rem; border-radius: 4px; font-weight: 600; cursor: pointer; margin-top: 1rem; }
-          </style>
-        </head>
-        <body>
-          <div class="box">
-            <h2>Resource Notice</h2>
-            <p>The requested route (<code>${escapeHtml(subpath)}</code>) was not found in the static mirror.</p>
-            <p>Please use the <strong>InThinking Search Bar</strong> or the <strong>Topic Explorer</strong> to navigate available syllabus modules.</p>
-            <button onclick="window.history.back()">Go Back</button>
-          </div>
-        </body>
-        </html>`,
-        {
-          status: 200,
-          headers: { 'Content-Type': 'text/html; charset=utf-8' }
-        }
-      );
+      // Serve fallback syllabus directory from pre-indexed JSON
+      const fallbackHtml = renderFallbackTopicsPage(subpath);
+      return new NextResponse(fallbackHtml, {
+        status: 200,
+        headers: { 'Content-Type': 'text/html; charset=utf-8' }
+      });
     }
 
     let html = await res.text();
 
-    // Calculate directory path for <base href="...">
+    // Calculate directory path for asset resolution
     const pathParts = subpath.split('/');
     pathParts.pop();
     const dirPath = pathParts.join('/');
     const baseHref = `/api/v2/thinkib/${dirPath ? dirPath + '/' : ''}`;
 
-    // Rewrite any hardcoded links in the HTML
-    html = html.replace(/href=["']https?:\/\/(?:[a-z0-9_-]+\.)?thinkib\.net\/([^"']+)["']/gi, 'href="/api/v2/thinkib/$1"');
-    html = html.replace(/href=["']https?:\/\/fr3ddykru3g3r\.github\.io\/ThinkIB-Websites\/([^"']+)["']/gi, 'href="/api/v2/thinkib/$1"');
-    html = html.replace(/href=["']https?:\/\/fr3ddykru3g3r\.github\.io\/([^"']+)["']/gi, 'href="/api/v2/thinkib/$1"');
+    // Rewrite relative assets (<img src>, <link href>, <script src>) and absolute links
+    html = rewriteHtmlAssets(html, dirPath);
 
     // Load full client search script
     const searchScriptCode = getSearchScript();
 
-    // Inject base href and the InThinking search engine script
+    // Inject base href and search engine
     const injection = `
       <base href="${baseHref}">
       <script>
@@ -311,32 +524,12 @@ export async function GET(
       }
     });
   } catch (error) {
-    return new NextResponse(
-      `<!DOCTYPE html>
-      <html>
-      <head>
-        <title>ThinkIB Portal - Error</title>
-        <meta charset="utf-8">
-        <style>
-          body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; display: flex; align-items: center; justify-content: center; min-height: 80vh; margin: 0; background: #0f172a; color: #f8fafc; }
-          .box { background: #1e293b; padding: 2.5rem; border-radius: 12px; border: 1px solid #334155; max-width: 480px; text-align: center; box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
-          h2 { color: #f97316; margin-top: 0; }
-          p { color: #94a3b8; font-size: 0.95rem; line-height: 1.5; }
-          button { background: #f97316; color: #fff; border: none; padding: 0.6rem 1.4rem; border-radius: 8px; font-weight: 600; cursor: pointer; margin-top: 1rem; }
-        </style>
-      </head>
-      <body>
-        <div class="box">
-          <h2>Notice</h2>
-          <p>Failed to load the requested page (<code>${escapeHtml(subpath)}</code>).</p>
-          <button onclick="window.history.back()">Go Back</button>
-        </div>
-      </body>
-      </html>`,
-      {
-        status: 200,
-        headers: { 'Content-Type': 'text/html; charset=utf-8' }
-      }
-    );
+    // If fetching fails completely, fallback to pre-indexed topics
+    const fallbackHtml = renderFallbackTopicsPage(subpath);
+    return new NextResponse(fallbackHtml, {
+      status: 200,
+      headers: { 'Content-Type': 'text/html; charset=utf-8' }
+    });
   }
 }
+

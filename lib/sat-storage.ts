@@ -8,16 +8,19 @@ export interface MistakeEntry {
   domain: string;
   skill?: string;
   difficulty: 'Easy' | 'Medium' | 'Hard' | string;
-  /** Legacy (pre-2026-09) entries stored full content; new entries only keep the id and re-fetch. */
-  prompt?: string;
-  choices?: string[];
   correctAnswer: string;
   userAnswer: string;
-  rationale?: string;
+  selectedAnswer?: string;
   missedAt: number; // unix timestamp
+  timestamp?: number;
   attemptsCount: number;
+  retryCount?: number;
   mastered: boolean;
   errorTag?: SatErrorTag;
+  timeSpentMs?: number;
+  prompt?: string;
+  choices?: string[];
+  rationale?: string;
 }
 
 export interface ExamHistoryEntry {
@@ -43,14 +46,118 @@ export interface ExamHistoryEntry {
 
 const MISTAKES_KEY = 'sat_mistake_vault_v1';
 const EXAM_HISTORY_KEY = 'sat_exam_history_v1';
+const SEEN_KEY = 'sat_seen_ids_v1';
+const SKILL_KEY = 'sat_skill_stats_v1';
+
+// Safe localStorage accessors with SSR guards & QuotaExceededError handling
+function safeGetItem(key: string): string | null {
+  if (typeof window === 'undefined') return null;
+  try {
+    return localStorage.getItem(key);
+  } catch (err) {
+    console.warn(`[sat-storage] Failed reading ${key}:`, err);
+    return null;
+  }
+}
+
+function safeRemoveItem(key: string): void {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.removeItem(key);
+  } catch (err) {
+    console.warn(`[sat-storage] Failed removing ${key}:`, err);
+  }
+}
+
+function safeSetItem(key: string, value: string): void {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.setItem(key, value);
+  } catch (err: any) {
+    const isQuota =
+      err?.name === 'QuotaExceededError' ||
+      err?.code === 22 ||
+      err?.name === 'NS_ERROR_DOM_QUOTA_REACHED' ||
+      err?.number === -2147024882;
+
+    if (isQuota) {
+      console.warn('[sat-storage] Quota exceeded. Pruning oldest exam history and seen IDs...');
+      try {
+        // 1. Prune exam history
+        const rawHistory = safeGetItem(EXAM_HISTORY_KEY);
+        if (rawHistory) {
+          const history = JSON.parse(rawHistory);
+          if (Array.isArray(history) && history.length > 5) {
+            localStorage.setItem(EXAM_HISTORY_KEY, JSON.stringify(history.slice(0, Math.floor(history.length / 2))));
+          } else {
+            localStorage.removeItem(EXAM_HISTORY_KEY);
+          }
+        }
+        // 2. Prune seen IDs (keep last 500)
+        const rawSeen = safeGetItem(SEEN_KEY);
+        if (rawSeen) {
+          const seen = JSON.parse(rawSeen);
+          if (Array.isArray(seen) && seen.length > 500) {
+            localStorage.setItem(SEEN_KEY, JSON.stringify(seen.slice(-500)));
+          }
+        }
+        // 3. Retry setting item
+        localStorage.setItem(key, value);
+      } catch (retryErr) {
+        console.error('[sat-storage] Failed writing to localStorage even after pruning:', retryErr);
+      }
+    } else {
+      console.warn(`[sat-storage] Failed writing to ${key}:`, err);
+    }
+  }
+}
+
+// Compact migration helper: strips prompt, choices, rationale
+function compactMistake(raw: any): MistakeEntry {
+  const ans = raw.userAnswer || raw.selectedAnswer || '';
+  const ts = raw.missedAt || raw.timestamp || Date.now();
+  const count = raw.attemptsCount || raw.retryCount || 1;
+
+  return {
+    questionId: String(raw.questionId || ''),
+    section: raw.section === 'reading-writing' ? 'reading-writing' : 'math',
+    domain: String(raw.domain || 'General'),
+    skill: raw.skill ? String(raw.skill) : '',
+    difficulty: raw.difficulty || 'Medium',
+    correctAnswer: String(raw.correctAnswer || ''),
+    userAnswer: ans,
+    selectedAnswer: ans,
+    missedAt: ts,
+    timestamp: ts,
+    attemptsCount: count,
+    retryCount: count,
+    mastered: Boolean(raw.mastered),
+    errorTag: raw.errorTag,
+    timeSpentMs: typeof raw.timeSpentMs === 'number' ? raw.timeSpentMs : undefined,
+  };
+}
 
 export function getMistakeVault(): MistakeEntry[] {
-  if (typeof window === 'undefined') return [];
+  const raw = safeGetItem(MISTAKES_KEY);
+  if (!raw) return [];
   try {
-    const raw = localStorage.getItem(MISTAKES_KEY);
-    return raw ? JSON.parse(raw) : [];
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return [];
+
+    let needsCompaction = false;
+    const compacted = parsed.map((m: any) => {
+      if (m && (m.prompt !== undefined || m.choices !== undefined || m.rationale !== undefined)) {
+        needsCompaction = true;
+      }
+      return compactMistake(m);
+    });
+
+    if (needsCompaction) {
+      safeSetItem(MISTAKES_KEY, JSON.stringify(compacted));
+    }
+    return compacted;
   } catch (err) {
-    console.warn('Failed to load mistake vault', err);
+    console.warn('[sat-storage] Failed to parse mistake vault:', err);
     return [];
   }
 }
@@ -65,91 +172,100 @@ export function saveMistake(item: {
   choices?: string[];
   correctAnswer: string;
   userAnswer: string;
+  selectedAnswer?: string;
   rationale?: string;
+  timeSpentMs?: number;
+  errorTag?: SatErrorTag;
 }): void {
-  if (typeof window === 'undefined') return;
   try {
     const current = getMistakeVault();
     const existingIdx = current.findIndex((m) => m.questionId === item.questionId);
+    const chosenAnswer = item.userAnswer || item.selectedAnswer || '';
+    const now = Date.now();
 
     if (existingIdx >= 0) {
-      // Update existing mistake
+      const existing = current[existingIdx];
+      const newCount = (existing.attemptsCount || 1) + 1;
       current[existingIdx] = {
-        ...current[existingIdx],
-        userAnswer: item.userAnswer,
-        attemptsCount: current[existingIdx].attemptsCount + 1,
-        missedAt: Date.now(),
+        ...existing,
+        userAnswer: chosenAnswer,
+        selectedAnswer: chosenAnswer,
+        attemptsCount: newCount,
+        retryCount: newCount,
+        missedAt: now,
+        timestamp: now,
         mastered: false,
+        timeSpentMs: item.timeSpentMs ?? existing.timeSpentMs,
+        errorTag: item.errorTag ?? existing.errorTag,
       };
     } else {
-      // Add new mistake
-      current.unshift({
-        questionId: item.questionId,
-        section: item.section,
-        domain: item.domain || 'General',
-        skill: item.skill || '',
-        difficulty: item.difficulty || 'Medium',
-        correctAnswer: item.correctAnswer,
-        userAnswer: item.userAnswer,
-        missedAt: Date.now(),
-        attemptsCount: 1,
-        mastered: false,
-      });
+      current.unshift(
+        compactMistake({
+          questionId: item.questionId,
+          section: item.section,
+          domain: item.domain || 'General',
+          skill: item.skill || '',
+          difficulty: item.difficulty || 'Medium',
+          correctAnswer: item.correctAnswer,
+          userAnswer: chosenAnswer,
+          selectedAnswer: chosenAnswer,
+          missedAt: now,
+          timestamp: now,
+          attemptsCount: 1,
+          retryCount: 1,
+          mastered: false,
+          timeSpentMs: item.timeSpentMs,
+          errorTag: item.errorTag,
+        })
+      );
     }
 
-    localStorage.setItem(MISTAKES_KEY, JSON.stringify(current));
+    safeSetItem(MISTAKES_KEY, JSON.stringify(current));
   } catch (err) {
-    console.warn('Failed to save mistake', err);
+    console.warn('[sat-storage] Failed to save mistake:', err);
   }
 }
 
 export function markMistakeMastered(questionId: string, mastered = true): void {
-  if (typeof window === 'undefined') return;
   try {
     const current = getMistakeVault();
     const updated = current.map((m) =>
       m.questionId === questionId ? { ...m, mastered } : m
     );
-    localStorage.setItem(MISTAKES_KEY, JSON.stringify(updated));
+    safeSetItem(MISTAKES_KEY, JSON.stringify(updated));
   } catch (err) {
-    console.warn('Failed to update mistake status', err);
+    console.warn('[sat-storage] Failed to update mistake status:', err);
   }
 }
 
 export function removeMistake(questionId: string): void {
-  if (typeof window === 'undefined') return;
   try {
     const current = getMistakeVault();
     const updated = current.filter((m) => m.questionId !== questionId);
-    localStorage.setItem(MISTAKES_KEY, JSON.stringify(updated));
+    safeSetItem(MISTAKES_KEY, JSON.stringify(updated));
   } catch (err) {
-    console.warn('Failed to remove mistake', err);
+    console.warn('[sat-storage] Failed to remove mistake:', err);
   }
 }
 
 export function clearMistakeVault(): void {
-  if (typeof window === 'undefined') return;
-  try {
-    localStorage.removeItem(MISTAKES_KEY);
-  } catch (err) {
-    console.warn('Failed to clear mistake vault', err);
-  }
+  safeRemoveItem(MISTAKES_KEY);
 }
 
 // Exam History
 export function getExamHistory(): ExamHistoryEntry[] {
-  if (typeof window === 'undefined') return [];
+  const raw = safeGetItem(EXAM_HISTORY_KEY);
+  if (!raw) return [];
   try {
-    const raw = localStorage.getItem(EXAM_HISTORY_KEY);
-    return raw ? JSON.parse(raw) : [];
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
   } catch (err) {
-    console.warn('Failed to load exam history', err);
+    console.warn('[sat-storage] Failed to load exam history:', err);
     return [];
   }
 }
 
 export function saveCompletedExam(entry: Omit<ExamHistoryEntry, 'id' | 'date'>): void {
-  if (typeof window === 'undefined') return;
   try {
     const history = getExamHistory();
     const newEntry: ExamHistoryEntry = {
@@ -166,74 +282,82 @@ export function saveCompletedExam(entry: Omit<ExamHistoryEntry, 'id' | 'date'>):
     history.unshift(newEntry);
     // Keep last 30 exams
     const trimmed = history.slice(0, 30);
-    localStorage.setItem(EXAM_HISTORY_KEY, JSON.stringify(trimmed));
+    safeSetItem(EXAM_HISTORY_KEY, JSON.stringify(trimmed));
   } catch (err) {
-    console.warn('Failed to save exam history', err);
+    console.warn('[sat-storage] Failed to save exam history:', err);
   }
 }
 
-// Questions already shown in a practice test, so new tests prefer fresh items
-const SEEN_KEY = 'sat_seen_ids_v1';
-
 export function getSeenIds(): string[] {
-  if (typeof window === 'undefined') return [];
+  const raw = safeGetItem(SEEN_KEY);
+  if (!raw) return [];
   try {
-    return JSON.parse(localStorage.getItem(SEEN_KEY) || '[]');
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
   } catch {
     return [];
   }
 }
 
 export function markSeen(ids: string[]): void {
-  if (typeof window === 'undefined') return;
   try {
     const set = new Set([...getSeenIds(), ...ids]);
-    localStorage.setItem(SEEN_KEY, JSON.stringify(Array.from(set).slice(-3400)));
+    safeSetItem(SEEN_KEY, JSON.stringify(Array.from(set).slice(-3400)));
   } catch {
     /* quota / private mode */
   }
 }
 
-// Per-skill accuracy, fed by drills and full tests; powers the "weakest skills" panel
-const SKILL_KEY = 'sat_skill_stats_v1';
-export interface SkillStat { section: 'reading-writing' | 'math'; domain: string; skill: string; correct: number; total: number }
+export interface SkillStat {
+  section: 'reading-writing' | 'math';
+  domain: string;
+  skill: string;
+  correct: number;
+  total: number;
+}
 
 export function getSkillStats(): SkillStat[] {
-  if (typeof window === 'undefined') return [];
+  const raw = safeGetItem(SKILL_KEY);
+  if (!raw) return [];
   try {
-    return JSON.parse(localStorage.getItem(SKILL_KEY) || '[]');
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
   } catch {
     return [];
   }
 }
 
-export function recordAttempts(items: { section: 'reading-writing' | 'math'; domain: string; skill: string; correct: boolean }[]): void {
-  if (typeof window === 'undefined' || !items.length) return;
+export function recordAttempts(
+  items: { section: 'reading-writing' | 'math'; domain: string; skill: string; correct: boolean }[]
+): void {
+  if (!items.length) return;
   try {
     const stats = getSkillStats();
     for (const it of items) {
       let s = stats.find((x) => x.section === it.section && x.skill === it.skill);
-      if (!s) stats.push((s = { section: it.section, domain: it.domain, skill: it.skill, correct: 0, total: 0 }));
+      if (!s) {
+        s = { section: it.section, domain: it.domain, skill: it.skill, correct: 0, total: 0 };
+        stats.push(s);
+      }
       s.total++;
       if (it.correct) s.correct++;
     }
-    localStorage.setItem(SKILL_KEY, JSON.stringify(stats));
+    safeSetItem(SKILL_KEY, JSON.stringify(stats));
   } catch {
     /* quota / private mode */
   }
 }
 
 export function updateMistakeErrorTag(questionId: string, tag: SatErrorTag): void {
-  if (typeof window === 'undefined') return;
   try {
     const vault = getMistakeVault();
     const entry = vault.find((m) => m.questionId === questionId);
     if (entry) {
       entry.errorTag = tag;
-      localStorage.setItem(MISTAKES_KEY, JSON.stringify(vault));
+      safeSetItem(MISTAKES_KEY, JSON.stringify(vault));
     }
   } catch (err) {
-    console.warn('Failed to update mistake error tag', err);
+    console.warn('[sat-storage] Failed to update mistake error tag:', err);
   }
 }
 
