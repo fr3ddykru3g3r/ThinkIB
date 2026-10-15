@@ -94,11 +94,11 @@ export default function PortalHome() {
               }}
             >
               <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--success)', display: 'inline-block' }} />
-              Samsung T7 SSD Direct I/O · 0ms Latency
+              IB DIPLOMA &amp; DIGITAL SAT PREP
             </span>
           </div>
           <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: 'var(--muted)' }}>
-            ISSUE NO. 04 · LOCAL WORKSPACE ENGINE
+            2025/2026 EXAMINATION SYLLABUS
           </div>
         </div>
 
@@ -201,8 +201,8 @@ export default function PortalHome() {
               color: 'var(--ink)',
             }}
           >
-            <span style={{ color: 'var(--success)', fontWeight: 700 }}>860 MB/s</span>
-            <span style={{ color: 'var(--muted)' }}>Local NVMe Bus</span>
+            <span style={{ color: 'var(--accent)', fontWeight: 700 }}>174</span>
+            <span style={{ color: 'var(--muted)' }}>Topical Packs</span>
           </div>
         </div>
 
@@ -424,7 +424,7 @@ export default function PortalHome() {
                 </div>
               </div>
 
-              {/* 2. AMC 12 & AIME Synthesis Hub */}
+              {/* 2. IB Topical Past Papers (Physics • Chemistry • Mathematics) */}
               <div 
                 className="editorial-bento-card"
                 style={{
@@ -443,62 +443,62 @@ export default function PortalHome() {
                         fontWeight: 700, 
                         padding: '0.15rem 0.5rem', 
                         borderRadius: '4px', 
-                        background: 'rgba(130, 80, 223, 0.1)', 
-                        color: '#8250df',
+                        background: 'rgba(31, 136, 61, 0.1)', 
+                        color: '#1f883d',
                         letterSpacing: '0.04em'
                       }}
                     >
-                      MAA CONTEST · AOPS VOL. 1 &amp; 2
+                      TOPICAL VAULT · 2025 SYLLABUS
                     </span>
                     <span style={{ fontSize: '0.7rem', color: 'var(--muted)', fontFamily: 'var(--font-mono)' }}>
-                      8×8 MATRIX
+                      174 BOOKLETS
                     </span>
                   </div>
 
                   <h3 style={{ fontSize: '1.45rem', marginBottom: '0.65rem' }}>
-                    AMC 12 &amp; AIME Synthesis Hub
+                    IB Topical Past Papers
                   </h3>
                   <p style={{ fontSize: '0.9rem', color: 'var(--card-desc, #57534E)', lineHeight: 1.5, marginBottom: '1.25rem' }}>
-                    Master competition mathematics from fundamental trigger signals to cross-topic Olympiad synthesis. Features the USA(J)MO Index Calculator, 8×8 Synthesis Matrix, and EV-aware game theory guessing analysis.
+                    Master IB Physics (Themes A–E), Chemistry (Structure &amp; Reactivity), and Mathematics AA/AI (Topics 1–5). Every past question classified with 100% vector precision and paired with official formula booklets.
                   </p>
 
                   <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', marginBottom: '1.5rem' }}>
                     <span className="badge" style={{ fontSize: '0.72rem', padding: '0.2rem 0.45rem', borderRadius: '4px', background: 'var(--surface-inset)', border: '1px solid var(--border)' }}>
-                      8 AoPS Branches
+                      ⚛️ Physics (24 Topics)
                     </span>
                     <span className="badge" style={{ fontSize: '0.72rem', padding: '0.2rem 0.45rem', borderRadius: '4px', background: 'var(--surface-inset)', border: '1px solid var(--border)' }}>
-                      USA(J)MO Radar
+                      🧪 Chemistry (22 Topics)
                     </span>
                     <span className="badge" style={{ fontSize: '0.72rem', padding: '0.2rem 0.45rem', borderRadius: '4px', background: 'var(--surface-inset)', border: '1px solid var(--border)' }}>
-                      EV Guessing Strategy
+                      📐 Math AA/AI (25 Topics)
                     </span>
                   </div>
                 </div>
 
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '1rem', borderTop: '1px solid var(--border)' }}>
                   <Link
-                    href="/amc-aime"
+                    href="/past-papers?tab=topicals"
                     style={{
                       display: 'inline-flex',
                       alignItems: 'center',
                       gap: '0.4rem',
                       fontWeight: 600,
                       fontSize: '0.88rem',
-                      color: '#8250df',
+                      color: '#1f883d',
                       textDecoration: 'none',
                     }}
                   >
-                    Open Synthesis Hub <ArrowRight size={14} />
+                    Open Topical Hub <ArrowRight size={14} />
                   </Link>
                   <Link
-                    href="/amc-aime/simulator"
+                    href="/past-papers/workspace"
                     style={{
                       fontSize: '0.8rem',
                       color: 'var(--muted)',
                       textDecoration: 'none',
                     }}
                   >
-                    Contest Simulator →
+                    Studio Workspace →
                   </Link>
                 </div>
               </div>
@@ -527,7 +527,7 @@ export default function PortalHome() {
                         letterSpacing: '0.04em'
                       }}
                     >
-                      EXAM STUDIO · ZERO-LATENCY T7
+                      EXAM STUDIO · SPLIT-SCREEN WORKSPACE
                     </span>
                     <span style={{ fontSize: '0.7rem', color: 'var(--muted)', fontFamily: 'var(--font-mono)' }}>
                       SIDE-BY-SIDE

@@ -56,37 +56,7 @@ export default function CommandPalette() {
   };
 
   const ITEMS: CommandItem[] = useMemo(() => [
-    // AMC & AIME
-    {
-      id: 'amc-home',
-      title: 'AMC 12 & AIME Concept-to-Synthesis Hub',
-      category: 'Mocks & Tests',
-      subtitle: 'AoPS Vol 1 & 2 curriculum, trigger signals, and USA(J)MO Index calculator',
-      badge: 'Contest Math',
-      href: '/amc-aime',
-      icon: Award,
-      keywords: ['amc', 'amc 12', 'aime', 'olympiad', 'aops', 'contest', 'usamo']
-    },
-    {
-      id: 'amc-simulator',
-      title: 'Start AMC 12 / AIME Timed Contest Simulation',
-      category: 'Mocks & Tests',
-      subtitle: 'Timed contest simulation with live game-theory EV guessing analysis',
-      badge: 'Contest Simulator',
-      href: '/amc-aime/simulator',
-      icon: Award,
-      keywords: ['amc simulator', 'timed', 'aime test', 'ev guess', 'contest']
-    },
-    {
-      id: 'amc-synthesis',
-      title: '8×8 Cross-Topic Olympiad Synthesis Matrix',
-      category: 'Mocks & Tests',
-      subtitle: 'Bridge identities between Number Theory, Geometry, Logs, and Complex numbers',
-      badge: 'Synthesis Matrix',
-      href: '/amc-aime/synthesis',
-      icon: Sparkles,
-      keywords: ['synthesis', 'bridge', 'recipes', 'cross topic', 'olympiad']
-    },
+
     // PAST PAPERS SPLIT-SCREEN WORKSPACE
     {
       id: 'past-papers-workspace',
@@ -440,14 +410,14 @@ export default function CommandPalette() {
       keywords: ['theme', 'dark mode', 'light mode', 'color']
     },
     {
-      id: 'ssd-vault-status',
-      title: 'Samsung T7 SSD Vault Status (Local High-Speed Cache)',
+      id: 'system-status',
+      title: 'Digital Archive Status & Health',
       category: 'System',
-      subtitle: 'Active path: /Volumes/T7/IBStuff28 • 860 MB/s direct I/O • 0ms latency',
-      badge: 'SSD 860MB/s',
-      action: () => alert('Samsung T7 SSD Vault is active and healthy.\nPath: /Volumes/T7/IBStuff28\nSpeed: 860 MB/s Sequential Write | 738 MB/s Read\nTotal offline papers: 3,786'),
+      subtitle: 'Complete academic repository • 4,400+ past papers, 174 topicals, 3,443 SAT items',
+      badge: 'Online',
+      action: () => alert('The Archive is active and healthy.\nRepository: 4,400+ past papers\nTopicals: 174 vector booklets (Physics, Chem, Math)\nDigital SAT: 3,443 questions with Desmos & IRT scoring'),
       icon: HardDrive,
-      keywords: ['ssd', 'speed', 't7', 'cache', 'vault', 'status']
+      keywords: ['system', 'status', 'health', 'vault', 'archive']
     }
   ], []);
 
@@ -848,8 +818,8 @@ export default function CommandPalette() {
             <span><kbd style={{ padding: '0.15rem 0.35rem', borderRadius: '4px', background: 'var(--surface-inset)', border: '1px solid var(--border)' }}>ESC</kbd> Close</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-            <HardDrive size={13} style={{ color: '#059669' }} />
-            <span style={{ color: '#059669', fontWeight: 600 }}>T7 SSD Vault Active</span>
+            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#059669', display: 'inline-block' }} />
+            <span style={{ color: '#059669', fontWeight: 600 }}>Archive Live &amp; Synced</span>
           </div>
         </div>
       </div>
