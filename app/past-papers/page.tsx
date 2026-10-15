@@ -124,20 +124,20 @@ const SUBJECT_CONFIGS: Record<TopicalSubject, SubjectConfig> = {
   physics: {
     id: 'physics',
     name: 'IB Physics',
-    tagline: '2025 IB PHYSICS SYLLABUS • CRISP VECTOR CROPS',
+    tagline: '2025 IB PHYSICS SYLLABUS • THEMES A–E',
     shortBadge: '24 Topics • 5 Themes',
-    title: 'Physics Topical Past Paper Generator',
-    description: 'Every IB Physics question & markscheme from 2016–2025 sliced as 100% crisp vector crops using PyMuPDF, classified into Themes A–E and Sub-Topics A.1–E.5, with retired syllabus items (old Topic 7.3 quarks, Topic 11.2 capacitors, polarization) excluded.',
-    bookletTitle: 'IB Physics Formula Booklet',
+    title: 'IB Physics Topical Papers',
+    description: 'Questions and official markschemes (2016–2025) organized by the current syllabus into Themes A–E and sub-topics A.1–E.5, with retired syllabus content excluded.',
+    bookletTitle: 'IB Physics Data Booklet',
     bookletSubject: 'physics',
     unitPrefix: 'Theme',
     accentColor: '#0969da',
     icon: Atom,
-    totalSubtopicsLabel: '24 Booklets',
+    totalSubtopicsLabel: '24 Sub-Topics',
     subtopicFocusLabel: 'A.1 to E.5 Focus Papers',
-    masterBookletsLabel: '5 Master Booklets',
-    masterBookletsSub: 'Pure + Mixed Synthesis',
-    legacyExclusionLabel: 'Quarks & Capacitors Filtered',
+    masterBookletsLabel: '5 Themes',
+    masterBookletsSub: 'Complete Theme Papers',
+    legacyExclusionLabel: 'Outdated Syllabus Excluded',
     defaultVaultDir: 'physics-topicals'
   },
   chemistry: {
@@ -145,37 +145,37 @@ const SUBJECT_CONFIGS: Record<TopicalSubject, SubjectConfig> = {
     name: 'IB Chemistry',
     tagline: '2025 IB CHEMISTRY SYLLABUS • STRUCTURE & REACTIVITY',
     shortBadge: '22 Topics • 6 Themes',
-    title: 'Chemistry Topical Past Paper Generator',
-    description: 'Every IB Chemistry question & markscheme from 2016–2025 harvested with 100% vector precision, mapped into Structure (S1–S3) and Reactivity (R1–R3), with retired legacy content (Option A/B/C/D, old equilibrium derivations) excluded.',
+    title: 'IB Chemistry Topical Papers',
+    description: 'Questions and official markschemes (2016–2025) organized by the current syllabus into Structure (S1–S3) and Reactivity (R1–R3), with retired legacy options removed.',
     bookletTitle: 'IB Chemistry Data Booklet',
     bookletSubject: 'chemistry',
     unitPrefix: 'Theme',
     accentColor: '#1f883d',
     icon: FlaskConical,
-    totalSubtopicsLabel: '22 Booklets',
+    totalSubtopicsLabel: '22 Sub-Topics',
     subtopicFocusLabel: 'S1.1 to R3.4 Focus Papers',
-    masterBookletsLabel: '6 Master Booklets',
-    masterBookletsSub: 'Structure 1-3 & Reactivity 1-3',
-    legacyExclusionLabel: 'Option Papers & Legacy Filtered',
+    masterBookletsLabel: '6 Themes',
+    masterBookletsSub: 'Structure 1–3 & Reactivity 1–3',
+    legacyExclusionLabel: 'Outdated Options Excluded',
     defaultVaultDir: 'chemistry-topicals'
   },
   math: {
     id: 'math',
     name: 'IB Mathematics',
     tagline: 'IB MATHEMATICS (AA & AI SL/HL) • TOPICS 1–5',
-    shortBadge: '25 Topics • 5 Master Topics',
-    title: 'Mathematics Topical Past Paper Generator',
-    description: 'Complete repository of IB Mathematics AA & AI past paper questions (2016–2025) categorized across Topics 1–5 (T1.1–T5.6), distinguishing Paper 1 (No Calculator), Paper 2 (Calculator), and Paper 3 (HL Extended Investigation).',
-    bookletTitle: 'IB Math AA/AI Formula Booklet',
+    shortBadge: '25 Topics • 5 Topics',
+    title: 'IB Mathematics Topical Papers',
+    description: 'Questions and official markschemes (2016–2025) categorized across Topics 1–5 for AA and AI, broken down by Paper 1, Paper 2, and Paper 3.',
+    bookletTitle: 'IB Math Formula Booklet',
     bookletSubject: 'math-aa',
     unitPrefix: 'Topic',
     accentColor: '#8250df',
     icon: Calculator,
-    totalSubtopicsLabel: '25 Booklets',
+    totalSubtopicsLabel: '25 Sub-Topics',
     subtopicFocusLabel: 'T1.1 to T5.5 Focus Papers',
-    masterBookletsLabel: '5 Master Booklets',
-    masterBookletsSub: 'Pure + Mixed Synthesis',
-    legacyExclusionLabel: 'Pre-2020 Legacy Math Filtered',
+    masterBookletsLabel: '5 Topics',
+    masterBookletsSub: 'Complete Topic Papers',
+    legacyExclusionLabel: 'Pre-2020 Syllabus Excluded',
     defaultVaultDir: 'math-topicals'
   }
 };
@@ -454,7 +454,7 @@ function PastPapersBrowserContent() {
               fontSize: '0.85rem'
             }}
           >
-            ⚡ Launch Split-Screen Workspace
+            <Zap size={14} /> Split-Screen Workspace
           </a>
           <a href="/" className="filter-btn active" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
             <ArrowLeft size={14} /> Back to Dashboard
@@ -904,11 +904,11 @@ function PastPapersBrowserContent() {
                           openViewer(
                             {
                               id: `theme-${theme.theme}`,
-                              title: `${currentConfig.unitPrefix} ${theme.theme}: ${theme.title} (Master Booklet)`,
-                              subtitle: `Pure Sub-Topics + Intra & Cross-Theme Synthesis Questions`,
+                              title: `${currentConfig.unitPrefix} ${theme.theme}: ${theme.title}`,
+                              subtitle: `All Sub-Topics & Synthesis Questions`,
                               url: theme.qp_path,
                               msUrl: theme.ms_path,
-                              badge: `${currentConfig.unitPrefix} ${theme.theme} Master`,
+                              badge: `${currentConfig.unitPrefix} ${theme.theme}`,
                               category: 'topical'
                             },
                             false
@@ -921,15 +921,15 @@ function PastPapersBrowserContent() {
                           padding: '0.55rem 1rem',
                           borderRadius: '6px',
                           fontSize: '0.82rem',
-                          fontWeight: 700,
+                          fontWeight: 600,
                           cursor: 'pointer',
                           display: 'inline-flex',
                           alignItems: 'center',
                           gap: '6px',
-                          boxShadow: `0 3px 10px ${accent.border}`
+                          boxShadow: `0 2px 8px ${accent.border}`
                         }}
                       >
-                        <FileText size={14} /> Open Master Booklet
+                        <FileText size={14} /> Question Paper
                       </button>
 
                       <button
@@ -937,8 +937,8 @@ function PastPapersBrowserContent() {
                           openViewer(
                             {
                               id: `theme-${theme.theme}-split`,
-                              title: `${currentConfig.unitPrefix} ${theme.theme}: ${theme.title} (Master Split-Screen)`,
-                              subtitle: `Side-by-side QP + Official Markscheme`,
+                              title: `${currentConfig.unitPrefix} ${theme.theme}: ${theme.title}`,
+                              subtitle: `Question Paper + Official Markscheme`,
                               url: theme.qp_path,
                               msUrl: theme.ms_path,
                               badge: `Split-View`,
@@ -954,43 +954,43 @@ function PastPapersBrowserContent() {
                           padding: '0.55rem 0.95rem',
                           borderRadius: '6px',
                           fontSize: '0.82rem',
-                          fontWeight: 700,
+                          fontWeight: 600,
                           cursor: 'pointer',
                           display: 'inline-flex',
                           alignItems: 'center',
                           gap: '6px'
                         }}
                       >
-                        <Columns size={14} /> Split-View with Markscheme
+                        <Columns size={14} /> Split-View
                       </button>
 
                       <Link
                         href={`/past-papers/workspace?paper=${encodeURIComponent(theme.qp_path)}&ms=${encodeURIComponent(theme.ms_path)}&subject=${topicalSubject}&title=${encodeURIComponent(`${currentConfig.unitPrefix} ${theme.theme}: ${theme.title}`)}`}
                         style={{
-                          background: 'rgba(217, 119, 6, 0.1)',
-                          color: '#d97706',
-                          border: '1px solid rgba(217, 119, 6, 0.3)',
+                          background: 'var(--surface)',
+                          color: 'var(--ink)',
+                          border: '1px solid var(--border)',
                           padding: '0.55rem 0.95rem',
                           borderRadius: '6px',
                           fontSize: '0.82rem',
-                          fontWeight: 700,
+                          fontWeight: 600,
                           cursor: 'pointer',
                           display: 'inline-flex',
                           alignItems: 'center',
                           gap: '6px',
                           textDecoration: 'none'
                         }}
-                        title="Open in Split-Screen Workspace with 5-min reading countdown & M1/A1 score tally"
+                        title="Open timed split-screen workspace"
                       >
-                        <Zap size={14} /> ⚡ Studio Workspace
+                        <Zap size={14} /> Workspace
                       </Link>
 
                       <a
                         href={theme.qp_path}
                         download
                         className="filter-btn"
-                        title={`Download Master ${currentConfig.unitPrefix} PDF`}
-                        style={{ padding: '0.55rem 0.75rem', textDecoration: 'none' }}
+                        title={`Download ${currentConfig.unitPrefix} ${theme.theme} PDF`}
+                        style={{ padding: '0.55rem 0.75rem', textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}
                       >
                         <Download size={14} />
                       </a>
@@ -1078,122 +1078,150 @@ function PastPapersBrowserContent() {
                               <h4 style={{ margin: '0.1rem 0 0.4rem 0', fontSize: '1.05rem', fontWeight: 700, color: 'var(--ink)' }}>
                                 {st.title}
                               </h4>
-                              <p style={{ margin: 0, fontSize: '0.78rem', color: 'var(--ink-soft)', lineHeight: 1.4, maxHeight: '42px', overflow: 'hidden' }}>
+                              <p
+                                style={{
+                                  margin: '0 0 0.5rem 0',
+                                  fontSize: '0.8rem',
+                                  color: 'var(--ink-soft)',
+                                  lineHeight: 1.45,
+                                  display: '-webkit-box',
+                                  WebkitLineClamp: 3,
+                                  WebkitBoxOrient: 'vertical',
+                                  overflow: 'hidden',
+                                  minHeight: '3.5rem'
+                                }}
+                              >
                                 {st.description}
                               </p>
                               {topicalSubject === 'math' ? (
-                                <div style={{ marginTop: '0.5rem', fontSize: '0.72rem', color: 'var(--muted)' }}>
-                                  Breakdown: <strong>{st.sl_count ?? 0} SL Qs</strong> • <strong>{st.hl_count ?? 0} HL Qs</strong> • <strong>{st.total_questions ?? 0} Total</strong>
+                                <div style={{ fontSize: '0.74rem', color: 'var(--ink-faint)', marginBottom: '0.2rem' }}>
+                                  {st.sl_count ?? 0} SL · {st.hl_count ?? 0} HL · {st.total_questions ?? 0} total questions
                                 </div>
                               ) : (
-                                <div style={{ marginTop: '0.5rem', fontSize: '0.72rem', color: 'var(--muted)' }}>
-                                  Breakdown: <strong>{st.mcq_count ?? 0} MCQs</strong> • <strong>{st.frq_count ?? 0} FRQs</strong>
+                                <div style={{ fontSize: '0.74rem', color: 'var(--ink-faint)', marginBottom: '0.2rem' }}>
+                                  {st.mcq_count ?? 0} MCQs · {st.frq_count ?? 0} FRQs · {st.total_questions ?? 0} total questions
                                 </div>
                               )}
                             </div>
 
                             {/* Sub-Topic Action Buttons */}
-                            <div style={{ display: 'flex', gap: '0.4rem', marginTop: '1rem', paddingTop: '0.75rem', borderTop: '1px solid var(--hairline)' }}>
-                              <button
-                                onClick={() =>
-                                  openViewer(
-                                    {
-                                      id: `subtopic-${st.code}`,
-                                      title: `${st.code}: ${st.title}`,
-                                      subtitle: st.description,
-                                      url: st.qp_path,
-                                      msUrl: st.ms_path,
-                                      badge: `${st.code} Pure`,
-                                      category: 'topical'
-                                    },
-                                    false
-                                  )
-                                }
-                                style={{
-                                  flex: 1,
-                                  background: 'var(--surface)',
-                                  border: '1px solid var(--border)',
-                                  color: 'var(--ink)',
-                                  padding: '0.4rem 0.6rem',
-                                  borderRadius: '6px',
-                                  fontSize: '0.76rem',
-                                  fontWeight: 600,
-                                  cursor: 'pointer',
-                                  display: 'flex',
-                                  alignItems: 'center',
-                                  justifyContent: 'center',
-                                  gap: '4px'
-                                }}
-                              >
-                                <FileText size={12} /> Pure QP
-                              </button>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem', marginTop: '0.9rem', paddingTop: '0.75rem', borderTop: '1px solid var(--hairline)' }}>
+                              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.45rem' }}>
+                                <button
+                                  type="button"
+                                  onClick={() =>
+                                    openViewer(
+                                      {
+                                        id: `subtopic-${st.code}`,
+                                        title: `${st.code}: ${st.title}`,
+                                        subtitle: st.description,
+                                        url: st.qp_path,
+                                        msUrl: st.ms_path,
+                                        badge: `${st.code}`,
+                                        category: 'topical'
+                                      },
+                                      false
+                                    )
+                                  }
+                                  style={{
+                                    background: 'var(--surface)',
+                                    border: '1px solid var(--hairline)',
+                                    color: 'var(--ink)',
+                                    padding: '0.48rem 0.5rem',
+                                    borderRadius: '6px',
+                                    fontSize: '0.78rem',
+                                    fontWeight: 600,
+                                    cursor: 'pointer',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    gap: '6px',
+                                    whiteSpace: 'nowrap'
+                                  }}
+                                >
+                                  <FileText size={13} style={{ flexShrink: 0 }} /> Question Paper
+                                </button>
 
-                              <button
-                                onClick={() =>
-                                  openViewer(
-                                    {
-                                      id: `subtopic-${st.code}-split`,
-                                      title: `${st.code}: ${st.title} (Split-Screen)`,
-                                      subtitle: `Question Paper + Official Markscheme`,
-                                      url: st.qp_path,
-                                      msUrl: st.ms_path,
-                                      badge: `${st.code} Split`,
-                                      category: 'topical'
-                                    },
-                                    true
-                                  )
-                                }
-                                style={{
-                                  flex: 1,
-                                  background: accent.bg,
-                                  border: `1px solid ${accent.border}`,
-                                  color: accent.color,
-                                  padding: '0.4rem 0.6rem',
-                                  borderRadius: '6px',
-                                  fontSize: '0.76rem',
-                                  fontWeight: 700,
-                                  cursor: 'pointer',
-                                  display: 'flex',
-                                  alignItems: 'center',
-                                  justifyContent: 'center',
-                                  gap: '4px'
-                                }}
-                              >
-                                <Columns size={12} /> Split-View
-                              </button>
+                                <button
+                                  type="button"
+                                  onClick={() =>
+                                    openViewer(
+                                      {
+                                        id: `subtopic-${st.code}-split`,
+                                        title: `${st.code}: ${st.title}`,
+                                        subtitle: `Question Paper + Official Markscheme`,
+                                        url: st.qp_path,
+                                        msUrl: st.ms_path,
+                                        badge: `${st.code} Split`,
+                                        category: 'topical'
+                                      },
+                                      true
+                                    )
+                                  }
+                                  style={{
+                                    background: accent.bg,
+                                    border: `1px solid ${accent.border}`,
+                                    color: accent.color,
+                                    padding: '0.48rem 0.5rem',
+                                    borderRadius: '6px',
+                                    fontSize: '0.78rem',
+                                    fontWeight: 600,
+                                    cursor: 'pointer',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    gap: '6px',
+                                    whiteSpace: 'nowrap'
+                                  }}
+                                >
+                                  <Columns size={13} style={{ flexShrink: 0 }} /> Split-View
+                                </button>
+                              </div>
 
-                              <Link
-                                href={`/past-papers/workspace?paper=${encodeURIComponent(st.qp_path)}&ms=${encodeURIComponent(st.ms_path)}&subject=${topicalSubject}&title=${encodeURIComponent(`${st.code}: ${st.title}`)}`}
-                                style={{
-                                  flex: 1,
-                                  background: 'rgba(217, 119, 6, 0.08)',
-                                  border: '1px solid rgba(217, 119, 6, 0.28)',
-                                  color: '#d97706',
-                                  padding: '0.4rem 0.6rem',
-                                  borderRadius: '6px',
-                                  fontSize: '0.76rem',
-                                  fontWeight: 700,
-                                  cursor: 'pointer',
-                                  display: 'flex',
-                                  alignItems: 'center',
-                                  justifyContent: 'center',
-                                  gap: '4px',
-                                  textDecoration: 'none'
-                                }}
-                                title="Open in Split-Screen Workspace with 5-min timer & M1/A1 grader"
-                              >
-                                <Zap size={12} /> Workspace
-                              </Link>
+                              <div style={{ display: 'flex', gap: '0.45rem' }}>
+                                <Link
+                                  href={`/past-papers/workspace?paper=${encodeURIComponent(st.qp_path)}&ms=${encodeURIComponent(st.ms_path)}&subject=${topicalSubject}&title=${encodeURIComponent(`${st.code}: ${st.title}`)}`}
+                                  style={{
+                                    flex: 1,
+                                    background: 'var(--surface)',
+                                    border: '1px solid var(--hairline)',
+                                    color: 'var(--ink-soft)',
+                                    padding: '0.42rem 0.6rem',
+                                    borderRadius: '6px',
+                                    fontSize: '0.76rem',
+                                    fontWeight: 600,
+                                    cursor: 'pointer',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    gap: '6px',
+                                    textDecoration: 'none',
+                                    whiteSpace: 'nowrap'
+                                  }}
+                                  title="Open timed split-screen workspace"
+                                >
+                                  <Zap size={13} style={{ flexShrink: 0 }} /> Workspace
+                                </Link>
 
-                              <a
-                                href={st.qp_path}
-                                download
-                                className="filter-btn"
-                                title="Download Sub-Topic PDF"
-                                style={{ padding: '0.4rem 0.55rem', textDecoration: 'none' }}
-                              >
-                                <Download size={12} />
-                              </a>
+                                <a
+                                  href={st.qp_path}
+                                  download
+                                  className="filter-btn"
+                                  title="Download Question Paper PDF"
+                                  style={{
+                                    padding: '0.42rem 0.75rem',
+                                    textDecoration: 'none',
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    borderRadius: '6px',
+                                    color: 'var(--ink-soft)',
+                                    border: '1px solid var(--hairline)'
+                                  }}
+                                >
+                                  <Download size={13} />
+                                </a>
+                              </div>
                             </div>
                           </div>
                         );
@@ -1455,16 +1483,16 @@ function PastPapersBrowserContent() {
                       <Link
                         href={`/past-papers/workspace?paper=${encodeURIComponent(selectedFile)}&title=${encodeURIComponent(decodeURIComponent(selectedFile.split('/').pop() || ''))}`}
                         className="filter-btn"
-                        style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', textDecoration: 'none', padding: '4px 10px', background: 'rgba(217, 119, 6, 0.1)', color: '#d97706', borderColor: 'rgba(217, 119, 6, 0.3)' }}
-                        title="Open in Split-Screen Workspace with 5-minute reading countdown & M1/A1 grader"
+                        style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', textDecoration: 'none', padding: '4px 10px' }}
+                        title="Open timed split-screen workspace"
                       >
-                        <Zap size={12} /> WORKSPACE
+                        <Zap size={12} /> Workspace
                       </Link>
                       <a href={selectedFile} download className="filter-btn active" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', textDecoration: 'none', padding: '4px 10px' }}>
-                        <Download size={12} /> DOWNLOAD
+                        <Download size={12} /> Download
                       </a>
                       <a href={selectedFile} target="_blank" rel="noopener noreferrer" className="filter-btn" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', textDecoration: 'none', padding: '4px 10px' }}>
-                        <ExternalLink size={12} /> NEW TAB
+                        <ExternalLink size={12} /> New Tab
                       </a>
                     </div>
                   </div>
