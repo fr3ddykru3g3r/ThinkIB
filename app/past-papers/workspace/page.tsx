@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, Suspense } from 'react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { 
   ArrowLeft, 
   Timer, 
@@ -23,21 +24,114 @@ import {
   AlertCircle
 } from 'lucide-react';
 import MathView from '@/app/components/MathView';
+import rawPhysicsMap from '../physics_topicals_map.json';
+import rawChemistryMap from '../chemistry_topicals_map.json';
+import rawMathMap from '../math_topicals_map.json';
 
 type RightTab = 'booklet' | 'markscheme' | 'notes';
 type BookletKey = 'math-aa' | 'math-ai' | 'physics' | 'chemistry';
 
-const SAMPLE_PAPERS = [
-  { label: 'Math AA HL P1 (May 2024)', qp: '/api/past-papers/Mathematics/2024/May/Math_AA_HL_paper_1_TZ1.pdf', ms: '/api/past-papers/Mathematics/2024/May/Math_AA_HL_paper_1_TZ1_markscheme.pdf', maxMarks: 110, duration: 120 },
-  { label: 'Math AA SL P1 (May 2024)', qp: '/api/past-papers/Mathematics/2024/May/Math_AA_SL_paper_1_TZ1.pdf', ms: '/api/past-papers/Mathematics/2024/May/Math_AA_SL_paper_1_TZ1_markscheme.pdf', maxMarks: 80, duration: 90 },
-  { label: 'Physics HL P1 (May 2024)', qp: '/api/past-papers/Physics/2024/May/Physics_HL_paper_1_TZ1.pdf', ms: '/api/past-papers/Physics/2024/May/Physics_HL_paper_1_TZ1_markscheme.pdf', maxMarks: 40, duration: 60 },
-  { label: 'Chemistry HL P2 (May 2024)', qp: '/api/past-papers/Chemistry/2024/May/Chemistry_HL_paper_2_TZ1.pdf', ms: '/api/past-papers/Chemistry/2024/May/Chemistry_HL_paper_2_TZ1_markscheme.pdf', maxMarks: 90, duration: 135 },
-  { label: 'Custom Document / URL', qp: '', ms: '', maxMarks: 100, duration: 90 },
+function resolveViewerUrl(rawUrl: string): string {
+  if (!rawUrl) return '';
+  const m = rawUrl.match(/^\/vault\/((?:physics|chemistry|math)-topicals)\/(.+)$/);
+  if (m) {
+    return `/api/past-papers/topicals/${m[1]}/${m[2]}`;
+  }
+  return rawUrl;
+}
+
+export interface PaperOption {
+  id: string;
+  label: string;
+  qp: string;
+  ms: string;
+  subject: BookletKey;
+  maxMarks: number;
+  duration: number; // minutes
+}
+
+const CHRONOLOGICAL_PAPERS: PaperOption[] = [
+  { id: 'math-aa-hl-2024', label: 'Math AA HL P1 (May 2024)', qp: '/api/past-papers/Mathematics/2024/May/Math_AA_HL_paper_1_TZ1.pdf', ms: '/api/past-papers/Mathematics/2024/May/Math_AA_HL_paper_1_TZ1_markscheme.pdf', subject: 'math-aa', maxMarks: 110, duration: 120 },
+  { id: 'math-aa-sl-2024', label: 'Math AA SL P1 (May 2024)', qp: '/api/past-papers/Mathematics/2024/May/Math_AA_SL_paper_1_TZ1.pdf', ms: '/api/past-papers/Mathematics/2024/May/Math_AA_SL_paper_1_TZ1_markscheme.pdf', subject: 'math-aa', maxMarks: 80, duration: 90 },
+  { id: 'physics-hl-2024', label: 'Physics HL P1 (May 2024)', qp: '/api/past-papers/Physics/2024/May/Physics_HL_paper_1_TZ1.pdf', ms: '/api/past-papers/Physics/2024/May/Physics_HL_paper_1_TZ1_markscheme.pdf', subject: 'physics', maxMarks: 40, duration: 60 },
+  { id: 'chem-hl-2024', label: 'Chemistry HL P2 (May 2024)', qp: '/api/past-papers/Chemistry/2024/May/Chemistry_HL_paper_2_TZ1.pdf', ms: '/api/past-papers/Chemistry/2024/May/Chemistry_HL_paper_2_TZ1_markscheme.pdf', subject: 'chemistry', maxMarks: 90, duration: 135 },
 ];
 
-export default function PastPapersWorkspacePage() {
-  const [selectedPaperIdx, setSelectedPaperIdx] = useState<number>(0);
-  const paper = SAMPLE_PAPERS[selectedPaperIdx];
+const PHYSICS_TOPICAL_PAPERS: PaperOption[] = [
+  ...Object.values((rawPhysicsMap as any).themes || {}).map((th: any) => ({
+    id: `physics-theme-${th.theme}`,
+    label: `⚛️ Theme ${th.theme}: ${th.title} (Master)`,
+    qp: resolveViewerUrl(th.qp_path),
+    ms: resolveViewerUrl(th.ms_path),
+    subject: 'physics' as BookletKey,
+    maxMarks: 80,
+    duration: 90
+  })),
+  ...Object.values((rawPhysicsMap as any).subtopics || {}).map((st: any) => ({
+    id: `physics-${st.code}`,
+    label: `⚛️ ${st.code}: ${st.title} (${st.total_questions} Qs)`,
+    qp: resolveViewerUrl(st.qp_path),
+    ms: resolveViewerUrl(st.ms_path),
+    subject: 'physics' as BookletKey,
+    maxMarks: Math.min(60, (st.total_questions || 20) * 2),
+    duration: 60
+  }))
+];
+
+const CHEMISTRY_TOPICAL_PAPERS: PaperOption[] = [
+  ...Object.values((rawChemistryMap as any).themes || {}).map((th: any) => ({
+    id: `chem-theme-${th.theme}`,
+    label: `🧪 Theme ${th.theme}: ${th.title} (Master)`,
+    qp: resolveViewerUrl(th.qp_path),
+    ms: resolveViewerUrl(th.ms_path),
+    subject: 'chemistry' as BookletKey,
+    maxMarks: 80,
+    duration: 90
+  })),
+  ...Object.values((rawChemistryMap as any).subtopics || {}).map((st: any) => ({
+    id: `chem-${st.code}`,
+    label: `🧪 ${st.code}: ${st.title} (${st.total_questions} Qs)`,
+    qp: resolveViewerUrl(st.qp_path),
+    ms: resolveViewerUrl(st.ms_path),
+    subject: 'chemistry' as BookletKey,
+    maxMarks: Math.min(60, (st.total_questions || 20) * 2),
+    duration: 60
+  }))
+];
+
+const MATH_TOPICAL_PAPERS: PaperOption[] = [
+  ...Object.values((rawMathMap as any).themes || {}).map((th: any) => ({
+    id: `math-topic-${th.theme}`,
+    label: `📐 Topic ${th.theme}: ${th.title} (Master)`,
+    qp: resolveViewerUrl(th.qp_path),
+    ms: resolveViewerUrl(th.ms_path),
+    subject: 'math-aa' as BookletKey,
+    maxMarks: 100,
+    duration: 120
+  })),
+  ...Object.values((rawMathMap as any).subtopics || {}).map((st: any) => ({
+    id: `math-${st.code}`,
+    label: `📐 ${st.code}: ${st.title} (${st.total_questions} Qs)`,
+    qp: resolveViewerUrl(st.qp_path),
+    ms: resolveViewerUrl(st.ms_path),
+    subject: 'math-aa' as BookletKey,
+    maxMarks: Math.min(80, (st.total_questions || 20) * 4),
+    duration: 90
+  }))
+];
+
+const ALL_PAPERS_MAP = new Map<string, PaperOption>();
+[...CHRONOLOGICAL_PAPERS, ...PHYSICS_TOPICAL_PAPERS, ...CHEMISTRY_TOPICAL_PAPERS, ...MATH_TOPICAL_PAPERS].forEach(p => {
+  ALL_PAPERS_MAP.set(p.id, p);
+});
+
+function PastPapersWorkspaceInner() {
+  const searchParams = useSearchParams();
+
+  const [selectedPaperId, setSelectedPaperId] = useState<string>('math-aa-hl-2024');
+  const [customPaper, setCustomPaper] = useState<PaperOption | null>(null);
+
+  const paper = customPaper || ALL_PAPERS_MAP.get(selectedPaperId) || CHRONOLOGICAL_PAPERS[0];
 
   const [customQpUrl, setCustomQpUrl] = useState<string>('');
   const [customMsUrl, setCustomMsUrl] = useState<string>('');
@@ -47,14 +141,14 @@ export default function PastPapersWorkspacePage() {
 
   // Right pane tab
   const [activeTab, setActiveTab] = useState<RightTab>('booklet');
-  const [bookletSubject, setBookletSubject] = useState<BookletKey>('math-aa');
+  const [bookletSubject, setBookletSubject] = useState<BookletKey>(paper.subject || 'math-aa');
 
   // Split ratio: left percent
-  const [splitRatio, setSplitRatio] = useState<number>(50); // 50 means 50% left, 50% right
+  const [splitRatio, setSplitRatio] = useState<number>(50);
 
   // Official Timers: 5-min reading countdown vs main exam
   const [isReadingMode, setIsReadingMode] = useState<boolean>(false);
-  const [readingTimeLeft, setReadingTimeLeft] = useState<number>(300); // 5 mins = 300s
+  const [readingTimeLeft, setReadingTimeLeft] = useState<number>(300);
   const [examTimeLeft, setExamTimeLeft] = useState<number>(paper.duration * 60);
   const [isExamRunning, setIsExamRunning] = useState<boolean>(false);
 
@@ -69,10 +163,68 @@ export default function PastPapersWorkspacePage() {
 
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
+  // Deep-link query parameters sync: ?paper=...&ms=...&subject=...&title=...
+  useEffect(() => {
+    const paperParam = searchParams?.get('paper');
+    const msParam = searchParams?.get('ms');
+    const subjectParam = searchParams?.get('subject');
+    const titleParam = searchParams?.get('title');
+
+    if (paperParam) {
+      const qpResolved = resolveViewerUrl(paperParam);
+      const msResolved = msParam ? resolveViewerUrl(msParam) : '';
+      let subj: BookletKey = 'math-aa';
+      if (subjectParam) {
+        const s = subjectParam.toLowerCase();
+        if (s.includes('chem')) subj = 'chemistry';
+        else if (s.includes('phys')) subj = 'physics';
+        else if (s.includes('ai')) subj = 'math-ai';
+        else subj = 'math-aa';
+      } else {
+        const full = `${paperParam} ${titleParam || ''}`.toLowerCase();
+        if (full.includes('chem')) subj = 'chemistry';
+        else if (full.includes('phys')) subj = 'physics';
+        else if (full.includes('ai')) subj = 'math-ai';
+      }
+
+      setCustomPaper({
+        id: 'deep-linked-custom',
+        label: titleParam || 'Deep-Linked Topical Pack',
+        qp: qpResolved,
+        ms: msResolved,
+        subject: subj,
+        maxMarks: subj === 'physics' ? 60 : subj === 'chemistry' ? 80 : 100,
+        duration: 90
+      });
+      setSelectedPaperId('deep-linked-custom');
+      setBookletSubject(subj);
+      if (msResolved) {
+        setActiveTab('markscheme');
+      }
+    }
+  }, [searchParams]);
+
   useEffect(() => {
     setExamTimeLeft(paper.duration * 60);
     setMaxMarks(paper.maxMarks);
-  }, [selectedPaperIdx, paper.duration, paper.maxMarks]);
+    if (paper.subject) {
+      setBookletSubject(paper.subject);
+    }
+  }, [paper.duration, paper.maxMarks, paper.subject]);
+
+  const handleSelectPaper = (id: string) => {
+    setSelectedPaperId(id);
+    setCustomPaper(null);
+    const chosen = ALL_PAPERS_MAP.get(id);
+    if (chosen) {
+      setBookletSubject(chosen.subject);
+      setExamTimeLeft(chosen.duration * 60);
+      setMaxMarks(chosen.maxMarks);
+      if (chosen.ms) {
+        setActiveTab('markscheme');
+      }
+    }
+  };
 
   // Timer Tick
   useEffect(() => {
@@ -170,8 +322,8 @@ export default function PastPapersWorkspacePage() {
           <div style={{ width: '1px', height: '16px', background: 'var(--border)' }} />
           
           <select
-            value={selectedPaperIdx}
-            onChange={(e) => setSelectedPaperIdx(parseInt(e.target.value))}
+            value={selectedPaperId}
+            onChange={(e) => handleSelectPaper(e.target.value)}
             style={{
               padding: '0.35rem 0.65rem',
               borderRadius: '6px',
@@ -179,12 +331,36 @@ export default function PastPapersWorkspacePage() {
               background: 'var(--panel)',
               fontSize: '0.85rem',
               fontWeight: 600,
-              cursor: 'pointer'
+              cursor: 'pointer',
+              maxWidth: '380px',
+              textOverflow: 'ellipsis'
             }}
           >
-            {SAMPLE_PAPERS.map((p, idx) => (
-              <option key={idx} value={idx}>{p.label}</option>
-            ))}
+            {customPaper && (
+              <option value="deep-linked-custom">
+                ⚡ {customPaper.label}
+              </option>
+            )}
+            <optgroup label="Sample Full Past Papers">
+              {CHRONOLOGICAL_PAPERS.map((p) => (
+                <option key={p.id} value={p.id}>{p.label}</option>
+              ))}
+            </optgroup>
+            <optgroup label="⚛️ IB Physics Topicals (Themes A–E & 24 Subtopics)">
+              {PHYSICS_TOPICAL_PAPERS.map((p) => (
+                <option key={p.id} value={p.id}>{p.label}</option>
+              ))}
+            </optgroup>
+            <optgroup label="🧪 IB Chemistry Topicals (Structure, Reactivity & 22 Subtopics)">
+              {CHEMISTRY_TOPICAL_PAPERS.map((p) => (
+                <option key={p.id} value={p.id}>{p.label}</option>
+              ))}
+            </optgroup>
+            <optgroup label="📐 IB Mathematics Topicals (Topics 1–5 & 25 Subtopics)">
+              {MATH_TOPICAL_PAPERS.map((p) => (
+                <option key={p.id} value={p.id}>{p.label}</option>
+              ))}
+            </optgroup>
           </select>
         </div>
 
@@ -629,5 +805,13 @@ export default function PastPapersWorkspacePage() {
 
       </div>
     </div>
+  );
+}
+
+export default function PastPapersWorkspacePage() {
+  return (
+    <Suspense fallback={<div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--muted)' }}>Loading Exam Workspace…</div>}>
+      <PastPapersWorkspaceInner />
+    </Suspense>
   );
 }

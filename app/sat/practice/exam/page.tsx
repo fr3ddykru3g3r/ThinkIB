@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState, Suspense } from 'react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { Clock, Flag, ChevronLeft, ChevronRight, Calculator, FileText, ArrowRight, Play, RotateCcw, Coffee, Check, PenTool } from 'lucide-react';
 import type { SATQuestion } from '@/lib/sat-types';
 import type { FullSATExam, FullSATExamModule } from '@/lib/sat';
@@ -45,7 +46,9 @@ interface ReviewRow {
   seconds: number;
 }
 
-export default function SATExamPage() {
+function SATExamInner() {
+  const searchParams = useSearchParams();
+
   const [exam, setExam] = useState<FullSATExam | null>(null);
   const [phase, setPhase] = useState<Phase>('intro');
   const [busy, setBusy] = useState(false);
@@ -65,6 +68,19 @@ export default function SATExamPage() {
 
   // Difficulty & Exam Configuration Options
   const [difficultyMode, setDifficultyMode] = useState<SATExamDifficultyMode>('adaptive');
+
+  // Sync ?mode= query parameter to difficultyMode state
+  useEffect(() => {
+    const modeParam = searchParams?.get('mode');
+    if (
+      modeParam === 'adaptive' ||
+      modeParam === 'medium' ||
+      modeParam === 'hard' ||
+      modeParam === 'hard_gauntlet'
+    ) {
+      setDifficultyMode(modeParam as SATExamDifficultyMode);
+    }
+  }, [searchParams]);
   const [sectionScope, setSectionScope] = useState<'full' | 'math' | 'rw'>('full');
   const [timerMode, setTimerMode] = useState<'standard' | 'accelerated_0.8x' | 'untimed'>('standard');
   const [report, setReport] = useState<SATScoreReport | null>(null);
@@ -941,4 +957,12 @@ export default function SATExamPage() {
   }
 
   return <div style={{ padding: '4rem', textAlign: 'center', color: 'var(--muted)' }}>Loading…</div>;
+}
+
+export default function SATExamPage() {
+  return (
+    <Suspense fallback={<div style={{ padding: '4rem', textAlign: 'center', color: 'var(--muted)' }}>Loading exam…</div>}>
+      <SATExamInner />
+    </Suspense>
+  );
 }

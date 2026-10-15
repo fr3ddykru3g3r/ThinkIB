@@ -1,0 +1,1026 @@
+{
+  "total_excluded": 170,
+  "generated_at": "2026-10-15 20:08:26",
+  "excluded_questions": [
+    {
+      "id": "2025_May_AA_HL_P3_Q1",
+      "source": "May 2025 TZ2 HL Paper 3 Q1",
+      "reason": "Legacy Homogeneous Differential Equations retired from current AA/AI syllabus (matched: 'homogeneous differential equation')",
+      "preview": "1.\t [Maximum mark: 28] The following question explores features of a family of curves. The family is then  linked to a h"
+    },
+    {
+      "id": "2025_May_AA_HL_P1_Q9",
+      "source": "May 2025 TZ1 HL Paper 1 Q9",
+      "reason": "Legacy Homogeneous Differential Equations retired from current AA/AI syllabus (matched: 'homogeneous differential equation')",
+      "preview": "9.\t [Maximum mark: 8]  Consider the homogeneous differential equation d d y x x y x y \u001f \u001e \u001d , where \u2009x\u00a0>\u00a00\u2009 and \u2009y\u00a0\u2260\u00a0-x\u2009"
+    },
+    {
+      "id": "2024_Nov_Math_HL_P3_Q1",
+      "source": "Nov 2024 TZ1 HL Paper 3 Q1",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "1.\t [Maximum mark:  5] \t Given the sets \u2009A\u2009 and \u2009B\u2009, use the properties of sets to prove that \u2009A \u222a (B' \u222a A)' = A \u222a B\u2009,  "
+    },
+    {
+      "id": "2024_Nov_Math_HL_P3_Q2",
+      "source": "Nov 2024 TZ1 HL Paper 3 Q2",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "2.\t [Maximum mark:  14] The function  f : \uf0a1 \u2192 \uf0a1\u2009 is defined as  f : x \u2192\u2009 1 1 0 0 \u2212 \u2265 < \uf8f1 \uf8f2 \uf8f3 , , x x . \t (a)\t Prove that"
+    },
+    {
+      "id": "2024_Nov_Math_HL_P3_Q3",
+      "source": "Nov 2024 TZ1 HL Paper 3 Q3",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "3.\t [Maximum mark:  10] \t The set of all permutations of the elements \u20091\u2009, 2\u2009, \u202610\u2009 is denoted by \u2009H\u2009 and the binary  op"
+    },
+    {
+      "id": "2024_Nov_Math_HL_P3_Q4",
+      "source": "Nov 2024 TZ1 HL Paper 3 Q4",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "4.\t [Maximum mark:  18] The binary operation \u2009\u2217\u2009 is defined on the set \u2009T = {0\u2009, 2\u2009, 3\u2009, 4\u2009, 5\u2009, 6}\u2009 by \u2009  a \u2217 b = (a + "
+    },
+    {
+      "id": "2024_Nov_Math_HL_P3_Q5",
+      "source": "Nov 2024 TZ1 HL Paper 3 Q5",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "5.\t [Maximum mark:  13] A group \u2009{D\u2009, \u00d73}\u2009 is defined so that \u2009D = {1\u2009, 2}\u2009 and \u2009\u00d73\u2009 is multiplication modulo 3. A funct"
+    },
+    {
+      "id": "2024_Nov_Math_HL_P3_Q1",
+      "source": "Nov 2024 TZ1 HL Paper 3 Q1",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "1.\t [Maximum mark:  5] \t Given the sets \u2009A\u2009 and \u2009B\u2009, use the properties of sets to prove that \u2009A \u222a (B' \u222a A)' = A \u222a B\u2009,  "
+    },
+    {
+      "id": "2024_Nov_Math_HL_P3_Q2",
+      "source": "Nov 2024 TZ1 HL Paper 3 Q2",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "2.\t [Maximum mark:  14] The function  f : \uf0a1 \u2192 \uf0a1\u2009 is defined as  f : x \u2192\u2009 1 1 0 0 \u2212 \u2265 < \uf8f1 \uf8f2 \uf8f3 , , x x . \t (a)\t Prove that"
+    },
+    {
+      "id": "2024_Nov_Math_HL_P3_Q3",
+      "source": "Nov 2024 TZ1 HL Paper 3 Q3",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "3.\t [Maximum mark:  10] \t The set of all permutations of the elements \u20091\u2009, 2\u2009, \u202610\u2009 is denoted by \u2009H\u2009 and the binary  op"
+    },
+    {
+      "id": "2024_Nov_Math_HL_P3_Q4",
+      "source": "Nov 2024 TZ1 HL Paper 3 Q4",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "4.\t [Maximum mark:  18] The binary operation \u2009\u2217\u2009 is defined on the set \u2009T = {0\u2009, 2\u2009, 3\u2009, 4\u2009, 5\u2009, 6}\u2009 by \u2009  a \u2217 b = (a + "
+    },
+    {
+      "id": "2024_Nov_Math_HL_P3_Q5",
+      "source": "Nov 2024 TZ1 HL Paper 3 Q5",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "5.\t [Maximum mark:  13] A group \u2009{D\u2009, \u00d73}\u2009 is defined so that \u2009D = {1\u2009, 2}\u2009 and \u2009\u00d73\u2009 is multiplication modulo 3. A funct"
+    },
+    {
+      "id": "2024_Nov_Math_HL_P3_Q1",
+      "source": "Nov 2024 TZ1 HL Paper 3 Q1",
+      "reason": "Legacy Discrete Number Theory & Congruences retired from current AA/AI syllabus (matched: 'euclidean algorithm')",
+      "preview": "1.\t [Maximum mark:  14] \t Let f n n n ( ) = \u2212 5 , n\u2208 + \uf0a2. \t (a)\t Find the values of f ( ) 3 , f ( ) 4 and f ( ) 5 . [2] "
+    },
+    {
+      "id": "2024_Nov_Math_HL_P3_Q1",
+      "source": "Nov 2024 TZ1 HL Paper 3 Q1",
+      "reason": "Legacy Series Convergence Tests (Ratio/Integral/Comparison) retired from current AA/AI syllabus (matched: 'interval of convergence')",
+      "preview": "1.\t [Maximum mark:  14] \t (a)\t Use the integral test to determine the convergence or divergence of 1 0 5 1 n n . = \u221e \u2211 ."
+    },
+    {
+      "id": "2024_Nov_Math_HL_P3_Q1",
+      "source": "Nov 2024 TZ1 HL Paper 3 Q1",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "1.\t [Maximum mark:  12] \t A group with the binary operation of multiplication modulo 15 is shown in the following  Cayle"
+    },
+    {
+      "id": "2024_Nov_Math_HL_P3_Q2",
+      "source": "Nov 2024 TZ1 HL Paper 3 Q2",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "2.\t [Maximum mark:  8]   Define f : \\ . \uf0a1 \uf0a1 0 5 { } \u2192  by f x x x ( ) = + \u2212 4 1 2 1. \t (a)\t Prove that  f  is an injecti"
+    },
+    {
+      "id": "2024_Nov_Math_HL_P3_Q3",
+      "source": "Nov 2024 TZ1 HL Paper 3 Q3",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "3.\t [Maximum mark:  11] \t Consider the set \u2009A\u2009 consisting of all the permutations of the integers 1 2 3 4 5 , , , , . \t "
+    },
+    {
+      "id": "2024_Nov_Math_HL_P3_Q4",
+      "source": "Nov 2024 TZ1 HL Paper 3 Q4",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "4.\t [Maximum mark:  10] \t The group { , } G \u2217 has identity eG and the group { , } H \uf06f has identity eH .  A homomorphism "
+    },
+    {
+      "id": "2024_Nov_Math_HL_P3_Q5",
+      "source": "Nov 2024 TZ1 HL Paper 3 Q5",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "5.\t [Maximum mark:  19] \t (a)\t State Lagrange\u2019s theorem.  [2] \t G, \u2217 { } is a group with identity element \u2009e\u2009.  Let a b "
+    },
+    {
+      "id": "2024_Nov_Math_HL_P3_Q1",
+      "source": "Nov 2024 TZ1 HL Paper 3 Q1",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "1.\t [Maximum mark:  8] \t Let \u2009R\u2009 be a relation on the set \uf0a2 such that aRb ab \u21d4 \u22650, for a b , \u2208\uf0a2. \t (a)\t Determine whethe"
+    },
+    {
+      "id": "2024_Nov_Math_HL_P3_Q2",
+      "source": "Nov 2024 TZ1 HL Paper 3 Q2",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "2.\t [Maximum mark:  16] \t (a)\t Let f :\uf0a2 \uf0a1 \uf0a1 \u00d7 \u2192 , f m x x m ( , ) ( ) = \u22121 .  Determine whether  f  is     (i)  surjecti"
+    },
+    {
+      "id": "2024_Nov_Math_HL_P3_Q3",
+      "source": "Nov 2024 TZ1 HL Paper 3 Q3",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "3.\t [Maximum mark:  8]   Prove that for sets \u2009A\u2009 and \u2009B A B C A B A C \u00d7 \u2229 = \u00d7 \u2229 \u00d7 ( ) ( ) ( ) ."
+    },
+    {
+      "id": "2024_Nov_Math_HL_P3_Q4",
+      "source": "Nov 2024 TZ1 HL Paper 3 Q4",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "4.\t [Maximum mark:  20] \t Set S x x x x x x ={ , , , , , } 0 1 2 3 4 5 and a binary operation \uf06f on \u2009S\u2009 is defined as x x"
+    },
+    {
+      "id": "2024_Nov_Math_HL_P3_Q5",
+      "source": "Nov 2024 TZ1 HL Paper 3 Q5",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "5.\t [Maximum mark:  8] \t Let { , *} G  be a finite group that contains an element \u2009a\u2009 (that is not the identity element)"
+    },
+    {
+      "id": "2024_Nov_Math_HL_P3_Q2",
+      "source": "Nov 2024 TZ1 HL Paper 3 Q2",
+      "reason": "Legacy Discrete Number Theory & Congruences retired from current AA/AI syllabus (matched: 'diophantine equation')",
+      "preview": "2.\t [Maximum mark:  14] \t (a)\t Use the Euclidean algorithm to find gcd( , ) 752 352 . [4 marks] \t (b)\t A farmer spends \u00a3"
+    },
+    {
+      "id": "2024_Nov_Math_HL_P3_Q3",
+      "source": "Nov 2024 TZ1 HL Paper 3 Q3",
+      "reason": "Legacy Series Convergence Tests (Ratio/Integral/Comparison) retired from current AA/AI syllabus (matched: 'radius of convergence')",
+      "preview": "3.\t [Maximum mark:  11] \t Consider the series  ( ) \u2212 \u00d7 = \u221e \u2211 1 2 1 n n n n x n . \t (a)\t Find the radius of convergence o"
+    },
+    {
+      "id": "2024_Nov_Math_HL_P3_Q1",
+      "source": "Nov 2024 TZ1 HL Paper 3 Q1",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "1.\t [Maximum mark:  20] \t (a)\t Consider the following Cayley table for the set G ={ , , , , , , , } 1 3 5 7 9 11 13 15  "
+    },
+    {
+      "id": "2024_Nov_Math_HL_P3_Q2",
+      "source": "Nov 2024 TZ1 HL Paper 3 Q2",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "2.\t [Maximum mark:  10] \t (a)\t Determine, using Venn diagrams, whether the following statements are true. \t \t (i)\t \u2032\u222a \u2032 "
+    },
+    {
+      "id": "2024_Nov_Math_HL_P3_Q3",
+      "source": "Nov 2024 TZ1 HL Paper 3 Q3",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "3.\t [Maximum mark:  6] \t Show that the set, M, of matrices of the form  a a 0 0 1 \uf8eb \uf8ed \uf8ec \uf8ec\uf8ec \uf8f6 \uf8f8 \uf8f7 \uf8f7\uf8f7 , a\u2208 + \uf0a1, forms a gr"
+    },
+    {
+      "id": "2024_Nov_Math_HL_P3_Q4",
+      "source": "Nov 2024 TZ1 HL Paper 3 Q4",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "4.\t [Maximum mark:  14] \t The group \u2009G\u2009 has a subgroup \u2009H\u2009.  The relation \u2009R\u2009 is defined on \u2009G\u2009 by \u2009xRy\u2009 if and only  if"
+    },
+    {
+      "id": "2024_Nov_Math_HL_P3_Q5",
+      "source": "Nov 2024 TZ1 HL Paper 3 Q5",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "5.\t [Maximum mark:  10] \t Consider the functions f A B : \u2192  and g B C : \u2192 . \t (a)\t Show that if both f and g are injecti"
+    },
+    {
+      "id": "2024_Nov_Math_HL_P3_Q3",
+      "source": "Nov 2024 TZ1 HL Paper 3 Q3",
+      "reason": "Legacy Discrete Number Theory & Congruences retired from current AA/AI syllabus (matched: 'diophantine equation')",
+      "preview": "3.\t [Maximum mark:  18] \t Let the greatest common divisor of 861 and 957 be \u2009h\u2009. \t (a)\t Using the Euclidean algorithm, f"
+    },
+    {
+      "id": "2024_Nov_Math_HL_P3_Q4",
+      "source": "Nov 2024 TZ1 HL Paper 3 Q4",
+      "reason": "Legacy Series Convergence Tests (Ratio/Integral/Comparison) retired from current AA/AI syllabus (matched: 'limit comparison test')",
+      "preview": "4.\t [Maximum mark:  18] \t (a)\t Use the limit comparison test to prove that  1 1 ( 1) n n n \u221e = + \u2211  converges. [5 marks]"
+    },
+    {
+      "id": "2024_Nov_Math_HL_P3_Q1",
+      "source": "Nov 2024 TZ1 HL Paper 3 Q1",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "1.\t [Maximum mark:  19]   All of the relations in this question are defined on \u001f \\{ } 0 . \t (a)\t Decide, giving a proof "
+    },
+    {
+      "id": "2024_Nov_Math_HL_P3_Q2",
+      "source": "Nov 2024 TZ1 HL Paper 3 Q2",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "2.\t [Maximum mark:  9] \t Let \u2009A\u2009 be the set of 2 1 \u00d7 matrices defined as follows: A = \uf8eb \uf8ed\uf8ec \uf8f6 \uf8f8\uf8f7 \u2208 \uf8f1 \uf8f2\uf8f4 \uf8f3\uf8f4 \uf8fc \uf8fd\uf8f4 \uf8fe\uf8f4 x y x "
+    },
+    {
+      "id": "2024_Nov_Math_HL_P3_Q3",
+      "source": "Nov 2024 TZ1 HL Paper 3 Q3",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "3.\t [Maximum mark:  15] \t Let A a b ={ , }. \t (a)\t Write down all four subsets of \u2009A\u2009. [1 mark] \t Let the set of all the"
+    },
+    {
+      "id": "2024_Nov_Math_HL_P3_Q4",
+      "source": "Nov 2024 TZ1 HL Paper 3 Q4",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "4.\t [Maximum mark:  17] \t Let \u2009c\u2009 be a positive, real constant.  Let \u2009G\u2009 be the set { } x c x c \u2208 \u2212 < < \u001e .  The binary "
+    },
+    {
+      "id": "2024_Nov_Math_HL_P3_Q5",
+      "source": "Nov 2024 TZ1 HL Paper 3 Q5",
+      "reason": "Legacy Series Convergence Tests (Ratio/Integral/Comparison) retired from current AA/AI syllabus (matched: 'radius of convergence')",
+      "preview": "5.\t [Maximum mark:  9] A function f is defined in the interval ] , [ k k \u2212 , where  0 k > .  The gradient function f \u2032 e"
+    },
+    {
+      "id": "2024_Nov_Math_HL_P3_Q1",
+      "source": "Nov 2024 TZ1 HL Paper 3 Q1",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "1.  [Maximum mark:  14] Consider the following functions : ]1, [ f \uf02b \uf02b\uf0a5\uf0ae\u0002 where  ( ) ( 1)( 2) f x x x \uf03d \uf02d \uf02b :  g \uf0b4 \uf0ae \uf0b4 \u0002"
+    },
+    {
+      "id": "2024_Nov_Math_HL_P3_Q2",
+      "source": "Nov 2024 TZ1 HL Paper 3 Q2",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "2.  [Maximum mark:  11] (a)  Let  G  be a group of order 12 with identity element  e . Let a G \uf0ce  such that  6 a e \uf0b9  an"
+    },
+    {
+      "id": "2024_Nov_Math_HL_P3_Q3",
+      "source": "Nov 2024 TZ1 HL Paper 3 Q3",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "3.  [Maximum mark:  15] (a)  Let  A  be the set of all 3 3 \uf0b4 matrices of the form  0 0 0 0 1 a b b a \uf0e6 \uf0f6 \uf0e7 \uf0f7 \uf02d \uf0e7 \uf0f7 \uf0e7 \uf0f7 \uf0e8"
+    },
+    {
+      "id": "2024_Nov_Math_HL_P3_Q4",
+      "source": "Nov 2024 TZ1 HL Paper 3 Q4",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "4.  [Maximum mark:  9] Let ( , ) * H  be a subgroup of the group ( , ) * G . Consider the relation  R  de\ufb01 ned in  G  by"
+    },
+    {
+      "id": "2024_Nov_Math_HL_P3_Q5",
+      "source": "Nov 2024 TZ1 HL Paper 3 Q5",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "5.  [Maximum mark:  11] (a)  Given a set  U , and two of its subsets  A  and  B , prove that ( \\ ) ( \\ ) ( ) \\ ( ) A B B"
+    },
+    {
+      "id": "2024_May_Further_SL_P2_Q1",
+      "source": "May 2024 TZ1 SL Paper 2 Q1",
+      "reason": "Abstract Algebra (Group Theory, Cosets, Lagrange's Theorem) retired from current AA/AI syllabus (matched: 'cayley table')",
+      "preview": "1.\t [Maximum mark:  32] The binary operator * is defined for a b , \u2208\uf0a1 by a b a b ab * = + \u2212 . \t (a)\t (i)\t Show that * is"
+    },
+    {
+      "id": "2024_May_Further_SL_P2_Q4",
+      "source": "May 2024 TZ1 SL Paper 2 Q4",
+      "reason": "Legacy Discrete Number Theory & Congruences retired from current AA/AI syllabus (matched: 'diophantine equation')",
+      "preview": "4.\t [Maximum mark:  14] \t (a)\t Given the linear congruence ax b p \u2261 (mod ), where a b , \u2208\uf0a2, \u2009p\u2009 is a prime and  gcd( , )"
+    },
+    {
+      "id": "2024_May_Further_SL_P2_Q5",
+      "source": "May 2024 TZ1 SL Paper 2 Q5",
+      "reason": "Legacy Series Convergence Tests (Ratio/Integral/Comparison) retired from current AA/AI syllabus (matched: 'interval of convergence')",
+      "preview": "5.\t [Maximum mark:  28] \t (a)\t Find the value of lim cot x x x \u2192 \u2212 \uf8eb \uf8ed\uf8ec \uf8f6 \uf8f8\uf8f7 0 1 . [6 marks] \t (b)\t Find the interval of"
+    },
+    {
+      "id": "2024_May_Further_SL_P2_Q6",
+      "source": "May 2024 TZ1 SL Paper 2 Q6",
+      "reason": "Abstract Algebra (Group Theory, Cosets, Lagrange's Theorem) retired from current AA/AI syllabus (matched: 'cyclic group')",
+      "preview": "6.\t [Maximum mark:  24] \t (a)\t (i)\t Draw the Cayley table for the set S ={ , , , , , } 0 1 2 3 4 5 under addition  modul"
+    },
+    {
+      "id": "2024_May_Further_SL_P2_Q2",
+      "source": "May 2024 TZ1 SL Paper 2 Q2",
+      "reason": "Legacy Series Convergence Tests (Ratio/Integral/Comparison) retired from current AA/AI syllabus (matched: 'limit comparison test')",
+      "preview": "2.\t [Maximum mark:  27] \t (a)\t (i)\t Use partial fractions to show that the series  1 1 ( 1) n n n \u221e = + \u2211  is convergent"
+    },
+    {
+      "id": "2024_May_Further_SL_P2_Q5",
+      "source": "May 2024 TZ1 SL Paper 2 Q5",
+      "reason": "Abstract Sets & Equivalence Relations retired from current AA/AI syllabus (matched: 'equivalence relation')",
+      "preview": "5.\t [Maximum mark:  21] The set \u2009S\u2009 consists of real numbers \u2009r\u2009 of the form  2 r a b = + , where , a b\u2208\u001f . The relation"
+    },
+    {
+      "id": "2024_May_Further_SL_P1_Q2",
+      "source": "May 2024 TZ1 SL Paper 1 Q2",
+      "reason": "Abstract Sets & Equivalence Relations retired from current AA/AI syllabus (matched: 'equivalence relation')",
+      "preview": "2.\t [Maximum mark:  10] Let \u2009S\u2009 be the set of matrices given by a b c d a b c d ad bc \uf8ee \uf8f0\uf8ef \uf8f9 \uf8fb\uf8fa \u2208 \u2212 = ; , , , \uf0a1, 1. The "
+    },
+    {
+      "id": "2024_May_Further_SL_P1_Q3",
+      "source": "May 2024 TZ1 SL Paper 1 Q3",
+      "reason": "Abstract Sets & Equivalence Relations retired from current AA/AI syllabus (matched: 'equivalence relation')",
+      "preview": "3.\t [Maximum mark:  11] \t (a)\t Prove that the number 14\u2009641 is the fourth power of an integer in any base greater  than "
+    },
+    {
+      "id": "2024_May_Further_SL_P1_Q1",
+      "source": "May 2024 TZ1 SL Paper 1 Q1",
+      "reason": "Abstract Algebra (Group Theory, Cosets, Lagrange's Theorem) retired from current AA/AI syllabus (matched: 'cayley table')",
+      "preview": "1.\t [Maximum mark:  11] \t (a)\t The set S1 2 4 6 8 ={ , , , } and \u00d710 denotes multiplication modulo 10. \t \t (i)\t Write do"
+    },
+    {
+      "id": "2024_May_Further_SL_P1_Q1",
+      "source": "May 2024 TZ1 SL Paper 1 Q1",
+      "reason": "Legacy Discrete Number Theory & Congruences retired from current AA/AI syllabus (matched: 'euclidean algorithm')",
+      "preview": "1.\t [Maximum mark:  12]   (a)  (i)  Use the Euclidean algorithm to find gcd(6750, 144) . \t \t (ii)\t Express your answer i"
+    },
+    {
+      "id": "2024_May_Math_HL_P3_Q1",
+      "source": "May 2024 TZ1 HL Paper 3 Q1",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "1.\t [Maximum mark:  13] \t Consider the set \u2009S3\u2009= {\u200ap\u2009, q\u2009, r\u2009, s\u2009, t\u2009, u}\u2009 of permutations of the elements of the set \u2009{"
+    },
+    {
+      "id": "2024_May_Math_HL_P3_Q2",
+      "source": "May 2024 TZ1 HL Paper 3 Q2",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "2.\t [Maximum mark:  10] \t The binary operation \u2009*\u2009 is defined for \u2009x\u2009, y\u2009\u2208\u2009S = {0\u2009, 1\u2009, 2\u2009, 3\u2009, 4\u2009, 5\u2009, 6}\u2009 by x y x y x"
+    },
+    {
+      "id": "2024_May_Math_HL_P3_Q3",
+      "source": "May 2024 TZ1 HL Paper 3 Q3",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "3.\t [Maximum mark:  12] \t The relation \u2009R\u2009 is defined on \u2009\uf0a2\u2009 by \u2009xRy\u2009 if and only if \u2009x2y \u2261 y\u2009mod\u20096\u2009. \t (a)\t Show that t"
+    },
+    {
+      "id": "2024_May_Math_HL_P3_Q4",
+      "source": "May 2024 TZ1 HL Paper 3 Q4",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "4.\t [Maximum mark:  9] \t Let \u2009X\u2009 and \u2009Y\u2009 be sets.  The functions  f : X \u2192 Y\u2009 and \u2009g : Y \u2192 X \u2009are such that \u2009g\u2009\uf06f \u2009f  is t"
+    },
+    {
+      "id": "2024_May_Math_HL_P3_Q5",
+      "source": "May 2024 TZ1 HL Paper 3 Q5",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "5.\t [Maximum mark:  16] \t Consider the sets G n n i i = \u2208 \u2208 \uf8f1\uf8f2\uf8f3 \uf8fc\uf8fd\uf8fe 6 | , \u001f \u001e , H m m j j = \u2208 \u2208 \uf8f1\uf8f2\uf8f3 \uf8fc\uf8fd\uf8fe 3 | , \u001f \u001e . \t (a"
+    },
+    {
+      "id": "2024_May_Math_HL_P3_Q3",
+      "source": "May 2024 TZ1 HL Paper 3 Q3",
+      "reason": "Legacy Series Convergence Tests (Ratio/Integral/Comparison) retired from current AA/AI syllabus (matched: 'radius of convergence')",
+      "preview": "3. [Maximum mark:  12] 2 3 Each term of the power series  1 1 1 1 1 2 4 5 7 8 10 11 x x x + + + +\u2026 \u00d7 \u00d7 \u00d7 \u00d7  has the form"
+    },
+    {
+      "id": "2024_May_Math_HL_P3_Q1",
+      "source": "May 2024 TZ1 HL Paper 3 Q1",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "1.\t [Maximum mark:  12] \t The binary operation \u2206 is defined on the set  {1, 2, 3, 4, 5} S =  by the following Cayley tab"
+    },
+    {
+      "id": "2024_May_Math_HL_P3_Q2",
+      "source": "May 2024 TZ1 HL Paper 3 Q2",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "2.\t [Maximum mark:  19] \t Consider the set \u2009S\u2009 defined by  { : 2 } S s s = \u2208 \u2208 \uf0a4 \uf0a2. \t You may assume that + (addition) a"
+    },
+    {
+      "id": "2024_May_Math_HL_P3_Q3",
+      "source": "May 2024 TZ1 HL Paper 3 Q3",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "3.\t [Maximum mark:  15] \t Sets \u2009X\u2009 and \u2009Y\u2009 are defined by  ] [ 0, 1 ; {0, 1, 2, 3, 4, 5} X Y = = . \t (a)\t (i)\t Sketch th"
+    },
+    {
+      "id": "2024_May_Math_HL_P3_Q4",
+      "source": "May 2024 TZ1 HL Paper 3 Q4",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "4.\t [Maximum mark:  14] \t Let  : f G H \u2192  be a homomorphism of finite groups. \t (a)\t Prove that  ( ) G H f e e = , where"
+    },
+    {
+      "id": "2024_May_Math_HL_P3_Q5",
+      "source": "May 2024 TZ1 HL Paper 3 Q5",
+      "reason": "Legacy Series Convergence Tests (Ratio/Integral/Comparison) retired from current AA/AI syllabus (matched: 'radius of convergence')",
+      "preview": "5.\t [Maximum mark:  15] \t (a)\t Consider the power series  k x k k 2 1 \uf8eb \uf8ed\uf8ec \uf8f6 \uf8f8\uf8f7 = \u221e \u2211 . \t \t (i)\t Find the radius of conv"
+    },
+    {
+      "id": "2024_May_Math_HL_P3_Q1",
+      "source": "May 2024 TZ1 HL Paper 3 Q1",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "1.\t [Maximum mark:  10] \t The function f : \uf0a1 \uf0a1 \u2192  is defined by f x x x ( ) = \u2212 \u2212 2e e . \t (a)\t Show that  f  is a bijec"
+    },
+    {
+      "id": "2024_May_Math_HL_P3_Q2",
+      "source": "May 2024 TZ1 HL Paper 3 Q2",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "2.\t [Maximum mark:  10] \t The relation \u2009R\u2009 is defined for 2 2 \u00d7 matrices such that \u2009ARB\u2009 if and only if there exists a  "
+    },
+    {
+      "id": "2024_May_Math_HL_P3_Q3",
+      "source": "May 2024 TZ1 HL Paper 3 Q3",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "3.\t [Maximum mark:  14] \t (a)\t Consider the set A ={ , , , } 1 3 5 7 under the binary operation *, where * denotes  mult"
+    },
+    {
+      "id": "2024_May_Math_HL_P3_Q4",
+      "source": "May 2024 TZ1 HL Paper 3 Q4",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "4.\t [Maximum mark:  13] \t The permutation p1 of the set { , , , 1 2 3 4} is defined by p1 1 2 3 4 2 4 1 3 = \uf8eb \uf8ed\uf8ec \uf8f6 \uf8f8\uf8f7. \t"
+    },
+    {
+      "id": "2024_May_Math_HL_P3_Q5",
+      "source": "May 2024 TZ1 HL Paper 3 Q5",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "5.\t [Maximum mark:  13] \t Let \u2009G\u2009 be a finite cyclic group. \t (a)\t Prove that \u2009G\u2009 is Abelian. [4 marks] \t (b)\t Given tha"
+    },
+    {
+      "id": "2024_May_Math_HL_P3_Q1",
+      "source": "May 2024 TZ1 HL Paper 3 Q1",
+      "reason": "Legacy Discrete Number Theory & Congruences retired from current AA/AI syllabus (matched: 'diophantine equation')",
+      "preview": "1.\t [Maximum mark:  13]   (a)  Use the Euclidean algorithm to find the greatest common divisor of the numbers  56 and 31"
+    },
+    {
+      "id": "2024_May_Math_HL_P3_Q1",
+      "source": "May 2024 TZ1 HL Paper 3 Q1",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "1.\t [Maximum mark:  18]  \t The binary operator multiplication modulo 14, denoted by *, is defined on the set  S ={ , , ,"
+    },
+    {
+      "id": "2024_May_Math_HL_P3_Q2",
+      "source": "May 2024 TZ1 HL Paper 3 Q2",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "2.\t [Maximum mark:  7]  \t The universal set contains all the positive integers less than 30.  The set \u2009A\u2009 contains  all "
+    },
+    {
+      "id": "2024_May_Math_HL_P3_Q3",
+      "source": "May 2024 TZ1 HL Paper 3 Q3",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "3.\t [Maximum mark:  10] \t The relation \u2009R\u2009 is defined for a b , \u2208 + \uf0a2such that \u2009aRb\u2009 if and only if a b 2 2 \u2212  is divisi"
+    },
+    {
+      "id": "2024_May_Math_HL_P3_Q4",
+      "source": "May 2024 TZ1 HL Paper 3 Q4",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "4.\t [Maximum mark:  11] \t The function f : \uf0a1 \uf0a1 \uf0a1 \uf0a1 + + + + \u00d7 \u2192 \u00d7  is defined by f x y xy x y ( , ) , = \uf8eb \uf8ed\uf8ec \uf8f6 \uf8f8\uf8f7 2 . \t S"
+    },
+    {
+      "id": "2024_May_Math_HL_P3_Q5",
+      "source": "May 2024 TZ1 HL Paper 3 Q5",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "5.\t [Maximum mark:  14] \t (a)\t Given that \u2009p\u2009, \u2009q\u2009 and \u2009r\u2009 are elements of a group, prove the left-cancellation rule,  i"
+    },
+    {
+      "id": "2024_May_Math_HL_P3_Q1",
+      "source": "May 2024 TZ1 HL Paper 3 Q1",
+      "reason": "Legacy Discrete Number Theory & Congruences retired from current AA/AI syllabus (matched: 'euclidean algorithm')",
+      "preview": "1.\t [Maximum mark:  15] \t (a)\t Use the Euclidean algorithm to express gcd( , ) 123 2347 in the form 123 2347 p q + ,  wh"
+    },
+    {
+      "id": "2024_May_Math_HL_P3_Q5",
+      "source": "May 2024 TZ1 HL Paper 3 Q5",
+      "reason": "Legacy Discrete Number Theory & Congruences retired from current AA/AI syllabus (matched: 'chinese remainder theorem')",
+      "preview": "5.\t [Maximum mark:  13] \t (a)\t Use the result 2003 6 333 5 = \u00d7 +  and Fermat\u2019s little theorem to show that  2 4 2003 \u2261 ("
+    },
+    {
+      "id": "2024_May_Math_HL_P3_Q1",
+      "source": "May 2024 TZ1 HL Paper 3 Q1",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "1.\t [Maximum mark:  17] \t (a)\t Associativity and commutativity are two of the five conditions for a set \u2009S\u2009 with  the bi"
+    },
+    {
+      "id": "2024_May_Math_HL_P3_Q2",
+      "source": "May 2024 TZ1 HL Paper 3 Q2",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "2.\t [Maximum mark:  8] The elements of sets \u2009P\u2009 and \u2009Q\u2009 are taken from the universal set  { , , , , , , , , , } 1 2 3 4 "
+    },
+    {
+      "id": "2024_May_Math_HL_P3_Q3",
+      "source": "May 2024 TZ1 HL Paper 3 Q3",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "3.\t [Maximum mark:  14] \t The relation \u2009R\u2009 is defined on the set \u001e such that for a b , \u2208\u001e , \u2009aRb\u2009 if and only if  a b 3 "
+    },
+    {
+      "id": "2024_May_Math_HL_P3_Q4",
+      "source": "May 2024 TZ1 HL Paper 3 Q4",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "4.\t [Maximum mark:  7] \t (a)\t The function  : g \u2192 \u001d \u001d is defined by g n n ( ) | | = \u22121 for n\u2208\u001d.  Show that \u2009g\u2009 is  neith"
+    },
+    {
+      "id": "2024_May_Math_HL_P3_Q5",
+      "source": "May 2024 TZ1 HL Paper 3 Q5",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "5.\t [Maximum mark:  14] The group \u2009G\u2009 has a unique element, \u2009h\u2009, of order 2. \t (a)\t (i)\t Show that ghg \u22121 has order 2 fo"
+    },
+    {
+      "id": "2024_May_Math_HL_P3_Q1",
+      "source": "May 2024 TZ1 HL Paper 3 Q1",
+      "reason": "Legacy Discrete Number Theory & Congruences retired from current AA/AI syllabus (matched: 'diophantine equation')",
+      "preview": "1.\t [Maximum mark:  15] \t (a)\t Using the Euclidean algorithm, show that gcd( , ) 99 332 1 = . [4 marks] \t (b)\t (i)\t Find"
+    },
+    {
+      "id": "2024_May_Math_HL_P3_Q3",
+      "source": "May 2024 TZ1 HL Paper 3 Q3",
+      "reason": "Legacy Series Convergence Tests (Ratio/Integral/Comparison) retired from current AA/AI syllabus (matched: 'radius of convergence')",
+      "preview": "3.\t [Maximum mark:  11] \t Consider the infinite series  2 1 2 n n n n x \u221e =\u2211 . \t (a)\t Find the radius of convergence. [4"
+    },
+    {
+      "id": "2024_May_Math_HL_P3_Q1",
+      "source": "May 2024 TZ1 HL Paper 3 Q1",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "1.\t [Maximum mark:  10] \t The binary operation * is defined on \u001f by  1 * a b ab = + . \t Determine whether or not *  \t (a"
+    },
+    {
+      "id": "2024_May_Math_HL_P3_Q2",
+      "source": "May 2024 TZ1 HL Paper 3 Q2",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "2.\t [Maximum mark:  16] \t Consider the set S ={ , , , , , , } 1 3 5 7 9 11 13 under the binary operation multiplication "
+    },
+    {
+      "id": "2024_May_Math_HL_P3_Q3",
+      "source": "May 2024 TZ1 HL Paper 3 Q3",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "3.\t [Maximum mark:  13] \t The function f : \u001e \u001e \u2192  is defined by f x x x x x x ( ) = + \u2264 \u2212 + > \uf8f1 \uf8f2 \uf8f3 2 1 2 2 5 2 2 for  f"
+    },
+    {
+      "id": "2024_May_Math_HL_P3_Q4",
+      "source": "May 2024 TZ1 HL Paper 3 Q4",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "4.\t [Maximum mark:  13] \t The relation \u2009R\u2009 is defined on { , , , , , , , , , , , } 1 2 3 4 5 6 7 8 9 10 11 12 by a b R i"
+    },
+    {
+      "id": "2024_May_Math_HL_P3_Q5",
+      "source": "May 2024 TZ1 HL Paper 3 Q5",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "5.\t [Maximum mark:  8] \t H\u2009 and \u2009K\u2009 are subgroups of a group \u2009G\u2009.  By considering the four group axioms, prove  that H K"
+    },
+    {
+      "id": "2024_May_Further_HL_P2_Q7",
+      "source": "May 2024 TZ1 HL Paper 2 Q7",
+      "reason": "Abstract Sets & Equivalence Relations retired from current AA/AI syllabus (matched: 'equivalence relation')",
+      "preview": "7.\t [Maximum mark:  16] \t S\u2009 is defined as the set of all \u20092 \u00d7 2\u2009 non-singular matrices.  A\u2009 and \u2009B\u2009 are two elements of"
+    },
+    {
+      "id": "2024_May_Further_HL_P2_Q9",
+      "source": "May 2024 TZ1 HL Paper 2 Q9",
+      "reason": "Abstract Algebra (Group Theory, Cosets, Lagrange's Theorem) retired from current AA/AI syllabus (matched: 'homomorphism')",
+      "preview": "9.\t [Maximum mark:  13] \t Let  f  be a homomorphism of a group \u2009G\u2009 onto a group \u2009H\u2009. \t (a)\t Show that if \u2009e\u2009 is the iden"
+    },
+    {
+      "id": "2024_May_Further_HL_P2_Q2",
+      "source": "May 2024 TZ1 HL Paper 2 Q2",
+      "reason": "Abstract Algebra (Group Theory, Cosets, Lagrange's Theorem) retired from current AA/AI syllabus (matched: 'subgroup')",
+      "preview": "2.\t [Maximum mark:  18] \t (a)\t The set \u2009S\u2009 contains the eighth roots of unity given by cis , , 0 7 4 n n n \uf8f1 \u03c0 \uf8fc \uf8eb \uf8f6 \u2208 \u2264"
+    },
+    {
+      "id": "2024_May_Further_HL_P1_Q2",
+      "source": "May 2024 TZ1 HL Paper 1 Q2",
+      "reason": "Legacy Discrete Number Theory & Congruences retired from current AA/AI syllabus (matched: 'diophantine equation')",
+      "preview": "2.\t [Maximum mark:  7] \t (a)\t Find the general solution to the Diophantine equation \u20093x + 5y = 7\u2009. [5] \t (b)\t Find the v"
+    },
+    {
+      "id": "2024_May_Further_HL_P1_Q3",
+      "source": "May 2024 TZ1 HL Paper 1 Q3",
+      "reason": "Abstract Algebra (Group Theory, Cosets, Lagrange's Theorem) retired from current AA/AI syllabus (matched: 'abelian group')",
+      "preview": "3.\t [Maximum mark:  11] \t Consider the set \u2009S = {0\u2009,\u2009\u20091\u2009,\u2009\u20092\u2009,\u2009\u20093\u2009,\u2009\u20094\u2009,\u2009\u20095}\u2009 under the operation of addition modulo \u20096\u2009"
+    },
+    {
+      "id": "2024_May_Further_HL_P1_Q6",
+      "source": "May 2024 TZ1 HL Paper 1 Q6",
+      "reason": "Legacy Series Convergence Tests (Ratio/Integral/Comparison) retired from current AA/AI syllabus (matched: 'interval of convergence')",
+      "preview": "6.\t [Maximum mark:  9] \t Find the interval of convergence of the series  ( ) x k k k \u2212 = \u221e \u2211 3 2 1 ."
+    },
+    {
+      "id": "2024_May_Further_HL_P1_Q15",
+      "source": "May 2024 TZ1 HL Paper 1 Q15",
+      "reason": "Abstract Sets & Equivalence Relations retired from current AA/AI syllabus (matched: 'equivalence relation')",
+      "preview": "15.\t [Maximum mark:  13] \t The relations \u2009\u03c11\u2009 and \u2009\u03c12\u2009 are defined on the Cartesian plane as follows x y x y x x y y 1 1"
+    },
+    {
+      "id": "2024_May_Further_HL_P1_Q8",
+      "source": "May 2024 TZ1 HL Paper 1 Q8",
+      "reason": "Abstract Algebra (Group Theory, Cosets, Lagrange's Theorem) retired from current AA/AI syllabus (matched: 'subgroup')",
+      "preview": "8.\t [Maximum mark:  12] \t The group { } , * G  has a subgroup { } , * H .  The relation \u2009R\u2009 is defined, for ,x y G \u2208 , b"
+    },
+    {
+      "id": "2024_May_Further_HL_P1_Q12",
+      "source": "May 2024 TZ1 HL Paper 1 Q12",
+      "reason": "Legacy Series Convergence Tests (Ratio/Integral/Comparison) retired from current AA/AI syllabus (matched: 'radius of convergence')",
+      "preview": "12. [Maximum mark:  11] Consider the infinite series  ( ) 2 2 1  2  n     2n \u22121 n n x S \u221e = =\u2211 . (a)\t Determine the radi"
+    },
+    {
+      "id": "2024_May_Further_HL_P1_Q16",
+      "source": "May 2024 TZ1 HL Paper 1 Q16",
+      "reason": "Abstract Algebra (Group Theory, Cosets, Lagrange's Theorem) retired from current AA/AI syllabus (matched: 'subgroup')",
+      "preview": "16.\t [Maximum mark:  10] \t { } , * G  is a group of order \u2009N\u2009 and { } , * H  is a proper subgroup of { } , * G  of order"
+    },
+    {
+      "id": "2023_Nov_AA_HL_P3_Q2",
+      "source": "Nov 2023 TZ1 HL Paper 3 Q2",
+      "reason": "Legacy Homogeneous Differential Equations retired from current AA/AI syllabus (matched: 'homogeneous differential equation')",
+      "preview": "2.\t [Maximum mark: 31] This question begins by asking you to examine families of curves that intersect every  member of "
+    },
+    {
+      "id": "2022_Nov_AA_HL_P1_Q9",
+      "source": "Nov 2022 TZ1 HL Paper 1 Q9",
+      "reason": "Legacy Homogeneous Differential Equations retired from current AA/AI syllabus (matched: 'homogeneous differential equation')",
+      "preview": "9.\t [Maximum mark: 10] Consider the homogeneous differential equation d d y x y x xy = \u2212 2 2 2 , where \u2009x\u2009,\u00a0y\u00a0\u2260\u00a00\u2009. It i"
+    },
+    {
+      "id": "2020_Nov_Math_HL_P3_Q1",
+      "source": "Nov 2020 TZ1 HL Paper 3 Q1",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "1.\t [Maximum mark: 5] Consider two subsets, \u2009A\u2009 and \u2009B\u2009, of a universal set \u2009U\u2009. (a)\t Draw a Venn diagram to illustrate "
+    },
+    {
+      "id": "2020_Nov_Math_HL_P3_Q2",
+      "source": "Nov 2020 TZ1 HL Paper 3 Q2",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "2.\t [Maximum mark: 10] The relation \u2009R\u2009 is defined on \uf0a1\u00a0\u00d7\u00a0\uf0a1 by \u2009(a\u2009,\u00a0b)\u2009R\u2009(c\u2009,\u00a0d\u2009)\u2009, if and only if, \u2009b\u00a0\u2212\u00a0a\u00a0=\u00a0d\u00a0\u2212\u00a0c\u2009. (a"
+    },
+    {
+      "id": "2020_Nov_Math_HL_P3_Q3",
+      "source": "Nov 2020 TZ1 HL Paper 3 Q3",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "3.\t [Maximum mark: 5] The function \u2009g\u00a0:\u00a0\uf0a1\u00a0\u00d7\u00a0\uf0a1\u00a0\u2192\u00a0\uf0a1\u00a0\u00d7\u00a0\uf0a1 is defined by \u2009g\u2009(x\u2009,\u00a0y)\u00a0=\u00a0(x\u2009y\u2009,\u00a0x\u00a0+\u00a0y)\u2009. (a)\t Give an example to"
+    },
+    {
+      "id": "2020_Nov_Math_HL_P3_Q4",
+      "source": "Nov 2020 TZ1 HL Paper 3 Q4",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "4.\t [Maximum mark: 18] The binary operation \u2009*\u2009 is defined on the set \u2009S\u00a0=\u00a0\uf0a1\u00a0\\\u00a0{1} by \u2009a\u00a0*\u00a0b\u00a0=\u00a0a\u00a0+\u00a0b\u00a0\u2212\u00a0ab\u2009, for all \u2009a\u2009,"
+    },
+    {
+      "id": "2020_Nov_Math_HL_P3_Q5",
+      "source": "Nov 2020 TZ1 HL Paper 3 Q5",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "5.\t [Maximum mark: 12] Consider the square \u2009ABCD\u2009 with vertices at \u2009A\u2009(\u22121\u2009,\u00a01)\u2009, \u2009B\u2009(1\u2009,\u00a01)\u2009, \u2009C\u2009(1\u2009,\u00a0\u22121)\u2009 and \u2009D\u2009(\u22121\u2009,\u00a0"
+    },
+    {
+      "id": "2020_Nov_Math_HL_P3_Q2",
+      "source": "Nov 2020 TZ1 HL Paper 3 Q2",
+      "reason": "Legacy Series Convergence Tests (Ratio/Integral/Comparison) retired from current AA/AI syllabus (matched: 'interval of convergence')",
+      "preview": "2.\t [Maximum mark: 10] Consider the series  1 (5 3 )n n x n \u221e = \u2212 \u2211 . (a)\t Show that the series is convergent for 4 2 3 "
+    },
+    {
+      "id": "2020_Nov_Further_HL_P2_Q1",
+      "source": "Nov 2020 TZ1 HL Paper 2 Q1",
+      "reason": "Legacy Discrete Number Theory & Congruences retired from current AA/AI syllabus (matched: 'diophantine equation')",
+      "preview": "1.\t [Maximum mark: 14] (a)\t Use the Euclidean algorithm to show that the greatest common divisor of 411 and  339 is 3.\b "
+    },
+    {
+      "id": "2020_Nov_Further_HL_P2_Q2",
+      "source": "Nov 2020 TZ1 HL Paper 2 Q2",
+      "reason": "Abstract Algebra (Group Theory, Cosets, Lagrange's Theorem) retired from current AA/AI syllabus (matched: 'subgroup')",
+      "preview": "2.\t [Maximum mark: 14] (a)\t The matrix \u2009A\u2009 is given by A \u001f \u001e \u001d \u001c \u001c \u001c \u001b \u001a \u0019 \u0019 \u0019 \u0018 1 0 1 0 0 1 a b c a b c where , , \uf0a1. Ve"
+    },
+    {
+      "id": "2020_Nov_Further_HL_P2_Q6",
+      "source": "Nov 2020 TZ1 HL Paper 2 Q6",
+      "reason": "Abstract Sets & Equivalence Relations retired from current AA/AI syllabus (matched: 'equivalence relation')",
+      "preview": "6.\t [Maximum mark: 18] (a)\t The relation \u2009R\u2009 is defined such that \u2009aRb\u2009 if and only if \u2009p\u2009 divides \u2009a2\u2009- b2\u2009, where \u2009p\u2009 "
+    },
+    {
+      "id": "2020_Nov_Further_HL_P1_Q3",
+      "source": "Nov 2020 TZ1 HL Paper 1 Q3",
+      "reason": "Abstract Algebra (Group Theory, Cosets, Lagrange's Theorem) retired from current AA/AI syllabus (matched: 'cayley table')",
+      "preview": "3.\t [Maximum mark: 8] The binary operation \u2009*\u2009 is defined on the set \u2009S = {a\u2009, b\u2009, c\u2009, d\u2009, e\u2009, f }\u2009 by the following Cay"
+    },
+    {
+      "id": "2020_Nov_Further_HL_P1_Q8",
+      "source": "Nov 2020 TZ1 HL Paper 1 Q8",
+      "reason": "Abstract Algebra (Group Theory, Cosets, Lagrange's Theorem) retired from current AA/AI syllabus (matched: 'subgroup')",
+      "preview": "8.\t [Maximum mark: 12] Consider the group \u2009{S\u2009, \u00d713}\u2009, where \u2009S = {1\u2009, 2\u2009, 3\u2009, 4\u2009, 5\u2009, 6\u2009, 7\u2009, 8\u2009, 9\u2009, 10\u2009, 11\u2009, 12}\u2009 an"
+    },
+    {
+      "id": "2019_Nov_Math_HL_P3_Q1",
+      "source": "Nov 2019 TZ1 HL Paper 3 Q1",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "1.\t [Maximum mark:  12] Let \u2009A = {1\u2009, 3\u2009, 4\u2009, 5\u2009, 8\u2009, 9}\u2009, B = {1\u2009, 5\u2009, 6\u2009, 7\u2009, 9}\u2009 and \u2009C = {1\u2009, 2\u2009, 7\u2009, 8\u2009, 9}\u2009. (a)\t "
+    },
+    {
+      "id": "2019_Nov_Math_HL_P3_Q2",
+      "source": "Nov 2019 TZ1 HL Paper 3 Q2",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "2.\t [Maximum mark:  14] The set \u2009{-4\u2009, -3\u2009, -2\u2009, -1\u2009, 0\u2009, 1\u2009, 2\u2009, 3}\u2009 together with the binary operation, \u2009*\u2009 , forms a "
+    },
+    {
+      "id": "2019_Nov_Math_HL_P3_Q3",
+      "source": "Nov 2019 TZ1 HL Paper 3 Q3",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "3.\t [Maximum mark:  13] (a)\t Let \u2009V\u2009 be the set of three-dimensional vectors. A relation \u2009R\u2009 is defined on \u2009V\u2009 by \u2009aRb\u2009 "
+    },
+    {
+      "id": "2019_Nov_Math_HL_P3_Q4",
+      "source": "Nov 2019 TZ1 HL Paper 3 Q4",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "4.\t [Maximum mark:  11] (a)\t Let \u2009{G\u2009, *}\u2009 be a group. Prove that \u2009{G\u2009, *}\u2009 has exactly one identity element.\b [3] (b)\t "
+    },
+    {
+      "id": "2019_May_Math_HL_P3_Q1",
+      "source": "May 2019 TZ1 HL Paper 3 Q1",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "1.\t [Maximum mark:  9] The relation R is defined on \u2009\uf0a5\u2009 by \u2009xRy \u21d4 x2\u2009+ y2\u2009\u2261 0\u2009(mod\u20092)\u2009. (a)\t Show that R is an equivalen"
+    },
+    {
+      "id": "2019_May_Math_HL_P3_Q2",
+      "source": "May 2019 TZ1 HL Paper 3 Q2",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "2.\t [Maximum mark:  14] Binary operations \u2009\uf06f\u2009 and \u2009\u2217\u2009 are defined on the set of complex numbers such that  z1\u2009\uf06f z2\u2009= A\u2009("
+    },
+    {
+      "id": "2019_May_Math_HL_P3_Q3",
+      "source": "May 2019 TZ1 HL Paper 3 Q3",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "3.\t [Maximum mark:  9] A non-Abelian group, \u2009{G\u2009, \uf06f\u2009}\u2009, has eight elements \u2009e\u2009, a\u2009, a2\u2009, a3\u2009, b\u2009, ab\u2009, a2b\u2009, a3\u00adb\u2009, wher"
+    },
+    {
+      "id": "2019_May_Math_HL_P3_Q4",
+      "source": "May 2019 TZ1 HL Paper 3 Q4",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "4.\t [Maximum mark:  7] Let \u2009S\u2009 be the set of real numbers of the form a b + 5 where \u2009a\u2009, b\u2009\u2208\u2009\uf0a4\u2009, a2\u2009 cannot equal \u20095b2\u2009,"
+    },
+    {
+      "id": "2019_May_Math_HL_P3_Q5",
+      "source": "May 2019 TZ1 HL Paper 3 Q5",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "5.\t [Maximum mark:  11] Consider the function  f : \uf0a1 \u00d7 \uf0a1 \u2192 \uf0a1 \u00d7 \uf0a1\u2009 defined by  f (x\u2009, y) = (x + y\u2009, x - y)\u2009. (a)\t Prove t"
+    },
+    {
+      "id": "2019_May_Math_HL_P3_Q2",
+      "source": "May 2019 TZ1 HL Paper 3 Q2",
+      "reason": "Legacy Discrete Number Theory & Congruences retired from current AA/AI syllabus (matched: 'diophantine equation')",
+      "preview": "2.\t [Maximum mark:  16] (a)\t Use the Euclidean algorithm to find \u2009gcd\u2009(564\u2009, 254)\u2009.\b [5] (b)\t Find a general solution to"
+    },
+    {
+      "id": "2019_May_Further_HL_P2_Q5",
+      "source": "May 2019 TZ1 HL Paper 2 Q5",
+      "reason": "Abstract Algebra (Group Theory, Cosets, Lagrange's Theorem) retired from current AA/AI syllabus (matched: 'cyclic group')",
+      "preview": "5.\t [Maximum mark:  21] (a)\t Consider the set \u2009G = {1\u2009, 2\u2009, 3\u2009, 4\u2009, 5\u2009, 6}\u2009 and the operation \u2009\u00d77\u2009 which denotes  multip"
+    },
+    {
+      "id": "2019_May_Further_HL_P1_Q6",
+      "source": "May 2019 TZ1 HL Paper 1 Q6",
+      "reason": "Abstract Algebra (Group Theory, Cosets, Lagrange's Theorem) retired from current AA/AI syllabus (matched: 'subgroup')",
+      "preview": "6.\t [Maximum mark:  8] The group \u2009{G\u2009, *}\u2009 has the following Cayley table. * 0 1 2 3 4 5 0 4 5 0 1 2 3 1 5 2 1 4 3 0 2 0"
+    },
+    {
+      "id": "2019_May_Further_HL_P1_Q7",
+      "source": "May 2019 TZ1 HL Paper 1 Q7",
+      "reason": "Legacy Series Convergence Tests (Ratio/Integral/Comparison) retired from current AA/AI syllabus (matched: 'limit comparison test')",
+      "preview": "7.\t [Maximum mark:  12] (a)\t Determine the radius of convergence of the power series  ( ) \u001f \u001e \u001d \u001c 2 1 n n n x n .\b [5] ("
+    },
+    {
+      "id": "2019_May_Further_HL_P1_Q12",
+      "source": "May 2019 TZ1 HL Paper 1 Q12",
+      "reason": "Abstract Sets & Equivalence Relations retired from current AA/AI syllabus (matched: 'equivalence relation')",
+      "preview": "12.\t [Maximum mark:  9] The relation \u2009R\u2009 is defined on \u2009\uf0a2+\u2009 such that \u2009xRy\u2009 if and only if \u2009x2\u2009- y2\u2009\u2261 0\u2009(mod\u2009N\u2009)\u2009 where "
+    },
+    {
+      "id": "2018_Nov_Math_HL_P3_Q1",
+      "source": "Nov 2018 TZ1 HL Paper 3 Q1",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "1.\t [Maximum mark:  13] Consider the binary operation * defined on the set of rational numbers, \u2009\uf0a4\u2009 by \u2009a*b = a + b + ab"
+    },
+    {
+      "id": "2018_Nov_Math_HL_P3_Q2",
+      "source": "Nov 2018 TZ1 HL Paper 3 Q2",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "2.\t [Maximum mark:  8] Consider two subsets X and Y of a universal set U. (a)\t Use De Morgan\u2019s laws to prove that  \u2032\u222a \u2032 "
+    },
+    {
+      "id": "2018_Nov_Math_HL_P3_Q3",
+      "source": "Nov 2018 TZ1 HL Paper 3 Q3",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "3.\t [Maximum mark: 10] A relation R is defined on \u2009\uf0a1 \u00d7 \uf0a1\u2009 by \u2009(a\u2009, b)R(c\u2009, d\u2009) \u21d4 3(a - c) = 2(b - d\u2009)\u2009. (a)\t Show that R"
+    },
+    {
+      "id": "2018_Nov_Math_HL_P3_Q4",
+      "source": "Nov 2018 TZ1 HL Paper 3 Q4",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "4.\t [Maximum mark:  9] Consider the functions  f , g : \uf0a1 \u00d7 \uf0a1 \u2192 \uf0a1 \u00d7 \uf0a1\u2009 defined by f ((x\u2009, y)) = (x + y\u2009, x - y)\u2009 and \u2009g\u2009("
+    },
+    {
+      "id": "2018_Nov_Math_HL_P3_Q5",
+      "source": "Nov 2018 TZ1 HL Paper 3 Q5",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "5.\t [Maximum mark:  10] Consider a finite group \u2009{G\u2009, \u2217}\u2009.  Let \u2009H\u2009 be a subgroup of \u2009G\u2009 of order \u2009m\u2009 such that \u2009G \\ H \u2260"
+    },
+    {
+      "id": "2018_Nov_Math_HL_P3_Q1",
+      "source": "Nov 2018 TZ1 HL Paper 3 Q1",
+      "reason": "Legacy Series Convergence Tests (Ratio/Integral/Comparison) retired from current AA/AI syllabus (matched: 'limit comparison test')",
+      "preview": "1.\t [Maximum mark:  10] (a)\t Use the limit comparison test to determine whether the series  2 1 3 2 1 n n n + = \u221e \u2211  con"
+    },
+    {
+      "id": "2018_Nov_Math_HL_P3_Q1",
+      "source": "Nov 2018 TZ1 HL Paper 3 Q1",
+      "reason": "Legacy Discrete Number Theory & Congruences retired from current AA/AI syllabus (matched: 'diophantine equation')",
+      "preview": "1.\t [Maximum mark:  8] (a)\t Use the Euclidean algorithm to find the greatest common divisor of 77 and 105.\b [3] (b)\t Hen"
+    },
+    {
+      "id": "2018_May_Math_HL_P3_Q1",
+      "source": "May 2018 TZ1 HL Paper 3 Q1",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "1.\t [Maximum mark:  13] \t The binary operation multiplication modulo 10, denoted by \u2009\u00d710\u2009, is defined on the set  T = {2"
+    },
+    {
+      "id": "2018_May_Math_HL_P3_Q2",
+      "source": "May 2018 TZ1 HL Paper 3 Q2",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "2.\t [Maximum mark:  8] \t (a)\t Consider the sets \u2009A = {1\u2009, 3\u2009, 5\u2009, 7\u2009, 9}\u2009, B = {2\u2009, 3\u2009, 5\u2009, 7\u2009, 11}\u2009 and \u2009C = {1\u2009, 3\u2009, 7"
+    },
+    {
+      "id": "2018_May_Math_HL_P3_Q3",
+      "source": "May 2018 TZ1 HL Paper 3 Q3",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "3.\t [Maximum mark:  8] \t The relation \u2009R\u2009 is defined such that \u2009xRy\u2009 if and only if \u2009|\u2009x\u2009| + |\u2009y\u2009| = |\u2009x + y\u2009|\u2009 for \u2009x\u2009,"
+    },
+    {
+      "id": "2018_May_Math_HL_P3_Q4",
+      "source": "May 2018 TZ1 HL Paper 3 Q4",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "4.\t [Maximum mark:  12] \t The set of all permutations of the list of the integers \u20091\u2009, 2\u2009, 3\u2009, 4\u2009 is a group, \u2009S4\u2009, unde"
+    },
+    {
+      "id": "2018_May_Math_HL_P3_Q5",
+      "source": "May 2018 TZ1 HL Paper 3 Q5",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "5.\t [Maximum mark:  9] \t The function  f : \uf0a2 \u2192 \uf0a2\u2009 is defined by  f (n) = n + (-1)n\u2009. \t (a)\t Prove that  f\u2009 \uf06f f  is the i"
+    },
+    {
+      "id": "2018_May_Math_HL_P3_Q1",
+      "source": "May 2018 TZ1 HL Paper 3 Q1",
+      "reason": "Legacy Series Convergence Tests (Ratio/Integral/Comparison) retired from current AA/AI syllabus (matched: 'interval of convergence')",
+      "preview": "1.\t [Maximum mark:  10] \t (a)\t Given that \u2009n > ln n\u2009 for \u2009n > 0\u2009, use the comparison test to show that the series  1 2 0"
+    },
+    {
+      "id": "2018_May_Further_HL_P2_Q6",
+      "source": "May 2018 TZ1 HL Paper 2 Q6",
+      "reason": "Abstract Sets & Equivalence Relations retired from current AA/AI syllabus (matched: 'equivalence relation')",
+      "preview": "6. [Maximum mark:  19] The set of all integers from 0 to 99 inclusive is denoted by \u2009S\u2009.  The binary operations \u2009\u2217\u2009 and "
+    },
+    {
+      "id": "2018_May_Further_HL_P1_Q1",
+      "source": "May 2018 TZ1 HL Paper 1 Q1",
+      "reason": "Legacy Discrete Number Theory & Congruences retired from current AA/AI syllabus (matched: 'euclidean algorithm')",
+      "preview": "[4] [5] 1. [Maximum mark:  9] (a) Use the Euclidean algorithm to find the greatest common divisor of 74 and 383. (b) Hen"
+    },
+    {
+      "id": "2018_May_Further_HL_P1_Q4",
+      "source": "May 2018 TZ1 HL Paper 1 Q4",
+      "reason": "Abstract Algebra (Group Theory, Cosets, Lagrange's Theorem) retired from current AA/AI syllabus (matched: 'cayley table')",
+      "preview": "4.\t [Maximum mark:  12] The transformations \u2009T1\u2009, T2\u2009, T3\u2009, T4\u2009,\u2009 in the plane are defined as follows: T1\u2009: A rotation o"
+    },
+    {
+      "id": "2017_Nov_Math_HL_P3_Q1",
+      "source": "Nov 2017 TZ1 HL Paper 3 Q1",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "1.\t [Maximum mark:  11] \t Consider the group \u2009{G\u2009, \u00d718}\u2009 defined on the set \u2009{1\u2009, 5\u2009, 7\u2009, 11\u2009, 13\u2009, 17}\u2009 where \u2009\u00d718\u2009 den"
+    },
+    {
+      "id": "2017_Nov_Math_HL_P3_Q2",
+      "source": "Nov 2017 TZ1 HL Paper 3 Q2",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "2.\t [Maximum mark:  8] \t A\u2009, B\u2009 and \u2009C\u2009 are three subsets of a universal set. \t (a)\t Represent each of the following set"
+    },
+    {
+      "id": "2017_Nov_Math_HL_P3_Q3",
+      "source": "Nov 2017 TZ1 HL Paper 3 Q3",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "3.\t [Maximum mark:  9] \t The relation \u2009R\u2009 is defined on \u2009\uf0a1 \u00d7 \uf0a1\u2009 such that \u2009(x1\u2009, y1)R(x2\u2009, y2)\u2009 if and only if \u2009x1 y1 = "
+    },
+    {
+      "id": "2017_Nov_Math_HL_P3_Q4",
+      "source": "Nov 2017 TZ1 HL Paper 3 Q4",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "4.\t [Maximum mark:  14] \t The set S is defined as the set of real numbers greater than \u20091\u2009. The binary operation \u2009*\u2009 is "
+    },
+    {
+      "id": "2017_Nov_Math_HL_P3_Q5",
+      "source": "Nov 2017 TZ1 HL Paper 3 Q5",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "5.\t [Maximum mark:  8] \t Let  f : G \u2192 H\u2009 be a homomorphism between groups \u2009{G\u2009, *}\u2009 and \u2009{H\u2009, \uf06f}\u2009 with identities \u2009eG\u2009  "
+    },
+    {
+      "id": "2017_Nov_Math_HL_P3_Q3",
+      "source": "Nov 2017 TZ1 HL Paper 3 Q3",
+      "reason": "Legacy Series Convergence Tests (Ratio/Integral/Comparison) retired from current AA/AI syllabus (matched: 'limit comparison test')",
+      "preview": "3.\t [Maximum mark:  12] \t (a)\t Use the limit comparison test to show that the series  2 1 1 2 n n \u221e = + \u2211  is convergent"
+    },
+    {
+      "id": "2017_Nov_Math_HL_P3_Q4",
+      "source": "Nov 2017 TZ1 HL Paper 3 Q4",
+      "reason": "Legacy Discrete Number Theory & Congruences retired from current AA/AI syllabus (matched: 'chinese remainder theorem')",
+      "preview": "4.\t [Maximum mark:  9] \t Consider the system of linear congruences x \u2261 2(mod\u20095) x \u2261 5(mod\u20098) x \u2261 1(mod\u20093). \t (a)\t With r"
+    },
+    {
+      "id": "2017_May_Math_HL_P3_Q1",
+      "source": "May 2017 TZ1 HL Paper 3 Q1",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "1.\t [Maximum mark:  10] \t The set \u2009A\u2009 contains all positive integers less than 20 that are congruent to 3 modulo 4. The "
+    },
+    {
+      "id": "2017_May_Math_HL_P3_Q2",
+      "source": "May 2017 TZ1 HL Paper 3 Q2",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "2.\t [Maximum mark:  11] \t The relation \u2009R\u2009 is defined such that \u2009aRb\u2009 if and only if \u20094a\u2009- 4b\u2009 is divisible by \u20097\u2009, wher"
+    },
+    {
+      "id": "2017_May_Math_HL_P3_Q3",
+      "source": "May 2017 TZ1 HL Paper 3 Q3",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "3.\t [Maximum mark:  13] \t The function  f : \uf0a1 \u00d7 \uf0a1 \u2192 \uf0a1 \u00d7 \uf0a1\u2009 is defined by  f (x\u2009, y) = (2x3\u2009+ y3\u2009, x3\u2009+ 2y3)\u2009. \t (a)\t Sho"
+    },
+    {
+      "id": "2017_May_Math_HL_P3_Q4",
+      "source": "May 2017 TZ1 HL Paper 3 Q4",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "4.\t [Maximum mark:  16] \t The binary operation \u2009*\u2009 is defined by a * b = a + b - 3 \u2009for \u2009a\u2009, b\u2009\u2208\u2009\uf0a2\u2009. \t (a)\t Show that \u2009{"
+    },
+    {
+      "id": "2017_May_Math_HL_P3_Q1",
+      "source": "May 2017 TZ1 HL Paper 3 Q1",
+      "reason": "Legacy Discrete Number Theory & Congruences retired from current AA/AI syllabus (matched: 'diophantine equation')",
+      "preview": "1.\t [Maximum mark:  16] \t (a)\t Use the Euclidean algorithm to find the greatest common divisor of 264 and 1365. [5] \t (b"
+    },
+    {
+      "id": "2017_May_Further_HL_P2_Q2",
+      "source": "May 2017 TZ1 HL Paper 2 Q2",
+      "reason": "Abstract Algebra (Group Theory, Cosets, Lagrange's Theorem) retired from current AA/AI syllabus (matched: 'subgroup')",
+      "preview": "2.\t [Maximum mark:  15] \t (a)\t The group \u2009{G\u2009, \u2217}\u2009 has a subgroup \u2009{H\u2009, \u2217}\u2009.  The relation \u2009R\u2009 is defined such that for "
+    },
+    {
+      "id": "2017_May_Further_HL_P2_Q7",
+      "source": "May 2017 TZ1 HL Paper 2 Q7",
+      "reason": "Legacy Series Convergence Tests (Ratio/Integral/Comparison) retired from current AA/AI syllabus (matched: 'radius of convergence')",
+      "preview": "7.\t [Maximum mark:  18] The discrete random variable \u2009X\u2009  has the following probability distribution. P(X x kx x x = = +"
+    },
+    {
+      "id": "2017_May_Further_HL_P1_Q10",
+      "source": "May 2017 TZ1 HL Paper 1 Q10",
+      "reason": "Abstract Algebra (Group Theory, Cosets, Lagrange's Theorem) retired from current AA/AI syllabus (matched: 'subgroup')",
+      "preview": "10.\t [Maximum mark:  9] \t Let G denote the set of \u20092 \u00d7 2\u2009 matrices whose elements belong to \u2009\uf0a1\u2009 and whose determinant  i"
+    },
+    {
+      "id": "2016_Nov_Math_HL_P3_Q1",
+      "source": "Nov 2016 TZ1 HL Paper 3 Q1",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "1.\t [Maximum mark:  13] \t Let \u2009{G\u2009, \uf06f}\u2009 be the group of all permutations of \u20091\u2009, 2\u2009, 3\u2009, 4\u2009, 5\u2009, 6\u2009 under the operation "
+    },
+    {
+      "id": "2016_Nov_Math_HL_P3_Q2",
+      "source": "Nov 2016 TZ1 HL Paper 3 Q2",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "2.\t [Maximum mark:  21] \t (a)\t Let \u2009A\u2009 be the set \u2009{x | x\u2009\u2208\u2009\uf0a1\u2009, x \u2260 0}\u2009.  Let \u2009B\u2009 be the set \u2009{x | x\u2009\u2208]-1\u2009, +1[\u2009, x \u2260 0}"
+    },
+    {
+      "id": "2016_Nov_Math_HL_P3_Q3",
+      "source": "Nov 2016 TZ1 HL Paper 3 Q3",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "3.\t [Maximum mark:  15] \t An Abelian group, \u2009{G\u2009, *}\u2009, has \u200912\u2009 different elements which are of the form \u2009ai * b\u2009 j\u2009 whe"
+    },
+    {
+      "id": "2016_Nov_Math_HL_P3_Q4",
+      "source": "Nov 2016 TZ1 HL Paper 3 Q4",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "4.\t [Maximum mark:  11] \t A relation \u2009S\u2009 is defined on \u2009\uf0a1\u2009 by \u2009aSb\u2009 if and only if \u2009ab > 0\u2009. \t (a)\t Show that \u2009S\u2009 is \t \t"
+    },
+    {
+      "id": "2016_Nov_Math_HL_P3_Q2",
+      "source": "Nov 2016 TZ1 HL Paper 3 Q2",
+      "reason": "Legacy Series Convergence Tests (Ratio/Integral/Comparison) retired from current AA/AI syllabus (matched: 'radius of convergence')",
+      "preview": "2.\t [Maximum mark:  18] \t (a)\t By successive differentiation find the first four non-zero terms in the Maclaurin series "
+    },
+    {
+      "id": "2016_May_Math_HL_P3_Q1",
+      "source": "May 2016 TZ1 HL Paper 3 Q1",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "1.\t [Maximum mark:  19] \t The following Cayley table for the binary operation multiplication modulo \u20099\u2009, denoted by \u2009*\u2009,"
+    },
+    {
+      "id": "2016_May_Math_HL_P3_Q2",
+      "source": "May 2016 TZ1 HL Paper 3 Q2",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "2.\t [Maximum mark:  12] \t The relation \u2009R\u2009 is defined on \u2009\uf0a2+\u2009 such that \u2009aRb\u2009 if and only if \u2009bn\u2009- an\u2009\u2261 0(mod p)\u2009 where "
+    },
+    {
+      "id": "2016_May_Math_HL_P3_Q3",
+      "source": "May 2016 TZ1 HL Paper 3 Q3",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "3.\t [Maximum mark:  7] \t The group \u2009{G\u2009, *}\u2009 is Abelian and the bijection \u2009f : G \u2192 G\u2009 is defined by \u2009f (x) = x-1\u2009, x\u2009\u2208\u2009G"
+    },
+    {
+      "id": "2016_May_Math_HL_P3_Q4",
+      "source": "May 2016 TZ1 HL Paper 3 Q4",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "4.\t [Maximum mark:  13] \t The function  f  is defined by  f : \uf0a1+\u2009\u00d7 \uf0a1+\u2009\u2192 \uf0a1+\u2009\u00d7 \uf0a1+\u2009 where  f (x\u2009, y) =  xy x y , \uf8eb \uf8ed\uf8ec \uf8f6 \uf8f8\uf8f7."
+    },
+    {
+      "id": "2016_May_Math_HL_P3_Q5",
+      "source": "May 2016 TZ1 HL Paper 3 Q5",
+      "reason": "Legacy Option: Sets, Relations and Groups retired from 2021+ AA/AI syllabi",
+      "preview": "5.\t [Maximum mark:  9] \t The group \u2009{G\u2009, *}\u2009 is defined on the set \u2009G\u2009 with binary operation \u2009*\u2009.  H\u2009 is a subset of \u2009G\u2009"
+    },
+    {
+      "id": "2016_May_Math_HL_P3_Q1",
+      "source": "May 2016 TZ1 HL Paper 3 Q1",
+      "reason": "Legacy Discrete Number Theory & Congruences retired from current AA/AI syllabus (matched: 'euclidean algorithm')",
+      "preview": "1.\t [Maximum mark:  9] \t (a)\t Use the Euclidean algorithm to show that 1463 and 389 are relatively prime. [4] \t (b)\t Fin"
+    },
+    {
+      "id": "2016_May_Further_HL_P1_Q3",
+      "source": "May 2016 TZ1 HL Paper 1 Q3",
+      "reason": "Legacy Discrete Number Theory & Congruences retired from current AA/AI syllabus (matched: 'diophantine equation')",
+      "preview": "3.\t [Maximum mark:  8] Consider the Diophantine equation \u20097x - 5y = 1\u2009, x\u2009, y\u2009\u2208\u2009\uf0a2\u2009. \t (a)\t Find the general solution to "
+    },
+    {
+      "id": "2016_May_Further_HL_P1_Q9",
+      "source": "May 2016 TZ1 HL Paper 1 Q9",
+      "reason": "Abstract Sets & Equivalence Relations retired from current AA/AI syllabus (matched: 'reflexive')",
+      "preview": "9.\t [Maximum mark:  11] \t (a)\t Use the Euclidean algorithm to find \u2009gcd(162\u2009, 5982)\u2009. [4] \t (b)\t The relation \u2009R\u2009 is def"
+    }
+  ]
+}

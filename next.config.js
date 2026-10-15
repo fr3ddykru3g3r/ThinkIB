@@ -17,6 +17,14 @@ const nextConfig = {
       ],
     },
   },
+  async rewrites() {
+    return [
+      {
+        source: '/vault/:subject(physics-topicals|chemistry-topicals|math-topicals)/:file*',
+        destination: '/api/past-papers/topicals/:subject/:file*',
+      },
+    ];
+  },
   async headers() {
     return [
       {

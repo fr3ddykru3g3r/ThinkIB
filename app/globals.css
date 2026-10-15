@@ -1,39 +1,42 @@
 /* EDITORIAL / ACADEMIC MAGAZINE DESIGN SYSTEM */
 :root {
-  --bg: #fcfbfa; /* Warm Off-White */
-  --ink: #1c1c1e; /* Deep Charcoal Ink */
-  --accent: #b84a39; /* Muted Terracotta Rust */
-  --rust: #b84a39;
-  --muted: #767679; /* Warm Slate Gray */
-  --ink-soft: #52525b;
-  --ink-faint: #a1a1aa;
-  --border: rgba(28, 28, 30, 0.08); /* Hairline Divide */
-  --hairline: rgba(28, 28, 30, 0.08);
-  --panel-light: #ffffff;
-  --primary: #b84a39;
-  --text-primary: #1c1c1e;
-  --card-desc: #52525b;
+  --bg: #FAF8F5; /* Warm Alabaster Parchment canvas */
+  --ink: #141413; /* Deep Ink typography */
+  --accent: #C2410C; /* Oxford Terracotta primary accent */
+  --rust: #C2410C;
+  --muted: #57534E; /* Muted Slate secondary text */
+  --ink-soft: #57534E;
+  --ink-faint: #A8A29E;
+  --border: rgba(20, 20, 19, 0.09); /* Hairline warm divide */
+  --hairline: rgba(20, 20, 19, 0.09);
+  --panel-light: #FFFFFF;
+  --primary: #C2410C;
+  --text-primary: #141413;
+  --card-desc: #57534E;
+  --success: #15803D; /* Deep Forest success */
+  --success-soft: rgba(21, 128, 61, 0.09);
 
-  /* Surface colors — NEVER use hardcoded #fff in components */
-  --surface: #ffffff;
-  --surface-raised: #ffffff;
-  --surface-inset: #f8f8f7;
+  /* Surface colors — Crisp Ivory cards */
+  --surface: #FFFFFF;
+  --surface-raised: #FFFFFF;
+  --surface-inset: #F4F1EA;
+  --panel: #FFFFFF;
   --earth: #9a6a3e;
   --earth-soft: rgba(154, 106, 62, 0.08);
-  --paper-card: #ffffff;
-  --paper-panel: #f9f9f8;
+  --paper-card: #FFFFFF;
+  --paper-panel: #F4F1EA;
 
   /* Radius tokens - organic rounded edges */
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
   
-  --font-display: 'Cormorant Garamond', serif;
-  --font-serif: 'Cormorant Garamond', serif;
-  --font-body: 'Plus Jakarta Sans', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
   
-  --transition-smooth: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  --transition-smooth: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* BASE RESETS & LAYOUT */
@@ -82,6 +85,182 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* ==========================================================================
+   NUMERIC & MATHEMATICAL PRECISION (ZERO-JITTER)
+   ========================================================================== */
+.tabular-nums,
+[data-tabular-nums],
+.timer,
+.score,
+.badge,
+.sat-qgrid button,
+.sat-spr-input,
+table,
+th,
+td,
+.telemetry-num,
+.metric-value,
+.stat-digit,
+.instrument-readout,
+.calculator-num,
+.gauge-num {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* ==========================================================================
+   EDITORIAL ACADEMIC STUDIO UTILITY CLASSES
+   ========================================================================== */
+
+/* Editorial Bento Card */
+.editorial-bento-card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.22s ease;
+  box-shadow: 0 1px 3px rgba(20, 20, 19, 0.03);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+}
+
+.editorial-bento-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  box-shadow: 0 12px 28px -6px rgba(20, 20, 19, 0.08), 0 2px 8px -2px rgba(20, 20, 19, 0.04);
+}
+
+[data-theme="dark"] .editorial-bento-card {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+[data-theme="dark"] .editorial-bento-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 14px 32px -4px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.editorial-bento-card .corner-index {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  opacity: 0.65;
+}
+
+/* Glass Nav Pill */
+.glass-nav-pill {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: rgba(250, 248, 245, 0.85);
+  border: 1px solid var(--border);
+  border-radius: 9999px;
+  padding: 0.25rem 0.35rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+[data-theme="dark"] .glass-nav-pill {
+  background: rgba(20, 20, 23, 0.82);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.glass-nav-pill .active-indicator {
+  background: var(--surface);
+  color: var(--accent);
+  box-shadow: 0 1px 4px rgba(20, 20, 19, 0.08);
+  border-radius: 9999px;
+  font-weight: 600;
+}
+
+[data-theme="dark"] .glass-nav-pill .active-indicator {
+  background: var(--surface-raised);
+  color: var(--accent);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Tactile Keycap Badge */
+.kbd-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-bottom: 2px solid rgba(20, 20, 19, 0.22);
+  border-radius: 5px;
+  padding: 0.12rem 0.42rem;
+  line-height: 1.2;
+  box-shadow: 0 1px 1px rgba(20, 20, 19, 0.05);
+  letter-spacing: 0.02em;
+  user-select: none;
+  white-space: nowrap;
+}
+
+[data-theme="dark"] .kbd-badge {
+  background: var(--surface-raised);
+  color: var(--ink-soft);
+  border-color: rgba(255, 255, 255, 0.12);
+  border-bottom-color: rgba(255, 255, 255, 0.28);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* Instrument Slider styling for AoPS calculator */
+.instrument-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 9999px;
+  background: var(--surface-inset);
+  border: 1px solid var(--border);
+  outline: none;
+  transition: all 0.15s ease;
+}
+
+.instrument-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--surface);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.instrument-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+.instrument-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--surface);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
 /* Typography Scale */
 h1 {
   font-family: var(--font-display);
@@ -126,13 +305,28 @@ p {
 /* Header & Navigation Styling */
 .site-header {
   border-bottom: 1px solid var(--border);
-  background: rgba(252, 251, 250, 0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(250, 248, 245, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   position: sticky;
   top: 0;
   z-index: 100;
-  transition: border-color 0.2s ease;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+[data-theme="dark"] .site-header {
+  background: rgba(12, 12, 14, 0.88);
+  border-bottom-color: var(--border);
+}
+
+.header-active-indicator {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 9999px;
 }
 
 .header-container {
@@ -665,35 +859,45 @@ p {
   border-bottom-width: 2px;
 }
 
-/* DARK MODE / MIDNIGHT OLED THEME */
+/* DARK MODE / OBSIDIAN ACADEMIC STUDIO THEME */
 [data-theme="dark"] {
-  --bg: #09090b;
-  --ink: #f4f4f5;
-  --accent: #f97316;
-  --rust: #f97316;
-  --muted: #a1a1aa;
-  --ink-soft: #d4d4d8;
-  --ink-faint: #71717a;
-  --border: rgba(255, 255, 255, 0.12);
-  --hairline: rgba(255, 255, 255, 0.12);
+  --bg: #0C0C0E; /* Obsidian Academic Studio canvas */
+  --ink: #F4F4F6; /* Crisp Off-White text */
+  --accent: #EA580C; /* Warm Amber/Terracotta accent */
+  --rust: #EA580C;
+  --muted: #A8A29E;
+  --ink-soft: #D6D3D1;
+  --ink-faint: #78716C;
+  --border: rgba(255, 255, 255, 0.08); /* Subtle specular hairline */
+  --hairline: rgba(255, 255, 255, 0.08);
   --panel-light: #141417;
-  --primary: #f97316;
-  --text-primary: #f4f4f5;
-  --card-desc: #d4d4d8;
+  --primary: #EA580C;
+  --text-primary: #F4F4F6;
+  --card-desc: #D6D3D1;
+  --success: #22C55E;
+  --success-soft: rgba(34, 197, 94, 0.12);
 
-  /* Dark surface colors */
+  /* Dark surface colors — Elevated Charcoal surface */
   --surface: #141417;
-  --surface-raised: #1c1c20;
-  --surface-inset: #0f0f12;
-  --earth: #c4863e;
+  --surface-raised: #1C1C22;
+  --surface-inset: #09090B;
+  --panel: #141417;
+  --earth: #C4863E;
   --earth-soft: rgba(196, 134, 62, 0.12);
-  --paper-card: #18181b;
-  --paper-panel: #111114;
+  --paper-card: #141417;
+  --paper-panel: #101014;
 }
 
 [data-theme="dark"] body {
   background-color: var(--bg);
   color: var(--ink);
+}
+
+/* Dark mode specular top-borders and elevated surface highlights */
+[data-theme="dark"] .panel,
+[data-theme="dark"] .portal-card,
+[data-theme="dark"] .editorial-bento-card {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 /* Dark mode surface overrides — catch ALL hardcoded #fff */

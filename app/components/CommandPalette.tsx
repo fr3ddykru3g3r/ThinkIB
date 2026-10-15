@@ -19,7 +19,9 @@ import {
   Command,
   CornerDownLeft,
   X,
-  HardDrive
+  HardDrive,
+  FlaskConical,
+  Atom
 } from 'lucide-react';
 
 export interface CommandItem {
@@ -184,10 +186,30 @@ export default function CommandPalette() {
       title: 'IB Physics Topical Past Papers (2025 Syllabus A–E)',
       category: 'Past Papers',
       subtitle: 'Themes A–E and 24 Sub-Topics pure & synthesis booklets with split markschemes',
-      badge: '2025 Syllabus',
-      href: '/past-papers?tab=physics-topical',
-      icon: Layers,
+      badge: 'Physics Topicals',
+      href: '/past-papers?tab=topicals&subject=physics',
+      icon: Atom,
       keywords: ['physics', 'topical', 'theme a', 'theme b', 'theme c', 'theme d', 'theme e', 'kinematics', 'mechanics', 'quantum', 'fields', 'waves']
+    },
+    {
+      id: 'chemistry-topicals-hub',
+      title: 'IB Chemistry Topical Past Papers (2025 Syllabus S1–R3)',
+      category: 'Past Papers',
+      subtitle: 'Structure 1–3 & Reactivity 1–3 (22 Sub-Topics) pure & synthesis booklets with split markschemes',
+      badge: 'Chemistry Topicals',
+      href: '/past-papers?tab=topicals&subject=chemistry',
+      icon: FlaskConical,
+      keywords: ['chemistry', 'topical', 'structure', 'reactivity', 'bonding', 'enthalpy', 'kinetics', 'equilibrium', 'acids', 'bases', 'organic']
+    },
+    {
+      id: 'math-topicals-hub',
+      title: 'IB Mathematics AA & AI Topical Past Papers (Topics 1–5)',
+      category: 'Past Papers',
+      subtitle: 'Topics 1–5 (25 Sub-Topics) pure & synthesis booklets with P1 (No Calc) / P2 (Calc) / P3 (HL) badges',
+      badge: 'Math Topicals',
+      href: '/past-papers?tab=topicals&subject=math',
+      icon: Calculator,
+      keywords: ['math', 'mathematics', 'topical', 'analysis', 'applications', 'aa', 'ai', 'calculus', 'algebra', 'functions', 'vectors', 'statistics', 'probability']
     },
     {
       id: 'physics-theme-a',

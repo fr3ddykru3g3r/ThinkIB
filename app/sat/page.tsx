@@ -128,6 +128,7 @@ export default function SATHubPage() {
   const [weakestSection, weakestDomain] = weakestDomainEntry ? weakestDomainEntry[0].split('|') : [null, null];
 
   const latestExam = examHistory[0] || null;
+  const totalErrors = errorTagStats.concept_gap + errorTagStats.examiner_trap + errorTagStats.careless_calc + errorTagStats.time_pressure;
 
   return (
     <div style={{ maxWidth: '1100px', margin: '0 auto', paddingBottom: '4rem' }}>
@@ -245,168 +246,373 @@ export default function SATHubPage() {
         </div>
       )}
 
-      {mistakes.length > 0 && (
-        <div className="panel" style={{ padding: '1.4rem 1.75rem', marginBottom: '2.5rem' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.6rem', flexWrap: 'wrap', gap: 8 }}>
-            <span className="section-label" style={{ margin: 0 }}>METACOGNITIVE ERROR TAXONOMY</span>
-            <Link href="/sat/practice/drill?mode=mistakes" style={{ fontSize: '0.8rem', color: 'var(--rust)', textDecoration: 'none', fontWeight: 600 }}>
-              Review Mistake Vault ({mistakes.length}) →
-            </Link>
+      {/* METACOGNITIVE ERROR TAXONOMY (Proportional Progress Bars) */}
+      <div 
+        className="editorial-bento-card" 
+        style={{ 
+          padding: '1.75rem 2rem', 
+          marginBottom: '2.5rem',
+          background: 'var(--surface)',
+        }}
+      >
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem', flexWrap: 'wrap', gap: '0.5rem' }}>
+          <div>
+            <span className="section-label" style={{ margin: 0, color: 'var(--accent)' }}>DIAGNOSTIC TELEMETRY</span>
+            <h3 style={{ fontSize: '1.35rem', marginTop: '0.2rem', marginBottom: '0.15rem' }}>
+              Metacognitive Error Taxonomy
+            </h3>
           </div>
-          <p style={{ fontSize: '0.85rem', color: 'var(--muted)', margin: '0 0 1rem' }}>
-            Root cause classification of unmastered questions across drills and adaptive exams.
-          </p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.85rem' }}>
-            <div style={{ padding: '0.75rem 1rem', borderRadius: 8, border: '1px solid var(--border)', background: 'rgba(37,99,235,0.04)' }}>
-              <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--accent)' }}>🧠 Concept Gap</div>
-              <div style={{ fontSize: '1.4rem', fontWeight: 800, marginTop: 4 }}>{errorTagStats.concept_gap}</div>
-              <div style={{ fontSize: '0.72rem', color: 'var(--muted)' }}>Unfamiliar theorem or rule</div>
+          <Link 
+            href="/sat/practice/drill?mode=mistakes" 
+            style={{ 
+              fontSize: '0.82rem', 
+              color: 'var(--accent)', 
+              textDecoration: 'none', 
+              fontWeight: 600,
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.25rem'
+            }}
+          >
+            Open Mistake Vault ({mistakes.length} items) <ArrowRight size={13} />
+          </Link>
+        </div>
+
+        <p style={{ fontSize: '0.88rem', color: 'var(--muted)', margin: '0 0 1.25rem', maxWidth: '70ch' }}>
+          Proportional breakdown of root causes classified across diagnostic drills, mistimed questions, and full-length adaptive test attempts.
+        </p>
+
+        {/* Combined Proportional Horizontal Stacked Bar */}
+        <div 
+          style={{ 
+            height: '10px', 
+            borderRadius: '9999px', 
+            background: 'var(--surface-inset)', 
+            display: 'flex', 
+            overflow: 'hidden', 
+            marginBottom: '1.5rem',
+            border: '1px solid var(--border)'
+          }}
+        >
+          {totalErrors > 0 ? (
+            <>
+              <div style={{ width: `${(errorTagStats.concept_gap / totalErrors) * 100}%`, background: '#0969da', transition: 'width 0.3s ease' }} title={`Concept Gap: ${errorTagStats.concept_gap}`} />
+              <div style={{ width: `${(errorTagStats.examiner_trap / totalErrors) * 100}%`, background: '#f59e0b', transition: 'width 0.3s ease' }} title={`Examiner Trap: ${errorTagStats.examiner_trap}`} />
+              <div style={{ width: `${(errorTagStats.careless_calc / totalErrors) * 100}%`, background: '#ef4444', transition: 'width 0.3s ease' }} title={`Careless Calc: ${errorTagStats.careless_calc}`} />
+              <div style={{ width: `${(errorTagStats.time_pressure / totalErrors) * 100}%`, background: '#8250df', transition: 'width 0.3s ease' }} title={`Time Pressure: ${errorTagStats.time_pressure}`} />
+            </>
+          ) : (
+            <div style={{ width: '100%', background: 'var(--surface-inset)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <span style={{ fontSize: '0.65rem', color: 'var(--muted)', fontFamily: 'var(--font-mono)' }}>No mistakes logged yet — taxonomy initializes on first test</span>
             </div>
-            <div style={{ padding: '0.75rem 1rem', borderRadius: 8, border: '1px solid var(--border)', background: 'rgba(245,158,11,0.04)' }}>
-              <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#f59e0b' }}>🪤 Examiner Trap</div>
-              <div style={{ fontSize: '1.4rem', fontWeight: 800, marginTop: 4 }}>{errorTagStats.examiner_trap}</div>
-              <div style={{ fontSize: '0.72rem', color: 'var(--muted)' }}>Distractor option caught you</div>
+          )}
+        </div>
+
+        {/* Proportional Horizontal Breakdown Cards */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1rem' }}>
+          {/* 1. Concept Gap */}
+          <div style={{ padding: '1rem', borderRadius: '10px', border: '1px solid var(--border)', background: 'var(--surface-inset)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
+              <span style={{ fontSize: '0.84rem', fontWeight: 700, color: '#0969da', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                🧠 Concept Gap
+              </span>
+              <span className="tabular-nums" style={{ fontSize: '0.8rem', fontFamily: 'var(--font-mono)', fontWeight: 700, color: 'var(--ink)' }}>
+                {errorTagStats.concept_gap} <span style={{ color: 'var(--muted)', fontWeight: 400 }}>({totalErrors > 0 ? Math.round((errorTagStats.concept_gap / totalErrors) * 100) : 0}%)</span>
+              </span>
             </div>
-            <div style={{ padding: '0.75rem 1rem', borderRadius: 8, border: '1px solid var(--border)', background: 'rgba(239,68,68,0.04)' }}>
-              <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#ef4444' }}>🔢 Careless Execution</div>
-              <div style={{ fontSize: '1.4rem', fontWeight: 800, marginTop: 4 }}>{errorTagStats.careless_calc}</div>
-              <div style={{ fontSize: '0.72rem', color: 'var(--muted)' }}>Arithmetic or algebra slip</div>
+            {/* Horizontal progress bar */}
+            <div style={{ height: '6px', width: '100%', background: 'rgba(9, 105, 218, 0.12)', borderRadius: '9999px', overflow: 'hidden', marginBottom: '0.5rem' }}>
+              <div style={{ height: '100%', width: `${totalErrors > 0 ? (errorTagStats.concept_gap / totalErrors) * 100 : 0}%`, background: '#0969da', borderRadius: '9999px', transition: 'width 0.3s ease' }} />
             </div>
-            <div style={{ padding: '0.75rem 1rem', borderRadius: 8, border: '1px solid var(--border)', background: 'rgba(130,80,223,0.04)' }}>
-              <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#8250df' }}>⏱️ Time Pressure</div>
-              <div style={{ fontSize: '1.4rem', fontWeight: 800, marginTop: 4 }}>{errorTagStats.time_pressure}</div>
-              <div style={{ fontSize: '0.72rem', color: 'var(--muted)' }}>Rushed in final minutes</div>
+            <div style={{ fontSize: '0.74rem', color: 'var(--muted)' }}>
+              Unfamiliar formula, theorem, or grammar rule
+            </div>
+          </div>
+
+          {/* 2. Examiner Trap */}
+          <div style={{ padding: '1rem', borderRadius: '10px', border: '1px solid var(--border)', background: 'var(--surface-inset)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
+              <span style={{ fontSize: '0.84rem', fontWeight: 700, color: '#f59e0b', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                🪤 Examiner Trap
+              </span>
+              <span className="tabular-nums" style={{ fontSize: '0.8rem', fontFamily: 'var(--font-mono)', fontWeight: 700, color: 'var(--ink)' }}>
+                {errorTagStats.examiner_trap} <span style={{ color: 'var(--muted)', fontWeight: 400 }}>({totalErrors > 0 ? Math.round((errorTagStats.examiner_trap / totalErrors) * 100) : 0}%)</span>
+              </span>
+            </div>
+            <div style={{ height: '6px', width: '100%', background: 'rgba(245, 158, 11, 0.12)', borderRadius: '9999px', overflow: 'hidden', marginBottom: '0.5rem' }}>
+              <div style={{ height: '100%', width: `${totalErrors > 0 ? (errorTagStats.examiner_trap / totalErrors) * 100 : 0}%`, background: '#f59e0b', borderRadius: '9999px', transition: 'width 0.3s ease' }} />
+            </div>
+            <div style={{ fontSize: '0.74rem', color: 'var(--muted)' }}>
+              Subtle distractor, word trick, or reversal
+            </div>
+          </div>
+
+          {/* 3. Careless Calculation */}
+          <div style={{ padding: '1rem', borderRadius: '10px', border: '1px solid var(--border)', background: 'var(--surface-inset)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
+              <span style={{ fontSize: '0.84rem', fontWeight: 700, color: '#ef4444', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                🔢 Careless Execution
+              </span>
+              <span className="tabular-nums" style={{ fontSize: '0.8rem', fontFamily: 'var(--font-mono)', fontWeight: 700, color: 'var(--ink)' }}>
+                {errorTagStats.careless_calc} <span style={{ color: 'var(--muted)', fontWeight: 400 }}>({totalErrors > 0 ? Math.round((errorTagStats.careless_calc / totalErrors) * 100) : 0}%)</span>
+              </span>
+            </div>
+            <div style={{ height: '6px', width: '100%', background: 'rgba(239, 68, 68, 0.12)', borderRadius: '9999px', overflow: 'hidden', marginBottom: '0.5rem' }}>
+              <div style={{ height: '100%', width: `${totalErrors > 0 ? (errorTagStats.careless_calc / totalErrors) * 100 : 0}%`, background: '#ef4444', borderRadius: '9999px', transition: 'width 0.3s ease' }} />
+            </div>
+            <div style={{ fontSize: '0.74rem', color: 'var(--muted)' }}>
+              Sign error, algebra slip, or reading misstep
+            </div>
+          </div>
+
+          {/* 4. Time Pressure */}
+          <div style={{ padding: '1rem', borderRadius: '10px', border: '1px solid var(--border)', background: 'var(--surface-inset)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
+              <span style={{ fontSize: '0.84rem', fontWeight: 700, color: '#8250df', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                ⏱️ Time Pressure
+              </span>
+              <span className="tabular-nums" style={{ fontSize: '0.8rem', fontFamily: 'var(--font-mono)', fontWeight: 700, color: 'var(--ink)' }}>
+                {errorTagStats.time_pressure} <span style={{ color: 'var(--muted)', fontWeight: 400 }}>({totalErrors > 0 ? Math.round((errorTagStats.time_pressure / totalErrors) * 100) : 0}%)</span>
+              </span>
+            </div>
+            <div style={{ height: '6px', width: '100%', background: 'rgba(130, 80, 223, 0.12)', borderRadius: '9999px', overflow: 'hidden', marginBottom: '0.5rem' }}>
+              <div style={{ height: '100%', width: `${totalErrors > 0 ? (errorTagStats.time_pressure / totalErrors) * 100 : 0}%`, background: '#8250df', borderRadius: '9999px', transition: 'width 0.3s ease' }} />
+            </div>
+            <div style={{ fontSize: '0.74rem', color: 'var(--muted)' }}>
+              Rushed pacing in final minutes of module
             </div>
           </div>
         </div>
-      )}
+      </div>
 
-      {/* Main Gateways (4-card grid) */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.5rem', marginBottom: '3rem' }}>
-        {/* Full Exam Card */}
-        <Link href="/sat/practice/exam" style={{ textDecoration: 'none', color: 'inherit' }}>
-          <div
-            className="portal-card"
-            style={{
-              padding: '1.75rem',
-              borderColor: 'var(--rust)',
-              background: 'rgba(184, 74, 57, 0.03)',
-              height: '100%',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-            }}
-          >
-            <div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
-                <span className="section-label" style={{ color: 'var(--rust)', margin: 0 }}>
-                  ADAPTIVE SIMULATION
-                </span>
-                <Clock size={18} style={{ color: 'var(--rust)' }} />
-              </div>
-              <h2 style={{ fontSize: '1.45rem', marginBottom: '0.5rem' }}>Full Practice Test</h2>
-              <p style={{ color: 'var(--card-desc, #52525b)', fontSize: '0.88rem', lineHeight: '1.5' }}>
-                Selectable difficulty: Official Adaptive, Medium Focus (600–700), Hard Track (700+), and 750+ Gauntlet with Bayesian IRT scoring.
-              </p>
-            </div>
-            <div className="portal-card-arrow" style={{ color: 'var(--rust)', borderBottomColor: 'var(--rust)' }}>
-              Start Full Exam <ArrowRight size={14} style={{ display: 'inline', marginLeft: '4px' }} />
-            </div>
+      {/* =========================================================================
+          4 EXAM MODE SELECTOR CARDS WITH DIFFICULTY DISTRIBUTION BARS
+          ========================================================================= */}
+      <div style={{ marginBottom: '3.5rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '1.25rem' }}>
+          <div>
+            <span className="section-label" style={{ margin: 0, color: 'var(--accent)' }}>SIMULATION MODES</span>
+            <h2 style={{ fontSize: '1.85rem', marginTop: '0.2rem', marginBottom: '0.25rem' }}>
+              Selectable Exam Calibration Engines
+            </h2>
+            <p style={{ fontSize: '0.95rem', color: 'var(--muted)', margin: 0 }}>
+              Calibrate your session difficulty to target your score goal with official College Board item allocations.
+            </p>
           </div>
-        </Link>
+        </div>
 
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.25rem' }}>
+          {/* Mode 1: Standard Adaptive */}
+          <Link href="/sat/practice/exam?mode=adaptive" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <div className="editorial-bento-card" style={{ height: '100%' }}>
+              <div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.65rem' }}>
+                  <span className="badge" style={{ fontSize: '0.68rem', fontWeight: 700, padding: '0.15rem 0.45rem', borderRadius: '4px', background: 'rgba(194, 65, 12, 0.08)', color: 'var(--accent)' }}>
+                    Bluebook Standard
+                  </span>
+                  <span className="badge tabular-nums" style={{ fontSize: '0.68rem', fontWeight: 600, padding: '0.15rem 0.45rem', borderRadius: '4px', background: 'var(--surface-inset)', border: '1px solid var(--border)' }}>
+                    1600 Dynamic Ceiling
+                  </span>
+                </div>
+
+                <h3 style={{ fontSize: '1.3rem', marginBottom: '0.4rem' }}>Standard Adaptive</h3>
+                <p style={{ fontSize: '0.86rem', color: 'var(--card-desc, #57534E)', lineHeight: 1.45, marginBottom: '1rem' }}>
+                  Official 2-stage multistage routing. Module 1 mixed items dynamically route to Easy or Hard Module 2.
+                </p>
+
+                {/* Difficulty Distribution Bar */}
+                <div style={{ marginBottom: '1rem' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.72rem', fontFamily: 'var(--font-mono)', color: 'var(--muted)', marginBottom: '0.35rem' }}>
+                    <span>Difficulty Ratio:</span>
+                    <span className="tabular-nums">30% E · 45% M · 25% H</span>
+                  </div>
+                  <div style={{ height: '7px', borderRadius: '9999px', background: 'var(--surface-inset)', display: 'flex', overflow: 'hidden', border: '1px solid var(--border)' }}>
+                    <div style={{ width: '30%', background: '#15803d' }} title="30% Easy" />
+                    <div style={{ width: '45%', background: '#d97706' }} title="45% Medium" />
+                    <div style={{ width: '25%', background: '#c2410c' }} title="25% Hard" />
+                  </div>
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontWeight: 600, fontSize: '0.84rem', marginTop: '0.5rem', color: 'var(--accent)' }}>
+                Launch Standard Exam <ArrowRight size={13} />
+              </div>
+            </div>
+          </Link>
+
+          {/* Mode 2: Medium Tier */}
+          <Link href="/sat/practice/exam?mode=medium" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <div className="editorial-bento-card" style={{ height: '100%' }}>
+              <div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.65rem' }}>
+                  <span className="badge" style={{ fontSize: '0.68rem', fontWeight: 700, padding: '0.15rem 0.45rem', borderRadius: '4px', background: 'rgba(9, 105, 218, 0.08)', color: '#0969da' }}>
+                    600–700 Score Builder
+                  </span>
+                  <span className="badge tabular-nums" style={{ fontSize: '0.68rem', fontWeight: 600, padding: '0.15rem 0.45rem', borderRadius: '4px', background: 'var(--surface-inset)', border: '1px solid var(--border)' }}>
+                    1450 Foundational Ceiling
+                  </span>
+                </div>
+
+                <h3 style={{ fontSize: '1.3rem', marginBottom: '0.4rem' }}>Medium Tier Focus</h3>
+                <p style={{ fontSize: '0.86rem', color: 'var(--card-desc, #57534E)', lineHeight: 1.45, marginBottom: '1rem' }}>
+                  Eliminates trivial easy items to build ironclad speed and accuracy across core algebra and conventions.
+                </p>
+
+                {/* Difficulty Distribution Bar */}
+                <div style={{ marginBottom: '1rem' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.72rem', fontFamily: 'var(--font-mono)', color: 'var(--muted)', marginBottom: '0.35rem' }}>
+                    <span>Difficulty Ratio:</span>
+                    <span className="tabular-nums">0% E · 75% M · 25% H</span>
+                  </div>
+                  <div style={{ height: '7px', borderRadius: '9999px', background: 'var(--surface-inset)', display: 'flex', overflow: 'hidden', border: '1px solid var(--border)' }}>
+                    <div style={{ width: '75%', background: '#d97706' }} title="75% Medium" />
+                    <div style={{ width: '25%', background: '#c2410c' }} title="25% Hard" />
+                  </div>
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontWeight: 600, fontSize: '0.84rem', marginTop: '0.5rem', color: '#0969da' }}>
+                Launch Medium Focus <ArrowRight size={13} />
+              </div>
+            </div>
+          </Link>
+
+          {/* Mode 3: Hard Tier */}
+          <Link href="/sat/practice/exam?mode=hard" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <div className="editorial-bento-card" style={{ height: '100%' }}>
+              <div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.65rem' }}>
+                  <span className="badge" style={{ fontSize: '0.68rem', fontWeight: 700, padding: '0.15rem 0.45rem', borderRadius: '4px', background: 'rgba(130, 80, 223, 0.08)', color: '#8250df' }}>
+                    700+ Upper-Track Lock
+                  </span>
+                  <span className="badge tabular-nums" style={{ fontSize: '0.68rem', fontWeight: 600, padding: '0.15rem 0.45rem', borderRadius: '4px', background: 'var(--surface-inset)', border: '1px solid var(--border)' }}>
+                    1600 Upper Lock
+                  </span>
+                </div>
+
+                <h3 style={{ fontSize: '1.3rem', marginBottom: '0.4rem' }}>Hard Tier Track</h3>
+                <p style={{ fontSize: '0.86rem', color: 'var(--card-desc, #57534E)', lineHeight: 1.45, marginBottom: '1rem' }}>
+                  Module 2 is force-locked to the 90th-percentile Upper Track to experience genuine top-tier difficulty.
+                </p>
+
+                {/* Difficulty Distribution Bar */}
+                <div style={{ marginBottom: '1rem' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.72rem', fontFamily: 'var(--font-mono)', color: 'var(--muted)', marginBottom: '0.35rem' }}>
+                    <span>Difficulty Ratio:</span>
+                    <span className="tabular-nums">0% E · 25% M · 75% H</span>
+                  </div>
+                  <div style={{ height: '7px', borderRadius: '9999px', background: 'var(--surface-inset)', display: 'flex', overflow: 'hidden', border: '1px solid var(--border)' }}>
+                    <div style={{ width: '25%', background: '#d97706' }} title="25% Medium" />
+                    <div style={{ width: '75%', background: '#8250df' }} title="75% Hard" />
+                  </div>
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontWeight: 600, fontSize: '0.84rem', marginTop: '0.5rem', color: '#8250df' }}>
+                Launch Hard Mode <ArrowRight size={13} />
+              </div>
+            </div>
+          </Link>
+
+          {/* Mode 4: 750+ Gauntlet */}
+          <Link href="/sat/practice/exam?mode=hard_gauntlet" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <div className="editorial-bento-card" style={{ height: '100%', borderColor: 'rgba(194, 65, 12, 0.35)' }}>
+              <div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.65rem' }}>
+                  <span className="badge" style={{ fontSize: '0.68rem', fontWeight: 700, padding: '0.15rem 0.45rem', borderRadius: '4px', background: 'var(--accent)', color: '#ffffff' }}>
+                    750+ Gauntlet
+                  </span>
+                  <span className="badge tabular-nums" style={{ fontSize: '0.68rem', fontWeight: 600, padding: '0.15rem 0.45rem', borderRadius: '4px', background: 'var(--surface-inset)', border: '1px solid var(--border)' }}>
+                    1600 (99th %ile)
+                  </span>
+                </div>
+
+                <h3 style={{ fontSize: '1.3rem', marginBottom: '0.4rem' }}>750+ Gauntlet</h3>
+                <p style={{ fontSize: '0.86rem', color: 'var(--card-desc, #57534E)', lineHeight: 1.45, marginBottom: '1rem' }}>
+                  100% Level-3 Hard questions across all modules with Examiner Trap priority. The ultimate high-scorer challenge.
+                </p>
+
+                {/* Difficulty Distribution Bar */}
+                <div style={{ marginBottom: '1rem' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.72rem', fontFamily: 'var(--font-mono)', color: 'var(--muted)', marginBottom: '0.35rem' }}>
+                    <span>Difficulty Ratio:</span>
+                    <span className="tabular-nums" style={{ color: 'var(--accent)', fontWeight: 700 }}>100% Level-3 Hard</span>
+                  </div>
+                  <div style={{ height: '7px', borderRadius: '9999px', background: 'var(--surface-inset)', display: 'flex', overflow: 'hidden', border: '1px solid var(--border)' }}>
+                    <div style={{ width: '100%', background: 'var(--accent)' }} title="100% Hard" />
+                  </div>
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontWeight: 600, fontSize: '0.84rem', marginTop: '0.5rem', color: 'var(--accent)' }}>
+                Launch 750+ Gauntlet <ArrowRight size={13} />
+              </div>
+            </div>
+          </Link>
+        </div>
+      </div>
+
+      {/* Auxiliary Gateways: Targeted Drills, Mistake Vault, Flashcards */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.25rem', marginBottom: '3rem' }}>
         {/* Targeted Drill Card */}
         <Link href="/sat/practice/drill" style={{ textDecoration: 'none', color: 'inherit' }}>
-          <div
-            className="portal-card"
-            style={{
-              padding: '1.75rem',
-              borderColor: 'var(--border)',
-              background: 'var(--surface)',
-              height: '100%',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-            }}
-          >
+          <div className="editorial-bento-card">
             <div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.65rem' }}>
                 <span className="section-label" style={{ color: 'var(--accent)', margin: 0 }}>
                   PRACTICE DRILLS
                 </span>
                 <Target size={18} style={{ color: 'var(--accent)' }} />
               </div>
-              <h2 style={{ fontSize: '1.45rem', marginBottom: '0.5rem' }}>Targeted Practice</h2>
-              <p style={{ color: 'var(--card-desc, #52525b)', fontSize: '0.88rem', lineHeight: '1.5' }}>
+              <h3 style={{ fontSize: '1.25rem', marginBottom: '0.4rem' }}>Targeted Practice</h3>
+              <p style={{ color: 'var(--card-desc, #57534E)', fontSize: '0.86rem', lineHeight: '1.45' }}>
                 Practice by domain, skill, and difficulty with instant explanations and Desmos shortcuts.
               </p>
             </div>
-            <div className="portal-card-arrow">
-              Start Practice <ArrowRight size={14} style={{ display: 'inline', marginLeft: '4px' }} />
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontWeight: 600, fontSize: '0.84rem', marginTop: '1rem', color: 'var(--ink)' }}>
+              Start Drill <ArrowRight size={13} />
             </div>
           </div>
         </Link>
 
         {/* Mistake Vault Card */}
         <Link href="/sat/practice/drill?mode=mistakes" style={{ textDecoration: 'none', color: 'inherit' }}>
-          <div
-            className="portal-card"
-            style={{
-              padding: '1.75rem',
-              borderColor: 'var(--accent)',
-              background: 'rgba(184, 74, 57, 0.02)',
-              height: '100%',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-            }}
-          >
+          <div className="editorial-bento-card" style={{ borderColor: 'rgba(194, 65, 12, 0.25)' }}>
             <div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.65rem' }}>
                 <span className="section-label" style={{ color: 'var(--accent)', margin: 0 }}>
                   WEAK-SPOT NOTEBOOK
                 </span>
                 <Sparkles size={18} style={{ color: 'var(--accent)' }} />
               </div>
-              <h2 style={{ fontSize: '1.45rem', marginBottom: '0.5rem' }}>Mistake Vault</h2>
-              <p style={{ color: 'var(--card-desc, #52525b)', fontSize: '0.88rem', lineHeight: '1.5' }}>
+              <h3 style={{ fontSize: '1.25rem', marginBottom: '0.4rem' }}>Mistake Vault</h3>
+              <p style={{ color: 'var(--card-desc, #57534E)', fontSize: '0.86rem', lineHeight: '1.45' }}>
                 Review and re-test only the questions you got wrong on past tests until 100% mastered.
               </p>
             </div>
-            <div className="portal-card-arrow" style={{ color: 'var(--accent)', borderBottomColor: 'var(--accent)' }}>
-              Open Mistake Vault ({mistakes.length}) <ArrowRight size={14} style={{ display: 'inline', marginLeft: '4px' }} />
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontWeight: 600, fontSize: '0.84rem', marginTop: '1rem', color: 'var(--accent)' }}>
+              Open Mistake Vault ({mistakes.length}) <ArrowRight size={13} />
             </div>
           </div>
         </Link>
 
         {/* Active-Recall Flashcards Card */}
         <Link href="/flashcards" style={{ textDecoration: 'none', color: 'inherit' }}>
-          <div
-            className="portal-card"
-            style={{
-              padding: '1.75rem',
-              borderColor: 'var(--border)',
-              background: 'rgba(2, 132, 199, 0.03)',
-              height: '100%',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-            }}
-          >
+          <div className="editorial-bento-card">
             <div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
-                <span className="section-label" style={{ color: '#0284c7', margin: 0 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.65rem' }}>
+                <span className="section-label" style={{ color: '#0969da', margin: 0 }}>
                   ACTIVE RECALL
                 </span>
-                <Layers size={18} style={{ color: '#0284c7' }} />
+                <Layers size={18} style={{ color: '#0969da' }} />
               </div>
-              <h2 style={{ fontSize: '1.45rem', marginBottom: '0.5rem' }}>Memory Flashcards</h2>
-              <p style={{ color: 'var(--card-desc, #52525b)', fontSize: '0.88rem', lineHeight: '1.5' }}>
+              <h3 style={{ fontSize: '1.25rem', marginBottom: '0.4rem' }}>Memory Flashcards</h3>
+              <p style={{ color: 'var(--card-desc, #57534E)', fontSize: '0.86rem', lineHeight: '1.45' }}>
                 3D flip-cards for punctuation rules, circle theorems, Vieta’s formulas, and algebra models.
               </p>
             </div>
-            <div className="portal-card-arrow" style={{ color: '#0284c7', borderBottomColor: '#0284c7' }}>
-              Study Flashcards <ArrowRight size={14} style={{ display: 'inline', marginLeft: '4px' }} />
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontWeight: 600, fontSize: '0.84rem', marginTop: '1rem', color: '#0969da' }}>
+              Study Flashcards <ArrowRight size={13} />
             </div>
           </div>
         </Link>

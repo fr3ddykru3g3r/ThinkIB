@@ -1,0 +1,2970 @@
+{
+  "total_excluded": 494,
+  "generated_at": "2026-10-15 20:04:21",
+  "excluded_questions": [
+    {
+      "id": "2024_Nov_SL_P3_Q5",
+      "source": "Nov 2024 TZ1 SL Paper 3 Opt A Q5",
+      "reason": "Retired syllabus topic (matched: liquid crystal)",
+      "preview": "5.\t Plastics can form many varied structures. (a)\t Classify the branching of the following polystyrene diagrams as atact"
+    },
+    {
+      "id": "2024_Nov_SL_P3_Q6",
+      "source": "Nov 2024 TZ1 SL Paper 3 Opt B Q6",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "6.\t Lipids form when glycerol reacts with fatty acids. (a)\t (i)\t \u0007Write an equation for the reaction of glycerol and thr"
+    },
+    {
+      "id": "2024_Nov_SL_P3_Q7",
+      "source": "Nov 2024 TZ1 SL Paper 3 Opt B Q7",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "7.\t Proteins and disaccharides are comprised of smaller organic molecules. (a)\t Outline why proteins separate in gel ele"
+    },
+    {
+      "id": "2024_Nov_SL_P3_Q8",
+      "source": "Nov 2024 TZ1 SL Paper 3 Opt B Q8",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "8.\t Vitamins are a necessary component of a healthy diet. Outline why it is important to regularly  consume a range of f"
+    },
+    {
+      "id": "2024_Nov_SL_P3_Q9",
+      "source": "Nov 2024 TZ1 SL Paper 3 Opt B Q9",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "9.\t Reducing the quantity of pollutants in the environment is important.  (a)\t Explain how host\u2013guest chemistry is used "
+    },
+    {
+      "id": "2024_Nov_SL_P3_Q13",
+      "source": "Nov 2024 TZ1 SL Paper 3 Opt D Q13",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "13.  Aspirin and morphine are analgesics. (a)  Aspirin was synthesized by mixing 0.897 g of salicylic acid with excess e"
+    },
+    {
+      "id": "2024_Nov_SL_P3_Q14",
+      "source": "Nov 2024 TZ1 SL Paper 3 Opt D Q14",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "14.\t Penicillin is effective against some bacteria but has no effect on viruses. (a)\t Describe how the opening of the be"
+    },
+    {
+      "id": "2024_Nov_SL_P3_Q15",
+      "source": "Nov 2024 TZ1 SL Paper 3 Opt D Q15",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "Disclaimer: Content used in IB assessments is taken from authentic, third-party sources. The views expressed within them"
+    },
+    {
+      "id": "2024_Nov_SL_P3_Q11",
+      "source": "Nov 2024 TZ1 SL Paper 3 Opt D Q11",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "11.\t Robert A. Rohde. Solar spectrum en.svg. https://commons.wikimedia.org/wiki/File:Solar_spectrum_en.svg. Under  Creat"
+    },
+    {
+      "id": "2024_Nov_HL_P3_Q5",
+      "source": "Nov 2024 TZ1 HL Paper 3 Opt A Q5",
+      "reason": "Retired syllabus topic (matched: liquid crystal)",
+      "preview": "5.\t Plastics can form many varied structures. (a)\t Classify the branching of the following polystyrene diagrams as atact"
+    },
+    {
+      "id": "2024_Nov_HL_P3_Q7",
+      "source": "Nov 2024 TZ1 HL Paper 3 Opt B Q7",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "7.\t Lipids form when glycerol reacts with fatty acids. (a)\t State the name of this type of reaction.\b [1] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2024_Nov_HL_P3_Q8",
+      "source": "Nov 2024 TZ1 HL Paper 3 Opt B Q8",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "8.\t Proteins and disaccharides are comprised of smaller organic molecules. (a)\t (i)\t \u0007Outline why proteins separate in g"
+    },
+    {
+      "id": "2024_Nov_HL_P3_Q9",
+      "source": "Nov 2024 TZ1 HL Paper 3 Opt B Q9",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "9.\t Vitamins are a necessary component of a healthy diet. (a)\t Suggest why it is important to control our intake of vita"
+    },
+    {
+      "id": "2024_Nov_HL_P3_Q10",
+      "source": "Nov 2024 TZ1 HL Paper 3 Opt B Q10",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "10.\t Creatine phosphokinase (CPK) is an enzyme released into the bloodstream during muscle  breakdown. UV-vis spectrosco"
+    },
+    {
+      "id": "2024_Nov_HL_P3_Q11",
+      "source": "Nov 2024 TZ1 HL Paper 3 Opt B Q11",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "11.\t Reducing the quantity of pollutants in the environment is important. Explain how host\u2013guest  chemistry is used to r"
+    },
+    {
+      "id": "2024_Nov_HL_P3_Q13",
+      "source": "Nov 2024 TZ1 HL Paper 3 Opt C Q13",
+      "reason": "Retired syllabus topic (matched: dye-sensitized solar cell)",
+      "preview": "13.\t The chart shows how sunlight changes as it passes through the earth\u2019s atmosphere.  The light grey area shows the in"
+    },
+    {
+      "id": "2024_Nov_HL_P3_Q16",
+      "source": "Nov 2024 TZ1 HL Paper 3 Opt D Q16",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "16.  Aspirin and morphine are analgesics. (a)  Aspirin was synthesized by mixing 0.897 g of salicylic acid with excess e"
+    },
+    {
+      "id": "2024_Nov_HL_P3_Q17",
+      "source": "Nov 2024 TZ1 HL Paper 3 Opt D Q17",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "17.\t Taxol was once obtained from yew trees but is now more commonly synthetically produced. (a)\t Discuss the advantages"
+    },
+    {
+      "id": "2024_Nov_HL_P3_Q18",
+      "source": "Nov 2024 TZ1 HL Paper 3 Opt D Q18",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "18.\t Penicillin is effective against some bacteria but has no effect on viruses. (a)\t Describe how the opening of the be"
+    },
+    {
+      "id": "2024_Nov_HL_P3_Q19",
+      "source": "Nov 2024 TZ1 HL Paper 3 Opt D Q19",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "19.\t Many people require medication to regulate the pH of their stomachs. (a)\t Write an equation for the neutralization "
+    },
+    {
+      "id": "2024_Nov_HL_P3_Q20",
+      "source": "Nov 2024 TZ1 HL Paper 3 Opt D Q20",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "20.\t Nuclear medicine involves the use of radioisotopes. (a)\t (i)\t \u0007Radioactive iodine is used to treat thyroid cancer. "
+    },
+    {
+      "id": "2024_Nov_HL_P3_Q13",
+      "source": "Nov 2024 TZ1 HL Paper 3 Opt D Q13",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "13.\t Robert A. Rohde. Solar spectrum en.svg. https://commons.wikimedia.org/wiki/File:Solar_spectrum_en.svg. Under  Creat"
+    },
+    {
+      "id": "2024_May_SL_P3_Q5",
+      "source": "May 2024 TZ1 SL Paper 3 Opt B Q5",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "5.\t Glucose is an energy-rich molecule that can be synthesized in plants. (a)\t Write the equation for photosynthesis.\b ["
+    },
+    {
+      "id": "2024_May_SL_P3_Q6",
+      "source": "May 2024 TZ1 SL Paper 3 Opt B Q6",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "6.\t Lipids, such as fats and oils, are triglycerides of fatty acids. The table shows the fatty acid  composition of comm"
+    },
+    {
+      "id": "2024_May_SL_P3_Q7",
+      "source": "May 2024 TZ1 SL Paper 3 Opt B Q7",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "7.\t 2-amino acids can be combined to form peptides and proteins. (a)\t The tripeptide glutathione is shown. Circle all th"
+    },
+    {
+      "id": "2024_May_SL_P3_Q8",
+      "source": "May 2024 TZ1 SL Paper 3 Opt B Q8",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "8.\t Biological laundry detergents contain enzymes that can efficiently remove stains at  low temperatures. (a)\t (i)\t \u0007Sk"
+    },
+    {
+      "id": "2024_May_SL_P3_Q9",
+      "source": "May 2024 TZ1 SL Paper 3 Opt B Q9",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "9.\t Citrus fruit juices are good sources of ascorbic acid (vitamin C). Explain why vitamin\u00a0C is  soluble in water, refer"
+    },
+    {
+      "id": "2024_May_SL_P3_Q13",
+      "source": "May 2024 TZ1 SL Paper 3 Opt D Q13",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "13.\t Penicillin was the first of a class of antibiotics known as \u03b2-lactams. (a)\t Suggest, with reference to their mechan"
+    },
+    {
+      "id": "2024_May_SL_P3_Q14",
+      "source": "May 2024 TZ1 SL Paper 3 Opt D Q14",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "14.\t Morphine and its derivatives (opiates) are only used to treat severe pain due to their side effects. (a)\t (i)\t \u0007Sta"
+    },
+    {
+      "id": "2024_May_SL_P3_Q15",
+      "source": "May 2024 TZ1 SL Paper 3 Opt D Q15",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "15.\t Aspirin is a mild analgesic and can reduce fever and inflammation. (a)\t State one other effect of aspirin.\b [1] \b\ufffd\ufffd"
+    },
+    {
+      "id": "2024_May_SL_P3_Q16",
+      "source": "May 2024 TZ1 SL Paper 3 Opt D Q16",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "16.\t Excessive acidity of gastric juice can be treated at different levels. (a)\t Antacids such as aluminium hydroxide, A"
+    },
+    {
+      "id": "2024_May_SL_P3_Q17",
+      "source": "May 2024 TZ1 SL Paper 3 Opt D Q17",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "17.\t Antiviral drugs act by interfering with the virus replication cycle. (a)\t Outline one difference between bacteria a"
+    },
+    {
+      "id": "2024_May_SL_P3_Q6",
+      "source": "May 2024 TZ1 SL Paper 3 Opt D Q6",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "6.\t U.S. Department of Agriculture (USDA). FoodData Central - Oil, corn, industrial and retail, all purpose salad or  co"
+    },
+    {
+      "id": "2024_May_SL_P3_Q4",
+      "source": "May 2024 TZ2 SL Paper 3 Opt A Q4",
+      "reason": "Retired syllabus topic (matched: liquid crystal)",
+      "preview": "4.\t Polystyrene is a thermoplastic polymer. (a)\t One method of producing the monomer, styrene, is by oxidation of ethylb"
+    },
+    {
+      "id": "2024_May_SL_P3_Q5",
+      "source": "May 2024 TZ2 SL Paper 3 Opt B Q5",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "5.\t Amino acids combine to form proteins.\t (a)\t (i)\t Identify the bond responsible for the primary structure of proteins"
+    },
+    {
+      "id": "2024_May_SL_P3_Q6",
+      "source": "May 2024 TZ2 SL Paper 3 Opt B Q6",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "6.\t Eicosadienoic acid, Mr = 308.56, is a fatty acid found in human milk.\t (a)\t (i)\t Eicosadienoic acid has an iodine nu"
+    },
+    {
+      "id": "2024_May_SL_P3_Q7",
+      "source": "May 2024 TZ2 SL Paper 3 Opt B Q7",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "7.\t Monosaccharides and polysaccharides have different properties and functions that are  related to their structures.\t "
+    },
+    {
+      "id": "2024_May_SL_P3_Q8",
+      "source": "May 2024 TZ2 SL Paper 3 Opt B Q8",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "8.\t Heavy metal toxicity is a problem in the environment. (a)\t Suggest one source of cadmium pollution.\b [1] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2024_May_SL_P3_Q12",
+      "source": "May 2024 TZ2 SL Paper 3 Opt D Q12",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "12.\t Antibiotics and antivirals are important in the fight against disease.\t (a)\t Describe how penicillin acts against b"
+    },
+    {
+      "id": "2024_May_SL_P3_Q13",
+      "source": "May 2024 TZ2 SL Paper 3 Opt D Q13",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "13.\t Aspirin and codeine are used as pain relievers. (a)\t (i)\t Describe how a strong analgesic, such as codeine, works.\b"
+    },
+    {
+      "id": "2024_May_SL_P3_Q14",
+      "source": "May 2024 TZ2 SL Paper 3 Opt D Q14",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "14.\t Excess acid in the stomach can cause the breakdown of the stomach lining. (a)\t A single dose of an antacid contains"
+    },
+    {
+      "id": "2024_May_SL_P3_Q15",
+      "source": "May 2024 TZ2 SL Paper 3 Opt D Q15",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "15.\t Many medical procedures involve the use of radioisotopes. (a)\t Justify why protective clothing and instruments used"
+    },
+    {
+      "id": "2024_May_HL_P3_Q4",
+      "source": "May 2024 TZ2 HL Paper 3 Opt A Q4",
+      "reason": "Retired syllabus topic (matched: liquid crystal)",
+      "preview": "4.\t Polystyrene is a thermoplastic polymer. (a)\t One method of producing the monomer, styrene, is by oxidation of ethylb"
+    },
+    {
+      "id": "2024_May_HL_P3_Q6",
+      "source": "May 2024 TZ2 HL Paper 3 Opt B Q6",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "6.\t Amino acids combine to form proteins.\t (a)\t (i)\t Identify the bond responsible for the primary structure of proteins"
+    },
+    {
+      "id": "2024_May_HL_P3_Q7",
+      "source": "May 2024 TZ2 HL Paper 3 Opt B Q7",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "7.\t Eicosadienoic acid, Mr = 308.56, is a fatty acid found in human milk.\t (a)\t (i)\t Eicosadienoic acid has an iodine nu"
+    },
+    {
+      "id": "2024_May_HL_P3_Q8",
+      "source": "May 2024 TZ2 HL Paper 3 Opt B Q8",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "8.\t Retinol (vitamin A) plays an important role in human vision. Its structure is similar to that of  carotene. (a)\t Exp"
+    },
+    {
+      "id": "2024_May_HL_P3_Q9",
+      "source": "May 2024 TZ2 HL Paper 3 Opt B Q9",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "9.\t Monosaccharides and polysaccharides have different properties and functions that are  related to their structures.\t "
+    },
+    {
+      "id": "2024_May_HL_P3_Q10",
+      "source": "May 2024 TZ2 HL Paper 3 Opt B Q10",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "10.\t Heavy metal toxicity is a problem in the environment. (a)\t Suggest one source of cadmium pollution.\b [1] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2024_May_HL_P3_Q12",
+      "source": "May 2024 TZ2 HL Paper 3 Opt C Q12",
+      "reason": "Retired syllabus topic (matched: dye-sensitized solar cell)",
+      "preview": "12.\t Energy from the sun can interact with molecules in various ways. (a)\t Describe global dimming and its causes.\b [3] "
+    },
+    {
+      "id": "2024_May_HL_P3_Q14",
+      "source": "May 2024 TZ2 HL Paper 3 Opt D Q14",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "14.\t Antibiotics and antivirals are important in the fight against disease.\t (a)\t Describe how penicillin acts against b"
+    },
+    {
+      "id": "2024_May_HL_P3_Q15",
+      "source": "May 2024 TZ2 HL Paper 3 Opt D Q15",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "15.\t Aspirin and codeine are used as pain relievers. (a)\t (i)\t Describe how a strong analgesic, such as codeine, works.\b"
+    },
+    {
+      "id": "2024_May_HL_P3_Q16",
+      "source": "May 2024 TZ2 HL Paper 3 Opt D Q16",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "16.\t Excess acid in the stomach can cause the breakdown of the stomach lining. (a)\t A single dose of an antacid contains"
+    },
+    {
+      "id": "2024_May_HL_P3_Q17",
+      "source": "May 2024 TZ2 HL Paper 3 Opt D Q17",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "17.\t Many medical procedures involve the use of radioisotopes. (a)\t Justify why protective clothing and instruments used"
+    },
+    {
+      "id": "2024_May_HL_P3_Q18",
+      "source": "May 2024 TZ2 HL Paper 3 Opt D Q18",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "18.\t The optically active chiral auxiliary used to produce Taxol is trans-2-phenylcyclohexanol.\t (a)\t Draw circles aroun"
+    },
+    {
+      "id": "2024_May_HL_P3_Q19",
+      "source": "May 2024 TZ2 HL Paper 3 Opt D Q19",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "19.\t Radium-223 has a half-life of 11.4 days. (a)\t Write an equation for the alpha decay of radium-223.\b [1] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2024_May_HL_P3_Q20",
+      "source": "May 2024 TZ2 HL Paper 3 Opt D Q20",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "20.\t A redox breathalyser involves oxidizing ethanol in the breath to ethanal or ethanoic acid. (a)\t Identify one absorp"
+    },
+    {
+      "id": "2024_May_HL_P3_Q4",
+      "source": "May 2024 TZ1 HL Paper 3 Opt A Q4",
+      "reason": "Retired syllabus topic (matched: liquid crystal)",
+      "preview": "4.\t Polychloroethene, often known as polyvinylchloride or PVC, is synthesized from chloroethene. (a)\t Phthalates are oft"
+    },
+    {
+      "id": "2024_May_HL_P3_Q5",
+      "source": "May 2024 TZ1 HL Paper 3 Opt B Q5",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "5.\t Glucose is an energy-rich molecule that can be synthesized in plants. (a)\t Write the equation for photosynthesis.\b ["
+    },
+    {
+      "id": "2024_May_HL_P3_Q6",
+      "source": "May 2024 TZ1 HL Paper 3 Opt B Q6",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "6.\t Lipids, such as fats and oils, are triglycerides of fatty acids. The table shows the fatty acid  composition of comm"
+    },
+    {
+      "id": "2024_May_HL_P3_Q7",
+      "source": "May 2024 TZ1 HL Paper 3 Opt B Q7",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "7.\t 2-amino acids can be combined to form peptides and proteins. (a)\t The tripeptide glutathione is shown. Circle all th"
+    },
+    {
+      "id": "2024_May_HL_P3_Q8",
+      "source": "May 2024 TZ1 HL Paper 3 Opt B Q8",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "8.\t Biological laundry detergents contain enzymes that can efficiently remove stains at  low temperatures. (a)\t Sketch a"
+    },
+    {
+      "id": "2024_May_HL_P3_Q9",
+      "source": "May 2024 TZ1 HL Paper 3 Opt B Q9",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "9.\t Green algae are a rich source of pigments such as chlorophylls and carotenoids. Thin-layer chromatography (TLC) was "
+    },
+    {
+      "id": "2024_May_HL_P3_Q10",
+      "source": "May 2024 TZ1 HL Paper 3 Opt B Q10",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "10.\t An enzyme catalyzes the conversion of arachidonic acid into the precursor of most  prostaglandins associated with i"
+    },
+    {
+      "id": "2024_May_HL_P3_Q11",
+      "source": "May 2024 TZ1 HL Paper 3 Opt B Q11",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "11.\t Citrus fruit juices are good sources of ascorbic acid (vitamin C). Explain why vitamin\u00a0C is  soluble in water, refe"
+    },
+    {
+      "id": "2024_May_HL_P3_Q12",
+      "source": "May 2024 TZ1 HL Paper 3 Opt B Q12",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "12.\t DNA is a double helix of two polynucleotide strands. (a)\t Outline how these strands are held together and the compo"
+    },
+    {
+      "id": "2024_May_HL_P3_Q16",
+      "source": "May 2024 TZ1 HL Paper 3 Opt C Q16",
+      "reason": "Retired syllabus topic (matched: dye-sensitized solar cell)",
+      "preview": "16.\t The use of photovoltaic devices is being encouraged to combat global warming. (a)\t Explain the operation of dye-sen"
+    },
+    {
+      "id": "2024_May_HL_P3_Q17",
+      "source": "May 2024 TZ1 HL Paper 3 Opt D Q17",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "17.\t Penicillin was the first of a class of antibiotics known as \u03b2-lactams. (a)\t Suggest, with reference to their mechan"
+    },
+    {
+      "id": "2024_May_HL_P3_Q18",
+      "source": "May 2024 TZ1 HL Paper 3 Opt D Q18",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "18.\t Morphine and its derivatives (opiates) are only used to treat severe pain due to their side effects. (a)\t State one"
+    },
+    {
+      "id": "2024_May_HL_P3_Q19",
+      "source": "May 2024 TZ1 HL Paper 3 Opt D Q19",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "19.\t Aspirin is a mild analgesic and can reduce fever and inflammation. (a)\t State one other effect of aspirin.\b [1] \b\ufffd\ufffd"
+    },
+    {
+      "id": "2024_May_HL_P3_Q20",
+      "source": "May 2024 TZ1 HL Paper 3 Opt D Q20",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "20.\t Excessive acidity of gastric juice can be treated at different levels. (a)\t Outline how omeprazole reduces stomach "
+    },
+    {
+      "id": "2024_May_HL_P3_Q21",
+      "source": "May 2024 TZ1 HL Paper 3 Opt D Q21",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "21.\t Antiviral drugs act by interfering with the virus replication cycle.  (a)\t Osetalmivir and zanamivir are two antivi"
+    },
+    {
+      "id": "2024_May_HL_P3_Q22",
+      "source": "May 2024 TZ1 HL Paper 3 Opt D Q22",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "22.\t Taxol is an anticancer drug that is obtained semi-synthetically by addition of a side-chain to a  precursor. (a)\t T"
+    },
+    {
+      "id": "2024_May_HL_P3_Q23",
+      "source": "May 2024 TZ1 HL Paper 3 Opt D Q23",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "23.\t Targeted alpha therapy (TAT) is a technique used in nuclear medicine. (a)\t Describe how TAT works.\b [3] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2024_May_HL_P3_Q24",
+      "source": "May 2024 TZ1 HL Paper 3 Opt D Q24",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "24.\t Structures of compounds can be determined by spectroscopic methods. Ibuprofen is obtained by synthesis and often co"
+    },
+    {
+      "id": "2024_May_HL_P3_Q6",
+      "source": "May 2024 TZ1 HL Paper 3 Opt D Q6",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "6.\t U.S. Department of Agriculture (USDA). FoodData Central - Oil, corn, industrial and retail, all purpose salad or  co"
+    },
+    {
+      "id": "2023_Nov_SL_P3_Q1",
+      "source": "Nov 2023 TZ1 SL Paper 3 Opt A Q1",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) removed from 2025 syllabus (matched: starch, vitamin c)",
+      "preview": "1.\t Pasteurization is used to eliminate pathogenic bacteria. The concentration of vitamin C was  monitored over a period"
+    },
+    {
+      "id": "2023_Nov_SL_P3_Q3",
+      "source": "Nov 2023 TZ1 SL Paper 3 Opt A Q3",
+      "reason": "Retired syllabus topic (matched: liquid crystal)",
+      "preview": "3.\t Properties of materials are dependent upon their chemical structure. (a)\t Outline why polar molecules can exhibit li"
+    },
+    {
+      "id": "2023_Nov_SL_P3_Q5",
+      "source": "Nov 2023 TZ1 SL Paper 3 Opt B Q5",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "5.\t A variety of methods are used to analyse proteins. (a)\t State the type of bonding involved in the primary level of p"
+    },
+    {
+      "id": "2023_Nov_SL_P3_Q6",
+      "source": "Nov 2023 TZ1 SL Paper 3 Opt B Q6",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "6.\t Phosphatidylserine is an example of a phospholipid. (a)\t Phosphatidylserine may be formed from propane-1,2,3-triol, "
+    },
+    {
+      "id": "2023_Nov_SL_P3_Q7",
+      "source": "Nov 2023 TZ1 SL Paper 3 Opt B Q7",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "7.\t Lactose is the main disaccharide in milk. (a)\t Lactose is composed of galactose and glucose. Galactose Glucose O H O"
+    },
+    {
+      "id": "2023_Nov_SL_P3_Q8",
+      "source": "Nov 2023 TZ1 SL Paper 3 Opt B Q8",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "8.\t Host\u2013guest chemistry has been used for the removal of xenobiotics in the environment. (a)\t Outline what is meant by "
+    },
+    {
+      "id": "2023_Nov_SL_P3_Q12",
+      "source": "Nov 2023 TZ1 SL Paper 3 Opt D Q12",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "12.\t Aspirin and morphine are two analgesics. (a)\t State the site and mode of action of aspirin.\b [2] \t Site of action: "
+    },
+    {
+      "id": "2023_Nov_SL_P3_Q13",
+      "source": "Nov 2023 TZ1 SL Paper 3 Opt D Q13",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "13.\t Excess stomach acid is a common health condition. (a)\t \tExplain how omeprazole regulates stomach pH.\b [2] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2023_Nov_SL_P3_Q14",
+      "source": "Nov 2023 TZ1 SL Paper 3 Opt D Q14",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "14.\t Viruses and bacteria must be targeted in different ways. (a)\t (i)\t \u0007Describe how oseltamivir (Tamiflu) works as a p"
+    },
+    {
+      "id": "2023_Nov_SL_P3_Q1",
+      "source": "Nov 2023 TZ1 SL Paper 3 Opt D Q1",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "1.\t \t Oul\u00e9, M., Dickman, M., Arul, J., 2013. Properties of Orange Juice with Supercritical Carbon Dioxide Treatment.  [g"
+    },
+    {
+      "id": "2023_Nov_SL_P3_Q1",
+      "source": "Nov 2023 TZ2 SL Paper 3 Opt A Q1",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) removed from 2025 syllabus (matched: starch, vitamin c)",
+      "preview": "1.\t Pasteurization is used to eliminate pathogenic bacteria. The concentration of vitamin C was  monitored over a period"
+    },
+    {
+      "id": "2023_Nov_SL_P3_Q3",
+      "source": "Nov 2023 TZ2 SL Paper 3 Opt A Q3",
+      "reason": "Retired syllabus topic (matched: liquid crystal)",
+      "preview": "3.\t Properties of materials are dependent upon their chemical structure. (a)\t Outline why polar molecules can exhibit li"
+    },
+    {
+      "id": "2023_Nov_SL_P3_Q5",
+      "source": "Nov 2023 TZ2 SL Paper 3 Opt B Q5",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "5.\t A variety of methods are used to analyse proteins. (a)\t State the type of bonding involved in the primary level of p"
+    },
+    {
+      "id": "2023_Nov_SL_P3_Q6",
+      "source": "Nov 2023 TZ2 SL Paper 3 Opt B Q6",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "6.\t Phosphatidylserine is an example of a phospholipid. (a)\t Phosphatidylserine may be formed from propane-1,2,3-triol, "
+    },
+    {
+      "id": "2023_Nov_SL_P3_Q7",
+      "source": "Nov 2023 TZ2 SL Paper 3 Opt B Q7",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "7.\t Lactose is the main disaccharide in milk. (a)\t Lactose is composed of galactose and glucose. Galactose Glucose O H O"
+    },
+    {
+      "id": "2023_Nov_SL_P3_Q8",
+      "source": "Nov 2023 TZ2 SL Paper 3 Opt B Q8",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "8.\t Host\u2013guest chemistry has been used for the removal of xenobiotics in the environment. (a)\t Outline what is meant by "
+    },
+    {
+      "id": "2023_Nov_SL_P3_Q12",
+      "source": "Nov 2023 TZ2 SL Paper 3 Opt D Q12",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "12.\t Aspirin and morphine are two analgesics. (a)\t State the site and mode of action of aspirin.\b [2] \t Site of action: "
+    },
+    {
+      "id": "2023_Nov_SL_P3_Q13",
+      "source": "Nov 2023 TZ2 SL Paper 3 Opt D Q13",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "13.\t Excess stomach acid is a common health condition. (a)\t \tExplain how omeprazole regulates stomach pH.\b [2] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2023_Nov_SL_P3_Q14",
+      "source": "Nov 2023 TZ2 SL Paper 3 Opt D Q14",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "14.\t Viruses and bacteria must be targeted in different ways. (a)\t (i)\t \u0007Describe how oseltamivir (Tamiflu) works as a p"
+    },
+    {
+      "id": "2023_Nov_SL_P3_Q1",
+      "source": "Nov 2023 TZ2 SL Paper 3 Opt D Q1",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "1.\t \t Oul\u00e9, M., Dickman, M., Arul, J., 2013. Properties of Orange Juice with Supercritical Carbon Dioxide Treatment.  [g"
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q1",
+      "source": "Nov 2023 TZ2 HL Paper 3 Opt A Q1",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) removed from 2025 syllabus (matched: starch, vitamin c)",
+      "preview": "1.\t Pasteurization is used to eliminate pathogenic bacteria. The concentration of vitamin C was  monitored over a period"
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q3",
+      "source": "Nov 2023 TZ2 HL Paper 3 Opt A Q3",
+      "reason": "Retired syllabus topic (matched: liquid crystal)",
+      "preview": "3.\t Properties of materials are dependent upon their chemical structure. (a)\t Outline why polar molecules can exhibit li"
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q5",
+      "source": "Nov 2023 TZ2 HL Paper 3 Opt A Q5",
+      "reason": "Retired syllabus topic (matched: superconductor)",
+      "preview": "5.\t Superconducting Magnetic Levitation (MAGLEV) trains use a niobium\u2013titanium alloy that  becomes a Type\u00a02 superconduct"
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q6",
+      "source": "Nov 2023 TZ2 HL Paper 3 Opt B Q6",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "6.\t A variety of methods are used to analyse proteins. (a)\t State the type of bonding involved in the primary level of p"
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q7",
+      "source": "Nov 2023 TZ2 HL Paper 3 Opt B Q7",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "7.\t Phosphatidylserine is an example of a phospholipid. (a)\t Phosphatidylserine may be formed from propane-1,2,3-triol, "
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q8",
+      "source": "Nov 2023 TZ2 HL Paper 3 Opt B Q8",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "8.\t Lactose is the main disaccharide in milk. (a)\t Lactose is composed of galactose and glucose. Galactose Glucose O H O"
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q9",
+      "source": "Nov 2023 TZ2 HL Paper 3 Opt B Q9",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "9.\t Host\u2013guest chemistry has been used for the removal of xenobiotics in the environment. (a)\t Outline what is meant by "
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q10",
+      "source": "Nov 2023 TZ2 HL Paper 3 Opt B Q10",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "10.\t Anthocyanins, such as oenin, are pigments in plants. O HO OH O OCH3 OH OCH3 HO O OH HO OH oenin (a)\t The absorption"
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q11",
+      "source": "Nov 2023 TZ2 HL Paper 3 Opt B Q11",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "11.\t Cells contain both DNA and RNA. (a)\t Contrast two differences between the structures of DNA and RNA.\b [2] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q13",
+      "source": "Nov 2023 TZ2 HL Paper 3 Opt C Q13",
+      "reason": "Retired syllabus topic (matched: dye-sensitized solar cell)",
+      "preview": "13.\t Many molecules interact with light. (a)\t (i)\t \u0007Contrast, at the molecular level, how carbon dioxide and a coloured "
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q16",
+      "source": "Nov 2023 TZ2 HL Paper 3 Opt D Q16",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "16.\t Aspirin and morphine are two analgesics. (a)\t State the site and mode of action of aspirin.\b [2] \t Site of action: "
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q17",
+      "source": "Nov 2023 TZ2 HL Paper 3 Opt D Q17",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "17.\t Excess stomach acid is a common health condition. (a)\t \tExplain how omeprazole regulates stomach pH.\b [2] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q18",
+      "source": "Nov 2023 TZ2 HL Paper 3 Opt D Q18",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "18.\t Viruses and bacteria must be targeted in different ways. (a)\t (i)\t \u0007Describe how oseltamivir (Tamiflu) works as a p"
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q19",
+      "source": "Nov 2023 TZ2 HL Paper 3 Opt D Q19",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "19.\t Radiotherapy and chemotherapy are two approaches to cancer treatment. (a)\t (i)\t State a common side effect of radio"
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q1",
+      "source": "Nov 2023 TZ2 HL Paper 3 Opt D Q1",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "1.\t \t Oul\u00e9, M., Dickman, M., Arul, J., 2013. Properties of Orange Juice with Supercritical Carbon Dioxide Treatment.  [g"
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q1",
+      "source": "Nov 2023 TZ1 HL Paper 3 Opt A Q1",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) removed from 2025 syllabus (matched: starch, vitamin c)",
+      "preview": "1.\t Pasteurization is used to eliminate pathogenic bacteria. The concentration of vitamin C was  monitored over a period"
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q3",
+      "source": "Nov 2023 TZ1 HL Paper 3 Opt A Q3",
+      "reason": "Retired syllabus topic (matched: liquid crystal)",
+      "preview": "3.\t Properties of materials are dependent upon their chemical structure. (a)\t Outline why polar molecules can exhibit li"
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q5",
+      "source": "Nov 2023 TZ1 HL Paper 3 Opt A Q5",
+      "reason": "Retired syllabus topic (matched: superconductor)",
+      "preview": "5.\t Superconducting Magnetic Levitation (MAGLEV) trains use a niobium\u2013titanium alloy that  becomes a Type\u00a02 superconduct"
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q6",
+      "source": "Nov 2023 TZ1 HL Paper 3 Opt B Q6",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "6.\t A variety of methods are used to analyse proteins. (a)\t State the type of bonding involved in the primary level of p"
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q7",
+      "source": "Nov 2023 TZ1 HL Paper 3 Opt B Q7",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "7.\t Phosphatidylserine is an example of a phospholipid. (a)\t Phosphatidylserine may be formed from propane-1,2,3-triol, "
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q8",
+      "source": "Nov 2023 TZ1 HL Paper 3 Opt B Q8",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "8.\t Lactose is the main disaccharide in milk. (a)\t Lactose is composed of galactose and glucose. Galactose Glucose O H O"
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q9",
+      "source": "Nov 2023 TZ1 HL Paper 3 Opt B Q9",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "9.\t Host\u2013guest chemistry has been used for the removal of xenobiotics in the environment. (a)\t Outline what is meant by "
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q10",
+      "source": "Nov 2023 TZ1 HL Paper 3 Opt B Q10",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "10.\t Anthocyanins, such as oenin, are pigments in plants. O HO OH O OCH3 OH OCH3 HO O OH HO OH oenin (a)\t The absorption"
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q11",
+      "source": "Nov 2023 TZ1 HL Paper 3 Opt B Q11",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "11.\t Cells contain both DNA and RNA. (a)\t Contrast two differences between the structures of DNA and RNA.\b [2] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q13",
+      "source": "Nov 2023 TZ1 HL Paper 3 Opt C Q13",
+      "reason": "Retired syllabus topic (matched: dye-sensitized solar cell)",
+      "preview": "13.\t Many molecules interact with light. (a)\t (i)\t \u0007Contrast, at the molecular level, how carbon dioxide and a coloured "
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q16",
+      "source": "Nov 2023 TZ1 HL Paper 3 Opt D Q16",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "16.\t Aspirin and morphine are two analgesics. (a)\t State the site and mode of action of aspirin.\b [2] \t Site of action: "
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q17",
+      "source": "Nov 2023 TZ1 HL Paper 3 Opt D Q17",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "17.\t Excess stomach acid is a common health condition. (a)\t \tExplain how omeprazole regulates stomach pH.\b [2] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q18",
+      "source": "Nov 2023 TZ1 HL Paper 3 Opt D Q18",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "18.\t Viruses and bacteria must be targeted in different ways. (a)\t (i)\t \u0007Describe how oseltamivir (Tamiflu) works as a p"
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q19",
+      "source": "Nov 2023 TZ1 HL Paper 3 Opt D Q19",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "19.\t Radiotherapy and chemotherapy are two approaches to cancer treatment. (a)\t (i)\t State a common side effect of radio"
+    },
+    {
+      "id": "2023_Nov_HL_P3_Q1",
+      "source": "Nov 2023 TZ1 HL Paper 3 Opt D Q1",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "1.\t \t Oul\u00e9, M., Dickman, M., Arul, J., 2013. Properties of Orange Juice with Supercritical Carbon Dioxide Treatment.  [g"
+    },
+    {
+      "id": "2023_May_SL_P3_Q3",
+      "source": "May 2023 TZ1 SL Paper 3 Opt A Q3",
+      "reason": "Retired syllabus topic (matched: liquid crystal)",
+      "preview": "3.\t New materials have brought many benefits to society but come with associated risks. (a)\t High-pressure carbon monoxi"
+    },
+    {
+      "id": "2023_May_SL_P3_Q5",
+      "source": "May 2023 TZ1 SL Paper 3 Opt B Q5",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "5.\t Vitamins are micronutrients necessary for the correct functioning of the body. (a)\t Outline why vitamins usually nee"
+    },
+    {
+      "id": "2023_May_SL_P3_Q6",
+      "source": "May 2023 TZ1 SL Paper 3 Opt B Q6",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "6.\t Lipids and carbohydrates play an essential role in the body. (a)\t (i)\t State the general formula of a carbohydrate.\b"
+    },
+    {
+      "id": "2023_May_SL_P3_Q7",
+      "source": "May 2023 TZ1 SL Paper 3 Opt B Q7",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "7.\t The amino acids in a protein can be separated using paper chromatography. The Rf values  using a solvent of butanol "
+    },
+    {
+      "id": "2023_May_SL_P3_Q8",
+      "source": "May 2023 TZ1 SL Paper 3 Opt B Q8",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "8.\t Outline the meaning of the term xenobiotic.\b [1] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2023_May_SL_P3_Q10",
+      "source": "May 2023 TZ1 SL Paper 3 Opt C Q10",
+      "reason": "Retired syllabus topic (matched: triglyceride)",
+      "preview": "10.\t Biofuels can be synthesized or converted to make them more usable. (a)\t Write the equation for the fermentation of "
+    },
+    {
+      "id": "2023_May_SL_P3_Q12",
+      "source": "May 2023 TZ1 SL Paper 3 Opt D Q12",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "12.\t Drugs are commonly prescribed by medical professionals to treat illness. (a)\t State two different drug administrati"
+    },
+    {
+      "id": "2023_May_SL_P3_Q13",
+      "source": "May 2023 TZ1 SL Paper 3 Opt D Q13",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "13.\t Magnesium carbonate and aluminium hydroxide are two antacids. (a)\t Write two equations showing how these antacids n"
+    },
+    {
+      "id": "2023_May_SL_P3_Q14",
+      "source": "May 2023 TZ1 SL Paper 3 Opt D Q14",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "14.\t Many illnesses are caused by bacteria and viruses. (a)\t Describe how viruses differ from bacteria.\b [1] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2023_May_SL_P3_Q15",
+      "source": "May 2023 TZ1 SL Paper 3 Opt D Q15",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "15.\t State two principles of green (sustainable) chemistry in drug manufacturing, other than using  less hazardous or to"
+    },
+    {
+      "id": "2023_May_SL_P3_Q1",
+      "source": "May 2023 TZ1 SL Paper 3 Opt D Q1",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "1.\t \t Wikipedia, n.d. Electron affinity. [online] Available at: https://en.wikipedia.org/wiki/Electron_affinity  [Access"
+    },
+    {
+      "id": "2023_May_SL_P3_Q7",
+      "source": "May 2023 TZ1 SL Paper 3 Opt D Q7",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "7.\t \t BioTopics. n.d. Chromatography of amino acids. [online] Available at:   https://www.biotopics.co.uk/as/amino_acid_"
+    },
+    {
+      "id": "2023_May_SL_P3_Q4",
+      "source": "May 2023 TZ2 SL Paper 3 Opt A Q4",
+      "reason": "Retired syllabus topic (matched: liquid crystal)",
+      "preview": "4.\t Sections of two forms of polystyrene are shown: Polystyrene A Polystyrene B (a)\t (i)\t \u0007Draw the structural formula o"
+    },
+    {
+      "id": "2023_May_SL_P3_Q5",
+      "source": "May 2023 TZ2 SL Paper 3 Opt B Q5",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "5.\t State an equation for aerobic respiration.\b [1] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2023_May_SL_P3_Q6",
+      "source": "May 2023 TZ2 SL Paper 3 Opt B Q6",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "6.\t Proteins are large polymers of 2-amino acids. (a)\t Describe the interactions between amino acids occurring at the pr"
+    },
+    {
+      "id": "2023_May_SL_P3_Q7",
+      "source": "May 2023 TZ2 SL Paper 3 Opt B Q7",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "7.\t Lipids are another group of biomolecules. (a)\t Compare the hydrolytic and oxidative rancidity and contrast the site "
+    },
+    {
+      "id": "2023_May_SL_P3_Q8",
+      "source": "May 2023 TZ2 SL Paper 3 Opt B Q8",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "8.\t (a)\t \u0007Identify the type of bond and by-product when monosaccharides combine.\b [2] Bond:\u2002 \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2023_May_SL_P3_Q9",
+      "source": "May 2023 TZ2 SL Paper 3 Opt B Q9",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "9.\t Outline why we need vitamins/micronutrients in our diets.\b [1] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2023_May_SL_P3_Q10",
+      "source": "May 2023 TZ2 SL Paper 3 Opt B Q10",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "10.\t Outline how the toxicity of xenobiotics is reduced using host\u2013guest chemistry.\b [1] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2023_May_SL_P3_Q14",
+      "source": "May 2023 TZ2 SL Paper 3 Opt D Q14",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "14.\t Outline how these drug administration methods affect bioavailability.\b [2] Oral:\u2002 \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2023_May_SL_P3_Q15",
+      "source": "May 2023 TZ2 SL Paper 3 Opt D Q15",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "15.\t Aspirin is most commonly used as a mild analgesic. State two other common medical uses  for aspirin.\b [2] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2023_May_SL_P3_Q16",
+      "source": "May 2023 TZ2 SL Paper 3 Opt D Q16",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "16.\t Suggest two reasons why the penicillin side-chain is modified.\b [2] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2023_May_SL_P3_Q17",
+      "source": "May 2023 TZ2 SL Paper 3 Opt D Q17",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "17.\t Opioids are a class of compounds that includes morphine and codeine. (a)\t Explain how strong analgesics like morphi"
+    },
+    {
+      "id": "2023_May_SL_P3_Q18",
+      "source": "May 2023 TZ2 SL Paper 3 Opt D Q18",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "18.\t Aluminium hydroxide and ranitidine can be used to relieve indigestion. (a)\t (i)\t \u0007Write an equation for the reactio"
+    },
+    {
+      "id": "2023_May_SL_P3_Q19",
+      "source": "May 2023 TZ2 SL Paper 3 Opt D Q19",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "19.\t Explain two different ways antiviral medications work.\b [2] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2023_May_SL_P3_Q20",
+      "source": "May 2023 TZ2 SL Paper 3 Opt D Q20",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "20.\t Distinguish between the hazards of high-level and low-level nuclear waste.\b [2] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2023_May_SL_P3_Q21",
+      "source": "May 2023 TZ2 SL Paper 3 Opt D Q21",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "21.\t The production of many pharmaceutical drugs involves the use of solvents. (a)\t State one problem associated with ch"
+    },
+    {
+      "id": "2023_May_HL_P3_Q4",
+      "source": "May 2023 TZ2 HL Paper 3 Opt A Q4",
+      "reason": "Retired syllabus topic (matched: liquid crystal)",
+      "preview": "4.\t Sections of two forms of polystyrene are shown: Polystyrene A Polystyrene B (a)\t (i)\t \u0007Draw the structural formula o"
+    },
+    {
+      "id": "2023_May_HL_P3_Q6",
+      "source": "May 2023 TZ2 HL Paper 3 Opt B Q6",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "6.\t State an equation for aerobic respiration.\b [1] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2023_May_HL_P3_Q7",
+      "source": "May 2023 TZ2 HL Paper 3 Opt B Q7",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "7.\t Proteins are large polymers of 2-amino acids. (a)\t Describe the interactions between amino acids occurring at the pr"
+    },
+    {
+      "id": "2023_May_HL_P3_Q8",
+      "source": "May 2023 TZ2 HL Paper 3 Opt B Q8",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "8.\t Lipids are another group of biomolecules. (a)\t Compare the hydrolytic and oxidative rancidity and contrast the site "
+    },
+    {
+      "id": "2023_May_HL_P3_Q9",
+      "source": "May 2023 TZ2 HL Paper 3 Opt B Q9",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "9.\t Identify the type of bond and by-product when monosaccharides combine.\b [2] Bond:\u2002 \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2023_May_HL_P3_Q10",
+      "source": "May 2023 TZ2 HL Paper 3 Opt B Q10",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "10.\t Outline why we need vitamins/micronutrients in our diets.\b [1] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2023_May_HL_P3_Q11",
+      "source": "May 2023 TZ2 HL Paper 3 Opt B Q11",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "11.\t Outline how host\u2013guest chemistry mimics enzymes in the removal of xenobiotics.\b [2] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2023_May_HL_P3_Q12",
+      "source": "May 2023 TZ2 HL Paper 3 Opt B Q12",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "12.\t Identify three structural differences between DNA and RNA. Use section\u00a034 of the data booklet.\b [3] DNA RNA \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2023_May_HL_P3_Q13",
+      "source": "May 2023 TZ2 HL Paper 3 Opt B Q13",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "13.\t Biological pigments are coloured compounds.\t The following structure is the \u03b2-carotene: \u03b2-carotene (a)\t Explain in "
+    },
+    {
+      "id": "2023_May_HL_P3_Q14",
+      "source": "May 2023 TZ2 HL Paper 3 Opt B Q14",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "14.\t Monosaccharides combine to form polymers. (a)\t Identify one similarity and one difference between the structures of"
+    },
+    {
+      "id": "2023_May_HL_P3_Q18",
+      "source": "May 2023 TZ2 HL Paper 3 Opt D Q18",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "18.\t Outline how these drug administration methods affect bioavailability.\b [2] Oral:\u2002 \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2023_May_HL_P3_Q19",
+      "source": "May 2023 TZ2 HL Paper 3 Opt D Q19",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "19.\t Aspirin is most commonly used as a mild analgesic. State two other common medical uses  for aspirin.\b [2] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2023_May_HL_P3_Q20",
+      "source": "May 2023 TZ2 HL Paper 3 Opt D Q20",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "20.\t Suggest two reasons why the penicillin side-chain is modified.\b [2] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2023_May_HL_P3_Q21",
+      "source": "May 2023 TZ2 HL Paper 3 Opt D Q21",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "21.\t Explain how strong analgesics like morphine work.\b [2] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2023_May_HL_P3_Q22",
+      "source": "May 2023 TZ2 HL Paper 3 Opt D Q22",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "22.\t Aluminium hydroxide and ranitidine can be used to relieve indigestion. (a)\t (i)\t \u0007Write an equation for the reactio"
+    },
+    {
+      "id": "2023_May_HL_P3_Q23",
+      "source": "May 2023 TZ2 HL Paper 3 Opt D Q23",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "23.\t Explain two different ways antiviral medications work.\b [2] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2023_May_HL_P3_Q24",
+      "source": "May 2023 TZ2 HL Paper 3 Opt D Q24",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "24.\t Distinguish between the hazards of high-level and low-level nuclear waste.\b [2] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2023_May_HL_P3_Q25",
+      "source": "May 2023 TZ2 HL Paper 3 Opt D Q25",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "25.\t Describe the original source of Taxol and the disadvantages of obtaining the medication from  this source.\b [2] \b\ufffd\ufffd"
+    },
+    {
+      "id": "2023_May_HL_P3_Q26",
+      "source": "May 2023 TZ2 HL Paper 3 Opt D Q26",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "26.\t Nuclear medicine can be used to diagnose and treat diseases. (a)\t Deduce the nuclear equation for the beta decay of"
+    },
+    {
+      "id": "2023_May_HL_P3_Q27",
+      "source": "May 2023 TZ2 HL Paper 3 Opt D Q27",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "27.\t Ethanol can be identified by a variety of analytical techniques. (a)\t Predict the structures of three possible frag"
+    },
+    {
+      "id": "2023_May_HL_P3_Q28",
+      "source": "May 2023 TZ2 HL Paper 3 Opt D Q28",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "References: \u00a9 International Baccalaureate Organization 2023 28.\t The production of many pharmaceutical drugs involves th"
+    },
+    {
+      "id": "2023_May_HL_P3_Q3",
+      "source": "May 2023 TZ1 HL Paper 3 Opt A Q3",
+      "reason": "Retired syllabus topic (matched: liquid crystal)",
+      "preview": "3.\t New materials have brought many benefits to society but come with associated risks. (a)\t High-pressure carbon monoxi"
+    },
+    {
+      "id": "2023_May_HL_P3_Q6",
+      "source": "May 2023 TZ1 HL Paper 3 Opt B Q6",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "6.\t Vitamins are micronutrients necessary for the correct functioning of the body. (a)\t Outline why vitamins usually nee"
+    },
+    {
+      "id": "2023_May_HL_P3_Q7",
+      "source": "May 2023 TZ1 HL Paper 3 Opt B Q7",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "7.\t Lipids and carbohydrates play an essential role in the body. (a)\t (i)\t State the general formula of a carbohydrate.\b"
+    },
+    {
+      "id": "2023_May_HL_P3_Q8",
+      "source": "May 2023 TZ1 HL Paper 3 Opt B Q8",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "8.\t The amino acids in a protein can be separated using paper chromatography. The Rf values  using a solvent of butanol "
+    },
+    {
+      "id": "2023_May_HL_P3_Q9",
+      "source": "May 2023 TZ1 HL Paper 3 Opt B Q9",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "9.\t DNA is an essential biological molecule. (a)\t State the three components of a monomer of DNA (a nucleotide).\b [1] \b\ufffd"
+    },
+    {
+      "id": "2023_May_HL_P3_Q10",
+      "source": "May 2023 TZ1 HL Paper 3 Opt B Q10",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "10.\t There are many biological pigments. Anthocyanins are pigments that can be used as pH indicators. R OH R O O OH O Gl"
+    },
+    {
+      "id": "2023_May_HL_P3_Q11",
+      "source": "May 2023 TZ1 HL Paper 3 Opt B Q11",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "11.\t Outline the meaning of the term xenobiotic.\b [1] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2023_May_HL_P3_Q13",
+      "source": "May 2023 TZ1 HL Paper 3 Opt C Q13",
+      "reason": "Retired syllabus topic (matched: triglyceride)",
+      "preview": "13.\t Biofuels can be synthesized or converted to make them more usable. (a)\t Write the equation for the fermentation of "
+    },
+    {
+      "id": "2023_May_HL_P3_Q16",
+      "source": "May 2023 TZ1 HL Paper 3 Opt D Q16",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "16.\t Drugs are commonly prescribed by medical professionals to treat illness. (a)\t State two different drug administrati"
+    },
+    {
+      "id": "2023_May_HL_P3_Q17",
+      "source": "May 2023 TZ1 HL Paper 3 Opt D Q17",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "17.\t Magnesium carbonate and aluminium hydroxide are two antacids. (a)\t Write two equations showing how these antacids n"
+    },
+    {
+      "id": "2023_May_HL_P3_Q18",
+      "source": "May 2023 TZ1 HL Paper 3 Opt D Q18",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "18.\t Many illnesses are caused by bacteria and viruses. (a)\t Explain two ways antiviral medications prevent the replicat"
+    },
+    {
+      "id": "2023_May_HL_P3_Q19",
+      "source": "May 2023 TZ1 HL Paper 3 Opt D Q19",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "19.\t The chemotherapy drug Taxol is now manufactured using a chiral auxiliary and  10-deacetybaccatin\u00a0III instead of the"
+    },
+    {
+      "id": "2023_May_HL_P3_Q20",
+      "source": "May 2023 TZ1 HL Paper 3 Opt D Q20",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "20.\t Two radiation treatments for cancer are Targeted Alpha Therapy, TAT, and Boron Neutron  Capture Therapy, BNCT. (a)\t"
+    },
+    {
+      "id": "2023_May_HL_P3_Q21",
+      "source": "May 2023 TZ1 HL Paper 3 Opt D Q21",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "21.\t Analytical chemistry is very important in drug detection. (a)\t An example of a steroid is testosterone. (i)\t State "
+    },
+    {
+      "id": "2023_May_HL_P3_Q1",
+      "source": "May 2023 TZ1 HL Paper 3 Opt D Q1",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "1.\t \t Wikipedia, n.d. Electron affinity. [online] Available at: https://en.wikipedia.org/wiki/Electron_affinity  [Access"
+    },
+    {
+      "id": "2023_May_HL_P3_Q8",
+      "source": "May 2023 TZ1 HL Paper 3 Opt D Q8",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "8.\t \t BioTopics. n.d. Chromatography of amino acids. [online] Available at:   https://www.biotopics.co.uk/as/amino_acid_"
+    },
+    {
+      "id": "2023_May_HL_P3_Q15",
+      "source": "May 2023 TZ1 HL Paper 3 Opt D Q15",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "15.\t \t Dr. Rashmi. S. B, et al. 2020. Design of a Solar Charger Circuit for Recharging Batteries of Communication  Devic"
+    },
+    {
+      "id": "2020_Nov_SL_P3_Q4",
+      "source": "Nov 2020 TZ1 SL Paper 3 Opt A Q4",
+      "reason": "Retired syllabus topic (matched: liquid crystal)",
+      "preview": "4.\t There has been significant growth in the use of carbon nanotubes, CNT. (a)\t Explain these properties of carbon nanot"
+    },
+    {
+      "id": "2020_Nov_SL_P3_Q5",
+      "source": "Nov 2020 TZ1 SL Paper 3 Opt B Q5",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "5.\t Proteins are polymers of amino acids. (a)\t (i)\t \u0007A paper chromatogram of two amino acids, A1 and A2, is obtained usi"
+    },
+    {
+      "id": "2020_Nov_SL_P3_Q6",
+      "source": "Nov 2020 TZ1 SL Paper 3 Opt B Q6",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "6.\t Phospholipids are a main component of cell membranes. (a)\t Deduce the products of the hydrolysis of a non-substitute"
+    },
+    {
+      "id": "2020_Nov_SL_P3_Q7",
+      "source": "Nov 2020 TZ1 SL Paper 3 Opt B Q7",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "7.\t The diverse functions of biological molecules depend on their structure and shape.\t (a)\t Classify vitamins A, C and "
+    },
+    {
+      "id": "2020_Nov_SL_P3_Q8",
+      "source": "Nov 2020 TZ1 SL Paper 3 Opt B Q8",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "8.\t Biomagnification factor, BMF, can be defined as the concentration of a chemical, X, in a  predator, relative to the "
+    },
+    {
+      "id": "2020_Nov_SL_P3_Q11",
+      "source": "Nov 2020 TZ1 SL Paper 3 Opt D Q11",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "11.\t Aspirin is formed by reacting salicylic acid with ethanoic anhydride. The structure of aspirin is  given in section"
+    },
+    {
+      "id": "2020_Nov_SL_P3_Q12",
+      "source": "Nov 2020 TZ1 SL Paper 3 Opt D Q12",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "12.\t Consider the following antacids: Antacid X Antacid Y Active substance Magnesium hydroxide (Mr = 58.32) Calcium carb"
+    },
+    {
+      "id": "2020_Nov_SL_P3_Q13",
+      "source": "Nov 2020 TZ1 SL Paper 3 Opt D Q13",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "13.\t (a)\t Describe the proper disposal of low-level radioactive waste in hospitals.\b [2] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2020_Nov_SL_P3_Q14",
+      "source": "Nov 2020 TZ1 SL Paper 3 Opt D Q14",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "14.\t Consider the structures of medicinal molecules in section 37 of the data booklet.\t (a)\t (i)\t Name two functional gr"
+    },
+    {
+      "id": "2020_Nov_SL_P3_Q2",
+      "source": "Nov 2020 TZ1 SL Paper 3 Opt D Q2",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "2.\t \u00a9 International Baccalaureate Organization 2020. 4.(b)(ii)\t \u00a9 International Baccalaureate Organization 2020. 5.(a)(i"
+    },
+    {
+      "id": "2020_Nov_SL_P3_Q8",
+      "source": "Nov 2020 TZ1 SL Paper 3 Opt D Q8",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "8.\t Franklin, J., 2015. How reliable are field-derived biomagnification factors and trophic magnification factors as  in"
+    },
+    {
+      "id": "2020_Nov_SL_P3_Q9",
+      "source": "Nov 2020 TZ1 SL Paper 3 Opt D Q9",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "Please do not write on this page. Answers written on this page   will not be marked.  Please do not write on this page. "
+    },
+    {
+      "id": "2020_Nov_HL_P3_Q4",
+      "source": "Nov 2020 TZ1 HL Paper 3 Opt A Q4",
+      "reason": "Retired syllabus topic (matched: superconductor)",
+      "preview": "4.\t There has been significant growth in the use of carbon nanotubes, CNT. (a)\t Explain these properties of carbon nanot"
+    },
+    {
+      "id": "2020_Nov_HL_P3_Q6",
+      "source": "Nov 2020 TZ1 HL Paper 3 Opt B Q6",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "6.\t Proteins are polymers of amino acids. (a)\t (i)\t \u0007A paper chromatogram of two amino acids, A1 and A2, is obtained usi"
+    },
+    {
+      "id": "2020_Nov_HL_P3_Q7",
+      "source": "Nov 2020 TZ1 HL Paper 3 Opt B Q7",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "7.\t Phospholipids are a main component of cell membranes. (a)\t Deduce the products of the hydrolysis of a non-substitute"
+    },
+    {
+      "id": "2020_Nov_HL_P3_Q8",
+      "source": "Nov 2020 TZ1 HL Paper 3 Opt B Q8",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "8.\t The diverse functions of biological molecules depend on their structure and shape.\t (a)\t Classify vitamins A, C and "
+    },
+    {
+      "id": "2020_Nov_HL_P3_Q9",
+      "source": "Nov 2020 TZ1 HL Paper 3 Opt B Q9",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "9.\t Biomagnification factor, BMF, can be defined as the concentration of a chemical, X, in a  predator, relative to the "
+    },
+    {
+      "id": "2020_Nov_HL_P3_Q10",
+      "source": "Nov 2020 TZ1 HL Paper 3 Opt B Q10",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "10.\t The kinetics of an enzyme-catalysed reaction are studied in the absence and presence of an  inhibitor. The graph re"
+    },
+    {
+      "id": "2020_Nov_HL_P3_Q15",
+      "source": "Nov 2020 TZ1 HL Paper 3 Opt D Q15",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "15.\t Aspirin is formed by reacting salicylic acid with ethanoic anhydride. The structure of aspirin is  given in section"
+    },
+    {
+      "id": "2020_Nov_HL_P3_Q16",
+      "source": "Nov 2020 TZ1 HL Paper 3 Opt D Q16",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "16.\t Consider the following antacids: Antacid X Antacid Y Active substance Magnesium hydroxide (Mr = 58.32) Calcium carb"
+    },
+    {
+      "id": "2020_Nov_HL_P3_Q17",
+      "source": "Nov 2020 TZ1 HL Paper 3 Opt D Q17",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "17.\t Technetium-99m is the most commonly used isotope for diagnostic medicine. (a)\t State the type of radiation techneti"
+    },
+    {
+      "id": "2020_Nov_HL_P3_Q18",
+      "source": "Nov 2020 TZ1 HL Paper 3 Opt D Q18",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "18.\t A mixture of 0.100\u2009mol ethanal, 0.100\u2009mol ethanol and 0.200\u2009mol ethanoic acid is fractionally  distilled. Mixture A"
+    },
+    {
+      "id": "2020_Nov_HL_P3_Q19",
+      "source": "Nov 2020 TZ1 HL Paper 3 Opt D Q19",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "19.\t Consider the structures of medicinal molecules in section 37 of the data booklet.\t (a)\t Explain how zanamivir works"
+    },
+    {
+      "id": "2020_Nov_HL_P3_Q2",
+      "source": "Nov 2020 TZ1 HL Paper 3 Opt D Q2",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "2.\t \u00a9 International Baccalaureate Organization 2020. 4.(c)(ii)\t \u00a9 International Baccalaureate Organization 2020. 6.(a)(i"
+    },
+    {
+      "id": "2020_Nov_HL_P3_Q9",
+      "source": "Nov 2020 TZ1 HL Paper 3 Opt D Q9",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "9.\t Franklin, J., 2015. How reliable are field-derived biomagnification factors and trophic magnification factors as  in"
+    },
+    {
+      "id": "2020_Nov_HL_P3_Q11",
+      "source": "Nov 2020 TZ1 HL Paper 3 Opt D Q11",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "Please do not write on this page. Answers written on this page   will not be marked.  Please do not write on this page. "
+    },
+    {
+      "id": "2019_Nov_SL_P3_Q6",
+      "source": "Nov 2019 TZ1 SL Paper 3 Opt A Q6",
+      "reason": "Retired syllabus topic (matched: liquid crystal)",
+      "preview": "6.\t A soap solution can form a liquid-crystal state. (a)\t Describe the arrangement of soap molecules in the nematic liqu"
+    },
+    {
+      "id": "2019_Nov_SL_P3_Q7",
+      "source": "Nov 2019 TZ1 SL Paper 3 Opt B Q7",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "7.\t Aspartame is formed from the two amino acids aspartic acid (Asp) and phenylalanine (Phe). (a)\t Draw the structure of"
+    },
+    {
+      "id": "2019_Nov_SL_P3_Q8",
+      "source": "Nov 2019 TZ1 SL Paper 3 Opt B Q8",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "8.\t \tEnzymes are biological catalysts. (a)\t The graph shows the relationship between the temperature and the rate of an "
+    },
+    {
+      "id": "2019_Nov_SL_P3_Q9",
+      "source": "Nov 2019 TZ1 SL Paper 3 Opt B Q9",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "9.\t Stearic acid (Mr = 284.47) and oleic acid (Mr = 282.46) have the same number of carbon  atoms. The structures of bot"
+    },
+    {
+      "id": "2019_Nov_SL_P3_Q10",
+      "source": "Nov 2019 TZ1 SL Paper 3 Opt B Q10",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "10.\t (a)\t Vitamins are organic compounds essential in small amounts. State the name of one functional group common to al"
+    },
+    {
+      "id": "2019_Nov_SL_P3_Q15",
+      "source": "Nov 2019 TZ1 SL Paper 3 Opt D Q15",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "15.\t Codeine, morphine and diamorphine (heroin) are derived from opium. (a)\t State the names of two functional groups pr"
+    },
+    {
+      "id": "2019_Nov_SL_P3_Q16",
+      "source": "Nov 2019 TZ1 SL Paper 3 Opt D Q16",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "16.\t Body fluids have different pH values. (a)\t Identify the compound responsible for the acidity of gastric juice, and "
+    },
+    {
+      "id": "2019_Nov_SL_P3_Q17",
+      "source": "Nov 2019 TZ1 SL Paper 3 Opt D Q17",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "17.\t The structure of aspirin is shown in section 37 of the data booklet. O OH OH Salicylic acid (a)\t Suggest one reacta"
+    },
+    {
+      "id": "2019_Nov_SL_P3_Q18",
+      "source": "Nov 2019 TZ1 SL Paper 3 Opt D Q18",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "18.\t Infectious diseases can be caused by bacteria or viruses. (a)\t State one difference between bacteria and viruses.\b "
+    },
+    {
+      "id": "2019_Nov_SL_P3_Q19",
+      "source": "Nov 2019 TZ1 SL Paper 3 Opt D Q19",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "19.\t Disposal of chemical waste is a growing problem in industry. (a)\t Outline the impact of antibiotic waste on the env"
+    },
+    {
+      "id": "2019_Nov_HL_P3_Q4",
+      "source": "Nov 2019 TZ1 HL Paper 3 Opt A Q4",
+      "reason": "Retired syllabus topic (matched: superconductor)",
+      "preview": "4.\t Superconductors have no resistance below a critical temperature. (a)\t (i)\t Outline how resistance to electric curren"
+    },
+    {
+      "id": "2019_Nov_HL_P3_Q9",
+      "source": "Nov 2019 TZ1 HL Paper 3 Opt A Q9",
+      "reason": "Retired syllabus topic (matched: liquid crystal)",
+      "preview": "9.\t A soap solution can form a liquid-crystal state. (a)\t Describe the arrangement of soap molecules in the nematic liqu"
+    },
+    {
+      "id": "2019_Nov_HL_P3_Q10",
+      "source": "Nov 2019 TZ1 HL Paper 3 Opt B Q10",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "10.\t Aspartame is formed from the two amino acids aspartic acid (Asp) and phenylalanine (Phe). (a)\t Draw the structure o"
+    },
+    {
+      "id": "2019_Nov_HL_P3_Q11",
+      "source": "Nov 2019 TZ1 HL Paper 3 Opt B Q11",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "11.\t The Michaelis\u2013Menten equation describes the kinetics of enzyme-catalysed reactions. (a)\t Outline the significance o"
+    },
+    {
+      "id": "2019_Nov_HL_P3_Q12",
+      "source": "Nov 2019 TZ1 HL Paper 3 Opt B Q12",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "12.\t Stearic acid (Mr = 284.47) and oleic acid (Mr = 282.46) have the same number of carbon  atoms. The structures of bo"
+    },
+    {
+      "id": "2019_Nov_HL_P3_Q13",
+      "source": "Nov 2019 TZ1 HL Paper 3 Opt B Q13",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "13.\t DNA, deoxyribonucleic acid, is made up of nucleotides.\u00a0 (a)\t List two components of nucleotides.\b [1] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2019_Nov_HL_P3_Q14",
+      "source": "Nov 2019 TZ1 HL Paper 3 Opt B Q14",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "14.\t Changes in physiology can impact living creatures. (a)\t The graph shows the change in oxygen partial pressure in bl"
+    },
+    {
+      "id": "2019_Nov_HL_P3_Q15",
+      "source": "Nov 2019 TZ1 HL Paper 3 Opt B Q15",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "15.\t (a)\t Describe the function of chlorophyll in photosynthesis.\b [2] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2019_Nov_HL_P3_Q20",
+      "source": "Nov 2019 TZ1 HL Paper 3 Opt C Q20",
+      "reason": "Retired syllabus topic (matched: dye-sensitized solar cell)",
+      "preview": "20.\t A proton-exchange membrane (PEM) fuel cell uses pure hydrogen gas as the fuel and a  proton exchange membrane as th"
+    },
+    {
+      "id": "2019_Nov_HL_P3_Q21",
+      "source": "Nov 2019 TZ1 HL Paper 3 Opt D Q21",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "21.\t Codeine, morphine and diamorphine (heroin) are derived from opium. (a)\t Explain why diamorphine has greater potency"
+    },
+    {
+      "id": "2019_Nov_HL_P3_Q22",
+      "source": "Nov 2019 TZ1 HL Paper 3 Opt D Q22",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "22.\t Body fluids have different pH values. (a)\t Identify the compound responsible for the acidity of gastric juice, and "
+    },
+    {
+      "id": "2019_Nov_HL_P3_Q23",
+      "source": "Nov 2019 TZ1 HL Paper 3 Opt D Q23",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "23.\t The structure of aspirin is shown in section 37 of the data booklet. O OH OH Salicylic acid (a)\t Suggest one reacta"
+    },
+    {
+      "id": "2019_Nov_HL_P3_Q24",
+      "source": "Nov 2019 TZ1 HL Paper 3 Opt D Q24",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "24.\t Steroids are lipids with a steroidal backbone. The structure of cholesterol is shown in section 34  of the data boo"
+    },
+    {
+      "id": "2019_Nov_HL_P3_Q25",
+      "source": "Nov 2019 TZ1 HL Paper 3 Opt D Q25",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "25.\t The discovery of penicillins contributed to the development of antibiotics. (a)\t Explain how the beta-lactam ring i"
+    },
+    {
+      "id": "2019_Nov_HL_P3_Q26",
+      "source": "Nov 2019 TZ1 HL Paper 3 Opt D Q26",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "26.\t Taxol is an anticancer drug. (a)\t State the feature of Taxol that is a major challenge in its synthesis. Use sectio"
+    },
+    {
+      "id": "2019_Nov_HL_P3_Q27",
+      "source": "Nov 2019 TZ1 HL Paper 3 Opt D Q27",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "27.\t Nuclear medicine uses small amounts of radioisotopes to diagnose and treat some diseases. (a)\t State two common sid"
+    },
+    {
+      "id": "2019_May_SL_P3_Q5",
+      "source": "May 2019 TZ1 SL Paper 3 Opt A Q5",
+      "reason": "Retired syllabus topic (matched: liquid crystal)",
+      "preview": "5.\t Liquid-crystal displays (LCDs) have many uses. A molecule which acts as a thermotropic liquid crystal is shown.  C N"
+    },
+    {
+      "id": "2019_May_SL_P3_Q7",
+      "source": "May 2019 TZ1 SL Paper 3 Opt B Q7",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "7.\t Starch is a natural polymer of glucose.\t (a)\t Draw the structure of the repeating unit of starch and state the type "
+    },
+    {
+      "id": "2019_May_SL_P3_Q8",
+      "source": "May 2019 TZ1 SL Paper 3 Opt B Q8",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "8.\t Aspartame is a derivative of a dipeptide formed between two amino acids, phenylalanine  (Phe) and aspartic acid (Asp"
+    },
+    {
+      "id": "2019_May_SL_P3_Q9",
+      "source": "May 2019 TZ1 SL Paper 3 Opt B Q9",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "9.\t The main fatty acid composition of cocoa butter and coconut oil is detailed below. Source Saturated fatty acids / % "
+    },
+    {
+      "id": "2019_May_SL_P3_Q10",
+      "source": "May 2019 TZ1 SL Paper 3 Opt B Q10",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "10.\t Ascorbic acid and retinol are two important vitamins.  Explain why ascorbic acid is soluble in water and retinol is"
+    },
+    {
+      "id": "2019_May_SL_P3_Q14",
+      "source": "May 2019 TZ1 SL Paper 3 Opt D Q14",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "14.\t Aspirin can be obtained from salicylic acid.\t \t \t \t \t Unreacted salicylic acid may be present as an impurity in asp"
+    },
+    {
+      "id": "2019_May_SL_P3_Q15",
+      "source": "May 2019 TZ1 SL Paper 3 Opt D Q15",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "15.\t Staphylococcus aureus (S. aureus) infections have been successfully treated with penicillin  and penicillin derivat"
+    },
+    {
+      "id": "2019_May_SL_P3_Q16",
+      "source": "May 2019 TZ1 SL Paper 3 Opt D Q16",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "16.\t Mild heartburn is treated with antacids such as calcium carbonate. (a)\t (i)\t \u0007Formulate an equation for the neutral"
+    },
+    {
+      "id": "2019_May_SL_P3_Q17",
+      "source": "May 2019 TZ1 SL Paper 3 Opt D Q17",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "17.\t This question is about antiviral drugs. (a)\t Oseltamivir, used for the treatment of severe flu, is inactive until c"
+    },
+    {
+      "id": "2019_May_SL_P3_Q18",
+      "source": "May 2019 TZ1 SL Paper 3 Opt D Q18",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "18.\t Opium and its derivatives have been used for thousands of years as strong analgesics. (a)\t Explain how opiates act "
+    },
+    {
+      "id": "2019_May_SL_P3_Q19",
+      "source": "May 2019 TZ1 SL Paper 3 Opt D Q19",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "19.\t Most of the nuclear waste generated in a hospital is low-level waste (LLW).\t (a)\t Outline what is meant by low-leve"
+    },
+    {
+      "id": "2019_May_SL_P3_Q3",
+      "source": "May 2019 TZ2 SL Paper 3 Opt A Q3",
+      "reason": "Retired syllabus topic (matched: liquid crystal)",
+      "preview": "3.\t Describe the characteristics of the nematic liquid crystal phase and the effect that an electric  field has on it.\b "
+    },
+    {
+      "id": "2019_May_SL_P3_Q6",
+      "source": "May 2019 TZ2 SL Paper 3 Opt B Q6",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "6.\t Proteins have structural or enzyme functions.\t (a)\t (i)\t \u0007Some proteins form an \u03b1-helix. State the name of another s"
+    },
+    {
+      "id": "2019_May_SL_P3_Q7",
+      "source": "May 2019 TZ2 SL Paper 3 Opt B Q7",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "7.\t Phosphatidylcholine is an example of a phospholipid found in lecithin. (a)\t Phosphatidylcholine may be formed from p"
+    },
+    {
+      "id": "2019_May_SL_P3_Q8",
+      "source": "May 2019 TZ2 SL Paper 3 Opt B Q8",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "8.\t Sucrose is a disaccharide. CH2OH H C O CH2OH H O H H C OH H C C H HO C OH O C C C C CH2OH H OH OH H (a)\t \tState the "
+    },
+    {
+      "id": "2019_May_SL_P3_Q14",
+      "source": "May 2019 TZ2 SL Paper 3 Opt D Q14",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "14.\t Medicines and drugs are tested for effectiveness and safety.\t (a)\t Distinguish between therapeutic window and thera"
+    },
+    {
+      "id": "2019_May_SL_P3_Q15",
+      "source": "May 2019 TZ2 SL Paper 3 Opt D Q15",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "15.\t A student synthesized aspirin, acetylsalicylic acid, in a school laboratory. Aspirin Mr = 180.17 O C OH O C H3C O ("
+    },
+    {
+      "id": "2019_May_SL_P3_Q16",
+      "source": "May 2019 TZ2 SL Paper 3 Opt D Q16",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "16.\t Excess acid in the stomach can cause breakdown of the stomach lining. (a)\t (i)\t Outline how ranitidine (Zantac) inh"
+    },
+    {
+      "id": "2019_May_SL_P3_Q17",
+      "source": "May 2019 TZ2 SL Paper 3 Opt D Q17",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "17.\t Antiviral medications have recently been developed for some viral infections. (a)\t Outline one way in which antivir"
+    },
+    {
+      "id": "2019_May_HL_P3_Q3",
+      "source": "May 2019 TZ2 HL Paper 3 Opt A Q3",
+      "reason": "Retired syllabus topic (matched: liquid crystal)",
+      "preview": "3.\t Describe the characteristics of the nematic liquid crystal phase.\b [2] \t Shape of molecules: \t . . . . . . . . . . ."
+    },
+    {
+      "id": "2019_May_HL_P3_Q7",
+      "source": "May 2019 TZ2 HL Paper 3 Opt A Q7",
+      "reason": "Retired syllabus topic (matched: superconductor)",
+      "preview": "7.\t Superconductivity has many applications. (a)\t State what is meant by a superconductor.\b [1] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2019_May_HL_P3_Q9",
+      "source": "May 2019 TZ2 HL Paper 3 Opt B Q9",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "9.\t Proteins have structural or enzyme functions.\t (a)\t (i)\t \u0007Some proteins form an \u03b1-helix. State the name of another s"
+    },
+    {
+      "id": "2019_May_HL_P3_Q10",
+      "source": "May 2019 TZ2 HL Paper 3 Opt B Q10",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "10.\t Amino acids contain both acidic and basic functional groups.\t (a)\t An aqueous solution of glutamine contains 0.600\u2009"
+    },
+    {
+      "id": "2019_May_HL_P3_Q11",
+      "source": "May 2019 TZ2 HL Paper 3 Opt B Q11",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "11.\t Phosphatidylcholine is an example of a phospholipid found in lecithin. (a)\t Phosphatidylcholine may be formed from "
+    },
+    {
+      "id": "2019_May_HL_P3_Q12",
+      "source": "May 2019 TZ2 HL Paper 3 Opt B Q12",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "12.\t Sucrose is a disaccharide. CH2OH H C O CH2OH H O H H C OH H C C H HO C OH O C C C C CH2OH H OH OH H (a)\t \tState the"
+    },
+    {
+      "id": "2019_May_HL_P3_Q13",
+      "source": "May 2019 TZ2 HL Paper 3 Opt B Q13",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "13.\t Hemoglobin contains heme groups with the porphyrin ring bound to an iron(II) ion. Heme\u00a0B N HC N CH N N Fe CH3 CH3 C"
+    },
+    {
+      "id": "2019_May_HL_P3_Q20",
+      "source": "May 2019 TZ2 HL Paper 3 Opt C Q20",
+      "reason": "Retired syllabus topic (matched: dye-sensitized solar cell)",
+      "preview": "20.\t Semiconductors and light-sensitive dyes are used in photovoltaic cells.\t (a)\t Sketch graphs to show the general eff"
+    },
+    {
+      "id": "2019_May_HL_P3_Q21",
+      "source": "May 2019 TZ2 HL Paper 3 Opt D Q21",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "21.\t Medicines and drugs are tested for effectiveness and safety.\t (a)\t Distinguish between therapeutic window and thera"
+    },
+    {
+      "id": "2019_May_HL_P3_Q22",
+      "source": "May 2019 TZ2 HL Paper 3 Opt D Q22",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "22.\t A student synthesized aspirin, acetylsalicylic acid, in a school laboratory. Aspirin Mr = 180.17 O C OH O C H3C O ("
+    },
+    {
+      "id": "2019_May_HL_P3_Q23",
+      "source": "May 2019 TZ2 HL Paper 3 Opt D Q23",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "23.\t Excess acid in the stomach can cause breakdown of the stomach lining. (a)\t (i)\t Outline how ranitidine (Zantac) inh"
+    },
+    {
+      "id": "2019_May_HL_P3_Q24",
+      "source": "May 2019 TZ2 HL Paper 3 Opt D Q24",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "24.\t Antiviral medications have recently been developed for some viral infections. (a)\t Outline one way in which antivir"
+    },
+    {
+      "id": "2019_May_HL_P3_Q25",
+      "source": "May 2019 TZ2 HL Paper 3 Opt D Q25",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "25.\t Taxol is a drug that was once obtained from yew trees and is now produced using chiral auxiliaries. (a)\t Examine th"
+    },
+    {
+      "id": "2019_May_HL_P3_Q26",
+      "source": "May 2019 TZ2 HL Paper 3 Opt D Q26",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "26.\t Technetium-99m, Tc-99m, is a gamma-ray emitter commonly used as a medical tracer.  Its half-life is 6.0\u2009hours.\t (a)"
+    },
+    {
+      "id": "2019_May_HL_P3_Q27",
+      "source": "May 2019 TZ2 HL Paper 3 Opt D Q27",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "27.\t \tThe presence of alcohol in the breath can be detected using a breathalyser.\t (a)\t Describe how a fuel cell breatha"
+    },
+    {
+      "id": "2019_May_HL_P3_Q8",
+      "source": "May 2019 TZ1 HL Paper 3 Opt B Q8",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "8.\t Starch is a natural polymer of glucose.\t (a)\t Draw the structure of the repeating unit of starch and state the type "
+    },
+    {
+      "id": "2019_May_HL_P3_Q9",
+      "source": "May 2019 TZ1 HL Paper 3 Opt B Q9",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "9.\t Aspartame is a derivative of a dipeptide formed between two amino acids, phenylalanine  (Phe) and aspartic acid (Asp"
+    },
+    {
+      "id": "2019_May_HL_P3_Q10",
+      "source": "May 2019 TZ1 HL Paper 3 Opt B Q10",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "10.\t The main fatty acid composition of cocoa butter and coconut oil is detailed below. Source Saturated fatty acids / %"
+    },
+    {
+      "id": "2019_May_HL_P3_Q11",
+      "source": "May 2019 TZ1 HL Paper 3 Opt B Q11",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "11.\t Carotenoids are pigments found in leaves. (a)\t The absorption spectrum of \u03b2-carotene is shown below. 0.0 250 300 35"
+    },
+    {
+      "id": "2019_May_HL_P3_Q12",
+      "source": "May 2019 TZ1 HL Paper 3 Opt B Q12",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "12.\t Alcohol dehydrogenase (ADH) catalyses the oxidation of methanol. The products of  oxidation, methanal and methanoic"
+    },
+    {
+      "id": "2019_May_HL_P3_Q13",
+      "source": "May 2019 TZ1 HL Paper 3 Opt B Q13",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "13.\t Ascorbic acid and retinol are two important vitamins.  Explain why ascorbic acid is soluble in water and retinol is"
+    },
+    {
+      "id": "2019_May_HL_P3_Q14",
+      "source": "May 2019 TZ1 HL Paper 3 Opt B Q14",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "14.\t New genetically modified organisms (GMO), especially plants, are continually being  developed in research laborator"
+    },
+    {
+      "id": "2019_May_HL_P3_Q18",
+      "source": "May 2019 TZ1 HL Paper 3 Opt C Q18",
+      "reason": "Retired syllabus topic (matched: dye-sensitized solar cell)",
+      "preview": "18.\t This question is about solar cells.\t (a)\t Some solar cells use photovoltaic semi-conductors. Compare, giving reason"
+    },
+    {
+      "id": "2019_May_HL_P3_Q19",
+      "source": "May 2019 TZ1 HL Paper 3 Opt D Q19",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "p y 19.  Aspirin can be obtained from salicylic acid. (a)  Unreacted salicylic acid may be present as an impurity in asp"
+    },
+    {
+      "id": "2019_May_HL_P3_Q20",
+      "source": "May 2019 TZ1 HL Paper 3 Opt D Q20",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "20.\t Staphylococcus aureus (S. aureus) infections have been successfully treated with penicillin  and penicillin derivat"
+    },
+    {
+      "id": "2019_May_HL_P3_Q21",
+      "source": "May 2019 TZ1 HL Paper 3 Opt D Q21",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "21.\t Mild heartburn is treated with antacids such as calcium carbonate. (a)\t Formulate an equation for the neutralizatio"
+    },
+    {
+      "id": "2019_May_HL_P3_Q22",
+      "source": "May 2019 TZ1 HL Paper 3 Opt D Q22",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "22.\t This question is about antiviral drugs. (a)\t \u0007Oseltamivir, used for the treatment of severe flu, is inactive until "
+    },
+    {
+      "id": "2019_May_HL_P3_Q23",
+      "source": "May 2019 TZ1 HL Paper 3 Opt D Q23",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "23.\t Opium and its derivatives have been used for thousands of years as strong analgesics. (a)\t Explain how opiates act "
+    },
+    {
+      "id": "2019_May_HL_P3_Q24",
+      "source": "May 2019 TZ1 HL Paper 3 Opt D Q24",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "24.\t Technetium-99m, a widely used radionuclide, has a half-life of 6.0 hours and undergoes  gamma decay to technetium-9"
+    },
+    {
+      "id": "2019_May_HL_P3_Q25",
+      "source": "May 2019 TZ1 HL Paper 3 Opt D Q25",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "25.\t Methadone is a synthetic opiate administered as a racemic mixture to treat strong pain and  morphine or heroin depe"
+    },
+    {
+      "id": "2018_Nov_SL_P3_Q2",
+      "source": "Nov 2018 TZ1 SL Paper 3 Opt A Q2",
+      "reason": "Legacy Option A/C specialized topics (superconductors, liquid crystals, DSSC, zeolites) removed from 2025 syllabus (matched: zeolite, zeolites)",
+      "preview": "2.\t One way of classifying materials is based on the type of bonding present.\t (a)  Outline why this type of classificat"
+    },
+    {
+      "id": "2018_Nov_SL_P3_Q3",
+      "source": "Nov 2018 TZ1 SL Paper 3 Opt A Q3",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) removed from 2025 syllabus (matched: antacid, antacids)",
+      "preview": "3.\t The presence of very small amounts of lead in calcium-based antacids can be determined  using inductively coupled pl"
+    },
+    {
+      "id": "2018_Nov_SL_P3_Q4",
+      "source": "Nov 2018 TZ1 SL Paper 3 Opt A Q4",
+      "reason": "Retired syllabus topic (matched: liquid crystal)",
+      "preview": "4.\t While heating solid cholesteryl benzoate, Reinitzer discovered the liquid crystal phase.\t (a)\t Outline two observati"
+    },
+    {
+      "id": "2018_Nov_SL_P3_Q5",
+      "source": "Nov 2018 TZ1 SL Paper 3 Opt B Q5",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "5.\t Dietary recommendations are made by scientists. (a)\t The formation of proteins from amino acids is an example of an "
+    },
+    {
+      "id": "2018_Nov_SL_P3_Q6",
+      "source": "Nov 2018 TZ1 SL Paper 3 Opt B Q6",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "6.\t Enzymes are mainly\u00a0globular\u00a0proteins.\t (a)\t Describe the interaction responsible for the secondary structure of a pr"
+    },
+    {
+      "id": "2018_Nov_SL_P3_Q7",
+      "source": "Nov 2018 TZ1 SL Paper 3 Opt B Q7",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "7.\t Lipids play several roles in our bodies.\t (a)\t A phospholipid generally consists of two hydrophobic fatty acids and "
+    },
+    {
+      "id": "2018_Nov_SL_P3_Q8",
+      "source": "Nov 2018 TZ1 SL Paper 3 Opt B Q8",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "8.\t Lactose, found in milk and dairy products, is a disaccharide formed from two different  monosaccharides.  The struct"
+    },
+    {
+      "id": "2018_Nov_SL_P3_Q12",
+      "source": "Nov 2018 TZ1 SL Paper 3 Opt D Q12",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "12.\t The structure of penicillin is shown in section 37 of the data booklet.\t (a)\t State the internal bond angles in the"
+    },
+    {
+      "id": "2018_Nov_SL_P3_Q13",
+      "source": "Nov 2018 TZ1 SL Paper 3 Opt D Q13",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "13.\t Opiates are strong analgesics.\t (a)\t Explain why diamorphine (heroin) crosses the blood\u2013brain barrier more easily t"
+    },
+    {
+      "id": "2018_Nov_SL_P3_Q14",
+      "source": "Nov 2018 TZ1 SL Paper 3 Opt D Q14",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "14.\t Buffer systems control pH in the body. (a)  Determine the pH of a buffer solution that is 0.0100\u2009mol\u2009dm\u22123 sodium hy"
+    },
+    {
+      "id": "2018_Nov_SL_P3_Q15",
+      "source": "Nov 2018 TZ1 SL Paper 3 Opt D Q15",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "15.\t Viruses and bacteria both cause diseases and are frequently confused. (a)\t State one way in which viruses differ fr"
+    },
+    {
+      "id": "2018_Nov_SL_P3_Q16",
+      "source": "Nov 2018 TZ1 SL Paper 3 Opt D Q16",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "16.\t Suggest two reasons why chlorinated solvents should neither be released into the  atmosphere nor incinerated (burnt"
+    },
+    {
+      "id": "2018_Nov_HL_P3_Q2",
+      "source": "Nov 2018 TZ1 HL Paper 3 Opt A Q2",
+      "reason": "Legacy Option A/C specialized topics (superconductors, liquid crystals, DSSC, zeolites) removed from 2025 syllabus (matched: zeolite, zeolites)",
+      "preview": "2.\t One way of classifying materials is based on the type of bonding present.\t (a)\t Outline why this type of classificat"
+    },
+    {
+      "id": "2018_Nov_HL_P3_Q3",
+      "source": "Nov 2018 TZ1 HL Paper 3 Opt A Q3",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) removed from 2025 syllabus (matched: antacid, antacids)",
+      "preview": "3.\t The presence of very small amounts of lead in calcium-based antacids can be determined  using inductively coupled pl"
+    },
+    {
+      "id": "2018_Nov_HL_P3_Q4",
+      "source": "Nov 2018 TZ1 HL Paper 3 Opt A Q4",
+      "reason": "Retired syllabus topic (matched: liquid crystal)",
+      "preview": "4.\t While heating solid cholesteryl benzoate, Reinitzer discovered the liquid crystal phase.\t (a)\t Outline two observati"
+    },
+    {
+      "id": "2018_Nov_HL_P3_Q6",
+      "source": "Nov 2018 TZ1 HL Paper 3 Opt B Q6",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "6.\t Dietary recommendations are made by scientists. (a)\t The formation of proteins from amino acids is an example of an "
+    },
+    {
+      "id": "2018_Nov_HL_P3_Q7",
+      "source": "Nov 2018 TZ1 HL Paper 3 Opt B Q7",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "7.\t Genetic information is stored in DNA. (a)\t State the feature of DNA that determines the primary structure of protein"
+    },
+    {
+      "id": "2018_Nov_HL_P3_Q8",
+      "source": "Nov 2018 TZ1 HL Paper 3 Opt B Q8",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "8.\t Enzymes are mainly\u00a0globular\u00a0proteins.\t (a)\t Describe the interaction responsible for the secondary structure of a pr"
+    },
+    {
+      "id": "2018_Nov_HL_P3_Q9",
+      "source": "Nov 2018 TZ1 HL Paper 3 Opt B Q9",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "9.\t Lipids play several roles in our bodies.\t (a)\t The iodine number is the maximum mass of iodine that reacts with 100\u2009"
+    },
+    {
+      "id": "2018_Nov_HL_P3_Q10",
+      "source": "Nov 2018 TZ1 HL Paper 3 Opt B Q10",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "10.\t Lactose, found in milk and dairy products, is a disaccharide formed from two different  monosaccharides.  The struc"
+    },
+    {
+      "id": "2018_Nov_HL_P3_Q11",
+      "source": "Nov 2018 TZ1 HL Paper 3 Opt B Q11",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "11.\t The transport of oxygen around the body is essential for life.\t (a)\t A graph showing saturation of oxygen against p"
+    },
+    {
+      "id": "2018_Nov_HL_P3_Q16",
+      "source": "Nov 2018 TZ1 HL Paper 3 Opt D Q16",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "16.\t The structure of penicillin is shown in section 37 of the data booklet.\t (a)\t State the internal bond angles in the"
+    },
+    {
+      "id": "2018_Nov_HL_P3_Q17",
+      "source": "Nov 2018 TZ1 HL Paper 3 Opt D Q17",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "17.\t Opiates are strong analgesics.\t (a)\t Explain why diamorphine (heroin) crosses the blood\u2013brain barrier more easily t"
+    },
+    {
+      "id": "2018_Nov_HL_P3_Q18",
+      "source": "Nov 2018 TZ1 HL Paper 3 Opt D Q18",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "18.\t Buffer systems control pH in the body. (a)\t Determine the pH of a buffer solution that is 0.0100\u2009mol\u2009dm\u22123 sodium hy"
+    },
+    {
+      "id": "2018_Nov_HL_P3_Q19",
+      "source": "Nov 2018 TZ1 HL Paper 3 Opt D Q19",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "19.\t Viruses and bacteria both cause diseases and are frequently confused.\t Outline two different ways in which antivira"
+    },
+    {
+      "id": "2018_Nov_HL_P3_Q20",
+      "source": "Nov 2018 TZ1 HL Paper 3 Opt D Q20",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "20.\t Suggest two reasons why chlorinated solvents should neither be released into the  atmosphere nor incinerated (burnt"
+    },
+    {
+      "id": "2018_Nov_HL_P3_Q21",
+      "source": "Nov 2018 TZ1 HL Paper 3 Opt D Q21",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "21.\t Taxol is a chiral cancer drug which is synthesized using a chiral auxiliary.\t (a)\t The diagram shows part of a Taxo"
+    },
+    {
+      "id": "2018_Nov_HL_P3_Q22",
+      "source": "Nov 2018 TZ1 HL Paper 3 Opt D Q22",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "22.\t Nuclear isotopes are used in the treatment of cancer.\t (a)\t Alpha particles are more damaging to human cells than a"
+    },
+    {
+      "id": "2018_Nov_HL_P3_Q23",
+      "source": "Nov 2018 TZ1 HL Paper 3 Opt D Q23",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "23.\t Scientists have developed various analytical techniques. (a)\t State an analytical technique used to separate anabol"
+    },
+    {
+      "id": "2018_May_SL_P3_Q3",
+      "source": "May 2018 TZ1 SL Paper 3 Opt A Q3",
+      "reason": "Retired syllabus topic (matched: liquid crystal)",
+      "preview": "3.\t Aluminium and high density polyethene (HDPE) are both materials readily found in the  kitchen, for example as saucep"
+    },
+    {
+      "id": "2018_May_SL_P3_Q6",
+      "source": "May 2018 TZ1 SL Paper 3 Opt B Q6",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "6.\t Insulin was the first protein to be sequenced.  It was determined that the end of one chain  had the primary structu"
+    },
+    {
+      "id": "2018_May_SL_P3_Q7",
+      "source": "May 2018 TZ1 SL Paper 3 Opt B Q7",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "7.\t Saturated lipids found in butter and unsaturated lipids found in fish oil readily become rancid. (a)\t (i)\t Identify "
+    },
+    {
+      "id": "2018_May_SL_P3_Q8",
+      "source": "May 2018 TZ1 SL Paper 3 Opt B Q8",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "8.\t Polymers of \u03b1-glucose include the disaccharide maltose and the polysaccharide amylose,  a type of starch.  The cycli"
+    },
+    {
+      "id": "2018_May_SL_P3_Q13",
+      "source": "May 2018 TZ1 SL Paper 3 Opt D Q13",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "13.\t Many drugs, including aspirin, penicillin and codeine, have been modified from compounds  that occur naturally. (a)"
+    },
+    {
+      "id": "2018_May_SL_P3_Q14",
+      "source": "May 2018 TZ1 SL Paper 3 Opt D Q14",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "14.\t Excess stomach acid can be counteracted by a range of medications.\t (a)\t (i)\t An antacid tablet contains 680\u2009mg of "
+    },
+    {
+      "id": "2018_May_SL_P3_Q15",
+      "source": "May 2018 TZ1 SL Paper 3 Opt D Q15",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "15.\t Antiviral drugs are a major research focus.\t (a)\t Oseltamivir (Tamiflu) and zanamivir (Relenza) are used against fl"
+    },
+    {
+      "id": "2018_May_SL_P3_Q5",
+      "source": "May 2018 TZ2 SL Paper 3 Opt A Q5",
+      "reason": "Retired syllabus topic (matched: liquid crystal)",
+      "preview": "5.\t Chemical vapour deposition (CVD) produces multi-walled carbon nanotubes (MWCNT) of a  more appropriate size for use "
+    },
+    {
+      "id": "2018_May_SL_P3_Q6",
+      "source": "May 2018 TZ2 SL Paper 3 Opt B Q6",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "6.\t Lipids provide energy and are an important part of a balanced diet. (a)\t Identify the type of chemical reaction that"
+    },
+    {
+      "id": "2018_May_SL_P3_Q7",
+      "source": "May 2018 TZ2 SL Paper 3 Opt B Q7",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "7.\t Amino acids are the building blocks of proteins. (a)\t Draw the dipeptide represented by the formula Ala-Gly using se"
+    },
+    {
+      "id": "2018_May_SL_P3_Q8",
+      "source": "May 2018 TZ2 SL Paper 3 Opt B Q8",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "8.\t Green Chemistry reduces the production of hazardous materials and chemical waste.      Outline two specific examples"
+    },
+    {
+      "id": "2018_May_SL_P3_Q9",
+      "source": "May 2018 TZ2 SL Paper 3 Opt B Q9",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "9.\t Explain the solubility of vitamins A and C using section 35 of the data booklet. [2] \t Vitamin A: \t . . . . . . . . "
+    },
+    {
+      "id": "2018_May_SL_P3_Q15",
+      "source": "May 2018 TZ2 SL Paper 3 Opt D Q15",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "15.\t Drug testing is necessary to determine safe and effective doses. Distinguish between the lethal dose (LD50) and the"
+    },
+    {
+      "id": "2018_May_SL_P3_Q16",
+      "source": "May 2018 TZ2 SL Paper 3 Opt D Q16",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "16.\t (a)\t Penicillins and aspirin are important medicines. (i)\t Describe how penicillin combats bacterial infections. [2"
+    },
+    {
+      "id": "2018_May_SL_P3_Q17",
+      "source": "May 2018 TZ2 SL Paper 3 Opt D Q17",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "17.\t Morphine and diamorphine (heroin) are both opioids.      Explain why diamorphine is more potent than morphine using"
+    },
+    {
+      "id": "2018_May_SL_P3_Q18",
+      "source": "May 2018 TZ2 SL Paper 3 Opt D Q18",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "18.\t Excess acid in the stomach is often treated with calcium carbonate.  (a)\t Formulate a chemical equation for the neu"
+    },
+    {
+      "id": "2018_May_SL_P3_Q19",
+      "source": "May 2018 TZ2 SL Paper 3 Opt D Q19",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "19.\t Antiviral medications such as zanamivir (Relenza) are commonly available for consumer use. (a)\t Identify the names "
+    },
+    {
+      "id": "2018_May_SL_P3_Q20",
+      "source": "May 2018 TZ2 SL Paper 3 Opt D Q20",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "20.\t Drug synthesis often involves solvents.      Identify a common hazardous solvent and a Green solvent that could rep"
+    },
+    {
+      "id": "2018_May_HL_P3_Q6",
+      "source": "May 2018 TZ2 HL Paper 3 Opt A Q6",
+      "reason": "Retired syllabus topic (matched: liquid crystal)",
+      "preview": "6.\t Chemical vapour deposition (CVD) produces multi-walled carbon nanotubes (MWCNT) of a  more appropriate size for use "
+    },
+    {
+      "id": "2018_May_HL_P3_Q7",
+      "source": "May 2018 TZ2 HL Paper 3 Opt B Q7",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "7.\t Lipids provide energy and are an important part of a balanced diet. (a)\t Identify the type of chemical reaction that"
+    },
+    {
+      "id": "2018_May_HL_P3_Q8",
+      "source": "May 2018 TZ2 HL Paper 3 Opt B Q8",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "8.\t Amino acids are the building blocks of proteins. (a)\t Draw the dipeptide represented by the formula Ala-Gly using se"
+    },
+    {
+      "id": "2018_May_HL_P3_Q9",
+      "source": "May 2018 TZ2 HL Paper 3 Opt B Q9",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "9.\t Green Chemistry reduces the production of hazardous materials and chemical waste.      Outline two specific examples"
+    },
+    {
+      "id": "2018_May_HL_P3_Q10",
+      "source": "May 2018 TZ2 HL Paper 3 Opt B Q10",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "10.\t (a)\t Explain the solubility of vitamins A and C using section 35 of the data booklet. [2] \t Vitamin A: \t . . . . . "
+    },
+    {
+      "id": "2018_May_HL_P3_Q11",
+      "source": "May 2018 TZ2 HL Paper 3 Opt B Q11",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "11.  Hemoglobin contains an iron ion that can bind to oxygen as part of the process of respiration. (a)  Hemoglobin\u2019s ox"
+    },
+    {
+      "id": "2018_May_HL_P3_Q12",
+      "source": "May 2018 TZ2 HL Paper 3 Opt B Q12",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "12.  DNA is a biopolymer made up of nucleotides.  List two components of a nucleotide. [2]    . . . . . . . . . . . . . "
+    },
+    {
+      "id": "2018_May_HL_P3_Q18",
+      "source": "May 2018 TZ2 HL Paper 3 Opt C Q18",
+      "reason": "Retired syllabus topic (matched: dye-sensitized solar cell)",
+      "preview": "18.\t The conductivity of a germanium semiconductor can be increased by doping. (a)\t Draw the Lewis (electron dot) struct"
+    },
+    {
+      "id": "2018_May_HL_P3_Q19",
+      "source": "May 2018 TZ2 HL Paper 3 Opt D Q19",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "19.\t Drug testing is necessary to determine safe and effective doses. Distinguish between the lethal dose (LD50) and the"
+    },
+    {
+      "id": "2018_May_HL_P3_Q20",
+      "source": "May 2018 TZ2 HL Paper 3 Opt D Q20",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "20.\t (a)\t Penicillins and aspirin are important medicines. (i)\t Describe how penicillin combats bacterial infections. [2"
+    },
+    {
+      "id": "2018_May_HL_P3_Q21",
+      "source": "May 2018 TZ2 HL Paper 3 Opt D Q21",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "21.\t Morphine and diamorphine (heroin) are both opioids.      Explain why diamorphine is more potent than morphine using"
+    },
+    {
+      "id": "2018_May_HL_P3_Q22",
+      "source": "May 2018 TZ2 HL Paper 3 Opt D Q22",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "22.\t Excess acid in the stomach is often treated with calcium carbonate.  (a)\t Formulate a chemical equation for the neu"
+    },
+    {
+      "id": "2018_May_HL_P3_Q23",
+      "source": "May 2018 TZ2 HL Paper 3 Opt D Q23",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "23.\t Antiviral medications such as zanamivir (Relenza) are commonly available for consumer use. Identify the names of tw"
+    },
+    {
+      "id": "2018_May_HL_P3_Q24",
+      "source": "May 2018 TZ2 HL Paper 3 Opt D Q24",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "24.\t Drug synthesis often involves solvents.      Identify a common hazardous solvent and a Green solvent that could rep"
+    },
+    {
+      "id": "2018_May_HL_P3_Q25",
+      "source": "May 2018 TZ2 HL Paper 3 Opt D Q25",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "25.\t Taxol was originally obtained from the bark of the Pacific yew tree.      Outline how Green Chemistry has improved "
+    },
+    {
+      "id": "2018_May_HL_P3_Q26",
+      "source": "May 2018 TZ2 HL Paper 3 Opt D Q26",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "26.\t Radioisotopes can be used to treat a wide variety of diseases.  (a)\t Phosphorous-32 undergoes beta decay.  Formulat"
+    },
+    {
+      "id": "2018_May_HL_P3_Q27",
+      "source": "May 2018 TZ2 HL Paper 3 Opt D Q27",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "27.\t Ethanol can be detected by a variety of instruments.  (a)\t Fuel cells use an electrochemical process to determine t"
+    },
+    {
+      "id": "2018_May_HL_P3_Q3",
+      "source": "May 2018 TZ1 HL Paper 3 Opt A Q3",
+      "reason": "Retired syllabus topic (matched: liquid crystal)",
+      "preview": "3.\t Aluminium and high density polyethene (HDPE) are both materials readily found in the  kitchen, for example as saucep"
+    },
+    {
+      "id": "2018_May_HL_P3_Q6",
+      "source": "May 2018 TZ1 HL Paper 3 Opt B Q6",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "6.\t Insulin was the first protein to be sequenced.  It was determined that the end of one chain  had the primary structu"
+    },
+    {
+      "id": "2018_May_HL_P3_Q7",
+      "source": "May 2018 TZ1 HL Paper 3 Opt B Q7",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "7.\t Saturated lipids found in butter and unsaturated lipids found in fish oil readily become rancid. (a)\t Identify the t"
+    },
+    {
+      "id": "2018_May_HL_P3_Q8",
+      "source": "May 2018 TZ1 HL Paper 3 Opt B Q8",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "8.\t Polymers of glucose include starch and cellulose.\t (a)\t A person with diabetes suffering very low blood sugar (hypog"
+    },
+    {
+      "id": "2018_May_HL_P3_Q9",
+      "source": "May 2018 TZ1 HL Paper 3 Opt B Q9",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "9.\t An inhibitor reduces the rate, V, of an enzyme-catalysed reaction.\t (a)\t Explain with reference to the binding site "
+    },
+    {
+      "id": "2018_May_HL_P3_Q10",
+      "source": "May 2018 TZ1 HL Paper 3 Opt B Q10",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "10.\t Anthocyanins are naturally occurring plant pigments.  Depending on the solution pH,  they can exist as quinoidal ba"
+    },
+    {
+      "id": "2018_May_HL_P3_Q15",
+      "source": "May 2018 TZ1 HL Paper 3 Opt C Q15",
+      "reason": "Retired syllabus topic (matched: dye-sensitized solar cell)",
+      "preview": "15.\t Photovoltaic cells are much less hazardous than nuclear fission.\t \t \t \t \t \t (a)\t Early photovoltaic cells were base"
+    },
+    {
+      "id": "2018_May_HL_P3_Q16",
+      "source": "May 2018 TZ1 HL Paper 3 Opt D Q16",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "16.\t Many drugs, including aspirin, penicillin, codeine and taxol, have been modified from  compounds that occur natural"
+    },
+    {
+      "id": "2018_May_HL_P3_Q17",
+      "source": "May 2018 TZ1 HL Paper 3 Opt D Q17",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "17.\t Excess stomach acid can be counteracted by a range of medications.\t (a)\t (i)\t An antacid tablet contains 680\u2009mg of "
+    },
+    {
+      "id": "2018_May_HL_P3_Q18",
+      "source": "May 2018 TZ1 HL Paper 3 Opt D Q18",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "18.\t Antiviral drugs are a major research focus.\t \t Oseltamivir (Tamiflu) and zanamivir (Relenza) are used against flu v"
+    },
+    {
+      "id": "2018_May_HL_P3_Q19",
+      "source": "May 2018 TZ1 HL Paper 3 Opt D Q19",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "19.\t Radiotherapy is one type of treatment for cancer. (a)\t Describe how ionizing radiation destroys cancer cells. [2] \t"
+    },
+    {
+      "id": "2018_May_HL_P3_Q20",
+      "source": "May 2018 TZ1 HL Paper 3 Opt D Q20",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "20.\t Organic solvents are commonly used in the pharmaceutical industry.\t (a)\t Hexane and propanone have vapour pressures"
+    },
+    {
+      "id": "2017_Nov_SL_P3_Q2",
+      "source": "Nov 2017 TZ1 SL Paper 3 Opt A Q2",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) removed from 2025 syllabus (matched: antacid, antacids)",
+      "preview": "2.\t Antacids react with hydrochloric acid in the stomach to relieve indigestion.  A student  investigated different bran"
+    },
+    {
+      "id": "2017_Nov_SL_P3_Q8",
+      "source": "Nov 2017 TZ1 SL Paper 3 Opt B Q8",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "8.\t Consider the following lipid and carbohydrate. CH3(CH2)4(CH=CHCH2)2(CH2)6COOH\t CH2OH H OH H OH CH2OH OH H O \t Linole"
+    },
+    {
+      "id": "2017_Nov_SL_P3_Q9",
+      "source": "Nov 2017 TZ1 SL Paper 3 Opt B Q9",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "9.\t Lactose is a disaccharide formed by the condensation reaction of the monosaccharides  galactose and glucose. O OH H "
+    },
+    {
+      "id": "2017_Nov_SL_P3_Q10",
+      "source": "Nov 2017 TZ1 SL Paper 3 Opt B Q10",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "10.\t Vitamins can be water-soluble or fat-soluble. \t (a)\t Explain, at the molecular level, why vitamin D is soluble in f"
+    },
+    {
+      "id": "2017_Nov_SL_P3_Q11",
+      "source": "Nov 2017 TZ1 SL Paper 3 Opt B Q11",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "11.\t Enzyme activity depends on many factors.  Explain how pH change causes loss of activity of  an enzyme. [4] \t . . . "
+    },
+    {
+      "id": "2017_Nov_SL_P3_Q16",
+      "source": "Nov 2017 TZ1 SL Paper 3 Opt D Q16",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "16.\t Radioisotopes are used to diagnose and treat various diseases.  Explain the low  environmental impact of most medic"
+    },
+    {
+      "id": "2017_Nov_SL_P3_Q17",
+      "source": "Nov 2017 TZ1 SL Paper 3 Opt D Q17",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "17.\t Some analgesics are derived from compounds found in plants. \t (a)\t Aspirin is a mild analgesic derived from salicyl"
+    },
+    {
+      "id": "2017_Nov_SL_P3_Q18",
+      "source": "Nov 2017 TZ1 SL Paper 3 Opt D Q18",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "18.\t New drugs undergo thorough clinical trials before they are approved.   (a)  Outline the difference between the ther"
+    },
+    {
+      "id": "2017_Nov_SL_P3_Q19",
+      "source": "Nov 2017 TZ1 SL Paper 3 Opt D Q19",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "19.  Oseltamivir (Tamiflu) and zanamivir (Relenza) are antiviral drugs used to prevent flu. \t (a)\t State the names of tw"
+    },
+    {
+      "id": "2017_Nov_SL_P3_Q20",
+      "source": "Nov 2017 TZ1 SL Paper 3 Opt D Q20",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "20.\t Excess acid in the stomach can cause discomfort and more serious health issues. \t (a)\t Explain how ranitidine (Zant"
+    },
+    {
+      "id": "2017_Nov_SL_P3_Q21",
+      "source": "Nov 2017 TZ1 SL Paper 3 Opt D Q21",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "21.\t Molecules of antibiotics often contain a beta-lactam ring.  Explain the importance of the beta- lactam ring in the "
+    },
+    {
+      "id": "2017_Nov_HL_P3_Q2",
+      "source": "Nov 2017 TZ1 HL Paper 3 Opt A Q2",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) removed from 2025 syllabus (matched: antacid, antacids)",
+      "preview": "2.\t Antacids react with hydrochloric acid in the stomach to relieve indigestion.  A student  investigated different bran"
+    },
+    {
+      "id": "2017_Nov_HL_P3_Q6",
+      "source": "Nov 2017 TZ1 HL Paper 3 Opt A Q6",
+      "reason": "Retired syllabus topic (matched: superconductor)",
+      "preview": "6.\t The development of materials with unique properties is critical to advances in industry. \t (a)\t Outline two properti"
+    },
+    {
+      "id": "2017_Nov_HL_P3_Q10",
+      "source": "Nov 2017 TZ1 HL Paper 3 Opt B Q10",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "10.\t Consider the following lipid and carbohydrate. CH3(CH2)4(CH=CHCH2)2(CH2)6COOH\t CH2OH H OH H OH CH2OH OH H O \t Linol"
+    },
+    {
+      "id": "2017_Nov_HL_P3_Q11",
+      "source": "Nov 2017 TZ1 HL Paper 3 Opt B Q11",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "11.\t An enzyme catalyses the conversion of succinate to fumarate ions in a cell, as part of the  process of respiration."
+    },
+    {
+      "id": "2017_Nov_HL_P3_Q12",
+      "source": "Nov 2017 TZ1 HL Paper 3 Opt B Q12",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "12.\t Lactose is a disaccharide formed by the condensation reaction of the monosaccharides  galactose and glucose. O OH H"
+    },
+    {
+      "id": "2017_Nov_HL_P3_Q13",
+      "source": "Nov 2017 TZ1 HL Paper 3 Opt B Q13",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "13.\t The stability of DNA is due to interactions of its hydrophilic and hydrophobic components. O\u2013 O O NH2 P N O \u2013O HN O"
+    },
+    {
+      "id": "2017_Nov_HL_P3_Q14",
+      "source": "Nov 2017 TZ1 HL Paper 3 Opt B Q14",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "14.\t The heme groups in cytochromes contain iron ions that are involved in the reduction of  molecular oxygen. \t (a)\t St"
+    },
+    {
+      "id": "2017_Nov_HL_P3_Q15",
+      "source": "Nov 2017 TZ1 HL Paper 3 Opt B Q15",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "15.\t Vitamins can be water-soluble or fat-soluble. \t (a)\t Explain, at the molecular level, why vitamin D is soluble in f"
+    },
+    {
+      "id": "2017_Nov_HL_P3_Q19",
+      "source": "Nov 2017 TZ1 HL Paper 3 Opt C Q19",
+      "reason": "Retired syllabus topic (matched: dye-sensitized solar cell)",
+      "preview": "19.\t Vegetable oils and the sun can be used as sources of energy. \t (a)\t Vegetable oils are too viscous for use as liqui"
+    },
+    {
+      "id": "2017_Nov_HL_P3_Q21",
+      "source": "Nov 2017 TZ1 HL Paper 3 Opt D Q21",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "21.\t Lutetium-177 is used in radiotherapy.  It emits beta radiation when it decays. \t (a)\t State a nuclear equation to s"
+    },
+    {
+      "id": "2017_Nov_HL_P3_Q22",
+      "source": "Nov 2017 TZ1 HL Paper 3 Opt D Q22",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "22.\t Ibuprofen and paracetamol are mild analgesics.  One of the IR spectra below belongs to  ibuprofen and the other to "
+    },
+    {
+      "id": "2017_Nov_HL_P3_Q23",
+      "source": "Nov 2017 TZ1 HL Paper 3 Opt D Q23",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "23.\t Some drugs are extracted from natural sources and others are synthetic. \t (a)\t New drugs undergo thorough clinical "
+    },
+    {
+      "id": "2017_Nov_HL_P3_Q24",
+      "source": "Nov 2017 TZ1 HL Paper 3 Opt D Q24",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "24.  Oseltamivir (Tamiflu) and zanamivir (Relenza) are antiviral drugs used to prevent flu. State the names of two funct"
+    },
+    {
+      "id": "2017_Nov_HL_P3_Q25",
+      "source": "Nov 2017 TZ1 HL Paper 3 Opt D Q25",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "25.\t Excess acid in the stomach can cause discomfort and more serious health issues. \t (a)\t Explain how ranitidine (Zant"
+    },
+    {
+      "id": "2017_Nov_HL_P3_Q26",
+      "source": "Nov 2017 TZ1 HL Paper 3 Opt D Q26",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "26.\t Molecules of antibiotics often contain a beta-lactam ring.  Explain the importance of the  beta-lactam ring in the "
+    },
+    {
+      "id": "2017_Nov_HL_P3_Q27",
+      "source": "Nov 2017 TZ1 HL Paper 3 Opt D Q27",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "27.  Ethanol slows down the reaction time of a driver leading to traffic accidents.  Explain how  the concentration of e"
+    },
+    {
+      "id": "2017_May_SL_P3_Q11",
+      "source": "May 2017 TZ1 SL Paper 3 Opt B Q11",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "11.\t Lipids and carbohydrates contain the same elements but have different properties. \t (a)\t List the building blocks o"
+    },
+    {
+      "id": "2017_May_SL_P3_Q12",
+      "source": "May 2017 TZ1 SL Paper 3 Opt B Q12",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "12.\t Sugars exist in both straight chain and ring forms. \t (a)\t (i)\t Deduce the straight chain structure of ribose from "
+    },
+    {
+      "id": "2017_May_SL_P3_Q13",
+      "source": "May 2017 TZ1 SL Paper 3 Opt B Q13",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "13.\t Peptidase enzyme in the digestive system hydrolyses peptide bonds. \t (a)\t Identify the type of metabolic process th"
+    },
+    {
+      "id": "2017_May_SL_P3_Q18",
+      "source": "May 2017 TZ1 SL Paper 3 Opt D Q18",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "18.\t Medicines have a variety of different effects on the body and act at the molecular level. \t (a)\t Dose response curv"
+    },
+    {
+      "id": "2017_May_SL_P3_Q19",
+      "source": "May 2017 TZ1 SL Paper 3 Opt D Q19",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "19.\t Solubility plays an important role in the bioavailability of drugs in the body. \t (a)\t Suggest why aspirin is sligh"
+    },
+    {
+      "id": "2017_May_SL_P3_Q20",
+      "source": "May 2017 TZ1 SL Paper 3 Opt D Q20",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "20.\t The buffer formed by carbon dioxide, CO2\u2009(aq) and hydrogen carbonate ion, HCO3 \u2212\u2009(aq),  plays an important role in "
+    },
+    {
+      "id": "2017_May_SL_P3_Q21",
+      "source": "May 2017 TZ1 SL Paper 3 Opt D Q21",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "21.\t Antiviral drugs are designed to take different approaches to fighting viruses. \t (a)\t Outline how oseltamivir (Tami"
+    },
+    {
+      "id": "2017_May_SL_P3_Q6",
+      "source": "May 2017 TZ2 SL Paper 3 Opt A Q6",
+      "reason": "Retired syllabus topic (matched: liquid crystal)",
+      "preview": "6.\t Liquid Crystal on Silicon, LCoS, uses liquid crystals to control pixel brightness.  The degree  of rotation of plane"
+    },
+    {
+      "id": "2017_May_SL_P3_Q7",
+      "source": "May 2017 TZ2 SL Paper 3 Opt B Q7",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "7.\t The structures of the amino acids cysteine, glutamine and lysine are given in section 33 of  the data booklet. \t (a)"
+    },
+    {
+      "id": "2017_May_SL_P3_Q8",
+      "source": "May 2017 TZ2 SL Paper 3 Opt B Q8",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "8.\t Sunflower oil contains stearic, oleic and linoleic fatty acids.  The structural formulas of these  acids are given i"
+    },
+    {
+      "id": "2017_May_SL_P3_Q9",
+      "source": "May 2017 TZ2 SL Paper 3 Opt B Q9",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "9.\t A chemical reaction occurs when a phospholipid is heated with excess sodium hydroxide. H2C O HC O H2C O P O O \u2212 O CH"
+    },
+    {
+      "id": "2017_May_SL_P3_Q10",
+      "source": "May 2017 TZ2 SL Paper 3 Opt B Q10",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "10.\t Monosaccharides can combine to form disaccharides and polysaccharides. H C O C H OH C HO H C OH H C OH H CH2OH O CH"
+    },
+    {
+      "id": "2017_May_SL_P3_Q11",
+      "source": "May 2017 TZ2 SL Paper 3 Opt B Q11",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "11.\t Suggest, in terms of its structure, why vitamin D is fat-soluble using section 35 of the  data booklet. [1] \t . . ."
+    },
+    {
+      "id": "2017_May_SL_P3_Q15",
+      "source": "May 2017 TZ2 SL Paper 3 Opt D Q15",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "15.\t Aspirin is one of the most widely used drugs in the world. \t (a)\t Aspirin was synthesized from 2.65\u2009g of salicylic "
+    },
+    {
+      "id": "2017_May_SL_P3_Q16",
+      "source": "May 2017 TZ2 SL Paper 3 Opt D Q16",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "16.\t The structures of morphine, diamorphine and codeine are given in section 37 of the  data booklet. \t (a)\t Explain wh"
+    },
+    {
+      "id": "2017_May_SL_P3_Q17",
+      "source": "May 2017 TZ2 SL Paper 3 Opt D Q17",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "17.\t A number of drugs have been developed to treat excess acidity in the stomach. \t (a)\t Two drugs are ranitidine (Zant"
+    },
+    {
+      "id": "2017_May_SL_P3_Q18",
+      "source": "May 2017 TZ2 SL Paper 3 Opt D Q18",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "18.\t The structures of oseltamivir (Tamiflu) and zanamivir (Relenza) are given in section 37 of the  data booklet. \t (a)"
+    },
+    {
+      "id": "2017_May_SL_P3_Q19",
+      "source": "May 2017 TZ2 SL Paper 3 Opt D Q19",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "19.\t The production of many pharmaceutical drugs involves the use of solvents. \t (a)\t Suggest one problem associated wit"
+    },
+    {
+      "id": "2017_May_SL_P1_Q25",
+      "source": "May 2017 TZ1 SL Paper 1 Q25",
+      "reason": "Retired syllabus topic (matched: aspirin)",
+      "preview": "25.\t What are the functional groups in the aspirin molecule? C O O O O C C C C C C C C H H H H H H H H I.\t Ether II.\t Ca"
+    },
+    {
+      "id": "2017_May_HL_P1_Q32",
+      "source": "May 2017 TZ1 HL Paper 1 Q32",
+      "reason": "Retired syllabus topic (matched: aspirin)",
+      "preview": "32.\t What are the functional groups in the aspirin molecule? C O O O O C C C C C C C C H H H H H H H H I.  Ether II.\t Ca"
+    },
+    {
+      "id": "2017_May_HL_P3_Q5",
+      "source": "May 2017 TZ2 HL Paper 3 Opt A Q5",
+      "reason": "Retired syllabus topic (matched: superconductor)",
+      "preview": "5.\t Rhodium and palladium are often used together in catalytic converters.  Rhodium is a good  reduction catalyst wherea"
+    },
+    {
+      "id": "2017_May_HL_P3_Q6",
+      "source": "May 2017 TZ2 HL Paper 3 Opt A Q6",
+      "reason": "Retired syllabus topic (matched: liquid crystal)",
+      "preview": "6.\t Liquid Crystal on Silicon, LCoS, uses liquid crystals to control pixel brightness.  The degree  of rotation of plane"
+    },
+    {
+      "id": "2017_May_HL_P3_Q8",
+      "source": "May 2017 TZ2 HL Paper 3 Opt B Q8",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "8.\t The structures of the amino acids cysteine, glutamine and lysine are given in section 33 of  the data booklet. \t (a)"
+    },
+    {
+      "id": "2017_May_HL_P3_Q9",
+      "source": "May 2017 TZ2 HL Paper 3 Opt B Q9",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "9.\t Sunflower oil contains stearic, oleic and linoleic fatty acids.  The structural formulas of these  acids are given i"
+    },
+    {
+      "id": "2017_May_HL_P3_Q10",
+      "source": "May 2017 TZ2 HL Paper 3 Opt B Q10",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "10.\t A chemical reaction occurs when a phospholipid is heated with excess sodium hydroxide. H2C O HC O H2C O P O O \u2212 O C"
+    },
+    {
+      "id": "2017_May_HL_P3_Q11",
+      "source": "May 2017 TZ2 HL Paper 3 Opt B Q11",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "11.\t Monosaccharides can combine to form disaccharides and polysaccharides. H C O C H OH C HO H C OH H C OH H CH2OH O CH"
+    },
+    {
+      "id": "2017_May_HL_P3_Q12",
+      "source": "May 2017 TZ2 HL Paper 3 Opt B Q12",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "12.\t Retinal, one of the many forms of vitamin A, reacts with opsin to produce rhodopsin.   Refer to section 35 of the d"
+    },
+    {
+      "id": "2017_May_HL_P3_Q13",
+      "source": "May 2017 TZ2 HL Paper 3 Opt B Q13",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "13.\t The graph of the rate of an enzyme-catalyzed reaction is shown below. 10 0 20 30 40 0.50 0.40 0.30 0.20 0.10 Substr"
+    },
+    {
+      "id": "2017_May_HL_P3_Q14",
+      "source": "May 2017 TZ2 HL Paper 3 Opt B Q14",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "14.\t A hemoglobin-oxygen saturation curve does not follow the same model as  enzyme-substrate reactions. % saturation O2"
+    },
+    {
+      "id": "2017_May_HL_P3_Q15",
+      "source": "May 2017 TZ2 HL Paper 3 Opt B Q15",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "15.\t DNA is a complex molecule. \t (a)\t Outline how its structure allows it to be negatively charged in the body. [1] \t ."
+    },
+    {
+      "id": "2017_May_HL_P3_Q19",
+      "source": "May 2017 TZ2 HL Paper 3 Opt C Q19",
+      "reason": "Retired syllabus topic (matched: dye-sensitized solar cell)",
+      "preview": "19.\t A Gr\u00e4tzel dye-sensitized solar cell (DSSC) and a silicon based photovoltaic cell both convert  solar energy into el"
+    },
+    {
+      "id": "2017_May_HL_P3_Q20",
+      "source": "May 2017 TZ2 HL Paper 3 Opt D Q20",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "20.\t Aspirin is one of the most widely used drugs in the world. \t (a)\t Aspirin was synthesized from 2.65\u2009g of salicylic "
+    },
+    {
+      "id": "2017_May_HL_P3_Q21",
+      "source": "May 2017 TZ2 HL Paper 3 Opt D Q21",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "21.\t The structures of morphine, diamorphine and codeine are given in section 37 of the  data booklet. \t (a)\t Explain wh"
+    },
+    {
+      "id": "2017_May_HL_P3_Q22",
+      "source": "May 2017 TZ2 HL Paper 3 Opt D Q22",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "22.\t A number of drugs have been developed to treat excess acidity in the stomach. \t (a)\t Outline how ranitidine (Zantac"
+    },
+    {
+      "id": "2017_May_HL_P3_Q23",
+      "source": "May 2017 TZ2 HL Paper 3 Opt D Q23",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "23.\t The structures of oseltamivir (Tamiflu) and zanamivir (Relenza) are given in section 37 of the  data booklet. \t (a)"
+    },
+    {
+      "id": "2017_May_HL_P3_Q24",
+      "source": "May 2017 TZ2 HL Paper 3 Opt D Q24",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "24.\t The production of many pharmaceutical drugs involves the use of solvents. Suggest one problem associated with chlor"
+    },
+    {
+      "id": "2017_May_HL_P3_Q25",
+      "source": "May 2017 TZ2 HL Paper 3 Opt D Q25",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "25.\t Taxol is produced using a chiral auxiliary.  Describe how the chiral auxiliary functions to  produce the desired pr"
+    },
+    {
+      "id": "2017_May_HL_P3_Q26",
+      "source": "May 2017 TZ2 HL Paper 3 Opt D Q26",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "26.\t (a)\t Targeted Alpha Therapy (TAT) is a technique that involves using alpha-radiation to treat  leukemia and other d"
+    },
+    {
+      "id": "2017_May_HL_P3_Q8",
+      "source": "May 2017 TZ1 HL Paper 3 Opt A Q8",
+      "reason": "Retired syllabus topic (matched: superconductivity)",
+      "preview": "8.\t (a)\t Lanthanum has a hexagonal close packed (hcp) crystal structure.  State the coordination  number of each lanthan"
+    },
+    {
+      "id": "2017_May_HL_P3_Q12",
+      "source": "May 2017 TZ1 HL Paper 3 Opt B Q12",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "12.\t Lipids and carbohydrates contain the same elements but have different properties. \t The drain pipe of a kitchen sin"
+    },
+    {
+      "id": "2017_May_HL_P3_Q13",
+      "source": "May 2017 TZ1 HL Paper 3 Opt B Q13",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "13.\t Sugars exist in both straight chain and ring forms. \t (a)\t (i)\t Deduce the straight chain structure of ribose from "
+    },
+    {
+      "id": "2017_May_HL_P3_Q14",
+      "source": "May 2017 TZ1 HL Paper 3 Opt B Q14",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "14.\t Peptidase enzyme in the digestive system hydrolyses peptide bonds. \t (a)\t Identify the type of metabolic process th"
+    },
+    {
+      "id": "2017_May_HL_P3_Q15",
+      "source": "May 2017 TZ1 HL Paper 3 Opt B Q15",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "15.\t Analysis of amino acid and protein concentration is a key area of biological research. \t The titration curve of aqu"
+    },
+    {
+      "id": "2017_May_HL_P3_Q16",
+      "source": "May 2017 TZ1 HL Paper 3 Opt B Q16",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "16.\t Biological pigments include a variety of chemical structures with diverse functions. \t The graph shows the conversi"
+    },
+    {
+      "id": "2017_May_HL_P3_Q17",
+      "source": "May 2017 TZ1 HL Paper 3 Opt B Q17",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "17.\t Vision is dependent on retinol (vitamin A) present in retina cells.  Retinol is oxidized to the  photosensitive che"
+    },
+    {
+      "id": "2017_May_HL_P3_Q19",
+      "source": "May 2017 TZ1 HL Paper 3 Opt C Q19",
+      "reason": "Retired syllabus topic (matched: dye-sensitized solar cell)",
+      "preview": "19.\t Dye-Sensitized Solar Cells (DSSCs) use organic dyes.  Their interaction with light has some  similarities to photos"
+    },
+    {
+      "id": "2017_May_HL_P3_Q24",
+      "source": "May 2017 TZ1 HL Paper 3 Opt D Q24",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "24.\t Medicines have a variety of different effects on the body and act at the molecular level. \t (a)\t Dose response curv"
+    },
+    {
+      "id": "2017_May_HL_P3_Q25",
+      "source": "May 2017 TZ1 HL Paper 3 Opt D Q25",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "25.\t Solubility plays an important role in the bioavailability of drugs in the body. \t (a)\t Suggest why aspirin is sligh"
+    },
+    {
+      "id": "2017_May_HL_P3_Q26",
+      "source": "May 2017 TZ1 HL Paper 3 Opt D Q26",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "26.\t The buffer formed by carbon dioxide, CO2\u2009(aq) and hydrogen carbonate ion, HCO3 \u2212\u2009(aq),  plays an important role in "
+    },
+    {
+      "id": "2017_May_HL_P3_Q27",
+      "source": "May 2017 TZ1 HL Paper 3 Opt D Q27",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "27.\t Antiviral drugs are designed to take different approaches to fighting viruses. \t (a)\t Outline how oseltamivir (Tami"
+    },
+    {
+      "id": "2017_May_HL_P3_Q28",
+      "source": "May 2017 TZ1 HL Paper 3 Opt D Q28",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "28.\t A polarimeter can be used to determine the optical rotation of an optically active substance.  \t (a)\t Describe what"
+    },
+    {
+      "id": "2017_May_HL_P3_Q29",
+      "source": "May 2017 TZ1 HL Paper 3 Opt D Q29",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "29.\t Nuclear radiation is dangerous because of its ability to damage cells but it can also be used  in nuclear medicine."
+    },
+    {
+      "id": "2016_Nov_SL_P3_Q7",
+      "source": "Nov 2016 TZ1 SL Paper 3 Opt A Q7",
+      "reason": "Retired syllabus topic (matched: liquid crystal)",
+      "preview": "7.\t Liquid crystals have many applications. \t (a)\t Outline how a lyotropic liquid crystal differs from a thermotropic li"
+    },
+    {
+      "id": "2016_Nov_SL_P3_Q8",
+      "source": "Nov 2016 TZ1 SL Paper 3 Opt B Q8",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "8.\t Lipids are an important part of the human diet. \t (a)\t Fatty acids react with glycerol to form fats and oils.  State"
+    },
+    {
+      "id": "2016_Nov_SL_P3_Q9",
+      "source": "Nov 2016 TZ1 SL Paper 3 Opt B Q9",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "9.\t Carbohydrates are energy-rich molecules which can be synthesized in some plant cells from  inorganic compounds. \t (a"
+    },
+    {
+      "id": "2016_Nov_SL_P3_Q10",
+      "source": "Nov 2016 TZ1 SL Paper 3 Opt B Q10",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "10.\t Amino acids are usually identified by their common names.  Use section 33 of the  data booklet. \t (a)\t State the IU"
+    },
+    {
+      "id": "2016_Nov_SL_P3_Q14",
+      "source": "Nov 2016 TZ1 SL Paper 3 Opt C Q14",
+      "reason": "Retired syllabus topic (matched: triglyceride)",
+      "preview": "14.\t Biofuels are renewable energy sources derived mainly from plants. \t (a)\t State the equation for the complete transe"
+    },
+    {
+      "id": "2016_Nov_SL_P3_Q16",
+      "source": "Nov 2016 TZ1 SL Paper 3 Opt D Q16",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "16.\t Penicillin is an antibiotic which contains a beta-lactam ring.  Its general structure is  shown below. R C H N O N "
+    },
+    {
+      "id": "2016_Nov_SL_P3_Q17",
+      "source": "Nov 2016 TZ1 SL Paper 3 Opt D Q17",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "17.\t Oseltamivir (Tamiflu) and zanamivir (Relenza) are both used as antivirals to help prevent the  spread of the flu vi"
+    },
+    {
+      "id": "2016_Nov_SL_P3_Q18",
+      "source": "Nov 2016 TZ1 SL Paper 3 Opt D Q18",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "18.\t The mild analgesic aspirin can be prepared in the laboratory from salicylic acid. (CH3CO)2O + HOC6H4COOH \u2192 CH3CO2C6"
+    },
+    {
+      "id": "2016_Nov_SL_P3_Q19",
+      "source": "Nov 2016 TZ1 SL Paper 3 Opt D Q19",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "19.\t Excess stomach acid leads to medical conditions that affect many people worldwide.   These conditions can be treate"
+    },
+    {
+      "id": "2016_Nov_SL_P3_Q20",
+      "source": "Nov 2016 TZ1 SL Paper 3 Opt D Q20",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "20.\t Methadone, a synthetic opioid, binds to opioid receptors in the brain. CH2 O CH2 H3C CH H3C N H3C CH3 Methadone \t ("
+    },
+    {
+      "id": "2016_Nov_HL_P3_Q7",
+      "source": "Nov 2016 TZ1 HL Paper 3 Opt A Q7",
+      "reason": "Retired syllabus topic (matched: liquid crystal)",
+      "preview": "7.\t Liquid crystals have many applications. \t Outline how a lyotropic liquid crystal differs from a thermotropic liquid "
+    },
+    {
+      "id": "2016_Nov_HL_P3_Q9",
+      "source": "Nov 2016 TZ1 HL Paper 3 Opt A Q9",
+      "reason": "Retired syllabus topic (matched: superconductor)",
+      "preview": "9.\t Superconductors are materials that conduct electric current with practically zero resistance. \t (a)\t Describe the Me"
+    },
+    {
+      "id": "2016_Nov_HL_P3_Q11",
+      "source": "Nov 2016 TZ1 HL Paper 3 Opt B Q11",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "11.\t Lipids are an important part of the human diet. \t (a)\t Fatty acids react with glycerol to form fats and oils.  Stat"
+    },
+    {
+      "id": "2016_Nov_HL_P3_Q12",
+      "source": "Nov 2016 TZ1 HL Paper 3 Opt B Q12",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "12.\t Carbohydrates are energy-rich molecules which can be synthesized in some plant cells from  inorganic compounds. \t ("
+    },
+    {
+      "id": "2016_Nov_HL_P3_Q13",
+      "source": "Nov 2016 TZ1 HL Paper 3 Opt B Q13",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "13.\t Amino acids are usually identified by their common names.  Use section 33 of the  data booklet. \t (a)\t State the IU"
+    },
+    {
+      "id": "2016_Nov_HL_P3_Q14",
+      "source": "Nov 2016 TZ1 HL Paper 3 Opt B Q14",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "14.\t Glucokinase and hexokinase are both enzymes that catalyse the conversion of glucose to  glucose-6-phosphate.  The e"
+    },
+    {
+      "id": "2016_Nov_HL_P3_Q15",
+      "source": "Nov 2016 TZ1 HL Paper 3 Opt B Q15",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "15.\t The structure of DNA (deoxyribonucleic acid) has been studied in many different ways. \t (a)\t State the name of the "
+    },
+    {
+      "id": "2016_Nov_HL_P3_Q16",
+      "source": "Nov 2016 TZ1 HL Paper 3 Opt B Q16",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "16.\t Anthocyanins are pigments that give colour to many flowers and fruits.  The red colour of ripe  strawberries is mai"
+    },
+    {
+      "id": "2016_Nov_HL_P3_Q20",
+      "source": "Nov 2016 TZ1 HL Paper 3 Opt C Q20",
+      "reason": "Retired syllabus topic (matched: triglyceride)",
+      "preview": "20.\t Biofuels are renewable energy sources derived mainly from plants. \t State the equation for the complete transesteri"
+    },
+    {
+      "id": "2016_Nov_HL_P3_Q21",
+      "source": "Nov 2016 TZ1 HL Paper 3 Opt C Q21",
+      "reason": "Retired syllabus topic (matched: dye-sensitized solar cell)",
+      "preview": "21.\t A fuel cell is an energy conversion device that generates electricity from a spontaneous  redox reaction. \t (a)\t Th"
+    },
+    {
+      "id": "2016_Nov_HL_P3_Q23",
+      "source": "Nov 2016 TZ1 HL Paper 3 Opt D Q23",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "23.\t Penicillin is an antibiotic which contains a beta-lactam ring.  Its general structure is  shown below. R C H N O N "
+    },
+    {
+      "id": "2016_Nov_HL_P3_Q24",
+      "source": "Nov 2016 TZ1 HL Paper 3 Opt D Q24",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "24.\t Oseltamivir (Tamiflu) and zanamivir (Relenza) are both used as antivirals to help prevent the  spread of the flu vi"
+    },
+    {
+      "id": "2016_Nov_HL_P3_Q25",
+      "source": "Nov 2016 TZ1 HL Paper 3 Opt D Q25",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "25.\t The mild analgesic aspirin can be prepared in the laboratory from salicylic acid. (CH3CO)2O + HOC6H4COOH \u2192 CH3CO2C6"
+    },
+    {
+      "id": "2016_Nov_HL_P3_Q26",
+      "source": "Nov 2016 TZ1 HL Paper 3 Opt D Q26",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "26.\t Excess stomach acid leads to medical conditions that affect many people worldwide.   These conditions can be treate"
+    },
+    {
+      "id": "2016_Nov_HL_P3_Q27",
+      "source": "Nov 2016 TZ1 HL Paper 3 Opt D Q27",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "27.\t Methadone, a synthetic opioid, binds to opioid receptors in the brain. CH2 O CH2 H3C CH H3C N H3C CH3 Methadone \t ("
+    },
+    {
+      "id": "2016_Nov_HL_P3_Q28",
+      "source": "Nov 2016 TZ1 HL Paper 3 Opt D Q28",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "28.\t Technetium-99m is the most widely used medical radioisotope.  It is usually made on-site in  medical facilities fro"
+    },
+    {
+      "id": "2016_Nov_HL_P3_Q29",
+      "source": "Nov 2016 TZ1 HL Paper 3 Opt D Q29",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "29.\t The use of performance-enhancing drugs presents a challenge in the world of competitive  sports.  New regulations h"
+    },
+    {
+      "id": "2016_May_SL_P3_Q6",
+      "source": "May 2016 TZ1 SL Paper 3 Opt A Q6",
+      "reason": "Retired syllabus topic (matched: liquid crystal)",
+      "preview": "6.\t Biphenyl nitriles, such as the molecule shown below, were the first thermotropic liquid crystal  molecules to be syn"
+    },
+    {
+      "id": "2016_May_SL_P3_Q8",
+      "source": "May 2016 TZ1 SL Paper 3 Opt B Q8",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "8.\t Dehydroepiandrosterone (DHEA) is a substance banned under the World Anti-Doping Code. \t (a)\t Steroid abuse has certa"
+    },
+    {
+      "id": "2016_May_SL_P3_Q9",
+      "source": "May 2016 TZ1 SL Paper 3 Opt B Q9",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "9.\t Amino acids, shown in section 33 of the data booklet, can be combined to form polypeptides  and proteins. \t (a)\t Ded"
+    },
+    {
+      "id": "2016_May_SL_P3_Q10",
+      "source": "May 2016 TZ1 SL Paper 3 Opt B Q10",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "10.\t Glucose, C6H12O6, is a monosaccharide that our body can use as a source of energy. \t (a)\t Deduce the equation for t"
+    },
+    {
+      "id": "2016_May_SL_P3_Q16",
+      "source": "May 2016 TZ1 SL Paper 3 Opt D Q16",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "16.\t Penicillin was one of the first antibiotics to be isolated and identified for its ability to treat  bacterial infec"
+    },
+    {
+      "id": "2016_May_SL_P3_Q17",
+      "source": "May 2016 TZ1 SL Paper 3 Opt D Q17",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "17.\t Opiates have been used for thousands of years to alleviate pain.  The structures of opiates  are found in section 3"
+    },
+    {
+      "id": "2016_May_SL_P3_Q18",
+      "source": "May 2016 TZ1 SL Paper 3 Opt D Q18",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "18.\t Magnesium hydroxide is the active ingredient in a common antacid. \t (a)\t Formulate the equation for the neutralizat"
+    },
+    {
+      "id": "2016_May_SL_P3_Q19",
+      "source": "May 2016 TZ1 SL Paper 3 Opt D Q19",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "19.\t Radioactive isotopes are used in a variety of medical procedures including medical imaging  and radiotherapy. \t (a)"
+    },
+    {
+      "id": "2016_May_HL_P3_Q6",
+      "source": "May 2016 TZ1 HL Paper 3 Opt A Q6",
+      "reason": "Retired syllabus topic (matched: liquid crystal)",
+      "preview": "6.\t Biphenyl nitriles, such as the molecule shown below, were the first thermotropic liquid crystal  molecules to be syn"
+    },
+    {
+      "id": "2016_May_HL_P3_Q9",
+      "source": "May 2016 TZ1 HL Paper 3 Opt B Q9",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "9.\t Dehydroepiandrosterone (DHEA) is a substance banned under the World Anti-Doping Code. \t (a)\t (i)\t State the name of "
+    },
+    {
+      "id": "2016_May_HL_P3_Q10",
+      "source": "May 2016 TZ1 HL Paper 3 Opt B Q10",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "10.\t Amino acids, shown in section 33 of the data booklet, can be combined to form polypeptides  and proteins. \t (a)\t De"
+    },
+    {
+      "id": "2016_May_HL_P3_Q11",
+      "source": "May 2016 TZ1 HL Paper 3 Opt B Q11",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "11.\t Glucose, C6H12O6, is a monosaccharide that our body can use as a source of energy. \t (a)\t Deduce the equation for t"
+    },
+    {
+      "id": "2016_May_HL_P3_Q12",
+      "source": "May 2016 TZ1 HL Paper 3 Opt B Q12",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "12.\t Enzymes play an important role in the functioning of our bodies. \t (a)\t The graph below shows a Michaelis\u2013Menten pl"
+    },
+    {
+      "id": "2016_May_HL_P3_Q13",
+      "source": "May 2016 TZ1 HL Paper 3 Opt B Q13",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "13.\t Spinach is an excellent source of vitamins A and C. \t (a)\t Identify one structural characteristic in vitamins A and"
+    },
+    {
+      "id": "2016_May_HL_P3_Q14",
+      "source": "May 2016 TZ1 HL Paper 3 Opt B Q14",
+      "reason": "Legacy Paper 3 Option B (Biochemistry) is retired in 2025",
+      "preview": "14.\t Hemoglobin contains a heme group with an iron(II) ion. \t (a)\t Outline how the oxygen saturation of hemoglobin is af"
+    },
+    {
+      "id": "2016_May_HL_P3_Q21",
+      "source": "May 2016 TZ1 HL Paper 3 Opt C Q21",
+      "reason": "Retired syllabus topic (matched: dye-sensitized solar cell)",
+      "preview": "21.\t Traditional photovoltaic cells are made from n-type and p-type semiconductors. \t (a)\t State how n-type and p-type d"
+    },
+    {
+      "id": "2016_May_HL_P3_Q22",
+      "source": "May 2016 TZ1 HL Paper 3 Opt D Q22",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "22.\t Penicillin was one of the first antibiotics to be isolated and identified for its ability to treat  bacterial infec"
+    },
+    {
+      "id": "2016_May_HL_P3_Q23",
+      "source": "May 2016 TZ1 HL Paper 3 Opt D Q23",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "23.\t Opiates have been used for thousands of years to alleviate pain.  The structures of opiates  are found in section 3"
+    },
+    {
+      "id": "2016_May_HL_P3_Q24",
+      "source": "May 2016 TZ1 HL Paper 3 Opt D Q24",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "24.\t Magnesium hydroxide is the active ingredient in a common antacid. \t (a)\t Formulate the equation for the neutralizat"
+    },
+    {
+      "id": "2016_May_HL_P3_Q25",
+      "source": "May 2016 TZ1 HL Paper 3 Opt D Q25",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "25.\t Radioactive isotopes are used in a variety of medical procedures including medical imaging  and radiotherapy. \t (a)"
+    },
+    {
+      "id": "2016_May_HL_P3_Q26",
+      "source": "May 2016 TZ1 HL Paper 3 Opt D Q26",
+      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
+      "preview": "26.\t In recent years several antiviral medications have been produced.  One of these medications  is oseltamivir (Tamifl"
+    }
+  ]
+}

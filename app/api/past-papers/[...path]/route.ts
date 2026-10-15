@@ -6,6 +6,7 @@ import v2Assets from '../../../../public/savemyexams_assets.json';
 
 const GITHUB_RELEASE_V1 = 'https://github.com/fr3ddykru3g3r/ib-vault/releases/download/v1.0';
 const GITHUB_RELEASE_V2 = 'https://github.com/fr3ddykru3g3r/ib-vault/releases/download/v2.0';
+const GITHUB_RELEASE_V3_TOPICALS = process.env.NEXT_PUBLIC_TOPICALS_CDN_BASE || 'https://github.com/fr3ddykru3g3r/ib-vault/releases/download/v3.0-topicals';
 
 const v1Set = new Set(v1Assets as string[]);
 const v2Set = new Set(v2Assets as string[]);
@@ -132,7 +133,90 @@ export async function GET(
   });
   const filename = pathSegments[pathSegments.length - 1];
 
-  // 1. Instant check in 2025-past-papers vault via pre-indexed static map (exact + normalized)
+  // 0. Check if request is for a Topical Past Paper (Physics, Chemistry, Math)
+  let topicalSubject: 'physics' | 'chemistry' | 'math' | null = null;
+  let topicalFilename: string | null = null;
+
+  if (pathSegments[0] === 'topicals' && pathSegments.length >= 3) {
+    const s = pathSegments[1].replace('-topicals', '').toLowerCase();
+    if (s === 'physics' || s === 'chemistry' || s === 'math') {
+      topicalSubject = s;
+      topicalFilename = pathSegments.slice(2).join('/');
+    }
+  } else if (
+    pathSegments[0] &&
+    (pathSegments[0].endsWith('-topicals') || ['physics', 'chemistry', 'math'].includes(pathSegments[0].toLowerCase()))
+  ) {
+    const s = pathSegments[0].replace('-topicals', '').toLowerCase();
+    if (s === 'physics' || s === 'chemistry' || s === 'math') {
+      topicalSubject = s;
+      topicalFilename = pathSegments.slice(1).join('/');
+    }
+  }
+
+  if (topicalSubject && topicalFilename) {
+    const isDownload = request.nextUrl.searchParams.get('download') === '1';
+    const safeFilename = path.basename(topicalFilename);
+
+    // Tier 1: Local Development disk check
+    const localTopicalPath = path.join(
+      process.cwd(),
+      'public',
+      'vault',
+      `${topicalSubject}-topicals`,
+      topicalFilename
+    );
+    if (fs.existsSync(localTopicalPath) && fs.statSync(localTopicalPath).isFile()) {
+      if (isDownload) {
+        return new NextResponse(fs.readFileSync(localTopicalPath), {
+          status: 200,
+          headers: {
+            'Content-Type': 'application/pdf',
+            'Content-Disposition': `attachment; filename="${safeFilename}"`,
+          },
+        });
+      }
+      return new NextResponse(fs.readFileSync(localTopicalPath), {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/pdf',
+          'Content-Disposition': `inline; filename="${safeFilename}"`,
+          'Cache-Control': 'public, max-age=31536000, immutable',
+        },
+      });
+    }
+
+    // Tier 2: Vercel Production GitHub Release CDN Streaming
+    const cdnAssetName = `${topicalSubject}__${topicalFilename}`;
+    const cdnUrl = `${GITHUB_RELEASE_V3_TOPICALS}/${encodeURIComponent(cdnAssetName)}`;
+
+    if (isDownload) {
+      return NextResponse.redirect(cdnUrl, 307);
+    }
+
+    try {
+      const upstreamRes = await fetch(cdnUrl, {
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+        }
+      });
+      if (upstreamRes.ok && upstreamRes.body) {
+        return new NextResponse(upstreamRes.body, {
+          status: 200,
+          headers: {
+            'Content-Type': 'application/pdf',
+            'Content-Disposition': `inline; filename="${safeFilename}"`,
+            'Cache-Control': 'public, max-age=31536000, s-maxage=31536000, immutable',
+            'CDN-Cache-Control': 'public, s-maxage=31536000, immutable',
+            'Vercel-CDN-Cache-Control': 'public, s-maxage=31536000, immutable',
+          },
+        });
+      }
+      return NextResponse.redirect(cdnUrl, 307);
+    } catch (err: any) {
+      return NextResponse.redirect(cdnUrl, 307);
+    }
+  }
   if (filename) {
     if (map2025Record[filename]) {
       return NextResponse.redirect(`${request.nextUrl.origin}${map2025Record[filename]}`, 307);
@@ -177,6 +261,10 @@ export async function GET(
   const baseUrl = resolved.release === 'v1' ? GITHUB_RELEASE_V1 : GITHUB_RELEASE_V2;
   const targetUrl = `${baseUrl}/${encodeURIComponent(resolved.assetName)}`;
 
+  if (request.nextUrl.searchParams.get('download') === '1') {
+    return NextResponse.redirect(targetUrl, 307);
+  }
+
   try {
     const fileRes = await fetch(targetUrl, {
       headers: {
@@ -190,7 +278,7 @@ export async function GET(
       status: 200,
       headers: {
         'Content-Type': 'application/pdf',
-        'Content-Disposition': 'inline',
+        'Content-Disposition': `inline; filename="${path.basename(resolved.assetName)}"`,
         'Cache-Control': 'public, max-age=31536000, s-maxage=31536000, immutable',
         'CDN-Cache-Control': 'public, s-maxage=31536000, immutable',
         'Vercel-CDN-Cache-Control': 'public, s-maxage=31536000, immutable',

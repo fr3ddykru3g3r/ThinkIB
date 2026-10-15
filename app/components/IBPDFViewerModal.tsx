@@ -73,6 +73,7 @@ interface Props {
   page?: number;
   customDoc?: CustomPDFDoc;
   initialSplitView?: boolean;
+  subject?: 'physics' | 'chemistry' | 'math_aa' | 'math_ai' | 'math';
 }
 
 export default function IBPDFViewerModal({
@@ -81,7 +82,8 @@ export default function IBPDFViewerModal({
   activeDocId = 'sevenoaks',
   page,
   customDoc,
-  initialSplitView = false
+  initialSplitView = false,
+  subject
 }: Props) {
   const [selectedDocId, setSelectedDocId] = useState<string>(activeDocId);
   const [currentPage, setCurrentPage] = useState<number | undefined>(page);
@@ -123,8 +125,47 @@ export default function IBPDFViewerModal({
       }
     : EE_VAULT_DOCUMENTS.find(d => d.id === selectedDocId) || EE_VAULT_DOCUMENTS[0];
 
-  const qpSource = currentPage ? `${currentDoc.url}#page=${currentPage}` : currentDoc.url;
-  const msSource = currentDoc.msUrl || '';
+  function detectSubject(explicitSubject?: string, doc?: PDFDocument): 'physics' | 'chemistry' | 'math' {
+    if (explicitSubject) {
+      const s = explicitSubject.toLowerCase();
+      if (s.includes('chem')) return 'chemistry';
+      if (s.includes('math')) return 'math';
+      if (s.includes('phys')) return 'physics';
+    }
+    const textToScan = `${doc?.url || ''} ${doc?.title || ''} ${doc?.id || ''} ${doc?.subtitle || ''}`.toLowerCase();
+    if (textToScan.includes('chemistry') || /\b[sr][1-3](\.[1-4])?\b/i.test(textToScan) || textToScan.includes('theme_s') || textToScan.includes('theme_r')) {
+      return 'chemistry';
+    }
+    if (textToScan.includes('math') || /\bt[1-5](\.[1-6])?\b/i.test(textToScan) || textToScan.includes('theme_t')) {
+      return 'math';
+    }
+    return 'physics';
+  }
+
+  const detectedSubject = detectSubject(subject, currentDoc);
+  const bookletSubject: 'physics' | 'chemistry' | 'math-aa' =
+    detectedSubject === 'chemistry' ? 'chemistry' : detectedSubject === 'math' ? 'math-aa' : 'physics';
+
+  const bookletButtonLabel =
+    detectedSubject === 'chemistry'
+      ? 'Chemistry Data Booklet'
+      : detectedSubject === 'math'
+      ? 'Math Formula Booklet'
+      : 'Physics Data Booklet';
+
+  function resolveViewerUrl(rawUrl: string): string {
+    if (!rawUrl) return '';
+    const m = rawUrl.match(/^\/vault\/((?:physics|chemistry|math)-topicals)\/(.+)$/);
+    if (m) {
+      return `/api/past-papers/topicals/${m[1]}/${m[2]}`;
+    }
+    return rawUrl;
+  }
+
+  const resolvedQpUrl = resolveViewerUrl(currentDoc.url);
+  const resolvedMsUrl = resolveViewerUrl(currentDoc.msUrl || '');
+  const qpSource = currentPage ? `${resolvedQpUrl}#page=${currentPage}` : resolvedQpUrl;
+  const msSource = resolvedMsUrl;
 
   const hasMarkscheme = Boolean(currentDoc.msUrl);
 
@@ -325,7 +366,7 @@ export default function IBPDFViewerModal({
                 </div>
               )}
 
-              {/* IB Physics Data Booklet Quick-Toggle */}
+              {/* Dynamic Subject Data / Formula Booklet Quick-Toggle */}
               <button
                 type="button"
                 onClick={() => setShowFormulaBooklet(true)}
@@ -342,9 +383,9 @@ export default function IBPDFViewerModal({
                   alignItems: 'center',
                   gap: '0.35rem'
                 }}
-                title="Open Official IB Physics Formula & Data Booklet in quick-reference modal"
+                title={`Open Official IB ${detectedSubject === 'chemistry' ? 'Chemistry Data' : detectedSubject === 'math' ? 'Math Formula' : 'Physics Formula & Data'} Booklet in quick-reference modal`}
               >
-                <BookOpen size={13} /> Data Booklet
+                <BookOpen size={13} /> {bookletButtonLabel}
               </button>
 
               {/* Interactive IB Grader Scorecard Toggle */}
@@ -735,17 +776,18 @@ export default function IBPDFViewerModal({
               💡 <strong>Tip:</strong> Use <strong>Split-View</strong> to cross-reference questions and markscheme criteria simultaneously.
             </span>
             <span style={{ fontFamily: 'var(--font-mono)' }}>
-              ThinkIB Physics Topical Examination Archive (2025 Syllabus)
+              ThinkIB {detectedSubject === 'chemistry' ? 'Chemistry' : detectedSubject === 'math' ? 'Mathematics' : 'Physics'} Topical Examination Archive (2025 Syllabus)
             </span>
           </div>
         </div>
       </div>
 
-      {/* IB Physics Data Booklet Quick-Toggle Modal */}
+      {/* Dynamic Official IB Formula & Data Booklet Quick-Toggle Modal */}
       <IBBookletViewerModal
         isOpen={showFormulaBooklet}
         onClose={() => setShowFormulaBooklet(false)}
-        defaultSubject="physics"
+        defaultSubject={bookletSubject}
+        key={`${detectedSubject}-${showFormulaBooklet}`}
       />
     </>
   );
