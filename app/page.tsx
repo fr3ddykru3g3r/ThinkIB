@@ -113,10 +113,10 @@ export default function PortalHome() {
             color: 'var(--ink)'
           }}
         >
-          The Academic Studio &amp; Archive
+          The Archive
         </h1>
 
-        {/* Standfirst / Editorial Deck */}
+        {/* Standfirst / Subtitle */}
         <p 
           style={{ 
             fontSize: '1.22rem', 
@@ -128,10 +128,10 @@ export default function PortalHome() {
             marginBottom: '1.75rem'
           }}
         >
-          An editorial academic studio and zero-latency simulation engine pairing 3,786 official IB papers, 3,443 adaptive Digital SAT items, and AoPS competition mathematics with high-craft typography and exam ergonomics.
+          A comprehensive collection of 3,786 official IB past papers, 174 topical question packs, and adaptive Digital SAT practice.
         </p>
 
-        {/* Live Platform Telemetry Pills Strip */}
+        {/* Platform Stat Pills */}
         <div 
           style={{
             display: 'flex',
@@ -163,7 +163,7 @@ export default function PortalHome() {
             }}
           >
             <span style={{ color: 'var(--accent)', fontWeight: 700 }}>3,443</span>
-            <span style={{ color: 'var(--muted)' }}>Adaptive SAT Items</span>
+            <span style={{ color: 'var(--muted)' }}>SAT Questions</span>
           </div>
 
           <div
@@ -176,20 +176,7 @@ export default function PortalHome() {
             }}
           >
             <span style={{ color: '#0969da', fontWeight: 700 }}>2025</span>
-            <span style={{ color: 'var(--muted)' }}>Topical Vaults &amp; Mocks</span>
-          </div>
-
-          <div
-            className="glass-nav-pill"
-            style={{
-              padding: '0.35rem 0.75rem',
-              fontSize: '0.78rem',
-              fontFamily: 'var(--font-mono)',
-              color: 'var(--ink)',
-            }}
-          >
-            <span style={{ color: '#8250df', fontWeight: 700 }}>AoPS</span>
-            <span style={{ color: 'var(--muted)' }}>AMC/AIME Engine</span>
+            <span style={{ color: 'var(--muted)' }}>Topical Vaults</span>
           </div>
 
           <div
@@ -334,69 +321,39 @@ export default function PortalHome() {
           <div style={{ marginBottom: '3.5rem' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '1.25rem' }}>
               <div>
-                <span className="section-label" style={{ margin: 0, color: 'var(--accent)' }}>TIER 1 · SIMULATION &amp; PRACTICE ENGINES</span>
+                <span className="section-label" style={{ margin: 0, color: 'var(--accent)' }}>PRACTICE &amp; EXAM WORKSPACES</span>
                 <h2 style={{ fontSize: '1.85rem', marginTop: '0.2rem', marginBottom: '0.25rem' }}>
-                  Precision Exam Studios &amp; Synthesis Hubs
+                  Practice Tests &amp; Workspaces
                 </h2>
                 <p style={{ fontSize: '0.95rem', color: 'var(--muted)', margin: 0 }}>
-                  Adaptive testing, cross-topic Olympiad synthesis, and split-screen examination workspaces.
+                  Adaptive tests, topical past paper packs, and split-screen exam viewers.
                 </p>
               </div>
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '1.5rem' }}>
-              {/* 1. Digital SAT 2.0 Adaptive & Gauntlet */}
+              {/* 1. Digital SAT Practice */}
               <div 
                 className="editorial-bento-card"
                 style={{
                   background: 'var(--surface)',
                   border: '1px solid var(--border)',
-                  minHeight: '290px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  padding: '1.75rem',
                 }}
               >
-                <span className="corner-index">01</span>
                 <div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
-                    <span 
-                      style={{ 
-                        fontSize: '0.7rem', 
-                        fontFamily: 'var(--font-mono)', 
-                        fontWeight: 700, 
-                        padding: '0.15rem 0.5rem', 
-                        borderRadius: '4px', 
-                        background: 'rgba(194, 65, 12, 0.1)', 
-                        color: 'var(--accent)',
-                        letterSpacing: '0.04em'
-                      }}
-                    >
-                      ADAPTIVE IRT · 3,443 ITEMS
-                    </span>
-                    <span style={{ fontSize: '0.7rem', color: 'var(--muted)', fontFamily: 'var(--font-mono)' }}>
-                      BLUEBOOK SPEC
-                    </span>
-                  </div>
-
                   <h3 style={{ fontSize: '1.45rem', marginBottom: '0.65rem' }}>
-                    Digital SAT 2.0 Adaptive Suite
+                    Digital SAT Practice
                   </h3>
-                  <p style={{ fontSize: '0.9rem', color: 'var(--card-desc, #57534E)', lineHeight: 1.5, marginBottom: '1.25rem' }}>
-                    Four selectable difficulty tiers: Official Adaptive, Medium Focus (600–700), Hard Mode (700+ Upper Track), and the 750+ Hard Gauntlet. Built-in Desmos shortcuts and Metacognitive Error Taxonomy.
+                  <p style={{ fontSize: '0.92rem', color: 'var(--card-desc, #57534E)', lineHeight: 1.5, margin: 0 }}>
+                    Full-length practice tests with adaptive routing, focused difficulty modes, built-in Desmos graphing calculator, and mistake review.
                   </p>
-
-                  <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', marginBottom: '1.5rem' }}>
-                    <span className="badge" style={{ fontSize: '0.72rem', padding: '0.2rem 0.45rem', borderRadius: '4px', background: 'var(--surface-inset)', border: '1px solid var(--border)' }}>
-                      4 Difficulty Tiers
-                    </span>
-                    <span className="badge" style={{ fontSize: '0.72rem', padding: '0.2rem 0.45rem', borderRadius: '4px', background: 'var(--surface-inset)', border: '1px solid var(--border)' }}>
-                      Desmos Master Key
-                    </span>
-                    <span className="badge" style={{ fontSize: '0.72rem', padding: '0.2rem 0.45rem', borderRadius: '4px', background: 'var(--surface-inset)', border: '1px solid var(--border)' }}>
-                      Bayesian IRT
-                    </span>
-                  </div>
                 </div>
 
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '1rem', borderTop: '1px solid var(--border)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '1.25rem', marginTop: '1.75rem', borderTop: '1px solid var(--border)' }}>
                   <Link
                     href="/sat/practice/exam"
                     style={{
@@ -409,12 +366,12 @@ export default function PortalHome() {
                       textDecoration: 'none',
                     }}
                   >
-                    Start Full Exam <ArrowRight size={14} />
+                    Start Practice Test <ArrowRight size={14} />
                   </Link>
                   <Link
                     href="/sat"
                     style={{
-                      fontSize: '0.8rem',
+                      fontSize: '0.84rem',
                       color: 'var(--muted)',
                       textDecoration: 'none',
                     }}
@@ -430,52 +387,22 @@ export default function PortalHome() {
                 style={{
                   background: 'var(--surface)',
                   border: '1px solid var(--border)',
-                  minHeight: '290px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  padding: '1.75rem',
                 }}
               >
-                <span className="corner-index">02</span>
                 <div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
-                    <span 
-                      style={{ 
-                        fontSize: '0.7rem', 
-                        fontFamily: 'var(--font-mono)', 
-                        fontWeight: 700, 
-                        padding: '0.15rem 0.5rem', 
-                        borderRadius: '4px', 
-                        background: 'rgba(31, 136, 61, 0.1)', 
-                        color: '#1f883d',
-                        letterSpacing: '0.04em'
-                      }}
-                    >
-                      TOPICAL VAULT · 2025 SYLLABUS
-                    </span>
-                    <span style={{ fontSize: '0.7rem', color: 'var(--muted)', fontFamily: 'var(--font-mono)' }}>
-                      174 BOOKLETS
-                    </span>
-                  </div>
-
                   <h3 style={{ fontSize: '1.45rem', marginBottom: '0.65rem' }}>
                     IB Topical Past Papers
                   </h3>
-                  <p style={{ fontSize: '0.9rem', color: 'var(--card-desc, #57534E)', lineHeight: 1.5, marginBottom: '1.25rem' }}>
-                    Master IB Physics (Themes A–E), Chemistry (Structure &amp; Reactivity), and Mathematics AA/AI (Topics 1–5). Every past question classified with 100% vector precision and paired with official formula booklets.
+                  <p style={{ fontSize: '0.92rem', color: 'var(--card-desc, #57534E)', lineHeight: 1.5, margin: 0 }}>
+                    Practice past exam questions organized by topic for IB Physics, Chemistry, and Mathematics AA/AI, paired with official markschemes.
                   </p>
-
-                  <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', marginBottom: '1.5rem' }}>
-                    <span className="badge" style={{ fontSize: '0.72rem', padding: '0.2rem 0.45rem', borderRadius: '4px', background: 'var(--surface-inset)', border: '1px solid var(--border)' }}>
-                      ⚛️ Physics (24 Topics)
-                    </span>
-                    <span className="badge" style={{ fontSize: '0.72rem', padding: '0.2rem 0.45rem', borderRadius: '4px', background: 'var(--surface-inset)', border: '1px solid var(--border)' }}>
-                      🧪 Chemistry (22 Topics)
-                    </span>
-                    <span className="badge" style={{ fontSize: '0.72rem', padding: '0.2rem 0.45rem', borderRadius: '4px', background: 'var(--surface-inset)', border: '1px solid var(--border)' }}>
-                      📐 Math AA/AI (25 Topics)
-                    </span>
-                  </div>
                 </div>
 
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '1rem', borderTop: '1px solid var(--border)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '1.25rem', marginTop: '1.75rem', borderTop: '1px solid var(--border)' }}>
                   <Link
                     href="/past-papers?tab=topicals"
                     style={{
@@ -493,12 +420,12 @@ export default function PortalHome() {
                   <Link
                     href="/past-papers/workspace"
                     style={{
-                      fontSize: '0.8rem',
+                      fontSize: '0.84rem',
                       color: 'var(--muted)',
                       textDecoration: 'none',
                     }}
                   >
-                    Studio Workspace →
+                    Workspace →
                   </Link>
                 </div>
               </div>
@@ -509,52 +436,22 @@ export default function PortalHome() {
                 style={{
                   background: 'var(--surface)',
                   border: '1px solid var(--border)',
-                  minHeight: '290px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  padding: '1.75rem',
                 }}
               >
-                <span className="corner-index">03</span>
                 <div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
-                    <span 
-                      style={{ 
-                        fontSize: '0.7rem', 
-                        fontFamily: 'var(--font-mono)', 
-                        fontWeight: 700, 
-                        padding: '0.15rem 0.5rem', 
-                        borderRadius: '4px', 
-                        background: 'rgba(9, 105, 218, 0.1)', 
-                        color: '#0969da',
-                        letterSpacing: '0.04em'
-                      }}
-                    >
-                      EXAM STUDIO · SPLIT-SCREEN WORKSPACE
-                    </span>
-                    <span style={{ fontSize: '0.7rem', color: 'var(--muted)', fontFamily: 'var(--font-mono)' }}>
-                      SIDE-BY-SIDE
-                    </span>
-                  </div>
-
                   <h3 style={{ fontSize: '1.45rem', marginBottom: '0.65rem' }}>
-                    IB Split-Screen Exam Studio
+                    Split-Screen Exam Workspace
                   </h3>
-                  <p style={{ fontSize: '0.9rem', color: 'var(--card-desc, #57534E)', lineHeight: 1.5, marginBottom: '1.25rem' }}>
-                    Authentic examination ergonomics: side-by-side synchronized PDF question paper and markscheme viewer with session countdown timers, formula booklet preview, and full exam conditions.
+                  <p style={{ fontSize: '0.92rem', color: 'var(--card-desc, #57534E)', lineHeight: 1.5, margin: 0 }}>
+                    Solve past papers with questions and markschemes side-by-side. Includes countdown timers and quick access to official formula booklets.
                   </p>
-
-                  <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', marginBottom: '1.5rem' }}>
-                    <span className="badge" style={{ fontSize: '0.72rem', padding: '0.2rem 0.45rem', borderRadius: '4px', background: 'var(--surface-inset)', border: '1px solid var(--border)' }}>
-                      Dual PDF Synchronizer
-                    </span>
-                    <span className="badge" style={{ fontSize: '0.72rem', padding: '0.2rem 0.45rem', borderRadius: '4px', background: 'var(--surface-inset)', border: '1px solid var(--border)' }}>
-                      Official Timers
-                    </span>
-                    <span className="badge" style={{ fontSize: '0.72rem', padding: '0.2rem 0.45rem', borderRadius: '4px', background: 'var(--surface-inset)', border: '1px solid var(--border)' }}>
-                      May 2025 Vault
-                    </span>
-                  </div>
                 </div>
 
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '1rem', borderTop: '1px solid var(--border)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '1.25rem', marginTop: '1.75rem', borderTop: '1px solid var(--border)' }}>
                   <Link
                     href="/past-papers/workspace"
                     style={{
@@ -572,7 +469,7 @@ export default function PortalHome() {
                   <Link
                     href="/past-papers"
                     style={{
-                      fontSize: '0.8rem',
+                      fontSize: '0.84rem',
                       color: 'var(--muted)',
                       textDecoration: 'none',
                     }}
@@ -590,12 +487,12 @@ export default function PortalHome() {
           <div style={{ marginBottom: '3.5rem' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '1.25rem' }}>
               <div>
-                <span className="section-label" style={{ margin: 0 }}>TIER 2 · COMPLETE IB DIPLOMA ARCHIVES</span>
+                <span className="section-label" style={{ margin: 0 }}>CURRICULUM VAULTS</span>
                 <h2 style={{ fontSize: '1.85rem', marginTop: '0.2rem', marginBottom: '0.25rem' }}>
-                  Curriculum Vaults &amp; Revision Libraries
+                  Revision Vaults &amp; Libraries
                 </h2>
                 <p style={{ fontSize: '0.95rem', color: 'var(--muted)', margin: 0 }}>
-                  Direct local access to 3,786 past papers, 295 topic guides, teacher databases, and exemplar assessments.
+                  Past papers, topic revision guides, question banks, and exemplar assessments.
                 </p>
               </div>
             </div>
@@ -603,18 +500,16 @@ export default function PortalHome() {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.5rem' }}>
               {/* Vault 1: Past Papers 2010–2025 */}
               <Link href="/past-papers" style={{ textDecoration: 'none', color: 'inherit' }}>
-                <div className="editorial-bento-card" style={{ height: '100%' }}>
-                  <span className="corner-index">04</span>
+                <div className="editorial-bento-card" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                   <div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-                      <span className="section-label" style={{ margin: 0 }}>EXAMINATION ARCHIVE</span>
-                      <span className="badge" style={{ fontSize: '0.7rem', fontWeight: 700, padding: '0.15rem 0.45rem', borderRadius: '4px', background: 'var(--surface-inset)', border: '1px solid var(--border)', color: 'var(--ink)' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.65rem' }}>
+                      <span className="badge" style={{ fontSize: '0.72rem', fontWeight: 600, padding: '0.2rem 0.5rem', borderRadius: '4px', background: 'var(--surface-inset)', border: '1px solid var(--border)', color: 'var(--ink)' }}>
                         3,786 PDFs
                       </span>
                     </div>
-                    <h3 style={{ fontSize: '1.25rem', marginBottom: '0.45rem' }}>Past Papers 2010–2025</h3>
-                    <p style={{ fontSize: '0.88rem', color: 'var(--card-desc, #57534E)', lineHeight: 1.45 }}>
-                      Comprehensive repository of official past papers and markschemes spanning May 2010 to May 2025 for TZ1 and TZ2 across all IB subjects.
+                    <h3 style={{ fontSize: '1.25rem', marginBottom: '0.45rem' }}>Past Papers (2010–2025)</h3>
+                    <p style={{ fontSize: '0.88rem', color: 'var(--card-desc, #57534E)', lineHeight: 1.5, margin: 0 }}>
+                      Official past papers and markschemes spanning May 2010 to May 2025 for TZ1 and TZ2 across all IB subjects.
                     </p>
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontWeight: 600, fontSize: '0.84rem', marginTop: '1.25rem', color: 'var(--ink)' }}>
@@ -625,18 +520,16 @@ export default function PortalHome() {
 
               {/* Vault 2: SaveMyExams Notes */}
               <Link href="/savemyexams" style={{ textDecoration: 'none', color: 'inherit' }}>
-                <div className="editorial-bento-card" style={{ height: '100%' }}>
-                  <span className="corner-index">05</span>
+                <div className="editorial-bento-card" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                   <div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-                      <span className="section-label" style={{ margin: 0 }}>NOTES REVISION</span>
-                      <span className="badge" style={{ fontSize: '0.7rem', fontWeight: 700, padding: '0.15rem 0.45rem', borderRadius: '4px', background: 'var(--surface-inset)', border: '1px solid var(--border)', color: 'var(--ink)' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.65rem' }}>
+                      <span className="badge" style={{ fontSize: '0.72rem', fontWeight: 600, padding: '0.2rem 0.5rem', borderRadius: '4px', background: 'var(--surface-inset)', border: '1px solid var(--border)', color: 'var(--ink)' }}>
                         295 Guides
                       </span>
                     </div>
-                    <h3 style={{ fontSize: '1.25rem', marginBottom: '0.45rem' }}>SaveMyExams Notes Archive</h3>
-                    <p style={{ fontSize: '0.88rem', color: 'var(--card-desc, #57534E)', lineHeight: 1.45 }}>
-                      Concise topic revision guides with high-res diagrams and worked exam examples for Biology, Chemistry, Physics, Math, Econ &amp; Psych.
+                    <h3 style={{ fontSize: '1.25rem', marginBottom: '0.45rem' }}>SaveMyExams Revision Notes</h3>
+                    <p style={{ fontSize: '0.88rem', color: 'var(--card-desc, #57534E)', lineHeight: 1.5, margin: 0 }}>
+                      Topic revision guides with diagrams and worked exam examples for Biology, Chemistry, Physics, Math, Economics &amp; Psychology.
                     </p>
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontWeight: 600, fontSize: '0.84rem', marginTop: '1.25rem', color: 'var(--ink)' }}>
@@ -647,40 +540,36 @@ export default function PortalHome() {
 
               {/* Vault 3: InThinking Mirror Portal */}
               <Link href="/thinkib" style={{ textDecoration: 'none', color: 'inherit' }}>
-                <div className="editorial-bento-card" style={{ height: '100%' }}>
-                  <span className="corner-index">06</span>
+                <div className="editorial-bento-card" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                   <div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-                      <span className="section-label" style={{ margin: 0 }}>CURRICULUM VAULT</span>
-                      <span className="badge" style={{ fontSize: '0.7rem', fontWeight: 700, padding: '0.15rem 0.45rem', borderRadius: '4px', background: 'var(--surface-inset)', border: '1px solid var(--border)', color: 'var(--ink)' }}>
-                        Mirror Portal
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.65rem' }}>
+                      <span className="badge" style={{ fontSize: '0.72rem', fontWeight: 600, padding: '0.2rem 0.5rem', borderRadius: '4px', background: 'var(--surface-inset)', border: '1px solid var(--border)', color: 'var(--ink)' }}>
+                        Teacher Resources
                       </span>
                     </div>
-                    <h3 style={{ fontSize: '1.25rem', marginBottom: '0.45rem' }}>InThinking Subject Mirror</h3>
-                    <p style={{ fontSize: '0.88rem', color: 'var(--card-desc, #57534E)', lineHeight: 1.45 }}>
-                      Full syllabus guides, teacher answer keys, internal assessment rubrics, and laboratory experiments directly mirrored from InThinking.
+                    <h3 style={{ fontSize: '1.25rem', marginBottom: '0.45rem' }}>InThinking Subject Guides</h3>
+                    <p style={{ fontSize: '0.88rem', color: 'var(--card-desc, #57534E)', lineHeight: 1.5, margin: 0 }}>
+                      Curriculum guides, teacher answer keys, internal assessment rubrics, and laboratory experiments.
                     </p>
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontWeight: 600, fontSize: '0.84rem', marginTop: '1.25rem', color: 'var(--ink)' }}>
-                    Open Mirror Portal <ArrowRight size={13} />
+                    Open Subject Guides <ArrowRight size={13} />
                   </div>
                 </div>
               </Link>
 
               {/* Vault 4: Math AA Mocks */}
               <Link href="/math-mocks" style={{ textDecoration: 'none', color: 'inherit' }}>
-                <div className="editorial-bento-card" style={{ height: '100%' }}>
-                  <span className="corner-index">07</span>
+                <div className="editorial-bento-card" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                   <div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-                      <span className="section-label" style={{ margin: 0 }}>TEST SIMULATOR</span>
-                      <span className="badge" style={{ fontSize: '0.7rem', fontWeight: 700, padding: '0.15rem 0.45rem', borderRadius: '4px', background: 'var(--surface-inset)', border: '1px solid var(--border)', color: 'var(--ink)' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.65rem' }}>
+                      <span className="badge" style={{ fontSize: '0.72rem', fontWeight: 600, padding: '0.2rem 0.5rem', borderRadius: '4px', background: 'var(--surface-inset)', border: '1px solid var(--border)', color: 'var(--ink)' }}>
                         61 Papers
                       </span>
                     </div>
-                    <h3 style={{ fontSize: '1.25rem', marginBottom: '0.45rem' }}>Math AA HL/SL Mock Papers</h3>
-                    <p style={{ fontSize: '0.88rem', color: 'var(--card-desc, #57534E)', lineHeight: 1.45 }}>
-                      Challenging simulated mock papers with complete step-by-step worked solutions for Analysis &amp; Approaches Paper 1, 2, and 3.
+                    <h3 style={{ fontSize: '1.25rem', marginBottom: '0.45rem' }}>Math AA Mock Exams</h3>
+                    <p style={{ fontSize: '0.88rem', color: 'var(--card-desc, #57534E)', lineHeight: 1.5, margin: 0 }}>
+                      Challenging mock papers with complete step-by-step worked solutions for Analysis &amp; Approaches Paper 1, 2, and 3.
                     </p>
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontWeight: 600, fontSize: '0.84rem', marginTop: '1.25rem', color: 'var(--ink)' }}>
@@ -691,18 +580,16 @@ export default function PortalHome() {
 
               {/* Vault 5: IA & EE Exemplars */}
               <Link href="/exemplars" style={{ textDecoration: 'none', color: 'inherit' }}>
-                <div className="editorial-bento-card" style={{ height: '100%' }}>
-                  <span className="corner-index">08</span>
+                <div className="editorial-bento-card" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                   <div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-                      <span className="section-label" style={{ margin: 0, color: 'var(--accent)' }}>7/7 ASSESSMENT VAULT</span>
-                      <span className="badge" style={{ fontSize: '0.7rem', fontWeight: 700, padding: '0.15rem 0.45rem', borderRadius: '4px', background: 'rgba(194, 65, 12, 0.08)', color: 'var(--accent)' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.65rem' }}>
+                      <span className="badge" style={{ fontSize: '0.72rem', fontWeight: 600, padding: '0.2rem 0.5rem', borderRadius: '4px', background: 'rgba(194, 65, 12, 0.08)', color: 'var(--accent)' }}>
                         Grade 7 / A
                       </span>
                     </div>
                     <h3 style={{ fontSize: '1.25rem', marginBottom: '0.45rem' }}>IA &amp; EE Exemplars</h3>
-                    <p style={{ fontSize: '0.88rem', color: 'var(--card-desc, #57534E)', lineHeight: 1.45 }}>
-                      Scored Grade 7 Internal Assessments and Grade A Extended Essays featuring examiner criterion marks and commentary.
+                    <p style={{ fontSize: '0.88rem', color: 'var(--card-desc, #57534E)', lineHeight: 1.5, margin: 0 }}>
+                      High-scoring Internal Assessments and Extended Essays with examiner criterion marks and commentary.
                     </p>
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontWeight: 600, fontSize: '0.84rem', marginTop: '1.25rem', color: 'var(--accent)' }}>
@@ -713,18 +600,16 @@ export default function PortalHome() {
 
               {/* Vault 6: Syllabus & RV Tracker */}
               <Link href="/syllabus-tracker" style={{ textDecoration: 'none', color: 'inherit' }}>
-                <div className="editorial-bento-card" style={{ height: '100%' }}>
-                  <span className="corner-index">09</span>
+                <div className="editorial-bento-card" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                   <div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-                      <span className="section-label" style={{ margin: 0, color: 'var(--success)' }}>INTERACTIVE CHECKLIST</span>
-                      <span className="badge" style={{ fontSize: '0.7rem', fontWeight: 700, padding: '0.15rem 0.45rem', borderRadius: '4px', background: 'rgba(21, 128, 61, 0.08)', color: 'var(--success)' }}>
-                        RV Linked
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.65rem' }}>
+                      <span className="badge" style={{ fontSize: '0.72rem', fontWeight: 600, padding: '0.2rem 0.5rem', borderRadius: '4px', background: 'rgba(21, 128, 61, 0.08)', color: 'var(--success)' }}>
+                        Interactive Tracker
                       </span>
                     </div>
-                    <h3 style={{ fontSize: '1.25rem', marginBottom: '0.45rem' }}>Syllabus &amp; RV Tracker</h3>
-                    <p style={{ fontSize: '0.88rem', color: 'var(--card-desc, #57534E)', lineHeight: 1.45 }}>
-                      3-state syllabus mastery checklist across Math, Physics, Chem &amp; Bio mapped directly to free Revision Village question sets.
+                    <h3 style={{ fontSize: '1.25rem', marginBottom: '0.45rem' }}>Syllabus Tracker</h3>
+                    <p style={{ fontSize: '0.88rem', color: 'var(--card-desc, #57534E)', lineHeight: 1.5, margin: 0 }}>
+                      Syllabus mastery checklist across Math, Physics, Chemistry &amp; Biology mapped to Revision Village questions.
                     </p>
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontWeight: 600, fontSize: '0.84rem', marginTop: '1.25rem', color: 'var(--success)' }}>

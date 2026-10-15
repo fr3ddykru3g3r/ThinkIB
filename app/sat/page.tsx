@@ -247,6 +247,7 @@ export default function SATHubPage() {
       )}
 
       {/* METACOGNITIVE ERROR TAXONOMY (Proportional Progress Bars) */}
+      {/* MISTAKE BREAKDOWN (Proportional Progress Bars) */}
       <div 
         className="editorial-bento-card" 
         style={{ 
@@ -257,9 +258,9 @@ export default function SATHubPage() {
       >
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem', flexWrap: 'wrap', gap: '0.5rem' }}>
           <div>
-            <span className="section-label" style={{ margin: 0, color: 'var(--accent)' }}>DIAGNOSTIC TELEMETRY</span>
+            <span className="section-label" style={{ margin: 0, color: 'var(--accent)' }}>MISTAKE TRACKER</span>
             <h3 style={{ fontSize: '1.35rem', marginTop: '0.2rem', marginBottom: '0.15rem' }}>
-              Metacognitive Error Taxonomy
+              Mistake Breakdown
             </h3>
           </div>
           <Link 
@@ -279,7 +280,7 @@ export default function SATHubPage() {
         </div>
 
         <p style={{ fontSize: '0.88rem', color: 'var(--muted)', margin: '0 0 1.25rem', maxWidth: '70ch' }}>
-          Proportional breakdown of root causes classified across diagnostic drills, mistimed questions, and full-length adaptive test attempts.
+          Categorized breakdown of missed questions across drills and practice tests.
         </p>
 
         {/* Combined Proportional Horizontal Stacked Bar */}
@@ -297,43 +298,42 @@ export default function SATHubPage() {
           {totalErrors > 0 ? (
             <>
               <div style={{ width: `${(errorTagStats.concept_gap / totalErrors) * 100}%`, background: '#0969da', transition: 'width 0.3s ease' }} title={`Concept Gap: ${errorTagStats.concept_gap}`} />
-              <div style={{ width: `${(errorTagStats.examiner_trap / totalErrors) * 100}%`, background: '#f59e0b', transition: 'width 0.3s ease' }} title={`Examiner Trap: ${errorTagStats.examiner_trap}`} />
-              <div style={{ width: `${(errorTagStats.careless_calc / totalErrors) * 100}%`, background: '#ef4444', transition: 'width 0.3s ease' }} title={`Careless Calc: ${errorTagStats.careless_calc}`} />
+              <div style={{ width: `${(errorTagStats.examiner_trap / totalErrors) * 100}%`, background: '#f59e0b', transition: 'width 0.3s ease' }} title={`Trick Question: ${errorTagStats.examiner_trap}`} />
+              <div style={{ width: `${(errorTagStats.careless_calc / totalErrors) * 100}%`, background: '#ef4444', transition: 'width 0.3s ease' }} title={`Careless Error: ${errorTagStats.careless_calc}`} />
               <div style={{ width: `${(errorTagStats.time_pressure / totalErrors) * 100}%`, background: '#8250df', transition: 'width 0.3s ease' }} title={`Time Pressure: ${errorTagStats.time_pressure}`} />
             </>
           ) : (
             <div style={{ width: '100%', background: 'var(--surface-inset)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <span style={{ fontSize: '0.65rem', color: 'var(--muted)', fontFamily: 'var(--font-mono)' }}>No mistakes logged yet — taxonomy initializes on first test</span>
+              <span style={{ fontSize: '0.72rem', color: 'var(--muted)' }}>No mistakes logged yet</span>
             </div>
           )}
         </div>
 
-        {/* Proportional Horizontal Breakdown Cards */}
+        {/* Breakdown Cards */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1rem' }}>
           {/* 1. Concept Gap */}
           <div style={{ padding: '1rem', borderRadius: '10px', border: '1px solid var(--border)', background: 'var(--surface-inset)' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
-              <span style={{ fontSize: '0.84rem', fontWeight: 700, color: '#0969da', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-                🧠 Concept Gap
+              <span style={{ fontSize: '0.84rem', fontWeight: 700, color: '#0969da' }}>
+                Concept Gap
               </span>
               <span className="tabular-nums" style={{ fontSize: '0.8rem', fontFamily: 'var(--font-mono)', fontWeight: 700, color: 'var(--ink)' }}>
                 {errorTagStats.concept_gap} <span style={{ color: 'var(--muted)', fontWeight: 400 }}>({totalErrors > 0 ? Math.round((errorTagStats.concept_gap / totalErrors) * 100) : 0}%)</span>
               </span>
             </div>
-            {/* Horizontal progress bar */}
             <div style={{ height: '6px', width: '100%', background: 'rgba(9, 105, 218, 0.12)', borderRadius: '9999px', overflow: 'hidden', marginBottom: '0.5rem' }}>
               <div style={{ height: '100%', width: `${totalErrors > 0 ? (errorTagStats.concept_gap / totalErrors) * 100 : 0}%`, background: '#0969da', borderRadius: '9999px', transition: 'width 0.3s ease' }} />
             </div>
             <div style={{ fontSize: '0.74rem', color: 'var(--muted)' }}>
-              Unfamiliar formula, theorem, or grammar rule
+              Unfamiliar formula, theorem, or rule
             </div>
           </div>
 
-          {/* 2. Examiner Trap */}
+          {/* 2. Trick Question */}
           <div style={{ padding: '1rem', borderRadius: '10px', border: '1px solid var(--border)', background: 'var(--surface-inset)' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
-              <span style={{ fontSize: '0.84rem', fontWeight: 700, color: '#f59e0b', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-                🪤 Examiner Trap
+              <span style={{ fontSize: '0.84rem', fontWeight: 700, color: '#f59e0b' }}>
+                Trick Question
               </span>
               <span className="tabular-nums" style={{ fontSize: '0.8rem', fontFamily: 'var(--font-mono)', fontWeight: 700, color: 'var(--ink)' }}>
                 {errorTagStats.examiner_trap} <span style={{ color: 'var(--muted)', fontWeight: 400 }}>({totalErrors > 0 ? Math.round((errorTagStats.examiner_trap / totalErrors) * 100) : 0}%)</span>
@@ -343,15 +343,15 @@ export default function SATHubPage() {
               <div style={{ height: '100%', width: `${totalErrors > 0 ? (errorTagStats.examiner_trap / totalErrors) * 100 : 0}%`, background: '#f59e0b', borderRadius: '9999px', transition: 'width 0.3s ease' }} />
             </div>
             <div style={{ fontSize: '0.74rem', color: 'var(--muted)' }}>
-              Subtle distractor, word trick, or reversal
+              Tricky distractor or misleading wording
             </div>
           </div>
 
-          {/* 3. Careless Calculation */}
+          {/* 3. Careless Error */}
           <div style={{ padding: '1rem', borderRadius: '10px', border: '1px solid var(--border)', background: 'var(--surface-inset)' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
-              <span style={{ fontSize: '0.84rem', fontWeight: 700, color: '#ef4444', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-                🔢 Careless Execution
+              <span style={{ fontSize: '0.84rem', fontWeight: 700, color: '#ef4444' }}>
+                Careless Error
               </span>
               <span className="tabular-nums" style={{ fontSize: '0.8rem', fontFamily: 'var(--font-mono)', fontWeight: 700, color: 'var(--ink)' }}>
                 {errorTagStats.careless_calc} <span style={{ color: 'var(--muted)', fontWeight: 400 }}>({totalErrors > 0 ? Math.round((errorTagStats.careless_calc / totalErrors) * 100) : 0}%)</span>
@@ -361,15 +361,15 @@ export default function SATHubPage() {
               <div style={{ height: '100%', width: `${totalErrors > 0 ? (errorTagStats.careless_calc / totalErrors) * 100 : 0}%`, background: '#ef4444', borderRadius: '9999px', transition: 'width 0.3s ease' }} />
             </div>
             <div style={{ fontSize: '0.74rem', color: 'var(--muted)' }}>
-              Sign error, algebra slip, or reading misstep
+              Arithmetic slip, sign error, or reading misstep
             </div>
           </div>
 
           {/* 4. Time Pressure */}
           <div style={{ padding: '1rem', borderRadius: '10px', border: '1px solid var(--border)', background: 'var(--surface-inset)' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
-              <span style={{ fontSize: '0.84rem', fontWeight: 700, color: '#8250df', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-                ⏱️ Time Pressure
+              <span style={{ fontSize: '0.84rem', fontWeight: 700, color: '#8250df' }}>
+                Time Pressure
               </span>
               <span className="tabular-nums" style={{ fontSize: '0.8rem', fontFamily: 'var(--font-mono)', fontWeight: 700, color: 'var(--ink)' }}>
                 {errorTagStats.time_pressure} <span style={{ color: 'var(--muted)', fontWeight: 400 }}>({totalErrors > 0 ? Math.round((errorTagStats.time_pressure / totalErrors) * 100) : 0}%)</span>
@@ -379,24 +379,24 @@ export default function SATHubPage() {
               <div style={{ height: '100%', width: `${totalErrors > 0 ? (errorTagStats.time_pressure / totalErrors) * 100 : 0}%`, background: '#8250df', borderRadius: '9999px', transition: 'width 0.3s ease' }} />
             </div>
             <div style={{ fontSize: '0.74rem', color: 'var(--muted)' }}>
-              Rushed pacing in final minutes of module
+              Rushed pacing near the end of a section
             </div>
           </div>
         </div>
       </div>
 
       {/* =========================================================================
-          4 EXAM MODE SELECTOR CARDS WITH DIFFICULTY DISTRIBUTION BARS
+          4 EXAM MODE SELECTOR CARDS
           ========================================================================= */}
       <div style={{ marginBottom: '3.5rem' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '1.25rem' }}>
           <div>
-            <span className="section-label" style={{ margin: 0, color: 'var(--accent)' }}>SIMULATION MODES</span>
+            <span className="section-label" style={{ margin: 0, color: 'var(--accent)' }}>TEST MODES</span>
             <h2 style={{ fontSize: '1.85rem', marginTop: '0.2rem', marginBottom: '0.25rem' }}>
-              Selectable Exam Calibration Engines
+              Practice Exam Modes
             </h2>
             <p style={{ fontSize: '0.95rem', color: 'var(--muted)', margin: 0 }}>
-              Calibrate your session difficulty to target your score goal with official College Board item allocations.
+              Choose a difficulty mode that matches your study goals.
             </p>
           </div>
         </div>
@@ -408,22 +408,22 @@ export default function SATHubPage() {
               <div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.65rem' }}>
                   <span className="badge" style={{ fontSize: '0.68rem', fontWeight: 700, padding: '0.15rem 0.45rem', borderRadius: '4px', background: 'rgba(194, 65, 12, 0.08)', color: 'var(--accent)' }}>
-                    Bluebook Standard
+                    Official Format
                   </span>
                   <span className="badge tabular-nums" style={{ fontSize: '0.68rem', fontWeight: 600, padding: '0.15rem 0.45rem', borderRadius: '4px', background: 'var(--surface-inset)', border: '1px solid var(--border)' }}>
-                    1600 Dynamic Ceiling
+                    All Scores
                   </span>
                 </div>
 
-                <h3 style={{ fontSize: '1.3rem', marginBottom: '0.4rem' }}>Standard Adaptive</h3>
+                <h3 style={{ fontSize: '1.3rem', marginBottom: '0.4rem' }}>Adaptive Exam</h3>
                 <p style={{ fontSize: '0.86rem', color: 'var(--card-desc, #57534E)', lineHeight: 1.45, marginBottom: '1rem' }}>
-                  Official 2-stage multistage routing. Module 1 mixed items dynamically route to Easy or Hard Module 2.
+                  Standard 2-stage exam. Module 2 adjusts difficulty based on your Module 1 performance.
                 </p>
 
                 {/* Difficulty Distribution Bar */}
                 <div style={{ marginBottom: '1rem' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.72rem', fontFamily: 'var(--font-mono)', color: 'var(--muted)', marginBottom: '0.35rem' }}>
-                    <span>Difficulty Ratio:</span>
+                    <span>Difficulty:</span>
                     <span className="tabular-nums">30% E · 45% M · 25% H</span>
                   </div>
                   <div style={{ height: '7px', borderRadius: '9999px', background: 'var(--surface-inset)', display: 'flex', overflow: 'hidden', border: '1px solid var(--border)' }}>
@@ -435,7 +435,7 @@ export default function SATHubPage() {
               </div>
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontWeight: 600, fontSize: '0.84rem', marginTop: '0.5rem', color: 'var(--accent)' }}>
-                Launch Standard Exam <ArrowRight size={13} />
+                Start Adaptive Exam <ArrowRight size={13} />
               </div>
             </div>
           </Link>
@@ -446,23 +446,23 @@ export default function SATHubPage() {
               <div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.65rem' }}>
                   <span className="badge" style={{ fontSize: '0.68rem', fontWeight: 700, padding: '0.15rem 0.45rem', borderRadius: '4px', background: 'rgba(9, 105, 218, 0.08)', color: '#0969da' }}>
-                    600–700 Score Builder
+                    Target: 600–700
                   </span>
                   <span className="badge tabular-nums" style={{ fontSize: '0.68rem', fontWeight: 600, padding: '0.15rem 0.45rem', borderRadius: '4px', background: 'var(--surface-inset)', border: '1px solid var(--border)' }}>
-                    1450 Foundational Ceiling
+                    Medium Focus
                   </span>
                 </div>
 
-                <h3 style={{ fontSize: '1.3rem', marginBottom: '0.4rem' }}>Medium Tier Focus</h3>
+                <h3 style={{ fontSize: '1.3rem', marginBottom: '0.4rem' }}>Medium Focus</h3>
                 <p style={{ fontSize: '0.86rem', color: 'var(--card-desc, #57534E)', lineHeight: 1.45, marginBottom: '1rem' }}>
-                  Eliminates trivial easy items to build ironclad speed and accuracy across core algebra and conventions.
+                  Skips easy questions to focus on building accuracy and speed across core concepts.
                 </p>
 
                 {/* Difficulty Distribution Bar */}
                 <div style={{ marginBottom: '1rem' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.72rem', fontFamily: 'var(--font-mono)', color: 'var(--muted)', marginBottom: '0.35rem' }}>
-                    <span>Difficulty Ratio:</span>
-                    <span className="tabular-nums">0% E · 75% M · 25% H</span>
+                    <span>Difficulty:</span>
+                    <span className="tabular-nums">75% M · 25% H</span>
                   </div>
                   <div style={{ height: '7px', borderRadius: '9999px', background: 'var(--surface-inset)', display: 'flex', overflow: 'hidden', border: '1px solid var(--border)' }}>
                     <div style={{ width: '75%', background: '#d97706' }} title="75% Medium" />
@@ -472,7 +472,7 @@ export default function SATHubPage() {
               </div>
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontWeight: 600, fontSize: '0.84rem', marginTop: '0.5rem', color: '#0969da' }}>
-                Launch Medium Focus <ArrowRight size={13} />
+                Start Medium Exam <ArrowRight size={13} />
               </div>
             </div>
           </Link>
@@ -483,23 +483,23 @@ export default function SATHubPage() {
               <div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.65rem' }}>
                   <span className="badge" style={{ fontSize: '0.68rem', fontWeight: 700, padding: '0.15rem 0.45rem', borderRadius: '4px', background: 'rgba(130, 80, 223, 0.08)', color: '#8250df' }}>
-                    700+ Upper-Track Lock
+                    Target: 700+
                   </span>
                   <span className="badge tabular-nums" style={{ fontSize: '0.68rem', fontWeight: 600, padding: '0.15rem 0.45rem', borderRadius: '4px', background: 'var(--surface-inset)', border: '1px solid var(--border)' }}>
-                    1600 Upper Lock
+                    Hard Focus
                   </span>
                 </div>
 
-                <h3 style={{ fontSize: '1.3rem', marginBottom: '0.4rem' }}>Hard Tier Track</h3>
+                <h3 style={{ fontSize: '1.3rem', marginBottom: '0.4rem' }}>Hard Focus</h3>
                 <p style={{ fontSize: '0.86rem', color: 'var(--card-desc, #57534E)', lineHeight: 1.45, marginBottom: '1rem' }}>
-                  Module 2 is force-locked to the 90th-percentile Upper Track to experience genuine top-tier difficulty.
+                  Locks Module 2 to hard questions to prepare for high-scoring exams.
                 </p>
 
                 {/* Difficulty Distribution Bar */}
                 <div style={{ marginBottom: '1rem' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.72rem', fontFamily: 'var(--font-mono)', color: 'var(--muted)', marginBottom: '0.35rem' }}>
-                    <span>Difficulty Ratio:</span>
-                    <span className="tabular-nums">0% E · 25% M · 75% H</span>
+                    <span>Difficulty:</span>
+                    <span className="tabular-nums">25% M · 75% H</span>
                   </div>
                   <div style={{ height: '7px', borderRadius: '9999px', background: 'var(--surface-inset)', display: 'flex', overflow: 'hidden', border: '1px solid var(--border)' }}>
                     <div style={{ width: '25%', background: '#d97706' }} title="25% Medium" />
@@ -509,34 +509,34 @@ export default function SATHubPage() {
               </div>
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontWeight: 600, fontSize: '0.84rem', marginTop: '0.5rem', color: '#8250df' }}>
-                Launch Hard Mode <ArrowRight size={13} />
+                Start Hard Exam <ArrowRight size={13} />
               </div>
             </div>
           </Link>
 
-          {/* Mode 4: 750+ Gauntlet */}
+          {/* Mode 4: 750+ Hard Only */}
           <Link href="/sat/practice/exam?mode=hard_gauntlet" style={{ textDecoration: 'none', color: 'inherit' }}>
             <div className="editorial-bento-card" style={{ height: '100%', borderColor: 'rgba(194, 65, 12, 0.35)' }}>
               <div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.65rem' }}>
                   <span className="badge" style={{ fontSize: '0.68rem', fontWeight: 700, padding: '0.15rem 0.45rem', borderRadius: '4px', background: 'var(--accent)', color: '#ffffff' }}>
-                    750+ Gauntlet
+                    Target: 750+
                   </span>
                   <span className="badge tabular-nums" style={{ fontSize: '0.68rem', fontWeight: 600, padding: '0.15rem 0.45rem', borderRadius: '4px', background: 'var(--surface-inset)', border: '1px solid var(--border)' }}>
-                    1600 (99th %ile)
+                    Hard Only
                   </span>
                 </div>
 
-                <h3 style={{ fontSize: '1.3rem', marginBottom: '0.4rem' }}>750+ Gauntlet</h3>
+                <h3 style={{ fontSize: '1.3rem', marginBottom: '0.4rem' }}>Hard Only</h3>
                 <p style={{ fontSize: '0.86rem', color: 'var(--card-desc, #57534E)', lineHeight: 1.45, marginBottom: '1rem' }}>
-                  100% Level-3 Hard questions across all modules with Examiner Trap priority. The ultimate high-scorer challenge.
+                  100% hard questions across both modules. Designed for high scorers looking for a challenge.
                 </p>
 
                 {/* Difficulty Distribution Bar */}
                 <div style={{ marginBottom: '1rem' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.72rem', fontFamily: 'var(--font-mono)', color: 'var(--muted)', marginBottom: '0.35rem' }}>
-                    <span>Difficulty Ratio:</span>
-                    <span className="tabular-nums" style={{ color: 'var(--accent)', fontWeight: 700 }}>100% Level-3 Hard</span>
+                    <span>Difficulty:</span>
+                    <span className="tabular-nums" style={{ color: 'var(--accent)', fontWeight: 700 }}>100% Hard</span>
                   </div>
                   <div style={{ height: '7px', borderRadius: '9999px', background: 'var(--surface-inset)', display: 'flex', overflow: 'hidden', border: '1px solid var(--border)' }}>
                     <div style={{ width: '100%', background: 'var(--accent)' }} title="100% Hard" />
@@ -545,7 +545,7 @@ export default function SATHubPage() {
               </div>
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontWeight: 600, fontSize: '0.84rem', marginTop: '0.5rem', color: 'var(--accent)' }}>
-                Launch 750+ Gauntlet <ArrowRight size={13} />
+                Start Hard Only <ArrowRight size={13} />
               </div>
             </div>
           </Link>

@@ -570,7 +570,8 @@ export default function CommandPalette() {
             gap: '0.85rem',
             padding: '1rem 1.25rem',
             borderBottom: '1px solid var(--border)',
-            background: 'var(--surface-raised, var(--surface, #ffffff))'
+            background: 'var(--surface-raised, var(--surface, #ffffff))',
+            flexShrink: 0,
           }}
         >
           <Search size={20} style={{ color: 'var(--rust, #b84a39)', flexShrink: 0 }} />
@@ -586,7 +587,7 @@ export default function CommandPalette() {
               background: 'transparent',
               border: 'none',
               outline: 'none',
-              fontSize: '1.05rem',
+              fontSize: '1.02rem',
               fontFamily: 'var(--font-body)',
               color: 'var(--ink, #1c1c1e)',
               boxShadow: 'none',
@@ -626,12 +627,15 @@ export default function CommandPalette() {
 
         {/* Filter Pills */}
         <div
+          className="no-scrollbar"
           style={{
             display: 'flex',
-            gap: '0.4rem',
-            padding: '0.6rem 1.25rem',
+            alignItems: 'center',
+            gap: '0.45rem',
+            padding: '0.65rem 1.25rem',
             borderBottom: '1px solid var(--border)',
             overflowX: 'auto',
+            flexShrink: 0,
             background: 'var(--surface-inset, rgba(0, 0, 0, 0.02))'
           }}
         >
@@ -643,15 +647,19 @@ export default function CommandPalette() {
                 type="button"
                 onClick={() => setActiveCategory(cat)}
                 style={{
-                  fontSize: '0.75rem',
+                  fontSize: '0.78rem',
+                  lineHeight: 1.2,
                   fontWeight: active ? 600 : 500,
-                  padding: '0.3rem 0.65rem',
+                  padding: '0.35rem 0.75rem',
                   borderRadius: '20px',
                   border: active ? '1px solid var(--rust, #b84a39)' : '1px solid var(--border)',
-                  background: active ? 'rgba(184, 74, 57, 0.1)' : 'transparent',
+                  background: active ? 'rgba(184, 74, 57, 0.12)' : 'transparent',
                   color: active ? 'var(--rust, #b84a39)' : 'var(--muted)',
                   cursor: 'pointer',
                   whiteSpace: 'nowrap',
+                  flexShrink: 0,
+                  display: 'inline-flex',
+                  alignItems: 'center',
                   transition: 'all 0.15s ease'
                 }}
               >
@@ -666,6 +674,7 @@ export default function CommandPalette() {
           ref={listRef}
           style={{
             flex: 1,
+            minHeight: 0,
             overflowY: 'auto',
             padding: '0.5rem'
           }}
@@ -809,7 +818,8 @@ export default function CommandPalette() {
             justifyContent: 'space-between',
             fontSize: '0.74rem',
             color: 'var(--muted)',
-            fontFamily: 'var(--font-mono)'
+            fontFamily: 'var(--font-mono)',
+            flexShrink: 0,
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
@@ -819,7 +829,7 @@ export default function CommandPalette() {
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
             <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#059669', display: 'inline-block' }} />
-            <span style={{ color: '#059669', fontWeight: 600 }}>Archive Live &amp; Synced</span>
+            <span style={{ color: '#059669', fontWeight: 600 }}>Ready</span>
           </div>
         </div>
       </div>

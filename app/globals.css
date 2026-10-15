@@ -860,16 +860,17 @@ p {
   border-bottom-width: 2px;
 }
 
-/* DARK MODE / OBSIDIAN ACADEMIC STUDIO THEME */
+/* DARK MODE THEME */
 [data-theme="dark"] {
-  --bg: #0C0C0E; /* Obsidian Academic Studio canvas */
-  --ink: #F4F4F6; /* Crisp Off-White text */
-  --accent: #EA580C; /* Warm Amber/Terracotta accent */
+  color-scheme: dark;
+  --bg: #0C0C0E;
+  --ink: #F4F4F6;
+  --accent: #EA580C;
   --rust: #EA580C;
   --muted: #A8A29E;
   --ink-soft: #D6D3D1;
   --ink-faint: #78716C;
-  --border: rgba(255, 255, 255, 0.08); /* Subtle specular hairline */
+  --border: rgba(255, 255, 255, 0.08);
   --hairline: rgba(255, 255, 255, 0.08);
   --panel-light: #141417;
   --primary: #EA580C;
@@ -879,7 +880,7 @@ p {
   --success-soft: rgba(34, 197, 94, 0.12);
   --header-bg: rgba(12, 12, 14, 0.92);
 
-  /* Dark surface colors — Elevated Charcoal surface */
+  /* Dark surface colors */
   --surface: #141417;
   --surface-raised: #1C1C22;
   --surface-inset: #09090B;
@@ -888,6 +889,29 @@ p {
   --earth-soft: rgba(196, 134, 62, 0.12);
   --paper-card: #141417;
   --paper-panel: #101014;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 4px;
+}
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
 }
 
 [data-theme="dark"] body {

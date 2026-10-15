@@ -472,37 +472,37 @@ function SATExamInner() {
             <span style={{ fontSize: '0.8rem', fontFamily: 'var(--font-mono)', fontWeight: 700, color: 'var(--muted)', textTransform: 'uppercase' }}>
               Select Difficulty Mode
             </span>
-            <span style={{ fontSize: '0.75rem', color: 'var(--muted)' }}>Official College Board Quotas Preserved</span>
+            <span style={{ fontSize: '0.75rem', color: 'var(--muted)' }}>Official Question Quotas</span>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '0.9rem' }}>
             {[
               {
                 id: 'adaptive' as const,
-                title: 'Official Adaptive',
-                badge: 'Bluebook Standard',
-                desc: 'Standard 2-stage routing. Module 1 mixed items (30% E, 45% M, 25% H) route to Hard Module 2 if score is above threshold.',
+                title: 'Adaptive Exam',
+                badge: 'Official Format',
+                desc: 'Standard 2-stage exam. Module 2 adjusts based on your Module 1 performance.',
                 accent: 'var(--border)',
               },
               {
                 id: 'medium' as const,
                 title: 'Medium Focus',
-                badge: '600–700 Builder',
-                desc: '75% Medium, 25% Hard. Eliminates trivial Easy items to build rock-solid fundamentals across all domains.',
+                badge: 'Target: 600–700',
+                desc: 'Focuses on medium-difficulty questions to build speed and consistency.',
                 accent: '#2563eb',
               },
               {
                 id: 'hard' as const,
-                title: 'Hard Mode',
-                badge: '700+ Upper-Track Lock',
-                desc: '25% Medium, 75% Hard. Module 2 is force-locked to the Upper Track so you always experience the 700+ difficulty ceiling.',
+                title: 'Hard Focus',
+                badge: 'Target: 700+',
+                desc: 'Locks Module 2 to hard questions to prepare for high-scoring exams.',
                 accent: '#7c3aed',
               },
               {
                 id: 'hard_gauntlet' as const,
-                title: '750+ Gauntlet',
-                badge: '100% Level-3 Hard',
-                desc: '100% Hard questions across both modules with Examiner Trap priority. The ultimate high-scorer challenge.',
+                title: 'Hard Only',
+                badge: 'Target: 750+',
+                desc: '100% hard questions across both modules with tricky distractors.',
                 accent: 'var(--rust)',
               },
             ].map((m) => {
@@ -544,7 +544,7 @@ function SATExamInner() {
 
         <div className="panel" style={{ padding: '1.25rem', marginBottom: '1.5rem', fontSize: '0.86rem', color: 'var(--ink-soft)', lineHeight: 1.6 }}>
           <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap' }}>
-            <span><strong>Configured Test:</strong> {sectionScope === 'full' ? 'Full Test (RW + Math)' : sectionScope === 'math' ? 'Math Only' : 'Reading & Writing Only'} · {difficultyMode === 'hard_gauntlet' ? '750+ Gauntlet' : difficultyMode === 'hard' ? 'Hard Mode' : difficultyMode === 'medium' ? 'Medium Focus' : 'Official Adaptive'} · {timerMode === 'accelerated_0.8x' ? 'Accelerated 0.8x' : timerMode === 'untimed' ? 'Untimed' : 'Standard Timing'}</span>
+            <span><strong>Configured Test:</strong> {sectionScope === 'full' ? 'Full Test (RW + Math)' : sectionScope === 'math' ? 'Math Only' : 'Reading & Writing Only'} · {difficultyMode === 'hard_gauntlet' ? 'Hard Only' : difficultyMode === 'hard' ? 'Hard Focus' : difficultyMode === 'medium' ? 'Medium Focus' : 'Adaptive Exam'} · {timerMode === 'accelerated_0.8x' ? 'Accelerated 0.8x' : timerMode === 'untimed' ? 'Untimed' : 'Standard Timing'}</span>
           </div>
         </div>
 
@@ -557,7 +557,7 @@ function SATExamInner() {
         {error && <p role="alert" style={{ color: '#b91c1c' }}>{error}</p>}
         {!saved && (
           <button type="button" onClick={startFresh} disabled={busy} style={{ ...btnPrimary, width: '100%', justifyContent: 'center', padding: '0.9rem', fontSize: '1rem', cursor: busy ? 'wait' : 'pointer' }}>
-            {busy ? 'Building your customized test…' : `Start ${difficultyMode === 'hard_gauntlet' ? '750+ Gauntlet' : difficultyMode === 'hard' ? 'Hard Test' : difficultyMode === 'medium' ? 'Medium Focus Test' : 'Adaptive Test'}`} <ArrowRight size={16} />
+            {busy ? 'Building your test…' : `Start ${difficultyMode === 'hard_gauntlet' ? 'Hard Only Exam' : difficultyMode === 'hard' ? 'Hard Exam' : difficultyMode === 'medium' ? 'Medium Focus Exam' : 'Adaptive Exam'}`} <ArrowRight size={16} />
           </button>
         )}
       </div>
