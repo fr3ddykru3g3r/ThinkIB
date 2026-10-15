@@ -867,3 +867,70 @@ p {
   }
 }
 
+
+/* ===== SAT question rendering ===== */
+.sat-stem, .sat-rationale { color: var(--ink); line-height: 1.7; }
+.sat-para { margin: 0 0 0.9rem; white-space: pre-line; font-size: 1.02rem; }
+.sat-para u { text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+.sat-figure { margin: 0.5rem 0 1rem; }
+.sat-crop {
+  display: block;
+  background-repeat: no-repeat;
+  /* keep crops from shrinking to nothing when a flex parent squeezes them */
+  min-width: 12px;
+}
+/* black-on-transparent sheets: paint with the text colour in either theme */
+.sat-crop--ink { filter: none; }
+[data-theme="dark"] .sat-crop--ink { filter: invert(1); }
+/* full-colour figures keep a light card behind them in dark mode */
+.sat-crop--color { background-color: #fff; border-radius: 6px; }
+.sat-choice-media { display: flex; flex-direction: column; gap: 0.35rem; flex: 1; min-width: 0; }
+.sat-choice-text { white-space: pre-line; }
+.sat-rationale .sat-para { font-size: 0.95rem; }
+
+/* passage / question split (Bluebook layout) */
+.sat-split { display: grid; grid-template-columns: 1fr; gap: 0; }
+@media (min-width: 900px) {
+  .sat-split--rw { grid-template-columns: 1fr 1fr; }
+  .sat-split--rw .sat-split__passage { border-right: 1px solid var(--border); padding-right: 2rem; }
+  .sat-split--rw .sat-split__question { padding-left: 2rem; }
+}
+.sat-split__passage { padding-bottom: 1rem; }
+
+.sat-choice {
+  display: flex; align-items: center; gap: 1rem; padding: 0.8rem 1.1rem;
+  border-radius: 8px; border: 1px solid var(--border); background: var(--surface);
+  cursor: pointer; transition: border-color 0.12s, background 0.12s; text-align: left; width: 100%;
+  color: var(--ink); font: inherit;
+}
+.sat-choice:hover:not([disabled]) { border-color: var(--ink); }
+.sat-choice[data-selected="true"] { border-color: var(--ink); background: var(--surface-inset); box-shadow: inset 0 0 0 1px var(--ink); }
+.sat-choice[data-state="correct"] { border-color: #059669; background: rgba(16,185,129,0.08); }
+.sat-choice[data-state="wrong"] { border-color: #dc2626; background: rgba(239,68,68,0.08); }
+.sat-choice[data-struck="true"] .sat-choice-body { opacity: 0.4; text-decoration: line-through; }
+.sat-choice__letter {
+  width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; display: grid; place-items: center;
+  border: 1.5px solid var(--ink); font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700;
+}
+.sat-choice[data-selected="true"] .sat-choice__letter { background: var(--ink); color: var(--surface); }
+.sat-choice-body { flex: 1; min-width: 0; }
+.sat-choice__strike {
+  font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); background: transparent;
+  border: 1px solid var(--border); border-radius: 4px; padding: 2px 7px; cursor: pointer; flex-shrink: 0;
+}
+.sat-qgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(44px, 1fr)); gap: 0.6rem; }
+.sat-qgrid button {
+  aspect-ratio: 1; border-radius: 6px; border: 1px dashed var(--ink-faint); background: var(--surface); color: var(--ink);
+  font-family: var(--font-mono); font-weight: 600; cursor: pointer; position: relative;
+}
+.sat-qgrid button[data-answered="true"] { border-style: solid; background: var(--surface-inset); }
+.sat-qgrid button[data-current="true"] { border: 2px solid var(--accent); }
+.sat-qgrid button .flag { position: absolute; top: 3px; right: 3px; width: 8px; height: 8px; border-radius: 2px; background: var(--accent); }
+.sat-spr-input {
+  padding: 0.7rem 1rem; border-radius: 8px; border: 1px solid var(--border); font-size: 1.15rem;
+  font-family: var(--font-mono); width: 100%; max-width: 240px; background: var(--surface); color: var(--ink);
+}
+
+/* worksheets are always dark-on-white, whatever the site theme */
+.sat-print .sat-crop--ink { filter: none !important; }
+.sat-print, .sat-print * { --ink: #111827; }

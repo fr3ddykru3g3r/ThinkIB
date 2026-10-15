@@ -3,9 +3,10 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Search } from 'lucide-react';
 import PongPopup from './PongPopup';
 import ThemeToggle from './ThemeToggle';
+import CommandPalette from './CommandPalette';
 
 const NAV_ITEMS = [
   { label: 'Directory', href: '/' },
@@ -117,9 +118,44 @@ export default function HeaderNav() {
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '0.5rem'
+            gap: '0.45rem'
           }}
         >
+          <button
+            type="button"
+            onClick={() => window.dispatchEvent(new CustomEvent('open-command-palette'))}
+            className="header-search-btn"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.4rem',
+              background: 'var(--surface-inset, rgba(0, 0, 0, 0.04))',
+              border: '1px solid var(--border)',
+              borderRadius: '8px',
+              padding: '0.35rem 0.6rem',
+              color: 'var(--muted)',
+              fontSize: '0.8rem',
+              cursor: 'pointer',
+              transition: 'all 0.15s ease'
+            }}
+            title="Search Archive (⌘K or Ctrl+K)"
+          >
+            <Search size={14} style={{ color: 'var(--rust)' }} />
+            <span style={{ fontSize: '0.78rem', fontWeight: 500, color: 'var(--ink)' }}>Search</span>
+            <kbd
+              style={{
+                fontSize: '0.66rem',
+                fontFamily: 'var(--font-mono)',
+                padding: '0.1rem 0.35rem',
+                borderRadius: '4px',
+                background: 'var(--surface)',
+                border: '1px solid var(--border)',
+                color: 'var(--muted)'
+              }}
+            >
+              ⌘K
+            </kbd>
+          </button>
           <ThemeToggle />
           <PongPopup />
           <button
@@ -151,6 +187,34 @@ export default function HeaderNav() {
             padding: '0.75rem 1.25rem 1.25rem'
           }}
         >
+          <button
+            type="button"
+            onClick={() => {
+              setMobileMenuOpen(false);
+              window.dispatchEvent(new CustomEvent('open-command-palette'));
+            }}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              width: '100%',
+              marginBottom: '0.75rem',
+              padding: '0.6rem 0.85rem',
+              borderRadius: '8px',
+              border: '1px solid var(--border)',
+              background: 'var(--surface-inset, rgba(0, 0, 0, 0.04))',
+              color: 'var(--ink)',
+              fontSize: '0.88rem',
+              cursor: 'pointer'
+            }}
+          >
+            <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <Search size={15} style={{ color: 'var(--rust)' }} /> Quick Search
+            </span>
+            <kbd style={{ fontSize: '0.7rem', padding: '0.15rem 0.4rem', borderRadius: '4px', background: 'var(--surface)', border: '1px solid var(--border)' }}>
+              ⌘K
+            </kbd>
+          </button>
           <nav className="mobile-nav-list" style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
             {NAV_ITEMS.map((item) => {
               const active = isActive(item.href);
@@ -178,6 +242,9 @@ export default function HeaderNav() {
           </nav>
         </div>
       )}
+
+      {/* Global Command Palette Mounted Everywhere */}
+      <CommandPalette />
     </header>
   );
 }

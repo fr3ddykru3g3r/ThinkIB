@@ -1,11 +1,10 @@
 'use client';
 
 import React, { useState } from 'react';
-import { X, Printer, CheckCircle, FileText, AlertTriangle } from 'lucide-react';
-import { SATQuestion } from '@/lib/sat';
-import MathView from './MathView';
-import { getDesmosShortcutForQuestion } from '@/lib/desmos-shortcuts';
-import { getSocraticHints } from '@/lib/socratic-hints';
+import { X, Printer, CheckCircle, FileText } from 'lucide-react';
+import type { SATQuestion } from '@/lib/sat-types';
+import { isSPR, formatCorrectAnswer } from '@/lib/sat-grading';
+import { QuestionStem, ChoiceContent, Rationale } from './sat/SATContent';
 
 interface PrintableWorksheetModalProps {
   isOpen: boolean;
@@ -121,8 +120,9 @@ export default function PrintableWorksheetModal({
       {/* Printable Sheet (Standard A4 / Letter styling) */}
       <div
         id="printable-worksheet"
+        className="sat-print"
         style={{
-          background: 'var(--surface)',
+          background: '#ffffff',
           color: '#111827',
           width: '100%',
           maxWidth: '850px',
@@ -137,7 +137,7 @@ export default function PrintableWorksheetModal({
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem' }}>
             <div>
               <div style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#6b7280' }}>
-                THE ACADEMIC ARCHIVE • OFFICIAL SAT PRACTICE WORKSHEET
+                THINKIB • SAT PRACTICE WORKSHEET
               </div>
               <h1 style={{ fontSize: '1.8rem', margin: '0.3rem 0 0.2rem', fontFamily: 'var(--font-display)', color: '#111827' }}>
                 {title}
@@ -157,7 +157,7 @@ export default function PrintableWorksheetModal({
         {/* Questions List */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
           {questions.map((q, idx) => {
-            const isMultipleChoice = q.choices && q.choices.length > 0;
+            const isMultipleChoice = !isSPR(q);
             return (
               <div
                 key={q.questionId || idx}
@@ -176,46 +176,22 @@ export default function PrintableWorksheetModal({
                 </div>
 
                 {/* Prompt */}
-                <div style={{ fontSize: '1rem', lineHeight: '1.65', color: '#111827', marginBottom: '1.25rem', whiteSpace: 'pre-wrap' }}>
-                  <MathView content={q.prompt} />
+                <div style={{ fontSize: '1rem', lineHeight: '1.65', color: '#111827', marginBottom: '1.25rem' }}>
+                  <QuestionStem q={q} />
                 </div>
 
                 {/* Choices */}
                 {isMultipleChoice ? (
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '0.75rem', marginBottom: '1.5rem' }}>
-                    {q.choices!.map((c: any) => {
-                      const letter = typeof c === 'string' ? c.charAt(0) : (c?.letter || '');
-                      const text = typeof c === 'string' ? c.slice(3) : (c?.text || '');
+                    {(q.choices || []).map((_, i) => {
+                      const letter = String.fromCharCode(65 + i);
                       return (
-                        <div
-                          key={letter}
-                          style={{
-                            display: 'flex',
-                            alignItems: 'flex-start',
-                            gap: '8px',
-                            fontSize: '0.92rem',
-                            lineHeight: '1.45',
-                          }}
-                        >
-                          <span
-                            style={{
-                              display: 'inline-flex',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              width: '20px',
-                              height: '20px',
-                              borderRadius: '50%',
-                              border: '1.5px solid #374151',
-                              fontSize: '0.75rem',
-                              fontWeight: 700,
-                              flexShrink: 0,
-                              marginTop: '2px',
-                            }}
-                          >
+                        <div key={letter} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: '0.92rem', lineHeight: '1.45' }}>
+                          <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '20px', height: '20px', borderRadius: '50%', border: '1.5px solid #374151', fontSize: '0.75rem', fontWeight: 700, flexShrink: 0, marginTop: '2px' }}>
                             {letter}
                           </span>
-                          <span>
-                            <MathView content={text || ''} />
+                          <span style={{ flex: 1, minWidth: 0 }}>
+                            <ChoiceContent q={q} index={i} />
                           </span>
                         </div>
                       );
@@ -253,7 +229,7 @@ export default function PrintableWorksheetModal({
           <div style={{ pageBreakBefore: 'always', marginTop: '3rem', paddingTop: '2rem', borderTop: '2px solid #111827' }}>
             <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
               <span style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#6b7280' }}>
-                THE ACADEMIC ARCHIVE • DETAILED SOLUTIONS
+                THINKIB • SOLUTIONS
               </span>
               <h2 style={{ fontSize: '1.6rem', margin: '0.3rem 0', fontFamily: 'var(--font-display)' }}>
                 Official Answer Key & Worked Rationales
@@ -269,7 +245,7 @@ export default function PrintableWorksheetModal({
                 {questions.map((q, idx) => (
                   <div key={idx} style={{ padding: '4px 6px', background: 'var(--surface)', border: '1px solid #e5e7eb', borderRadius: '6px', textAlign: 'center' }}>
                     <span style={{ color: '#6b7280' }}>{idx + 1}: </span>
-                    <strong style={{ color: '#b84a39' }}>{q.correctAnswer}</strong>
+                    <strong style={{ color: '#b84a39' }}>{formatCorrectAnswer(q)}</strong>
                   </div>
                 ))}
               </div>
@@ -278,8 +254,6 @@ export default function PrintableWorksheetModal({
             {/* Full Worked Rationales */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
               {questions.map((q, idx) => {
-                const desmos = getDesmosShortcutForQuestion(q);
-                const hints = getSocraticHints(q);
                 return (
                   <div
                     key={idx}
@@ -291,28 +265,13 @@ export default function PrintableWorksheetModal({
                   >
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
                       <span style={{ fontWeight: 700, fontSize: '0.95rem' }}>
-                        Question {idx + 1} — Correct Answer: <span style={{ color: '#b84a39' }}>{q.correctAnswer}</span>
+                        Question {idx + 1} — Correct Answer: <span style={{ color: '#b84a39' }}>{formatCorrectAnswer(q)}</span>
                       </span>
                     </div>
 
-                    <div style={{ fontSize: '0.88rem', lineHeight: '1.6', color: '#374151', marginBottom: '0.75rem', whiteSpace: 'pre-wrap' }}>
-                      <MathView content={q.rationale || 'Refer to standard curriculum principles.'} />
+                    <div style={{ fontSize: '0.88rem', lineHeight: '1.6', color: '#374151', marginBottom: '0.75rem' }}>
+                      <Rationale q={q} />
                     </div>
-
-                    {hints && hints.examinerTrap && (
-                      <div style={{ background: '#fffbeb', border: '1px solid #fde68a', borderRadius: '4px', padding: '0.5rem 0.8rem', fontSize: '0.82rem', color: '#92400e', marginBottom: '0.75rem', lineHeight: '1.5' }}>
-                        <strong>⚠️ Examiner Trap & Misconception ({hints.examinerTrap.headline}):</strong> {hints.examinerTrap.explanation}
-                      </div>
-                    )}
-
-                    {desmos && (
-                      <div style={{ background: '#f0f9ff', border: '1px solid #bae6fd', borderRadius: '4px', padding: '0.65rem 0.85rem', fontSize: '0.82rem', color: '#0369a1' }}>
-                        <strong>{desmos.title}:</strong> {desmos.proTip}
-                        <div style={{ fontFamily: 'var(--font-mono)', marginTop: '4px', color: '#0284c7' }}>
-                          Syntax: {desmos.desmosCode}
-                        </div>
-                      </div>
-                    )}
                   </div>
                 );
               })}

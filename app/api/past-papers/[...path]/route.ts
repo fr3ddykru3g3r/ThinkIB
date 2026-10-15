@@ -97,30 +97,26 @@ function resolvePastPaperAsset(pathList: string[]): { assetName: string; release
   return null;
 }
 
+import map2025 from '../../../../public/2025_past_papers_map.json';
+
+const map2025Record = map2025 as Record<string, string>;
+
 export async function GET(
   request: NextRequest,
   { params }: { params: { path: string[] } }
 ) {
-  const pathSegments = params.path.map(decodeURIComponent);
+  const pathSegments = (params.path || []).map((seg) => {
+    try {
+      return decodeURIComponent(seg);
+    } catch {
+      return seg;
+    }
+  });
   const filename = pathSegments[pathSegments.length - 1];
 
-  // 1. Check direct local copy in 2025-past-papers vault
-  const local2025Path = path.join(process.cwd(), 'public', 'vault', '2025-past-papers');
-  if (fs.existsSync(local2025Path)) {
-    for (const folder of fs.readdirSync(local2025Path)) {
-      const candidate = path.join(local2025Path, folder, filename);
-      if (fs.existsSync(candidate) && fs.statSync(candidate).isFile()) {
-        const fileBuffer = fs.readFileSync(candidate);
-        return new NextResponse(fileBuffer, {
-          status: 200,
-          headers: {
-            'Content-Type': filename.endsWith('.pdf') ? 'application/pdf' : 'application/octet-stream',
-            'Content-Disposition': 'inline',
-            'Cache-Control': 'public, max-age=31536000, immutable'
-          }
-        });
-      }
-    }
+  // 1. Instant check in 2025-past-papers vault via pre-indexed static map
+  if (filename && map2025Record[filename]) {
+    return NextResponse.redirect(`${request.nextUrl.origin}${map2025Record[filename]}`, 307);
   }
 
   // 2. Check local static copy in public/vault/past-papers/
@@ -128,15 +124,8 @@ export async function GET(
   const localFilePath = path.join(process.cwd(), 'public', 'vault', 'past-papers', relativePath);
 
   if (fs.existsSync(localFilePath) && fs.statSync(localFilePath).isFile()) {
-    const fileBuffer = fs.readFileSync(localFilePath);
-    return new NextResponse(fileBuffer, {
-      status: 200,
-      headers: {
-        'Content-Type': 'application/pdf',
-        'Content-Disposition': 'inline',
-        'Cache-Control': 'public, max-age=31536000, immutable'
-      }
-    });
+    const encodedRedirect = pathSegments.map(encodeURIComponent).join('/');
+    return NextResponse.redirect(`${request.nextUrl.origin}/vault/past-papers/${encodedRedirect}`, 307);
   }
 
   // 3. Fallback to GitHub release asset lookup
@@ -163,13 +152,14 @@ export async function GET(
     if (!fileRes.ok) {
       return NextResponse.redirect(targetUrl, 307);
     }
-    const arrayBuffer = await fileRes.arrayBuffer();
-    return new NextResponse(arrayBuffer, {
+    return new NextResponse(fileRes.body, {
       status: 200,
       headers: {
         'Content-Type': 'application/pdf',
         'Content-Disposition': 'inline',
-        'Cache-Control': 'public, max-age=31536000, immutable'
+        'Cache-Control': 'public, max-age=31536000, s-maxage=31536000, immutable',
+        'CDN-Cache-Control': 'public, s-maxage=31536000, immutable',
+        'Vercel-CDN-Cache-Control': 'public, s-maxage=31536000, immutable',
       }
     });
   } catch (err: any) {

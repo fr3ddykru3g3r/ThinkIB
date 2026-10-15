@@ -18,7 +18,7 @@ import {
 } from 'lucide-react';
 import SATReferenceGuideModal from '@/app/components/SATReferenceGuideModal';
 import DesmosMasterKeyModal from '@/app/components/DesmosMasterKeyModal';
-import { getMistakeVault, getExamHistory, ExamHistoryEntry, MistakeEntry } from '@/lib/sat-storage';
+import { getSkillStats, SkillStat, getMistakeVault, getExamHistory, ExamHistoryEntry, MistakeEntry } from '@/lib/sat-storage';
 
 const KHAN_RESOURCES = [
   {
@@ -104,20 +104,25 @@ export default function SATHubPage() {
   const [showDesmosKeyModal, setShowDesmosKeyModal] = useState(false);
   const [examHistory, setExamHistory] = useState<ExamHistoryEntry[]>([]);
   const [mistakes, setMistakes] = useState<MistakeEntry[]>([]);
+  const [skills, setSkills] = useState<SkillStat[]>([]);
 
   React.useEffect(() => {
     setExamHistory(getExamHistory());
     setMistakes(getMistakeVault());
+    setSkills(getSkillStats());
   }, []);
+  const weakSkills = skills.filter((s) => s.total >= 3).sort((a, b) => a.correct / a.total - b.correct / b.total).slice(0, 3);
 
   // Compute weakest domain
-  const domainCounts = mistakes.filter(m => !m.mastered).reduce((acc, m) => {
-    acc[m.domain] = (acc[m.domain] || 0) + 1;
+  const domainCounts = mistakes.filter(m => !m.mastered && m.domain).reduce((acc, m) => {
+    const sec = m.section === 'math' ? 'math' : 'reading-writing';
+    const k = `${sec}|${m.domain}`;
+    acc[k] = (acc[k] || 0) + 1;
     return acc;
   }, {} as Record<string, number>);
 
   const weakestDomainEntry = Object.entries(domainCounts).sort((a, b) => b[1] - a[1])[0];
-  const weakestDomain = weakestDomainEntry ? weakestDomainEntry[0] : null;
+  const [weakestSection, weakestDomain] = weakestDomainEntry ? weakestDomainEntry[0].split('|') : [null, null];
 
   const latestExam = examHistory[0] || null;
 
@@ -203,7 +208,7 @@ export default function SATHubPage() {
                   {weakestDomain}
                 </div>
                 <Link
-                  href={`/sat/practice/drill?mode=standard`}
+                  href={`/sat/practice/drill?section=${weakestSection}&domain=${encodeURIComponent(weakestDomain || '')}`}
                   style={{
                     fontSize: '0.78rem',
                     color: 'var(--accent)',
@@ -219,6 +224,20 @@ export default function SATHubPage() {
                 </Link>
               </div>
             )}
+          </div>
+        </div>
+      )}
+
+      {weakSkills.length > 0 && (
+        <div className="panel" style={{ padding: '1.4rem 1.75rem', marginBottom: '2.5rem' }}>
+          <span className="section-label">YOUR WEAKEST SKILLS</span>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1rem', marginTop: '0.6rem' }}>
+            {weakSkills.map((w) => (
+              <Link key={w.skill} href={`/sat/practice/drill?section=${w.section}&domain=${encodeURIComponent(w.domain)}&skill=${encodeURIComponent(w.skill)}`} style={{ textDecoration: 'none', color: 'inherit', border: '1px solid var(--border)', borderRadius: 8, padding: '0.8rem 1rem' }}>
+                <div style={{ fontWeight: 600, fontSize: '0.92rem' }}>{w.skill}</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.78rem', color: '#b91c1c', marginTop: 4 }}>{Math.round((w.correct / w.total) * 100)}% ({w.correct}/{w.total}) · practice this →</div>
+              </Link>
+            ))}
           </div>
         </div>
       )}

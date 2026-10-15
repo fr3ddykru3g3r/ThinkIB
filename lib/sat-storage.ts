@@ -6,11 +6,12 @@ export interface MistakeEntry {
   domain: string;
   skill?: string;
   difficulty: 'Easy' | 'Medium' | 'Hard' | string;
-  prompt: string;
+  /** Legacy (pre-2026-09) entries stored full content; new entries only keep the id and re-fetch. */
+  prompt?: string;
   choices?: string[];
   correctAnswer: string;
   userAnswer: string;
-  rationale: string;
+  rationale?: string;
   missedAt: number; // unix timestamp
   attemptsCount: number;
   mastered: boolean;
@@ -31,6 +32,10 @@ export interface ExamHistoryEntry {
   isMathHard: boolean;
   avgTimeRWSeconds?: number;
   avgTimeMathSeconds?: number;
+  rwRange?: [number, number];
+  mathRange?: [number, number];
+  /** domain -> [correct, total] */
+  domains?: Record<string, [number, number]>;
 }
 
 const MISTAKES_KEY = 'sat_mistake_vault_v1';
@@ -53,11 +58,11 @@ export function saveMistake(item: {
   domain: string;
   skill?: string;
   difficulty?: string;
-  prompt: string;
+  prompt?: string;
   choices?: string[];
   correctAnswer: string;
   userAnswer: string;
-  rationale: string;
+  rationale?: string;
 }): void {
   if (typeof window === 'undefined') return;
   try {
@@ -81,11 +86,8 @@ export function saveMistake(item: {
         domain: item.domain || 'General',
         skill: item.skill || '',
         difficulty: item.difficulty || 'Medium',
-        prompt: item.prompt,
-        choices: item.choices || [],
         correctAnswer: item.correctAnswer,
         userAnswer: item.userAnswer,
-        rationale: item.rationale || '',
         missedAt: Date.now(),
         attemptsCount: 1,
         mastered: false,
@@ -164,5 +166,56 @@ export function saveCompletedExam(entry: Omit<ExamHistoryEntry, 'id' | 'date'>):
     localStorage.setItem(EXAM_HISTORY_KEY, JSON.stringify(trimmed));
   } catch (err) {
     console.warn('Failed to save exam history', err);
+  }
+}
+
+// Questions already shown in a practice test, so new tests prefer fresh items
+const SEEN_KEY = 'sat_seen_ids_v1';
+
+export function getSeenIds(): string[] {
+  if (typeof window === 'undefined') return [];
+  try {
+    return JSON.parse(localStorage.getItem(SEEN_KEY) || '[]');
+  } catch {
+    return [];
+  }
+}
+
+export function markSeen(ids: string[]): void {
+  if (typeof window === 'undefined') return;
+  try {
+    const set = new Set([...getSeenIds(), ...ids]);
+    localStorage.setItem(SEEN_KEY, JSON.stringify(Array.from(set).slice(-3400)));
+  } catch {
+    /* quota / private mode */
+  }
+}
+
+// Per-skill accuracy, fed by drills and full tests; powers the "weakest skills" panel
+const SKILL_KEY = 'sat_skill_stats_v1';
+export interface SkillStat { section: 'reading-writing' | 'math'; domain: string; skill: string; correct: number; total: number }
+
+export function getSkillStats(): SkillStat[] {
+  if (typeof window === 'undefined') return [];
+  try {
+    return JSON.parse(localStorage.getItem(SKILL_KEY) || '[]');
+  } catch {
+    return [];
+  }
+}
+
+export function recordAttempts(items: { section: 'reading-writing' | 'math'; domain: string; skill: string; correct: boolean }[]): void {
+  if (typeof window === 'undefined' || !items.length) return;
+  try {
+    const stats = getSkillStats();
+    for (const it of items) {
+      let s = stats.find((x) => x.section === it.section && x.skill === it.skill);
+      if (!s) stats.push((s = { section: it.section, domain: it.domain, skill: it.skill, correct: 0, total: 0 }));
+      s.total++;
+      if (it.correct) s.correct++;
+    }
+    localStorage.setItem(SKILL_KEY, JSON.stringify(stats));
+  } catch {
+    /* quota / private mode */
   }
 }

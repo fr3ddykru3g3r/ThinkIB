@@ -1,14 +1,31 @@
 {
   "files": [
     {
-      "kind": "sat-reading-writing",
-      "pdf": "/Users/Kyrosah/Downloads/questionbank-export-2026-5-3.pdf",
-      "questions": 1688
+      "kind": "sat-math",
+      "questions": 1756,
+      "skipped": 0,
+      "byType": {
+        "spr": 421,
+        "mcq": 1335
+      },
+      "byDifficulty": {
+        "Hard": 535,
+        "Easy": 647,
+        "Medium": 574
+      }
     },
     {
-      "kind": "sat-math",
-      "pdf": "/Users/Kyrosah/Downloads/2af6f935-db82-4568-999e-d04772d607d9.pdf",
-      "questions": 1684
+      "kind": "sat-rw",
+      "questions": 1687,
+      "skipped": 1,
+      "byType": {
+        "mcq": 1687
+      },
+      "byDifficulty": {
+        "Easy": 592,
+        "Medium": 562,
+        "Hard": 533
+      }
     }
   ]
 }

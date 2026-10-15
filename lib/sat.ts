@@ -1,270 +1,94 @@
 import fs from 'fs';
 import path from 'path';
+import type { SATQuestion } from './sat-types';
 
-export interface SATQuestion {
-  questionId: string;
-  pageNumber: number;
-  exam: string;
-  domain: string;
-  skill: string;
-  difficulty: 'Easy' | 'Medium' | 'Hard';
-  broadArchetype: string;
-  conceptLabel: string;
-  prompt: string;
-  choices: string[];
-  correctAnswer: string;
-  rationale: string;
-  section?: 'reading-writing' | 'math';
-}
-
-export interface SATTaxonomyDomain {
-  domain: string;
-  skills: {
-    skill: string;
-    difficulty: string;
-    archetype: string;
-    conceptLabel: string;
-    count: number;
-    originalWdcFocus?: string;
-  }[];
-}
-
-export interface SATTaxonomy {
-  exam: string;
-  domains: SATTaxonomyDomain[];
-}
+export type { SATQuestion } from './sat-types';
 
 const DATA_DIR = path.join(process.cwd(), 'data', 'sat');
 
 let cachedRW: SATQuestion[] | null = null;
 let cachedMath: SATQuestion[] | null = null;
-let cachedRWTaxonomy: SATTaxonomy | null = null;
-let cachedMathTaxonomy: SATTaxonomy | null = null;
+let byId: Map<string, SATQuestion> | null = null;
 
 function loadJSON<T>(filename: string): T | null {
   const filePath = path.join(DATA_DIR, filename);
   try {
-    if (fs.existsSync(filePath)) {
-      const content = fs.readFileSync(filePath, 'utf-8');
-      return JSON.parse(content) as T;
-    }
+    if (fs.existsSync(filePath)) return JSON.parse(fs.readFileSync(filePath, 'utf-8')) as T;
   } catch (err) {
     console.warn(`[SAT] Could not load ${filename}:`, err);
   }
   return null;
 }
 
-export function getRWTaxonomy(): SATTaxonomy | null {
-  if (!cachedRWTaxonomy) {
-    cachedRWTaxonomy = loadJSON<SATTaxonomy>('sanitized-sat-rw-taxonomy.json');
-  }
-  return cachedRWTaxonomy;
-}
-
-export function getMathTaxonomy(): SATTaxonomy | null {
-  if (!cachedMathTaxonomy) {
-    cachedMathTaxonomy = loadJSON<SATTaxonomy>('sanitized-sat-math-taxonomy.json');
-  }
-  return cachedMathTaxonomy;
-}
-
-export function cleanSATText(text: string): string {
-  if (!text || typeof text !== 'string') return text || '';
-  let s = text;
-  s = s.replace(/\bChoice\s+([A-D])\b/g, 'CHOICE__$1__PLACEHOLDER');
-  s = s.replace(/\b(\d)\s+(\d{2,})\b/g, '$1$2');
-  s = s.replace(/(\w+)\s*['’]\s*s\b\s*/gi, "$1's ");
-  s = s.replace(/(\w+)\s*['’]\s*t\b/gi, "$1't");
-  s = s.replace(/(\w+)\s*['’]\s*d\b/gi, "$1'd");
-  s = s.replace(/(\w+)\s*['’]\s*ll\b/gi, "$1'll");
-  s = s.replace(/(\w+)\s*['’]\s*re\b/gi, "$1're");
-  s = s.replace(/(\w+)\s*['’]\s*ve\b/gi, "$1've");
-  s = s.replace(/(\w+)\s*['’]\s*m\b/gi, "$1'm");
-  s = s.replace(/(\w+)\s*['’]\s*([a-zA-Z]+)/g, "$1'$2");
-  s = s.replace(/\s+([,.:;?!])/g, '$1');
-
-  s = s
-    .replace(/\bwer\s*e\s*n\s*ot\b/gi, 'were not')
-    .replace(/\bwer\s*e\b/gi, 'were')
-    .replace(/\bar\s*e\b/gi, 'are')
-    .replace(/\bt\s*o\b/gi, 'to')
-    .replace(/\bo\s*f\b/gi, 'of')
-    .replace(/\bf\s*or\b/gi, 'for')
-    .replace(/\bo\s*ne\b/gi, 'one')
-    .replace(/\bn\s*ot\b/gi, 'not')
-    .replace(/\br\s*eign\b/gi, 'reign')
-    .replace(/\br\s*eigns\b/gi, 'reigns')
-    .replace(/\br\s*esear\s*ching\b/gi, 'researching')
-    .replace(/\br\s*esear\s*ch\b/gi, 'research')
-    .replace(/\br\s*ather\b/gi, 'rather')
-    .replace(/\br\s*aised\b/gi, 'raised')
-    .replace(/\ba\s+t\s+opic\b/gi, 'a topic')
-    .replace(/\bt\s+opic\b/gi, 'topic')
-    .replace(/\bt\s+opics\b/gi, 'topics')
-    .replace(/\br\s*epr\s*esent/gi, 'represent')
-    .replace(/\bd\s*i\s*ff\s*er\s*ence/gi, 'difference')
-    .replace(/\bd\s*i\s*ff\s*er\s*ent/gi, 'different')
-    .replace(/\bs\s*i\s*milar/gi, 'similar')
-    .replace(/\bgener\s*aliz/gi, 'generaliz')
-    .replace(/\bdecr\s*ea\s*se/gi, 'decrease')
-    .replace(/\bincr\s*ea\s*se/gi, 'increase')
-    .replace(/\bpor\s*tr\s*ait/gi, 'portrait')
-    .replace(/\bdr\s*aw\s*ing/gi, 'drawing')
-    .replace(/\bper\s*cent/gi, 'percent')
-    .replace(/\bBa\s*'\s*al\s*š\s*illem\b/g, "Ba'alšillem")
-    .replace(/\bL\s+u\s+is\b/g, 'Luis');
-
-  s = s.replace(/\b([a-z]{3,})\s+s\b/gi, '$1s');
-  s = s.replace(/\b([B-HJ-Z])\s+([a-z]{2,})\b/g, '$1$2');
-
-  const brokenPrefixes = ['pr', 'tr', 'dr', 'thr', 'cr', 'br', 'gr', 'fr', 'st', 'sp', 'sc', 'wh', 'th', 'ch', 'sh', 'ph', 'ar', 'por', 'diff', 'eff', 'sui', 'decr', 'incr', 'wer', 'perso', 'sculpt', 'wr', 'mak', 'tak', 'repr', 'si', 'di'];
-  for (const prefix of brokenPrefixes) {
-    const regex = new RegExp(`\\b(${prefix})\\s+([a-z]+)\\b`, 'gi');
-    s = s.replace(regex, '$1$2');
-  }
-
-  const brokenSuffixes = ['en', 'or', 'ors', 'er', 'ers', 'ing', 'ings', 'tion', 'tions', 'ment', 'ments', 'ence', 'ences', 'ent', 'ents', 'ance', 'ances', 'ed', 'ly', 'al', 'able', 'ible', 'ive', 'ively', 'ade', 'ses', 'centage', 'lver', 'ade', 'ous', 'ful', 'less', 'ism', 'ist', 'ists', 'ical', 'ally', 'ic', 'ize', 'ized', 'izing', 'ization'];
-  for (const suffix of brokenSuffixes) {
-    const regex = new RegExp(`\\b([a-z]+)\\s+(${suffix})\\b`, 'gi');
-    s = s.replace(regex, '$1$2');
-  }
-
-  s = s.replace(/\b([a-z]{3,})\s+([ntd])\b/gi, '$1$2');
-  s = s.replace(/CHOICE__([A-D])__PLACEHOLDER/g, 'Choice $1');
-  return s.replace(/\s+/g, ' ').trim();
-}
-
-function sanitizeQuestion(q: SATQuestion): SATQuestion {
-  return {
-    ...q,
-    prompt: cleanSATText(q.prompt),
-    choices: (q.choices || []).map(cleanSATText),
-    rationale: cleanSATText(q.rationale),
-    skill: cleanSATText(q.skill),
-    domain: cleanSATText(q.domain),
-    conceptLabel: cleanSATText(q.conceptLabel),
-  };
+/** Drop the handful of items whose choices couldn't be recovered from the PDF, rather than show blank options. */
+function isUsable(q: SATQuestion): boolean {
+  if (q.type === 'spr') return !!q.correctAnswer;
+  if (!q.choices || q.choices.length !== 4 || !'ABCD'.includes(q.correctAnswer)) return false;
+  return q.choices.every((c, i) => c.trim() || (q.choiceMedia?.[i]?.length ?? 0) > 0);
 }
 
 export function getAllRWQuestions(): SATQuestion[] {
-  if (!cachedRW) {
-    const raw = loadJSON<SATQuestion[]>('official-sat-reading-writing.json') || [];
-    cachedRW = raw.map(sanitizeQuestion);
-  }
+  if (!cachedRW) cachedRW = (loadJSON<SATQuestion[]>('official-sat-reading-writing.json') || []).filter(isUsable);
   return cachedRW;
 }
 
 export function getAllMathQuestions(): SATQuestion[] {
-  if (!cachedMath) {
-    const raw = loadJSON<SATQuestion[]>('official-sat-math.json') || [];
-    cachedMath = raw.map(sanitizeQuestion);
-  }
+  if (!cachedMath) cachedMath = (loadJSON<SATQuestion[]>('official-sat-math.json') || []).filter(isUsable);
   return cachedMath;
 }
 
-export interface QuestionFilter {
-  section?: 'reading-writing' | 'math' | 'all';
-  domain?: string;
-  skill?: string;
-  difficulty?: 'Easy' | 'Medium' | 'Hard';
-  hasChoicesOnly?: boolean;
-  limit?: number;
-  offset?: number;
-  search?: string;
-  randomize?: boolean;
+export function getQuestionsByIds(ids: string[]): SATQuestion[] {
+  if (!byId) {
+    byId = new Map();
+    for (const q of [...getAllRWQuestions(), ...getAllMathQuestions()]) byId.set(q.questionId, q);
+  }
+  return ids.map((id) => byId!.get(id)).filter((q): q is SATQuestion => !!q);
 }
 
-export function querySATQuestions(filter: QuestionFilter = {}): {
-  questions: SATQuestion[];
-  total: number;
-  taxonomy: { rw: SATTaxonomy | null; math: SATTaxonomy | null };
-} {
-  const rw = getAllRWQuestions();
-  const math = getAllMathQuestions();
+// ----------------------------------------------------------------------------
+// Blueprint (College Board Digital SAT test specifications)
+// ----------------------------------------------------------------------------
+export const RW_DOMAIN_ORDER = ['Craft and Structure', 'Information and Ideas', 'Standard English Conventions', 'Expression of Ideas'];
+export const MATH_DOMAIN_ORDER = ['Algebra', 'Advanced Math', 'Problem-Solving and Data Analysis', 'Geometry and Trigonometry'];
 
-  let pool: SATQuestion[] = [];
-  if (filter.section === 'reading-writing') {
-    pool = [...rw];
-  } else if (filter.section === 'math') {
-    pool = [...math];
-  } else {
-    pool = [...rw, ...math];
-  }
+// Order in which Bluebook presents skills inside a domain.
+const SKILL_ORDER = [
+  'Words in Context', 'Text Structure and Purpose', 'Cross-Text Connections',
+  'Central Ideas and Details', 'Command of Evidence', 'Inferences',
+  'Boundaries', 'Form, Structure, and Sense',
+  'Rhetorical Synthesis', 'Transitions',
+  'Linear equations in one variable', 'Linear functions', 'Linear equations in two variables',
+  'Systems of two linear equations in two variables', 'Linear inequalities in one or two variables',
+  'Equivalent expressions', 'Nonlinear equations in one variable and systems of equations in two variables', 'Nonlinear functions',
+  'Ratios, rates, proportional relationships, and units', 'Percentages', 'One-variable data: Distributions and measures of center and spread',
+  'Two-variable data: Models and scatterplots', 'Probability and conditional probability',
+  'Inference from sample statistics and margin of error', 'Evaluating statistical claims: Observational studies and experiments',
+  'Area and volume', 'Lines, angles, and triangles', 'Right triangles and trigonometry', 'Circles',
+];
 
-  // Filter out questions with empty choices if required
-  if (filter.hasChoicesOnly) {
-    pool = pool.filter(
-      (q) => q.choices && q.choices.length > 0 && q.choices.some((c) => c.trim().length > 0)
-    );
-  }
+type Tier = 'standard' | 'easy' | 'hard';
+type DiffCounts = { Easy: number; Medium: number; Hard: number };
 
-  if (filter.difficulty) {
-    pool = pool.filter((q) => q.difficulty.toLowerCase() === filter.difficulty!.toLowerCase());
-  }
+/** Questions per module (scored + 2 unscored pretest), as on the real test. */
+const RW_MODULE = { total: 27, minutes: 32 };
+const MATH_MODULE = { total: 22, minutes: 35 };
 
-  if (filter.skill) {
-    const s = filter.skill.toLowerCase();
-    pool = pool.filter((q) => q.skill.toLowerCase().includes(s) || q.conceptLabel.toLowerCase().includes(s));
-  }
+// Domain mix per module: C&S ~28%, I&I ~26%, SEC ~26%, EOI ~20% (R&W);
+// Algebra ~35%, Adv. Math ~35%, PSDA ~15%, Geo/Trig ~15% (Math).
+const RW_DOMAIN_QUOTA: Record<string, number> = {
+  'Craft and Structure': 8, 'Information and Ideas': 7, 'Standard English Conventions': 7, 'Expression of Ideas': 5,
+};
+const MATH_DOMAIN_QUOTA: [Record<string, number>, Record<string, number>] = [
+  { Algebra: 8, 'Advanced Math': 7, 'Problem-Solving and Data Analysis': 3, 'Geometry and Trigonometry': 4 },
+  { Algebra: 7, 'Advanced Math': 8, 'Problem-Solving and Data Analysis': 4, 'Geometry and Trigonometry': 3 },
+];
 
-  if (filter.domain) {
-    const d = filter.domain.toLowerCase().trim();
-    pool = pool.filter((q) => q.domain.toLowerCase().includes(d) || q.conceptLabel.toLowerCase().includes(d));
-  }
-
-  if (filter.search) {
-    const q = filter.search.toLowerCase();
-    pool = pool.filter(
-      (item) =>
-        item.prompt.toLowerCase().includes(q) ||
-        item.skill.toLowerCase().includes(q) ||
-        item.broadArchetype.toLowerCase().includes(q) ||
-        item.questionId.toLowerCase().includes(q)
-    );
-  }
-
-  const total = pool.length;
-
-  if (filter.randomize) {
-    for (let i = pool.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [pool[i], pool[j]] = [pool[j], pool[i]];
-    }
-  }
-
-  const offset = filter.offset || 0;
-  const limit = filter.limit || 25;
-  const paginated = pool.slice(offset, offset + limit);
-
-  return {
-    questions: paginated,
-    total,
-    taxonomy: {
-      rw: getRWTaxonomy(),
-      math: getMathTaxonomy(),
-    },
-  };
-}
-
-// ----------------------------------------------------
-// FULL ADAPTIVE EXAM SIMULATOR ENGINE
-// ----------------------------------------------------
-export interface FullSATExamModule {
-  id: string;
-  section: 'reading-writing' | 'math';
-  moduleNumber: 1 | 2;
-  title: string;
-  timeMinutes: number;
-  tier: 'standard' | 'easy' | 'hard';
-  questions: SATQuestion[];
-}
-
-export interface FullSATExam {
-  id: string;
-  name: string;
-  createdAt: string;
-  modules: FullSATExamModule[];
-}
+// Module 1 is a broad mix; Module 2 leans harder or easier depending on routing.
+const DIFF_SHARE: Record<Tier, [number, number, number]> = {
+  standard: [0.3, 0.5, 0.2],
+  easy: [0.55, 0.38, 0.07],
+  hard: [0.08, 0.37, 0.55],
+};
 
 function shuffle<T>(arr: T[]): T[] {
   const copy = [...arr];
@@ -275,174 +99,229 @@ function shuffle<T>(arr: T[]): T[] {
   return copy;
 }
 
+/** Largest-remainder split of n items across the tier's difficulty shares. */
+function splitDifficulty(n: number, tier: Tier): DiffCounts {
+  const shares = DIFF_SHARE[tier];
+  const raw = shares.map((s) => s * n);
+  const base = raw.map(Math.floor);
+  let left = n - base.reduce((a, b) => a + b, 0);
+  const order = raw.map((r, i) => [r - base[i], i] as const).sort((a, b) => b[0] - a[0]);
+  for (const [, i] of order) {
+    if (left <= 0) break;
+    base[i]++;
+    left--;
+  }
+  return { Easy: base[0], Medium: base[1], Hard: base[2] };
+}
+
+const DIFF_FALLBACK: Record<string, string[]> = {
+  Easy: ['Easy', 'Medium', 'Hard'],
+  Medium: ['Medium', 'Easy', 'Hard'],
+  Hard: ['Hard', 'Medium', 'Easy'],
+};
+
+export interface FullSATExamModule {
+  id: string;
+  section: 'reading-writing' | 'math';
+  moduleNumber: 1 | 2;
+  title: string;
+  timeMinutes: number;
+  tier: Tier;
+  questions: SATQuestion[];
+}
+
+export interface FullSATExam {
+  id: string;
+  name: string;
+  createdAt: string;
+  modules: FullSATExamModule[];
+}
+
 export function generateAdaptiveModule(
   section: 'reading-writing' | 'math',
   moduleNumber: 1 | 2,
-  tier: 'standard' | 'easy' | 'hard' = 'standard',
-  excludeIds: Set<string> = new Set()
+  tier: Tier = 'standard',
+  excludeIds: Set<string> = new Set(),
+  seenIds: Set<string> = new Set()
 ): FullSATExamModule {
   const isRW = section === 'reading-writing';
-  const allQs = isRW
-    ? getAllRWQuestions().filter((q) => q.choices && q.choices.length === 4 && !excludeIds.has(q.questionId))
-    : getAllMathQuestions().filter(
-        (q) => ((q.choices && q.choices.some((c) => c.trim().length > 0)) || q.correctAnswer) && !excludeIds.has(q.questionId)
-      );
+  const spec = isRW ? RW_MODULE : MATH_MODULE;
+  const effectiveTier: Tier = moduleNumber === 1 ? 'standard' : tier;
+  const domainOrder = isRW ? RW_DOMAIN_ORDER : MATH_DOMAIN_ORDER;
+  const quota = isRW ? RW_DOMAIN_QUOTA : MATH_DOMAIN_QUOTA[moduleNumber - 1];
 
-  const easyPool = shuffle(allQs.filter((q) => q.difficulty.toLowerCase() === 'easy'));
-  const medPool = shuffle(allQs.filter((q) => q.difficulty.toLowerCase() === 'medium'));
-  const hardPool = shuffle(allQs.filter((q) => q.difficulty.toLowerCase() === 'hard'));
+  const all = (isRW ? getAllRWQuestions() : getAllMathQuestions()).filter((q) => !excludeIds.has(q.questionId));
 
-  let selected: SATQuestion[] = [];
+  // buckets[domain][difficulty] = questions, never-seen first so repeat takers get fresh items
+  const buckets = new Map<string, Map<string, SATQuestion[]>>();
+  for (const d of domainOrder) buckets.set(d, new Map([['Easy', []], ['Medium', []], ['Hard', []]]));
+  const unseen = shuffle(all.filter((q) => !seenIds.has(q.questionId)));
+  const seen = shuffle(all.filter((q) => seenIds.has(q.questionId)));
+  for (const q of [...unseen, ...seen]) buckets.get(q.domain)?.get(q.difficulty)?.push(q);
 
-  if (isRW) {
-    // 27 Questions Total
-    if (moduleNumber === 1 || tier === 'standard') {
-      // Balanced Routing Module: 8 Easy, 14 Medium, 5 Hard
-      selected = [
-        ...easyPool.slice(0, 8),
-        ...medPool.slice(0, 14),
-        ...hardPool.slice(0, 5),
-      ];
-    } else if (tier === 'hard') {
-      // Module 2 Hard Tier: 2 Easy, 11 Medium, 14 Hard
-      selected = [
-        ...easyPool.slice(0, 2),
-        ...medPool.slice(0, 11),
-        ...hardPool.slice(0, 14),
-      ];
-    } else {
-      // Module 2 Easy Tier: 15 Easy, 10 Medium, 2 Hard
-      selected = [
-        ...easyPool.slice(0, 15),
-        ...medPool.slice(0, 10),
-        ...hardPool.slice(0, 2),
-      ];
+  // Difficulty is planned across the whole module first, then spread over domains,
+  // so a module's overall Easy/Medium/Hard mix matches its tier.
+  const modulePlan = splitDifficulty(spec.total, effectiveTier);
+  const remaining: DiffCounts = { ...modulePlan };
+
+  const picked: SATQuestion[] = [];
+  for (const domain of domainOrder) {
+    const n = quota[domain];
+    const b = buckets.get(domain)!;
+    // proportional share of remaining difficulty budget for this domain
+    const share: DiffCounts = { Easy: 0, Medium: 0, Hard: 0 };
+    const totalRemaining = remaining.Easy + remaining.Medium + remaining.Hard;
+    const want = (['Easy', 'Medium', 'Hard'] as const).map((d) => [d, (remaining[d] / Math.max(1, totalRemaining)) * n] as const);
+    let assigned = 0;
+    for (const [d, w] of want) {
+      share[d] = Math.min(Math.floor(w), remaining[d]);
+      assigned += share[d];
     }
-  } else {
-    // Math: 22 Questions Total
-    if (moduleNumber === 1 || tier === 'standard') {
-      // Balanced Routing Module: 6 Easy, 12 Medium, 4 Hard
-      selected = [
-        ...easyPool.slice(0, 6),
-        ...medPool.slice(0, 12),
-        ...hardPool.slice(0, 4),
-      ];
-    } else if (tier === 'hard') {
-      // Module 2 Hard Tier: 2 Easy, 8 Medium, 12 Hard
-      selected = [
-        ...easyPool.slice(0, 2),
-        ...medPool.slice(0, 8),
-        ...hardPool.slice(0, 12),
-      ];
-    } else {
-      // Module 2 Easy Tier: 12 Easy, 8 Medium, 2 Hard
-      selected = [
-        ...easyPool.slice(0, 12),
-        ...medPool.slice(0, 8),
-        ...hardPool.slice(0, 2),
-      ];
+    const byFrac = [...want].sort((a, b2) => (b2[1] % 1) - (a[1] % 1));
+    let guard = 0;
+    while (assigned < n && guard++ < 12) {
+      for (const [d] of byFrac) {
+        if (assigned >= n) break;
+        if (share[d] < remaining[d]) {
+          share[d]++;
+          assigned++;
+        }
+      }
+      if (guard > 6 && assigned < n) {
+        share.Medium += n - assigned;
+        assigned = n;
+      }
+    }
+    for (const d of ['Easy', 'Medium', 'Hard'] as const) {
+      for (let i = 0; i < share[d]; i++) {
+        const src = DIFF_FALLBACK[d].find((k) => (b.get(k) || []).length > 0);
+        if (!src) continue;
+        picked.push(b.get(src)!.shift()!);
+        if (remaining[src as keyof DiffCounts] > 0) remaining[src as keyof DiffCounts]--;
+      }
     }
   }
 
-  // Fallback if difficulty buckets fell short of target count
-  const targetCount = isRW ? 27 : 22;
-  if (selected.length < targetCount) {
-    const remaining = shuffle(allQs.filter((q) => !selected.some((s) => s.questionId === q.questionId)));
-    selected = [...selected, ...remaining.slice(0, targetCount - selected.length)];
+  // If a domain ran dry, top up from anywhere so the module is always full-length.
+  if (picked.length < spec.total) {
+    const have = new Set(picked.map((q) => q.questionId));
+    for (const q of shuffle(all)) {
+      if (picked.length >= spec.total) break;
+      if (!have.has(q.questionId)) picked.push(q);
+    }
   }
 
-  // Shuffle selected questions so difficulty increases progressively or appears naturally
-  selected = shuffle(selected);
+  // Bluebook order: by domain, then skill group, easier before harder inside a skill.
+  const diffRank: Record<string, number> = { Easy: 0, Medium: 1, Hard: 2 };
+  const skillRank = (s: string) => {
+    const i = SKILL_ORDER.indexOf(s);
+    return i < 0 ? 999 : i;
+  };
+  picked.sort(
+    (a, b) =>
+      domainOrder.indexOf(a.domain) - domainOrder.indexOf(b.domain) ||
+      skillRank(a.skill) - skillRank(b.skill) ||
+      diffRank[a.difficulty] - diffRank[b.difficulty]
+  );
 
-  const sectionName = isRW ? 'Reading & Writing' : 'Mathematics';
-  const timeMinutes = isRW ? 32 : 35;
+  // Two unscored pretest items per module, indistinguishable to the student.
+  const pretestIdx = new Set(shuffle(picked.map((_, i) => i)).slice(0, 2));
+  const questions = picked.map((q, i) => ({ ...q, pretest: pretestIdx.has(i) }));
 
   return {
     id: `mod-${isRW ? 'rw' : 'math'}-${moduleNumber}`,
     section,
     moduleNumber,
-    title: `Section ${isRW ? '1' : '2'}: ${sectionName} — Module ${moduleNumber}`,
-    timeMinutes,
-    tier,
-    questions: selected,
+    title: `${isRW ? 'Reading and Writing' : 'Math'}: Module ${moduleNumber}`,
+    timeMinutes: spec.minutes,
+    tier: effectiveTier,
+    questions,
   };
 }
 
-export function generateInitialFullSATExam(): FullSATExam {
-  const m1RW = generateAdaptiveModule('reading-writing', 1, 'standard');
-  const usedRWIds = new Set(m1RW.questions.map((q) => q.questionId));
-  // Default second module is standard until student completes Module 1
-  const m2RW = generateAdaptiveModule('reading-writing', 2, 'standard', usedRWIds);
-
-  const m1Math = generateAdaptiveModule('math', 1, 'standard');
-  const usedMathIds = new Set(m1Math.questions.map((q) => q.questionId));
-  const m2Math = generateAdaptiveModule('math', 2, 'standard', usedMathIds);
+export function generateInitialFullSATExam(seenIds: Set<string> = new Set()): FullSATExam {
+  const m1RW = generateAdaptiveModule('reading-writing', 1, 'standard', new Set(), seenIds);
+  const m1Math = generateAdaptiveModule('math', 1, 'standard', new Set(), seenIds);
+  // Placeholders: the real Module 2 is generated after Module 1 is submitted (adaptive routing).
+  const m2RW = generateAdaptiveModule('reading-writing', 2, 'standard', new Set(m1RW.questions.map((q) => q.questionId)), seenIds);
+  const m2Math = generateAdaptiveModule('math', 2, 'standard', new Set(m1Math.questions.map((q) => q.questionId)), seenIds);
 
   return {
     id: `exam-${Date.now()}-${Math.random().toString(36).substring(2, 6)}`,
-    name: 'Official Digital SAT Practice Exam',
+    name: 'Digital SAT Practice Exam',
     createdAt: new Date().toISOString(),
     modules: [m1RW, m2RW, m1Math, m2Math],
   };
 }
 
-// ----------------------------------------------------
-// DIGITAL SAT EQUATING SCORING ENGINE (400 - 1600)
-// ----------------------------------------------------
-export function calculateSATScore(
-  rwCorrect: number,
-  totalRW: number,
-  mathCorrect: number,
-  totalMath: number,
-  isRWHard: boolean = true,
-  isMathHard: boolean = true
-): {
-  totalScore: number;
-  rwScore: number;
-  mathScore: number;
-  percentile: number;
-} {
-  // Official Digital SAT Scoring with 2-Stage Adaptive Weighting:
-  // If routed to Module 2 Hard: max score is 800, min score ~440.
-  // If routed to Module 2 Easy: score ceiling is capped around 580-600.
-  
-  const rwRatio = Math.max(0, Math.min(1, rwCorrect / (totalRW || 54)));
-  let rwScore: number;
-  if (isRWHard) {
-    // Higher curve
-    rwScore = Math.round((430 + rwRatio * 370) / 10) * 10;
-  } else {
-    // Capped curve
-    rwScore = Math.round((200 + rwRatio * 390) / 10) * 10;
-    rwScore = Math.min(rwScore, 590);
-  }
+// ----------------------------------------------------------------------------
+// Question search / drills
+// ----------------------------------------------------------------------------
+export interface QuestionFilter {
+  section?: 'reading-writing' | 'math' | 'all';
+  domain?: string;
+  skill?: string;
+  difficulty?: 'Easy' | 'Medium' | 'Hard';
+  type?: 'mcq' | 'spr';
+  limit?: number;
+  offset?: number;
+  search?: string;
+  randomize?: boolean;
+  excludeIds?: string[];
+}
 
-  const mathRatio = Math.max(0, Math.min(1, mathCorrect / (totalMath || 44)));
-  let mathScore: number;
-  if (isMathHard) {
-    mathScore = Math.round((430 + mathRatio * 370) / 10) * 10;
-  } else {
-    mathScore = Math.round((200 + mathRatio * 390) / 10) * 10;
-    mathScore = Math.min(mathScore, 590);
-  }
+export interface FacetSkill {
+  skill: string;
+  count: number;
+}
+export interface FacetDomain {
+  domain: string;
+  count: number;
+  skills: FacetSkill[];
+}
 
-  const totalScore = Math.min(1600, Math.max(400, rwScore + mathScore));
-
-  let percentile = 50;
-  if (totalScore >= 1550) percentile = 99;
-  else if (totalScore >= 1500) percentile = 98;
-  else if (totalScore >= 1400) percentile = 94;
-  else if (totalScore >= 1300) percentile = 86;
-  else if (totalScore >= 1200) percentile = 74;
-  else if (totalScore >= 1100) percentile = 59;
-  else if (totalScore >= 1000) percentile = 43;
-  else if (totalScore >= 900) percentile = 28;
-  else percentile = 15;
-
-  return {
-    totalScore,
-    rwScore,
-    mathScore,
-    percentile,
+export function getFacets(): { rw: FacetDomain[]; math: FacetDomain[] } {
+  const build = (qs: SATQuestion[], order: string[]): FacetDomain[] => {
+    const map = new Map<string, Map<string, number>>();
+    for (const q of qs) {
+      if (!map.has(q.domain)) map.set(q.domain, new Map());
+      const m = map.get(q.domain)!;
+      m.set(q.skill, (m.get(q.skill) || 0) + 1);
+    }
+    return order
+      .filter((d) => map.has(d))
+      .map((d) => {
+        const skills = Array.from(map.get(d)!.entries()).map(([skill, count]) => ({ skill, count }));
+        skills.sort((a, b) => SKILL_ORDER.indexOf(a.skill) - SKILL_ORDER.indexOf(b.skill));
+        return { domain: d, count: skills.reduce((a, s) => a + s.count, 0), skills };
+      });
   };
+  return { rw: build(getAllRWQuestions(), RW_DOMAIN_ORDER), math: build(getAllMathQuestions(), MATH_DOMAIN_ORDER) };
+}
+
+export function querySATQuestions(filter: QuestionFilter = {}) {
+  const rw = getAllRWQuestions();
+  const math = getAllMathQuestions();
+  let pool: SATQuestion[] =
+    filter.section === 'reading-writing' ? [...rw] : filter.section === 'math' ? [...math] : [...rw, ...math];
+
+  if (filter.difficulty) pool = pool.filter((q) => q.difficulty === filter.difficulty);
+  if (filter.type) pool = pool.filter((q) => (q.type || 'mcq') === filter.type);
+  if (filter.domain) pool = pool.filter((q) => q.domain === filter.domain);
+  if (filter.skill) pool = pool.filter((q) => q.skill === filter.skill);
+  if (filter.excludeIds?.length) {
+    const ex = new Set(filter.excludeIds);
+    pool = pool.filter((q) => !ex.has(q.questionId));
+  }
+  if (filter.search) {
+    const s = filter.search.toLowerCase();
+    pool = pool.filter((q) => q.prompt.toLowerCase().includes(s) || q.skill.toLowerCase().includes(s) || q.questionId.startsWith(s));
+  }
+
+  const total = pool.length;
+  if (filter.randomize) pool = shuffle(pool);
+
+  const offset = filter.offset || 0;
+  const limit = Math.min(filter.limit || 25, 100);
+  return { questions: pool.slice(offset, offset + limit), total };
 }

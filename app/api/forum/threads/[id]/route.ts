@@ -16,7 +16,16 @@ export async function GET(
     );
   }
 
-  return NextResponse.json({ success: true, ...result });
+  return NextResponse.json(
+    { success: true, ...result },
+    {
+      headers: {
+        'Cache-Control': 'public, max-age=10, s-maxage=30, stale-while-revalidate=60',
+        'CDN-Cache-Control': 'public, s-maxage=30, stale-while-revalidate=60',
+        'Vercel-CDN-Cache-Control': 'public, s-maxage=30, stale-while-revalidate=60',
+      },
+    }
+  );
 }
 
 export async function POST(

@@ -1,68 +1,50 @@
 import { NextRequest, NextResponse } from 'next/server';
-import {
-  generateInitialFullSATExam,
-  generateAdaptiveModule,
-  calculateSATScore,
-} from '@/lib/sat';
+import { generateInitialFullSATExam, generateAdaptiveModule } from '@/lib/sat';
+import { routesToHardModule, scoreExam, type ScoredItem } from '@/lib/sat-scoring';
 
-// GET: Generate fresh full exam
+export const dynamic = 'force-dynamic';
+
+// GET: fresh exam (Module 1s are final; Module 2s are placeholders until routing)
 export async function GET() {
-  const exam = generateInitialFullSATExam();
-  return NextResponse.json({
-    success: true,
-    exam,
-  });
+  return NextResponse.json({ success: true, exam: generateInitialFullSATExam() }, { headers: { 'Cache-Control': 'no-store' } });
 }
 
-// POST: Handles score calculation or dynamic adaptive routing
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const { action } = body;
 
-    // Action 1: Route adaptive Module 2 based on Module 1 performance
-    if (action === 'route_module') {
-      const { section, m1CorrectCount, m1Total, excludeIds } = body;
-      const ratio = Number(m1CorrectCount || 0) / Number(m1Total || (section === 'reading-writing' ? 27 : 22));
-      // Official College Board threshold: ~65%+ correct routes to Hard Module 2
-      const isHard = ratio >= 0.65;
-      const tier = isHard ? 'hard' : 'easy';
-
-      const adaptiveModule = generateAdaptiveModule(
-        section,
-        2,
-        tier,
-        new Set(Array.isArray(excludeIds) ? excludeIds : [])
-      );
-
-      return NextResponse.json({
-        success: true,
-        tier,
-        isHard,
-        module: adaptiveModule,
-      });
+    // New exam that prefers questions this student hasn't seen yet
+    if (action === 'new_exam') {
+      const seen = new Set<string>(Array.isArray(body.seenIds) ? body.seenIds.slice(0, 5000) : []);
+      return NextResponse.json({ success: true, exam: generateInitialFullSATExam(seen) });
     }
 
-    // Action 2: Calculate final scaled score
-    const { rwCorrect, totalRW, mathCorrect, totalMath, isRWHard, isMathHard } = body;
+    // Adaptive routing: decided from Module 1's scored items only (pretest items don't count)
+    if (action === 'route_module') {
+      const { section, items, excludeIds, seenIds } = body as {
+        section: 'reading-writing' | 'math';
+        items: ScoredItem[];
+        excludeIds?: string[];
+        seenIds?: string[];
+      };
+      const isHard = routesToHardModule(items || []);
+      const module = generateAdaptiveModule(
+        section,
+        2,
+        isHard ? 'hard' : 'easy',
+        new Set(Array.isArray(excludeIds) ? excludeIds : []),
+        new Set(Array.isArray(seenIds) ? seenIds : [])
+      );
+      return NextResponse.json({ success: true, tier: module.tier, isHard, module });
+    }
 
-    const score = calculateSATScore(
-      Number(rwCorrect) || 0,
-      Number(totalRW) || 54,
-      Number(mathCorrect) || 0,
-      Number(totalMath) || 44,
-      Boolean(isRWHard),
-      Boolean(isMathHard)
-    );
+    if (action === 'score') {
+      return NextResponse.json({ success: true, score: scoreExam(body.rwItems || [], body.mathItems || []) });
+    }
 
-    return NextResponse.json({
-      success: true,
-      score,
-    });
+    return NextResponse.json({ success: false, error: 'Unknown action' }, { status: 400 });
   } catch (err: any) {
-    return NextResponse.json(
-      { success: false, error: err.message || 'Exam API error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ success: false, error: err.message || 'Exam API error' }, { status: 500 });
   }
 }

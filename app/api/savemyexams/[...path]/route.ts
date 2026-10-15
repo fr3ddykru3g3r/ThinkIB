@@ -9,22 +9,21 @@ export async function GET(
   request: NextRequest,
   { params }: { params: { path: string[] } }
 ) {
-  const rawPath = params.path.map(decodeURIComponent).join('/');
+  const rawPath = (params.path || []).map((seg) => {
+    try {
+      return decodeURIComponent(seg);
+    } catch {
+      return seg;
+    }
+  }).join('/');
   const cleanPath = rawPath.replace(/^(vault\/)?savemyexams\//, '');
 
   // 1. Check if local static copy exists in public/vault/savemyexams/
   const localFilePath = path.join(process.cwd(), 'public', 'vault', 'savemyexams', cleanPath);
 
   if (fs.existsSync(localFilePath) && fs.statSync(localFilePath).isFile()) {
-    const fileBuffer = fs.readFileSync(localFilePath);
-    return new NextResponse(fileBuffer, {
-      status: 200,
-      headers: {
-        'Content-Type': 'application/pdf',
-        'Content-Disposition': 'inline',
-        'Cache-Control': 'public, max-age=31536000, immutable'
-      }
-    });
+    const encodedRedirect = cleanPath.split('/').map(encodeURIComponent).join('/');
+    return NextResponse.redirect(`${request.nextUrl.origin}/vault/savemyexams/${encodedRedirect}`, 307);
   }
 
   // 2. Stream from GitHub release v2.0
@@ -64,13 +63,14 @@ export async function GET(
       return NextResponse.redirect(targetUrl, 307);
     }
 
-    const arrayBuffer = await fileRes.arrayBuffer();
-    return new NextResponse(arrayBuffer, {
+    return new NextResponse(fileRes.body, {
       status: 200,
       headers: {
         'Content-Type': 'application/pdf',
         'Content-Disposition': 'inline',
-        'Cache-Control': 'public, max-age=31536000, immutable'
+        'Cache-Control': 'public, max-age=31536000, s-maxage=31536000, immutable',
+        'CDN-Cache-Control': 'public, s-maxage=31536000, immutable',
+        'Vercel-CDN-Cache-Control': 'public, s-maxage=31536000, immutable',
       }
     });
   } catch (err: any) {

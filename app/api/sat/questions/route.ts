@@ -1,33 +1,34 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { querySATQuestions } from '@/lib/sat';
+import { querySATQuestions, getFacets, getQuestionsByIds } from '@/lib/sat';
 
 export async function GET(request: NextRequest) {
-  const { searchParams } = new URL(request.url);
+  const sp = new URL(request.url).searchParams;
 
-  const section = (searchParams.get('section') as any) || 'all';
-  const domain = searchParams.get('domain') || undefined;
-  const skill = searchParams.get('skill') || undefined;
-  const difficulty = (searchParams.get('difficulty') as any) || undefined;
-  const hasChoicesOnly = searchParams.get('hasChoicesOnly') === 'true';
-  const search = searchParams.get('search') || undefined;
-  const limit = parseInt(searchParams.get('limit') || '20', 10);
-  const offset = parseInt(searchParams.get('offset') || '0', 10);
-  const randomize = searchParams.get('randomize') === 'true';
+  // /api/sat/questions?ids=a,b,c  -> exact lookup (Mistake Vault, review screens)
+  const ids = sp.get('ids');
+  if (ids) {
+    const list = ids.split(',').map((s) => s.trim()).filter(Boolean).slice(0, 100);
+    return NextResponse.json({ success: true, questions: getQuestionsByIds(list) }, {
+      headers: { 'Cache-Control': 'public, max-age=3600, s-maxage=86400' },
+    });
+  }
 
+  const randomize = sp.get('randomize') === 'true';
+  const type = sp.get('type');
   const result = querySATQuestions({
-    section,
-    domain,
-    skill,
-    difficulty,
-    hasChoicesOnly,
-    search,
-    limit,
-    offset,
+    section: (sp.get('section') as 'reading-writing' | 'math' | 'all') || 'all',
+    domain: sp.get('domain') || undefined,
+    skill: sp.get('skill') || undefined,
+    difficulty: (sp.get('difficulty') as 'Easy' | 'Medium' | 'Hard') || undefined,
+    type: type === 'mcq' || type === 'spr' ? type : undefined,
+    search: sp.get('search') || undefined,
+    limit: parseInt(sp.get('limit') || '20', 10),
+    offset: parseInt(sp.get('offset') || '0', 10),
     randomize,
+    excludeIds: sp.get('exclude')?.split(',').filter(Boolean),
   });
 
-  return NextResponse.json({
-    success: true,
-    ...result,
-  });
+  // Random pulls must not be cached; deterministic ones can be.
+  const cache = randomize ? 'no-store' : 'public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800';
+  return NextResponse.json({ success: true, ...result, facets: getFacets() }, { headers: { 'Cache-Control': cache } });
 }

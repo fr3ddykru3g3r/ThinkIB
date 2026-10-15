@@ -5,6 +5,8 @@ import path from 'path';
 const GITHUB_BASE = 'https://fr3ddykru3g3r.github.io/ThinkIB-Websites';
 
 let cachedSearchIndex: any[] | null = null;
+const cachedSubjectIndexes: Record<string, any[]> = {};
+
 function getSearchIndex(): any[] {
   if (!cachedSearchIndex) {
     try {
@@ -17,6 +19,23 @@ function getSearchIndex(): any[] {
     }
   }
   return cachedSearchIndex || [];
+}
+
+function getSubjectIndex(sub: string): any[] {
+  if (sub && sub !== 'all') {
+    if (!cachedSubjectIndexes[sub]) {
+      try {
+        const p = path.join(process.cwd(), `public/thinkib/search_${sub}.json`);
+        if (fs.existsSync(p)) {
+          cachedSubjectIndexes[sub] = JSON.parse(fs.readFileSync(p, 'utf-8'));
+        }
+      } catch (e) {
+        console.error(`Error loading subject index for ${sub}:`, e);
+      }
+    }
+    if (cachedSubjectIndexes[sub]) return cachedSubjectIndexes[sub];
+  }
+  return getSearchIndex();
 }
 
 let cachedSearchScript: string | null = null;
@@ -43,7 +62,6 @@ function escapeHtml(str: string): string {
 }
 
 function renderServerSearchPage(query: string, subpath: string): string {
-  const index = getSearchIndex();
   const lowerQ = query.toLowerCase().trim();
   const terms = lowerQ.split(/\s+/).filter(t => t.length > 0);
 
@@ -58,9 +76,12 @@ function renderServerSearchPage(query: string, subpath: string): string {
   else if (pLower.includes('economics')) currentSub = 'economics';
   else if (pLower.includes('business')) currentSub = 'business';
 
+  const index = getSubjectIndex(currentSub);
+
   const scored: { item: any; score: number }[] = [];
   if (terms.length > 0) {
-    for (const item of index) {
+    for (let i = 0; i < index.length; i++) {
+      const item = index[i];
       if (item.sub === 'englishb') continue;
       const tLow = (item.t || '').toLowerCase();
       const cLow = (item.c || '').toLowerCase();
@@ -166,7 +187,17 @@ export async function GET(
   request: NextRequest,
   { params }: { params: { path: string[] } }
 ) {
-  const subpath = params.path ? params.path.join('/') : '';
+  const subpath = params.path
+    ? params.path
+        .map((seg) => {
+          try {
+            return decodeURIComponent(seg);
+          } catch {
+            return seg;
+          }
+        })
+        .join('/')
+    : '';
   const isHtml = subpath.endsWith('.html') || !subpath.includes('.');
   const searchParam = request.nextUrl.searchParams.get('s');
 
@@ -178,7 +209,9 @@ export async function GET(
       status: 200,
       headers: {
         'Content-Type': 'text/html; charset=utf-8',
-        'Cache-Control': 'public, max-age=60'
+        'Cache-Control': 'public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800',
+        'CDN-Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=604800',
+        'Vercel-CDN-Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=604800',
       }
     });
   }
@@ -247,7 +280,7 @@ export async function GET(
     const baseHref = `/api/v2/thinkib/${dirPath ? dirPath + '/' : ''}`;
 
     // Rewrite any hardcoded links in the HTML
-    html = html.replace(/href=["']https?:\/\/(?:www\.)?thinkib\.net\/([^"']+)["']/gi, 'href="/api/v2/thinkib/$1"');
+    html = html.replace(/href=["']https?:\/\/(?:[a-z0-9_-]+\.)?thinkib\.net\/([^"']+)["']/gi, 'href="/api/v2/thinkib/$1"');
     html = html.replace(/href=["']https?:\/\/fr3ddykru3g3r\.github\.io\/ThinkIB-Websites\/([^"']+)["']/gi, 'href="/api/v2/thinkib/$1"');
     html = html.replace(/href=["']https?:\/\/fr3ddykru3g3r\.github\.io\/([^"']+)["']/gi, 'href="/api/v2/thinkib/$1"');
 
@@ -272,7 +305,9 @@ export async function GET(
       status: 200,
       headers: {
         'Content-Type': 'text/html; charset=utf-8',
-        'Cache-Control': 'public, max-age=3600, s-maxage=3600'
+        'Cache-Control': 'public, max-age=86400, s-maxage=604800, stale-while-revalidate=2592000',
+        'CDN-Cache-Control': 'public, s-maxage=604800, stale-while-revalidate=2592000',
+        'Vercel-CDN-Cache-Control': 'public, s-maxage=604800, stale-while-revalidate=2592000',
       }
     });
   } catch (error) {

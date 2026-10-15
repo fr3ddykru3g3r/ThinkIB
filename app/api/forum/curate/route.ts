@@ -70,7 +70,7 @@ function evaluateResource(submission: {
   }
 
   const prefix = submission.exam ? `${submission.exam} ` : '';
-  const standardizedTitle = cleanTitle.toLowerCase().includes(submission.exam.toLowerCase())
+  const standardizedTitle = (submission.exam && cleanTitle.toLowerCase().includes(submission.exam.toLowerCase()))
     ? cleanTitle
     : `${prefix}${cleanTitle}`;
 

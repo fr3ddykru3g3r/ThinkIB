@@ -1,1492 +1,647 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
-import {
-  Clock,
-  Flag,
-  ChevronLeft,
-  ChevronRight,
-  Calculator,
-  FileText,
-  X,
-  AlertTriangle,
-  CheckCircle2,
-  XCircle,
-  RotateCcw,
-  ArrowRight,
-  Play,
-  Trash2,
-  Sparkles,
-} from 'lucide-react';
-import { FullSATExam, FullSATExamModule, SATQuestion } from '@/lib/sat';
-import MathView from '@/app/components/MathView';
+import { Clock, Flag, ChevronLeft, ChevronRight, Calculator, FileText, ArrowRight, Play, RotateCcw, Coffee, Check } from 'lucide-react';
+import type { SATQuestion } from '@/lib/sat-types';
+import type { FullSATExam, FullSATExamModule } from '@/lib/sat';
+import { isAnswerCorrect, formatCorrectAnswer, isSPR } from '@/lib/sat-grading';
+import { scoreExam, type ScoredItem, type SATScoreReport } from '@/lib/sat-scoring';
+import { recordAttempts, saveMistake, saveCompletedExam, getExamHistory, getSeenIds, markSeen, ExamHistoryEntry } from '@/lib/sat-storage';
+import QuestionBody from '@/app/components/sat/QuestionBody';
+import { Rationale } from '@/app/components/sat/SATContent';
+import DesmosPanel from '@/app/components/sat/DesmosPanel';
 import SATReferenceGuideModal from '@/app/components/SATReferenceGuideModal';
-import DesmosMasterKeyModal from '@/app/components/DesmosMasterKeyModal';
-import {
-  saveMistake,
-  saveCompletedExam,
-  getExamHistory,
-  ExamHistoryEntry,
-} from '@/lib/sat-storage';
 
-type ExamState = 'intro' | 'active' | 'module_review' | 'score_report';
+type Phase = 'intro' | 'active' | 'review' | 'break' | 'report';
+const STORAGE_KEY = 'sat_exam_v3';
+const BREAK_SECONDS = 10 * 60;
 
-const STORAGE_KEY = 'sat_in_progress_exam_v2';
+interface SavedState {
+  exam: FullSATExam;
+  phase: Phase;
+  moduleIdx: number;
+  qIdx: number;
+  answers: Record<string, string>;
+  flags: Record<string, boolean>;
+  secondsLeft: number;
+  times: Record<string, number>;
+  lastSaved: string;
+}
 
-export default function FullSATExamSimulator() {
+const keyOf = (m: FullSATExamModule, q: SATQuestion) => `${m.id}_${q.questionId}`;
+const ord = (n: number) => `${n}${[11, 12, 13].includes(n % 100) ? 'th' : ({ 1: 'st', 2: 'nd', 3: 'rd' } as Record<number, string>)[n % 10] || 'th'}`;
+const fmt = (s: number) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+
+interface ReviewRow {
+  q: SATQuestion;
+  module: FullSATExamModule;
+  answer: string;
+  correct: boolean;
+  flagged: boolean;
+  seconds: number;
+}
+
+export default function SATExamPage() {
   const [exam, setExam] = useState<FullSATExam | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [examState, setExamState] = useState<ExamState>('intro');
-
-  // Resume state detection
-  const [hasSavedExam, setHasSavedExam] = useState(false);
-  const [savedExamMeta, setSavedExamMeta] = useState<{
-    moduleName: string;
-    questionNum: number;
-    timeRemaining: string;
-    lastSaved: string;
-  } | null>(null);
-
-  // Active module & question indices
-  const [currentModuleIdx, setCurrentModuleIdx] = useState(0);
-  const [currentQuestionIdx, setCurrentQuestionIdx] = useState(0);
-
-  // User responses & flags
-  const [userAnswers, setUserAnswers] = useState<Record<string, string>>({});
-  const [flaggedQuestions, setFlaggedQuestions] = useState<Record<string, boolean>>({});
-
-  // Adaptive tiers tracking
-  const [isRWHard, setIsRWHard] = useState<boolean>(false);
-  const [isMathHard, setIsMathHard] = useState<boolean>(false);
-  const [m1RWRaw, setM1RWRaw] = useState<number>(0);
-  const [m1MathRaw, setM1MathRaw] = useState<number>(0);
-
-  // Timer
-  const [secondsRemaining, setSecondsRemaining] = useState(32 * 60);
+  const [phase, setPhase] = useState<Phase>('intro');
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [moduleIdx, setModuleIdx] = useState(0);
+  const [qIdx, setQIdx] = useState(0);
+  const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [flags, setFlags] = useState<Record<string, boolean>>({});
+  const [struck, setStruck] = useState<Record<string, Record<string, boolean>>>({});
+  const [secondsLeft, setSecondsLeft] = useState(0);
   const [showTimer, setShowTimer] = useState(true);
+  const [showCalc, setShowCalc] = useState(false);
+  const [showRef, setShowRef] = useState(false);
+  const [showGrid, setShowGrid] = useState(false);
+  const [saved, setSaved] = useState<SavedState | null>(null);
+  const [report, setReport] = useState<SATScoreReport | null>(null);
+  const [rows, setRows] = useState<ReviewRow[]>([]);
+  const [tiers, setTiers] = useState<{ rw?: string; math?: string }>({});
+  const [history, setHistory] = useState<ExamHistoryEntry[]>([]);
+  const [reviewFilter, setReviewFilter] = useState<'all' | 'wrong' | 'flagged'>('wrong');
+  const [openRow, setOpenRow] = useState<string | null>(null);
 
-  // Modals
-  const [showDesmosModal, setShowDesmosModal] = useState(false);
-  const [showDesmosKeyModal, setShowDesmosKeyModal] = useState(false);
-  const [showReferenceModal, setShowReferenceModal] = useState(false);
-  const [showNavGridModal, setShowNavGridModal] = useState(false);
+  const times = useRef<Record<string, number>>({});
+  const qStart = useRef<number>(Date.now());
+  const endsAt = useRef<number>(0);
+  const submitting = useRef(false);
 
-  // Pacing Diagnostics
-  const [questionTimeMap, setQuestionTimeMap] = useState<Record<string, number>>({});
-  const questionStartTimeRef = React.useRef<number>(Date.now());
-  const [pastExamHistory, setPastExamHistory] = useState<ExamHistoryEntry[]>([]);
-  const [pacingAnalysis, setPacingAnalysis] = useState<{
-    avgRWSeconds: number;
-    avgMathSeconds: number;
-    rushedCount: number;
-    optimalCount: number;
-    overtimeCount: number;
-  } | null>(null);
+  const mod = exam?.modules[moduleIdx] ?? null;
+  const question = mod?.questions[qIdx] ?? null;
+  const curKey = mod && question ? keyOf(mod, question) : '';
 
-  // Final score
-  const [finalScore, setFinalScore] = useState<{
-    totalScore: number;
-    rwScore: number;
-    mathScore: number;
-    percentile: number;
-    rwCorrect: number;
-    mathCorrect: number;
-    totalRW: number;
-    totalMath: number;
-  } | null>(null);
-
-  // Check for saved exam in localStorage on mount
+  // ---- detect saved exam
   useEffect(() => {
+    setHistory(getExamHistory());
     try {
-      const savedStr = localStorage.getItem(STORAGE_KEY);
-      if (savedStr) {
-        const saved = JSON.parse(savedStr);
-        if (saved && saved.exam && saved.examState === 'active') {
-          const mod = saved.exam.modules[saved.currentModuleIdx || 0];
-          const mins = Math.floor((saved.secondsRemaining || 0) / 60);
-          const secs = (saved.secondsRemaining || 0) % 60;
-          setHasSavedExam(true);
-          setSavedExamMeta({
-            moduleName: mod ? mod.title : 'In-Progress Section',
-            questionNum: (saved.currentQuestionIdx || 0) + 1,
-            timeRemaining: `${mins}:${secs < 10 ? '0' : ''}${secs}`,
-            lastSaved: new Date(saved.lastSaved || Date.now()).toLocaleTimeString(),
-          });
-        }
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        const s = JSON.parse(raw) as SavedState;
+        if (s?.exam && (s.phase === 'active' || s.phase === 'review' || s.phase === 'break')) setSaved(s);
       }
-    } catch (e) {
-      console.warn('Could not inspect saved exam', e);
-    } finally {
-      setLoading(false);
+    } catch {
+      /* corrupt save: ignore */
     }
   }, []);
 
-  // Save progress periodically & on state changes
+  // ---- persist progress
   useEffect(() => {
-    if (examState !== 'active' || !exam) return;
+    if (!exam || (phase !== 'active' && phase !== 'review' && phase !== 'break')) return;
     try {
-      const payload = {
-        exam,
-        examState,
-        currentModuleIdx,
-        currentQuestionIdx,
-        userAnswers,
-        flaggedQuestions,
-        secondsRemaining,
-        isRWHard,
-        isMathHard,
-        m1RWRaw,
-        m1MathRaw,
-        lastSaved: new Date().toISOString(),
-      };
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
-    } catch (e) {
-      // storage quota or private browsing
+      const s: SavedState = { exam, phase, moduleIdx, qIdx, answers, flags, secondsLeft, times: times.current, lastSaved: new Date().toISOString() };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(s));
+    } catch {
+      /* quota / private mode */
     }
-  }, [examState, exam, currentModuleIdx, currentQuestionIdx, userAnswers, flaggedQuestions, secondsRemaining, isRWHard, isMathHard, m1RWRaw, m1MathRaw]);
+  }, [exam, phase, moduleIdx, qIdx, answers, flags, secondsLeft]);
 
-  // Resume saved exam
-  const handleResumeSavedExam = () => {
+  // ---- per-question timing
+  const bankTime = useCallback(() => {
+    if (!curKey) return;
+    const dt = Math.round((Date.now() - qStart.current) / 1000);
+    if (dt > 0) times.current[curKey] = (times.current[curKey] || 0) + dt;
+    qStart.current = Date.now();
+  }, [curKey]);
+
+  const goTo = (i: number) => {
+    bankTime();
+    setQIdx(i);
+    setShowGrid(false);
+  };
+
+  // ---- module submit (button or timer expiry)
+  const submitModule = useCallback(async () => {
+    if (!exam || !mod || submitting.current) return;
+    submitting.current = true;
+    bankTime();
+    setBusy(true);
+    setError(null);
     try {
-      const savedStr = localStorage.getItem(STORAGE_KEY);
-      if (savedStr) {
-        const saved = JSON.parse(savedStr);
-        setExam(saved.exam);
-        setCurrentModuleIdx(saved.currentModuleIdx || 0);
-        setCurrentQuestionIdx(saved.currentQuestionIdx || 0);
-        setUserAnswers(saved.userAnswers || {});
-        setFlaggedQuestions(saved.flaggedQuestions || {});
-        setSecondsRemaining(saved.secondsRemaining || 32 * 60);
-        setIsRWHard(Boolean(saved.isRWHard));
-        setIsMathHard(Boolean(saved.isMathHard));
-        setM1RWRaw(Number(saved.m1RWRaw) || 0);
-        setM1MathRaw(Number(saved.m1MathRaw) || 0);
-        setExamState('active');
+      const modItems: ScoredItem[] = mod.questions.map((q) => ({
+        difficulty: q.difficulty,
+        type: q.type,
+        scored: !q.pretest,
+        correct: isAnswerCorrect(q, answers[keyOf(mod, q)]),
+      }));
+      let nextExam = exam;
+
+      // Module 1 -> route the section's Module 2 from Module 1's scored items
+      if (mod.moduleNumber === 1) {
+        try {
+          const res = await fetch('/api/sat/exam', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              action: 'route_module',
+              section: mod.section,
+              items: modItems,
+              excludeIds: mod.questions.map((q) => q.questionId),
+              seenIds: getSeenIds(),
+            }),
+          });
+          const data = await res.json();
+          if (data.success && data.module) {
+            const modules = [...exam.modules];
+            modules[moduleIdx + 1] = data.module;
+            nextExam = { ...exam, modules };
+            setExam(nextExam);
+            setTiers((t) => ({ ...t, [mod.section === 'math' ? 'math' : 'rw']: data.tier }));
+          }
+        } catch {
+          /* keep the placeholder Module 2 */
+        }
+      }
+
+      const next = moduleIdx + 1;
+      if (next >= nextExam.modules.length) {
+        finish(nextExam);
         return;
       }
-    } catch (e) {
-      console.error('Failed to resume exam', e);
-    }
-    handleStartFreshExam();
-  };
-
-  // Start a fresh, randomized exam
-  const handleStartFreshExam = async () => {
-    setLoading(true);
-    localStorage.removeItem(STORAGE_KEY);
-    setHasSavedExam(false);
-    setUserAnswers({});
-    setFlaggedQuestions({});
-    setFinalScore(null);
-
-    try {
-      const res = await fetch('/api/sat/exam');
-      const data = await res.json();
-      if (data.success && data.exam) {
-        setExam(data.exam);
-        setCurrentModuleIdx(0);
-        setCurrentQuestionIdx(0);
-        setSecondsRemaining(data.exam.modules[0].timeMinutes * 60);
-        setExamState('active');
-      }
-    } catch (err) {
-      console.error('Failed to start fresh exam', err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // Timer countdown
-  useEffect(() => {
-    if (examState !== 'active') return;
-
-    const timer = setInterval(() => {
-      setSecondsRemaining((prev) => {
-        if (prev <= 1) {
-          clearInterval(timer);
-          setExamState('module_review');
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [examState, currentModuleIdx]);
-
-  const currentModule = exam?.modules[currentModuleIdx] || null;
-  const currentQuestion = currentModule?.questions[currentQuestionIdx] || null;
-  const currentKey = currentModule && currentQuestion ? `${currentModule.id}_${currentQuestion.questionId}` : '';
-
-  const handleSelectAnswer = (ans: string) => {
-    if (!currentKey) return;
-    setUserAnswers((prev) => ({ ...prev, [currentKey]: ans }));
-  };
-
-  const toggleFlag = () => {
-    if (!currentKey) return;
-    setFlaggedQuestions((prev) => ({ ...prev, [currentKey]: !prev[currentKey] }));
-  };
-
-  const switchQuestion = (newIdx: number) => {
-    if (currentKey) {
-      const elapsed = Math.round((Date.now() - questionStartTimeRef.current) / 1000);
-      if (elapsed > 0) {
-        setQuestionTimeMap((prev) => ({
-          ...prev,
-          [currentKey]: (prev[currentKey] || 0) + elapsed,
-        }));
-      }
-    }
-    questionStartTimeRef.current = Date.now();
-    setCurrentQuestionIdx(newIdx);
-  };
-
-  // Handle module completion with adaptive difficulty routing
-  const handleProceedFromReview = async () => {
-    if (!exam || !currentModule) return;
-
-    // Evaluate Module 1 performance for adaptive routing
-    if (currentModule.moduleNumber === 1) {
-      let m1Correct = 0;
-      for (const q of currentModule.questions) {
-        const key = `${currentModule.id}_${q.questionId}`;
-        const userAns = (userAnswers[key] || '').trim().toUpperCase();
-        if (userAns && userAns === q.correctAnswer.trim().toUpperCase()) {
-          m1Correct++;
-        }
-      }
-
-      const isRW = currentModule.section === 'reading-writing';
-      if (isRW) {
-        setM1RWRaw(m1Correct);
+      setModuleIdx(next);
+      setQIdx(0);
+      setShowCalc(false);
+      qStart.current = Date.now();
+      if (nextExam.modules[next].section !== mod.section) {
+        setSecondsLeft(BREAK_SECONDS);
+        endsAt.current = Date.now() + BREAK_SECONDS * 1000;
+        setPhase('break');
       } else {
-        setM1MathRaw(m1Correct);
+        const secs = nextExam.modules[next].timeMinutes * 60;
+        setSecondsLeft(secs);
+        endsAt.current = Date.now() + secs * 1000;
+        setPhase('active');
       }
-
-      // Route Module 2 adaptively
-      try {
-        const excludeIds = currentModule.questions.map((q) => q.questionId);
-        const res = await fetch('/api/sat/exam', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            action: 'route_module',
-            section: currentModule.section,
-            m1CorrectCount: m1Correct,
-            m1Total: currentModule.questions.length,
-            excludeIds,
-          }),
-        });
-
-        const data = await res.json();
-        if (data.success && data.module) {
-          if (isRW) setIsRWHard(data.isHard);
-          else setIsMathHard(data.isHard);
-
-          // Update Module 2 in exam
-          const nextModIdx = currentModuleIdx + 1;
-          const updatedModules = [...exam.modules];
-          updatedModules[nextModIdx] = data.module;
-          setExam({ ...exam, modules: updatedModules });
-        }
-      } catch (err) {
-        console.warn('Adaptive routing fallback', err);
-      }
+    } finally {
+      submitting.current = false;
+      setBusy(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [exam, mod, moduleIdx, answers, bankTime]);
 
-    if (currentModuleIdx < exam.modules.length - 1) {
-      const nextIdx = currentModuleIdx + 1;
-      setCurrentModuleIdx(nextIdx);
-      setCurrentQuestionIdx(0);
-      setSecondsRemaining(exam.modules[nextIdx].timeMinutes * 60);
-      setExamState('active');
-    } else {
-      // Complete exam and score
-      await calculateAndFinish();
-    }
-  };
-
-  const calculateAndFinish = async () => {
+  const startModule = () => {
     if (!exam) return;
+    const secs = exam.modules[moduleIdx].timeMinutes * 60;
+    setSecondsLeft(secs);
+    endsAt.current = Date.now() + secs * 1000;
+    qStart.current = Date.now();
+    setPhase('active');
+  };
+
+  // ---- wall-clock timer (correct even when the tab is throttled)
+  useEffect(() => {
+    if (phase !== 'active' && phase !== 'break') return;
+    if (!endsAt.current) endsAt.current = Date.now() + secondsLeft * 1000;
+    const id = setInterval(() => {
+      const left = Math.max(0, Math.ceil((endsAt.current - Date.now()) / 1000));
+      setSecondsLeft(left);
+      if (left <= 0) {
+        clearInterval(id);
+        if (phase === 'break') startModule();
+        else submitModule();
+      }
+    }, 250);
+    return () => clearInterval(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase, moduleIdx, submitModule]);
+
+  // ---- finish & score
+  const finish = (finalExam: FullSATExam) => {
     localStorage.removeItem(STORAGE_KEY);
-
-    let rwCorrect = 0;
-    let totalRW = 0;
-    let mathCorrect = 0;
-    let totalMath = 0;
-
-    for (const mod of exam.modules) {
-      const isRW = mod.section === 'reading-writing';
-      for (const q of mod.questions) {
-        if (isRW) totalRW++;
-        else totalMath++;
-
-        const key = `${mod.id}_${q.questionId}`;
-        const userAns = (userAnswers[key] || '').trim().toUpperCase();
-        const correct = q.correctAnswer.trim().toUpperCase();
-
-        if (userAns && userAns === correct) {
-          if (isRW) rwCorrect++;
-          else mathCorrect++;
+    const rw: ScoredItem[] = [];
+    const math: ScoredItem[] = [];
+    const out: ReviewRow[] = [];
+    const domains: Record<string, [number, number]> = {};
+    for (const m of finalExam.modules) {
+      for (const q of m.questions) {
+        const answer = answers[keyOf(m, q)] || '';
+        const correct = isAnswerCorrect(q, answer);
+        (m.section === 'math' ? math : rw).push({ difficulty: q.difficulty, type: q.type, scored: !q.pretest, correct });
+        if (!q.pretest) {
+          const d = (domains[q.domain] ||= [0, 0]);
+          d[1]++;
+          if (correct) d[0]++;
+        }
+        out.push({ q, module: m, answer, correct, flagged: !!flags[keyOf(m, q)], seconds: times.current[keyOf(m, q)] || 0 });
+        if (!correct) {
+          saveMistake({ questionId: q.questionId, section: m.section, domain: q.domain, skill: q.skill, difficulty: q.difficulty, correctAnswer: q.correctAnswer, userAnswer: answer || '[Omitted]' });
         }
       }
     }
-
-    // 1. Automatically save missed questions to Mistake Vault
-    for (const mod of exam.modules) {
-      for (const q of mod.questions) {
-        const key = `${mod.id}_${q.questionId}`;
-        const userAns = (userAnswers[key] || '').trim().toUpperCase();
-        const correct = q.correctAnswer.trim().toUpperCase();
-        if (userAns !== correct) {
-          saveMistake({
-            questionId: q.questionId,
-            section: mod.section,
-            domain: q.domain,
-            skill: q.skill,
-            difficulty: q.difficulty,
-            prompt: q.prompt,
-            choices: q.choices,
-            correctAnswer: q.correctAnswer,
-            userAnswer: userAns || '[Omitted]',
-            rationale: q.rationale,
-          });
-        }
-      }
-    }
-
-    // 2. Compute Pacing Diagnostics
-    let rwTimeSum = 0;
-    let rwCount = 0;
-    let mathTimeSum = 0;
-    let mathCount = 0;
-    let rushed = 0;
-    let optimal = 0;
-    let overtime = 0;
-
-    for (const mod of exam.modules) {
-      const isRW = mod.section === 'reading-writing';
-      for (const q of mod.questions) {
-        const key = `${mod.id}_${q.questionId}`;
-        const timeSpent = questionTimeMap[key] || (isRW ? 71 : 95);
-        if (isRW) {
-          rwTimeSum += timeSpent;
-          rwCount++;
-        } else {
-          mathTimeSum += timeSpent;
-          mathCount++;
-        }
-
-        if (timeSpent < 25) rushed++;
-        else if (timeSpent > 120) overtime++;
-        else optimal++;
-      }
-    }
-
-    const avgRWSeconds = rwCount > 0 ? Math.round(rwTimeSum / rwCount) : 71;
-    const avgMathSeconds = mathCount > 0 ? Math.round(mathTimeSum / mathCount) : 95;
-
-    setPacingAnalysis({
-      avgRWSeconds,
-      avgMathSeconds,
-      rushedCount: rushed,
-      optimalCount: optimal,
-      overtimeCount: overtime,
-    });
-
-    try {
-      const res = await fetch('/api/sat/exam', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          rwCorrect,
-          totalRW,
-          mathCorrect,
-          totalMath,
-          isRWHard,
-          isMathHard,
-        }),
-      });
-      const data = await res.json();
-      if (data.success) {
-        setFinalScore({
-          ...data.score,
-          rwCorrect,
-          mathCorrect,
-          totalRW,
-          totalMath,
-        });
-
-        // Save to persistent exam history
-        saveCompletedExam({
-          totalScore: data.score.totalScore,
-          rwScore: data.score.rwScore,
-          mathScore: data.score.mathScore,
-          percentile: data.score.percentile,
-          rwCorrect,
-          totalRW,
-          mathCorrect,
-          totalMath,
-          isRWHard,
-          isMathHard,
-          avgTimeRWSeconds: avgRWSeconds,
-          avgTimeMathSeconds: avgMathSeconds,
-        });
-      }
-    } catch (err) {
-      console.error('Scoring error', err);
-    }
-    setExamState('score_report');
-  };
-
-  // Load past history on mount / state change
-  useEffect(() => {
-    setPastExamHistory(getExamHistory());
-  }, [examState]);
-
-  // Track time spent per question
-  useEffect(() => {
-    questionStartTimeRef.current = Date.now();
-    return () => {
-      if (exam && exam.modules[currentModuleIdx]) {
-        const q = exam.modules[currentModuleIdx].questions[currentQuestionIdx];
-        if (q) {
-          const key = `${exam.modules[currentModuleIdx].id}_${q.questionId}`;
-          const elapsed = Math.max(1, Math.round((Date.now() - questionStartTimeRef.current) / 1000));
-          setQuestionTimeMap((prev) => ({
-            ...prev,
-            [key]: (prev[key] || 0) + elapsed,
-          }));
-        }
-      }
+    markSeen(out.map((r) => r.q.questionId));
+    recordAttempts(out.filter((r) => !r.q.pretest).map((r) => ({ section: r.module.section, domain: r.q.domain, skill: r.q.skill, correct: r.correct })));
+    const rep = scoreExam(rw, math);
+    const avg = (sec: 'math' | 'rw') => {
+      const list = out.filter((r) => (r.module.section === 'math') === (sec === 'math'));
+      return list.length ? Math.round(list.reduce((a, r) => a + r.seconds, 0) / list.length) : 0;
     };
-  }, [currentModuleIdx, currentQuestionIdx, exam]);
-
-  const formatTime = (secs: number) => {
-    const mins = Math.floor(secs / 60);
-    const rem = secs % 60;
-    return `${mins}:${rem < 10 ? '0' : ''}${rem}`;
+    saveCompletedExam({
+      totalScore: rep.totalScore, rwScore: rep.rwScore, mathScore: rep.mathScore, percentile: rep.percentile,
+      rwCorrect: rep.rwCorrect, totalRW: rep.totalRW, mathCorrect: rep.mathCorrect, totalMath: rep.totalMath,
+      isRWHard: finalExam.modules[1]?.tier === 'hard', isMathHard: finalExam.modules[3]?.tier === 'hard',
+      avgTimeRWSeconds: avg('rw'), avgTimeMathSeconds: avg('math'), rwRange: rep.rwRange, mathRange: rep.mathRange, domains,
+    });
+    setHistory(getExamHistory());
+    setReport(rep);
+    setRows(out);
+    setPhase('report');
   };
 
-  return (
-    <div style={{ maxWidth: '1080px', margin: '0 auto', minHeight: '80vh', paddingBottom: '4rem' }}>
-      {/* ==================================================== */}
-      {/* 1. INTRO & RESUME SCREEN */}
-      {/* ==================================================== */}
-      {examState === 'intro' && (
-        <div style={{ maxWidth: '720px', margin: '2rem auto' }}>
-          <Link
-            href="/sat"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '6px',
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.8rem',
-              color: 'var(--muted)',
-              textDecoration: 'none',
-              marginBottom: '2rem',
-            }}
-          >
-            <ChevronLeft size={14} /> Back to SAT Portal
-          </Link>
+  // ---- start / resume
+  const startFresh = async () => {
+    setBusy(true);
+    setError(null);
+    try {
+      const res = await fetch('/api/sat/exam', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'new_exam', seenIds: getSeenIds() }) });
+      const data = await res.json();
+      if (!data.success) throw new Error(data.error || 'Could not build exam');
+      localStorage.removeItem(STORAGE_KEY);
+      setSaved(null);
+      setExam(data.exam);
+      setAnswers({});
+      setFlags({});
+      setStruck({});
+      times.current = {};
+      setTiers({});
+      setModuleIdx(0);
+      setQIdx(0);
+      const secs = data.exam.modules[0].timeMinutes * 60;
+      setSecondsLeft(secs);
+      endsAt.current = Date.now() + secs * 1000;
+      qStart.current = Date.now();
+      setPhase('active');
+    } catch (e: any) {
+      setError(e.message || 'Could not start the exam. Please try again.');
+    } finally {
+      setBusy(false);
+    }
+  };
 
-          <span className="section-label">TEST SIMULATOR</span>
-          <h1 style={{ fontSize: '2.6rem', marginBottom: '0.6rem' }}>Digital SAT Exam</h1>
-          <p style={{ color: 'var(--muted)', fontSize: '1.05rem', lineHeight: '1.6', marginBottom: '2.5rem' }}>
-            Two-stage adaptive test matching the official format. Your performance on Module 1 determines whether you route to the higher or lower difficulty tier for Module 2.
-          </p>
+  const resume = () => {
+    if (!saved) return;
+    setExam(saved.exam);
+    setAnswers(saved.answers || {});
+    setFlags(saved.flags || {});
+    times.current = saved.times || {};
+    setModuleIdx(saved.moduleIdx);
+    setQIdx(saved.qIdx);
+    setSecondsLeft(saved.secondsLeft);
+    endsAt.current = Date.now() + saved.secondsLeft * 1000;
+    qStart.current = Date.now();
+    setPhase(saved.phase);
+  };
 
-          {/* Resume Prompt Card if an exam is in progress */}
-          {hasSavedExam && savedExamMeta && (
-            <div
-              className="panel"
-              style={{
-                padding: '1.75rem',
-                marginBottom: '2rem',
-                border: '1.5px solid var(--accent)',
-                background: 'rgba(184, 74, 57, 0.03)',
-              }}
-            >
-              <span className="section-label" style={{ color: 'var(--accent)', marginBottom: '0.3rem' }}>
-                INCOMPLETE TEST IN PROGRESS
-              </span>
-              <h3 style={{ fontSize: '1.3rem', margin: '0.2rem 0 0.5rem' }}>
-                Resume Your Exam Session
-              </h3>
-              <p style={{ color: 'var(--ink)', fontSize: '0.9rem', marginBottom: '1.25rem', opacity: 0.9 }}>
-                You have an in-progress exam on <strong>{savedExamMeta.moduleName}</strong> (Question {savedExamMeta.questionNum}) with <strong>{savedExamMeta.timeRemaining}</strong> remaining.
-              </p>
+  // ---- keyboard
+  useEffect(() => {
+    if (phase !== 'active' || !mod || !question) return;
+    const onKey = (e: KeyboardEvent) => {
+      const t = e.target as HTMLElement;
+      if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA')) return;
+      if (e.key === 'ArrowRight' && qIdx < mod.questions.length - 1) goTo(qIdx + 1);
+      else if (e.key === 'ArrowLeft' && qIdx > 0) goTo(qIdx - 1);
+      else if (!isSPR(question) && /^[a-d]$/i.test(e.key)) setAnswers((p) => ({ ...p, [curKey]: e.key.toUpperCase() }));
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase, qIdx, mod, question, curKey]);
 
-              <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-                <button
-                  type="button"
-                  onClick={handleResumeSavedExam}
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    padding: '0.7rem 1.4rem',
-                    background: 'var(--accent)',
-                    color: '#fff',
-                    borderRadius: '6px',
-                    border: 'none',
-                    fontWeight: 600,
-                    fontSize: '0.9rem',
-                    cursor: 'pointer',
-                  }}
-                >
-                  <Play size={15} /> Resume Test
-                </button>
+  // ---- derived
+  const answeredCount = useMemo(() => (mod ? mod.questions.filter((q) => answers[keyOf(mod, q)]?.trim()).length : 0), [mod, answers]);
+  const history0 = history[0];
+  const rowsShown = rows.filter((r) => (reviewFilter === 'all' ? true : reviewFilter === 'wrong' ? !r.correct : r.flagged));
 
-                <button
-                  type="button"
-                  onClick={handleStartFreshExam}
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    padding: '0.7rem 1.25rem',
-                    background: 'var(--panel-light, #fff)',
-                    color: 'var(--ink)',
-                    border: '1px solid var(--border)',
-                    borderRadius: '6px',
-                    fontSize: '0.85rem',
-                    cursor: 'pointer',
-                  }}
-                >
-                  <RotateCcw size={14} /> Start New Test
-                </button>
-              </div>
-            </div>
-          )}
+  const box: React.CSSProperties = { maxWidth: 1100, margin: '0 auto', paddingBottom: '4rem' };
+  const btnPrimary: React.CSSProperties = { padding: '0.65rem 1.4rem', background: 'var(--accent)', color: '#fff', border: 'none', borderRadius: 8, fontWeight: 600, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: 6 };
+  const btnGhost: React.CSSProperties = { padding: '0.6rem 1.1rem', background: 'var(--surface)', color: 'var(--ink)', border: '1px solid var(--border)', borderRadius: 8, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: '0.85rem' };
 
-          {/* Exam Structure Box */}
-          <div className="panel" style={{ padding: '1.75rem', marginBottom: '2.5rem' }}>
-            <h3 style={{ fontSize: '1.15rem', marginBottom: '1rem' }}>Test Sections & Timing</h3>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.25rem', fontFamily: 'var(--font-mono)', fontSize: '0.84rem' }}>
-              <div>
-                <strong>Reading & Writing</strong><br />
-                <span style={{ color: 'var(--muted)' }}>Module 1: 27 Qs (32 mins)</span><br />
-                <span style={{ color: 'var(--muted)' }}>Module 2: 27 Qs (32 mins, Adaptive)</span>
-              </div>
-              <div>
-                <strong>Mathematics</strong><br />
-                <span style={{ color: 'var(--muted)' }}>Module 1: 22 Qs (35 mins)</span><br />
-                <span style={{ color: 'var(--muted)' }}>Module 2: 22 Qs (35 mins, Adaptive)</span>
-              </div>
-              <div>
-                <strong>Score Scale</strong><br />
-                <span style={{ color: 'var(--accent)', fontWeight: 600 }}>Total: 400–1600</span><br />
-                <span style={{ color: 'var(--muted)' }}>Sections: 200–800 each</span>
-              </div>
+  // ================= INTRO =================
+  if (phase === 'intro') {
+    return (
+      <div style={{ maxWidth: 720, margin: '2rem auto' }}>
+        <Link href="/sat" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--muted)', textDecoration: 'none', marginBottom: '2rem' }}>
+          <ChevronLeft size={14} /> Back to SAT Portal
+        </Link>
+        <span className="section-label">FULL-LENGTH PRACTICE TEST</span>
+        <h1 style={{ fontSize: '2.6rem', marginBottom: '0.6rem' }}>Digital SAT</h1>
+        <p style={{ color: 'var(--muted)', fontSize: '1.05rem', lineHeight: 1.6, marginBottom: '2rem' }}>
+          Built the way the real test is: two adaptive modules per section, a 10-minute break, and questions drawn from official College Board items using the published content mix.
+        </p>
+
+        {saved && (
+          <div className="panel" style={{ padding: '1.5rem', marginBottom: '1.5rem', border: '1.5px solid var(--accent)' }}>
+            <strong>Test in progress</strong>
+            <p style={{ margin: '0.4rem 0 1rem', fontSize: '0.9rem' }}>
+              {saved.exam.modules[saved.moduleIdx]?.title}, question {saved.qIdx + 1}, {fmt(saved.secondsLeft)} left. Last saved {new Date(saved.lastSaved).toLocaleTimeString()}.
+            </p>
+            <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+              <button type="button" onClick={resume} style={btnPrimary}><Play size={15} /> Resume</button>
+              <button type="button" onClick={startFresh} style={btnGhost}><RotateCcw size={14} /> Discard and start over</button>
             </div>
           </div>
+        )}
 
-          {/* Past History & Mistake Vault Link on Intro */}
-          {pastExamHistory.length > 0 && (
-            <div className="panel" style={{ padding: '1.5rem', marginBottom: '2rem' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
-                <span className="section-label" style={{ margin: 0 }}>SAVED ATTEMPTS</span>
-                <span style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', color: 'var(--muted)' }}>
-                  Latest: {pastExamHistory[0].totalScore} (RW {pastExamHistory[0].rwScore} / Math {pastExamHistory[0].mathScore})
-                </span>
-              </div>
-              <p style={{ fontSize: '0.88rem', color: 'var(--ink)', opacity: 0.85, margin: '0 0 1rem 0' }}>
-                You have completed <strong>{pastExamHistory.length}</strong> previous adaptive test(s) on this device. All results and missed questions remain saved in your browser.
-              </p>
-              <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-                <Link
-                  href="/sat/practice/drill?mode=mistakes"
-                  style={{
-                    textDecoration: 'none',
-                    fontSize: '0.82rem',
-                    fontWeight: 600,
-                    padding: '0.45rem 0.9rem',
-                    borderRadius: '4px',
-                    background: 'var(--accent)',
-                    color: '#fff',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '4px',
-                  }}
-                >
-                  Drill Missed Questions <ArrowRight size={12} />
-                </Link>
-              </div>
-            </div>
-          )}
-
-          {!hasSavedExam && (
-            <button
-              type="button"
-              onClick={handleStartFreshExam}
-              disabled={loading}
-              style={{
-                width: '100%',
-                padding: '0.9rem',
-                background: 'var(--accent)',
-                color: '#ffffff',
-                border: 'none',
-                borderRadius: '10px',
-                fontSize: '1rem',
-                fontWeight: 600,
-                cursor: loading ? 'wait' : 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '8px',
-                boxShadow: '0 2px 6px rgba(0,0,0,0.1)'
-              }}
-            >
-              <span>{loading ? 'Preparing Questions...' : 'Start Adaptive Exam'}</span>
-              <ArrowRight size={16} />
-            </button>
-          )}
+        <div className="panel" style={{ padding: '1.5rem', marginBottom: '1.5rem' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem' }}>
+            <thead>
+              <tr style={{ textAlign: 'left', color: 'var(--muted)', fontFamily: 'var(--font-mono)', fontSize: '0.75rem' }}>
+                <th style={{ padding: '0 0 0.5rem' }}>Section</th><th>Module 1</th><th>Module 2</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style={{ borderTop: '1px solid var(--border)' }}><td style={{ padding: '0.6rem 0' }}><strong>Reading and Writing</strong></td><td>27 questions · 32 min</td><td>27 questions · 32 min</td></tr>
+              <tr style={{ borderTop: '1px solid var(--border)' }}><td style={{ padding: '0.6rem 0', color: 'var(--muted)' }}>10-minute break</td><td colSpan={2} style={{ color: 'var(--muted)' }}>Skippable</td></tr>
+              <tr style={{ borderTop: '1px solid var(--border)' }}><td style={{ padding: '0.6rem 0' }}><strong>Math</strong> (calculator allowed)</td><td>22 questions · 35 min</td><td>22 questions · 35 min</td></tr>
+            </tbody>
+          </table>
+          <ul style={{ margin: '1rem 0 0', paddingLeft: '1.2rem', fontSize: '0.86rem', color: 'var(--ink-soft)', lineHeight: 1.7 }}>
+            <li>Module 2 is chosen from how you do on Module 1: strong performance gets the harder module (higher score ceiling), otherwise the easier one.</li>
+            <li>Each module contains 2 <strong>unscored</strong> trial questions you can't tell apart, exactly like the real test. They're marked in your review afterwards.</li>
+            <li>You can't return to a module once you submit it, and it auto-submits when time runs out.</li>
+            <li>Scores are <strong>estimates</strong>. College Board keeps its exact scoring tables private, so expect ±30 points per section.</li>
+            <li>Shortcuts: <kbd>A</kbd>–<kbd>D</kbd> to answer, <kbd>←</kbd> <kbd>→</kbd> to move.</li>
+          </ul>
         </div>
-      )}
 
-      {/* ==================================================== */}
-      {/* 2. ACTIVE TEST PLAYER */}
-      {/* ==================================================== */}
-      {examState === 'active' && currentModule && currentQuestion && (
-        <div>
-          {/* Top Bar */}
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              borderBottom: '1px solid var(--border)',
-              paddingBottom: '1rem',
-              marginBottom: '1.5rem',
-              flexWrap: 'wrap',
-              gap: '1rem',
-            }}
-          >
-            <div>
-              <span className="section-label" style={{ margin: 0 }}>
-                {currentModule.title}
-              </span>
-            </div>
+        {history0 && (
+          <p style={{ fontSize: '0.85rem', color: 'var(--muted)', marginBottom: '1.5rem' }}>
+            Last attempt: <strong style={{ color: 'var(--ink)' }}>{history0.totalScore}</strong> (R&amp;W {history0.rwScore}, Math {history0.mathScore}) · {history.length} test{history.length === 1 ? '' : 's'} on this device ·{' '}
+            <Link href="/sat/practice/drill?mode=mistakes" style={{ color: 'var(--accent)' }}>Review missed questions</Link>
+          </p>
+        )}
+        {error && <p role="alert" style={{ color: '#b91c1c' }}>{error}</p>}
+        {!saved && (
+          <button type="button" onClick={startFresh} disabled={busy} style={{ ...btnPrimary, width: '100%', justifyContent: 'center', padding: '0.9rem', fontSize: '1rem', cursor: busy ? 'wait' : 'pointer' }}>
+            {busy ? 'Building your test…' : 'Start test'} <ArrowRight size={16} />
+          </button>
+        )}
+      </div>
+    );
+  }
 
-            {/* Timer */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-              <button
-                type="button"
-                onClick={() => setShowTimer(!showTimer)}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                  background: secondsRemaining < 300 ? 'rgba(239, 68, 68, 0.1)' : '#fff',
-                  border: '1px solid var(--border)',
-                  padding: '0.4rem 0.8rem',
-                  borderRadius: '6px',
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.95rem',
-                  fontWeight: 600,
-                  color: secondsRemaining < 300 ? '#b91c1c' : 'var(--ink)',
-                  cursor: 'pointer',
-                }}
-              >
-                <Clock size={15} />
-                <span>{showTimer ? formatTime(secondsRemaining) : 'Timer Hidden'}</span>
-              </button>
-            </div>
+  // ================= BREAK =================
+  if (phase === 'break' && exam) {
+    return (
+      <div style={{ maxWidth: 560, margin: '5rem auto', textAlign: 'center' }}>
+        <Coffee size={40} style={{ color: 'var(--accent)' }} />
+        <h1 style={{ fontSize: '2.2rem', margin: '1rem 0 0.4rem' }}>Break</h1>
+        <p style={{ color: 'var(--muted)' }}>Reading and Writing is done. Stretch, drink some water. Math starts automatically.</p>
+        <div style={{ fontFamily: 'var(--font-mono)', fontSize: '3.4rem', fontWeight: 600, margin: '1.5rem 0' }}>{fmt(secondsLeft)}</div>
+        <button type="button" style={btnPrimary} onClick={startModule}>Skip break and start Math <ArrowRight size={16} /></button>
+      </div>
+    );
+  }
 
-            {/* Tools */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-              {currentModule.section === 'math' && (
-                <>
-                  <button
-                    type="button"
-                    onClick={() => setShowDesmosModal(true)}
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '4px',
-                      background: 'var(--surface)',
-                      border: '1px solid var(--border)',
-                      padding: '0.4rem 0.75rem',
-                      borderRadius: '10px',
-                      fontSize: '0.8rem',
-                      fontFamily: 'var(--font-mono)',
-                      cursor: 'pointer',
-                    }}
-                  >
-                    <Calculator size={14} /> Calculator
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => setShowDesmosKeyModal(true)}
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '4px',
-                      background: 'var(--surface)',
-                      border: '1px solid var(--border)',
-                      padding: '0.4rem 0.75rem',
-                      borderRadius: '10px',
-                      fontSize: '0.8rem',
-                      fontFamily: 'var(--font-mono)',
-                      cursor: 'pointer',
-                    }}
-                  >
-                    <Sparkles size={14} style={{ color: 'var(--accent)' }} /> Desmos Shortcuts
-                  </button>
-                </>
-              )}
-
-              <button
-                type="button"
-                onClick={() => setShowReferenceModal(true)}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '4px',
-                  background: 'var(--surface)',
-                  border: '1px solid var(--border)',
-                  padding: '0.4rem 0.75rem',
-                  borderRadius: '6px',
-                  fontSize: '0.8rem',
-                  fontFamily: 'var(--font-mono)',
-                  cursor: 'pointer',
-                }}
-              >
-                <FileText size={14} /> Reference Guide
-              </button>
-
-              <button
-                type="button"
-                onClick={() => {
-                  if (confirm('Your progress is automatically saved. Return to home?')) {
-                    setExamState('intro');
-                    setHasSavedExam(true);
-                  }
-                }}
-                style={{
-                  background: 'transparent',
-                  border: 'none',
-                  color: 'var(--muted)',
-                  fontSize: '0.78rem',
-                  cursor: 'pointer',
-                }}
-              >
-                Pause & Exit
-              </button>
-            </div>
+  // ================= MODULE REVIEW =================
+  if (phase === 'review' && exam && mod) {
+    const unanswered = mod.questions.length - answeredCount;
+    return (
+      <div style={{ maxWidth: 720, margin: '2rem auto' }}>
+        <span className="section-label">CHECK YOUR WORK</span>
+        <h2 style={{ fontSize: '2rem', margin: '0.2rem 0' }}>{mod.title}</h2>
+        <p style={{ color: 'var(--muted)', marginBottom: '1.5rem' }}>
+          {unanswered > 0 ? <strong style={{ color: '#b45309' }}>{unanswered} unanswered. </strong> : 'All questions answered. '}
+          After you submit you can't come back to this module. <span style={{ fontFamily: 'var(--font-mono)' }}>{showTimer ? fmt(secondsLeft) : ''}</span>
+        </p>
+        <div className="panel" style={{ padding: '1.5rem', marginBottom: '1.5rem' }}>
+          <div className="sat-qgrid">
+            {mod.questions.map((q, i) => {
+              const k = keyOf(mod, q);
+              return (
+                <button key={q.questionId} type="button" data-answered={!!answers[k]?.trim()} onClick={() => { setQIdx(i); qStart.current = Date.now(); setPhase('active'); }}>
+                  {i + 1}
+                  {flags[k] && <span className="flag" />}
+                </button>
+              );
+            })}
           </div>
+          <div style={{ display: 'flex', gap: '1.2rem', marginTop: '1rem', fontSize: '0.78rem', color: 'var(--muted)', fontFamily: 'var(--font-mono)', flexWrap: 'wrap' }}>
+            <span>solid = answered</span><span>dashed = unanswered</span><span style={{ color: 'var(--accent)' }}>■ marked for review</span>
+          </div>
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 12 }}>
+          <button type="button" style={btnGhost} onClick={() => { qStart.current = Date.now(); setPhase('active'); }}>Back to questions</button>
+          <button type="button" style={btnPrimary} disabled={busy} onClick={submitModule}>
+            {busy ? 'Submitting…' : moduleIdx === exam.modules.length - 1 ? 'Submit and see score' : 'Submit module'}
+          </button>
+        </div>
+      </div>
+    );
+  }
 
-          {/* Sub-Bar */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', background: 'rgba(28,28,30,0.02)', padding: '0.75rem 1.25rem', borderRadius: '6px', border: '1px solid var(--border)' }}>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.88rem', fontWeight: 600 }}>
-              Question {currentQuestionIdx + 1} of {currentModule.questions.length}
-            </span>
-
+  // ================= ACTIVE =================
+  if (phase === 'active' && exam && mod && question) {
+    const lowTime = secondsLeft < 300;
+    return (
+      <div style={box}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12, flexWrap: 'wrap', borderBottom: '1px solid var(--border)', paddingBottom: '0.9rem', marginBottom: '1.2rem' }}>
+          <span className="section-label" style={{ margin: 0 }}>{mod.title.toUpperCase()}</span>
+          <button type="button" onClick={() => setShowTimer((v) => !v)} aria-label={showTimer ? 'Hide timer' : 'Show timer'}
+            style={{ ...btnGhost, fontFamily: 'var(--font-mono)', fontWeight: 600, fontSize: '0.95rem', color: lowTime ? '#b91c1c' : 'var(--ink)', background: lowTime ? 'rgba(239,68,68,0.1)' : 'var(--surface)' }}>
+            <Clock size={15} /> {showTimer ? fmt(secondsLeft) : 'Show time'}
+          </button>
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            {mod.section === 'math' && <button type="button" style={btnGhost} onClick={() => setShowCalc((v) => !v)}><Calculator size={14} /> Calculator</button>}
+            <button type="button" style={btnGhost} onClick={() => setShowRef(true)}><FileText size={14} /> Reference</button>
             <button
               type="button"
-              onClick={toggleFlag}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px',
-                background: flaggedQuestions[currentKey] ? 'rgba(184, 74, 57, 0.1)' : 'transparent',
-                border: '1px solid',
-                borderColor: flaggedQuestions[currentKey] ? 'var(--accent)' : 'var(--border)',
-                color: flaggedQuestions[currentKey] ? 'var(--accent)' : 'var(--muted)',
-                padding: '0.35rem 0.75rem',
-                borderRadius: '4px',
-                fontSize: '0.8rem',
-                fontFamily: 'var(--font-mono)',
-                cursor: 'pointer',
+              style={{ ...btnGhost, border: 'none', color: 'var(--muted)' }}
+              onClick={() => {
+                if (confirm('Save your progress and exit? The timer is paused while you are away.')) {
+                  bankTime();
+                  const s: SavedState = {
+                    exam,
+                    phase: 'active',
+                    moduleIdx,
+                    qIdx,
+                    answers,
+                    flags,
+                    secondsLeft,
+                    times: times.current,
+                    lastSaved: new Date().toISOString(),
+                  };
+                  try {
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(s));
+                  } catch {
+                    /* ignore storage quota */
+                  }
+                  setSaved(s);
+                  setPhase('intro');
+                }
               }}
             >
-              <Flag size={13} fill={flaggedQuestions[currentKey] ? 'currentColor' : 'none'} />
-              <span>{flaggedQuestions[currentKey] ? 'Marked for Review' : 'Mark for Review'}</span>
+              Save &amp; exit
             </button>
           </div>
+        </div>
 
-          {/* Question Prompt with KaTeX math rendering */}
-          <div className="panel" style={{ padding: '2.5rem', marginBottom: '2rem' }}>
-            <div
-              style={{
-                fontSize: '1.05rem',
-                lineHeight: '1.75',
-                marginBottom: '2rem',
-                color: 'var(--ink)',
-                whiteSpace: 'pre-wrap',
-              }}
-            >
-              <MathView content={currentQuestion.prompt} />
-            </div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+          <span style={{ fontFamily: 'var(--font-mono)', fontWeight: 600 }}>Question {qIdx + 1} of {mod.questions.length}</span>
+          <button type="button" onClick={() => setFlags((p) => ({ ...p, [curKey]: !p[curKey] }))}
+            style={{ ...btnGhost, borderColor: flags[curKey] ? 'var(--accent)' : 'var(--border)', color: flags[curKey] ? 'var(--accent)' : 'var(--muted)' }}>
+            <Flag size={13} fill={flags[curKey] ? 'currentColor' : 'none'} /> {flags[curKey] ? 'Marked for review' : 'Mark for review'}
+          </button>
+        </div>
 
-            {/* Answer Options */}
-            {currentQuestion.choices && currentQuestion.choices.length > 0 ? (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
-                {currentQuestion.choices.map((choiceText, idx) => {
-                  const letter = String.fromCharCode(65 + idx);
-                  const isSelected = (userAnswers[currentKey] || '') === letter;
+        <div className="panel" style={{ padding: 'clamp(1.1rem, 3vw, 2.2rem)', marginBottom: '1.5rem' }}>
+          <QuestionBody
+            key={curKey}
+            q={question}
+            answer={answers[curKey] || ''}
+            onAnswer={(a) => setAnswers((p) => ({ ...p, [curKey]: a }))}
+            struck={struck[curKey] || {}}
+            onStrike={(l) => setStruck((p) => ({ ...p, [curKey]: { ...(p[curKey] || {}), [l]: !p[curKey]?.[l] } }))}
+          />
+        </div>
 
-                  return (
-                    <div
-                      key={letter}
-                      onClick={() => handleSelectAnswer(letter)}
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '1rem',
-                        padding: '0.9rem 1.25rem',
-                        borderRadius: '6px',
-                        border: isSelected ? '1px solid var(--ink)' : '1px solid var(--border)',
-                        background: isSelected ? 'rgba(28,28,30,0.03)' : '#fff',
-                        cursor: 'pointer',
-                        transition: 'all 0.15s ease',
-                      }}
-                    >
-                      <span
-                        style={{
-                          width: '26px',
-                          height: '26px',
-                          borderRadius: '50%',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          border: isSelected ? '1px solid var(--ink)' : '1px solid var(--border)',
-                          background: isSelected ? 'var(--ink)' : '#fff',
-                          color: isSelected ? '#fff' : 'var(--ink)',
-                          fontFamily: 'var(--font-mono)',
-                          fontSize: '0.85rem',
-                          fontWeight: 700,
-                          flexShrink: 0,
-                        }}
-                      >
-                        {letter}
-                      </span>
-                      <span style={{ fontSize: '0.96rem' }}>
-                        <MathView content={choiceText || `[Choice ${letter}]`} />
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12, flexWrap: 'wrap', borderTop: '1px solid var(--border)', paddingTop: '1.1rem' }}>
+          <button type="button" style={btnGhost} onClick={() => setShowGrid(true)}>Question grid ({answeredCount}/{mod.questions.length})</button>
+          <div style={{ display: 'flex', gap: 10 }}>
+            <button type="button" style={{ ...btnGhost, opacity: qIdx === 0 ? 0.5 : 1 }} disabled={qIdx === 0} onClick={() => goTo(qIdx - 1)}><ChevronLeft size={15} /> Back</button>
+            {qIdx < mod.questions.length - 1 ? (
+              <button type="button" style={btnPrimary} onClick={() => goTo(qIdx + 1)}>Next <ChevronRight size={15} /></button>
             ) : (
-              <div>
-                <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, marginBottom: '0.5rem' }}>
-                  STUDENT PRODUCED RESPONSE (GRID-IN):
-                </label>
-                <input
-                  type="text"
-                  placeholder="Enter response..."
-                  value={userAnswers[currentKey] || ''}
-                  onChange={(e) => handleSelectAnswer(e.target.value)}
-                  style={{
-                    padding: '0.75rem 1rem',
-                    borderRadius: '6px',
-                    border: '1px solid var(--border)',
-                    fontSize: '1rem',
-                    fontFamily: 'var(--font-mono)',
-                    maxWidth: '300px',
-                    width: '100%',
-                  }}
-                />
-              </div>
+              <button type="button" style={btnPrimary} onClick={() => { bankTime(); setPhase('review'); }}>Review module <Check size={15} /></button>
             )}
           </div>
+        </div>
 
-          {/* Bottom Bar */}
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              borderTop: '1px solid var(--border)',
-              paddingTop: '1.25rem',
-              flexWrap: 'wrap',
-              gap: '1rem',
-            }}
-          >
-            <button
-              type="button"
-              onClick={() => setShowNavGridModal(true)}
-              style={{
-                background: 'var(--surface)',
-                border: '1px solid var(--border)',
-                padding: '0.55rem 1rem',
-                borderRadius: '10px',
-                fontSize: '0.85rem',
-                fontFamily: 'var(--font-mono)',
-                cursor: 'pointer',
-              }}
-            >
-              Question Grid ({Object.keys(userAnswers).filter((k) => k.startsWith(currentModule.id)).length}/{currentModule.questions.length})
+        {showGrid && (
+          <div role="dialog" aria-label="Question grid" onClick={() => setShowGrid(false)} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', display: 'grid', placeItems: 'center', zIndex: 1000, padding: 16 }}>
+            <div className="panel" onClick={(e) => e.stopPropagation()} style={{ maxWidth: 560, width: '100%', padding: '1.6rem', background: 'var(--surface)' }}>
+              <h3 style={{ marginTop: 0 }}>{mod.title}</h3>
+              <div className="sat-qgrid">
+                {mod.questions.map((q, i) => (
+                  <button key={q.questionId} type="button" data-answered={!!answers[keyOf(mod, q)]?.trim()} data-current={i === qIdx} onClick={() => goTo(i)}>
+                    {i + 1}{flags[keyOf(mod, q)] && <span className="flag" />}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+        {showCalc && <DesmosPanel onClose={() => setShowCalc(false)} />}
+        <SATReferenceGuideModal isOpen={showRef} onClose={() => setShowRef(false)} defaultTab={mod.section === 'math' ? 'math' : 'english'} />
+      </div>
+    );
+  }
+
+  // ================= REPORT =================
+  if (phase === 'report' && report) {
+    const domains = history0?.domains || {};
+    const range = (r: [number, number]) => `${r[0]}–${r[1]}`;
+    return (
+      <div style={{ maxWidth: 860, margin: '2rem auto', paddingBottom: '4rem' }}>
+        <span className="section-label">SCORE REPORT</span>
+        <h1 style={{ fontSize: '2.4rem', marginBottom: '0.4rem' }}>Your estimated SAT score</h1>
+        <p style={{ color: 'var(--muted)', marginBottom: '1.8rem', fontSize: '0.9rem' }}>
+          An estimate from a model of the Digital SAT's adaptive scoring; your real score can differ by roughly ±30 points per section.
+        </p>
+
+        <div className="panel" style={{ padding: '2rem', display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap', gap: '1.5rem', marginBottom: '1.5rem' }}>
+          <div style={{ textAlign: 'center' }}>
+            <span className="tech-label">TOTAL</span>
+            <div style={{ fontFamily: 'var(--font-display)', fontSize: '4.2rem', fontWeight: 700, lineHeight: 1.1 }}>{report.totalScore}</div>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.78rem', color: 'var(--muted)' }}>400–1600 · about {ord(report.percentile)} percentile</span>
+          </div>
+          {[['READING & WRITING', report.rwScore, report.rwRange, report.rwCorrect, report.totalRW, tiers.rw], ['MATH', report.mathScore, report.mathRange, report.mathCorrect, report.totalMath, tiers.math]].map(([label, sc, rg, c, t, tier]) => (
+            <div key={label as string} style={{ textAlign: 'center' }}>
+              <span className="tech-label">{label as string}</span>
+              <div style={{ fontFamily: 'var(--font-display)', fontSize: '3rem', fontWeight: 600, color: 'var(--accent)' }}>{sc as number}</div>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.78rem', color: 'var(--muted)' }}>
+                {range(rg as [number, number])} · {c as number}/{t as number} correct{tier ? ` · ${tier === 'hard' ? 'harder' : 'easier'} Module 2` : ''}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        {Object.keys(domains).length > 0 && (
+          <div className="panel" style={{ padding: '1.5rem', marginBottom: '1.5rem' }}>
+            <h3 style={{ marginTop: 0 }}>Where you lost points</h3>
+            {Object.entries(domains).sort((a, b) => a[1][0] / a[1][1] - b[1][0] / b[1][1]).map(([d, [c, t]]) => (
+              <div key={d} style={{ marginBottom: '0.8rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', marginBottom: 4 }}>
+                  <span>{d}</span><span style={{ fontFamily: 'var(--font-mono)' }}>{c}/{t}</span>
+                </div>
+                <div style={{ height: 8, background: 'var(--surface-inset)', borderRadius: 4, overflow: 'hidden' }}>
+                  <div style={{ width: `${(c / t) * 100}%`, height: '100%', background: c / t >= 0.75 ? '#059669' : c / t >= 0.5 ? '#d97706' : '#dc2626' }} />
+                </div>
+              </div>
+            ))}
+            <p style={{ fontSize: '0.8rem', color: 'var(--muted)', margin: '0.8rem 0 0' }}>Unscored trial questions are excluded.</p>
+          </div>
+        )}
+
+        <div className="panel" style={{ padding: '1.2rem 1.5rem', marginBottom: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
+          <span style={{ fontSize: '0.9rem' }}>{rows.filter((r) => !r.correct).length} missed questions were saved to your Mistake Vault.</span>
+          <Link href="/sat/practice/drill?mode=mistakes" style={{ ...btnPrimary, textDecoration: 'none' }}>Drill mistakes <ArrowRight size={14} /></Link>
+        </div>
+
+        <h3>Review every question</h3>
+        <div style={{ display: 'flex', gap: 8, marginBottom: '1rem', flexWrap: 'wrap' }}>
+          {(['wrong', 'flagged', 'all'] as const).map((f) => (
+            <button key={f} type="button" onClick={() => setReviewFilter(f)} style={{ ...btnGhost, fontWeight: reviewFilter === f ? 700 : 400, borderColor: reviewFilter === f ? 'var(--ink)' : 'var(--border)' }}>
+              {f === 'wrong' ? `Incorrect (${rows.filter((r) => !r.correct).length})` : f === 'flagged' ? `Marked (${rows.filter((r) => r.flagged).length})` : `All (${rows.length})`}
             </button>
-
-            <div style={{ display: 'flex', gap: '0.75rem' }}>
-              <button
-                type="button"
-                onClick={() => switchQuestion(Math.max(0, currentQuestionIdx - 1))}
-                disabled={currentQuestionIdx === 0}
-                style={{
-                  padding: '0.6rem 1.2rem',
-                  borderRadius: '10px',
-                  border: '1px solid var(--border)',
-                  background: 'var(--surface)',
-                  cursor: currentQuestionIdx === 0 ? 'not-allowed' : 'pointer',
-                  opacity: currentQuestionIdx === 0 ? 0.5 : 1,
-                  fontSize: '0.85rem',
-                }}
-              >
-                Back
+          ))}
+        </div>
+        {rowsShown.length === 0 && <p style={{ color: 'var(--muted)' }}>Nothing in this view.</p>}
+        {rowsShown.map((r) => {
+          const id = `${r.module.id}_${r.q.questionId}`;
+          const open = openRow === id;
+          const idx = r.module.questions.findIndex((x) => x.questionId === r.q.questionId) + 1;
+          return (
+            <div key={id} className="panel" style={{ marginBottom: 10, padding: 0 }}>
+              <button type="button" onClick={() => setOpenRow(open ? null : id)} aria-expanded={open}
+                style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 12, padding: '0.85rem 1.1rem', background: 'none', border: 'none', color: 'var(--ink)', cursor: 'pointer', textAlign: 'left', font: 'inherit' }}>
+                <span style={{ width: 22, height: 22, borderRadius: '50%', display: 'grid', placeItems: 'center', background: r.correct ? '#059669' : '#dc2626', color: '#fff', fontSize: 12, flexShrink: 0 }}>{r.correct ? '✓' : '✕'}</span>
+                <span style={{ flex: 1, fontSize: '0.88rem' }}>
+                  <strong>{r.module.title} · Q{idx}</strong> · {r.q.skill} · {r.q.difficulty}
+                  {r.q.pretest && <span style={{ marginLeft: 8, fontSize: '0.72rem', padding: '1px 6px', borderRadius: 4, background: 'var(--surface-inset)' }}>unscored</span>}
+                </span>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--muted)' }}>{r.seconds}s</span>
               </button>
-
-              {currentQuestionIdx < currentModule.questions.length - 1 ? (
-                <button
-                  type="button"
-                  onClick={() => switchQuestion(currentQuestionIdx + 1)}
-                  style={{
-                    padding: '0.6rem 1.4rem',
-                    borderRadius: '10px',
-                    border: 'none',
-                    background: 'var(--accent)',
-                    color: '#ffffff',
-                    fontWeight: 600,
-                    fontSize: '0.85rem',
-                    cursor: 'pointer',
-                    boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
-                  }}
-                >
-                  Next
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  onClick={() => {
-                    switchQuestion(currentQuestionIdx);
-                    setExamState('module_review');
-                  }}
-                  style={{
-                    padding: '0.6rem 1.4rem',
-                    borderRadius: '10px',
-                    border: 'none',
-                    background: 'var(--accent)',
-                    color: '#ffffff',
-                    fontWeight: 600,
-                    fontSize: '0.85rem',
-                    cursor: 'pointer',
-                    boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
-                  }}
-                >
-                  Review & Submit Module
-                </button>
+              {open && (
+                <div style={{ padding: '0.5rem 1.4rem 1.4rem', borderTop: '1px solid var(--border)' }}>
+                  <div style={{ margin: '1rem 0' }}>
+                    <QuestionBody q={r.q} answer={r.answer} onAnswer={() => {}} reveal struck={{}} onStrike={() => {}} split={false} />
+                  </div>
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.84rem', marginBottom: '0.8rem' }}>
+                    Your answer: <strong>{r.answer || 'blank'}</strong> · Correct: <strong>{formatCorrectAnswer(r.q)}</strong>
+                  </div>
+                  <Rationale q={r.q} />
+                </div>
               )}
             </div>
-          </div>
+          );
+        })}
 
-          {/* QUESTION NAV GRID MODAL */}
-          {showNavGridModal && (
-            <div
-              style={{
-                position: 'fixed',
-                inset: 0,
-                background: 'rgba(0,0,0,0.5)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                zIndex: 1000,
-                padding: '1rem',
-              }}
-              onClick={() => setShowNavGridModal(false)}
-            >
-              <div
-                style={{
-                  background: 'var(--surface)',
-                  borderRadius: '8px',
-                  padding: '2rem',
-                  maxWidth: '560px',
-                  width: '100%',
-                }}
-                onClick={(e) => e.stopPropagation()}
-              >
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
-                  <h3 style={{ fontSize: '1.2rem', margin: 0 }}>Question Review Grid</h3>
-                  <button
-                    type="button"
-                    onClick={() => setShowNavGridModal(false)}
-                    style={{ background: 'transparent', border: 'none', cursor: 'pointer' }}
-                  >
-                    <X size={18} />
-                  </button>
-                </div>
-
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(40px, 1fr))', gap: '0.6rem', marginBottom: '1.5rem' }}>
-                  {currentModule.questions.map((q, idx) => {
-                    const key = `${currentModule.id}_${q.questionId}`;
-                    const isAnswered = !!userAnswers[key];
-                    const isFlagged = !!flaggedQuestions[key];
-                    const isCurrent = idx === currentQuestionIdx;
-
-                    return (
-                      <button
-                        key={q.questionId}
-                        type="button"
-                        onClick={() => {
-                          switchQuestion(idx);
-                          setShowNavGridModal(false);
-                        }}
-                        style={{
-                          aspectRatio: '1',
-                          borderRadius: '4px',
-                          border: isCurrent ? '2px solid var(--accent)' : '1px solid var(--border)',
-                          background: isAnswered ? 'rgba(28,28,30,0.06)' : '#fff',
-                          fontFamily: 'var(--font-mono)',
-                          fontSize: '0.8rem',
-                          fontWeight: 600,
-                          cursor: 'pointer',
-                          position: 'relative',
-                        }}
-                      >
-                        {idx + 1}
-                        {isFlagged && (
-                          <div
-                            style={{
-                              position: 'absolute',
-                              top: '2px',
-                              right: '2px',
-                              width: '6px',
-                              height: '6px',
-                              borderRadius: '50%',
-                              background: 'var(--accent)',
-                            }}
-                          />
-                        )}
-                      </button>
-                    );
-                  })}
-                </div>
-
-                <div style={{ display: 'flex', gap: '1.5rem', fontSize: '0.78rem', color: 'var(--muted)', fontFamily: 'var(--font-mono)' }}>
-                  <span>● Answered</span>
-                  <span>○ Unanswered</span>
-                  <span style={{ color: 'var(--accent)' }}>● Red: Flagged</span>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* DESMOS MODAL */}
-          {showDesmosModal && (
-            <div
-              style={{
-                position: 'fixed',
-                inset: 0,
-                background: 'rgba(0,0,0,0.5)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                zIndex: 1000,
-                padding: '1.5rem',
-              }}
-              onClick={() => setShowDesmosModal(false)}
-            >
-              <div
-                style={{
-                  background: 'var(--surface)',
-                  borderRadius: '8px',
-                  width: '90vw',
-                  height: '80vh',
-                  maxWidth: '1000px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  overflow: 'hidden',
-                }}
-                onClick={(e) => e.stopPropagation()}
-              >
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.8rem 1.25rem', borderBottom: '1px solid var(--border)' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 600, fontSize: '0.9rem' }}>
-                    <Calculator size={16} /> Official Desmos Graphing Calculator
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => setShowDesmosModal(false)}
-                    style={{ background: 'transparent', border: 'none', cursor: 'pointer' }}
-                  >
-                    <X size={18} />
-                  </button>
-                </div>
-                <iframe
-                  src="https://www.desmos.com/calculator"
-                  style={{ width: '100%', height: '100%', border: 'none' }}
-                  title="Desmos Graphing Calculator"
-                />
-              </div>
-            </div>
-          )}
-
-          {/* SAT REFERENCE GUIDE MODAL (Math Formulas + English Conventions) */}
-          <SATReferenceGuideModal
-            isOpen={showReferenceModal}
-            onClose={() => setShowReferenceModal(false)}
-            defaultTab={currentModule.section === 'math' ? 'math' : 'english'}
-          />
-
-          {/* DESMOS MASTER KEY MODAL */}
-          <DesmosMasterKeyModal
-            isOpen={showDesmosKeyModal}
-            onClose={() => setShowDesmosKeyModal(false)}
-          />
+        <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', margin: '2rem 0' }}>
+          <button type="button" style={btnPrimary} onClick={() => { setPhase('intro'); setReport(null); }}>Take another test</button>
+          <Link href="/sat/practice/drill" style={{ ...btnGhost, textDecoration: 'none' }}>Targeted practice</Link>
         </div>
-      )}
 
-      {/* ==================================================== */}
-      {/* 3. MODULE REVIEW SCREEN */}
-      {/* ==================================================== */}
-      {examState === 'module_review' && currentModule && (
-        <div style={{ maxWidth: '720px', margin: '2rem auto' }}>
-          <span className="section-label">MODULE SUMMARY</span>
-          <h2 style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>{currentModule.title} Review</h2>
-          <p style={{ color: 'var(--muted)', fontSize: '0.95rem', marginBottom: '2rem' }}>
-            Check your flagged questions before submitting. Once submitted, you cannot return to this module.
-          </p>
-
-          <div className="panel" style={{ padding: '1.5rem', marginBottom: '2rem' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(44px, 1fr))', gap: '0.75rem', marginBottom: '1.5rem' }}>
-              {currentModule.questions.map((q, idx) => {
-                const key = `${currentModule.id}_${q.questionId}`;
-                const isAnswered = !!userAnswers[key];
-                const isFlagged = !!flaggedQuestions[key];
-
-                return (
-                  <button
-                    key={q.questionId}
-                    type="button"
-                    onClick={() => {
-                      setCurrentQuestionIdx(idx);
-                      setExamState('active');
-                    }}
-                    style={{
-                      aspectRatio: '1',
-                      borderRadius: '6px',
-                      border: '1px solid var(--border)',
-                      background: isAnswered ? 'rgba(28,28,30,0.06)' : '#fff',
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: '0.85rem',
-                      fontWeight: 600,
-                      cursor: 'pointer',
-                      position: 'relative',
-                    }}
-                  >
-                    {idx + 1}
-                    {isFlagged && (
-                      <div
-                        style={{
-                          position: 'absolute',
-                          top: '3px',
-                          right: '3px',
-                          width: '7px',
-                          height: '7px',
-                          borderRadius: '50%',
-                          background: 'var(--accent)',
-                        }}
-                      />
-                    )}
-                  </button>
-                );
-              })}
-            </div>
-
-            <div style={{ display: 'flex', gap: '1.5rem', fontSize: '0.8rem', color: 'var(--muted)', fontFamily: 'var(--font-mono)' }}>
-              <span>● Answered</span>
-              <span>○ Unanswered</span>
-              <span style={{ color: 'var(--accent)' }}>● Flagged</span>
-            </div>
+        {history.length > 1 && (
+          <div className="panel" style={{ padding: '1.4rem' }}>
+            <h3 style={{ marginTop: 0 }}>Your last {Math.min(5, history.length)} tests</h3>
+            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.84rem', fontFamily: 'var(--font-mono)' }}>
+              <thead><tr style={{ textAlign: 'left', color: 'var(--muted)' }}><th>Date</th><th>Total</th><th>R&amp;W</th><th>Math</th></tr></thead>
+              <tbody>
+                {history.slice(0, 5).map((h) => (
+                  <tr key={h.id} style={{ borderTop: '1px solid var(--border)' }}>
+                    <td style={{ padding: '0.5rem 0' }}>{h.date}</td><td style={{ fontWeight: 700, color: 'var(--accent)' }}>{h.totalScore}</td><td>{h.rwScore}</td><td>{h.mathScore}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
+        )}
+      </div>
+    );
+  }
 
-          <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '1rem' }}>
-            <button
-              type="button"
-              onClick={() => setExamState('active')}
-              style={{
-                padding: '0.7rem 1.25rem',
-                borderRadius: '6px',
-                border: '1px solid var(--border)',
-                background: 'var(--surface)',
-                fontSize: '0.85rem',
-                cursor: 'pointer',
-              }}
-            >
-              Return to Module
-            </button>
-
-            <button
-              type="button"
-              onClick={handleProceedFromReview}
-              style={{
-                padding: '0.7rem 1.5rem',
-                borderRadius: '6px',
-                border: 'none',
-                background: 'var(--accent)',
-                color: '#fff',
-                fontWeight: 600,
-                fontSize: '0.85rem',
-                cursor: 'pointer',
-              }}
-            >
-              {currentModuleIdx < (exam?.modules.length || 0) - 1 ? 'Submit & Proceed to Next Module' : 'Submit & Calculate Score'}
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* ==================================================== */}
-      {/* 4. FINAL SCORE REPORT */}
-      {/* ==================================================== */}
-      {examState === 'score_report' && finalScore && (
-        <div style={{ maxWidth: '800px', margin: '2rem auto' }}>
-          <span className="section-label">DIAGNOSTIC REPORT</span>
-          <h1 style={{ fontSize: '2.6rem', marginBottom: '0.5rem' }}>Scaled SAT Results</h1>
-          <p style={{ color: 'var(--muted)', fontSize: '1rem', marginBottom: '2.5rem' }}>
-            Computed using official Digital SAT adaptive equating curves.
-          </p>
-
-          <div
-            className="panel"
-            style={{
-              padding: '2.5rem',
-              display: 'flex',
-              justifyContent: 'space-around',
-              alignItems: 'center',
-              flexWrap: 'wrap',
-              gap: '2rem',
-              background: 'rgba(184, 74, 57, 0.03)',
-              borderColor: 'rgba(184, 74, 57, 0.2)',
-              marginBottom: '3rem',
-            }}
-          >
-            <div style={{ textAlign: 'center' }}>
-              <span className="tech-label">TOTAL SCORE</span>
-              <div style={{ fontFamily: 'var(--font-display)', fontSize: '4.5rem', fontWeight: 700, color: 'var(--ink)', lineHeight: 1.1 }}>
-                {finalScore.totalScore}
-              </div>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--muted)' }}>
-                Scale: 400–1600 • ~{finalScore.percentile}th Percentile
-              </span>
-            </div>
-
-            <div style={{ textAlign: 'center' }}>
-              <span className="tech-label">READING & WRITING</span>
-              <div style={{ fontFamily: 'var(--font-display)', fontSize: '3rem', fontWeight: 600, color: 'var(--accent)' }}>
-                {finalScore.rwScore}
-              </div>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.78rem', color: 'var(--muted)' }}>
-                {finalScore.rwCorrect}/{finalScore.totalRW} Correct {isRWHard ? '(Hard Tier)' : '(Standard Tier)'}
-              </span>
-            </div>
-
-            <div style={{ textAlign: 'center' }}>
-              <span className="tech-label">MATHEMATICS</span>
-              <div style={{ fontFamily: 'var(--font-display)', fontSize: '3rem', fontWeight: 600, color: 'var(--accent)' }}>
-                {finalScore.mathScore}
-              </div>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.78rem', color: 'var(--muted)' }}>
-                {finalScore.mathCorrect}/{finalScore.totalMath} Correct {isMathHard ? '(Hard Tier)' : '(Standard Tier)'}
-              </span>
-            </div>
-          </div>
-
-          {/* MISTAKE VAULT SYNC CONFIRMATION */}
-          <div
-            className="panel"
-            style={{
-              padding: '1.25rem 1.75rem',
-              marginBottom: '2rem',
-              background: 'rgba(16, 185, 129, 0.04)',
-              borderColor: 'rgba(16, 185, 129, 0.25)',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              flexWrap: 'wrap',
-              gap: '1rem',
-            }}
-          >
-            <div>
-              <div style={{ fontWeight: 600, fontSize: '0.95rem', color: '#065f46', marginBottom: '0.2rem' }}>
-                ✓ Missed Questions Synced to Mistake Vault
-              </div>
-              <div style={{ fontSize: '0.82rem', color: '#047857' }}>
-                All incorrect answers from this exam have been saved in your browser. You can re-test only your mistakes anytime.
-              </div>
-            </div>
-
-            <Link
-              href="/sat/practice/drill?mode=mistakes"
-              style={{
-                textDecoration: 'none',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '5px',
-                padding: '0.55rem 1.1rem',
-                background: '#059669',
-                color: '#fff',
-                borderRadius: '6px',
-                fontSize: '0.82rem',
-                fontWeight: 600,
-              }}
-            >
-              Open Mistake Vault <ArrowRight size={13} />
-            </Link>
-          </div>
-
-          {/* PACING DIAGNOSTICS CARD */}
-          {pacingAnalysis && (
-            <div className="panel" style={{ padding: '1.75rem', marginBottom: '2.5rem' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.5rem' }}>
-                <div>
-                  <span className="section-label" style={{ margin: 0 }}>PACING & TIME EFFICIENCY</span>
-                  <h3 style={{ fontSize: '1.25rem', margin: '0.2rem 0 0 0' }}>Seconds-Per-Question Diagnostics</h3>
-                </div>
-                <div style={{ fontSize: '0.8rem', color: 'var(--muted)', fontFamily: 'var(--font-mono)' }}>
-                  Target: RW ~71s • Math ~95s
-                </div>
-              </div>
-
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.25rem', marginBottom: '1.25rem' }}>
-                <div style={{ padding: '1rem', borderRadius: '6px', background: 'rgba(28,28,30,0.02)', border: '1px solid var(--border)' }}>
-                  <div style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', color: 'var(--muted)', textTransform: 'uppercase' }}>
-                    Reading & Writing Average
-                  </div>
-                  <div style={{ fontSize: '1.8rem', fontWeight: 700, fontFamily: 'var(--font-display)', color: 'var(--ink)' }}>
-                    {pacingAnalysis.avgRWSeconds}s <span style={{ fontSize: '0.8rem', fontWeight: 400, color: 'var(--muted)' }}>/ question</span>
-                  </div>
-                  <div style={{ fontSize: '0.75rem', color: pacingAnalysis.avgRWSeconds > 85 ? '#b91c1c' : '#059669' }}>
-                    {pacingAnalysis.avgRWSeconds > 85 ? '⚠ Slower than 71s target pace' : '✓ Good pacing momentum'}
-                  </div>
-                </div>
-
-                <div style={{ padding: '1rem', borderRadius: '6px', background: 'rgba(28,28,30,0.02)', border: '1px solid var(--border)' }}>
-                  <div style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', color: 'var(--muted)', textTransform: 'uppercase' }}>
-                    Mathematics Average
-                  </div>
-                  <div style={{ fontSize: '1.8rem', fontWeight: 700, fontFamily: 'var(--font-display)', color: 'var(--ink)' }}>
-                    {pacingAnalysis.avgMathSeconds}s <span style={{ fontSize: '0.8rem', fontWeight: 400, color: 'var(--muted)' }}>/ question</span>
-                  </div>
-                  <div style={{ fontSize: '0.75rem', color: pacingAnalysis.avgMathSeconds > 115 ? '#b91c1c' : '#059669' }}>
-                    {pacingAnalysis.avgMathSeconds > 115 ? '⚠ Over 95s target pace' : '✓ Good pacing momentum'}
-                  </div>
-                </div>
-
-                <div style={{ padding: '1rem', borderRadius: '6px', background: 'rgba(28,28,30,0.02)', border: '1px solid var(--border)' }}>
-                  <div style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', color: 'var(--muted)', textTransform: 'uppercase' }}>
-                    Pacing Distribution
-                  </div>
-                  <div style={{ display: 'flex', gap: '0.75rem', marginTop: '0.5rem', fontSize: '0.8rem', fontFamily: 'var(--font-mono)' }}>
-                    <div>
-                      <span style={{ color: '#059669', fontWeight: 700 }}>{pacingAnalysis.optimalCount}</span> Optimal
-                    </div>
-                    <div>
-                      <span style={{ color: '#b45309', fontWeight: 700 }}>{pacingAnalysis.rushedCount}</span> Rushed
-                    </div>
-                    <div>
-                      <span style={{ color: '#dc2626', fontWeight: 700 }}>{pacingAnalysis.overtimeCount}</span> Time Sinks
-                    </div>
-                  </div>
-                  <div style={{ fontSize: '0.72rem', color: 'var(--muted)', marginTop: '0.4rem' }}>
-                    Rushed (&lt;25s) • Optimal (25-100s) • Time Sinks (&gt;120s)
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* PAST EXAM HISTORY TABLE */}
-          {pastExamHistory.length > 0 && (
-            <div className="panel" style={{ padding: '1.75rem', marginBottom: '2.5rem' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-                <h3 style={{ fontSize: '1.15rem', margin: 0 }}>Persistent Score Trajectory</h3>
-                <span style={{ fontSize: '0.78rem', color: 'var(--muted)', fontFamily: 'var(--font-mono)' }}>
-                  Saved in Browser ({pastExamHistory.length} attempts)
-                </span>
-              </div>
-
-              <div style={{ overflowX: 'auto' }}>
-                <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.84rem', fontFamily: 'var(--font-mono)' }}>
-                  <thead>
-                    <tr style={{ borderBottom: '1px solid var(--border)', textAlign: 'left', color: 'var(--muted)' }}>
-                      <th style={{ padding: '0.5rem 0' }}>Date & Time</th>
-                      <th>Total Score</th>
-                      <th>Reading & Writing</th>
-                      <th>Math</th>
-                      <th>Percentile</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {pastExamHistory.slice(0, 5).map((h) => (
-                      <tr key={h.id} style={{ borderBottom: '1px solid rgba(0,0,0,0.05)' }}>
-                        <td style={{ padding: '0.65rem 0', color: 'var(--ink)' }}>{h.date}</td>
-                        <td style={{ fontWeight: 700, color: 'var(--accent)' }}>{h.totalScore}</td>
-                        <td>{h.rwScore} ({h.rwCorrect}/{h.totalRW})</td>
-                        <td>{h.mathScore} ({h.mathCorrect}/{h.totalMath})</td>
-                        <td>~{h.percentile}th</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          )}
-
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '3rem', flexWrap: 'wrap' }}>
-            <button
-              type="button"
-              onClick={handleStartFreshExam}
-              style={{
-                padding: '0.75rem 1.5rem',
-                background: 'var(--accent)',
-                color: '#ffffff',
-                borderRadius: '10px',
-                border: 'none',
-                fontWeight: 600,
-                cursor: 'pointer',
-                boxShadow: '0 2px 6px rgba(0,0,0,0.1)'
-              }}
-            >
-              Take Another Adaptive Exam
-            </button>
-
-            <Link
-              href="/sat/practice/drill?mode=mistakes"
-              style={{
-                textDecoration: 'none',
-                padding: '0.75rem 1.5rem',
-                background: 'var(--accent)',
-                color: '#fff',
-                borderRadius: '6px',
-                fontWeight: 600,
-              }}
-            >
-              Re-Test Missed Questions
-            </Link>
-
-            <Link
-              href="/sat/practice/drill"
-              style={{
-                textDecoration: 'none',
-                padding: '0.75rem 1.5rem',
-                background: 'var(--surface)',
-                border: '1px solid var(--border)',
-                borderRadius: '6px',
-                color: 'var(--ink)',
-                fontWeight: 600,
-              }}
-            >
-              Targeted Domain Practice
-            </Link>
-          </div>
-        </div>
-      )}
-    </div>
-  );
+  return <div style={{ padding: '4rem', textAlign: 'center', color: 'var(--muted)' }}>Loading…</div>;
 }

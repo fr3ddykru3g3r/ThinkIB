@@ -1,4 +1,4 @@
-import { SATQuestion } from './sat';
+import { SATQuestion } from './sat-types';
 
 export interface DistractorTrap {
   choice: string;

@@ -7,7 +7,16 @@ export async function GET(request: NextRequest) {
   const status = (searchParams.get('status') as any) || 'all';
 
   const submissions = getSubmissions(status);
-  return NextResponse.json({ success: true, submissions });
+  return NextResponse.json(
+    { success: true, submissions },
+    {
+      headers: {
+        'Cache-Control': 'public, max-age=15, s-maxage=60, stale-while-revalidate=120',
+        'CDN-Cache-Control': 'public, s-maxage=60, stale-while-revalidate=120',
+        'Vercel-CDN-Cache-Control': 'public, s-maxage=60, stale-while-revalidate=120',
+      },
+    }
+  );
 }
 
 export async function POST(request: NextRequest) {

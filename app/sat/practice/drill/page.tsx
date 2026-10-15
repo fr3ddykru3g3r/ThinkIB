@@ -1,1319 +1,301 @@
 'use client';
 
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
-import {
-  ArrowLeft,
-  CheckCircle2,
-  XCircle,
-  HelpCircle,
-  SlidersHorizontal,
-  ChevronRight,
-  ChevronLeft,
-  RotateCcw,
-  Sparkles,
-  BookOpen,
-  Eye,
-  EyeOff,
-  Printer,
-  Copy,
-  Check,
-  Lightbulb,
-  AlertTriangle,
-  Zap,
-} from 'lucide-react';
-import { SATQuestion, SATTaxonomy } from '@/lib/sat';
-import MathView from '@/app/components/MathView';
-import SATReferenceGuideModal from '@/app/components/SATReferenceGuideModal';
-import DesmosMasterKeyModal from '@/app/components/DesmosMasterKeyModal';
-import PrintableWorksheetModal from '@/app/components/PrintableWorksheetModal';
-import DesmosVisualPreview from '@/app/components/DesmosVisualPreview';
-import { getDesmosShortcutForQuestion } from '@/lib/desmos-shortcuts';
+import { ArrowLeft, ChevronLeft, ChevronRight, RotateCcw, Sparkles, BookOpen, Printer, Lightbulb, Calculator, CheckCircle2, XCircle } from 'lucide-react';
+import type { SATQuestion } from '@/lib/sat-types';
+import { isAnswerCorrect, formatCorrectAnswer, isSPR, validateSPR } from '@/lib/sat-grading';
 import { getSocraticHints } from '@/lib/socratic-hints';
-import {
-  saveMistake,
-  getMistakeVault,
-  markMistakeMastered,
-  removeMistake,
-  clearMistakeVault,
-  MistakeEntry,
-} from '@/lib/sat-storage';
+import { getDesmosShortcutForQuestion } from '@/lib/desmos-shortcuts';
+import { recordAttempts, saveMistake, getMistakeVault, markMistakeMastered, removeMistake, clearMistakeVault, MistakeEntry } from '@/lib/sat-storage';
+import QuestionBody from '@/app/components/sat/QuestionBody';
+import { Rationale } from '@/app/components/sat/SATContent';
+import DesmosPanel from '@/app/components/sat/DesmosPanel';
+import SATReferenceGuideModal from '@/app/components/SATReferenceGuideModal';
+import PrintableWorksheetModal from '@/app/components/PrintableWorksheetModal';
 
-export default function SATTargetedDrillPage() {
-  const [drillMode, setDrillMode] = useState<'standard' | 'mistakes'>('standard');
-  const [mistakeList, setMistakeList] = useState<MistakeEntry[]>([]);
-  const [showDesmosKeyModal, setShowDesmosKeyModal] = useState(false);
-  const [showPrintModal, setShowPrintModal] = useState(false);
-  const [copiedDesmos, setCopiedDesmos] = useState(false);
-  const [section, setSection] = useState<'reading-writing' | 'math'>('reading-writing');
-  const [domain, setDomain] = useState<string>('');
-  const [difficulty, setDifficulty] = useState<string>('');
-  const [randomize, setRandomize] = useState(true);
-  const [showRefModal, setShowRefModal] = useState(false);
+interface Facet { domain: string; count: number; skills: { skill: string; count: number }[] }
+type Section = 'reading-writing' | 'math';
+
+export default function DrillPage() {
+  const [mode, setMode] = useState<'standard' | 'mistakes'>('standard');
+  const [section, setSection] = useState<Section>('reading-writing');
+  const [domain, setDomain] = useState('');
+  const [skill, setSkill] = useState('');
+  const [difficulty, setDifficulty] = useState('');
+  const [type, setType] = useState('');
+  const [facets, setFacets] = useState<{ rw: Facet[]; math: Facet[] }>({ rw: [], math: [] });
 
   const [questions, setQuestions] = useState<SATQuestion[]>([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [total, setTotal] = useState(0);
+  const [idx, setIdx] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [fetchError, setFetchError] = useState<string | null>(null);
-  const [retryCount, setRetryCount] = useState(0);
-  const [totalCount, setTotalCount] = useState(0);
-  const [taxonomy, setTaxonomy] = useState<{ rw: SATTaxonomy | null; math: SATTaxonomy | null }>({
-    rw: null,
-    math: null,
-  });
+  const [error, setError] = useState<string | null>(null);
+  const [reload, setReload] = useState(0);
+  const [vault, setVault] = useState<MistakeEntry[]>([]);
 
-  // User interaction per question
-  const [selectedAnswer, setSelectedAnswer] = useState<string>('');
-  const [userSubmittedAnswer, setUserSubmittedAnswer] = useState<string>('');
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [showRationale, setShowRationale] = useState(false);
-  const [strikeThroughs, setStrikeThroughs] = useState<Record<string, boolean>>({});
-
-  // Socratic Hint Ladder & Dual-Method Rationale State
-  const [showHintDrawer, setShowHintDrawer] = useState(false);
-  const [unlockedHintLevel, setUnlockedHintLevel] = useState<number>(1);
-  const [solutionTab, setSolutionTab] = useState<'algebraic' | 'desmos'>('desmos');
-
-  // Score stats in session
+  const [answer, setAnswer] = useState('');
+  const [checked, setChecked] = useState(false);
+  const [struck, setStruck] = useState<Record<string, boolean>>({});
+  const [hintLevel, setHintLevel] = useState(0);
+  const [showStrategy, setShowStrategy] = useState(false);
+  const [showCalc, setShowCalc] = useState(false);
+  const [showRef, setShowRef] = useState(false);
+  const [showPrint, setShowPrint] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
-  const [answeredCount, setAnsweredCount] = useState(0);
+  const [answered, setAnswered] = useState(0);
 
-  const DEFAULT_RW_DOMAINS = [
-    'Information and Ideas',
-    'Craft and Structure',
-    'Expression of Ideas',
-    'Standard English Conventions',
-  ];
+  const resetQuestionState = () => {
+    setAnswer('');
+    setChecked(false);
+    setStruck({});
+    setHintLevel(0);
+    setShowStrategy(false);
+  };
 
-  const DEFAULT_MATH_DOMAINS = [
-    'Algebra',
-    'Advanced Math',
-    'Problem-Solving and Data Analysis',
-    'Geometry and Trigonometry',
-  ];
-
-  // Available domains for current section
-  const availableDomains = useMemo(() => {
-    const tax = section === 'reading-writing' ? taxonomy.rw : taxonomy.math;
-    if (tax && tax.domains && tax.domains.length > 0) {
-      return tax.domains.map((d) => d.domain);
-    }
-    return section === 'reading-writing' ? DEFAULT_RW_DOMAINS : DEFAULT_MATH_DOMAINS;
-  }, [section, taxonomy]);
-
-  const mistakesRWCount = useMemo(() => mistakeList.filter((m) => m.section === 'reading-writing').length, [mistakeList]);
-  const mistakesMathCount = useMemo(() => mistakeList.filter((m) => m.section === 'math').length, [mistakeList]);
-
-  // Load mistakes and query params on mount
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const params = new URLSearchParams(window.location.search);
-      if (params.get('mode') === 'mistakes') {
-        setDrillMode('mistakes');
-      }
-      setMistakeList(getMistakeVault());
-    }
+    const sp = new URLSearchParams(window.location.search);
+    if (sp.get('mode') === 'mistakes') setMode('mistakes');
+    const sec = sp.get('section');
+    if (sec === 'math' || sec === 'reading-writing') setSection(sec);
+    if (sp.get('domain')) setDomain(sp.get('domain')!);
+    if (sp.get('skill')) setSkill(sp.get('skill')!);
+    setVault(getMistakeVault());
   }, []);
 
-  // Fetch questions with race condition cancellation guard
   useEffect(() => {
-    let ignore = false;
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 9000);
-
-    const loadData = async () => {
+    const ctl = new AbortController();
+    (async () => {
       setLoading(true);
-      setFetchError(null);
-      setCurrentIndex(0);
-      setIsSubmitted(false);
-      setSelectedAnswer('');
-      setUserSubmittedAnswer('');
-      setShowRationale(false);
-      setStrikeThroughs({});
-      setShowHintDrawer(false);
-      setUnlockedHintLevel(1);
-      setSolutionTab('desmos');
-
-      if (drillMode === 'mistakes') {
-        const vault = getMistakeVault();
-        setMistakeList(vault);
-        const filtered = vault.filter((m) => m.section === section);
-        const formattedQuestions: SATQuestion[] = filtered.map((m) => ({
-          questionId: m.questionId,
-          pageNumber: 1,
-          exam: 'Digital SAT',
-          domain: m.domain,
-          skill: m.skill || '',
-          difficulty: (m.difficulty as any) || 'Medium',
-          broadArchetype: '',
-          conceptLabel: '',
-          prompt: m.prompt,
-          choices: m.choices || [],
-          correctAnswer: m.correctAnswer,
-          rationale: m.rationale,
-        }));
-        if (!ignore) {
-          setQuestions(formattedQuestions);
-          setTotalCount(formattedQuestions.length);
-          setLoading(false);
-        }
-        return;
-      }
-
+      setError(null);
+      setIdx(0);
+      resetQuestionState();
       try {
-        const params = new URLSearchParams();
-        params.set('section', section);
-        if (domain) params.set('domain', domain);
-        if (difficulty) params.set('difficulty', difficulty);
-        params.set('limit', '50');
-        if (randomize) params.set('randomize', 'true');
-        params.set('hasChoicesOnly', section === 'math' ? 'false' : 'true');
-
-        const res = await fetch(`/api/sat/questions?${params.toString()}`, {
-          signal: controller.signal,
-          headers: { 'Accept': 'application/json' }
-        });
-
-        if (!res.ok) {
-          throw new Error(`Server returned HTTP ${res.status}`);
+        let url: string;
+        if (mode === 'mistakes') {
+          const v = getMistakeVault().filter((m) => m.section === section && !m.mastered);
+          setVault(getMistakeVault());
+          if (!v.length) {
+            setQuestions([]);
+            setTotal(0);
+            setLoading(false);
+            return;
+          }
+          url = `/api/sat/questions?ids=${v.slice(0, 100).map((m) => m.questionId).join(',')}`;
+        } else {
+          const p = new URLSearchParams({ section, limit: '40', randomize: 'true' });
+          if (domain) p.set('domain', domain);
+          if (skill) p.set('skill', skill);
+          if (difficulty) p.set('difficulty', difficulty);
+          if (type) p.set('type', type);
+          url = `/api/sat/questions?${p}`;
         }
-
+        const res = await fetch(url, { signal: ctl.signal });
+        if (!res.ok) throw new Error(`Server returned ${res.status}`);
         const data = await res.json();
-        if (!ignore && data.success) {
-          setQuestions(data.questions || []);
-          setTotalCount(data.total || 0);
-          if (data.taxonomy) {
-            setTaxonomy(data.taxonomy);
-          }
-        } else if (!ignore) {
-          throw new Error(data.error || 'Failed to parse questions response');
-        }
+        if (!data.success) throw new Error(data.error || 'Could not load questions');
+        setQuestions(data.questions || []);
+        setTotal(data.total ?? data.questions?.length ?? 0);
+        if (data.facets) setFacets(data.facets);
       } catch (e: any) {
-        if (!ignore) {
-          if (e.name === 'AbortError') {
-            setFetchError('Request timed out while loading questions. Please retry.');
-          } else {
-            console.error('Failed to load drill questions', e);
-            setFetchError(e.message || 'Failed to connect to question bank.');
-          }
-        }
+        if (e.name !== 'AbortError') setError(e.message || 'Could not reach the question bank.');
       } finally {
-        clearTimeout(timeoutId);
-        if (!ignore) setLoading(false);
+        if (!ctl.signal.aborted) setLoading(false);
       }
+    })();
+    return () => ctl.abort();
+  }, [mode, section, domain, skill, difficulty, type, reload]);
+
+  const q = questions[idx] ?? null;
+  const domainFacets = section === 'math' ? facets.math : facets.rw;
+  const skillOptions = domainFacets.find((d) => d.domain === domain)?.skills ?? [];
+  const hints = useMemo(() => (q ? getSocraticHints(q) : null), [q]);
+  const shortcut = useMemo(() => (q && q.section === 'math' ? getDesmosShortcutForQuestion(q) : null), [q]);
+
+  const canCheck = q ? (isSPR(q) ? validateSPR(answer).ok : !!answer) : false;
+
+  const check = () => {
+    if (!q || checked || !canCheck) return;
+    setChecked(true);
+    const ok = isAnswerCorrect(q, answer);
+    setAnswered((n) => n + 1);
+    recordAttempts([{ section: q.section || section, domain: q.domain, skill: q.skill, correct: ok }]);
+    if (ok) {
+      setCorrectCount((n) => n + 1);
+      if (mode === 'mistakes') {
+        markMistakeMastered(q.questionId, true);
+        setVault(getMistakeVault());
+      }
+    } else {
+      saveMistake({ questionId: q.questionId, section: q.section || section, domain: q.domain, skill: q.skill, difficulty: q.difficulty, correctAnswer: q.correctAnswer, userAnswer: answer });
+      setVault(getMistakeVault());
+    }
+  };
+
+  const move = useCallback((d: number) => {
+    setIdx((i) => Math.min(Math.max(0, i + d), Math.max(0, questions.length - 1)));
+    resetQuestionState();
+  }, [questions.length]);
+
+  // keyboard: A-D to choose, Enter to check / next
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const t = e.target as HTMLElement;
+      if (!q || (t && (t.tagName === 'INPUT' || t.tagName === 'SELECT'))) return;
+      if (!checked && !isSPR(q) && /^[a-d]$/i.test(e.key)) setAnswer(e.key.toUpperCase());
+      else if (e.key === 'Enter') (checked ? move(1) : check());
     };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [q, checked, answer, move]);
 
-    loadData();
-
-    return () => {
-      ignore = true;
-      clearTimeout(timeoutId);
-      controller.abort();
-    };
-  }, [section, domain, difficulty, randomize, drillMode, retryCount]);
-
-  const currentQ = questions[currentIndex] || null;
-  const desmosShortcut = useMemo(() => {
-    return currentQ ? getDesmosShortcutForQuestion(currentQ) : null;
-  }, [currentQ]);
-  const socraticHints = useMemo(() => {
-    return currentQ ? getSocraticHints(currentQ) : null;
-  }, [currentQ]);
-
-  // Check correctness & auto-save to Mistake Vault
-  const handleCheckAnswer = () => {
-    if (!currentQ || isSubmitted) return;
-    setIsSubmitted(true);
-    setShowRationale(true);
-    if (section === 'math' && desmosShortcut) {
-      setSolutionTab('desmos');
-    } else {
-      setSolutionTab('algebraic');
-    }
-
-    const isMultipleChoice = currentQ.choices && currentQ.choices.length > 0;
-    let isCorrect = false;
-
-    if (isMultipleChoice) {
-      isCorrect = selectedAnswer.toUpperCase() === currentQ.correctAnswer.trim().toUpperCase();
-    } else {
-      isCorrect = userSubmittedAnswer.trim().toLowerCase() === currentQ.correctAnswer.trim().toLowerCase();
-    }
-
-    setAnsweredCount((prev) => prev + 1);
-    if (isCorrect) {
-      setCorrectCount((prev) => prev + 1);
-      if (drillMode === 'mistakes') {
-        markMistakeMastered(currentQ.questionId, true);
-        setMistakeList(getMistakeVault());
-      }
-    } else {
-      // Auto-save incorrect question into Mistake Vault
-      saveMistake({
-        questionId: currentQ.questionId,
-        section,
-        domain: currentQ.domain,
-        skill: currentQ.skill,
-        difficulty: currentQ.difficulty,
-        prompt: currentQ.prompt,
-        choices: currentQ.choices,
-        correctAnswer: currentQ.correctAnswer,
-        userAnswer: isMultipleChoice ? selectedAnswer : userSubmittedAnswer || '[Blank]',
-        rationale: currentQ.rationale,
-      });
-      setMistakeList(getMistakeVault());
-    }
-  };
-
-  const handleRemoveFromVault = (qId: string) => {
-    removeMistake(qId);
-    const updated = getMistakeVault();
-    setMistakeList(updated);
-    if (drillMode === 'mistakes') {
-      const filtered = updated.filter((m) => m.section === section);
-      setQuestions(filtered.map((m) => ({
-        questionId: m.questionId,
-        pageNumber: 1,
-        exam: 'Digital SAT',
-        section: m.section,
-        domain: m.domain,
-        skill: m.skill || '',
-        difficulty: m.difficulty as 'Easy' | 'Medium' | 'Hard',
-        broadArchetype: m.domain,
-        conceptLabel: m.skill || '',
-        prompt: m.prompt,
-        choices: m.choices || [],
-        correctAnswer: m.correctAnswer,
-        rationale: m.rationale,
-      })));
-      if (currentIndex >= filtered.length) {
-        setCurrentIndex(Math.max(0, filtered.length - 1));
-      }
-    }
-  };
-
-  const handleNext = () => {
-    if (currentIndex < questions.length - 1) {
-      setCurrentIndex((prev) => prev + 1);
-      setIsSubmitted(false);
-      setSelectedAnswer('');
-      setUserSubmittedAnswer('');
-      setShowRationale(false);
-      setStrikeThroughs({});
-      setShowHintDrawer(false);
-      setUnlockedHintLevel(1);
-      setSolutionTab('desmos');
-    }
-  };
-
-  const handlePrev = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex((prev) => prev - 1);
-      setIsSubmitted(false);
-      setSelectedAnswer('');
-      setUserSubmittedAnswer('');
-      setShowRationale(false);
-      setStrikeThroughs({});
-      setShowHintDrawer(false);
-      setUnlockedHintLevel(1);
-      setSolutionTab('desmos');
-    }
-  };
-
-  const toggleStrike = (choiceKey: string, e: React.MouseEvent) => {
-    e.stopPropagation();
-    setStrikeThroughs((prev) => ({
-      ...prev,
-      [choiceKey]: !prev[choiceKey],
-    }));
-  };
+  const pill: React.CSSProperties = { padding: '0.45rem 0.8rem', borderRadius: 8, border: '1px solid var(--border)', background: 'var(--surface)', color: 'var(--ink)', fontSize: '0.82rem', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: 6 };
+  const primary: React.CSSProperties = { ...pill, background: 'var(--accent)', color: '#fff', border: 'none', fontWeight: 600, padding: '0.65rem 1.4rem', fontSize: '0.9rem' };
+  const vaultCount = (s: Section) => vault.filter((m) => m.section === s && !m.mastered).length;
 
   return (
-    <div style={{ maxWidth: '1000px', margin: '0 auto', paddingBottom: '5rem' }}>
-      {/* Top Breadcrumb & Session Stats */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
-        <Link
-          href="/sat"
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '6px',
-            fontFamily: 'var(--font-mono)',
-            fontSize: '0.8rem',
-            color: 'var(--muted)',
-            textDecoration: 'none',
-          }}
-        >
-          <ArrowLeft size={14} /> Back to SAT Portal
+    <div style={{ maxWidth: 1000, margin: '0 auto', paddingBottom: '5rem' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12, marginBottom: '1.2rem' }}>
+        <Link href="/sat" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--muted)', textDecoration: 'none' }}>
+          <ArrowLeft size={14} /> SAT portal
         </Link>
+        <div style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap' }}>
+          {questions.length > 0 && <button type="button" style={pill} onClick={() => setShowPrint(true)}><Printer size={13} /> Worksheet PDF ({questions.length})</button>}
+          {answered > 0 && (
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.82rem', color: 'var(--muted)' }}>
+              Session: <strong style={{ color: 'var(--ink)' }}>{correctCount}/{answered}</strong> ({Math.round((correctCount / answered) * 100)}%)
+            </span>
+          )}
+        </div>
+      </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
-          {questions.length > 0 && (
-            <button
-              type="button"
-              onClick={() => setShowPrintModal(true)}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '5px',
-                padding: '0.35rem 0.75rem',
-                borderRadius: '6px',
-                background: 'var(--panel-light, #fff)',
-                color: 'var(--ink)',
-                border: '1px solid var(--border)',
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.78rem',
-                cursor: 'pointer',
-              }}
-            >
-              <Printer size={13} />
-              <span>Print Worksheet / PDF ({questions.length})</span>
+      <div style={{ display: 'flex', gap: '1.5rem', borderBottom: '1px solid var(--border)', marginBottom: '1.2rem' }}>
+        {([['standard', 'Practice by topic'], ['mistakes', `Mistake vault (${vault.filter((m) => !m.mastered).length})`]] as const).map(([m, label]) => (
+          <button key={m} type="button" onClick={() => setMode(m)} className={`filter-btn ${mode === m ? 'active' : ''}`} style={{ fontSize: '0.92rem', paddingBottom: '0.6rem' }}>{label}</button>
+        ))}
+      </div>
+
+      <div className="panel" style={{ padding: '1rem 1.2rem', marginBottom: '1.5rem', display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center' }}>
+        {(['reading-writing', 'math'] as const).map((s) => (
+          <button key={s} type="button" className={`filter-btn ${section === s ? 'active' : ''}`} onClick={() => { setSection(s); setDomain(''); setSkill(''); }} style={{ fontSize: '0.88rem' }}>
+            {s === 'math' ? 'Math' : 'Reading & Writing'}{mode === 'mistakes' ? ` (${vaultCount(s)})` : ''}
+          </button>
+        ))}
+        {mode === 'standard' ? (
+          <>
+            <select className="select-input" aria-label="Domain" value={domain} onChange={(e) => { setDomain(e.target.value); setSkill(''); }} style={{ fontSize: '0.82rem' }}>
+              <option value="">All domains</option>
+              {domainFacets.map((d) => <option key={d.domain} value={d.domain}>{d.domain} ({d.count})</option>)}
+            </select>
+            {skillOptions.length > 0 && (
+              <select className="select-input" aria-label="Skill" value={skill} onChange={(e) => setSkill(e.target.value)} style={{ fontSize: '0.82rem' }}>
+                <option value="">All skills</option>
+                {skillOptions.map((s) => <option key={s.skill} value={s.skill}>{s.skill} ({s.count})</option>)}
+              </select>
+            )}
+            <select className="select-input" aria-label="Difficulty" value={difficulty} onChange={(e) => setDifficulty(e.target.value)} style={{ fontSize: '0.82rem' }}>
+              <option value="">Any difficulty</option><option>Easy</option><option>Medium</option><option>Hard</option>
+            </select>
+            {section === 'math' && (
+              <select className="select-input" aria-label="Question type" value={type} onChange={(e) => setType(e.target.value)} style={{ fontSize: '0.82rem' }}>
+                <option value="">Multiple choice + grid-in</option><option value="mcq">Multiple choice</option><option value="spr">Grid-in only</option>
+              </select>
+            )}
+            <button type="button" style={pill} onClick={() => setReload((n) => n + 1)}><RotateCcw size={13} /> New set</button>
+            <span style={{ marginLeft: 'auto', fontSize: '0.78rem', color: 'var(--muted)', fontFamily: 'var(--font-mono)' }}>{total.toLocaleString()} matching</span>
+          </>
+        ) : (
+          vault.length > 0 && (
+            <button type="button" style={{ ...pill, marginLeft: 'auto', color: 'var(--rust)' }} onClick={() => { if (confirm('Clear your whole mistake vault?')) { clearMistakeVault(); setVault([]); setQuestions([]); } }}>
+              Clear vault
             </button>
-          )}
-
-          {answeredCount > 0 && (
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.82rem', background: 'var(--panel-light, #fff)', color: 'var(--muted)', border: '1px solid var(--border)', padding: '4px 10px', borderRadius: '4px' }}>
-              Session Accuracy: <strong style={{ color: 'var(--ink)' }}>{correctCount}/{answeredCount}</strong> ({Math.round((correctCount / answeredCount) * 100)}%)
-            </div>
-          )}
-        </div>
+          )
+        )}
       </div>
 
-      {/* Mode Switch Tabs: Standard Drill vs Mistake Vault */}
-      <div style={{ display: 'flex', gap: '1.5rem', borderBottom: '1px solid var(--border)', marginBottom: '1.5rem' }}>
-        <button
-          type="button"
-          onClick={() => { setDrillMode('standard'); }}
-          className={`filter-btn ${drillMode === 'standard' ? 'active' : ''}`}
-          style={{ fontSize: '0.92rem', paddingBottom: '0.6rem' }}
-        >
-          <SlidersHorizontal size={14} style={{ display: 'inline', marginRight: '6px' }} />
-          Standard Domain Drills
-        </button>
-
-        <button
-          type="button"
-          onClick={() => { setDrillMode('mistakes'); }}
-          className={`filter-btn ${drillMode === 'mistakes' ? 'active' : ''}`}
-          style={{ fontSize: '0.92rem', paddingBottom: '0.6rem', color: drillMode === 'mistakes' ? 'var(--accent)' : 'inherit' }}
-        >
-          <Sparkles size={14} style={{ display: 'inline', marginRight: '6px' }} />
-          Mistake Vault ({mistakeList.length})
-        </button>
-      </div>
-
-      {/* Filter Controls Bar */}
-      <div className="panel" style={{ padding: '1.25rem 1.5rem', marginBottom: '2rem' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
-          {/* Section Switcher Tabs */}
-          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-            {drillMode === 'standard' ? (
-              <>
-                <button
-                  type="button"
-                  onClick={() => { setSection('reading-writing'); setDomain(''); }}
-                  className={`filter-btn ${section === 'reading-writing' ? 'active' : ''}`}
-                  style={{ fontSize: '0.88rem', padding: '0.35rem 0.6rem' }}
-                >
-                  Reading & Writing (1,688)
-                </button>
-                <button
-                  type="button"
-                  onClick={() => { setSection('math'); setDomain(''); }}
-                  className={`filter-btn ${section === 'math' ? 'active' : ''}`}
-                  style={{ fontSize: '0.88rem', padding: '0.35rem 0.6rem' }}
-                >
-                  Mathematics (1,684)
-                </button>
-              </>
-            ) : (
-              <>
-                <button
-                  type="button"
-                  onClick={() => { setSection('reading-writing'); setDomain(''); }}
-                  className={`filter-btn ${section === 'reading-writing' ? 'active' : ''}`}
-                  style={{ fontSize: '0.88rem', padding: '0.35rem 0.6rem' }}
-                >
-                  Reading & Writing Mistakes ({mistakesRWCount})
-                </button>
-                <button
-                  type="button"
-                  onClick={() => { setSection('math'); setDomain(''); }}
-                  className={`filter-btn ${section === 'math' ? 'active' : ''}`}
-                  style={{ fontSize: '0.88rem', padding: '0.35rem 0.6rem' }}
-                >
-                  Mathematics Mistakes ({mistakesMathCount})
-                </button>
-              </>
-            )}
-          </div>
-
-          {/* Domain & Difficulty Dropdowns / Controls */}
-          <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center' }}>
-            {drillMode === 'standard' ? (
-              <>
-                {availableDomains.length > 0 && (
-                  <select
-                    value={domain}
-                    onChange={(e) => setDomain(e.target.value)}
-                    className="select-input"
-                    style={{ fontSize: '0.82rem', padding: '0.45rem 0.75rem' }}
-                  >
-                    <option value="">All Domains</option>
-                    {availableDomains.map((d) => (
-                      <option key={d} value={d}>
-                        {d}
-                      </option>
-                    ))}
-                  </select>
-                )}
-
-                <select
-                  value={difficulty}
-                  onChange={(e) => setDifficulty(e.target.value)}
-                  className="select-input"
-                  style={{ fontSize: '0.82rem', padding: '0.45rem 0.75rem' }}
-                >
-                  <option value="">All Difficulties</option>
-                  <option value="Easy">Easy</option>
-                  <option value="Medium">Medium</option>
-                  <option value="Hard">Hard</option>
-                </select>
-
-                <button
-                  type="button"
-                  onClick={() => setRandomize((prev) => !prev)}
-                  style={{
-                    background: 'transparent',
-                    border: '1px solid var(--border)',
-                    borderRadius: '6px',
-                    padding: '0.45rem 0.75rem',
-                    fontSize: '0.8rem',
-                    cursor: 'pointer',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '4px',
-                  }}
-                >
-                  <RotateCcw size={13} />
-                  <span>Shuffle</span>
-                </button>
-              </>
-            ) : (
-              mistakeList.length > 0 && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (confirm('Are you sure you want to clear all mistakes from your vault?')) {
-                      clearMistakeVault();
-                      setMistakeList([]);
-                      setQuestions([]);
-                    }
-                  }}
-                  style={{
-                    background: 'transparent',
-                    border: '1px solid var(--border)',
-                    borderRadius: '6px',
-                    padding: '0.45rem 0.75rem',
-                    fontSize: '0.8rem',
-                    cursor: 'pointer',
-                    color: 'var(--rust)',
-                  }}
-                >
-                  Clear Mistake Vault
-                </button>
-              )
-            )}
-          </div>
-        </div>
-      </div>
-
-      {/* Main Question Display */}
       {loading ? (
-        <div style={{ textAlign: 'center', padding: '5rem 0', color: 'var(--muted)' }}>
-          <div style={{ display: 'inline-block', width: '28px', height: '28px', border: '3px solid var(--border)', borderTopColor: 'var(--rust)', borderRadius: '50%', animation: 'spin 0.8s linear infinite', marginBottom: '1rem' }} />
-          <p style={{ margin: 0, fontSize: '0.9rem' }}>Loading questions from question bank...</p>
+        <div style={{ textAlign: 'center', padding: '5rem 0', color: 'var(--muted)' }}>Loading questions…</div>
+      ) : error ? (
+        <div className="panel" style={{ textAlign: 'center', padding: '3rem 2rem' }}>
+          <XCircle size={40} style={{ color: 'var(--rust)' }} />
+          <h3>Couldn't load questions</h3>
+          <p style={{ color: 'var(--muted)' }}>{error}</p>
+          <button type="button" style={primary} onClick={() => setReload((n) => n + 1)}>Try again</button>
         </div>
-      ) : fetchError ? (
-        <div className="panel" style={{ textAlign: 'center', padding: '4rem 2rem' }}>
-          <XCircle size={44} style={{ color: 'var(--rust)', margin: '0 auto 1rem', opacity: 0.9 }} />
-          <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.4rem', marginBottom: '0.4rem' }}>
-            Unable to Retrieve Questions
-          </h3>
-          <p style={{ color: 'var(--muted)', fontSize: '0.9rem', maxWidth: '480px', margin: '0 auto 1.5rem', lineHeight: '1.5' }}>
-            {fetchError}
+      ) : !q ? (
+        <div className="panel" style={{ textAlign: 'center', padding: '3.5rem 2rem' }}>
+          <h3>{mode === 'mistakes' ? 'Nothing left to review here' : 'No questions match these filters'}</h3>
+          <p style={{ color: 'var(--muted)', maxWidth: 460, margin: '0.5rem auto 1.2rem' }}>
+            {mode === 'mistakes' ? 'Questions you get wrong in drills and full tests land here until you answer them correctly.' : 'Try widening the domain, skill or difficulty.'}
           </p>
-          <button
-            type="button"
-            onClick={() => setRetryCount((prev) => prev + 1)}
-            className="filter-btn active"
-            style={{ padding: '0.6rem 1.4rem', borderRadius: '6px', background: 'var(--rust)', color: '#fff', fontWeight: 600, border: 'none', cursor: 'pointer' }}
-          >
-            Retry Loading Questions
+          <button type="button" style={primary} onClick={() => (mode === 'mistakes' ? setMode('standard') : (setDomain(''), setSkill(''), setDifficulty(''), setType('')))}>
+            {mode === 'mistakes' ? 'Practice by topic' : 'Reset filters'}
           </button>
         </div>
-      ) : !currentQ ? (
-        drillMode === 'mistakes' ? (
-          mistakeList.length === 0 ? (
-            <div className="panel" style={{ textAlign: 'center', padding: '4.5rem 2rem' }}>
-              <Sparkles size={48} style={{ color: 'var(--rust)', margin: '0 auto 1.25rem', opacity: 0.8 }} />
-              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.6rem', marginBottom: '0.5rem' }}>
-                Your Mistake Vault is Clean
-              </h3>
-              <p style={{ color: 'var(--muted)', fontSize: '0.95rem', maxWidth: '520px', margin: '0 auto 1.75rem', lineHeight: '1.5' }}>
-                You haven't missed any questions yet! When you practice standard domain drills or take full-length adaptive SAT tests, any questions you answer incorrectly will automatically be captured here so you can re-test yourself until you achieve 100% mastery.
-              </p>
-              <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-                <button
-                  type="button"
-                  onClick={() => { setDrillMode('standard'); setSection('reading-writing'); }}
-                  style={{ padding: '0.65rem 1.3rem', borderRadius: '10px', background: 'var(--accent)', color: '#ffffff', fontWeight: 600, border: 'none', cursor: 'pointer' }}
-                >
-                  Start Reading & Writing Drills
-                </button>
-                <button
-                  type="button"
-                  onClick={() => { setDrillMode('standard'); setSection('math'); }}
-                  style={{ padding: '0.65rem 1.3rem', borderRadius: '10px', border: '1px solid var(--border)', background: 'var(--surface)', color: 'var(--ink)', fontWeight: 600, cursor: 'pointer' }}
-                >
-                  Start Math Drills
-                </button>
-              </div>
-            </div>
-          ) : (
-            <div className="panel" style={{ textAlign: 'center', padding: '4.5rem 2rem' }}>
-              <CheckCircle2 size={48} style={{ color: '#059669', margin: '0 auto 1.25rem', opacity: 0.8 }} />
-              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.6rem', marginBottom: '0.5rem' }}>
-                No Mistakes in {section === 'reading-writing' ? 'Reading & Writing' : 'Mathematics'}
-              </h3>
-              <p style={{ color: 'var(--muted)', fontSize: '0.95rem', maxWidth: '520px', margin: '0 auto 1.75rem', lineHeight: '1.5' }}>
-                You have zero active mistakes in this section! You currently have {section === 'reading-writing' ? mistakesMathCount : mistakesRWCount} mistake{(section === 'reading-writing' ? mistakesMathCount : mistakesRWCount) === 1 ? '' : 's'} logged in {section === 'reading-writing' ? 'Mathematics' : 'Reading & Writing'}.
-              </p>
-              <button
-                type="button"
-                onClick={() => setSection(section === 'reading-writing' ? 'math' : 'reading-writing')}
-                style={{ padding: '0.65rem 1.3rem', borderRadius: '10px', background: 'var(--accent)', color: '#ffffff', fontWeight: 600, border: 'none', cursor: 'pointer' }}
-              >
-                Switch to {section === 'reading-writing' ? 'Mathematics' : 'Reading & Writing'}
-              </button>
-            </div>
-          )
-        ) : (
-          <div className="panel" style={{ textAlign: 'center', padding: '4rem 2rem' }}>
-            <h3>No questions match this filter combination</h3>
-            <p style={{ color: 'var(--muted)', fontSize: '0.95rem' }}>
-              Try resetting the domain or difficulty filter to view questions.
-            </p>
-            <button
-              type="button"
-              onClick={() => { setDomain(''); setDifficulty(''); }}
-              style={{
-                padding: '0.65rem 1.3rem',
-                background: 'var(--accent)',
-                color: '#ffffff',
-                border: 'none',
-                borderRadius: '10px',
-                fontSize: '0.85rem',
-                fontWeight: 600,
-                cursor: 'pointer',
-              }}
-            >
-              Reset Filters
-            </button>
-          </div>
-        )
       ) : (
-        <div className="panel" style={{ padding: '2.5rem' }}>
-          {/* Question Header Meta */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', borderBottom: '1px solid var(--border)', paddingBottom: '1rem', flexWrap: 'wrap', gap: '0.5rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-              <span
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.82rem',
-                  fontWeight: 600,
-                  color: 'var(--accent)',
-                }}
-              >
-                Question {currentIndex + 1} of {questions.length}
-              </span>
-              <span style={{ color: 'var(--border)' }}>|</span>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--muted)' }}>
-                ID: {currentQ.questionId}
-              </span>
+        <div className="panel" style={{ padding: 'clamp(1.1rem, 3vw, 2.2rem)' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8, flexWrap: 'wrap', borderBottom: '1px solid var(--border)', paddingBottom: '0.9rem', marginBottom: '1.3rem', fontSize: '0.78rem', fontFamily: 'var(--font-mono)' }}>
+            <span style={{ color: 'var(--accent)', fontWeight: 600 }}>Question {idx + 1} of {questions.length} · {q.questionId}</span>
+            <span style={{ color: 'var(--muted)' }}>{q.domain} · {q.skill} · <strong style={{ color: q.difficulty === 'Hard' ? '#b91c1c' : q.difficulty === 'Medium' ? '#b45309' : '#047857' }}>{q.difficulty}</strong></span>
+          </div>
+
+          <QuestionBody key={q.questionId} q={q} answer={answer} onAnswer={setAnswer} reveal={checked} struck={struck} onStrike={(l) => setStruck((p) => ({ ...p, [l]: !p[l] }))} />
+
+          {hintLevel > 0 && hints && !checked && (
+            <div style={{ marginTop: '1.4rem', padding: '1rem 1.2rem', borderRadius: 10, background: 'rgba(245,158,11,0.09)', border: '1px solid rgba(245,158,11,0.35)', fontSize: '0.9rem', lineHeight: 1.55 }}>
+              <div><strong>Hint 1 · {hints.level1Concept.title}.</strong> {hints.level1Concept.description}</div>
+              {hintLevel > 1 && <div style={{ marginTop: 8 }}><strong>Hint 2 · {hints.level2Elimination.title}.</strong> {hints.level2Elimination.description}</div>}
+              {hintLevel > 2 && <div style={{ marginTop: 8 }}><strong>Hint 3 · {hints.level3Setup.title}.</strong> {hints.level3Setup.firstStep}</div>}
+              {hintLevel < 3 && <button type="button" style={{ ...pill, marginTop: 10 }} onClick={() => setHintLevel((l) => l + 1)}>Show next hint</button>}
             </div>
+          )}
 
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-              <span
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.7rem',
-                  padding: '2px 8px',
-                  borderRadius: '4px',
-                  background: 'rgba(28,28,30,0.04)',
-                  color: 'var(--ink)',
-                }}
-              >
-                {currentQ.domain} • {currentQ.skill}
-              </span>
-
-              <span
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.7rem',
-                  padding: '2px 8px',
-                  borderRadius: '4px',
-                  fontWeight: 600,
-                  background:
-                    currentQ.difficulty === 'Hard'
-                      ? 'rgba(239, 68, 68, 0.1)'
-                      : currentQ.difficulty === 'Medium'
-                      ? 'rgba(234, 179, 8, 0.1)'
-                      : 'rgba(16, 185, 129, 0.1)',
-                  color:
-                    currentQ.difficulty === 'Hard'
-                      ? '#b91c1c'
-                      : currentQ.difficulty === 'Medium'
-                      ? '#b45309'
-                      : '#047857',
-                }}
-              >
-                {currentQ.difficulty.toUpperCase()}
-              </span>
+          <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap', alignItems: 'center', borderTop: '1px solid var(--border)', marginTop: '1.6rem', paddingTop: '1.2rem' }}>
+            <div style={{ display: 'flex', gap: 8 }}>
+              <button type="button" style={{ ...pill, opacity: idx === 0 ? 0.5 : 1 }} disabled={idx === 0} onClick={() => move(-1)}><ChevronLeft size={15} /> Previous</button>
+              <button type="button" style={{ ...pill, opacity: idx >= questions.length - 1 ? 0.5 : 1 }} disabled={idx >= questions.length - 1} onClick={() => move(1)}>Next <ChevronRight size={15} /></button>
+            </div>
+            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
+              {!checked && <button type="button" style={pill} onClick={() => setHintLevel((l) => Math.max(1, l))}><Lightbulb size={14} style={{ color: '#d97706' }} /> Hint</button>}
+              {section === 'math' && <button type="button" style={pill} onClick={() => setShowCalc((v) => !v)}><Calculator size={14} /> Calculator</button>}
+              <button type="button" style={pill} onClick={() => setShowRef(true)}><BookOpen size={14} /> Reference</button>
+              {!checked ? (
+                <button type="button" style={{ ...primary, opacity: canCheck ? 1 : 0.5, cursor: canCheck ? 'pointer' : 'not-allowed' }} disabled={!canCheck} onClick={check}>Check answer</button>
+              ) : mode === 'mistakes' ? (
+                <button type="button" style={pill} onClick={() => { removeMistake(q.questionId); setVault(getMistakeVault()); setQuestions((qs) => qs.filter((x) => x.questionId !== q.questionId)); resetQuestionState(); setIdx((i) => Math.max(0, Math.min(i, questions.length - 2))); }}>Remove from vault</button>
+              ) : null}
             </div>
           </div>
 
-          {/* Prompt */}
-          <div
-            style={{
-              fontSize: '1.08rem',
-              lineHeight: '1.7',
-              marginBottom: '1.75rem',
-              color: 'var(--ink)',
-              fontFamily: 'var(--font-body)',
-              whiteSpace: 'pre-wrap',
-            }}
-          >
-            <MathView content={currentQ.prompt} />
-          </div>
-
-          {/* Socratic Hint Ladder (Revision Village Newton AI Equivalent) */}
-          {showHintDrawer && socraticHints && (
-            <div
-              style={{
-                marginBottom: '1.75rem',
-                padding: '1.25rem 1.4rem',
-                borderRadius: '10px',
-                background: 'rgba(254, 243, 199, 0.28)',
-                border: '1px solid rgba(245, 158, 11, 0.35)',
-              }}
-            >
-              {/* Ladder Header */}
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.5rem' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <div style={{ background: '#f59e0b', color: '#fff', borderRadius: '50%', width: '22px', height: '22px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 700 }}>
-                    💡
-                  </div>
-                  <span style={{ fontWeight: 700, fontSize: '0.92rem', color: '#92400e' }}>
-                    Socratic Coaching Ladder
-                  </span>
-                </div>
-                <div style={{ fontSize: '0.76rem', fontFamily: 'var(--font-mono)', color: '#b45309', background: 'rgba(245, 158, 11, 0.15)', padding: '2px 8px', borderRadius: '4px' }}>
-                  Level {unlockedHintLevel} of 3 Active
-                </div>
+          {checked && (
+            <div style={{ marginTop: '1.6rem', padding: '1.3rem 1.5rem', borderRadius: 10, border: '1px solid var(--border)', background: 'var(--surface-inset)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontWeight: 700, marginBottom: '0.8rem', color: isAnswerCorrect(q, answer) ? '#059669' : '#dc2626' }}>
+                {isAnswerCorrect(q, answer) ? <CheckCircle2 size={18} /> : <XCircle size={18} />}
+                {isAnswerCorrect(q, answer) ? 'Correct' : `Not quite. The answer is ${formatCorrectAnswer(q)}`}
               </div>
-
-              {/* Progressive Hints Container */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                {/* Level 1: Concept & Formula Trigger */}
-                <div style={{ padding: '0.85rem 1rem', borderRadius: '8px', background: 'var(--panel-light, #fff)', border: '1px solid var(--border)' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '0.35rem', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>
-                    <span style={{ background: 'rgba(16, 185, 129, 0.12)', color: '#047857', padding: '1px 6px', borderRadius: '4px', fontSize: '0.72rem', fontFamily: 'var(--font-mono)', fontWeight: 700 }}>
-                      LEVEL 1 • CONCEPT
-                    </span>
-                    <span>{socraticHints.level1Concept.title}</span>
-                  </div>
-                  <p style={{ margin: '0 0 0.4rem', fontSize: '0.88rem', lineHeight: '1.5', color: 'var(--ink)' }}>
-                    {socraticHints.level1Concept.description}
-                  </p>
-                  {socraticHints.level1Concept.formulaOrRule && (
-                    <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', padding: '0.4rem 0.65rem', background: 'rgba(28,28,30,0.03)', borderRadius: '4px', color: 'var(--accent)' }}>
-                      <strong>Rule / Formula:</strong> {socraticHints.level1Concept.formulaOrRule}
+              <Rationale q={q} />
+              {(hints?.examinerTrap?.explanation || shortcut) && (
+                <div style={{ marginTop: '1rem' }}>
+                  <button type="button" style={pill} onClick={() => setShowStrategy((v) => !v)}><Sparkles size={13} /> {showStrategy ? 'Hide' : 'Show'} test-taking strategy</button>
+                  {showStrategy && (
+                    <div style={{ marginTop: 10, fontSize: '0.88rem', lineHeight: 1.6 }}>
+                      {hints?.examinerTrap?.explanation && <p style={{ margin: '0 0 8px' }}><strong>Watch for:</strong> {hints.examinerTrap.explanation}</p>}
+                      {shortcut && <p style={{ margin: 0 }}><strong>{shortcut.title.replace(/^⚡\s*/, '')}:</strong> {shortcut.proTip}</p>}
                     </div>
                   )}
                 </div>
-
-                {/* Level 2: Distractor Elimination */}
-                {unlockedHintLevel >= 2 ? (
-                  <div style={{ padding: '0.85rem 1rem', borderRadius: '8px', background: 'var(--panel-light, #fff)', border: '1px solid var(--border)' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '0.35rem', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>
-                      <span style={{ background: 'rgba(234, 179, 8, 0.18)', color: '#b45309', padding: '1px 6px', borderRadius: '4px', fontSize: '0.72rem', fontFamily: 'var(--font-mono)', fontWeight: 700 }}>
-                        LEVEL 2 • ELIMINATION
-                      </span>
-                      <span>{socraticHints.level2Elimination.title}</span>
-                    </div>
-                    <p style={{ margin: '0 0 0.4rem', fontSize: '0.88rem', lineHeight: '1.5', color: 'var(--ink)' }}>
-                      {socraticHints.level2Elimination.description}
-                    </p>
-                    <div style={{ fontSize: '0.82rem', color: '#b45309', fontWeight: 500 }}>
-                      ⚡ <strong>Pitfall Avoidance:</strong> {socraticHints.level2Elimination.pitfallAvoidance}
-                    </div>
-                  </div>
-                ) : (
-                  <button
-                    type="button"
-                    onClick={() => setUnlockedHintLevel(2)}
-                    style={{
-                      padding: '0.65rem 1rem',
-                      borderRadius: '8px',
-                      border: '1px dashed rgba(245, 158, 11, 0.4)',
-                      background: 'rgba(255,255,255,0.7)',
-                      color: 'var(--ink)',
-                      cursor: 'pointer',
-                      fontSize: '0.82rem',
-                      textAlign: 'left',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      transition: 'all 0.15s ease',
-                    }}
-                  >
-                    <span>🔒 Unlock Level 2: Distractor Elimination Strategy</span>
-                    <span style={{ fontWeight: 600, color: 'var(--accent)' }}>Reveal Hint +</span>
-                  </button>
-                )}
-
-                {/* Level 3: Setup & First Step */}
-                {unlockedHintLevel >= 3 ? (
-                  <div style={{ padding: '0.85rem 1rem', borderRadius: '8px', background: 'var(--panel-light, #fff)', border: '1px solid var(--border)' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '0.35rem', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>
-                      <span style={{ background: 'rgba(59, 130, 246, 0.12)', color: '#1d4ed8', padding: '1px 6px', borderRadius: '4px', fontSize: '0.72rem', fontFamily: 'var(--font-mono)', fontWeight: 700 }}>
-                        LEVEL 3 • FIRST STEP SETUP
-                      </span>
-                      <span>{socraticHints.level3Setup.title}</span>
-                    </div>
-                    <p style={{ margin: '0 0 0.4rem', fontSize: '0.88rem', lineHeight: '1.5', color: 'var(--ink)' }}>
-                      {socraticHints.level3Setup.description}
-                    </p>
-                    <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.82rem', color: '#1d4ed8', background: 'rgba(59, 130, 246, 0.05)', padding: '0.4rem 0.65rem', borderRadius: '4px' }}>
-                      ▶ <strong>Step 1:</strong> {socraticHints.level3Setup.firstStep}
-                    </div>
-                  </div>
-                ) : (
-                  unlockedHintLevel >= 2 && (
-                    <button
-                      type="button"
-                      onClick={() => setUnlockedHintLevel(3)}
-                      style={{
-                        padding: '0.65rem 1rem',
-                        borderRadius: '8px',
-                        border: '1px dashed rgba(59, 130, 246, 0.4)',
-                        background: 'rgba(255,255,255,0.7)',
-                        color: 'var(--ink)',
-                        cursor: 'pointer',
-                        fontSize: '0.82rem',
-                        textAlign: 'left',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        transition: 'all 0.15s ease',
-                      }}
-                    >
-                      <span>🔒 Unlock Level 3: Setup & Execution Operation</span>
-                      <span style={{ fontWeight: 600, color: 'var(--accent)' }}>Reveal Setup +</span>
-                    </button>
-                  )
-                )}
-              </div>
-            </div>
-          )}
-
-          {/* Choices or Free-Response Input */}
-          {currentQ.choices && currentQ.choices.length > 0 ? (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '2rem' }}>
-              {currentQ.choices.map((choiceText, idx) => {
-                const choiceLetter = String.fromCharCode(65 + idx); // A, B, C, D
-                const isSelected = selectedAnswer === choiceLetter;
-                const isCorrectChoice = currentQ.correctAnswer.trim().toUpperCase() === choiceLetter;
-                const isStruck = strikeThroughs[choiceLetter];
-
-                let borderColor = 'var(--border)';
-                let bgColor = '#fff';
-
-                if (isSubmitted) {
-                  if (isCorrectChoice) {
-                    borderColor = '#059669';
-                    bgColor = 'rgba(16, 185, 129, 0.05)';
-                  } else if (isSelected && !isCorrectChoice) {
-                    borderColor = '#dc2626';
-                    bgColor = 'rgba(239, 68, 68, 0.05)';
-                  }
-                } else if (isSelected) {
-                  borderColor = 'var(--ink)';
-                  bgColor = 'rgba(28, 28, 30, 0.03)';
-                }
-
-                return (
-                  <div
-                    key={choiceLetter}
-                    onClick={() => {
-                      if (!isSubmitted) setSelectedAnswer(choiceLetter);
-                    }}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      padding: '0.85rem 1.25rem',
-                      borderRadius: '6px',
-                      border: `1px solid ${borderColor}`,
-                      background: bgColor,
-                      cursor: isSubmitted ? 'default' : 'pointer',
-                      transition: 'all 0.15s ease',
-                      opacity: isStruck && !isSubmitted ? 0.45 : 1,
-                    }}
-                  >
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flex: 1 }}>
-                      <span
-                        style={{
-                          fontFamily: 'var(--font-mono)',
-                          fontSize: '0.85rem',
-                          fontWeight: 700,
-                          width: '24px',
-                          height: '24px',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          borderRadius: '50%',
-                          border: isSelected ? '1px solid var(--ink)' : '1px solid var(--border)',
-                          background: isSelected ? 'var(--ink)' : '#fff',
-                          color: isSelected ? '#fff' : 'var(--ink)',
-                        }}
-                      >
-                        {choiceLetter}
-                      </span>
-                      <span
-                        style={{
-                          fontSize: '0.96rem',
-                          textDecoration: isStruck && !isSubmitted ? 'line-through' : 'none',
-                        }}
-                      >
-                        <MathView content={choiceText || `[Choice ${choiceLetter}]`} />
-                      </span>
-                    </div>
-
-                    {!isSubmitted && (
-                      <button
-                        type="button"
-                        onClick={(e) => toggleStrike(choiceLetter, e)}
-                        title="Strike out choice"
-                        style={{
-                          background: 'transparent',
-                          border: 'none',
-                          color: 'var(--muted)',
-                          fontSize: '0.75rem',
-                          cursor: 'pointer',
-                          padding: '0.2rem 0.5rem',
-                          fontFamily: 'var(--font-mono)',
-                        }}
-                      >
-                        {isStruck ? 'Unstrike' : 'Strikethrough'}
-                      </button>
-                    )}
-
-                    {isSubmitted && isCorrectChoice && (
-                      <CheckCircle2 size={18} style={{ color: '#059669' }} />
-                    )}
-                    {isSubmitted && isSelected && !isCorrectChoice && (
-                      <XCircle size={18} style={{ color: '#dc2626' }} />
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          ) : (
-            /* Student-Produced Response (SPR) Input */
-            <div style={{ marginBottom: '2rem' }}>
-              <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, marginBottom: '0.5rem' }}>
-                STUDENT PRODUCED RESPONSE (GRID-IN):
-              </label>
-              <div style={{ display: 'flex', gap: '0.75rem', maxWidth: '300px' }}>
-                <input
-                  type="text"
-                  placeholder="Enter number or fraction..."
-                  value={userSubmittedAnswer}
-                  onChange={(e) => setUserSubmittedAnswer(e.target.value)}
-                  disabled={isSubmitted}
-                  style={{
-                    padding: '0.75rem 1rem',
-                    borderRadius: '6px',
-                    border: '1px solid var(--border)',
-                    fontSize: '1rem',
-                    fontFamily: 'var(--font-mono)',
-                    width: '100%',
-                  }}
-                />
-              </div>
-            </div>
-          )}
-
-          {/* Action Row */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', borderTop: '1px solid var(--border)', paddingTop: '1.5rem' }}>
-            <div style={{ display: 'flex', gap: '0.5rem' }}>
-              <button
-                type="button"
-                onClick={handlePrev}
-                disabled={currentIndex === 0}
-                style={{
-                  padding: '0.6rem 1rem',
-                  borderRadius: '6px',
-                  border: '1px solid var(--border)',
-                  background: 'var(--panel-light, #fff)',
-                  color: 'var(--ink)',
-                  cursor: currentIndex === 0 ? 'not-allowed' : 'pointer',
-                  opacity: currentIndex === 0 ? 0.5 : 1,
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '4px',
-                  fontSize: '0.85rem',
-                }}
-              >
-                <ChevronLeft size={16} /> Previous
-              </button>
-
-              <button
-                type="button"
-                onClick={handleNext}
-                disabled={currentIndex === questions.length - 1}
-                style={{
-                  padding: '0.6rem 1rem',
-                  borderRadius: '6px',
-                  border: '1px solid var(--border)',
-                  background: 'var(--panel-light, #fff)',
-                  color: 'var(--ink)',
-                  cursor: currentIndex === questions.length - 1 ? 'not-allowed' : 'pointer',
-                  opacity: currentIndex === questions.length - 1 ? 0.5 : 1,
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '4px',
-                  fontSize: '0.85rem',
-                }}
-              >
-                Next <ChevronRight size={16} />
-              </button>
-            </div>
-
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
-              {section === 'math' && (
-                <button
-                  type="button"
-                  onClick={() => setShowDesmosKeyModal(true)}
-                  style={{
-                    padding: '0.65rem 1rem',
-                    background: 'var(--panel-light, #fff)',
-                    color: 'var(--ink)',
-                    border: '1px solid var(--border)',
-                    borderRadius: '6px',
-                    fontSize: '0.85rem',
-                    fontWeight: 600,
-                    cursor: 'pointer',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '5px',
-                  }}
-                >
-                  <Sparkles size={14} style={{ color: 'var(--accent)' }} /> Desmos Shortcuts
-                </button>
-              )}
-
-              {/* Socratic Hints Ladder Button */}
-              <button
-                type="button"
-                onClick={() => setShowHintDrawer(!showHintDrawer)}
-                style={{
-                  padding: '0.65rem 1rem',
-                  background: showHintDrawer ? 'rgba(234, 179, 8, 0.12)' : 'var(--panel-light, #fff)',
-                  color: showHintDrawer ? '#b45309' : 'var(--ink)',
-                  border: showHintDrawer ? '1px solid rgba(234, 179, 8, 0.4)' : '1px solid var(--border)',
-                  borderRadius: '6px',
-                  fontSize: '0.85rem',
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                  transition: 'all 0.15s ease',
-                }}
-              >
-                <Lightbulb size={15} style={{ color: '#d97706' }} />
-                <span>{showHintDrawer ? 'Hide Hints' : 'Socratic Hints'}</span>
-                {!showHintDrawer && (
-                  <span style={{ fontSize: '0.7rem', padding: '1px 5px', borderRadius: '4px', background: 'rgba(234,179,8,0.2)', color: '#b45309' }}>
-                    1-3
-                  </span>
-                )}
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setShowRefModal(true)}
-                style={{
-                  padding: '0.65rem 1rem',
-                  background: 'var(--panel-light, #fff)',
-                  color: 'var(--ink)',
-                  border: '1px solid var(--border)',
-                  borderRadius: '6px',
-                  fontSize: '0.85rem',
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '5px',
-                }}
-              >
-                <BookOpen size={14} /> Reference Guide
-              </button>
-
-              {!isSubmitted ? (
-                <button
-                  type="button"
-                  onClick={handleCheckAnswer}
-                  disabled={!selectedAnswer && !userSubmittedAnswer.trim()}
-                  style={{
-                    padding: '0.65rem 1.4rem',
-                    background: 'var(--accent)',
-                    color: '#ffffff',
-                    borderRadius: '10px',
-                    border: 'none',
-                    fontWeight: 600,
-                    fontSize: '0.9rem',
-                    cursor: !selectedAnswer && !userSubmittedAnswer.trim() ? 'not-allowed' : 'pointer',
-                    opacity: !selectedAnswer && !userSubmittedAnswer.trim() ? 0.5 : 1,
-                    boxShadow: '0 1px 4px rgba(0,0,0,0.1)'
-                  }}
-                >
-                  Check Answer
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  onClick={() => setShowRationale(!showRationale)}
-                  style={{
-                    padding: '0.65rem 1.25rem',
-                    background: 'var(--panel-light, #fff)',
-                    color: 'var(--ink)',
-                    border: '1px solid var(--border)',
-                    borderRadius: '6px',
-                    fontSize: '0.85rem',
-                    fontWeight: 600,
-                    cursor: 'pointer',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                  }}
-                >
-                  {showRationale ? <EyeOff size={15} /> : <Eye size={15} />}
-                  <span>{showRationale ? 'Hide Rationale' : 'View Rationale'}</span>
-                </button>
-              )}
-            </div>
-          </div>
-
-          {/* RATIONALE DRAWER */}
-          {isSubmitted && showRationale && (
-            <div
-              style={{
-                marginTop: '1.75rem',
-                padding: '1.5rem',
-                borderRadius: '8px',
-                background: 'rgba(28, 28, 30, 0.02)',
-                border: '1px solid var(--border)',
-              }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
-                <HelpCircle size={16} style={{ color: 'var(--accent)' }} />
-                <span className="section-label" style={{ margin: 0 }}>
-                  OFFICIAL COLLEGE BOARD RATIONALE & DUAL-METHOD
-                </span>
-              </div>
-
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.84rem', fontWeight: 600, marginBottom: '0.75rem', color: 'var(--ink)' }}>
-                Correct Answer: {currentQ.correctAnswer}
-              </div>
-
-              {/* 1. EXAMINER TRAP & MISCONCEPTION (Save My Exams Smart Mark) */}
-              {socraticHints && socraticHints.examinerTrap && (
-                <div
-                  style={{
-                    marginBottom: '1.25rem',
-                    padding: '1rem 1.25rem',
-                    borderRadius: '8px',
-                    background: 'rgba(245, 158, 11, 0.08)',
-                    border: '1px solid rgba(245, 158, 11, 0.35)',
-                    color: 'var(--ink)',
-                  }}
-                >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#b45309', fontWeight: 700, fontSize: '0.88rem', marginBottom: '0.4rem' }}>
-                    <AlertTriangle size={16} />
-                    <span>EXAMINER TRAP & MISCONCEPTION: {socraticHints.examinerTrap.headline.toUpperCase()}</span>
-                  </div>
-                  <div style={{ fontSize: '0.92rem', lineHeight: '1.55', marginBottom: '0.5rem', color: 'var(--ink)' }}>
-                    {socraticHints.examinerTrap.explanation}
-                  </div>
-                  <div style={{ fontSize: '0.8rem', color: 'var(--muted)', fontStyle: 'italic' }}>
-                    ⚡ Cognitive Vulnerability: {socraticHints.examinerTrap.psychologicalTrigger}
-                  </div>
-                </div>
-              )}
-
-              {/* 2. DUAL-METHOD SEGMENTED SWITCHER (1600.io / UWorld Innovation) */}
-              {section === 'math' && desmosShortcut && (
-                <div style={{ marginBottom: '1.25rem' }}>
-                  <div
-                    style={{
-                      display: 'inline-flex',
-                      padding: '3px',
-                      background: 'rgba(28,28,30,0.06)',
-                      borderRadius: '8px',
-                      border: '1px solid var(--border)',
-                      gap: '4px',
-                    }}
-                  >
-                    <button
-                      type="button"
-                      onClick={() => setSolutionTab('algebraic')}
-                      style={{
-                        padding: '0.45rem 0.9rem',
-                        borderRadius: '6px',
-                        border: 'none',
-                        background: solutionTab === 'algebraic' ? 'var(--panel-light, #fff)' : 'transparent',
-                        color: solutionTab === 'algebraic' ? 'var(--ink)' : 'var(--muted)',
-                        fontWeight: 600,
-                        fontSize: '0.84rem',
-                        cursor: 'pointer',
-                        boxShadow: solutionTab === 'algebraic' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
-                      }}
-                    >
-                      📐 Standard Algebraic Steps
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setSolutionTab('desmos')}
-                      style={{
-                        padding: '0.45rem 0.9rem',
-                        borderRadius: '6px',
-                        border: 'none',
-                        background: solutionTab === 'desmos' ? 'var(--panel-light, #fff)' : 'transparent',
-                        color: solutionTab === 'desmos' ? '#0284c7' : 'var(--muted)',
-                        fontWeight: 600,
-                        fontSize: '0.84rem',
-                        cursor: 'pointer',
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '6px',
-                        boxShadow: solutionTab === 'desmos' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
-                      }}
-                    >
-                      <Sparkles size={13} />
-                      <span>⚡ Desmos 15-Sec Shortcut</span>
-                      <span style={{ fontSize: '0.7rem', padding: '1px 5px', borderRadius: '4px', background: '#0284c7', color: '#fff' }}>
-                        Saves ~75s
-                      </span>
-                    </button>
-                  </div>
-                </div>
-              )}
-
-              {/* RATIONALE CONTENT: Standard Algebraic or Desmos */}
-              {(!desmosShortcut || solutionTab === 'algebraic') ? (
-                <div style={{ fontSize: '0.94rem', lineHeight: '1.65', color: 'var(--ink)', whiteSpace: 'pre-wrap' }}>
-                  <MathView content={currentQ.rationale || 'No extended rationale provided.'} />
-                </div>
-              ) : (
-                /* Desmos Shortcut Solution Method */
-                <div
-                  style={{
-                    padding: '1.25rem',
-                    borderRadius: '8px',
-                    background: 'rgba(2, 132, 199, 0.05)',
-                    border: '1px solid rgba(2, 132, 199, 0.25)',
-                  }}
-                >
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.75rem', flexWrap: 'wrap', gap: '0.5rem' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#0369a1', fontWeight: 600, fontSize: '0.92rem' }}>
-                      <Sparkles size={16} />
-                      <span>{desmosShortcut.title}</span>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        navigator.clipboard.writeText(desmosShortcut.desmosCode);
-                        setCopiedDesmos(true);
-                        setTimeout(() => setCopiedDesmos(false), 2000);
-                      }}
-                      style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '5px',
-                        padding: '0.35rem 0.7rem',
-                        borderRadius: '4px',
-                        border: '1px solid var(--border)',
-                        background: 'var(--panel-light, #fff)',
-                        color: 'var(--ink)',
-                        fontSize: '0.75rem',
-                        fontFamily: 'var(--font-mono)',
-                        cursor: 'pointer',
-                      }}
-                    >
-                      {copiedDesmos ? <Check size={12} style={{ color: '#059669' }} /> : <Copy size={12} />}
-                      <span>{copiedDesmos ? 'Copied Syntax!' : 'Copy Desmos Syntax'}</span>
-                    </button>
-                  </div>
-
-                  <div style={{ background: 'var(--panel-light, #f8fafc)', padding: '0.65rem 0.85rem', borderRadius: '4px', border: '1px solid rgba(2, 132, 199, 0.25)', fontFamily: 'var(--font-mono)', fontSize: '0.85rem', color: 'var(--ink)', marginBottom: '0.75rem', whiteSpace: 'pre-wrap' }}>
-                    {desmosShortcut.desmosCode}
-                  </div>
-
-                  <div style={{ margin: '0.85rem 0' }}>
-                    <DesmosVisualPreview id={desmosShortcut.id} />
-                  </div>
-
-                  <div style={{ fontSize: '0.86rem', color: 'var(--ink)', lineHeight: '1.6', marginBottom: '0.6rem' }}>
-                    <strong>Step-by-Step Desmos Execution:</strong>
-                    <ol style={{ paddingLeft: '1.25rem', marginTop: '0.35rem' }}>
-                      {desmosShortcut.stepByStep.map((s, i) => (
-                        <li key={i} style={{ marginBottom: '0.25rem' }}>{s}</li>
-                      ))}
-                    </ol>
-                  </div>
-
-                  <div style={{ fontSize: '0.8rem', color: '#0369a1', fontStyle: 'italic', background: 'rgba(2, 132, 199, 0.08)', padding: '0.5rem 0.75rem', borderRadius: '4px' }}>
-                    💡 <strong>Pro Tip:</strong> {desmosShortcut.proTip}
-                  </div>
-                </div>
               )}
             </div>
           )}
-
-          <SATReferenceGuideModal
-            isOpen={showRefModal}
-            onClose={() => setShowRefModal(false)}
-            defaultTab={section === 'math' ? 'math' : 'english'}
-          />
-
-          <DesmosMasterKeyModal
-            isOpen={showDesmosKeyModal}
-            onClose={() => setShowDesmosKeyModal(false)}
-          />
-
-          <PrintableWorksheetModal
-            isOpen={showPrintModal}
-            onClose={() => setShowPrintModal(false)}
-            questions={questions}
-            title={drillMode === 'mistakes' ? 'Mistake Vault Review Worksheet' : `${section === 'math' ? 'Mathematics' : 'Reading & Writing'} Practice Worksheet`}
-            subtitle={domain ? `Focused Domain: ${domain}` : 'Official College Board Problem Suite'}
-          />
         </div>
       )}
+
+      {showCalc && <DesmosPanel onClose={() => setShowCalc(false)} />}
+      <SATReferenceGuideModal isOpen={showRef} onClose={() => setShowRef(false)} defaultTab={section === 'math' ? 'math' : 'english'} />
+      <PrintableWorksheetModal isOpen={showPrint} onClose={() => setShowPrint(false)} questions={questions}
+        title={mode === 'mistakes' ? 'Mistake Review Worksheet' : `${section === 'math' ? 'Math' : 'Reading & Writing'} Practice Worksheet`}
+        subtitle={domain ? `Domain: ${domain}${skill ? ` · ${skill}` : ''}` : 'Official College Board questions'} />
     </div>
   );
 }

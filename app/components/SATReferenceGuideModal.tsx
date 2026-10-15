@@ -17,6 +17,12 @@ export default function SATReferenceGuideModal({
 }: SATReferenceGuideModalProps) {
   const [activeTab, setActiveTab] = useState<'math' | 'english' | 'cheat-sheet'>(defaultTab);
 
+  React.useEffect(() => {
+    if (isOpen) {
+      setActiveTab(defaultTab);
+    }
+  }, [isOpen, defaultTab]);
+
   if (!isOpen) return null;
 
   return (
