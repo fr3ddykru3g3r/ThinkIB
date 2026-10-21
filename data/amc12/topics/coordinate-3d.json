@@ -1,0 +1,982 @@
+{
+  "id": "coordinate-3d",
+  "title": "Coordinate & Solid Geometry",
+  "summary": "Coordinates, lines and circles, conics, shoelace areas, transformations, loci, solids and sections, and 3D distances as they appear on the AMC 12.",
+  "examWeight": "≈4–5 problems per paper",
+  "prerequisites": [
+    "geometry",
+    "algebra"
+  ],
+  "overview": "Coordinate and solid geometry is the bridge between the geometry and algebra sections of the AMC 12. On a typical paper, four or five questions concern points, lines, circles, areas or solids placed in coordinates, and they run from a one-line distance computation at #5 to a multi-step locus or optimization at #20–25. The early problems reward fluency: you should find a distance, midpoint, slope or circle center without hesitation. Around #10–15 the questions combine two ideas, such as a tangent line together with a chord, or a reflection together with a shortest path. The late problems ask you to choose coordinates well, to recognize a hidden locus, or to optimize a quantity over a family of shapes.\n\nMost solutions reduce to three moves. First, place the figure so that the algebra is short: put a vertex or the center at the origin, align a side with an axis, or use symmetry to force a coordinate to zero. Second, translate the geometric condition into an equation, usually a distance, a dot product or a determinant. Third, interpret the result, either by completing the square to read off a center and radius, or by using a standard fact such as the shoelace formula or the volume of a cone. Solids add a fourth move: Cavalieri-style comparisons and similar-solid scaling let you compare volumes without computing them directly.\n\nTo study this topic, work the concept examples in order, because later sections use earlier formulas: the perpendicular-bisector loci rely on the midpoint, the reflection trick relies on the distance formula, and the distance to a plane rests on the same projection idea as the distance to a line. Then work the worked examples slowly, writing down the coordinates of every point before computing anything. For the hardest problems, always ask whether a reflection, a symmetry, or an affine change of coordinates (which turns an ellipse into a circle) would collapse the computation.",
+  "concepts": [
+    {
+      "title": "Distance, midpoints, slopes, and lines",
+      "body": "Coordinates turn a picture into arithmetic. Every point of the plane is a pair $(x,y)$ measured from two perpendicular axes, so every geometric question about points can be restated as a question about those pairs. The most basic bridge is the distance formula. If $P=(x_1,y_1)$ and $Q=(x_2,y_2)$, draw the horizontal and vertical segments that complete $PQ$ to a right triangle. Its legs have lengths $|x_2-x_1|$ and $|y_2-y_1|$, so the Pythagorean theorem gives the length of the hypotenuse $PQ$.\n\nStated precisely, $PQ=\\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}$. The absolute values disappear because they are squared, so the order of the two endpoints never matters. The formula needs no special case for tilted segments or for segments running through any quadrant: the signs of the legs are irrelevant once they are squared. This is why one formula handles every position of the segment, and why it is the first tool to reach for whenever a figure is placed in coordinates.\n\nThe midpoint $M$ of $PQ$ is the point whose coordinates are the averages, $M=\\left(\\frac{x_1+x_2}{2},\\frac{y_1+y_2}{2}\\right)$. To justify this, note that $x_M-x_1=\\frac{x_2-x_1}{2}=x_2-x_M$, so $M$ sits exactly halfway in the horizontal direction, and the same computation works vertically. A useful consequence: if you know one endpoint and the midpoint, the other endpoint is $2M-P$, computed coordinate by coordinate.\n\nSlope measures steepness: $m=\\frac{y_2-y_1}{x_2-x_1}$ when $x_2\\ne x_1$. Any two points on the same line give the same slope, because the right triangles formed by the rise and the run are similar. A line can be written in slope-intercept form $y=mx+b$, in point-slope form $y-y_1=m(x-x_1)$, or in general form $Ax+By+C=0$. The general form is the safe choice when the line might be vertical: a vertical line has no slope, but it has the equation $x=c$.\n\nPerpendicularity is the most useful relation among slopes, and it is really a dot product fact. Direction vectors of the two lines are $(1,m_1)$ and $(1,m_2)$, and the lines are perpendicular exactly when these vectors have zero dot product, which is $1+m_1m_2=0$. So $m_1m_2=-1$. The same idea works without slopes: the line $Ax+By=C$ has normal vector $(A,B)$, and two lines are perpendicular exactly when their normal vectors are perpendicular.\n\nContest problems are often easier after a smart choice of axes. If the figure has a right angle, put that vertex at the origin with the legs on the axes. If it has a symmetry axis, make that axis a coordinate axis. Then the distance and slope formulas become short, and the answer usually falls out after one substitution. Choosing coordinates well is a skill that pays off in every later section of this topic.",
+      "keyFacts": [
+        "d=\\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}",
+        "M=\\left(\\frac{x_1+x_2}{2},\\frac{y_1+y_2}{2}\\right)",
+        "m=\\frac{y_2-y_1}{x_2-x_1},\\qquad y-y_1=m(x-x_1)",
+        "\\ell_1\\perp\\ell_2 \\iff m_1m_2=-1 \\text{ (when neither line is vertical)}"
+      ],
+      "whenToUse": "The problem places points or a figure at explicit coordinates, or lets you choose axes; any question about the length of a tilted segment, a midpoint, or perpendicular lines.",
+      "commonMistakes": [
+        "Dividing by $x_2-x_1$ when the segment is vertical. A vertical line has no slope; write its equation as $x=c$ instead.",
+        "Dropping the square on one term, or taking the square root of only part of the sum. The distance is the square root of the whole sum of squares.",
+        "Treating $\\tfrac12$ as the perpendicular slope of $2$. The perpendicular slope is the negative reciprocal, $-\\tfrac12$, and the sign matters."
+      ],
+      "example": {
+        "problem": "Points $A=(1,2)$ and $B=(7,10)$ are given. Find the length of segment $AB$.",
+        "solution": "The horizontal change is $6$ and the vertical change is $8$, so $AB=\\sqrt{6^2+8^2}=\\sqrt{100}=10$. The midpoint $(4,6)$ is not needed for the length, but it is a quick check that the averages of the coordinates are what the midpoint formula gives.",
+        "answer": "10",
+        "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\nprint(round(math.dist((1, 2), (7, 10))))\n"
+      }
+    },
+    {
+      "title": "Shoelace formula and areas of polygons",
+      "body": "Heights and bases are awkward once a triangle is tilted, so coordinates need their own area tool. The shoelace formula gives the area of any simple polygon from its vertices alone. Label the vertices $(x_1,y_1),\\dots,(x_n,y_n)$ in order around the boundary, and set $(x_{n+1},y_{n+1})=(x_1,y_1)$. Then $\\text{Area}=\\tfrac12\\left|\\sum_{i=1}^{n}(x_i y_{i+1}-x_{i+1}y_i)\\right|$.\n\nWhy does this work? Take one edge $P_iP_{i+1}$ and drop perpendiculars from its endpoints to the $x$-axis. The edge, the two perpendiculars and the axis enclose a trapezoid whose signed area is $\\tfrac12(x_{i+1}-x_i)(y_i+y_{i+1})$. The sign is positive when the edge runs to the right and negative when it runs to the left. Summing over all edges, the signed trapezoid areas add up to the signed area enclosed by the boundary, and the absolute value removes the dependence on orientation.\n\nNow expand the trapezoid term: $(x_{i+1}-x_i)(y_i+y_{i+1})=x_{i+1}y_i+x_{i+1}y_{i+1}-x_iy_i-x_iy_{i+1}$. Sum over the cycle. The terms $x_{i+1}y_{i+1}$ and $x_iy_i$ each appear once with a plus sign and once with a minus sign, so they cancel. What remains is $\\sum(x_{i+1}y_i-x_iy_{i+1})$, which is exactly the negative of $\\sum(x_iy_{i+1}-x_{i+1}y_i)$. Multiplying by $\\tfrac12$ gives the formula.\n\nThe triangle case is worth memorizing in its determinant form. For $A=(x_1,y_1)$, $B=(x_2,y_2)$, $C=(x_3,y_3)$, the area is $\\tfrac12\\left|x_1(y_2-y_3)+x_2(y_3-y_1)+x_3(y_1-y_2)\\right|$. If one vertex is the origin, this collapses to $\\tfrac12|x_1y_2-x_2y_1|$, which is half the magnitude of a 2D cross product. The same quantity appears in the vector form of the area of a parallelogram, so the shoelace formula is a sum of parallelogram areas.\n\nThe formula gives quick comparisons as well as computations. Two triangles with the same base line and equal heights have determinants of equal absolute value, and this is visible at once from the coordinates. For lattice polygons (vertices with integer coordinates) every term is an integer, so the area is a multiple of $\\tfrac12$. This observation is the first step of Pick's theorem, which you may meet in later problems.\n\nPractical rule: list the vertices in order around the polygon, write the first vertex again at the end, multiply each $x$ by the next $y$ and subtract, then halve the absolute value of the total. The most common error is to list the vertices out of order, for example jumping across a diagonal. That traces a different (often self-intersecting) polygon, and the number you get is the area of the wrong figure.",
+      "keyFacts": [
+        "\\text{Area}=\\tfrac12\\left|\\sum_{i=1}^{n}(x_iy_{i+1}-x_{i+1}y_i)\\right|",
+        "\\text{Area}(OAB)=\\tfrac12|x_1y_2-x_2y_1|",
+        "\\text{Area}(ABC)=\\tfrac12\\left|x_1(y_2-y_3)+x_2(y_3-y_1)+x_3(y_1-y_2)\\right|"
+      ],
+      "whenToUse": "The vertices are given as coordinates, or the polygon is tilted so that no base and height are obvious; also when a parameter appears in the vertices and an area condition must be solved.",
+      "commonMistakes": [
+        "Forgetting to close the polygon by repeating the first vertex. The final product $x_ny_1-x_1y_n$ is then missing from the sum.",
+        "Listing the vertices out of order, which traces a different polygon and gives the area of the wrong figure.",
+        "Omitting the absolute value and reporting a negative area for a clockwise listing."
+      ],
+      "example": {
+        "problem": "Find the area of the triangle with vertices $(0,0)$, $(4,0)$, and $(1,3)$.",
+        "solution": "Apply the shoelace formula with the vertices in the order given. The products are $0\\cdot0-4\\cdot0=0$, then $4\\cdot3-1\\cdot0=12$, then $1\\cdot0-0\\cdot3=0$. The total is $12$, so the area is $\\tfrac12\\cdot12=6$. This agrees with the base-height calculation: base $4$ on the $x$-axis and height $3$ give $\\tfrac12\\cdot4\\cdot3=6$.",
+        "answer": "6",
+        "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\npts = [(0, 0), (4, 0), (1, 3)]\nprint(frac_tex(shoelace_area(pts)))\n"
+      }
+    },
+    {
+      "title": "Circles, tangents, and chords",
+      "body": "A circle with center $(a,b)$ and radius $r$ is the set of points at distance $r$ from the center, so its equation is $(x-a)^2+(y-b)^2=r^2$. This is just the distance formula set equal to $r$. When the equation is given in expanded form $x^2+y^2+Dx+Ey+F=0$, complete the square in each variable: $\\left(x+\\tfrac D2\\right)^2+\\left(y+\\tfrac E2\\right)^2=\\tfrac{D^2+E^2}{4}-F$. The center is then $\\left(-\\tfrac D2,-\\tfrac E2\\right)$ and the radius is read off directly. The condition $\\tfrac{D^2+E^2}{4}-F>0$ is exactly what makes the set a genuine circle, rather than a single point or the empty set.\n\nTangency is a perpendicularity statement. A line touches a circle at a point $P$ exactly when it is perpendicular to the radius $OP$. In vector language, a point $X$ lies on the tangent at $P$ when $(X-O)\\cdot(P-O)=r^2$. Indeed $X-P$ is perpendicular to $P-O$, so $(X-P)\\cdot(P-O)=0$, which rearranges to $(X-O)\\cdot(P-O)=(P-O)\\cdot(P-O)=r^2$. For the circle $x^2+y^2=r^2$, the tangent at $(x_0,y_0)$ is therefore $x_0x+y_0y=r^2$.\n\nFor a line $\\ell$ and a circle with center $O$, let $d$ be the distance from $O$ to $\\ell$. If $d>r$ the line misses the circle; if $d=r$ it is tangent; if $d<r$ it cuts a chord $AB$. The foot $H$ of the perpendicular from $O$ bisects the chord, since $OA=OB=r$. Pythagoras in the right triangle $OHA$ gives $HA^2=r^2-d^2$, so the chord has length $2\\sqrt{r^2-d^2}$. This is much faster than solving a quadratic and is the standard tool for chord problems.\n\nThe distance from a point $(x_0,y_0)$ to a line $Ax+By+C=0$ is $\\dfrac{|Ax_0+By_0+C|}{\\sqrt{A^2+B^2}}$. To derive it, pick any point $Q=(x_1,y_1)$ on the line, so $Ax_1+By_1+C=0$. The distance is the length of the projection of $\\vec{QP}$ onto the unit normal $\\frac{(A,B)}{\\sqrt{A^2+B^2}}$, and the dot product $(A,B)\\cdot(P-Q)$ equals $Ax_0+By_0+C$ after the $Ax_1+By_1$ term is replaced using the line's equation.\n\nPower of a point: from an external point $P$ with center $O$, the tangent segment to a circle of radius $r$ has length $t$ with $t^2=|PO|^2-r^2$. The proof is Pythagoras in the right triangle formed by $P$, $O$ and a point of tangency $T$, since $OT\\perp PT$. This is the cleanest route to a tangent length, and it works without ever finding $T$.\n\nTwo circles meet along a radical line. Subtracting their equations, the squared terms cancel, and the result is linear, so the common chord lies on a straight line. This is a useful reduction: to intersect two circles, first subtract the equations to get a line, then intersect that line with one of the circles. Many problems that look like a system of two quadratics become a single quadratic this way.",
+      "keyFacts": [
+        "(x-a)^2+(y-b)^2=r^2 \\iff x^2+y^2+Dx+Ey+F=0,\\ \\text{center }\\left(-\\tfrac D2,-\\tfrac E2\\right),\\ r^2=\\tfrac{D^2+E^2}{4}-F",
+        "\\text{Tangent at }(x_0,y_0)\\text{ on }x^2+y^2=r^2:\\quad x_0x+y_0y=r^2",
+        "\\text{Chord length}=2\\sqrt{r^2-d^2}",
+        "t^2=|PO|^2-r^2\\ \\text{for a tangent segment from }P"
+      ],
+      "whenToUse": "The equation contains both $x^2$ and $y^2$ with equal coefficients; a line is tangent to a circle, or a chord or tangent length is requested; two circles intersect.",
+      "commonMistakes": [
+        "Reading the center as $(D,E)$ rather than $\\left(-\\tfrac D2,-\\tfrac E2\\right)$. The sign and the halving are the two usual slips.",
+        "Forgetting that the constant on the right side is $r^2$, not $r$, so the radius is the square root of that constant.",
+        "Solving a tangency condition with a quadratic and forgetting that the discriminant must be zero. A tangency condition is an equation with specific solutions, not an inequality."
+      ],
+      "example": {
+        "problem": "Find the radius of the circle $x^2+y^2-6x+4y-12=0$.",
+        "solution": "Complete the square: $(x-3)^2+(y+2)^2=12+9+4=25$. Here $D=-6$, $E=4$, $F=-12$, so the center is $(3,-2)$ and $r^2=\\tfrac{36+16}{4}+12=25$. The radius is $5$.",
+        "answer": "5",
+        "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\nD, E, F = -6, 4, -12\nr2 = Fraction(D * D + E * E, 4) - F\nr = int(round(math.sqrt(r2)))\nassert r * r == r2\nprint(r)\n"
+      }
+    },
+    {
+      "title": "Ellipses and parabolas: the basics",
+      "body": "Conics are most useful in contests through their equations and defining properties. A parabola is the set of points equidistant from a fixed point, the focus, and a fixed line, the directrix. Take focus $F=(0,p)$ and directrix $y=-p$. A point $(x,y)$ lies on the parabola when $x^2+(y-p)^2=(y+p)^2$. Expanding, $x^2-2py+p^2=2py+p^2$, so $x^2=4py$. The factor $4p$ is the thing to remember: the focus sits $p$ units from the vertex, and the latus rectum (the chord through the focus perpendicular to the axis) has length $4p$.\n\nAn ellipse is the set of points whose distances to two foci sum to a constant. Let the foci be $(\\pm c,0)$ and let $2a$ be the constant sum. Testing the point $(0,b)$ on the minor axis gives $2\\sqrt{b^2+c^2}=2a$, so $a^2=b^2+c^2$. Squaring out the general condition and using this relation gives the standard form $\\dfrac{x^2}{a^2}+\\dfrac{y^2}{b^2}=1$ with $c^2=a^2-b^2$. The major axis has length $2a$, the minor axis has length $2b$, and each focus is $c$ from the center.\n\nAffine scaling is the key to ellipse problems. The map $(u,v)\\mapsto(au,bv)$ sends the unit circle $u^2+v^2=1$ onto the ellipse $\\frac{x^2}{a^2}+\\frac{y^2}{b^2}=1$, and it multiplies every area by $ab$. Since the unit circle has area $\\pi$, the ellipse has area $\\pi ab$. The same map preserves midpoints, parallel lines and tangency, so an ellipse question can be pulled back to a circle question, solved there, and scaled back at the end.\n\nTangent lines to conics come from a discriminant condition. For the ellipse $\\frac{x^2}{a^2}+\\frac{y^2}{b^2}=1$, substitute $y=mx+k$ and multiply by $a^2b^2$ to get $(b^2+a^2m^2)x^2+2a^2mkx+a^2(k^2-b^2)=0$. The line is tangent exactly when the discriminant vanishes, and that simplifies to $k^2=a^2m^2+b^2$. This formula is worth memorizing, because it turns a tangency problem into a single equation in $m$ and $k$.\n\nThe parabola has the same kind of tangent test. Substituting $y=mx+k$ into $x^2=4py$ gives $x^2-4pmx-4pk=0$, whose discriminant vanishes exactly when $k=-pm^2$. For the circle $x^2+y^2=r^2$ the tangency test is $|k|/\\sqrt{1+m^2}=r$, which is the distance formula in disguise. Practicing all three tests side by side makes the pattern clear: tangency is always a discriminant equal to zero.\n\nOn the AMC, conic facts are usually used lightly: identify the center, read off $a$, $b$, $c$ or the focus, and compute a distance or an area. Watch for two classic traps. For an ellipse, $c^2=a^2-b^2$ (the relation $a^2+b^2$ belongs to hyperbolas). For $x^2=4py$ the focus is $(0,p)$, not $(0,\\tfrac p4)$ and not $(0,4p)$.",
+      "keyFacts": [
+        "x^2=4py \\text{ has focus }(0,p)\\text{ and directrix }y=-p",
+        "\\frac{x^2}{a^2}+\\frac{y^2}{b^2}=1,\\qquad c^2=a^2-b^2,\\qquad \\text{Area}=\\pi ab",
+        "\\text{Sum of distances from a point of the ellipse to the foci}=2a",
+        "y=mx+k\\text{ tangent to the ellipse}\\iff k^2=a^2m^2+b^2"
+      ],
+      "whenToUse": "The problem gives a conic in standard form, names a focus or directrix, asks for an area enclosed by a conic, or asks for a tangent line to an ellipse or parabola.",
+      "commonMistakes": [
+        "Using $c^2=a^2+b^2$, the hyperbola relation, for an ellipse. The ellipse has $c^2=a^2-b^2$ with $a$ the larger semi-axis.",
+        "Placing the focus of $x^2=4py$ at $(0,4p)$ or $(0,\\tfrac p4)$. The focus is $p$ from the vertex.",
+        "Computing an ellipse area as $\\pi(a+b)$. The scaling factor is the product $ab$."
+      ],
+      "example": {
+        "problem": "Find the area enclosed by the ellipse $\\dfrac{x^2}{25}+\\dfrac{y^2}{9}=1$.",
+        "solution": "The map $(u,v)=(x/5,\\,y/3)$ carries the ellipse onto the unit circle, whose area is $\\pi$. Areas scale by the Jacobian: $dx\\,dy=15\\,du\\,dv$, so the ellipse has area $15\\pi$. The same answer comes from $\\pi ab$ with $a=5$ and $b=3$.",
+        "answer": "15\\pi",
+        "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\nn = 200000\nh = 10 / n\ns = 0.0\nfor i in range(n):\n    x = -5 + (i + 0.5) * h\n    s += 6 * math.sqrt(max(0.0, 1 - x * x / 25)) * h\nassert abs(s - 15 * math.pi) < 1e-6\nprint(\"15\\\\pi\")\n"
+      }
+    },
+    {
+      "title": "Reflections, rotations, and transformations",
+      "body": "A rigid motion preserves distances, and every such motion of the plane is a composition of translations, rotations and reflections. Reflections are the most used in contests, because they swap the two sides of a line without changing any distance. Reflecting across the $x$-axis sends $(x,y)\\mapsto(x,-y)$; across the $y$-axis, $(x,y)\\mapsto(-x,y)$; across $y=x$, $(x,y)\\mapsto(y,x)$; across $y=-x$, $(x,y)\\mapsto(-y,-x)$. A rotation by $90^\\circ$ counterclockwise about the origin is $(x,y)\\mapsto(-y,x)$.\n\nTo reflect a point across a general line $\\ell:Ax+By+C=0$, move from $P=(x_0,y_0)$ along the normal direction $(A,B)$ to the foot of the perpendicular, then continue the same distance. The image is $P'=P-\\dfrac{2(Ax_0+By_0+C)}{A^2+B^2}(A,B)$. Two checks confirm the formula: a point on $\\ell$ is fixed, since its value $Ax_0+By_0+C$ is zero, and the midpoint of $PP'$ lies on $\\ell$ by construction.\n\nWhy do reflections help with distances? Suppose $A$ and $B$ lie on the same side of a line $\\ell$, and a point $P$ moves along $\\ell$. Reflect $B$ across $\\ell$ to get $B'$. Because $P$ is fixed by the reflection, $PB=PB'$ for every $P$ on $\\ell$. So $PA+PB=PA+PB'\\ge AB'$ by the triangle inequality, with equality exactly when $P$ lies on the segment $AB'$, where that segment crosses $\\ell$. This is the light-ray argument: the angle of incidence equals the angle of reflection.\n\nComposition is order-sensitive. A translation followed by a reflection is not the same map as the reflection followed by the translation, because the reflection line moves relative to the translated figure. A reliable habit is to write each map as a formula, apply them in the order described in the problem, and substitute the output of one into the next. Do not combine two maps mentally unless you have checked the composition on a test point.\n\nTransformations also control areas. Rigid motions preserve area. A dilation by factor $k$ about any center multiplies area by $k^2$. More generally, the linear map $(x,y)\\mapsto(ax+by,\\,cx+dy)$ multiplies every area by $|ad-bc|$, the absolute value of the determinant. This is the same determinant that appears in the shoelace formula and in the ellipse scaling argument, so these are two faces of one idea.\n\nSymmetry is the cheapest transformation of all. If a figure is symmetric across a line, reflecting one half generates the other, and the total area is twice the area of a half. Before coordinatizing a problem, look for such symmetry, and make the axis of symmetry a coordinate axis; this often removes half of the unknowns at once.",
+      "keyFacts": [
+        "\\text{Across }y=x:\\ (x,y)\\mapsto(y,x);\\qquad\\text{across }y=-x:\\ (x,y)\\mapsto(-y,-x)",
+        "P'=P-\\dfrac{2(Ax_0+By_0+C)}{A^2+B^2}(A,B)\\ \\text{for the line }Ax+By+C=0",
+        "|PA|+|PB|\\ge|AB'|\\ \\text{for }P\\text{ on }\\ell,\\ \\text{where }B'\\text{ is the reflection of }B",
+        "(x,y)\\mapsto(ax+by,cx+dy)\\ \\text{multiplies areas by }|ad-bc|"
+      ],
+      "whenToUse": "A problem asks for the image of a point or figure after reflections, rotations or translations; or it asks to minimize a sum of distances to a point and a line, or to find a light path that bounces off a line.",
+      "commonMistakes": [
+        "Reflecting when the two points are already on opposite sides of the line. Then the segment joining them already crosses the line, and the minimum is simply their distance.",
+        "Composing the maps in the wrong order, for instance translating first when the problem says to reflect first.",
+        "Using $(x,y)\\mapsto(x,-y)$ for reflection across $y=x$. Reflection across $y=x$ swaps the two coordinates."
+      ],
+      "example": {
+        "problem": "The point $P=(2,5)$ is reflected across the line $y=x$, and the image is then translated by the vector $(3,-1)$. What is the final point?",
+        "solution": "Reflecting across $y=x$ swaps the coordinates, giving $(5,2)$. Translating by $(3,-1)$ adds $3$ to the $x$-coordinate and subtracts $1$ from the $y$-coordinate, giving $(8,1)$.",
+        "answer": "(8,1)",
+        "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\nx, y = 2, 5\nx, y = y, x\nx, y = x + 3, y - 1\nprint(\"(%d,%d)\" % (x, y))\n"
+      }
+    },
+    {
+      "title": "Loci: sets of points with a metric condition",
+      "body": "A locus is the set of all points satisfying a geometric condition, and in coordinates it is the solution set of an equation. The most important loci come from comparing distances. For fixed points $A=(a_1,a_2)$ and $B=(b_1,b_2)$, the condition $|PA|=|PB|$ means $|PA|^2=|PB|^2$. Expanding both sides, the terms $x^2$ and $y^2$ cancel, leaving a linear equation. So the locus is a line, and it is the perpendicular bisector of $AB$: it passes through the midpoint and is perpendicular to $AB$.\n\nThe same cancellation works for any condition of the form $|PA|^2-|PB|^2=k$. Expanding gives $-2(a_1-b_1)x-2(a_2-b_2)y+(|A|^2-|B|^2)=k$, which is again a line perpendicular to $AB$. So a difference of squared distances produces a line, and this gives a clean method for proving that several lines meet at one point: impose two such conditions and intersect the resulting lines.\n\nThe ratio condition $|PA|=k|PB|$ with $k\\ne1$ gives a circle, the Apollonius circle. Squaring, $(x-a_1)^2+(y-a_2)^2=k^2\\big((x-b_1)^2+(y-b_2)^2\\big)$. The coefficient of $x^2+y^2$ is $1-k^2\\ne0$. Dividing by it puts the equation in the form $x^2+y^2+Dx+Ey+F=0$, which is a circle. By symmetry its center lies on the line $AB$, and the circle is the complete locus of points with the given ratio.\n\nThe angle condition is a dot product condition, and it has a beautiful identity. For a variable point $X$ and fixed points $A$, $B$ with midpoint $M$, one has $(X-A)\\cdot(X-B)=|X-M|^2-\\tfrac14|A-B|^2$. To see this, write $X-M=u$ and $A-M=w$, so $B-M=-w$, and then $(X-A)\\cdot(X-B)=(u-w)\\cdot(u+w)=|u|^2-|w|^2$. Therefore the points with $(X-A)\\cdot(X-B)=0$, which are the points seeing $AB$ at a right angle, form the circle with diameter $AB$. This is Thales' theorem written as an identity.\n\nOnce a locus is a line or a circle, extremal questions become geometry. The nearest point of a circle with center $O$ and radius $r$ to an outside point $P$ lies on segment $OP$, at distance $|OP|-r$ from $P$. The farthest point is at distance $|OP|+r$. Many contest questions ask for the least or greatest distance from a fixed point to a locus, and they reduce to exactly this computation.\n\nRecognizing the locus is the skill. Equal distances give lines. Fixed distance ratios give circles. Right angles give circles on a diameter. A fixed sum or difference of distances to two points gives an ellipse or a hyperbola, which is the subject of the conic section. A problem that mentions a constant sum of distances is usually steering you toward an ellipse, so identify the foci first.",
+      "keyFacts": [
+        "|PA|=|PB| \\iff P\\text{ lies on the perpendicular bisector of }AB",
+        "|PA|=k\\,|PB|\\ (k\\ne1)\\ \\text{is a circle (Apollonius)}",
+        "(X-A)\\cdot(X-B)=|X-M|^2-\\tfrac14|AB|^2,\\quad M=\\text{midpoint of }AB",
+        "|PA|^2-|PB|^2=\\text{constant}\\ \\text{is a line perpendicular to }AB"
+      ],
+      "whenToUse": "The problem says a point is equidistant from two points or lines, a fixed ratio of distances is given, or an angle is a right angle; or it asks about the set of all points with some property.",
+      "commonMistakes": [
+        "Squaring only one side of $|PA|=|PB|$, which drops a term and gives a wrong line.",
+        "Calling every ratio locus a circle. The case $k=1$ gives a line, not a circle.",
+        "Assuming a constant sum of distances gives a circle. It gives an ellipse with foci $A$ and $B$; it is a circle only in the degenerate case $A=B$."
+      ],
+      "example": {
+        "problem": "Let $A=(0,0)$ and $B=(4,2)$. The points $P=(x,y)$ satisfy $|PA|=|PB|$. The locus is a line of the form $2x+y=c$. Find $c$.",
+        "solution": "Setting $|PA|^2=|PB|^2$ gives $x^2+y^2=(x-4)^2+(y-2)^2$. Expanding and cancelling gives $0=-8x-4y+20$, that is $2x+y=5$. So $c=5$. The midpoint $(2,1)$ of $AB$ satisfies $2\\cdot2+1=5$, as it must.",
+        "answer": "5",
+        "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\nvals = set()\nfor x in range(-20, 21):\n    for y in range(-20, 21):\n        if x * x + y * y == (x - 4) ** 2 + (y - 2) ** 2:\n            vals.add(2 * x + y)\nassert len(vals) == 1\nprint(vals.pop())\n"
+      }
+    },
+    {
+      "title": "Solids: volumes, surface areas, and Cavalieri",
+      "body": "Solids on the AMC are mostly prisms, pyramids, cones, cylinders and spheres, and the questions ask for a volume, a surface area, or a ratio between two solids. Almost every volume formula in this family follows from one principle, Cavalieri's principle. If two solids sit between the same pair of parallel planes, and every plane parallel to them cuts the two solids in regions of equal area, then the solids have equal volume. Cavalieri lets you compare volumes by comparing slices, without any direct computation.\n\nPrisms and cylinders have volume $Bh$, where $B$ is the base area and $h$ the height. Pyramids and cones have volume $\\tfrac13Bh$, and the factor $\\tfrac13$ is the main thing to remember. One way to see it: slice a pyramid with base area $B$ and height $h$ by planes parallel to the base. At height $t$ the slice is similar to the base with ratio $1-\\tfrac th$, so its area is $B\\left(1-\\tfrac th\\right)^2$. Adding up these slices gives $\\int_0^h B(1-\\tfrac th)^2\\,dt=\\tfrac13Bh$. A calculus-free route to the same factor is the classical dissection of a triangular prism into three tetrahedra of equal volume.\n\nCones are the same argument with circles. A cone with base radius $r$ and height $h$ has base area $\\pi r^2$, so $V=\\tfrac13\\pi r^2h$. Its lateral surface area is $\\pi r\\ell$, where $\\ell=\\sqrt{r^2+h^2}$ is the slant height. A common error is to use $\\ell$ in the volume formula. The volume always uses the perpendicular height $h$, while the slant height enters only surface area.\n\nSpheres follow from Archimedes' comparison. Let the hemisphere be $x^2+y^2+z^2\\le r^2$ with $z\\ge0$. At height $z$ its cross-section is a disk of area $\\pi(r^2-z^2)$. Inside the cylinder $x^2+y^2\\le r^2$, $0\\le z\\le r$, remove the cone $x^2+y^2\\le z^2$ with apex at the origin. At height $z$ what remains is a ring of area $\\pi r^2-\\pi z^2=\\pi(r^2-z^2)$. The slices agree, so by Cavalieri the hemisphere has volume $\\pi r^3-\\tfrac13\\pi r^3=\\tfrac23\\pi r^3$, and the sphere has volume $\\tfrac43\\pi r^3$. Differentiating this volume with respect to $r$ gives the surface area $4\\pi r^2$.\n\nSimilarity sets the scaling rules. If a solid is scaled by a factor $k$ in every direction, its areas multiply by $k^2$ and its volumes by $k^3$. This explains many contest ratios. A plane parallel to the base of a pyramid, located one-third of the way from the apex to the base, cuts off a pyramid whose volume is $\\tfrac1{27}$ of the whole. The remaining piece, called a frustum, has the rest of the volume.\n\nA practical plan: identify the solid, find its base and its perpendicular height (not the slant height), and then compute. For a cone or sphere, look for the axial triangle or the circle through the axis, because two-dimensional similarity usually supplies the missing radius or height.",
+      "keyFacts": [
+        "V_{\\text{prism}}=Bh,\\qquad V_{\\text{pyramid}}=\\tfrac13Bh,\\qquad V_{\\text{cone}}=\\tfrac13\\pi r^2h",
+        "V_{\\text{sphere}}=\\tfrac43\\pi r^3,\\qquad S_{\\text{sphere}}=4\\pi r^2",
+        "S_{\\text{cone, lateral}}=\\pi r\\ell,\\qquad \\ell=\\sqrt{r^2+h^2}",
+        "\\text{Scaling every length by }k:\\ \\text{areas}\\times k^2,\\ \\text{volumes}\\times k^3"
+      ],
+      "whenToUse": "The problem asks for a volume or surface area of a prism, pyramid, cone or sphere, compares two similar solids, or asks where a plane cuts a solid at a given fraction of its height.",
+      "commonMistakes": [
+        "Using the slant height $\\ell$ in the cone volume formula instead of the perpendicular height $h$.",
+        "Dropping the factor $\\tfrac13$ for pyramids and cones, or copying the $\\tfrac12$ from the triangle area formula.",
+        "Confusing the scaling of area ($k^2$) with the scaling of volume ($k^3$) when a solid is enlarged."
+      ],
+      "example": {
+        "problem": "A right circular cone has base radius $3$ and height $4$. Find its volume in terms of $\\pi$.",
+        "solution": "The base area is $9\\pi$ and the perpendicular height is $4$, so $V=\\tfrac13\\cdot9\\pi\\cdot4=12\\pi$. The slant height $5$ is not used. Using it instead would give $15\\pi$, which is the common mistake.",
+        "answer": "12\\pi",
+        "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\nn = 200000\nh = 4 / n\ntotal = 0.0\nfor i in range(n):\n    t = (i + 0.5) * h\n    r = 3 * (1 - t / 4)\n    total += math.pi * r * r * h\nassert abs(total - 12 * math.pi) < 1e-4\nprint(\"12\\\\pi\")\n"
+      }
+    },
+    {
+      "title": "Cross-sections and inscribed solids",
+      "body": "A cross-section is the intersection of a solid with a plane, and most contest questions about solids are really questions about cross-sections, because a section reduces a three-dimensional situation to a two-dimensional one. A plane at distance $d$ from the center of a sphere of radius $R$ cuts a circle of radius $\\sqrt{R^2-d^2}$. This is Pythagoras in the right triangle formed by the center, the foot of the perpendicular to the plane, and any point of the circle, so the section has area $\\pi(R^2-d^2)$. Note that the radius is not $R-d$.\n\nA plane parallel to the base of a cone or pyramid cuts a similar copy of the base. If the plane is at distance $t$ from the apex and the height is $h$, the section is scaled by $t/h$. For a cone, the sections are circles of radius $\\tfrac{t}{h}r$. An inscribed sphere, which touches the base and the lateral surface, is found in the axial cross-section: a triangle whose incircle is the great circle of the sphere. Its radius is the inradius of that triangle.\n\nSections through a cube are polygons with vertices on its edges. A plane through three vertices gives a triangle, and a plane through two opposite edges gives a rectangle. A plane through the midpoints of six edges gives a regular hexagon. Concretely, take the cube $0\\le x,y,z\\le2$ and the plane $x+y+z=3$. It contains the six edge midpoints $(2,1,0)$, $(2,0,1)$, $(1,2,0)$, $(0,2,1)$, $(1,0,2)$, $(0,1,2)$, none of the vertices (whose coordinate sums are even numbers other than $3$), and it is perpendicular to the main diagonal. Adjacent midpoints are $\\sqrt2$ apart, so the section is a regular hexagon of side $\\sqrt2$.\n\nInscribed and circumscribed solids are the other half of the topic. A sphere inscribed in a cube of edge $s$ has diameter $s$, because it touches opposite faces. A sphere circumscribed about a box with edges $a,b,c$ has diameter equal to the space diagonal $\\sqrt{a^2+b^2+c^2}$, which follows from applying Pythagoras twice: the diagonal of the base is $\\sqrt{a^2+b^2}$, and it is perpendicular to the vertical edge of length $c$.\n\nFor a regular tetrahedron of edge $a$, the incenter is the centroid. The altitude has length $H=a\\sqrt{\\tfrac23}$, since the circumradius of an equilateral triangle of side $a$ is $\\tfrac{a}{\\sqrt3}$ and $H^2=a^2-\\tfrac{a^2}{3}=\\tfrac{2a^2}{3}$. The centroid divides the altitude in the ratio $3:1$ from the apex, so the inradius is $\\tfrac H4=\\tfrac{a\\sqrt6}{12}$. For $a=12$ this is $\\sqrt6$.\n\nFor a sphere inscribed in a cone or pyramid, draw the axial cross-section and find the incircle of the resulting triangle. The sphere is tangent to the base and to the lateral surface, and each tangency appears in the axial plane as a tangency of the circle to a side. Once the radius is known, the volume follows from $\\tfrac43\\pi r^3$. This two-step method, section first and then formula, handles almost every inscribed-sphere question.",
+      "keyFacts": [
+        "\\text{Plane at distance }d\\text{ from the center of a sphere of radius }R:\\ \\text{section radius }\\sqrt{R^2-d^2}",
+        "\\text{Cube of edge }s:\\ \\text{inscribed sphere radius }\\tfrac s2",
+        "\\text{Box }a\\times b\\times c:\\ \\text{circumscribed sphere diameter }\\sqrt{a^2+b^2+c^2}",
+        "\\text{Regular tetrahedron of edge }a:\\ r_{\\text{in}}=\\dfrac{a\\sqrt6}{12}"
+      ],
+      "whenToUse": "A plane cuts a solid and the question asks for the shape or area of the section; a sphere touches all faces of a polyhedron or the walls of a cone; or the question asks for the largest sphere or box that fits inside a solid.",
+      "commonMistakes": [
+        "Using the edge length as the sphere radius. The inscribed sphere of a cube of edge $s$ has radius $\\tfrac s2$.",
+        "Writing the section radius as $R-d$. The correct value is $\\sqrt{R^2-d^2}$, from Pythagoras.",
+        "Naming the section shape without counting the edges the plane crosses. A plane can cut a cube in a triangle, rectangle, pentagon or hexagon."
+      ],
+      "example": {
+        "problem": "A sphere of radius $5$ is cut by a plane at distance $3$ from its center. Find the area of the circular cross-section.",
+        "solution": "The section radius $\\rho$ satisfies $\\rho^2=5^2-3^2=16$, so $\\rho=4$. The area is $\\pi\\rho^2=16\\pi$.",
+        "answer": "16\\pi",
+        "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\nR, d = 5, 3\nrho2 = R * R - d * d\narea = math.pi * rho2\nassert abs(area - 16 * math.pi) < 1e-9\nprint(\"16\\\\pi\")\n"
+      }
+    },
+    {
+      "title": "Vectors in 3D and distance to a plane",
+      "body": "Three-dimensional coordinates extend the distance formula by one term: $PQ=\\sqrt{(x_2-x_1)^2+(y_2-y_1)^2+(z_2-z_1)^2}$. The Pythagorean theorem is applied twice, once in the base plane to get the horizontal diagonal and once in the vertical plane through that diagonal. Vectors are the natural language here. The displacement from $P$ to $Q$ is $\\vec{PQ}=(x_2-x_1,\\,y_2-y_1,\\,z_2-z_1)$, and its length is its norm, $|\\vec{PQ}|=\\sqrt{v_1^2+v_2^2+v_3^2}$.\n\nThe dot product $u\\cdot v=u_1v_1+u_2v_2+u_3v_3$ measures alignment, because $u\\cdot v=|u||v|\\cos\\theta$ where $\\theta$ is the angle between the vectors. This follows from the law of cosines in the triangle with sides $u$, $v$ and $u-v$: $|u-v|^2=|u|^2+|v|^2-2\\,u\\cdot v$, and expanding the left side in coordinates gives the coordinate formula. Two vectors are perpendicular exactly when their dot product is zero, which is the most useful test in three-dimensional problems.\n\nThe cross product $u\\times v=(u_2v_3-u_3v_2,\\ u_3v_1-u_1v_3,\\ u_1v_2-u_2v_1)$ is perpendicular to both $u$ and $v$, and its length is $|u\\times v|=|u||v|\\sin\\theta$. That length is the area of the parallelogram spanned by $u$ and $v$, so the area of triangle $PQR$ equals $\\tfrac12|\\vec{PQ}\\times\\vec{PR}|$. This is the three-dimensional version of the shoelace idea: an area is a determinant-like quantity in coordinates.\n\nA plane can be written $ax+by+cz+d=0$, and the vector $n=(a,b,c)$ is normal to it: if $P$ and $Q$ both lie on the plane then $n\\cdot\\vec{PQ}=0$. To find the distance from a point $P_0$ to the plane, take any point $Q$ on the plane and project $\\vec{QP_0}$ onto the unit normal. The projection length is $\\dfrac{|n\\cdot\\vec{QP_0}|}{|n|}$. Since $n\\cdot Q=-d$, this equals $\\dfrac{|ax_0+by_0+cz_0+d|}{\\sqrt{a^2+b^2+c^2}}$.\n\nThe distance from a point $P$ to a line through $A$ with direction $u$ is $\\dfrac{|u\\times(P-A)|}{|u|}$. The reason is that $|u\\times(P-A)|=|u|\\cdot|P-A|\\sin\\theta$, and dividing by the base length $|u|$ leaves exactly the height of the point above the line, which is the distance.\n\nIn a three-dimensional problem, place the figure with the most symmetric vertex at the origin and its edges along the axes. Write the coordinates of every relevant point, and then use the distance, dot product and cross product as needed. Avoid working with angles directly: coordinates give exact answers and are less error-prone than trigonometry.",
+      "keyFacts": [
+        "|\\vec{PQ}|=\\sqrt{(x_2-x_1)^2+(y_2-y_1)^2+(z_2-z_1)^2}",
+        "u\\cdot v=u_1v_1+u_2v_2+u_3v_3=|u||v|\\cos\\theta",
+        "|u\\times v|=|u||v|\\sin\\theta=\\text{area of the parallelogram spanned by }u,v",
+        "\\operatorname{dist}(P_0,\\ ax+by+cz+d=0)=\\dfrac{|ax_0+by_0+cz_0+d|}{\\sqrt{a^2+b^2+c^2}}"
+      ],
+      "whenToUse": "A solid is placed in coordinates and the question asks for a distance to a plane or a line, an angle, a perpendicularity, or the area of a triangle in space.",
+      "commonMistakes": [
+        "Omitting the square root in the denominator, or using $a^2+b^2+c^2$ where its square root is needed.",
+        "Mishandling the constant term: in $ax+by+cz=k$ the constant is $d=-k$, and it enters the numerator with its sign.",
+        "Confusing the dot product with the cross product. The dot product is a number; the cross product is a vector whose length is a parallelogram area."
+      ],
+      "example": {
+        "problem": "Find the distance from the point $(1,2,3)$ to the plane $2x-y+2z=4$.",
+        "solution": "Write the plane as $2x-y+2z-4=0$, so $n=(2,-1,2)$ and $|n|=\\sqrt{4+1+4}=3$. Evaluate $2\\cdot1-1\\cdot2+2\\cdot3-4=2$. The distance is $\\tfrac{|2|}{3}=\\tfrac23$.",
+        "answer": "\\frac{2}{3}",
+        "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\nn = (2, -1, 2)\nnum = abs(2 * 1 - 1 * 2 + 2 * 3 - 4)\nden2 = sum(c * c for c in n)\nden = math.isqrt(den2)\nassert den * den == den2\nprint(frac_tex(Fraction(num, den)))\n"
+      }
+    }
+  ],
+  "strategies": [
+    {
+      "name": "Choose coordinates that kill unknowns",
+      "description": "Put a right-angle vertex or the center at the origin, make a symmetry axis a coordinate axis, and align one side with the $x$-axis. Each choice sets a coordinate to zero or a variable to a simple value. Before writing any equation, check whether your choice makes the key points lie on the axes."
+    },
+    {
+      "name": "Reflect to straighten a broken path",
+      "description": "When a path must touch a line, or when you must minimize a sum of distances with one point constrained to a line, reflect one fixed point across that line. The broken path becomes a straight segment, and its length is the answer. Check first that the two fixed points are on the same side; if they are not, no reflection is needed."
+    },
+    {
+      "name": "Use the shoelace formula for tilted polygons",
+      "description": "When vertices are given as coordinates or depend on a parameter, skip the base-and-height search and write the shoelace sum. Area conditions with a parameter become absolute-value equations, so solve each sign case. Always close the polygon by repeating the first vertex."
+    },
+    {
+      "name": "Complete the square, then read the geometry",
+      "description": "Given an equation with equal $x^2$ and $y^2$ coefficients, complete the square at once to read off the center and the squared radius. Then the tangency, chord and distance questions become one Pythagorean triangle each. Verify the radius by plugging in a point that is on the circle."
+    },
+    {
+      "name": "Map ellipses to circles by scaling",
+      "description": "The map $(x,y)\\mapsto(x/a,\\,y/b)$ turns an ellipse into a circle, preserves midpoints, parallel lines and tangency, and multiplies every area by $ab$. Solve the circle version, then scale the answer back. This handles areas, extremal triangles and tangency questions alike."
+    },
+    {
+      "name": "Compare cross-sections before computing volumes",
+      "description": "For prisms, pyramids and cones, slice the solid parallel to the base and compare slices. A plane at a fraction $t$ of the height gives a similar section scaled by $t$, so areas scale by $t^2$ and volumes by $t^3$. This reduces most ratio questions to a single exponent."
+    },
+    {
+      "name": "Work in the axial plane",
+      "description": "For a sphere or cone, the cross-section through the axis is a circle or a triangle, and the 3D tangency conditions become 2D ones. Find the incircle or the chord in that section, then return to three dimensions. This is the fastest route to inscribed-sphere and cone questions."
+    },
+    {
+      "name": "Test the formula on a symmetric case",
+      "description": "Before trusting a general formula for a distance, a locus or a volume, check it on a case you can compute by hand, such as a cube, a unit circle or a point on an axis. A wrong factor of 2 or a sign error almost always shows up in such a test."
+    }
+  ],
+  "workedExamples": [
+    {
+      "title": "Midpoint, then distance to the origin",
+      "difficulty": 1,
+      "problem": "Let $A=(-3,1)$ and $B=(5,7)$, and let $M$ be the midpoint of segment $AB$. What is the distance from the origin to $M$?",
+      "choices": [
+        "3",
+        "\\sqrt{17}",
+        "5",
+        "\\sqrt{41}",
+        "2\\sqrt{5}"
+      ],
+      "answer": "B",
+      "approach": "A midpoint is an average of coordinates, and then the distance to the origin is one more Pythagorean step.",
+      "steps": [
+        "Average the $x$-coordinates: $\\frac{-3+5}{2}=1$.",
+        "Average the $y$-coordinates: $\\frac{1+7}{2}=4$, so $M=(1,4)$.",
+        "The distance from $(0,0)$ to $(1,4)$ is $\\sqrt{1^2+4^2}=\\sqrt{17}$.",
+        "Compare with the choices: $\\sqrt{17}$ is choice B."
+      ],
+      "alternative": "Use the median formula: $|OM|^2=\\tfrac{|OA|^2+|OB|^2}{2}-\\tfrac{|AB|^2}{4}=\\tfrac{10+74}{2}-\\tfrac{100}{4}=42-25=17$, which gives the same answer without finding $M$.",
+      "takeaway": "Midpoints turn a segment into a single point, and the median formula gives distances to a midpoint without locating it.",
+      "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\nA = (-3, 1)\nB = (5, 7)\nM = (Fraction(A[0] + B[0], 2), Fraction(A[1] + B[1], 2))\nd2 = M[0] ** 2 + M[1] ** 2\nassert d2 == 17\nprint(\"\\\\sqrt{17}\")\n"
+    },
+    {
+      "title": "Quadrilateral by the shoelace formula",
+      "difficulty": 2,
+      "problem": "The quadrilateral with vertices $(0,0)$, $(4,0)$, $(5,3)$, $(1,4)$, listed in order around its boundary, has what area?",
+      "choices": [
+        "\\frac{13}{2}",
+        "\\frac{29}{2}",
+        "15",
+        "\\frac{31}{2}",
+        "17"
+      ],
+      "answer": "B",
+      "approach": "Because the vertices are given in order, the shoelace formula applies directly and no diagonal needs to be chosen.",
+      "steps": [
+        "Write the vertices in order and repeat the first one: $(0,0),(4,0),(5,3),(1,4),(0,0)$.",
+        "For each consecutive pair compute $x_iy_{i+1}-x_{i+1}y_i$.",
+        "The four terms are $0\\cdot0-4\\cdot0=0$, $4\\cdot3-5\\cdot0=12$, $5\\cdot4-1\\cdot3=17$, and $1\\cdot0-0\\cdot4=0$.",
+        "The total is $29$, so the area is $\\tfrac12\\cdot29=\\tfrac{29}{2}$."
+      ],
+      "alternative": "Split along the diagonal from $(0,0)$ to $(5,3)$. The triangles have areas $6$ and $\\tfrac{17}{2}$, and $6+\\tfrac{17}{2}=\\tfrac{29}{2}$.",
+      "takeaway": "For any polygon given in order, one signed sum replaces an entire decomposition into triangles.",
+      "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\nprint(frac_tex(shoelace_area([(0, 0), (4, 0), (5, 3), (1, 4)])))\n"
+    },
+    {
+      "title": "Plane section of a sphere",
+      "difficulty": 3,
+      "problem": "A sphere has radius $5$. A plane cuts it in a circle of area $16\\pi$. How far is the plane from the center of the sphere?",
+      "choices": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "answer": "C",
+      "approach": "Convert the area into the radius of the section, then use one right triangle that joins the center, the plane and a point of the section.",
+      "steps": [
+        "The area $\\pi\\rho^2=16\\pi$ gives the section radius $\\rho=4$.",
+        "Let $d$ be the distance from the center $O$ to the plane, and let $H$ be the foot of the perpendicular from $O$. Then $H$ is the center of the section.",
+        "For any point $X$ on the section, triangle $OHX$ is right-angled at $H$, with hypotenuse $OX=5$.",
+        "Pythagoras gives $d^2+\\rho^2=5^2$, so $d^2=25-16=9$ and $d=3$."
+      ],
+      "alternative": "Test the choices: only $d=3$ makes $\\sqrt{25-d^2}=4$.",
+      "takeaway": "A plane section of a sphere is governed by one right triangle: sphere radius, plane distance and section radius.",
+      "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\nR = 5\nrho2 = 16\nfound = []\nfor d in range(0, 6):\n    if abs(math.pi * (R * R - d * d) - math.pi * rho2) < 1e-9:\n        found.append(d)\nassert len(found) == 1\nprint(found[0])\n"
+    },
+    {
+      "title": "Sphere inscribed in a cone",
+      "difficulty": 4,
+      "problem": "A right circular cone has base radius $3$ and height $4$. A sphere is inscribed in the cone, touching the base and the lateral surface. What is the volume of the sphere divided by $\\pi$?",
+      "choices": [
+        "\\frac{3}{2}",
+        "\\frac{9}{4}",
+        "\\frac{9}{2}",
+        "9",
+        "\\frac{27}{2}"
+      ],
+      "answer": "C",
+      "approach": "Both tangencies appear in the axial cross-section, so the sphere's radius is the inradius of an isosceles triangle.",
+      "steps": [
+        "The axial cross-section is an isosceles triangle with base $6$ (the base diameter) and legs equal to the slant height $\\sqrt{3^2+4^2}=5$.",
+        "The sphere touches the base and the lateral sides, so in the axial plane its great circle is the incircle of this triangle.",
+        "The area of the triangle is $\\tfrac12\\cdot6\\cdot4=12$.",
+        "The semiperimeter is $s=\\tfrac{5+5+6}{2}=8$, so the inradius is $r=\\tfrac{12}{8}=\\tfrac32$.",
+        "The volume is $\\tfrac43\\pi r^3=\\tfrac43\\pi\\cdot\\tfrac{27}{8}=\\tfrac92\\pi$."
+      ],
+      "alternative": "Put the axis on the $y$-axis with the center at $(0,r)$. Its distance to the leg $4x+3y=12$ equals $r$, so $\\frac{12-3r}{5}=r$, which gives $r=\\tfrac32$.",
+      "takeaway": "For a sphere inside a cone, the radius is the inradius of the axial triangle, and the volume follows at once.",
+      "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\npts = [(-3, 0), (3, 0), (0, 4)]\narea = shoelace_area(pts)\na = math.dist(pts[0], pts[1])\nb = math.dist(pts[1], pts[2])\nc = math.dist(pts[2], pts[0])\ns = (a + b + c) / 2\nr = Fraction(float(area) / s).limit_denominator(1000)\nassert r == Fraction(3, 2)\nV = Fraction(4, 3) * r ** 3\nprint(frac_tex(V))\n"
+    },
+    {
+      "title": "Chord of a circle",
+      "difficulty": 3,
+      "problem": "The line $3x+4y+4=0$ meets the circle $(x-1)^2+(y-2)^2=25$ at two points. What is the distance between those two points?",
+      "choices": [
+        "4",
+        "6",
+        "8",
+        "10",
+        "12"
+      ],
+      "answer": "C",
+      "approach": "The chord length follows from the center's distance to the line, by one Pythagorean triangle.",
+      "steps": [
+        "The circle has center $(1,2)$ and radius $5$.",
+        "The distance from the center to the line is $\\frac{|3\\cdot1+4\\cdot2+4|}{\\sqrt{3^2+4^2}}=\\frac{15}{5}=3$.",
+        "Half the chord is $\\sqrt{5^2-3^2}=4$.",
+        "The chord is $2\\cdot4=8$."
+      ],
+      "alternative": "",
+      "takeaway": "For any chord, the radius, the distance from the center to the chord, and half the chord form a right triangle.",
+      "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\ndef f(x):\n    y = -(3 * x + 4) / 4\n    return (x - 1) ** 2 + (y - 2) ** 2 - 25\nc0 = f(0)\ns1 = f(1)\ns_1 = f(-1)\na = (s1 + s_1) / 2 - c0\nb = (s1 - s_1) / 2\ndisc = b * b - 4 * a * c0\nr1 = (-b + math.sqrt(disc)) / (2 * a)\nr2 = (-b - math.sqrt(disc)) / (2 * a)\np1 = (r1, -(3 * r1 + 4) / 4)\np2 = (r2, -(3 * r2 + 4) / 4)\nL = math.dist(p1, p2)\nassert abs(L - 8) < 1e-9\nprint(round(L))\n"
+    },
+    {
+      "title": "Ellipse minus an inner circle",
+      "difficulty": 5,
+      "problem": "Find the area of the region inside the ellipse $\\dfrac{x^2}{4}+y^2=1$ and outside the circle $x^2+y^2=1$.",
+      "choices": [
+        "\\frac{\\pi}{2}",
+        "\\pi",
+        "\\frac{3\\pi}{2}",
+        "2\\pi",
+        "3\\pi"
+      ],
+      "answer": "B",
+      "approach": "First check whether the circle lies inside the ellipse. If it does, the region is the ellipse minus the disk, and both areas are known.",
+      "steps": [
+        "The ellipse has $a=2$ and $b=1$, so its area is $\\pi ab=2\\pi$.",
+        "Every point of the unit circle satisfies $\\frac{x^2}{4}+y^2=\\frac{x^2}{4}+1-x^2=1-\\frac{3x^2}{4}\\le1$, so the circle lies inside the ellipse.",
+        "Therefore the region is the ellipse minus the unit disk, with area $2\\pi-\\pi=\\pi$.",
+        "As a check, slice at abscissa $x$: for $|x|\\le1$ the ellipse slice has length $2\\sqrt{1-x^2/4}$ and the circle slice has length $2\\sqrt{1-x^2}$, and the difference integrates to $\\pi$."
+      ],
+      "alternative": "The map $(x,y)\\mapsto(x/2,y)$ sends the ellipse to the unit circle, so the ellipse's area is twice the unit disk's; subtracting the unit disk leaves one unit disk of area.",
+      "takeaway": "Nested regions reduce an area question to known areas, and an ellipse's area is a scaled circle's area.",
+      "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\nn = 200000\nh = 4 / n\narea = 0.0\nfor i in range(n):\n    x = -2 + (i + 0.5) * h\n    lenE = 2 * math.sqrt(max(0.0, 1 - x * x / 4))\n    lenC = 2 * math.sqrt(max(0.0, 1 - x * x)) if abs(x) <= 1 else 0.0\n    area += (lenE - lenC) * h\nassert abs(area - math.pi) < 1e-6\nprint(\"\\\\pi\")\n"
+    }
+  ],
+  "problems": [
+    {
+      "id": "cg-01",
+      "difficulty": 1,
+      "problem": "In the coordinate plane, what is the distance between the points $(-2,3)$ and $(4,-5)$?",
+      "choices": [
+        "2",
+        "8",
+        "10",
+        "14",
+        "20"
+      ],
+      "answer": "C",
+      "hint": "Find the horizontal and vertical changes first, then apply the Pythagorean theorem.",
+      "solution": "The horizontal change is $4-(-2)=6$ and the vertical change is $-5-3=-8$. By the distance formula, $d=\\sqrt{6^2+(-8)^2}=\\sqrt{36+64}=\\sqrt{100}=10$. The value $14$ is the sum of the two legs, which is not how distance works.",
+      "concepts": [
+        0
+      ],
+      "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\nprint(round(math.dist((-2, 3), (4, -5))))\n"
+    },
+    {
+      "id": "cg-02",
+      "difficulty": 1,
+      "problem": "A segment has endpoints $(3,-7)$ and $(11,5)$. What is the sum of the coordinates of its midpoint?",
+      "choices": [
+        "6",
+        "8",
+        "10",
+        "12",
+        "14"
+      ],
+      "answer": "A",
+      "hint": "A midpoint is the average of the endpoints, coordinate by coordinate.",
+      "solution": "The midpoint is $\\left(\\frac{3+11}{2},\\frac{-7+5}{2}\\right)=(7,-1)$. Its coordinate sum is $7+(-1)=6$.",
+      "concepts": [
+        0
+      ],
+      "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\nmx = Fraction(3 + 11, 2)\nmy = Fraction(-7 + 5, 2)\nprint(frac_tex(mx + my))\n"
+    },
+    {
+      "id": "cg-03",
+      "difficulty": 1,
+      "problem": "What is the slope of the line through $(1,4)$ and $(5,-2)$?",
+      "choices": [
+        "-\\frac{3}{2}",
+        "-1",
+        "\\frac{1}{2}",
+        "\\frac{3}{2}",
+        "2"
+      ],
+      "answer": "A",
+      "hint": "Slope is the change in $y$ divided by the change in $x$, taken in the same order for both points.",
+      "solution": "The slope is $\\frac{-2-4}{5-1}=\\frac{-6}{4}=-\\frac{3}{2}$. Reversing the order of the two points gives the same slope, because both the numerator and the denominator change sign.",
+      "concepts": [
+        0
+      ],
+      "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\nprint(frac_tex(Fraction(-2 - 4, 5 - 1)))\n"
+    },
+    {
+      "id": "cg-04",
+      "difficulty": 1,
+      "problem": "A triangle has vertices $(0,0)$, $(6,0)$, and $(2,5)$. What is its area?",
+      "choices": [
+        "6",
+        "10",
+        "12",
+        "15",
+        "30"
+      ],
+      "answer": "D",
+      "hint": "Use the side on the $x$-axis as the base.",
+      "solution": "The base from $(0,0)$ to $(6,0)$ has length $6$, and the height is the $y$-coordinate of the third vertex, $5$. So the area is $\\tfrac12\\cdot6\\cdot5=15$. The value $30$ forgets the factor $\\tfrac12$.",
+      "concepts": [
+        1
+      ],
+      "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\npts = [(0, 0), (6, 0), (2, 5)]\nprint(frac_tex(shoelace_area(pts)))\n"
+    },
+    {
+      "id": "cg-05",
+      "difficulty": 1,
+      "problem": "What is the square of the radius of the circle $x^2+y^2-8x+6y=0$?",
+      "choices": [
+        "3",
+        "9",
+        "16",
+        "20",
+        "25"
+      ],
+      "answer": "E",
+      "hint": "Complete the square in $x$ and in $y$ separately.",
+      "solution": "Group the terms as $(x^2-8x)+(y^2+6y)=0$. Completing the square gives $(x-4)^2+(y+3)^2=16+9=25$. So the center is $(4,-3)$ and the square of the radius is $25$; the radius itself is $5$.",
+      "concepts": [
+        2
+      ],
+      "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\nD, E, F = -8, 6, 0\nprint(frac_tex(Fraction(D * D + E * E, 4) - F))\n"
+    },
+    {
+      "id": "cg-06",
+      "difficulty": 1,
+      "problem": "The point $(3,-4)$ is reflected across the $x$-axis, and the image is then reflected across the $y$-axis. What is the final point?",
+      "choices": [
+        "(3,-4)",
+        "(3,4)",
+        "(-3,-4)",
+        "(4,-3)",
+        "(-3,4)"
+      ],
+      "answer": "E",
+      "hint": "Track each reflection one at a time; a reflection across an axis changes the sign of one coordinate.",
+      "solution": "Reflecting across the $x$-axis changes $y$ to $-y$, giving $(3,4)$. Reflecting that across the $y$-axis changes $x$ to $-x$, giving $(-3,4)$. Two different axes were used, so one sign changes in each coordinate.",
+      "concepts": [
+        4
+      ],
+      "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\nx, y = 3, -4\nx, y = x, -y\nx, y = -x, y\nprint(\"(%d,%d)\" % (x, y))\n"
+    },
+    {
+      "id": "cg-07",
+      "difficulty": 2,
+      "problem": "A line $L$ passes through $(1,2)$ and $(4,8)$. Which number is the slope of every line perpendicular to $L$?",
+      "choices": [
+        "-2",
+        "-\\frac{1}{2}",
+        "\\frac{1}{2}",
+        "2",
+        "\\frac{5}{2}"
+      ],
+      "answer": "B",
+      "hint": "Compute the slope of $L$ first, then recall how slopes of perpendicular lines are related.",
+      "solution": "The slope of $L$ is $\\frac{8-2}{4-1}=2$. A perpendicular line has slope $m'$ with $2m'=-1$, so $m'=-\\frac{1}{2}$. The value $\\tfrac12$ is the reciprocal without the sign change, which is the typical error.",
+      "concepts": [
+        0
+      ],
+      "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\nm = Fraction(8 - 2, 4 - 1)\nprint(frac_tex(-1 / m))\n"
+    },
+    {
+      "id": "cg-08",
+      "difficulty": 2,
+      "problem": "The quadrilateral with vertices $(0,0)$, $(5,0)$, $(6,4)$, and $(1,3)$, listed in order around its boundary, has what area?",
+      "choices": [
+        "17",
+        "19",
+        "24",
+        "30",
+        "34"
+      ],
+      "answer": "A",
+      "hint": "Use the shoelace formula with the vertices in the order given.",
+      "solution": "Over the cycle $(0,0),(5,0),(6,4),(1,3),(0,0)$ the four terms are $0$, $5\\cdot4-6\\cdot0=20$, $6\\cdot3-1\\cdot4=14$, and $1\\cdot0-0\\cdot3=0$. The sum is $34$, so the area is $17$. The value $34$ is the sum before halving.",
+      "concepts": [
+        1
+      ],
+      "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\nprint(frac_tex(shoelace_area([(0, 0), (5, 0), (6, 4), (1, 3)])))\n"
+    },
+    {
+      "id": "cg-09",
+      "difficulty": 2,
+      "problem": "For some real number $k$, the line $y=2x+k$ is tangent to the circle $x^2+y^2=5$. What is the product of all such values of $k$?",
+      "choices": [
+        "-25",
+        "-5",
+        "0",
+        "5",
+        "25"
+      ],
+      "answer": "A",
+      "hint": "Substitute the line into the circle and demand a double root.",
+      "solution": "Substituting $y=2x+k$ gives $5x^2+4kx+(k^2-5)=0$. Tangency means the discriminant is zero: $16k^2-20(k^2-5)=0$, which simplifies to $k^2=25$. So $k=\\pm5$, and the product is $-25$. Equivalently, the distance from the origin to the line must equal $\\sqrt5$, which gives $|k|/\\sqrt5=\\sqrt5$.",
+      "concepts": [
+        2
+      ],
+      "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\nks = [k for k in range(-30, 31) if 16 * k * k - 20 * (k * k - 5) == 0]\np = 1\nfor k in ks:\n    p *= k\nprint(p)\n"
+    },
+    {
+      "id": "cg-10",
+      "difficulty": 2,
+      "problem": "Three lines $y=x$, $y=6-x$, and $y=0$ bound a triangle. What is the area of this triangle?",
+      "choices": [
+        "3",
+        "6",
+        "9",
+        "12",
+        "18"
+      ],
+      "answer": "C",
+      "hint": "Find the three vertices as pairwise intersections of the lines.",
+      "solution": "The pairwise intersections are $(0,0)$ from $y=x$ and $y=0$; $(6,0)$ from $y=6-x$ and $y=0$; and $(3,3)$ from $y=x$ and $y=6-x$. The base on the $x$-axis is $6$ and the height is $3$, so the area is $\\tfrac12\\cdot6\\cdot3=9$.",
+      "concepts": [
+        1,
+        0
+      ],
+      "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\ndef meet(l1, l2):\n    m1, c1 = l1\n    m2, c2 = l2\n    x = Fraction(c2 - c1) / (m1 - m2)\n    return (x, m1 * x + c1)\nL1 = (Fraction(1), Fraction(0))\nL2 = (Fraction(-1), Fraction(6))\nL3 = (Fraction(0), Fraction(0))\npts = [meet(L1, L2), meet(L2, L3), meet(L1, L3)]\nprint(frac_tex(shoelace_area(pts)))\n"
+    },
+    {
+      "id": "cg-11",
+      "difficulty": 2,
+      "problem": "The point $(2,7)$ is reflected across the line $y=x$, and the image is then translated by the vector $(-4,3)$. What is the $x$-coordinate of the final point?",
+      "choices": [
+        "1",
+        "3",
+        "5",
+        "9",
+        "11"
+      ],
+      "answer": "B",
+      "hint": "Reflection across $y=x$ swaps the two coordinates.",
+      "solution": "Reflecting $(2,7)$ across $y=x$ gives $(7,2)$. Translating by $(-4,3)$ gives $(3,5)$, whose $x$-coordinate is $3$.",
+      "concepts": [
+        4
+      ],
+      "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\nx, y = 2, 7\nx, y = y, x\nx, y = x - 4, y + 3\nprint(x)\n"
+    },
+    {
+      "id": "cg-12",
+      "difficulty": 2,
+      "problem": "A right circular cone has base radius $6$ and height $8$. What is its volume divided by $\\pi$?",
+      "choices": [
+        "48",
+        "72",
+        "96",
+        "144",
+        "288"
+      ],
+      "answer": "C",
+      "hint": "Use the base area $\\pi r^2$ together with the perpendicular height.",
+      "solution": "The volume is $\\tfrac13\\pi r^2h=\\tfrac13\\pi\\cdot36\\cdot8=96\\pi$, so the answer is $96$. The value $288$ is the volume of the cylinder with the same base and height, which forgets the factor $\\tfrac13$.",
+      "concepts": [
+        6
+      ],
+      "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\nr, h = 6, 8\nprint(frac_tex(Fraction(1, 3) * r * r * h))\n"
+    },
+    {
+      "id": "cg-13",
+      "difficulty": 3,
+      "problem": "The points $A=(1,2)$ and $B=(7,6)$ lie above the $x$-axis. A point $P$ moves along the $x$-axis. What is the least possible value of $PA+PB$?",
+      "choices": [
+        "10",
+        "12",
+        "14",
+        "16",
+        "20"
+      ],
+      "answer": "A",
+      "hint": "Reflect one of the two points across the $x$-axis.",
+      "solution": "Reflect $B$ across the $x$-axis to $B'=(7,-6)$. For $P$ on the axis, $PB=PB'$, so $PA+PB=PA+PB'\\ge AB'$. Equality holds where segment $AB'$ crosses the axis, at $x=\\tfrac52$. The minimum is $AB'=\\sqrt{6^2+8^2}=10$.",
+      "concepts": [
+        4
+      ],
+      "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\nbest = min(math.hypot(t - 1, 2) + math.hypot(t - 7, 6) for t in [i / 1000 for i in range(-10000, 20001)])\nassert abs(best - 10) < 1e-3\nprint(round(best))\n"
+    },
+    {
+      "id": "cg-14",
+      "difficulty": 3,
+      "problem": "The line $y=x+1$ meets the circle $x^2+y^2=25$ at two points. What is the length of the chord joining them?",
+      "choices": [
+        "2\\sqrt{2}",
+        "4\\sqrt{2}",
+        "5\\sqrt{2}",
+        "6\\sqrt{2}",
+        "7\\sqrt{2}"
+      ],
+      "answer": "E",
+      "hint": "The chord length follows from the distance between the center and the line.",
+      "solution": "The distance from $(0,0)$ to $x-y+1=0$ is $\\tfrac{1}{\\sqrt2}$. The chord has length $2\\sqrt{25-\\tfrac12}=2\\sqrt{\\tfrac{49}{2}}=\\tfrac{14}{\\sqrt2}=7\\sqrt2$. Substitution confirms it: the intersection points are $(3,4)$ and $(-4,-3)$, at distance $\\sqrt{49+49}=7\\sqrt2$.",
+      "concepts": [
+        2
+      ],
+      "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\na, b, c = 2, 2, -24\ndisc = math.sqrt(b * b - 4 * a * c)\nroots = [(-b + disc) / (2 * a), (-b - disc) / (2 * a)]\npts = [(x, x + 1) for x in roots]\nL = math.dist(pts[0], pts[1])\nassert abs(L - 7 * math.sqrt(2)) < 1e-9\nprint(\"7\\\\sqrt{2}\")\n"
+    },
+    {
+      "id": "cg-15",
+      "difficulty": 3,
+      "problem": "From the point $(5,0)$, a tangent segment is drawn to the circle $x^2+y^2=9$. What is the length of this tangent segment?",
+      "choices": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "16"
+      ],
+      "answer": "C",
+      "hint": "The radius to the point of tangency is perpendicular to the tangent, so Pythagoras applies with the center.",
+      "solution": "Here $|PO|=5$ and the radius is $3$. Since $OT\\perp PT$, we get $|PT|^2=|PO|^2-|OT|^2=25-9=16$, so $|PT|=4$. The value $16$ is the square of the answer, and the value $3$ is the radius.",
+      "concepts": [
+        2
+      ],
+      "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\nP = (Fraction(5), Fraction(0))\nr2 = Fraction(9)\nx = r2 / 5\ny = Fraction(12, 5)\nassert x * x + y * y == r2\nassert (x - P[0]) * x + y * y == 0\nL2 = (x - P[0]) ** 2 + y ** 2\nassert L2 == 16\nprint(math.isqrt(int(L2)))\n"
+    },
+    {
+      "id": "cg-16",
+      "difficulty": 3,
+      "problem": "A triangle has vertices $(1,1)$, $(7,k)$, and $(4,9)$, where $k$ is a real number. Its area is $15$. What is the sum of all possible values of $k$?",
+      "choices": [
+        "7",
+        "14",
+        "27",
+        "34",
+        "41"
+      ],
+      "answer": "D",
+      "hint": "Write the area with the shoelace formula; the absolute value produces two equations.",
+      "solution": "The area is $\\tfrac12\\left|1(k-9)+7(9-1)+4(1-k)\\right|=\\tfrac12|51-3k|$. Setting this equal to $15$ gives $|51-3k|=30$, so $k=7$ or $k=27$. Their sum is $34$.",
+      "concepts": [
+        1
+      ],
+      "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\nks = [k for k in range(-100, 101) if shoelace_area([(1, 1), (7, k), (4, 9)]) == 15]\nprint(sum(ks))\n"
+    },
+    {
+      "id": "cg-17",
+      "difficulty": 3,
+      "problem": "The ellipse $\\dfrac{x^2}{25}+\\dfrac{y^2}{16}=1$ has two foci. What is the distance between them?",
+      "choices": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "answer": "E",
+      "hint": "For an ellipse with major axis on the $x$-axis, the foci are at distance $c$ from the center with $c^2=a^2-b^2$.",
+      "solution": "Here $a^2=25$ and $b^2=16$, so $c^2=9$ and $c=3$. The foci are $(\\pm3,0)$, and they are $6$ apart. The value $5$ is the semi-major axis $a$, and $4$ is $b$, so neither is the focal distance.",
+      "concepts": [
+        3
+      ],
+      "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\na2, b2 = 25, 16\nc = math.sqrt(a2 - b2)\nF1, F2 = (-c, 0), (c, 0)\nassert abs(math.dist((5, 0), F1) + math.dist((5, 0), F2) - 10) < 1e-9\nprint(round(2 * c))\n"
+    },
+    {
+      "id": "cg-18",
+      "difficulty": 3,
+      "problem": "How many points with integer coordinates $(x,y)$ satisfy $x^2+y^2\\le25$?",
+      "choices": [
+        "69",
+        "73",
+        "77",
+        "81",
+        "85"
+      ],
+      "answer": "D",
+      "hint": "Count column by column: for each integer $x$ with $|x|\\le5$, count the integers $y$ with $y^2\\le25-x^2$.",
+      "solution": "For a fixed integer $x$ with $|x|\\le5$, the admissible $y$ are the integers with $|y|\\le\\sqrt{25-x^2}$. For $x=0$ there are $11$ values. For $|x|=1,2,3$ there are $9$ each, since $\\sqrt{24},\\sqrt{21},\\sqrt{16}$ have integer parts $4,4,4$. For $|x|=4$ there are $7$, and for $|x|=5$ there is $1$. The total is $11+2(9+9+9+7+1)=81$.",
+      "concepts": [
+        0
+      ],
+      "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\nn = sum(1 for x in range(-6, 7) for y in range(-6, 7) if x * x + y * y <= 25)\nprint(n)\n"
+    },
+    {
+      "id": "cg-19",
+      "difficulty": 3,
+      "problem": "A sphere is inscribed in a cube with edge length $6$, touching all six faces. What is the volume of the sphere divided by $\\pi$?",
+      "choices": [
+        "18",
+        "36",
+        "72",
+        "108",
+        "144"
+      ],
+      "answer": "B",
+      "hint": "The sphere touches opposite faces, so its diameter equals the edge length.",
+      "solution": "The diameter is $6$, so $r=3$. The volume is $\\tfrac43\\pi r^3=\\tfrac43\\pi\\cdot27=36\\pi$, and the answer is $36$. The value $108$ comes from using $4\\pi r^3$, that is, forgetting the $\\tfrac13$ in $\\tfrac43$.",
+      "concepts": [
+        7
+      ],
+      "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\ns = 6\nr = Fraction(s, 2)\nprint(frac_tex(Fraction(4, 3) * r ** 3))\n"
+    },
+    {
+      "id": "cg-20",
+      "difficulty": 3,
+      "problem": "A sphere of radius $13$ is cut by a plane at distance $5$ from its center. What is the area of the circular cross-section divided by $\\pi$?",
+      "choices": [
+        "24",
+        "96",
+        "120",
+        "144",
+        "169"
+      ],
+      "answer": "D",
+      "hint": "Find the radius of the section with Pythagoras in the right triangle formed by the center, the foot of the perpendicular, and a point of the section.",
+      "solution": "The section radius $\\rho$ satisfies $\\rho^2=13^2-5^2=144$, so $\\rho=12$. The area is $\\pi\\rho^2=144\\pi$, and the answer is $144$. The value $169$ is the square of the sphere's radius, and it does not depend on the plane.",
+      "concepts": [
+        7
+      ],
+      "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\nR, d = 13, 5\nprint(R * R - d * d)\n"
+    },
+    {
+      "id": "cg-21",
+      "difficulty": 4,
+      "problem": "A point $P=(x,y)$ moves so that its distance to the point $(0,3)$ equals its distance to the line $y=-3$. When $x=4$, what is $y$?",
+      "choices": [
+        "\\frac{4}{3}",
+        "\\frac{3}{2}",
+        "2",
+        "\\frac{8}{3}",
+        "3"
+      ],
+      "answer": "A",
+      "hint": "Write the equal-distance condition as an equation and simplify; the squared terms should cancel.",
+      "solution": "Equal distances give $x^2+(y-3)^2=(y+3)^2$. Expanding, $x^2-6y+9=6y+9$, so $x^2=12y$. This is the parabola with focus $(0,3)$ and directrix $y=-3$, matching the standard form $x^2=4py$ with $p=3$. Substituting $x=4$ gives $16=12y$, so $y=\\tfrac43$. Dropping the $6y$ term on one side of the expansion would give $x^2=6y$ and the value $\\tfrac{8}{3}$, a typical slip.",
+      "concepts": [
+        3
+      ],
+      "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\ndef g(y):\n    return math.sqrt(16 + (y - 3) ** 2) - abs(y + 3)\nlo, hi = 0.0, 10.0\nfor _ in range(200):\n    mid = (lo + hi) / 2\n    if g(lo) * g(mid) <= 0:\n        hi = mid\n    else:\n        lo = mid\ny = (lo + hi) / 2\nassert abs(y - 4 / 3) < 1e-9\nprint(\"\\\\frac{4}{3}\")\n"
+    },
+    {
+      "id": "cg-22",
+      "difficulty": 4,
+      "problem": "Points $P$ satisfy $|PA|=2|PB|$, where $A=(0,0)$ and $B=(3,0)$. These points form a circle. What is the sum of the $x$-coordinate of the center and the square of the radius?",
+      "choices": [
+        "4",
+        "8",
+        "12",
+        "16",
+        "20"
+      ],
+      "answer": "B",
+      "hint": "Square both sides and collect terms; the coefficient of $x^2+y^2$ does not vanish here.",
+      "solution": "Squaring, $x^2+y^2=4\\left((x-3)^2+y^2\\right)$. Expanding gives $3x^2+3y^2-24x+36=0$, which is $x^2+y^2-8x+12=0$. Completing the square, $(x-4)^2+y^2=4$, so the center is $(4,0)$ and $r^2=4$. The sum is $4+4=8$. The value $4$ alone is the center coordinate, and $12$ is the constant term of the normalized equation.",
+      "concepts": [
+        5
+      ],
+      "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\nc2 = 1 - 4\nDn = -4 * (-6)\nFn = -4 * 9\nD = Fraction(Dn, c2)\nE = Fraction(0)\nF = Fraction(Fn, c2)\ncx, cy = -D / 2, -E / 2\nr2 = (D * D + E * E) / 4 - F\nassert (cx, cy, r2) == (4, 0, 4)\nprint(frac_tex(cx + r2))\n"
+    },
+    {
+      "id": "cg-23",
+      "difficulty": 4,
+      "problem": "A right circular cone has base radius $5$ and height $12$. A plane parallel to the base cuts the cone at half its height, measured from the apex. What is the volume of the frustum between the plane and the base, divided by $\\pi$?",
+      "choices": [
+        "\\frac{100}{3}",
+        "\\frac{125}{2}",
+        "\\frac{175}{2}",
+        "100",
+        "125"
+      ],
+      "answer": "C",
+      "hint": "The piece near the apex is similar to the whole cone with ratio $\tfrac12$; subtract its volume from the whole.",
+      "solution": "The whole cone has volume $\\tfrac13\\pi\\cdot25\\cdot12=100\\pi$. The apex piece has height $6$ and radius $\\tfrac52$, so its volume is $\\tfrac13\\pi\\cdot\\tfrac{25}{4}\\cdot6=\\tfrac{25}{2}\\pi$. The frustum is therefore $\\left(100-\\tfrac{25}{2}\\right)\\pi=\\tfrac{175}{2}\\pi$. The value $100$ is the whole cone, which ignores the piece that was removed.",
+      "concepts": [
+        6
+      ],
+      "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\nR = Fraction(5)\nH = Fraction(12)\nV = Fraction(1, 3) * R * R * H\nsmall = Fraction(1, 3) * (R / 2) ** 2 * (H / 2)\nprint(frac_tex(V - small))\n"
+    },
+    {
+      "id": "cg-24",
+      "difficulty": 4,
+      "problem": "A sphere is inscribed in a regular tetrahedron with edge length $12$, touching all four faces. What is the radius of the sphere?",
+      "choices": [
+        "1",
+        "\\sqrt{2}",
+        "\\sqrt{3}",
+        "\\sqrt{6}",
+        "2\\sqrt{6}"
+      ],
+      "answer": "D",
+      "hint": "The center of the inscribed sphere is the centroid, and the radius is the distance from the centroid to a face.",
+      "solution": "Use the regular tetrahedron with vertices $(1,1,1)$, $(1,-1,-1)$, $(-1,1,-1)$, $(-1,-1,1)$, whose edge is $2\\sqrt2$ and whose centroid is the origin. Scaling by $\\tfrac{12}{2\\sqrt2}=3\\sqrt2$ gives edge $12$. In the unit version the circumradius is $\\sqrt3$, and the inradius is one third of it, $\\tfrac{\\sqrt3}{3}$. Scaling gives $r=3\\sqrt2\\cdot\\tfrac{\\sqrt3}{3}=\\sqrt6$, which agrees with $\\tfrac{a\\sqrt6}{12}$ at $a=12$.",
+      "concepts": [
+        7,
+        8
+      ],
+      "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\ns = 3 * math.sqrt(2)\nV = [tuple(s * c for c in v) for v in [(1, 1, 1), (1, -1, -1), (-1, 1, -1), (-1, -1, 1)]]\nassert abs(math.dist(V[0], V[1]) - 12) < 1e-9\ndef cross(a, b):\n    return (a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0])\ndef dot(a, b):\n    return sum(x * y for x, y in zip(a, b))\np, q, w = V[0], V[1], V[2]\nn = cross(tuple(q[i] - p[i] for i in range(3)), tuple(w[i] - p[i] for i in range(3)))\nr = abs(dot(n, p)) / math.sqrt(dot(n, n))\nassert abs(r - math.sqrt(6)) < 1e-9\nprint(\"\\\\sqrt{6}\")\n"
+    },
+    {
+      "id": "cg-25",
+      "difficulty": 4,
+      "problem": "A cube occupies $0\\le x,y,z\\le2$. The plane $x+y+z=3$ cuts the cube in a polygon. What is the area of this polygon?",
+      "choices": [
+        "\\sqrt{3}",
+        "2\\sqrt{2}",
+        "2\\sqrt{3}",
+        "3\\sqrt{2}",
+        "3\\sqrt{3}"
+      ],
+      "answer": "E",
+      "hint": "Find which edges of the cube the plane crosses, and the points where it crosses them.",
+      "solution": "The plane passes through the midpoints of six edges, $(2,1,0),(2,0,1),(1,2,0),(0,2,1),(1,0,2),(0,1,2)$, and through no vertex, since vertex coordinate sums are $0,2,4,6$ and never $3$. So the section is a hexagon. Adjacent midpoints are $\\sqrt2$ apart, and all six sides are equal with equal angles, so it is a regular hexagon of side $\\sqrt2$. Its area is $\\tfrac{3\\sqrt3}{2}\\cdot(\\sqrt2)^2=3\\sqrt3$.",
+      "concepts": [
+        7
+      ],
+      "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\ncorners = list(itertools.product([0, 2], repeat=3))\npts = set()\nfor a, b in itertools.combinations(corners, 2):\n    if sum(1 for i in range(3) if a[i] != b[i]) == 1:\n        fa, fb = sum(a) - 3, sum(b) - 3\n        if fa * fb < 0:\n            t = (3 - sum(a)) / (sum(b) - sum(a))\n            P = tuple(a[i] + t * (b[i] - a[i]) for i in range(3))\n            pts.add(tuple(round(c, 9) for c in P))\npts = list(pts)\nassert len(pts) == 6\ns3 = math.sqrt(3)\nu = (1 / math.sqrt(2), -1 / math.sqrt(2), 0.0)\nv = (1 / math.sqrt(6), 1 / math.sqrt(6), -2 / math.sqrt(6))\ncoords = [(sum(P[i] * u[i] for i in range(3)), sum(P[i] * v[i] for i in range(3))) for P in pts]\ncx = sum(c[0] for c in coords) / 6\ncy = sum(c[1] for c in coords) / 6\ncoords.sort(key=lambda c: math.atan2(c[1] - cy, c[0] - cx))\narea = 0.0\nfor i in range(6):\n    x1, y1 = coords[i]\n    x2, y2 = coords[(i + 1) % 6]\n    area += x1 * y2 - x2 * y1\narea = abs(area) / 2\nassert abs(area - 3 * s3) < 1e-9\nprint(\"3\\\\sqrt{3}\")\n"
+    },
+    {
+      "id": "cg-26",
+      "difficulty": 4,
+      "problem": "A plane passes through $(1,0,0)$, $(0,2,0)$, and $(0,0,3)$. What is the distance from the point $(2,2,2)$ to this plane?",
+      "choices": [
+        "\\frac{6}{7}",
+        "\\frac{8}{7}",
+        "\\frac{16}{7}",
+        "\\frac{18}{7}",
+        "\\frac{24}{7}"
+      ],
+      "answer": "C",
+      "hint": "Find a normal vector as a cross product of two vectors lying in the plane.",
+      "solution": "Vectors in the plane are $\\vec{AB}=(-1,2,0)$ and $\\vec{AC}=(-1,0,3)$, where $A=(1,0,0)$. Their cross product is $n=(6,3,2)$, which is normal to the plane. The plane is therefore $6x+3y+2z=d$, and substituting $A$ gives $d=6$, so the plane is $6x+3y+2z=6$. Check $B$: $6\\cdot0+3\\cdot2+0=6$, and check $C$: $0+0+2\\cdot3=6$. The distance from $P=(2,2,2)$ is $\\tfrac{|n\\cdot P-6|}{|n|}=\\tfrac{|12+6+4-6|}{7}=\\tfrac{16}{7}$. The choice $\\tfrac{6}{7}$ comes from using $n\\cdot P$ alone without the constant term.",
+      "concepts": [
+        8
+      ],
+      "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\nA, B, C, P = (1, 0, 0), (0, 2, 0), (0, 0, 3), (2, 2, 2)\nu = tuple(B[i] - A[i] for i in range(3))\nw = tuple(C[i] - A[i] for i in range(3))\nn = (u[1] * w[2] - u[2] * w[1], u[2] * w[0] - u[0] * w[2], u[0] * w[1] - u[1] * w[0])\nnum = abs(sum(n[i] * (P[i] - A[i]) for i in range(3)))\nden2 = sum(c * c for c in n)\nden = math.isqrt(den2)\nassert den * den == den2\nprint(frac_tex(Fraction(num, den)))\n"
+    },
+    {
+      "id": "cg-27",
+      "difficulty": 5,
+      "problem": "Find the largest possible area of a triangle whose three vertices all lie on the ellipse $\\dfrac{x^2}{25}+\\dfrac{y^2}{9}=1$.",
+      "choices": [
+        "\\frac{15\\sqrt{3}}{2}",
+        "\\frac{45\\sqrt{3}}{4}",
+        "15\\sqrt{3}",
+        "\\frac{45\\sqrt{3}}{2}",
+        "30\\sqrt{3}"
+      ],
+      "answer": "B",
+      "hint": "An affine map sends the ellipse to a circle and multiplies all areas by a fixed factor. Which triangle inscribed in a circle has the largest area?",
+      "solution": "The map $(x,y)\\mapsto(x/5,\\,y/3)$ sends the ellipse to the unit circle and multiplies areas by $\\tfrac1{15}$, so the answer is $15$ times the largest triangle inscribed in the unit circle. A triangle inscribed in the unit circle with central angles $\\alpha,\\beta,\\gamma$ has area $\\tfrac12(\\sin\\alpha+\\sin\\beta+\\sin\\gamma)$, which is largest for the equilateral triangle, with $\\alpha=\\beta=\\gamma=120^\\circ$. That area is $\\tfrac{3\\sqrt3}{4}$, and multiplying by $15$ gives $\\tfrac{45\\sqrt3}{4}$.",
+      "concepts": [
+        3
+      ],
+      "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\nN = 120\npts = [(5 * math.cos(2 * math.pi * i / N), 3 * math.sin(2 * math.pi * i / N)) for i in range(N)]\nbest = 0.0\nfor i, j, k in itertools.combinations(range(N), 3):\n    A, B, C = pts[i], pts[j], pts[k]\n    ar = abs((B[0] - A[0]) * (C[1] - A[1]) - (C[0] - A[0]) * (B[1] - A[1])) / 2\n    if ar > best:\n        best = ar\nassert abs(best - 45 * math.sqrt(3) / 4) < 1e-9\nprint(\"\\\\frac{45\\\\sqrt{3}}{4}\")\n"
+    },
+    {
+      "id": "cg-28",
+      "difficulty": 5,
+      "problem": "A rectangular box has all eight of its vertices on a sphere of radius $1$. What is the largest possible volume of such a box?",
+      "choices": [
+        "\\frac{4\\sqrt{3}}{9}",
+        "1",
+        "\\frac{2\\sqrt{3}}{3}",
+        "\\frac{8\\sqrt{3}}{9}",
+        "2"
+      ],
+      "answer": "D",
+      "hint": "The space diagonal of the box is a diameter of the sphere. Then apply AM-GM to the three squared edge lengths.",
+      "solution": "The space diagonal is a diameter, so $a^2+b^2+c^2=2^2=4$ for the edge lengths $a,b,c$. By AM-GM, $(abc)^2=a^2b^2c^2\\le\\left(\\tfrac{a^2+b^2+c^2}{3}\\right)^3=\\left(\\tfrac43\\right)^3$, so $abc\\le\\left(\\tfrac43\\right)^{3/2}=\\tfrac{8}{3\\sqrt3}=\\tfrac{8\\sqrt3}{9}$. Equality holds for the cube with $a=b=c=\\tfrac{2}{\\sqrt3}$, which indeed fits on the sphere. The bound is therefore attained, and no other box does better.",
+      "concepts": [
+        7,
+        8
+      ],
+      "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\nN = 400\nbest = 0.0\nfor i in range(1, N):\n    for j in range(1, N):\n        a = 2 * i / N\n        b = 2 * j / N\n        c2 = 4 - a * a - b * b\n        if c2 <= 0:\n            continue\n        best = max(best, a * b * math.sqrt(c2))\nassert abs(best - 8 * math.sqrt(3) / 9) < 1e-3\nprint(\"\\\\frac{8\\\\sqrt{3}}{9}\")\n"
+    },
+    {
+      "id": "cg-29",
+      "difficulty": 5,
+      "problem": "From the point $(4,0)$, two tangent lines are drawn to the ellipse $\\dfrac{x^2}{4}+y^2=1$. What is the product of the slopes of these two tangent lines?",
+      "choices": [
+        "-\\frac{1}{12}",
+        "\\frac{1}{12}",
+        "\\frac{1}{4}",
+        "\\frac{1}{3}",
+        "\\frac{1}{2}"
+      ],
+      "answer": "A",
+      "hint": "Write each tangent as $y=m(x-4)$ and require the resulting quadratic in $x$ to have a double root.",
+      "solution": "Substituting $y=m(x-4)$ into $x^2+4y^2=4$ gives $(1+4m^2)x^2-32m^2x+(64m^2-4)=0$. Its discriminant is $(32m^2)^2-4(1+4m^2)(64m^2-4)=16-192m^2$, which vanishes when $m^2=\\tfrac1{12}$. The two slopes are $\\pm\\tfrac{1}{\\sqrt{12}}$, and their product is $-\\tfrac1{12}$. The sign is the point of the question: a product of two positive slopes would be wrong.",
+      "concepts": [
+        3,
+        2
+      ],
+      "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\ndef disc(mu):\n    A = 1 + 4 * mu\n    B = -32 * mu\n    C = 64 * mu - 4\n    return B * B - 4 * A * C\nlo, hi = 0.0, 1.0\nassert disc(lo) > 0 > disc(hi)\nfor _ in range(200):\n    mid = (lo + hi) / 2\n    if disc(mid) > 0:\n        lo = mid\n    else:\n        hi = mid\nmu = (lo + hi) / 2\nproduct = -mu\nassert abs(product + 1 / 12) < 1e-9\nprint(\"-\\\\frac{1}{12}\")\n"
+    },
+    {
+      "id": "cg-30",
+      "difficulty": 5,
+      "problem": "A regular tetrahedron has edge length $6$. The midpoints of its six edges are the vertices of a polyhedron. What is the volume of that polyhedron?",
+      "choices": [
+        "3\\sqrt{2}",
+        "6\\sqrt{2}",
+        "8\\sqrt{2}",
+        "9\\sqrt{2}",
+        "18\\sqrt{2}"
+      ],
+      "answer": "D",
+      "hint": "Find the six midpoints in coordinates. The polyhedron is a regular octahedron, and its edge length is half the tetrahedron's face edge.",
+      "solution": "Midpoints of two edges that share a vertex form a midline of a face triangle, so they are $\\tfrac12\\cdot6=3$ apart. That is the edge length of the regular octahedron. A regular octahedron of edge $s$ has volume $\\tfrac{\\sqrt2}{3}s^3$, so the volume is $\\tfrac{\\sqrt2}{3}\\cdot27=9\\sqrt2$. The value $18\\sqrt2$ is what you get by dropping the factor $\\tfrac12$ from each midline.",
+      "concepts": [
+        6,
+        7
+      ],
+      "verify": "from fractions import Fraction\nimport math, itertools\n\ndef frac_tex(f):\n    f = Fraction(f)\n    if f.denominator == 1:\n        return str(f.numerator)\n    sign = \"-\" if f < 0 else \"\"\n    return sign + \"\\\\frac{%d}{%d}\" % (abs(f.numerator), f.denominator)\n\ndef shoelace_area(pts):\n    s = 0\n    n = len(pts)\n    for i in range(n):\n        x1, y1 = pts[i]\n        x2, y2 = pts[(i + 1) % n]\n        s += x1 * y2 - x2 * y1\n    return Fraction(abs(s), 2)\n\nV = [(0, 0, 0), (6, 0, 0), (3, 3 * math.sqrt(3), 0), (3, math.sqrt(3), 2 * math.sqrt(6))]\nfor i, j in itertools.combinations(range(4), 2):\n    assert abs(math.dist(V[i], V[j]) - 6) < 1e-9\nmids = [tuple((V[i][k] + V[j][k]) / 2 for k in range(3)) for i, j in itertools.combinations(range(4), 2)]\nc = tuple(sum(p[k] for p in mids) / 6 for k in range(3))\ndef sub(a, b):\n    return tuple(a[i] - b[i] for i in range(3))\ndef cross(a, b):\n    return (a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0])\ndef dot(a, b):\n    return sum(x * y for x, y in zip(a, b))\ndef det3(a, b, d):\n    return dot(a, cross(b, d))\nvol = 0.0\nfaces = 0\nfor tri in itertools.combinations(range(6), 3):\n    P0, P1, P2 = [mids[i] for i in tri]\n    n = cross(sub(P1, P0), sub(P2, P0))\n    others = [dot(n, sub(mids[k], P0)) for k in range(6) if k not in tri]\n    if all(o > 1e-9 for o in others) or all(o < -1e-9 for o in others):\n        faces += 1\n        vol += abs(det3(sub(P0, c), sub(P1, c), sub(P2, c))) / 6\nassert faces == 8\nassert abs(vol - 9 * math.sqrt(2)) < 1e-9\nprint(\"9\\\\sqrt{2}\")\n"
+    }
+  ],
+  "videos": [
+    {
+      "youtubeId": "0KjG8Pg6LGk",
+      "title": "Gauss's magic shoelace area formula and its calculus companion",
+      "channel": "Mathologer",
+      "why": "Explains where the shoelace formula comes from and why it works for any polygon; watch it after the shoelace concept lesson."
+    },
+    {
+      "youtubeId": "ZLqA8-7Urb8",
+      "title": "AMC10 & Waterloo Math Contest - Circle & Coordinate Geometry - L1 Circle Basics",
+      "channel": "AlexIvySchool",
+      "why": "A contest-oriented first lesson on circle equations, centers and radii, which matches the completing-the-square work in this topic."
+    },
+    {
+      "youtubeId": "LmBViMOeYXg",
+      "title": "Volumes of cones intuition | Solid geometry | High school geometry | Khan Academy",
+      "channel": "Khan Academy",
+      "why": "Builds the intuition that a cone has one third the volume of a cylinder with the same base and height; watch it before the Cavalieri-style solids lesson."
+    }
+  ]
+}

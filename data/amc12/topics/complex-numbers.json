@@ -1,0 +1,989 @@
+{
+  "id": "complex-numbers",
+  "title": "Complex Numbers",
+  "summary": "Cartesian and polar form, De Moivre's theorem, roots of unity and their sums and products, rotations and loci in the complex plane, and polynomials with complex roots.",
+  "examWeight": "≈3–5 problems per paper",
+  "prerequisites": [
+    "algebra",
+    "geometry"
+  ],
+  "overview": "On the AMC 12, complex numbers appear as a compact tool rather than as a separate unit. A single problem about rotations, the roots of a polynomial, or a sum of cosines often becomes short once the complex form is introduced. Expect roughly three to five problems per paper that use this material: early ones test arithmetic with $i$ and the modulus, middle ones require choosing a representation (polar for powers, Cartesian for sums), and late ones combine roots of unity with orthogonality or with a locus.\n\nProblems escalate in a predictable way. At the lower levels the work is arithmetic: expand a product, rationalize a quotient, or read off a modulus. At the middle levels the key decision is the representation, and the strongest solvers choose the form before expanding anything: polar form for powers and roots, the factorization $x^{n}-1=\\prod(x-\\omega_k)$ for sums over roots of unity, and the conjugate for any denominator. At the top levels a problem usually combines two ideas, such as a rotation together with a distance bound or a reciprocal sum with a polynomial identity.\n\nStudy by building the toolkit in order: conjugate and modulus, polar form, De Moivre's theorem, then roots of unity and their sums, then rotations, loci, and polynomials. For each identity, work through the derivation until it can be reproduced from memory, because the contest version almost always asks for a value that the derivation makes immediate. Practice the orthogonality rule for roots of unity until it is automatic, since it is the single most reused fact in the topic.",
+  "strategies": [
+    {
+      "name": "Switch to polar form as soon as powers or roots appear",
+      "description": "If a problem asks for $z^{n}$, $\\sqrt[n]{w}$, or an angle, write each complex number as $re^{i\\theta}$ at once. Moduli multiply and arguments add, so the whole computation shrinks to a few multiplications and one reduction modulo $2\\pi$."
+    },
+    {
+      "name": "Clear denominators with the conjugate",
+      "description": "A complex quotient is simplified by multiplying by the conjugate of the denominator, which makes the denominator the positive real $|w|^{2}$. Do this before taking real or imaginary parts, because the parts of an unsimplified quotient are hard to read."
+    },
+    {
+      "name": "Reduce roots of unity with $\\omega^{n}=1$ and the vanishing sum",
+      "description": "Write every exponent modulo the order of the root, then use the orthogonality rule that a sum of powers of a root of unity is zero unless the exponent is divisible by the order. Many sums over roots of unity collapse to a count of terms."
+    },
+    {
+      "name": "Translate geometry into a rotation equation",
+      "description": "Replace a condition about angles, perpendicularity, or equilateral shapes with a single equation involving a unit factor such as $e^{i\\pi/3}$ or $i$. Solve the equation algebraically instead of drawing a figure and computing lengths."
+    },
+    {
+      "name": "Use conjugate symmetry for real-coefficient polynomials",
+      "description": "If a polynomial has real coefficients, every nonreal root comes with its conjugate. Use this to find all roots from one, and then apply Vieta to the complete set of roots rather than to a partial list."
+    },
+    {
+      "name": "Maximize a modulus with the triangle inequality",
+      "description": "To find the largest or smallest value of a sum or difference of moduli, apply the triangle inequality and identify the equality case, which says that the terms point in the same or opposite direction. Then check that the equality case is achievable on the given constraint set."
+    }
+  ],
+  "concepts": [
+    {
+      "title": "Cartesian form, the conjugate, and division",
+      "body": "A complex number is written $z=a+bi$ with $a,b$ real and $i^{2}=-1$. The real number $a=\\operatorname{Re} z$ is the real part and $b=\\operatorname{Im} z$ is the imaginary part; note that $\\operatorname{Im} z=b$ is a real number, not $bi$. Each $z$ is a point $(a,b)$ of the plane, and addition is componentwise, so the geometry of addition is ordinary vector addition. Multiplication is where the new structure lives, and it is the reason complex numbers are useful.\n\nMultiplication follows from the distributive law and $i^{2}=-1$: $(a+bi)(c+di)=(ac-bd)+(ad+bc)i$. This is the FOIL expansion with one extra rule. Students should practice expanding products until the pattern is automatic, since almost every computation in this topic begins with a product of this kind, and a sign error from $i^{2}$ is the most common source of wrong answers.\n\nThe conjugate of $z=a+bi$ is $\\bar z=a-bi$. Conjugation is the reflection of the plane across the real axis, and it respects arithmetic: $\\overline{z+w}=\\bar z+\\bar w$ and $\\overline{zw}=\\bar z\\,\\bar w$. Two identities follow at once: $\\operatorname{Re} z=\\frac{z+\\bar z}{2}$ and $\\operatorname{Im} z=\\frac{z-\\bar z}{2i}$. These let one extract real and imaginary parts from a formula without expanding it into coordinates.\n\nThe key identity is $z\\bar z=a^{2}+b^{2}$. Proof: $(a+bi)(a-bi)=a^{2}-(bi)^{2}=a^{2}+b^{2}$. The right side is the square of the distance from $z$ to the origin, which we write $|z|^{2}$. So $|z|^{2}=z\\bar z$, and this single formula converts modulus questions into algebra. It also shows that $|zw|^{2}=zw\\,\\bar z\\bar w=|z|^{2}|w|^{2}$, hence $|zw|=|z|\\,|w|$ for all $z,w$.\n\nDivision is handled by multiplying numerator and denominator by the conjugate of the denominator. If $w\\ne0$ then $\\frac{z}{w}=\\frac{z\\bar w}{w\\bar w}=\\frac{z\\bar w}{|w|^{2}}$, and the new denominator is a positive real number. For instance $\\frac{3+4i}{1-2i}=\\frac{(3+4i)(1+2i)}{5}=\\frac{-5+10i}{5}=-1+2i$. The method works for every nonzero $w$, and it is the standard way to simplify any quotient whose denominator is not real.\n\nWhy does multiplying by $\\bar w/\\bar w$ not change the value? Because the fraction equals one, and the denominator $w\\bar w$ is real. Multiplying by $i$ or by a real number instead would leave the denominator non-real, so the conjugate is the correct multiplier. Once the denominator is real, the real and imaginary parts of the quotient can be read off directly, with no further work.\n\nTwo beginner traps dominate this lesson. First, students carry the wrong sign through a product because they forget that $i^{2}=-1$. Second, students try to clear a complex denominator by multiplying it by $i$, which does not make it real. A useful habit is to write the final answer in the form $x+yi$ and check each part separately, because a correct modulus can hide a wrong real part.",
+      "keyFacts": [
+        "$i^{2}=-1$ and $(a+bi)(c+di)=(ac-bd)+(ad+bc)i$",
+        "$\\overline{a+bi}=a-bi$, $\\overline{zw}=\\bar z\\,\\bar w$",
+        "$z\\bar z=|z|^{2}=a^{2}+b^{2}$",
+        "$\\dfrac{z}{w}=\\dfrac{z\\bar w}{|w|^{2}}$ for $w\\ne0$",
+        "$\\operatorname{Re} z=\\dfrac{z+\\bar z}{2}$, $\\operatorname{Im} z=\\dfrac{z-\\bar z}{2i}$"
+      ],
+      "whenToUse": "Any expression with $i$ in a denominator, any question asking for a real or imaginary part, and any question about a modulus of a sum or product.",
+      "commonMistakes": [
+        "Treating $\\operatorname{Im} z$ as $bi$ rather than the real number $b$.",
+        "Dividing by a complex number without multiplying by its conjugate, which leaves $i$ in the denominator.",
+        "Expanding $(a+bi)^{2}$ and dropping the cross term $2abi$."
+      ],
+      "example": {
+        "problem": "Compute $\\dfrac{3+4i}{1-2i}$ and write the answer in the form $x+yi$.",
+        "solution": "Multiply numerator and denominator by the conjugate $1+2i$ of the denominator. The denominator becomes $(1-2i)(1+2i)=1+4=5$. The numerator is $(3+4i)(1+2i)=3+6i+4i+8i^{2}=-5+10i$. Dividing by $5$ gives $-1+2i$.",
+        "answer": "-1+2i",
+        "verify": "from fractions import Fraction as F\na, b, c, d = 3, 4, 1, -2\nden = c*c + d*d\nre = F(a*c + b*d, den)\nim = F(b*c - a*d, den)\nprint(f\"{re.numerator}{'+' if im >= 0 else '-'}{abs(im.numerator)}i\")"
+      }
+    },
+    {
+      "title": "Modulus, argument, and polar form",
+      "body": "Every nonzero $z=a+bi$ has polar coordinates: the modulus $r=|z|=\\sqrt{a^{2}+b^{2}}$ and an argument $\\theta=\\arg z$, the angle measured counterclockwise from the positive real axis. Then $a=r\\cos\\theta$ and $b=r\\sin\\theta$, so $z=r(\\cos\\theta+i\\sin\\theta)$. The argument is defined only modulo $2\\pi$; the principal value is usually taken in $(-\\pi,\\pi]$, and the problem should say which convention it uses.\n\nMultiplication in polar form is where geometry becomes algebra. Let $z=r(\\cos\\alpha+i\\sin\\alpha)$ and $w=s(\\cos\\beta+i\\sin\\beta)$. Multiplying out and applying the addition formulas, the real part of $zw/(rs)$ is $\\cos\\alpha\\cos\\beta-\\sin\\alpha\\sin\\beta=\\cos(\\alpha+\\beta)$ and the imaginary part is $\\sin\\alpha\\cos\\beta+\\cos\\alpha\\sin\\beta=\\sin(\\alpha+\\beta)$. Hence $zw=rs\\big(\\cos(\\alpha+\\beta)+i\\sin(\\alpha+\\beta)\\big)$: moduli multiply and arguments add.\n\nEuler's notation $e^{i\\theta}=\\cos\\theta+i\\sin\\theta$, justified in a later lesson, packages this as $re^{i\\alpha}\\cdot se^{i\\beta}=rse^{i(\\alpha+\\beta)}$, which is just the law of exponents. Division gives $\\frac{z}{w}=\\frac{r}{s}e^{i(\\alpha-\\beta)}$. With practice you should read the modulus and argument of any product or quotient immediately, without expanding anything.\n\nConverting back to Cartesian form uses a reference angle. For $z=-1+i\\sqrt3$ we have $r=2$, and $\\cos\\theta=-\\tfrac12$, $\\sin\\theta=\\tfrac{\\sqrt3}{2}$, so $\\theta=\\tfrac{2\\pi}{3}$. The reference angle is found from $\\arctan\\left|\\frac{b}{a}\\right|$, and then the quadrant is fixed by the signs of $a$ and $b$. Quadrant errors are common because $\\arctan$ alone cannot distinguish $\\theta$ from $\\theta+\\pi$.\n\nThe modulus is the distance from $z$ to $0$, so $|z-w|$ is the distance between two points. Many contest problems start by rewriting a condition such as $|z|=1$ or $\\arg z=\\pi/3$, after which the problem is about a circle or a ray from the origin. Learning to recognize $|z-c|=r$ as a circle and $\\arg(z-c)=\\theta$ as a ray from $c$ is one of the most useful habits in this topic.\n\nModulus is multiplicative and argument is additive, so powers are easy. For example $|(1+i)^{10}|=(\\sqrt2)^{10}=32$, and $\\arg(1+i)^{10}=10\\cdot\\frac{\\pi}{4}=\\frac{5\\pi}{2}\\equiv\\frac{\\pi}{2}$, so $(1+i)^{10}=32i$. Check directly: $(1+i)^{2}=2i$, and $(2i)^{5}=32i^{5}=32i$.\n\nTwo mistakes are common. First, students use $\\arg(a+bi)=\\arctan(b/a)$ without checking the quadrant. Second, students forget that $\\arg$ is only defined up to multiples of $2\\pi$, so $-30^\\circ$ and $330^\\circ$ name the same direction. Always state which representative of the argument you are using before comparing two answers.",
+      "keyFacts": [
+        "$z=r(\\cos\\theta+i\\sin\\theta)$ with $r=|z|$ and $\\theta=\\arg z$",
+        "$|zw|=|z|\\,|w|$ and $\\arg(zw)\\equiv\\arg z+\\arg w \\pmod{2\\pi}$",
+        "$\\left|\\dfrac{z}{w}\\right|=\\dfrac{|z|}{|w|}$ and $|z|^{2}=z\\bar z$",
+        "$\\arg\\bar z\\equiv-\\arg z \\pmod{2\\pi}$"
+      ],
+      "whenToUse": "Questions about powers, roots, or sizes of products and quotients; and conditions such as $|z|=r$ or $\\arg z=\\theta$, which describe a circle or a ray.",
+      "commonMistakes": [
+        "Reading the argument off $\\arctan(b/a)$ without checking which quadrant the point lies in.",
+        "Forgetting that the argument is defined only modulo $2\\pi$, so two different-looking answers may be equal.",
+        "Using $r\\,e^{i\\theta}$ with $\\theta$ in degrees in one place and radians in another."
+      ],
+      "example": {
+        "problem": "Find $\\arg(\\sqrt3-i)$ in degrees, using the principal value in $(-180^\\circ,180^\\circ]$.",
+        "solution": "The point $\\sqrt3-i$ lies in the fourth quadrant with modulus $\\sqrt{3+1}=2$. Its cosine is $\\frac{\\sqrt3}{2}$ and its sine is $-\\frac12$, so the argument is $-30^\\circ$.",
+        "answer": "-30",
+        "verify": "import cmath, math\nz = complex(math.sqrt(3), -1)\ndeg = math.degrees(cmath.phase(z))\nassert abs(deg + 30) < 1e-9\nprint(-30)"
+      }
+    },
+    {
+      "title": "De Moivre's theorem and integer powers",
+      "body": "De Moivre's theorem states $(\\cos\\theta+i\\sin\\theta)^{n}=\\cos n\\theta+i\\sin n\\theta$ for every integer $n$. For $n\\ge0$ it follows by induction. The case $n=1$ is trivial. If the statement holds for $n$, then $(\\cos\\theta+i\\sin\\theta)^{n+1}=(\\cos n\\theta+i\\sin n\\theta)(\\cos\\theta+i\\sin\\theta)$, and the product rule from the previous lesson gives $\\cos(n+1)\\theta+i\\sin(n+1)\\theta$.\n\nNegative exponents follow from the observation that $(\\cos\\theta+i\\sin\\theta)(\\cos\\theta-i\\sin\\theta)=\\cos^{2}\\theta+\\sin^{2}\\theta=1$, so $(\\cos\\theta+i\\sin\\theta)^{-1}=\\cos\\theta-i\\sin\\theta=\\cos(-\\theta)+i\\sin(-\\theta)$. The formula therefore holds for all integers $n$. Geometrically, multiplying by a unit complex number rotates the plane, and performing that rotation $n$ times is a single rotation by $n\\theta$.\n\nFor a general nonzero complex number write $z=r(\\cos\\theta+i\\sin\\theta)$. Then $z^{n}=r^{n}(\\cos n\\theta+i\\sin n\\theta)$. Two things happen at once: the modulus is raised to the power $n$, and the argument is multiplied by $n$ (modulo $2\\pi$). This is the single most useful consequence in competition work, because an integer power of a complicated expression often reduces to a short computation with an angle.\n\nExample. Let $z=\\sqrt3+i$. Then $r=2$ and $\\theta=\\frac{\\pi}{6}$, so $z^{6}=2^{6}\\big(\\cos\\pi+i\\sin\\pi\\big)=-64$. Nothing was expanded. Repeated squaring and multiplying would also work, but it takes many steps and invites arithmetic slips, while the polar computation takes one line once the modulus and argument are known.\n\nDe Moivre also produces trigonometric identities. Expanding $(\\cos\\theta+i\\sin\\theta)^{3}$ by the binomial theorem gives $\\cos^{3}\\theta-3\\cos\\theta\\sin^{2}\\theta+i\\,(3\\cos^{2}\\theta\\sin\\theta-\\sin^{3}\\theta)$. Comparing real parts and using $\\sin^{2}\\theta=1-\\cos^{2}\\theta$ gives $\\cos3\\theta=4\\cos^{3}\\theta-3\\cos\\theta$, and comparing imaginary parts gives $\\sin3\\theta=3\\sin\\theta-4\\sin^{3}\\theta$. Students should be able to reproduce both identities from the binomial expansion.\n\nThe same idea solves equations. The solutions of $z^{n}=w$, where $w=\\rho(\\cos\\varphi+i\\sin\\varphi)$, are $z_{k}=\\rho^{1/n}\\big(\\cos\\frac{\\varphi+2\\pi k}{n}+i\\sin\\frac{\\varphi+2\\pi k}{n}\\big)$ for $k=0,1,\\dots,n-1$. Each $z_{k}$ satisfies the equation by De Moivre's theorem, and there are exactly $n$ distinct values, which matches the degree of $z^{n}-w$.\n\nCommon mistakes are applying De Moivre to $\\cos\\theta+i\\sin\\theta$ when the modulus is not $1$, so that the factor $r^{n}$ is lost, and reducing the angle carelessly when $n\\theta$ is large. Reduce the angle modulo $2\\pi$ before evaluating any cosine or sine, and keep track of the modulus separately.",
+      "keyFacts": [
+        "$(\\cos\\theta+i\\sin\\theta)^{n}=\\cos n\\theta+i\\sin n\\theta$ for all integers $n$",
+        "$\\big(r(\\cos\\theta+i\\sin\\theta)\\big)^{n}=r^{n}(\\cos n\\theta+i\\sin n\\theta)$",
+        "$\\cos3\\theta=4\\cos^{3}\\theta-3\\cos\\theta$",
+        "$\\sin3\\theta=3\\sin\\theta-4\\sin^{3}\\theta$"
+      ],
+      "whenToUse": "An integer power of a complex number, a trigonometric expression involving $n\\theta$, or an equation $z^{n}=w$.",
+      "commonMistakes": [
+        "Applying De Moivre to a number whose modulus is not $1$ and forgetting the factor $r^{n}$.",
+        "Expanding a high power by hand when the polar form would finish in one step.",
+        "Using an angle $n\\theta$ without reducing modulo $2\\pi$ before reading off the cosine."
+      ],
+      "example": {
+        "problem": "Compute $(\\sqrt3+i)^{6}$.",
+        "solution": "Write $\\sqrt3+i=2\\big(\\cos\\frac{\\pi}{6}+i\\sin\\frac{\\pi}{6}\\big)$. By De Moivre, $(\\sqrt3+i)^{6}=2^{6}\\big(\\cos\\pi+i\\sin\\pi\\big)=64\\cdot(-1)=-64$.",
+        "answer": "-64",
+        "verify": "import cmath, math\nz = complex(math.sqrt(3), 1)\nw = z**6\nassert abs(w.imag) < 1e-9\nprint(round(w.real))"
+      }
+    },
+    {
+      "title": "Euler's formula and exponential sums",
+      "body": "Define $e^{i\\theta}=\\cos\\theta+i\\sin\\theta$. The reason for this definition is that the exponential series $e^{x}=\\sum_{n\\ge0}\\frac{x^{n}}{n!}$ converges for complex $x$, and $e^{x+y}=e^{x}e^{y}$ continues to hold. Substituting $x=i\\theta$ and using $i^{2}=-1$, the even powers give $\\sum_{m}\\frac{(-1)^{m}\\theta^{2m}}{(2m)!}=\\cos\\theta$ and the odd powers give $i\\sum_{m}\\frac{(-1)^{m}\\theta^{2m+1}}{(2m+1)!}=i\\sin\\theta$. This is Euler's formula.\n\nThe consequences are immediate. The identity $e^{i\\pi}=-1$ is Euler's identity. The rule $e^{i\\theta}e^{i\\varphi}=e^{i(\\theta+\\varphi)}$ is the angle-addition formula, and De Moivre's theorem is $(e^{i\\theta})^{n}=e^{in\\theta}$. Since $\\cos\\theta=\\frac{e^{i\\theta}+e^{-i\\theta}}{2}$ and $\\sin\\theta=\\frac{e^{i\\theta}-e^{-i\\theta}}{2i}$, every trigonometric polynomial becomes a polynomial in $e^{i\\theta}$ and $e^{-i\\theta}$, and algebra takes over.\n\nThe most important contest use is summing trigonometric series. Let $\\omega=e^{i\\theta}$ with $\\omega\\ne1$. The finite geometric series gives $\\sum_{k=0}^{n-1}\\omega^{k}=\\frac{\\omega^{n}-1}{\\omega-1}$. If $\\omega^{n}=1$, the numerator vanishes while the denominator does not, so the whole sum is $0$. In general the real part of this quotient gives a closed form for a cosine sum with arithmetic arguments.\n\nTo get the closed form, note that $\\omega^{n}-1=e^{in\\theta/2}\\cdot2i\\sin\\frac{n\\theta}{2}$ and $\\omega-1=e^{i\\theta/2}\\cdot2i\\sin\\frac{\\theta}{2}$. Therefore $\\frac{\\omega^{n}-1}{\\omega-1}=e^{i(n-1)\\theta/2}\\,\\frac{\\sin(n\\theta/2)}{\\sin(\\theta/2)}$. Taking real parts gives $\\sum_{k=0}^{n-1}\\cos k\\theta=\\cos\\frac{(n-1)\\theta}{2}\\cdot\\frac{\\sin(n\\theta/2)}{\\sin(\\theta/2)}$ whenever $\\sin(\\theta/2)\\ne0$. The complex method is far cleaner than the product-to-sum manipulations it replaces.\n\nExample: $\\sum_{k=0}^{9}\\cos\\frac{k\\pi}{5}$. Here $\\omega=e^{i\\pi/5}$ satisfies $\\omega^{10}=1$ and $\\omega\\ne1$, so $\\sum_{k=0}^{9}\\omega^{k}=0$. Its real part is exactly the cosine sum, which therefore vanishes. The closed form agrees: $\\sin\\frac{10\\pi}{10}=\\sin\\pi=0$.\n\nEuler's formula also converts products of trigonometric functions into sums. Expanding $\\cos^{n}\\theta=\\left(\\frac{e^{i\\theta}+e^{-i\\theta}}{2}\\right)^{n}$ with the binomial theorem and regrouping exponents gives a sum of cosines of multiples of $\\theta$. This is the same technique used in the trigonometric identities lesson, and it avoids the long chains of double-angle formulas that students otherwise write down.\n\nPitfalls: confusing $e^{i\\theta}$ with a real number that grows with $\\theta$ (it is a point on the unit circle); dividing by $\\omega-1$ when $\\omega=1$; and using the closed form when $\\sin(\\theta/2)=0$, in which case every term of the sum is $1$ or $\\cos$ of a multiple of $2\\pi$ and the sum is simply $n$ or the count of such terms.",
+      "keyFacts": [
+        "$e^{i\\theta}=\\cos\\theta+i\\sin\\theta$ and $e^{i\\pi}=-1$",
+        "$\\cos\\theta=\\dfrac{e^{i\\theta}+e^{-i\\theta}}{2}$ and $\\sin\\theta=\\dfrac{e^{i\\theta}-e^{-i\\theta}}{2i}$",
+        "$\\sum_{k=0}^{n-1}\\omega^{k}=\\dfrac{\\omega^{n}-1}{\\omega-1}$ for $\\omega\\ne1$",
+        "$\\sum_{k=0}^{n-1}\\cos k\\theta=\\cos\\dfrac{(n-1)\\theta}{2}\\cdot\\dfrac{\\sin(n\\theta/2)}{\\sin(\\theta/2)}$"
+      ],
+      "whenToUse": "A sum of cosines or sines whose arguments form an arithmetic progression, or a power of a trigonometric function that the binomial theorem can expand.",
+      "commonMistakes": [
+        "Dividing by $\\omega-1$ without first checking that $\\omega\\ne1$.",
+        "Taking the real part of $\\sum\\omega^{k}$ but mis-indexing the sum, so that the number of terms is off by one.",
+        "Applying the closed form in the degenerate case $\\sin(\\theta/2)=0$."
+      ],
+      "example": {
+        "problem": "Compute $\\displaystyle\\sum_{k=0}^{9}\\cos\\frac{k\\pi}{5}$.",
+        "solution": "Let $\\omega=e^{i\\pi/5}$. Then $\\omega^{10}=1$ and $\\omega\\ne1$, so $\\sum_{k=0}^{9}\\omega^{k}=\\frac{\\omega^{10}-1}{\\omega-1}=0$. The real part of this sum is $\\sum_{k=0}^{9}\\cos\\frac{k\\pi}{5}$, so that sum is $0$.",
+        "answer": "0",
+        "verify": "import math\nt = sum(math.cos(k*math.pi/5) for k in range(10))\nassert abs(t) < 1e-9\nprint(0)"
+      }
+    },
+    {
+      "title": "Roots of unity: sums, products, and factorization",
+      "body": "An $n$th root of unity is a solution of $z^{n}=1$. Writing $z=re^{i\\theta}$ forces $r=1$ and $n\\theta\\in2\\pi\\mathbb Z$, so the solutions are $\\omega_k=e^{2\\pi ik/n}$ for $k=0,1,\\dots,n-1$. There are exactly $n$ of them, equally spaced on the unit circle, and they form a group under multiplication. A root is primitive when its order is exactly $n$, which happens for $\\omega_k$ with $\\gcd(k,n)=1$.\n\nThe factorization $x^{n}-1=\\prod_{k=0}^{n-1}(x-\\omega_k)$ holds identically in $x$, because both sides are monic of degree $n$ and have the same $n$ distinct roots. Substituting $x=2$ gives $\\prod_{k=0}^{n-1}(2-\\omega_k)=2^{n}-1$, a product of complex numbers whose value is an integer. This is the typical way a product over roots of unity is evaluated: identify a polynomial with those roots, and evaluate it.\n\nVieta's formulas give the symmetric functions. The sum of all $n$th roots is $0$ for $n\\ge2$, because the coefficient of $x^{n-1}$ in $x^{n}-1$ is zero. The product of all $n$th roots is $(-1)^{n+1}$, because for $x^{n}-1$ the product of the roots equals $(-1)^{n}$ times the constant term $-1$. Roots also come in conjugate pairs $\\omega_k,\\omega_{-k}$, which is why the real parts of many sums are symmetric.\n\nThe orthogonality rule is the most used fact in this topic. For an integer $m$, $\\sum_{k=0}^{n-1}\\omega_k^{m}$ equals $n$ if $n\\mid m$ and $0$ otherwise. Indeed $\\omega_k^{m}=\\omega_1^{mk}$ is a root of unity, and a geometric series of roots of unity vanishes unless its ratio is $1$. Many problems reduce to sums of this form after exponents are reduced modulo $n$.\n\nLogarithmic differentiation gives a reciprocal sum. Differentiating $x^{n}-1=\\prod_{k}(x-\\omega_k)$ and dividing by the original gives $\\sum_{k=0}^{n-1}\\frac{1}{x-\\omega_k}=\\frac{nx^{n-1}}{x^{n}-1}$. At $x=2$ with $n=7$ this yields $\\sum_{k=0}^{6}\\frac{1}{2-\\omega_k}=\\frac{7\\cdot2^{6}}{2^{7}-1}=\\frac{448}{127}$. The identity is valid at every $x$ that is not a root, so it is more flexible than most sum formulas.\n\nModuli of differences are also tractable. Since $\\bar\\omega=\\omega^{-1}$, $|1-\\omega|^{2}=(1-\\omega)(1-\\omega^{-1})=2-\\omega-\\omega^{-1}=2-2\\cos\\theta$. Summing over all $n$th roots of unity gives $\\sum_{k=0}^{n-1}|1-\\omega_k|^{2}=2n$. Also $\\prod_{k=1}^{n-1}(1-\\omega_k)=\\lim_{x\\to1}\\frac{x^{n}-1}{x-1}=n$, so the product of the distances from $1$ to the other roots is $n$.\n\nPitfalls: forgetting that $\\omega_0=1$ is itself a root, so sums over all $n$th roots include it, and dividing by $1-\\omega_k$ when $k=0$, which is zero. When a problem uses a root $\\omega$ of a particular order, first write each exponent modulo that order; the reduced problem is usually much smaller.",
+      "keyFacts": [
+        "$\\omega_k=e^{2\\pi ik/n}$ for $k=0,\\dots,n-1$ are the $n$th roots of unity",
+        "$x^{n}-1=\\prod_{k=0}^{n-1}(x-\\omega_k)$, so $\\prod_{k=0}^{n-1}(x-\\omega_k)$ at $x=2$ is $2^{n}-1$",
+        "$\\sum_{k=0}^{n-1}\\omega_k^{m}=n$ if $n\\mid m$, and $0$ otherwise",
+        "$\\sum_{k=0}^{n-1}\\dfrac{1}{x-\\omega_k}=\\dfrac{nx^{n-1}}{x^{n}-1}$",
+        "$|1-\\omega|^{2}=(1-\\omega)(1-\\omega^{-1})=2-2\\cos\\theta$"
+      ],
+      "whenToUse": "A sum or product over all $n$th roots of unity, or a power of a root $\\omega$ with $\\omega^{n}=1$ that must be reduced modulo $n$.",
+      "commonMistakes": [
+        "Excluding the root $1$ (that is, $\\omega_0$) from a sum over all roots.",
+        "Evaluating $\\omega^{m}$ without first reducing $m$ modulo $n$.",
+        "Using the sum $\\sum_k\\omega_k^{m}$ formula when $n$ does not divide $m$ and then forgetting the sum is zero."
+      ],
+      "example": {
+        "problem": "Compute $\\displaystyle\\prod_{k=0}^{4}\\left(2-\\omega^{k}\\right)$, where $\\omega=e^{2\\pi i/5}$.",
+        "solution": "The numbers $\\omega^{k}$ for $k=0,\\dots,4$ are exactly the fifth roots of unity, so $x^{5}-1=\\prod_{k=0}^{4}(x-\\omega^{k})$ identically. Putting $x=2$ gives $\\prod_{k=0}^{4}(2-\\omega^{k})=2^{5}-1=31$.",
+        "answer": "31",
+        "verify": "import cmath, math\nw = cmath.exp(2j*math.pi/5)\np = 1\nfor k in range(5):\n    p *= (2 - w**k)\nassert abs(p.imag) < 1e-9\nprint(round(p.real))"
+      }
+    },
+    {
+      "title": "Rotations and similarity in the complex plane",
+      "body": "Multiplication by a unit complex number $u=e^{i\\varphi}$ is a rotation of the plane about the origin through angle $\\varphi$, because $|uz|=|z|$ and $\\arg(uz)=\\arg z+\\varphi$. Multiplication by a positive real $t$ is a dilation. Multiplication by $re^{i\\varphi}$ is a spiral similarity: rotate by $\\varphi$ and scale by $r$. Every orientation-preserving similarity of the plane has this form, up to a translation.\n\nTo rotate $z$ by $\\varphi$ about a general center $c$, translate by $-c$, rotate, and translate back: $w=c+e^{i\\varphi}(z-c)$. The vector $z-c$ points from the center to $z$; rotating that vector gives $e^{i\\varphi}(z-c)$, and adding $c$ moves it back to the correct place. This is the most efficient way to handle any rotation about a point, and it avoids coordinate computations with sines and cosines.\n\nExample. Rotate $z=4$ by $60^\\circ$ counterclockwise about $c=2$. Then $w=2+e^{i\\pi/3}(4-2)=2+2\\left(\\tfrac12+\\tfrac{\\sqrt3}{2}i\\right)=3+i\\sqrt3$. A quick check is that $|w-2|=|z-2|=2$, which is the statement that a rotation preserves distance from its center.\n\nEquilateral triangles have a clean algebraic test. If $a,b,c$ are the vertices of a triangle, then $c-a=e^{\\pm i\\pi/3}(b-a)$ exactly when the triangle is equilateral, with the sign fixed by orientation. Since $\\zeta=e^{i\\pi/3}$ satisfies $\\zeta^{2}-\\zeta+1=0$, one can show that $a,b,c$ form an equilateral triangle if and only if $a^{2}+b^{2}+c^{2}=ab+bc+ca$. This condition is symmetric in $a,b,c$ and contains no square roots, so it is usually preferable to a distance computation.\n\nSimilarity and angles are captured by ratios. The quantity $\\frac{c-a}{b-a}$ does not change under a translation, rotation, or dilation applied to the whole triangle, so two triangles are directly similar exactly when these ratios agree. For an equilateral triangle the apex ratio is $e^{\\pm i\\pi/3}$; for an isosceles right triangle with the right angle at $a$ it is $\\pm i$.\n\nPerpendicularity is an imaginary ratio. For nonzero vectors $u,v$, the quotient $\\frac{u}{v}=\\frac{u\\bar v}{|v|^{2}}$ has real part equal to $\\frac{\\operatorname{Re}(u\\bar v)}{|v|^{2}}$, and $\\operatorname{Re}(u\\bar v)$ is the dot product of $u$ and $v$. Therefore $u\\perp v$ if and only if $\\frac{u}{v}$ is purely imaginary. Multiplication by $i$ is rotation by $90^\\circ$, which is the same fact seen geometrically.\n\nPitfalls: writing a rotation about $c$ as $z e^{i\\varphi}$, which rotates about the origin instead; and confusing counterclockwise with clockwise, since the sign of the exponent decides the orientation. Test any formula on a single easy point, such as $z=c+1$, before trusting it.",
+      "keyFacts": [
+        "$z\\mapsto uz$ with $|u|=1$ is a rotation about $0$ through $\\arg u$",
+        "$w=c+e^{i\\varphi}(z-c)$ rotates $z$ about $c$ through $\\varphi$",
+        "$u\\perp v \\iff u/v\\in i\\mathbb R$",
+        "$a,b,c$ are equilateral $\\iff a^{2}+b^{2}+c^{2}=ab+bc+ca$"
+      ],
+      "whenToUse": "A problem involving a rotation, a $90^\\circ$ or $60^\\circ$ turn, an equilateral triangle, or perpendicular segments.",
+      "commonMistakes": [
+        "Rotating about the origin when the problem specifies a different center.",
+        "Confusing the counterclockwise and clockwise rotations, which differ by the sign of the angle.",
+        "Using a distance formula for an equilateral condition when the symmetric identity is shorter."
+      ],
+      "example": {
+        "problem": "Rotate $z=4$ by $60^\\circ$ counterclockwise about the point $2$. Give the image in the form $x+yi$.",
+        "solution": "The image is $w=2+e^{i\\pi/3}(4-2)=2+2e^{i\\pi/3}$. Since $2e^{i\\pi/3}=1+i\\sqrt3$, we get $w=3+i\\sqrt3$.",
+        "answer": "3+i\\sqrt{3}",
+        "verify": "import cmath, math\nc = 2\nz = 4\nw = c + cmath.exp(1j*math.pi/3)*(z - c)\nassert abs(w - complex(3, math.sqrt(3))) < 1e-9\nprint(r\"3+i\\sqrt{3}\")"
+      }
+    },
+    {
+      "title": "Loci, distances, and the triangle inequality",
+      "body": "Distances are moduli: $|z-w|$ is the distance between the points $z$ and $w$. A condition on a modulus defines a familiar curve. The set $|z-c|=r$ is a circle with center $c$ and radius $r$; the set $|z-a|=|z-b|$ is the perpendicular bisector of the segment $ab$; and $\\arg(z-c)=\\theta$ is a ray from $c$. Converting a geometric condition into a modulus equation is the first step in nearly every loci problem.\n\nThe perpendicular bisector has a short derivation. Using $|z-a|^{2}=|z|^{2}-2\\operatorname{Re}(z\\bar a)+|a|^{2}$, the equation $|z-a|=|z-b|$ becomes $2\\operatorname{Re}\\big(z(\\bar b-\\bar a)\\big)=|b|^{2}-|a|^{2}$. This is a linear equation in the coordinates of $z$, so the locus is a line. Its normal direction is $b-a$, so it is perpendicular to $ab$, and $z=\\frac{a+b}{2}$ satisfies it, so it passes through the midpoint.\n\nExtremal distances on a circle follow from the triangle inequality. If $|z|=r$ and $c$ is fixed, then $\\big||c|-r\\big|\\le|z-c|\\le r+|c|$. Both bounds are attained: the upper bound when $z$ and $-c$ point in the same direction, and the lower bound when $z$ and $c$ point in the same direction. So the maximum distance from a circle to a point is the radius plus the distance from the center to the point, and the minimum is the absolute difference.\n\nThe triangle inequality $|z+w|\\le|z|+|w|$ has a precise equality case. Expanding gives $|z+w|^{2}=|z|^{2}+|w|^{2}+2\\operatorname{Re}(z\\bar w)$, and $\\operatorname{Re}(z\\bar w)\\le|z\\bar w|=|z|\\,|w|$. Equality holds exactly when $z\\bar w$ is a nonnegative real, which means $z$ and $w$ have the same argument. This characterization converts an inequality into a condition on angles, which is how maxima are usually located.\n\nApollonius circles are the loci $|z-a|=k|z-b|$ with $k\\ne1$. Expanding in coordinates shows that the locus is a circle, whose center lies on the line through $a$ and $b$. A fast way to find the extreme values of $|z|$ on such a circle is the ray method: write $z=te^{i\\varphi}$, substitute into the defining equation, and solve the resulting quadratic in $t$ for each direction $\\varphi$.\n\nA concrete check: the points $z$ with $|z-4|=2$ form a circle of radius $2$ centered at $4$. The closest point to the origin is $2$ units from $0$, because the center is $4$ units away and $4-2=2$. This is the same computation as the extremal-distance rule.\n\nPitfalls: confusing a locus $|z-a|=|z-b|$, which is a line, with $|z-a|+|z-b|=\\text{const}$, which is an ellipse; and maximizing $|z-c|$ on a circle without checking that the optimal point is on that circle. Compare the candidate values carefully, including the endpoints of any segment that appears.",
+      "keyFacts": [
+        "$|z-c|=r$ is a circle; $|z-a|=|z-b|$ is the perpendicular bisector of $ab$",
+        "$|z+w|\\le|z|+|w|$, with equality iff $z$ and $w$ have the same argument",
+        "For $|z|=r$: $\\max|z-c|=r+|c|$ and $\\min|z-c|=\\big||c|-r\\big|$",
+        "$|z-a|^{2}=|z|^{2}-2\\operatorname{Re}(z\\bar a)+|a|^{2}$"
+      ],
+      "whenToUse": "A question asking for a maximum or minimum of a distance, a locus defined by distances, or a sum of moduli.",
+      "commonMistakes": [
+        "Calling the locus $|z-a|=|z-b|$ a circle rather than the perpendicular bisector.",
+        "Using $|z|+|c|$ as the maximum of $|z-c|$ without requiring $z$ to lie on the circle in the correct direction.",
+        "Forgetting that the locus $|z-a|+|z-b|=k$ is an ellipse, not a line segment, unless $k=|a-b|$."
+      ],
+      "example": {
+        "problem": "If $|z-4|=2$, find the smallest possible value of $|z|$.",
+        "solution": "The points $z$ with $|z-4|=2$ form a circle of radius $2$ centered at $4$. The distance from the origin to the center is $4$, and the closest circle point lies on the segment from $0$ to $4$, at distance $4-2=2$ from the origin. So the minimum is $2$.",
+        "answer": "2",
+        "verify": "import cmath, math\nbest = min(abs(4 + 2*cmath.exp(1j*2*math.pi*k/100000)) for k in range(100000))\nassert abs(best - 2) < 1e-9\nprint(2)"
+      }
+    },
+    {
+      "title": "Polynomials with complex roots",
+      "body": "The fundamental theorem of algebra says that every nonconstant polynomial with complex coefficients has a complex root. By induction, a monic polynomial of degree $n$ factors as $P(x)=\\prod_{k=1}^{n}(x-r_k)$, with exactly $n$ roots counted with multiplicity. This is why complex numbers are the natural setting for polynomial problems: no roots are missing from the count. Over the reals the situation is different, because irreducible quadratic factors can appear.\n\nVieta's formulas express the coefficients through the roots. Expanding $\\prod_{k}(x-r_k)$ and comparing coefficients for a monic polynomial $x^{n}+a_{n-1}x^{n-1}+\\cdots+a_{0}$ gives $\\sum_k r_k=-a_{n-1}$, $\\sum_{j<k}r_jr_k=a_{n-2}$, and $\\prod_k r_k=(-1)^{n}a_0$. These identities are the main computational tool: they compute symmetric functions of the roots without ever finding the roots.\n\nIf $P$ has real coefficients and $P(r)=0$, then $P(\\bar r)=\\overline{P(r)}=0$, because conjugation respects sums and products. Hence the nonreal roots of a real polynomial come in conjugate pairs $r,\\bar r$, and $(x-r)(x-\\bar r)=x^{2}-2\\operatorname{Re}(r)\\,x+|r|^{2}$ has real coefficients. A real cubic therefore has either three real roots or one real root together with a conjugate pair.\n\nExample. The polynomial $P(x)=x^{3}-3x^{2}+4x-2$ has the root $1+i$, since $(1+i)^{3}-3(1+i)^{2}+4(1+i)-2=(-2+2i)-6i+(4+4i)-2=0$. Its conjugate $1-i$ is also a root. Vieta gives $(1+i)+(1-i)+r=3$, so the third root is $r=1$. A check: $(1+i)(1-i)\\cdot1=2=-(-2)$, matching the constant term.\n\nRoots of unity factor $x^{n}\\pm1$ over $\\mathbb C$. The roots of $x^{n}+1$ are $e^{i\\pi(2k+1)/n}$ for $k=0,\\dots,n-1$. Over the reals, conjugate roots pair into real quadratics. For instance $x^{4}+1=(x^{2}+\\sqrt2\\,x+1)(x^{2}-\\sqrt2\\,x+1)$, because the roots $e^{\\pm i\\pi/4}$ and $e^{\\pm3i\\pi/4}$ pair up with sums $\\pm\\sqrt2$ and products $1$.\n\nPower sums are computed from the coefficients. The sum of squares of the roots is $p_{2}=\\left(\\sum r_k\\right)^{2}-2\\sum_{j<k}r_jr_k$, which is $a_{n-1}^{2}-2a_{n-2}$ for a monic polynomial. Higher power sums follow by Newton's identities. This is the right tool when a problem asks for $\\sum r_k^{m}$ and the roots themselves are inconvenient.\n\nPitfalls: assuming a real cubic with a nonreal root must have three real roots (it has exactly one real root, with the nonreal pair as its conjugate partners); forgetting the conjugate root when applying Vieta; and computing a square root of a negative discriminant without writing $\\sqrt{-d}=i\\sqrt d$ for $d>0$.",
+      "keyFacts": [
+        "$P(x)=\\prod_{k=1}^{n}(x-r_k)$ for monic $P$ of degree $n$ (fundamental theorem of algebra)",
+        "$\\sum r_k=-a_{n-1}$, $\\sum_{j<k}r_jr_k=a_{n-2}$, $\\prod r_k=(-1)^{n}a_0$",
+        "Real coefficients: $P(r)=0 \\Rightarrow P(\\bar r)=0$",
+        "$x^{4}+1=(x^{2}+\\sqrt2\\,x+1)(x^{2}-\\sqrt2\\,x+1)$",
+        "$\\sum r_k^{2}=\\left(\\sum r_k\\right)^{2}-2\\sum_{j<k}r_jr_k$"
+      ],
+      "whenToUse": "A polynomial with complex or conjugate roots, a question about symmetric functions of roots, or a request to factor $x^{n}\\pm1$.",
+      "commonMistakes": [
+        "Forgetting the conjugate root when a real polynomial has a nonreal root.",
+        "Applying Vieta's signs incorrectly, for instance writing $\\sum r_k=a_{n-1}$ instead of $-a_{n-1}$.",
+        "Expecting a real cubic with a complex root to have three real roots."
+      ],
+      "example": {
+        "problem": "The polynomial $x^{3}-3x^{2}+4x-2$ has $1+i$ as a root. Find its real root.",
+        "solution": "Since the coefficients are real, $1-i$ is also a root. Vieta's formula for the sum of the roots gives $(1+i)+(1-i)+r=3$, so $r=1$. Substituting confirms $1^{3}-3\\cdot1^{2}+4\\cdot1-2=0$.",
+        "answer": "1",
+        "verify": "import cmath\ncoef = [1, -3, 4, -2]\ndef p(x):\n    v = 0\n    for c in coef:\n        v = v*x + c\n    return v\nroots = [(0.4+0.9j)**k for k in range(3)]\nfor _ in range(500):\n    new = []\n    for i, ri in enumerate(roots):\n        den = 1\n        for j, rj in enumerate(roots):\n            if i != j:\n                den *= (ri - rj)\n        new.append(ri - p(ri)/den)\n    roots = new\nreal = [t for t in roots if abs(t.imag) < 1e-9]\nassert len(real) == 1\nprint(round(real[0].real))"
+      }
+    },
+    {
+      "title": "Trig identities through complex exponentials",
+      "body": "Many trigonometric identities are binomial identities in disguise. Let $z=e^{i\\theta}$. Then $\\cos\\theta=\\frac{z+z^{-1}}{2}$ and $\\sin\\theta=\\frac{z-z^{-1}}{2i}$, so any polynomial in $\\cos\\theta$ and $\\sin\\theta$ becomes a Laurent polynomial in $z$. The binomial theorem, orthogonality, and the symmetry $z\\leftrightarrow z^{-1}$ then do the work, and the result is converted back to cosines and sines at the end.\n\nPowers of cosine are the model case. Expanding $\\cos^{n}\\theta=\\frac{1}{2^{n}}\\left(z+z^{-1}\\right)^{n}=\\frac{1}{2^{n}}\\sum_{k=0}^{n}\\binom nk z^{\\,n-2k}$ and grouping the terms $z^{m}$ and $z^{-m}$, which add to $2\\cos m\\theta$, gives $\\cos^{n}\\theta=\\frac{1}{2^{n}}\\sum_{k=0}^{n}\\binom nk\\cos\\big((n-2k)\\theta\\big)$. For $n$ even the constant term appears once; for $n$ odd there is no constant term. For $n=3$ this gives $\\cos^{3}\\theta=\\frac{3\\cos\\theta+\\cos3\\theta}{4}$.\n\nProducts of sines and cosines are handled the same way. From $\\sin\\alpha=\\frac{e^{i\\alpha}-e^{-i\\alpha}}{2i}$ one gets $\\sin\\alpha\\sin\\beta=\\frac{(e^{i\\alpha}-e^{-i\\alpha})(e^{i\\beta}-e^{-i\\beta})}{-4}$, and the four exponentials combine into $\\frac{1}{2}\\big[\\cos(\\alpha-\\beta)-\\cos(\\alpha+\\beta)\\big]$. The same expansion gives every product-to-sum formula, so students need not memorize them separately.\n\nA concrete value shows the power of the cubic relation. Let $c=\\cos20^\\circ$. Since $3\\cdot20^\\circ=60^\\circ$, we have $\\cos60^\\circ=\\frac12=4c^{3}-3c$. The cubic $4x^{3}-3x-\\frac12=0$ therefore has $\\cos20^\\circ$ as a root, and its other roots are $\\cos140^\\circ$ and $\\cos260^\\circ$. Contest problems that involve $\\cos20^\\circ$ are usually solved by identifying this cubic, not by numerical methods.\n\nAverages over roots of unity are immediate in this language. For $n\\ge3$, $\\sum_{k=0}^{n-1}\\cos^{2}\\frac{2\\pi k}{n}=\\frac n2$, because $\\cos^{2}x=\\frac{1+\\cos 2x}{2}$ and the cosine of $\\frac{4\\pi k}{n}$ sums to zero over the roots. In general, the average of $z^{m}$ over the $n$th roots of unity is $1$ when $n\\mid m$ and $0$ otherwise.\n\nChebyshev polynomials give the general pattern. Writing $T_{n}(x)$ for the polynomial with $T_{n}(\\cos\\theta)=\\cos n\\theta$, one has $T_{n+1}(x)=2xT_{n}(x)-T_{n-1}(x)$, from the identity $\\cos(n+1)\\theta+\\cos(n-1)\\theta=2\\cos n\\theta\\cos\\theta$. This recurrence explains why polynomial identities in $\\cos\\theta$ appear naturally when problems ask about values $\\cos\\frac{2\\pi k}{n}$.\n\nPitfalls: dropping the constant term when expanding $\\cos^{n}$ for even $n$; forgetting the factor $\\frac{1}{2^{n}}$; and mixing degrees and radians when substituting specific angles into $\\cos n\\theta$.",
+      "keyFacts": [
+        "$\\cos\\theta=\\dfrac{z+z^{-1}}{2}$ and $\\sin\\theta=\\dfrac{z-z^{-1}}{2i}$ for $z=e^{i\\theta}$",
+        "$\\cos^{n}\\theta=\\dfrac{1}{2^{n}}\\sum_{k=0}^{n}\\binom nk\\cos\\big((n-2k)\\theta\\big)$",
+        "$\\cos^{3}\\theta=\\dfrac{3\\cos\\theta+\\cos3\\theta}{4}$",
+        "$\\sin\\alpha\\sin\\beta=\\dfrac12\\big[\\cos(\\alpha-\\beta)-\\cos(\\alpha+\\beta)\\big]$",
+        "$\\cos3\\theta=4\\cos^{3}\\theta-3\\cos\\theta$"
+      ],
+      "whenToUse": "A trigonometric identity or sum that is a polynomial in $\\cos$ and $\\sin$, a product of several trig functions, or an average of a trig expression over equally spaced angles.",
+      "commonMistakes": [
+        "Omitting the constant term from the expansion of $\\cos^{n}\\theta$ when $n$ is even.",
+        "Forgetting the normalization $\\frac{1}{2^{n}}$ after expanding a binomial.",
+        "Solving the cubic for $\\cos20^\\circ$ by radicals instead of using its known roots."
+      ],
+      "example": {
+        "problem": "Compute $4\\cos^{3}20^\\circ-3\\cos20^\\circ$.",
+        "solution": "This is the triple-angle formula $\\cos3\\theta=4\\cos^{3}\\theta-3\\cos\\theta$ with $\\theta=20^\\circ$. Hence the expression equals $\\cos60^\\circ=\\frac12$.",
+        "answer": "\\frac{1}{2}",
+        "verify": "import math\nt = math.radians(20)\nv = 4*math.cos(t)**3 - 3*math.cos(t)\nassert abs(v - 0.5) < 1e-12\nprint(r\"\\frac{1}{2}\")"
+      }
+    }
+  ],
+  "workedExamples": [
+    {
+      "title": "Expanding a product",
+      "difficulty": 1,
+      "problem": "Compute $(2+3i)(4-i)$.",
+      "choices": [
+        "$11+10i$",
+        "$5+14i$",
+        "$11+14i$",
+        "$5+10i$",
+        "$13+10i$"
+      ],
+      "answer": "A",
+      "approach": "This is a direct expansion. The only real care is the sign that comes from $i^{2}$.",
+      "steps": [
+        "Expand: $(2+3i)(4-i)=8-2i+12i-3i^{2}$.",
+        "Use $i^{2}=-1$, so $-3i^{2}=+3$.",
+        "Collect real parts: $8+3=11$.",
+        "Collect imaginary parts: $-2+12=10$.",
+        "Result: $11+10i$."
+      ],
+      "alternative": "",
+      "takeaway": "Expand like a polynomial, replace $i^{2}$ by $-1$, and group the real and imaginary parts.",
+      "verify": "z = (2+3j)*(4-1j)\nassert z == (11+10j)\nprint(\"11+10i\")"
+    },
+    {
+      "title": "Modulus of a quotient",
+      "difficulty": 2,
+      "problem": "Find $\\left|\\dfrac{3+4i}{1-2i}\\right|$.",
+      "choices": [
+        "$1$",
+        "$\\sqrt{5}$",
+        "$5$",
+        "$\\sqrt{10}$",
+        "$\\frac{5}{2}$"
+      ],
+      "answer": "B",
+      "approach": "Use the multiplicativity of modulus rather than computing the quotient itself.",
+      "steps": [
+        "Compute $|3+4i|=\\sqrt{9+16}=5$.",
+        "Compute $|1-2i|=\\sqrt{1+4}=\\sqrt5$.",
+        "Apply $\\left|\\dfrac{z}{w}\\right|=\\dfrac{|z|}{|w|}$: the answer is $\\dfrac{5}{\\sqrt5}=\\sqrt5$.",
+        "Check by rationalizing: $\\dfrac{3+4i}{1-2i}=-1+2i$, whose modulus is $\\sqrt{1+4}=\\sqrt5$."
+      ],
+      "alternative": "Rationalize first to get $-1+2i$, then take its modulus. This is longer but confirms the answer.",
+      "takeaway": "The modulus of a quotient is the quotient of the moduli, so never compute a quotient just to find its size.",
+      "verify": "z = (3+4j)/(1-2j)\nassert abs(abs(z) - 5**0.5) < 1e-12\nprint(r\"\\sqrt{5}\")"
+    },
+    {
+      "title": "A large integer power",
+      "difficulty": 3,
+      "problem": "Compute $(1+i)^{2024}$.",
+      "choices": [
+        "$2^{1010}$",
+        "$2^{1011}$",
+        "$2^{1012}$",
+        "$2^{1013}$",
+        "$2^{1014}$"
+      ],
+      "answer": "C",
+      "approach": "Square once to produce a multiple of $i$, so that the large exponent reduces modulo $4$.",
+      "steps": [
+        "Compute $(1+i)^{2}=2i$.",
+        "Therefore $(1+i)^{2024}=\\big((1+i)^{2}\\big)^{1012}=(2i)^{1012}=2^{1012}\\,i^{1012}$.",
+        "Since $1012=4\\cdot253$, we have $i^{1012}=(i^{4})^{253}=1$.",
+        "Hence $(1+i)^{2024}=2^{1012}$."
+      ],
+      "alternative": "Polar form: $|1+i|=\\sqrt2$ and $\\arg(1+i)=\\frac{\\pi}{4}$, so $(1+i)^{2024}=(\\sqrt2)^{2024}e^{506\\pi i}=2^{1012}$.",
+      "takeaway": "Reduce a large power by first finding a small power that is a real number times a root of unity.",
+      "verify": "def mul(a, b):\n    return (a[0]*b[0] - a[1]*b[1], a[0]*b[1] + a[1]*b[0])\ndef pw(z, n):\n    r = (1, 0)\n    while n:\n        if n & 1:\n            r = mul(r, z)\n        z = mul(z, z)\n        n >>= 1\n    return r\nx, y = pw((1, 1), 2024)\nassert y == 0 and x == 2**1012\nprint(\"2^{1012}\")"
+    },
+    {
+      "title": "Reciprocal sum over roots of unity",
+      "difficulty": 4,
+      "problem": "Let $\\omega=e^{2\\pi i/7}$. Compute $\\displaystyle\\sum_{k=1}^{6}\\frac{1}{1-\\omega^{k}}$.",
+      "choices": [
+        "$1$",
+        "$2$",
+        "$3$",
+        "$\\frac{7}{2}$",
+        "$4$"
+      ],
+      "answer": "C",
+      "approach": "Each term has real part $\\frac12$, and the imaginary parts cancel in pairs, so the sum is real and equal to $\\frac{6}{2}$.",
+      "steps": [
+        "Let $u=\\omega^{k}=e^{i\\theta}$. Multiply numerator and denominator by $1-\\bar u$: $\\dfrac{1}{1-u}=\\dfrac{1-\\bar u}{|1-u|^{2}}$.",
+        "Here $|1-u|^{2}=2-2\\cos\\theta$ and $1-\\bar u=(1-\\cos\\theta)+i\\sin\\theta$.",
+        "The real part is $\\dfrac{1-\\cos\\theta}{2-2\\cos\\theta}=\\dfrac12$ for every $k$ with $u\\ne1$.",
+        "The imaginary part $\\dfrac{\\sin\\theta}{2-2\\cos\\theta}$ changes sign when $k$ is replaced by $7-k$, so these parts cancel in pairs.",
+        "Therefore the sum is $6\\cdot\\dfrac12=3$."
+      ],
+      "alternative": "Use $\\sum_{k=0}^{n-1}\\frac{1}{x-\\omega^{k}}=\\frac{nx^{n-1}}{x^{n}-1}$ and remove the $k=0$ term, which is $\\frac{1}{x-1}$. Letting $x\\to1$ gives the same value $3$.",
+      "takeaway": "For roots of unity, pair each term with its conjugate to make the sum manifestly real, and then read off the real parts.",
+      "verify": "import cmath, math\nw = cmath.exp(2j*math.pi/7)\ns = sum(1/(1 - w**k) for k in range(1, 7))\nassert abs(s.imag) < 1e-9 and abs(s.real - 3) < 1e-9\nprint(3)"
+    },
+    {
+      "title": "Farthest point on a circle",
+      "difficulty": 4,
+      "problem": "Suppose $|z|=2$. Find the largest possible value of $|z-1-i|$.",
+      "choices": [
+        "$2$",
+        "$\\sqrt{2}$",
+        "$2\\sqrt{2}$",
+        "$4$",
+        "$2+\\sqrt{2}$"
+      ],
+      "answer": "E",
+      "approach": "The farthest point of a circle from a given point lies on the ray through the center and the point, on the far side.",
+      "steps": [
+        "Let $c=1+i$, so $|c|=\\sqrt2$.",
+        "By the triangle inequality, $|z-c|\\le|z|+|c|=2+\\sqrt2$.",
+        "Equality requires $-z$ and $c$ to point in the same direction, so $z=-\\dfrac{2c}{|c|}=-\\sqrt2(1+i)$.",
+        "Check: $|z|=2$, and $z-c=-(\\sqrt2+1)(1+i)$, whose modulus is $(\\sqrt2+1)\\sqrt2=2+\\sqrt2$.",
+        "So the largest value is $2+\\sqrt2$."
+      ],
+      "alternative": "",
+      "takeaway": "The maximum of the distance from a point to a circle is the radius plus the distance from the center to the point, attained on the far side.",
+      "verify": "import cmath, math\nbest = max(abs(2*cmath.exp(1j*t) - complex(1, 1))\n           for t in [2*math.pi*k/200000 for k in range(200000)])\nassert abs(best - (2 + math.sqrt(2))) < 1e-8\nprint(r\"2+\\sqrt{2}\")"
+    },
+    {
+      "title": "Products over a cyclic permutation",
+      "difficulty": 5,
+      "problem": "Let $\\omega=e^{2\\pi i/5}$. Compute $\\displaystyle\\prod_{k=1}^{4}\\left(1+\\omega^{k}+\\omega^{2k}\\right)$.",
+      "choices": [
+        "$-1$",
+        "$0$",
+        "$1$",
+        "$5$",
+        "$25$"
+      ],
+      "answer": "C",
+      "approach": "Rewrite each factor as a quotient $\\frac{x^{3}-1}{x-1}$ and observe that multiplying the exponent by $3$ permutes the nontrivial fifth roots of unity.",
+      "steps": [
+        "For $x\\ne1$, $1+x+x^{2}=\\dfrac{x^{3}-1}{x-1}$.",
+        "With $x=\\omega^{k}$, the factor is $\\dfrac{\\omega^{3k}-1}{\\omega^{k}-1}$.",
+        "As $k$ runs over $1,2,3,4$, the residues of $3k$ modulo $5$ run over $3,1,4,2$, which is a permutation of $1,2,3,4$.",
+        "So $\\prod_{k=1}^{4}(\\omega^{3k}-1)=\\prod_{j=1}^{4}(\\omega^{j}-1)=\\prod_{k=1}^{4}(\\omega^{k}-1)$.",
+        "The numerator and denominator products are equal and nonzero, so the whole product equals $1$."
+      ],
+      "alternative": "Multiply the four factors directly using $\\omega^{5}=1$ and $1+\\omega+\\omega^{2}+\\omega^{3}+\\omega^{4}=0$; the bookkeeping is longer but leads to the same value.",
+      "takeaway": "Multiplying exponents by a unit modulo $n$ permutes the nontrivial $n$th roots of unity, so products over them are unchanged.",
+      "verify": "import cmath, math\nw = cmath.exp(2j*math.pi/5)\np = 1\nfor k in range(1, 5):\n    p *= (1 + w**k + w**(2*k))\nassert abs(p - 1) < 1e-9\nprint(1)"
+    }
+  ],
+  "problems": [
+    {
+      "id": "cx-01",
+      "difficulty": 1,
+      "problem": "If $(1+2i)(3-i)=a+bi$ with $a$ and $b$ real, what is $a+b$?",
+      "choices": [
+        "$6$",
+        "$8$",
+        "$10$",
+        "$12$",
+        "$14$"
+      ],
+      "answer": "C",
+      "hint": "Expand fully, then replace $i^{2}$ by $-1$.",
+      "solution": "$(1+2i)(3-i)=3-i+6i-2i^{2}=3+2+5i=5+5i$. So $a=b=5$ and $a+b=10$. The distractor $6$ comes from taking $i^{2}=+1$, which would give $1+5i$.",
+      "concepts": [
+        0
+      ],
+      "verify": "z = (1+2j)*(3-1j)\nprint(round(z.real + z.imag))"
+    },
+    {
+      "id": "cx-02",
+      "difficulty": 1,
+      "problem": "Find the real part of $\\dfrac{1}{2-i}$.",
+      "choices": [
+        "$\\frac{2}{5}$",
+        "$\\frac{1}{2}$",
+        "$\\frac{3}{5}$",
+        "$\\frac{4}{5}$",
+        "$1$"
+      ],
+      "answer": "A",
+      "hint": "Multiply top and bottom by the conjugate of $2-i$.",
+      "solution": "$\\dfrac{1}{2-i}=\\dfrac{2+i}{(2-i)(2+i)}=\\dfrac{2+i}{5}$, so the real part is $\\dfrac25$. The distractor $\\dfrac12$ comes from reading off the real part of the denominator's reciprocal without rationalizing.",
+      "concepts": [
+        0
+      ],
+      "verify": "from fractions import Fraction as F\na, b = 2, -1\nre = F(a, a*a + b*b)\nprint(f\"{re.numerator}/{re.denominator}\")"
+    },
+    {
+      "id": "cx-03",
+      "difficulty": 1,
+      "problem": "If $z=1+\\sqrt3\\,i$, what is $|z|$?",
+      "choices": [
+        "$1$",
+        "$2$",
+        "$\\sqrt{2}$",
+        "$\\sqrt{3}$",
+        "$4$"
+      ],
+      "answer": "B",
+      "hint": "Compute $|z|^{2}$ first.",
+      "solution": "$|z|^{2}=1^{2}+(\\sqrt3)^{2}=4$, so $|z|=2$. The distractor $\\sqrt3$ is the imaginary coefficient, not the modulus, and $4$ is $|z|^{2}$ rather than $|z|$.",
+      "concepts": [
+        0,
+        1
+      ],
+      "verify": "import math\nprint(round(abs(complex(1, math.sqrt(3)))))"
+    },
+    {
+      "id": "cx-04",
+      "difficulty": 1,
+      "problem": "What is the argument of $-1+i$ in degrees, taken in the interval $[0^\\circ,360^\\circ)$?",
+      "choices": [
+        "$45$",
+        "$90$",
+        "$120$",
+        "$135$",
+        "$150$"
+      ],
+      "answer": "D",
+      "hint": "Sketch the point and find its reference angle.",
+      "solution": "The point $-1+i$ lies in the second quadrant with modulus $\\sqrt2$. Its reference angle is $45^\\circ$ because the real and imaginary parts have equal size, so the argument is $180^\\circ-45^\\circ=135^\\circ$. The distractor $45^\\circ$ forgets the quadrant.",
+      "concepts": [
+        1
+      ],
+      "verify": "import cmath, math\na = math.degrees(cmath.phase(complex(-1, 1))) % 360\nprint(round(a))"
+    },
+    {
+      "id": "cx-05",
+      "difficulty": 1,
+      "problem": "Compute $(1+i)^{4}$.",
+      "choices": [
+        "$-8$",
+        "$-6$",
+        "$-4$",
+        "$0$",
+        "$4$"
+      ],
+      "answer": "C",
+      "hint": "Square twice.",
+      "solution": "$(1+i)^{2}=2i$ and $(2i)^{2}=-4$. Equivalently $(1+i)^{4}=(\\sqrt2)^{4}e^{i\\pi}=-4$.",
+      "concepts": [
+        2
+      ],
+      "verify": "def mul(a, b):\n    return (a[0]*b[0] - a[1]*b[1], a[0]*b[1] + a[1]*b[0])\nz = (1, 1)\np = mul(mul(z, z), mul(z, z))\nassert p == (-4, 0)\nprint(-4)"
+    },
+    {
+      "id": "cx-06",
+      "difficulty": 1,
+      "problem": "Simplify $\\dfrac{1+2i}{2-i}$.",
+      "choices": [
+        "$i$",
+        "$-i$",
+        "$1$",
+        "$1+i$",
+        "$2i$"
+      ],
+      "answer": "A",
+      "hint": "Multiply by the conjugate of the denominator.",
+      "solution": "$\\dfrac{1+2i}{2-i}=\\dfrac{(1+2i)(2+i)}{5}=\\dfrac{2+i+4i+2i^{2}}{5}=\\dfrac{5i}{5}=i$. The distractors $-i$ and $2i$ come from a sign error and a factor error.",
+      "concepts": [
+        0
+      ],
+      "verify": "from fractions import Fraction as F\ndef div(a, b):\n    (p, q), (r, s) = a, b\n    d = r*r + s*s\n    return (F(p*r + q*s, d), F(q*r - p*s, d))\nx = div((1, 2), (2, -1))\nassert x == (0, 1)\nprint(\"i\")"
+    },
+    {
+      "id": "cx-07",
+      "difficulty": 2,
+      "problem": "How many integers $k$ with $1\\le k\\le 20$ satisfy $\\operatorname{Re}\\big((1+i)^{k}\\big)>0$?",
+      "choices": [
+        "$6$",
+        "$7$",
+        "$8$",
+        "$9$",
+        "$10$"
+      ],
+      "answer": "B",
+      "hint": "Write $1+i=\\sqrt2\\,e^{i\\pi/4}$ and determine when $\\cos\\frac{k\\pi}{4}>0$.",
+      "solution": "$(1+i)^{k}=(\\sqrt2)^{k}e^{ik\\pi/4}$ has the sign of $\\cos\\frac{k\\pi}{4}$. This is positive exactly when $k\\equiv0,1,7\\pmod 8$. For $1\\le k\\le20$ these are $k=1,7,8,9,15,16,17$, a total of $7$. Check: $(1+i)^{7}=8(1-i)$ and $(1+i)^{8}=16$.",
+      "concepts": [
+        1,
+        2
+      ],
+      "verify": "def mul(a, b):\n    return (a[0]*b[0] - a[1]*b[1], a[0]*b[1] + a[1]*b[0])\ncnt = 0\nz = (1, 0)\nfor k in range(1, 21):\n    z = mul(z, (1, 1))\n    if z[0] > 0:\n        cnt += 1\nprint(cnt)"
+    },
+    {
+      "id": "cx-08",
+      "difficulty": 2,
+      "problem": "Let $z=3+4i$. Rotate $z$ by $90^\\circ$ counterclockwise about the origin, then reflect the result across the real axis to obtain $w$. Find $|w-z|$.",
+      "choices": [
+        "$7$",
+        "$5\\sqrt{2}$",
+        "$10$",
+        "$14$",
+        "$7\\sqrt{2}$"
+      ],
+      "answer": "E",
+      "hint": "Rotation by $90^\\circ$ is multiplication by $i$; reflection across the real axis is conjugation.",
+      "solution": "Rotating $3+4i$ by $90^\\circ$ counterclockwise gives $i(3+4i)=-4+3i$. Reflecting across the real axis conjugates it, so $w=-4-3i$. Then $w-z=-7-7i$, with modulus $7\\sqrt2$. The distractor $7$ drops the imaginary component of the difference.",
+      "concepts": [
+        5
+      ],
+      "verify": "import math\nz = complex(3, 4)\nw = (1j*z).conjugate()\nassert abs(abs(w - z) - 7*math.sqrt(2)) < 1e-9\nprint(r\"7\\sqrt{2}\")"
+    },
+    {
+      "id": "cx-09",
+      "difficulty": 2,
+      "problem": "Let $\\omega=e^{2\\pi i/3}$. Compute $(2+\\omega)(2+\\omega^{2})$.",
+      "choices": [
+        "$1$",
+        "$2$",
+        "$3$",
+        "$4$",
+        "$5$"
+      ],
+      "answer": "C",
+      "hint": "Expand and use $1+\\omega+\\omega^{2}=0$.",
+      "solution": "$(2+\\omega)(2+\\omega^{2})=4+2(\\omega+\\omega^{2})+\\omega^{3}$. Since $\\omega+\\omega^{2}=-1$ and $\\omega^{3}=1$, this equals $4-2+1=3$.",
+      "concepts": [
+        4
+      ],
+      "verify": "import cmath, math\nw = cmath.exp(2j*math.pi/3)\nv = (2 + w)*(2 + w*w)\nassert abs(v - 3) < 1e-9\nprint(3)"
+    },
+    {
+      "id": "cx-10",
+      "difficulty": 2,
+      "problem": "Let $z=\\sqrt3+i$. What is the smallest positive integer $n$ for which $z^{n}$ is a real number?",
+      "choices": [
+        "$2$",
+        "$3$",
+        "$4$",
+        "$6$",
+        "$12$"
+      ],
+      "answer": "D",
+      "hint": "Write $z$ in polar form.",
+      "solution": "$\\sqrt3+i=2e^{i\\pi/6}$, so $z^{n}=2^{n}e^{in\\pi/6}$ is real exactly when $\\frac{n\\pi}{6}$ is a multiple of $\\pi$, that is, when $6\\mid n$. The smallest such $n$ is $6$, and indeed $z^{6}=-64$.",
+      "concepts": [
+        1,
+        2
+      ],
+      "verify": "import cmath, math\nz = complex(math.sqrt(3), 1)\nn = 1\nwhile abs((z**n).imag) > 1e-9:\n    n += 1\nprint(n)"
+    },
+    {
+      "id": "cx-11",
+      "difficulty": 2,
+      "problem": "How many complex numbers $z$ satisfy both $z^{12}=1$ and $z^{4}=1$?",
+      "choices": [
+        "$2$",
+        "$4$",
+        "$6$",
+        "$8$",
+        "$12$"
+      ],
+      "answer": "B",
+      "hint": "Every solution of $z^{4}=1$ with $z^{12}=1$ is one of the twelfth roots of unity; decide which of those also satisfy $z^{4}=1$.",
+      "solution": "The solutions of $z^{12}=1$ are $e^{2\\pi ik/12}$ for $k=0,\\dots,11$. Then $z^{4}=1$ means $e^{2\\pi i\\cdot4k/12}=1$, that is, $3\\mid k$. The values $k=0,3,6,9$ work, giving $4$ numbers. Since $z^{4}=1$ already implies $z^{12}=1$, these are all the solutions of both equations.",
+      "concepts": [
+        4
+      ],
+      "verify": "import cmath, math\ncnt = sum(1 for k in range(12)\n          if abs(cmath.exp(2j*math.pi*k/12)**4 - 1) < 1e-9)\nprint(cnt)"
+    },
+    {
+      "id": "cx-12",
+      "difficulty": 2,
+      "problem": "Find the product of all complex numbers $z$ satisfying $z^{4}=-16$.",
+      "choices": [
+        "$4$",
+        "$8$",
+        "$12$",
+        "$16$",
+        "$32$"
+      ],
+      "answer": "D",
+      "hint": "Apply Vieta to a monic quartic with no $z^{3}$, $z^{2}$, or $z$ term.",
+      "solution": "The equation is $z^{4}+16=0$, and the product of the four roots of a monic quartic equals its constant term, here $16$, since $(-1)^{4}=1$. The roots are $2e^{i\\pi(2k+1)/4}$ for $k=0,\\dots,3$, whose moduli multiply to $2^{4}=16$ as well. The distractor $32$ doubles the constant term.",
+      "concepts": [
+        7,
+        1
+      ],
+      "verify": "import cmath, math\nrs = [2*cmath.exp(1j*math.pi*(2*k + 1)/4) for k in range(4)]\nassert all(abs(r**4 + 16) < 1e-9 for r in rs)\np = 1\nfor r in rs:\n    p *= r\nprint(round(p.real))"
+    },
+    {
+      "id": "cx-13",
+      "difficulty": 3,
+      "problem": "Let $\\omega=e^{2\\pi i/7}$. Compute $\\displaystyle\\sum_{k=0}^{6}\\frac{1}{2-\\omega^{k}}$.",
+      "choices": [
+        "$\\frac{64}{127}$",
+        "$\\frac{7}{2}$",
+        "$\\frac{448}{127}$",
+        "$\\frac{512}{127}$",
+        "$7$"
+      ],
+      "answer": "C",
+      "hint": "Consider the logarithmic derivative of $x^{7}-1=\\prod_{k}(x-\\omega^{k})$.",
+      "solution": "Since $x^{7}-1=\\prod_{k=0}^{6}(x-\\omega^{k})$, taking logarithmic derivatives gives $\\sum_{k}\\frac{1}{x-\\omega^{k}}=\\frac{7x^{6}}{x^{7}-1}$. At $x=2$ this is $\\frac{7\\cdot64}{127}=\\frac{448}{127}$. The distractor $\\frac72$ is a near miss that ignores the exact value.",
+      "concepts": [
+        4
+      ],
+      "verify": "import cmath, math\nfrom fractions import Fraction as F\nw = cmath.exp(2j*math.pi/7)\ns = sum(1/(2 - w**k) for k in range(7))\nfr = F(s.real).limit_denominator(1000)\nassert fr == F(448, 127) and abs(s.imag) < 1e-9\nprint(r\"\\frac{448}{127}\")"
+    },
+    {
+      "id": "cx-14",
+      "difficulty": 3,
+      "problem": "Let $z_1,z_2,z_3,z_4$ be the four complex roots of $x^{4}+x^{3}+x^{2}+x+1$. Compute $\\displaystyle\\sum_{k=1}^{4}\\frac{1}{1-z_k}$.",
+      "choices": [
+        "$\\frac{1}{2}$",
+        "$1$",
+        "$\\frac{3}{2}$",
+        "$\\frac{7}{4}$",
+        "$2$"
+      ],
+      "answer": "E",
+      "hint": "If $P(x)=\\prod(x-z_k)$, then $\\sum_k\\frac{1}{a-z_k}=\\frac{P'(a)}{P(a)}$.",
+      "solution": "The roots are $z_k=\\omega^{k}$ with $\\omega=e^{2\\pi i/5}$, and $P(x)=\\frac{x^{5}-1}{x-1}$. With $a=1$: $P(1)=5$ and $P'(1)=4+3+2+1=10$. The sum is $\\frac{10}{5}=2$.",
+      "concepts": [
+        4,
+        7
+      ],
+      "verify": "import cmath, math\ns = sum(1/(1 - cmath.exp(2j*math.pi*k/5)) for k in range(1, 5))\nassert abs(s - 2) < 1e-9\nprint(2)"
+    },
+    {
+      "id": "cx-15",
+      "difficulty": 3,
+      "problem": "Let $|z|=1$. Find the maximum value of $|z+1|+|z-1|$.",
+      "choices": [
+        "$\\sqrt{2}$",
+        "$2$",
+        "$3$",
+        "$4$",
+        "$2\\sqrt{2}$"
+      ],
+      "answer": "E",
+      "hint": "Write $z=e^{i\\theta}$ and use $|1+e^{i\\theta}|=2\\left|\\cos\\frac{\\theta}{2}\\right|$ and $|1-e^{i\\theta}|=2\\left|\\sin\\frac{\\theta}{2}\\right|$.",
+      "solution": "Write $z=e^{i\\theta}$ and $x=\\frac{\\theta}{2}$. Then $|z+1|+|z-1|=2\\left(|\\cos x|+|\\sin x|\\right)$. By the Cauchy-Schwarz inequality, $|\\cos x|+|\\sin x|\\le\\sqrt2\\,\\sqrt{\\cos^{2}x+\\sin^{2}x}=\\sqrt2$, with equality when $|\\cos x|=|\\sin x|$, that is, at $z=i$. So the maximum is $2\\sqrt2$, attained at $z=i$, where both distances equal $\\sqrt2$. The distractor $2$ is the value at $z=\\pm1$.",
+      "concepts": [
+        6
+      ],
+      "verify": "import cmath, math\nbest = max(abs(cmath.exp(1j*t) + 1) + abs(cmath.exp(1j*t) - 1)\n           for t in [2*math.pi*k/200000 for k in range(200000)])\nassert abs(best - 2*math.sqrt(2)) < 1e-9\nprint(r\"2\\sqrt{2}\")"
+    },
+    {
+      "id": "cx-16",
+      "difficulty": 3,
+      "problem": "The point $z=3$ is rotated by $90^\\circ$ counterclockwise about the point $1+i$. Find the image of $z$.",
+      "choices": [
+        "$2+3i$",
+        "$1+4i$",
+        "$3+2i$",
+        "$-1+2i$",
+        "$4+i$"
+      ],
+      "answer": "A",
+      "hint": "Translate the center to the origin, rotate, and translate back.",
+      "solution": "Let $c=1+i$. Then $z-c=2-i$, and rotating by $90^\\circ$ multiplies by $i$: $i(2-i)=1+2i$. Translating back gives $(1+i)+(1+2i)=2+3i$. The distractor $1+4i$ rotates about the origin instead of about $1+i$.",
+      "concepts": [
+        5
+      ],
+      "verify": "c = 1 + 1j\nw = c + 1j*(3 - c)\nassert abs(w - (2 + 3j)) < 1e-12\nprint(\"2+3i\")"
+    },
+    {
+      "id": "cx-17",
+      "difficulty": 3,
+      "problem": "Real numbers $a$ and $b$ are such that $1+i$ is a root of $x^{3}+ax+b=0$. Find $a+b$.",
+      "choices": [
+        "$-4$",
+        "$-2$",
+        "$0$",
+        "$2$",
+        "$4$"
+      ],
+      "answer": "D",
+      "hint": "Substitute $x=1+i$ and set the real and imaginary parts to zero.",
+      "solution": "We have $(1+i)^{3}=-2+2i$, so $(1+i)^{3}+a(1+i)+b=(-2+a+b)+(2+a)i=0$. Hence $a=-2$ and $b=4$, and $a+b=2$. The distractor $4$ reads off $b$ alone, and $-4$ comes from a sign error in the real part.",
+      "concepts": [
+        7
+      ],
+      "verify": "z = 1 + 1j\nbest = None\nfor a in range(-20, 21):\n    for b in range(-20, 21):\n        if abs(z**3 + a*z + b) < 1e-9:\n            best = a + b\nprint(best)"
+    },
+    {
+      "id": "cx-18",
+      "difficulty": 3,
+      "problem": "Let $z$ be a complex number with $|z-1|=|z+i|$. What is the minimum value of $|z-2|$?",
+      "choices": [
+        "$\\sqrt{2}$",
+        "$1$",
+        "$\\sqrt{3}$",
+        "$2$",
+        "$2\\sqrt{2}$"
+      ],
+      "answer": "A",
+      "hint": "First identify the locus of $z$ as a line.",
+      "solution": "Write $z=x+iy$. The condition $|z-1|^{2}=|z+i|^{2}$ gives $(x-1)^{2}+y^{2}=x^{2}+(y+1)^{2}$, which simplifies to $x+y=0$. The distance from the point $2$ to this line is $\\frac{|2+0|}{\\sqrt2}=\\sqrt2$.",
+      "concepts": [
+        6
+      ],
+      "verify": "import math\nbest = min(abs(t*complex(1, -1) - 2)\n           for t in [-10 + 20*k/400000 for k in range(400001)])\nassert abs(best - math.sqrt(2)) < 1e-6\nprint(r\"\\sqrt{2}\")"
+    },
+    {
+      "id": "cx-19",
+      "difficulty": 3,
+      "problem": "Let $\\omega=e^{2\\pi i/12}$. Compute $\\displaystyle\\sum_{k=0}^{11}\\left|1-\\omega^{k}\\right|^{2}$.",
+      "choices": [
+        "$6$",
+        "$12$",
+        "$16$",
+        "$18$",
+        "$24$"
+      ],
+      "answer": "E",
+      "hint": "Write $|1-\\omega^{k}|^{2}=2-\\omega^{k}-\\omega^{-k}$.",
+      "solution": "Summing gives $\\sum_{k}\\left(2-\\omega^{k}-\\omega^{-k}\\right)=24-0-0=24$, because the powers $\\omega^{\\pm k}$ sum to zero over the twelve twelfth roots of unity. The distractor $12$ comes from halving the sum, that is, using $1-\\cos$ in place of $2-2\\cos$.",
+      "concepts": [
+        4
+      ],
+      "verify": "import cmath, math\nw = cmath.exp(2j*math.pi/12)\ns = sum(abs(1 - w**k)**2 for k in range(12))\nassert abs(s - 24) < 1e-9\nprint(24)"
+    },
+    {
+      "id": "cx-20",
+      "difficulty": 3,
+      "problem": "Compute $\\displaystyle\\sum_{k=1}^{12}\\cos^{2}\\frac{k\\pi}{12}$.",
+      "choices": [
+        "$3$",
+        "$4$",
+        "$5$",
+        "$6$",
+        "$7$"
+      ],
+      "answer": "D",
+      "hint": "Replace $\\cos^{2}x$ by $\\frac{1+\\cos2x}{2}$.",
+      "solution": "$\\sum_{k=1}^{12}\\cos^{2}\\frac{k\\pi}{12}=\\sum_{k=1}^{12}\\frac{1+\\cos\\frac{k\\pi}{6}}{2}=6+\\frac12\\sum_{k=1}^{12}\\cos\\frac{k\\pi}{6}$. The angles $\\frac{k\\pi}{6}$ for $k=1,\\dots,12$ make exactly one full turn, so their cosines sum to zero. The total is $6$.",
+      "concepts": [
+        8
+      ],
+      "verify": "import math\ns = sum(math.cos(k*math.pi/12)**2 for k in range(1, 13))\nassert abs(s - 6) < 1e-9\nprint(6)"
+    },
+    {
+      "id": "cx-21",
+      "difficulty": 4,
+      "problem": "Let $\\omega=e^{2\\pi i/13}$. Compute $\\displaystyle\\prod_{k=1}^{12}\\left(2-\\omega^{k}\\right)$.",
+      "choices": [
+        "$4095$",
+        "$8191$",
+        "$8192$",
+        "$8193$",
+        "$16383$"
+      ],
+      "answer": "B",
+      "hint": "Factor $x^{13}-1$ over its roots and divide out the factor $x-1$.",
+      "solution": "The thirteenth roots of unity are $1,\\omega,\\dots,\\omega^{12}$, so $x^{13}-1=(x-1)\\prod_{k=1}^{12}(x-\\omega^{k})$. Dividing by $x-1$ gives $\\prod_{k=1}^{12}(x-\\omega^{k})=1+x+x^{2}+\\cdots+x^{12}$. Substituting $x=2$ yields $\\prod_{k=1}^{12}(2-\\omega^{k})=2^{13}-1=8191$. The product of twelve complex numbers is an integer because it is the value of a polynomial with integer coefficients at an integer. The distractor $8192$ forgets the $-1$, and $4095=2^{12}-1$ comes from using the wrong degree.",
+      "concepts": [
+        4
+      ],
+      "verify": "import cmath, math\nw = cmath.exp(2j*math.pi/13)\np = 1\nfor k in range(1, 13):\n    p *= (2 - w**k)\nassert abs(p.imag) < 1e-6 and abs(p.real - 8191) < 1e-6\nprint(8191)"
+    },
+    {
+      "id": "cx-22",
+      "difficulty": 4,
+      "problem": "Let $\\omega=e^{2\\pi i/7}$. Compute $\\displaystyle\\prod_{k=1}^{6}\\left|1-\\omega^{k}\\right|$.",
+      "choices": [
+        "$1$",
+        "$6$",
+        "$7$",
+        "$14$",
+        "$49$"
+      ],
+      "answer": "C",
+      "hint": "Take the product of the factors $1-\\omega^{k}$ first and then take absolute values.",
+      "solution": "We have $\\prod_{k=1}^{6}(x-\\omega^{k})=\\frac{x^{7}-1}{x-1}=x^{6}+x^{5}+\\cdots+1$. Evaluating at $x=1$ gives $\\prod_{k=1}^{6}(1-\\omega^{k})=7$. This product is a positive real number, and the modulus of a product is the product of the moduli, so $\\prod_{k=1}^{6}|1-\\omega^{k}|=7$. The distractor $49$ comes from squaring, and $6$ from forgetting that the constant term also contributes.",
+      "concepts": [
+        4,
+        1
+      ],
+      "verify": "import cmath, math\nw = cmath.exp(2j*math.pi/7)\np = 1.0\nfor k in range(1, 7):\n    p *= abs(1 - w**k)\nassert abs(p - 7) < 1e-9\nprint(7)"
+    },
+    {
+      "id": "cx-23",
+      "difficulty": 4,
+      "problem": "The complex numbers $z$ satisfying $|z-2|=2|z-i|$ form a curve. Find the largest possible value of $|z|$ on this curve.",
+      "choices": [
+        "$\\frac{2\\sqrt{5}}{3}$",
+        "$\\sqrt{5}$",
+        "$2\\sqrt{2}$",
+        "$\\frac{4\\sqrt{5}}{3}$",
+        "$2\\sqrt{5}$"
+      ],
+      "answer": "D",
+      "hint": "Write $z=te^{i\\varphi}$, substitute into the defining equation, and solve for $t$.",
+      "solution": "For $z=te^{i\\varphi}$, the condition $|z-2|^{2}=4|z-i|^{2}$ becomes $t^{2}+4-4t\\cos\\varphi=4(t^{2}+1-2t\\sin\\varphi)$, that is, $3t^{2}=8t\\sin\\varphi-4t\\cos\\varphi$. For $t\\ne0$ this gives $t=\\frac{8\\sin\\varphi-4\\cos\\varphi}{3}$. The maximum of $8\\sin\\varphi-4\\cos\\varphi$ is $\\sqrt{64+16}=4\\sqrt5$, so the largest $|z|$ is $\\frac{4\\sqrt5}{3}$. The curve is a circle with center $-\\frac23+\\frac43 i$ and radius $\\frac{2\\sqrt5}{3}$, and the largest modulus is the center's modulus plus the radius, which gives the same value. The distractor $\\frac{2\\sqrt5}{3}$ is the radius alone.",
+      "concepts": [
+        6
+      ],
+      "verify": "import math\nbest = max(abs((8*math.sin(t) - 4*math.cos(t))/3)\n           for t in [2*math.pi*k/100000 for k in range(100000)])\nassert abs(best - 4*math.sqrt(5)/3) < 1e-9\nprint(r\"\\frac{4\\sqrt{5}}{3}\")"
+    },
+    {
+      "id": "cx-24",
+      "difficulty": 4,
+      "problem": "Let $\\omega=e^{2\\pi i/7}$. Compute $\\displaystyle\\sum_{j=0}^{6}\\sum_{k=0}^{6}\\omega^{\\,k\\,(j^{2}+j)}$.",
+      "choices": [
+        "$7$",
+        "$14$",
+        "$21$",
+        "$28$",
+        "$49$"
+      ],
+      "answer": "B",
+      "hint": "Sum over $k$ first; for each fixed $j$ the inner sum is a sum of powers of a root of unity.",
+      "solution": "For fixed $j$, the inner sum $\\sum_{k=0}^{6}\\omega^{k m}$ with $m=j^{2}+j$ equals $7$ when $7\\mid m$ and $0$ otherwise. Since $j^{2}+j=j(j+1)$ is divisible by $7$ only when $j\\equiv0$ or $j\\equiv6\\pmod 7$, exactly the terms $j=0$ and $j=6$ survive, and the total is $7+7=14$. The distractor $7$ keeps only the term $j=0$.",
+      "concepts": [
+        4,
+        8
+      ],
+      "verify": "import cmath, math\nw = cmath.exp(2j*math.pi/7)\ntot = 0\nfor j in range(7):\n    for k in range(7):\n        tot += w**(k*(j*j + j))\nassert abs(tot.imag) < 1e-9\nprint(round(tot.real))"
+    },
+    {
+      "id": "cx-25",
+      "difficulty": 4,
+      "problem": "Let $z=3+4i$. Let $w_1$ and $w_2$ be the two complex numbers for which $0$, $z$, and $w_k$ are the vertices of an equilateral triangle. Find $\\operatorname{Re}(w_1w_2)$.",
+      "choices": [
+        "$-7$",
+        "$0$",
+        "$7$",
+        "$24$",
+        "$25$"
+      ],
+      "answer": "A",
+      "hint": "The third vertex is obtained by rotating $z$ about $0$ by $\\pm60^\\circ$.",
+      "solution": "The two third vertices are $w_{1}=ze^{i\\pi/3}$ and $w_{2}=ze^{-i\\pi/3}$. Their product is $z^{2}e^{0}=z^{2}=(3+4i)^{2}=-7+24i$, so the real part is $-7$. The distractor $24$ is the imaginary part of $z^{2}$, the distractor $7$ is the sign-flipped answer, and $25=|z|^{2}$ is a modulus rather than a product.",
+      "concepts": [
+        5,
+        1
+      ],
+      "verify": "import cmath, math\nz = complex(3, 4)\nw1 = z*cmath.exp(1j*math.pi/3)\nw2 = z*cmath.exp(-1j*math.pi/3)\nassert abs(abs(w1 - z) - 5) < 1e-9 and abs(abs(w2 - z) - 5) < 1e-9\nprint(round((w1*w2).real))"
+    },
+    {
+      "id": "cx-26",
+      "difficulty": 4,
+      "problem": "Let $z$ be the root of $x^{2}-2x+4=0$ with positive imaginary part. Find the real part of $z^{2025}$.",
+      "choices": [
+        "$2^{2025}$",
+        "$2^{2024}$",
+        "$-2^{2024}$",
+        "$-2^{2026}$",
+        "$-2^{2025}$"
+      ],
+      "answer": "E",
+      "hint": "Note $z=2e^{i\\pi/3}$, and reduce the exponent modulo $6$ in the argument.",
+      "solution": "Here $z=1+\\sqrt3\\,i=2e^{i\\pi/3}$, so $z^{2025}=2^{2025}e^{2025\\pi i/3}=2^{2025}e^{675\\pi i}=-2^{2025}$, because $675$ is odd. An exact check uses $z^{2}=2z-4$: writing $z^{n}=p_nz+q_n$ gives $p_{n+1}=2p_n+q_n$ and $q_{n+1}=-4p_n$, and $\\operatorname{Re}z^{n}=p_n+q_n$. The distractor $2^{2025}$ forgets the sign from $e^{675\\pi i}=-1$.",
+      "concepts": [
+        7,
+        2
+      ],
+      "verify": "p, q = 1, 0\nfor _ in range(2024):\n    p, q = 2*p + q, -4*p\nN = p + q\nassert N == -2**2025\nprint(\"-2^{2025}\")"
+    },
+    {
+      "id": "cx-27",
+      "difficulty": 5,
+      "problem": "Let $\\omega=e^{2\\pi i/3}$. Find the minimum value of $|z-1|+|z-\\omega|+|z-\\omega^{2}|$ over all complex numbers $z$. Use an argument that does not rely on calculus.",
+      "choices": [
+        "$3$",
+        "$\\sqrt{3}$",
+        "$2$",
+        "$3\\sqrt{2}$",
+        "$\\frac{3\\sqrt{3}}{2}$"
+      ],
+      "answer": "A",
+      "hint": "For any unit complex $u$ and any $v$, $|v|\\ge\\operatorname{Re}(v\\bar u)$. Choose $u$ cleverly for each vertex.",
+      "solution": "For unit $u_k=-\\omega^{k}$ and $v_k=z-\\omega^{k}$ we have $|v_k|\\ge\\operatorname{Re}(v_k\\bar u_k)$, and $v_k\\bar u_k=-(z-\\omega^{k})\\bar\\omega^{k}=1-z\\bar\\omega^{k}$. Summing over $k=0,1,2$ and using $1+\\bar\\omega+\\bar\\omega^{2}=0$ gives $\\sum_k|z-\\omega^{k}|\\ge\\operatorname{Re}\\big(3-z(1+\\bar\\omega+\\bar\\omega^{2})\\big)=3$ for every $z$. Equality holds at $z=0$, where each distance equals $1$. So the minimum is $3$. The distractor $\\sqrt3$ is the side length of the triangle.",
+      "concepts": [
+        4,
+        6
+      ],
+      "verify": "import cmath, math\nw = cmath.exp(2j*math.pi/3)\npts = [complex(-1.2 + 0.01*a, -1.2 + 0.01*b) for a in range(241) for b in range(241)]\nbest = min(abs(z - 1) + abs(z - w) + abs(z - w*w) for z in pts)\nassert best >= 3 - 1e-9 and best < 3.001\nprint(3)"
+    },
+    {
+      "id": "cx-28",
+      "difficulty": 5,
+      "problem": "Let $\\omega=e^{2\\pi i/11}$. Compute $\\left|\\displaystyle\\sum_{k=0}^{10}\\omega^{k^{2}}\\right|^{2}$.",
+      "choices": [
+        "$7$",
+        "$9$",
+        "$11$",
+        "$13$",
+        "$15$"
+      ],
+      "answer": "C",
+      "hint": "Expand $|S|^{2}=S\\bar S$ and change variables $u=j-k$, $v=j+k$.",
+      "solution": "Let $S=\\sum_k\\omega^{k^{2}}$. Then $|S|^{2}=\\sum_{j,k}\\omega^{j^{2}-k^{2}}=\\sum_{j,k}\\omega^{(j-k)(j+k)}$. Modulo $11$ the map $(j,k)\\mapsto(u,v)=(j-k,j+k)$ is a bijection, since $2$ is invertible, so the double sum equals $\\sum_{u,v}\\omega^{uv}$. For $u\\ne0$ the sum over $v$ vanishes, and for $u=0$ it equals $11$. Hence $|S|^{2}=11$. The distractor $13$ is the next prime and is not produced by this argument.",
+      "concepts": [
+        4
+      ],
+      "verify": "import cmath, math\nw = cmath.exp(2j*math.pi/11)\nS = sum(w**(k*k) for k in range(11))\nv = abs(S)**2\nassert abs(v - 11) < 1e-9\nprint(11)"
+    },
+    {
+      "id": "cx-29",
+      "difficulty": 5,
+      "problem": "How many lattice points $(a,b)$ with $a,b$ integers satisfy $a^{2}+b^{2}\\le50$ and make $(a+bi)^{4}$ a real number?",
+      "choices": [
+        "$25$",
+        "$29$",
+        "$37$",
+        "$45$",
+        "$49$"
+      ],
+      "answer": "E",
+      "hint": "Compute $\\operatorname{Im}(a+bi)^{4}$ and count carefully on the lines it defines.",
+      "solution": "We have $\\operatorname{Im}(a+bi)^{4}=4a^{3}b-4ab^{3}=4ab(a^{2}-b^{2})$, which vanishes exactly when $a=0$, $b=0$, or $a=\\pm b$. The axes contain $15+15-1=29$ lattice points in the disk, including the origin. Each diagonal contains $11$ points, including the origin, so the two diagonals add $20$ new points. The total is $29+20=49$. The distractor $29$ counts the axes only.",
+      "concepts": [
+        1,
+        0
+      ],
+      "verify": "def mul(a, b):\n    return (a[0]*b[0] - a[1]*b[1], a[0]*b[1] + a[1]*b[0])\ncnt = 0\nfor a in range(-7, 8):\n    for b in range(-7, 8):\n        if a*a + b*b <= 50:\n            z2 = mul((a, b), (a, b))\n            z4 = mul(z2, z2)\n            if z4[1] == 0:\n                cnt += 1\nprint(cnt)"
+    },
+    {
+      "id": "cx-30",
+      "difficulty": 5,
+      "problem": "Let $\\omega=e^{2\\pi i/7}$. Compute $\\displaystyle\\prod_{0\\le j<k\\le6}\\left|\\omega^{j}-\\omega^{k}\\right|^{2}$.",
+      "choices": [
+        "$117649$",
+        "$823543$",
+        "$1647086$",
+        "$5764801$",
+        "$40353607$"
+      ],
+      "answer": "B",
+      "hint": "The product of squared root differences is the discriminant of $x^{7}-1$ up to sign.",
+      "solution": "For a monic polynomial $P$ with roots $r_1,\\dots,r_n$, the discriminant satisfies $\\prod_{j<k}(r_j-r_k)^{2}=\\pm\\prod_{j}P'(r_j)$. For $P=x^{7}-1$ and a root $r$ we have $P'(r)=7r^{6}=\\frac{7}{r}$, so $|P'(r)|=7$ for every root. Therefore $\\prod_{j}|P'(r_j)|=7^{7}=823543$, and this equals $\\prod_{j<k}|r_j-r_k|^{2}$. The distractor $117649=7^{6}$ omits one factor of $7$, and $1647086=2\\cdot7^{7}$ doubles the answer.",
+      "concepts": [
+        4,
+        6
+      ],
+      "verify": "import cmath, math\nw = cmath.exp(2j*math.pi/7)\np = 1.0\nfor j in range(7):\n    for k in range(j + 1, 7):\n        p *= abs(w**j - w**k)**2\nassert abs(p - 7**7) / 7**7 < 1e-9\nprint(823543)"
+    }
+  ],
+  "videos": [
+    {
+      "youtubeId": "v0YEaeIClKY",
+      "title": "e^(iπ) in 3.14 minutes, using dynamics | DE5",
+      "channel": "3Blue1Brown",
+      "why": "A fast, visual account of why $e^{i\\pi}=-1$ and what the complex exponential does to motion, useful before the Euler's formula lesson."
+    },
+    {
+      "youtubeId": "mvmuCPvRoWQ",
+      "title": "Euler's formula with introductory group theory",
+      "channel": "3Blue1Brown",
+      "why": "Builds intuition for multiplication of complex numbers as rotation and scaling, which underlies the polar form and De Moivre lessons."
+    },
+    {
+      "youtubeId": "rawY5llywxw",
+      "title": "Deriving and Graphing Complex Roots of Unity",
+      "channel": "Bill Kinney",
+      "why": "Derives the $n$th roots of unity from polar form and plots them, which is the right preparation for the roots-of-unity sums lesson."
+    }
+  ]
+}

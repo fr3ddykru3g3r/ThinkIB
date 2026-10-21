@@ -1,19 +1,33 @@
 import Link from 'next/link';
 import { TOPICS, getTopic, buildMock, buildMixed, MOCK_COUNT } from '@/lib/amc12';
+import { DIFFICULTY_LABELS } from '@/lib/amc12-core';
 import Runner from './Runner';
 
 const topicTitles = Object.fromEntries(TOPICS.map((t) => [t.id, t.title]));
 
 export const metadata = { title: 'AMC 12 Practice | The Archive' };
 
-export default function PracticePage({ searchParams }: { searchParams: { mode?: string; t?: string; n?: string; seed?: string } }) {
+export default function PracticePage({ searchParams }: { searchParams: { mode?: string; t?: string; n?: string; seed?: string; min?: string; max?: string; c?: string } }) {
   const mode = searchParams.mode ?? 'mixed';
 
   if (mode === 'topic') {
     const topic = getTopic(searchParams.t ?? '');
     if (topic) {
-      const problems = [...topic.problems].sort((a, b) => a.difficulty - b.difficulty);
-      return <Runner topicTitles={topicTitles} key={topic.id} title={topic.title} kind="topic" backHref={`/amc12/${topic.id}`} problems={problems} />;
+      const min = parseInt(searchParams.min ?? '1', 10) || 1;
+      const max = parseInt(searchParams.max ?? '5', 10) || 5;
+      const concept = searchParams.c !== undefined ? parseInt(searchParams.c, 10) : NaN;
+      let problems = topic.problems.filter((p) => p.difficulty >= min && p.difficulty <= max);
+      let label = topic.title;
+      if (!Number.isNaN(concept) && topic.concepts[concept]) {
+        problems = problems.filter((p) => p.concepts.includes(concept));
+        label = `${topic.title}: ${topic.concepts[concept].title}`;
+      } else if (min > 1 || max < 5) {
+        label = `${topic.title} (${min === max ? DIFFICULTY_LABELS[min].split(' · ')[0] : `levels ${min}–${max}`})`;
+      }
+      problems = [...problems].sort((a, b) => a.difficulty - b.difficulty);
+      if (problems.length > 0) {
+        return <Runner topicTitles={topicTitles} key={`${topic.id}-${min}-${max}-${searchParams.c ?? ''}`} title={label} kind="topic" backHref={`/amc12/${topic.id}`} problems={problems} />;
+      }
     }
   }
 

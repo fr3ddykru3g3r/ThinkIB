@@ -1,125 +1,839 @@
 {
   "id": "functions-logs",
   "title": "Functions, Exponents & Logarithms",
-  "summary": "Composition and inverses, functional equations, exponent and logarithm laws, solving exponential and logarithmic equations, and floor and absolute value functions.",
+  "summary": "Composition, inverses and iteration, functional equations, floor and fractional part, exponent and logarithm laws with domain checks, comparing huge numbers, and graph transformations.",
   "examWeight": "≈2–4 problems per paper",
+  "prerequisites": [
+    "algebra"
+  ],
+  "overview": "On the AMC 12 this topic appears in roughly two to four problems per paper, and it covers the full difficulty range. Early problems (#5–10) test direct evaluation of compositions, exponent and logarithm laws, and floor sums. Middle problems (#11–20) combine two ideas, such as a logarithmic equation with a domain check, a floor count over blocks, or an iteration with a period. The hardest problems (#21–25) are functional equations whose solutions need a clever substitution, or comparisons of very large numbers that reduce to a monotonicity argument about $\\frac{\\ln x}{x}$.\n\nStudy in a deliberate order. First make the exponent and logarithm laws automatic, since almost every later problem rewrites terms in one base or one logarithm base. Then learn the three reduction moves that recur throughout the topic: substitute $t=a^{x}$ for exponential equations, change logarithms to a single base, and replace floor sums by block counts. Build domain checking into your routine for logarithm problems, not as a last step.\n\nProblems here are easy to set up and easy to get wrong, so verify each answer by substituting it back into the original statement. This is the cheapest way to catch the traps covered in each lesson, and it is the habit that separates a correct score from a near miss on the contest.",
   "concepts": [
     {
       "title": "Composition and inverses",
-      "body": "A function is a machine: you feed in an input and get exactly one output. The composition $f\\circ g$ (read \"$f$ after $g$\") means feed $x$ into $g$ first, then feed the result into $f$, so $(f\\circ g)(x)=f(g(x))$. Always work from the inside out. Order matters: with $f(x)=2x+1$ and $g(x)=x^2$, we get $f(g(3))=f(9)=19$, but $g(f(3))=g(7)=49$.\n\nAn inverse $f^{-1}$ runs the machine backwards. It is defined by $f^{-1}(y)=x$ exactly when $f(x)=y$. So to find $f^{-1}(c)$ you usually do not need a formula for the inverse: solve $f(x)=c$ for $x$, then check by substituting back. Because $f^{-1}$ undoes $f$, we always have $f^{-1}(f(x))=x$.\n\nInverses reverse the order of composition: $(f\\circ g)^{-1}=g^{-1}\\circ f^{-1}$. This is like getting dressed: you put on socks and then shoes, so to undo it you take off the shoes first.",
+      "body": "A function is a rule that assigns each input exactly one output, and composition chains two rules: $(f\\circ g)(x)=f(g(x))$. The first thing to notice is that order matters. Applying $g$ first and then $f$ is almost never the same as applying them in the other order. With $f(x)=x+3$ and $g(x)=x^2$, we get $f(g(x))=x^2+3$ but $g(f(x))=(x+3)^2$, and these already disagree at $x=0$.\n\nTo evaluate a composition, work from the inside out. Evaluate the innermost function at the given input, then feed that number into the next function. Many contest errors come from computing $f(2)$ when the problem asks for $f(g(2))$. A clean habit is to write the intermediate value on scratch paper, such as $g(2)=5$, before applying $f$ to it.\n\nA function $f$ has an inverse exactly when it is one-to-one on its domain, meaning distinct inputs always give distinct outputs (the horizontal line test). The defining property is $f^{-1}(f(x))=x$ and $f(f^{-1}(y))=y$. In practice you rarely need a formula for $f^{-1}$. To compute $f^{-1}(c)$, solve $f(x)=c$ for $x$; the solution is $f^{-1}(c)$. This turns an inverse question into an ordinary equation, which is the most useful fact in the lesson.\n\nWhy does this work? If $f$ is one-to-one and $f(a)=c$, then $a$ is the only input with output $c$, so sending $c$ back to $a$ is a well-defined rule, and that rule is $f^{-1}$. Two consequences follow. First, $(f\\circ g)^{-1}=g^{-1}\\circ f^{-1}$: the order reverses, like taking off socks after shoes. Second, if $f(x)=ax+b$ with $a\\neq 0$, then $f^{-1}(y)=\\frac{y-b}{a}$, which you can confirm by composing: $f\\!\\left(\\frac{y-b}{a}\\right)=y$.\n\nInjectivity is the hidden hypothesis. The map $x\\mapsto x^2$ has no inverse on all of $\\mathbb{R}$ because $2$ and $-2$ both map to $4$. A composition can therefore fail to be invertible even when both pieces are nice, and you must check one-to-one-ness on the domain you are actually using before writing $f^{-1}$ or $(f\\circ g)^{-1}$.",
       "keyFacts": [
-        "$(f\\circ g)(x)=f(g(x))$: the inner function $g$ is applied first",
-        "$f^{-1}(c)=x \\iff f(x)=c$",
-        "$f^{-1}(f(x))=x$ for every $x$ in the domain of $f$",
+        "$(f\\circ g)(x)=f(g(x))$: evaluate the inner function first",
+        "$f^{-1}(c)=a$ exactly when $f(a)=c$, provided $f$ is one-to-one",
         "$(f\\circ g)^{-1}=g^{-1}\\circ f^{-1}$",
-        "Composition is usually not commutative: $f\\circ g\\neq g\\circ f$"
+        "If $f(x)=ax+b$, then $f^{-1}(y)=\\dfrac{y-b}{a}$"
       ],
-      "whenToUse": "The problem nests one function inside another, or asks for the input that produces a given output."
+      "whenToUse": "The problem nests one function inside another, or asks for $f^{-1}(c)$ where $f$ has no convenient closed-form inverse.",
+      "commonMistakes": [
+        "Evaluating the outer function first, so $f(g(2))$ is treated as $g(f(2))$",
+        "Reporting $f^{-1}(c)$ as $1/f(c)$ instead of the input that produces $c$"
+      ],
+      "example": {
+        "problem": "Let $f(x)=2x+3$ and $g(x)=x^2-1$. Find the sum of all real $x$ satisfying $f(g(x))=g(f(x))$.",
+        "solution": "Compute $f(g(x))=2(x^2-1)+3=2x^2+1$ and $g(f(x))=(2x+3)^2-1=4x^2+12x+8$. Setting them equal gives $2x^2+12x+7=0$. The discriminant $144-56=88$ is positive, so there are two real roots, and by Vieta their sum is $-\\frac{12}{2}=-6$. No inverse is involved, so both roots are valid.",
+        "answer": "-6",
+        "verify": "\ndef f(x): return 2*x+3\ndef g(x): return x*x-1\ndef F(x): return f(g(x))-g(f(x))\nN=400000\nxs=[-20+40*i/N+1e-9 for i in range(N+1)]\nroots=[]\nfor a,b in zip(xs,xs[1:]):\n    if F(a)*F(b)<0:\n        lo,hi=a,b\n        for _ in range(200):\n            m=(lo+hi)/2\n            if F(lo)*F(m)<=0: hi=m\n            else: lo=m\n        roots.append((lo+hi)/2)\nprint(round(sum(roots)))\n"
+      }
+    },
+    {
+      "title": "Iteration, fixed points and periodicity",
+      "body": "Iterating a function means applying it repeatedly: $f^{2}(x)=f(f(x))$, $f^{3}(x)=f(f(f(x)))$, and in general $f^{n}$ is the $n$-fold composition. This is not the $n$th power of $f(x)$; the superscript counts compositions, and context usually makes this clear. Iteration questions typically ask for $f^{n}(x_0)$ with $n$ huge, and the trick is almost never to carry out $n$ steps.\n\nThe key object is the orbit of a starting point: $x_0,\\ x_1=f(x_0),\\ x_2=f(x_1),\\dots$. Compute terms until a value repeats. If $x_j=x_k$ for some $j<k$, then the sequence is periodic from index $j$ on, with period $p=k-j$. Once you know the period, $x_n$ depends only on $n$ modulo $p$, which reduces $f^{2024}$ to a computation with at most $p$ steps.\n\nWhy does periodicity follow? Because $f$ is a function, the next term is determined by the current term alone. If $x_j=x_k$, applying the same function to equal inputs gives $x_{j+t}=x_{k+t}$ for every $t\\ge 0$, by induction. That single fact is what makes orbits predictable: once a value recurs, the entire future repeats.\n\nA fixed point is a value with $f(a)=a$, and it is a period-$1$ point. A point of period $2$ satisfies $f(f(a))=a$ but $f(a)\\neq a$. So the equation $f^{2}(x)=x$ always contains the fixed points of $f$, and the genuinely new solutions are the period-$2$ points. Factoring out the fixed-point solutions is the standard way to count solutions of $f^{k}(x)=x$.\n\nNot every orbit repeats. For $f(x)=2x$ we have $f^{n}(x)=2^{n}x$, which grows without bound, and such questions are about growth and exponent laws instead. Whenever a period $p$ exists, $f^{p}$ fixes every point of the orbit, so $f^{n}=f^{\\,n \\bmod p}$ on that orbit. This is the algebraic content of the modular reduction, and it is the form in which the idea is used on the exam.",
+      "keyFacts": [
+        "$f^{n}$ denotes the $n$-fold composition of $f$, not the $n$th power of $f(x)$",
+        "If $x_j=x_k$ with $j<k$, the orbit is periodic with period $k-j$",
+        "Fixed points satisfy $f(a)=a$, and they also satisfy $f^{2}(a)=a$",
+        "On a $p$-cycle, $f^{n}(x_0)=f^{\\,r}(x_0)$ where $r\\equiv n \\pmod p$"
+      ],
+      "whenToUse": "A problem asks for $f^{n}$ with a large $n$, or for solutions of $f^{k}(x)=x$.",
+      "commonMistakes": [
+        "Reading $f^{n}(x)$ as $(f(x))^{n}$ and then computing a power instead of iterating",
+        "Stopping the orbit too early and assuming a cycle has length $2$ when it is longer"
+      ],
+      "example": {
+        "problem": "Let $f(x)=1-\\dfrac{1}{x}$. Find $f^{100}(2)$, where $f^{n}$ is the $n$-fold composition.",
+        "solution": "Compute $f(2)=\\frac12$, then $f\\!\\left(\\frac12\\right)=1-2=-1$, then $f(-1)=1+1=2$. The orbit of $2$ returns to $2$ after three steps, so $f$ has period $3$ on this orbit. Since $100\\equiv 1\\pmod 3$, we get $f^{100}(2)=f^{1}(2)=\\frac12$.",
+        "answer": "1/2",
+        "verify": "\nfrom fractions import Fraction as F\nx=F(2)\nfor _ in range(100):\n    x=1-1/x\nprint(x)\n"
+      }
+    },
+    {
+      "title": "Functional equations: special values and symmetry",
+      "body": "A functional equation determines a function from a relation it must satisfy for every input, such as $f(x+y)=f(x)+f(y)$. Unlike a single equation in one unknown, it gives infinitely many constraints at once, and the strategy is to choose inputs that make the relation simple. The first step is almost always to substitute special values such as $x=0$, $x=1$, $x=-1$, or a reciprocal.\n\nSpecial values often reveal structure immediately. Setting $x=y=0$ in $f(x+y)=f(x)+f(y)$ gives $f(0)=2f(0)$, so $f(0)=0$. If the relation mentions both $f(x)$ and $f(1/x)$, then substituting $1/x$ for $x$ produces a second equation in the same two unknowns. Two equations in two unknowns can be solved by elimination, exactly as in linear algebra.\n\nThe symmetry trick is the central idea. Suppose $f(x)+2f\\!\\left(\\frac1x\\right)=3x$ for all $x\\neq 0$. Replacing $x$ by $\\frac1x$ gives $f\\!\\left(\\frac1x\\right)+2f(x)=\\frac3x$. Multiply this second equation by $2$ and subtract the first: $3f(x)=\\frac6x-3x$, so $f(x)=\\frac2x-x$. Substituting back checks the answer, and the check is not optional, because some functional equations have no solution, and an inconsistent system shows up as a contradiction.\n\nWhy does elimination work? Each substitution yields a valid identity, because the relation holds at every input. Following the substitution map through its orbit (for $x\\mapsto \\frac1x$ the orbit has length $2$, and for $x\\mapsto\\frac{1}{1-x}$ it has length $3$) produces one linear equation per point of the orbit. The values of $f$ on the orbit are the unknowns, and the determinant of the system decides whether the answer is unique.\n\nDomains need the same care as in any algebra problem. The relation $f(x)+2f(1/x)=3x$ only makes sense for $x\\neq 0$, so a substitution that sends $x$ to $0$ is forbidden. Likewise, substituting $1-x$ is valid only if the relation holds at $1-x$. Record the domain of every substitution, because an answer derived from an invalid substitution is not an answer.",
+      "keyFacts": [
+        "Setting $x=y=0$ in $f(x+y)=f(x)+f(y)$ forces $f(0)=0$",
+        "If $f(x)+2f(1/x)=g(x)$ for all $x\\neq 0$, substituting $1/x$ gives a second equation",
+        "Eliminate the orbit values to solve the resulting linear system",
+        "Always check the candidate function in the original relation"
+      ],
+      "whenToUse": "A relation links $f$ at several points such as $x$, $1/x$, $1-x$ or $x+1$, or asks for a specific value of $f$ that the relation determines.",
+      "commonMistakes": [
+        "Substituting a value outside the domain on which the relation holds",
+        "Solving the system but never checking the answer in the original equation"
+      ],
+      "example": {
+        "problem": "Let $f$ satisfy $f(x)+2f\\!\\left(\\dfrac1x\\right)=3x$ for all $x\\neq 0$. Find $f(2)$.",
+        "solution": "Write $A=f(2)$ and $B=f\\!\\left(\\frac12\\right)$. Plugging $x=2$ gives $A+2B=6$. Plugging $x=\\frac12$ gives $B+2A=\\frac32$. Multiply the second equation by $2$ and subtract the first: $(4A+2B)-(A+2B)=3-6$, so $3A=-3$ and $A=-1$. Indeed $f(x)=\\frac2x-x$ gives $f(2)=1-2=-1$, and it satisfies the original relation.",
+        "answer": "-1",
+        "verify": "\nfrom fractions import Fraction as F\n# unknowns A=f(2), B=f(1/2): A+2B=6 and 2A+B=3/2\na,b,c=F(1),F(2),F(6)\nd,e,f_=F(2),F(1),F(3,2)\ndet=a*e-b*d\nA=(c*e-b*f_)/det\nprint(A)\n"
+      }
     },
     {
       "title": "Exponent laws",
-      "body": "An exponent counts repeated multiplication: $a^n$ means $n$ copies of $a$ multiplied together. The laws follow from that meaning. Multiplying powers of the same base adds exponents, because $a^m\\cdot a^n$ is $m+n$ copies of $a$. Raising a power to a power multiplies exponents, because $(a^m)^n$ is $n$ groups of $m$ copies of $a$.\n\nThe definitions for zero and negative exponents are chosen so the laws keep working. For example, $a^m/a^m=1$ must also equal $a^{m-m}=a^0$, so $a^0=1$; similarly $a^{-n}=1/a^n$. A fractional exponent is a root: $a^{1/2}=\\sqrt{a}$.\n\nThe most useful habit is to rewrite everything with one common base, usually primes. For instance $\\dfrac{4^5}{2^7}=\\dfrac{(2^2)^5}{2^7}=\\dfrac{2^{10}}{2^7}=2^{3}=8$. Once the bases match, you can compare exponents directly, since $a^x=a^y$ with $a>0$ and $a\\neq 1$ forces $x=y$.",
+      "body": "The exponent laws are $a^{m}a^{n}=a^{m+n}$, $(a^{m})^{n}=a^{mn}$, $(ab)^{n}=a^{n}b^{n}$, $a^{-n}=\\frac1{a^{n}}$, and $\\frac{a^{m}}{a^{n}}=a^{m-n}$. They look like rules to memorize, but they share one principle: exponentiation turns addition in the exponent into multiplication. Contest problems are almost always solved by rewriting every term as a power of one common base.\n\nThe product law is easy to justify for positive integers: $a^{m}a^{n}$ is $m$ copies of $a$ times $n$ further copies, which is $m+n$ copies. Extending to all integers requires defining $a^{0}=1$ and $a^{-n}=\\frac1{a^n}$ so that the laws remain consistent. For rational exponents, $a^{p/q}=\\sqrt[q]{a^{p}}$, and the laws continue to hold. Real exponents are defined by continuity, and the exam rarely needs more than rationals.\n\nThe most useful technique is to factor out the smallest power. For instance $2^{n+3}-2^{n+1}=2^{n}\\left(2^{3}-2^{1}\\right)=6\\cdot 2^{n}$. Similarly $9^{n}+3^{2n+1}$ becomes $3^{2n}+3\\cdot 3^{2n}=4\\cdot 3^{2n}$, since $9^{n}=3^{2n}$. Whenever a sum of powers appears, look for a common base and then for a common factor that can be pulled out.\n\nMixed bases are the usual obstacle. The numbers $4=2^{2}$, $8=2^{3}$, $9=3^{2}$, $16=2^{4}$ and $27=3^{3}$ should be recognized immediately. Then $\\frac{8^{x}}{4^{x}}=\\frac{2^{3x}}{2^{2x}}=2^{x}$, a simplification that carries straight into exponential equations. Noticing that two bases share a prime is the most frequent first step in these problems.\n\nThe common errors come from distributing exponents over sums, which is false: $(a+b)^{n}\\neq a^{n}+b^{n}$. Also $2^{n}+2^{n}=2^{n+1}$, not $4^{n}$. The rule $(a^{m})^{n}=a^{mn}$ does not give $a^{m^{n}}$, and $(-1)^{k}$ depends on the parity of $k$, so keep track of signs when exponents are variable.",
       "keyFacts": [
-        "$a^m a^n=a^{m+n}$ and $\\dfrac{a^m}{a^n}=a^{m-n}$",
-        "$(a^m)^n=a^{mn}$ and $(ab)^n=a^n b^n$",
-        "$a^0=1$ and $a^{-n}=\\dfrac{1}{a^n}$",
-        "If $a^x=a^y$ with $a>0$ and $a\\neq 1$, then $x=y$"
+        "$a^{m}a^{n}=a^{m+n}$, $\\ (a^{m})^{n}=a^{mn}$, $\\ a^{-n}=\\dfrac{1}{a^{n}}$",
+        "$\\dfrac{a^{m}}{a^{n}}=a^{m-n}$ for $a\\neq 0$",
+        "$a^{m}+a^{m}=2a^{m}$, but $a^{m}+a^{m}\\neq a^{2m}$",
+        "Rewrite every term as a power of a single base, then factor out the smallest power"
       ],
-      "whenToUse": "Numbers are written as powers, or the problem asks you to simplify, compare or solve an expression with exponents."
+      "whenToUse": "Terms have powers of different but related bases such as $4,8,9,27$, or a sum of exponentials with shifted exponents.",
+      "commonMistakes": [
+        "Distributing an exponent over a sum, writing $(a+b)^{n}=a^{n}+b^{n}$",
+        "Adding like powers incorrectly, such as $2^{n}+2^{n}=4^{n}$"
+      ],
+      "example": {
+        "problem": "For $n=3$, evaluate $\\dfrac{9^{n}+3^{2n+1}}{27^{n}}$.",
+        "solution": "Rewrite everything in base $3$: $9^{n}=3^{2n}$ and $27^{n}=3^{3n}$. The numerator is $3^{2n}+3^{2n+1}=3^{2n}(1+3)=4\\cdot 3^{2n}$, so the quotient is $4\\cdot 3^{2n-3n}=4\\cdot 3^{-n}$. At $n=3$ this is $\\frac{4}{27}$. Direct check: $9^{3}+3^{7}=729+2187=2916$ and $27^{3}=19683$, and $\\frac{2916}{19683}=\\frac{4}{27}$.",
+        "answer": "4/27",
+        "verify": "\nfrom fractions import Fraction as F\nn=3\nprint(F(9**n+3**(2*n+1), 27**n))\n"
+      }
     },
     {
-      "title": "Logarithms and change of base",
-      "body": "A logarithm answers the question \"what exponent?\" The statement $\\log_b x=y$ means exactly $b^y=x$. For example $\\log_2 8=3$ because $2^3=8$. Logs turn products into sums, $\\log_b(xy)=\\log_b x+\\log_b y$, and powers into products, $\\log_b(x^k)=k\\log_b x$. These come from the exponent laws: if $x=b^u$ and $y=b^v$, then $xy=b^{u+v}$, so the exponent of $xy$ is $u+v$.\n\nChange of base lets you compare logarithms written in different bases: $\\log_b x=\\dfrac{\\log_c x}{\\log_c b}$ for any positive base $c\\neq 1$. The reason is that both sides measure the same exponent once you express $x$ and $b$ in base $c$. A useful special case is $\\log_b a\\cdot\\log_a b=1$. Example: $\\log_4 32=\\dfrac{\\log_2 32}{\\log_2 4}=\\dfrac{5}{2}$, which checks out because $4^{5/2}=2^5=32$.\n\nLogarithms only accept positive inputs. Before you finish a log problem, confirm that every argument is positive, because a candidate that makes an argument zero or negative does not count.",
+      "title": "Solving exponential equations",
+      "body": "An exponential equation has the unknown in an exponent. There are two main tools. The first is to equate exponents when both sides are powers of the same base: if $a>0$, $a\\neq 1$, and $a^{u}=a^{v}$, then $u=v$. The second is to substitute $t=a^{x}$, which turns the equation into an algebraic one, usually a polynomial in $t$. Contest problems mix bases that share a core, so the second tool is the one used most.\n\nWhy can exponents be equated? For $a>0$ with $a\\neq 1$, the function $x\\mapsto a^{x}$ is strictly monotonic, so it is one-to-one and has an inverse $\\log_a$. Applying $\\log_a$ to both sides of $a^{u}=a^{v}$ gives $u=v$. Monotonicity also means each piece of an exponential equation has at most one solution in each interval where the expression is defined, which is why sign analysis and substitution are so effective.\n\nFor the substitution, write every term in terms of one quantity. With $t=2^{x}$ we have $4^{x}=(2^{x})^{2}=t^{2}$ and $2^{x+1}=2t$. The equation $4^{x}-6\\cdot 2^{x}+8=0$ becomes $t^{2}-6t+8=0$, which factors as $(t-2)(t-4)=0$. Each positive root gives one solution $x=\\log_{2}t$, namely $x=1$ and $x=2$. Any root with $t\\le 0$ must be discarded, since $2^{x}$ is always positive.\n\nSum questions can often be finished without solving. If $t_1,t_2$ are the roots of the quadratic in $t$, the corresponding exponents are $\\log_2 t_1$ and $\\log_2 t_2$, and their sum is $\\log_2(t_1t_2)$. Here $t_1t_2=8$, so the sum of the $x$-values is $\\log_2 8=3$, which agrees with $1+2$. Using the product of the $t$-roots is a reliable shortcut whenever the question asks for a sum of solutions.\n\nTypical errors include forgetting that $2^{x}>0$ eliminates negative roots of the quadratic, and dividing both sides by an expression that might be zero. Also write $4^{x}$ as $(2^{x})^{2}$ rather than treating $2^{2x}$ as a new unrelated variable, since the substitution only works when the whole equation is expressed through one quantity. Verify each candidate in the original equation.",
       "keyFacts": [
-        "$\\log_b x=y \\iff b^y=x$",
-        "$\\log_b(xy)=\\log_b x+\\log_b y$ and $\\log_b(x^k)=k\\log_b x$",
-        "$\\log_b x=\\dfrac{\\log_c x}{\\log_c b}$ for any valid base $c$",
-        "$\\log_b a\\cdot \\log_a b=1$",
-        "$b^{\\log_b x}=x$ for $x>0$"
+        "If $a>0$, $a\\neq 1$, then $a^{u}=a^{v}$ implies $u=v$",
+        "Substitute $t=a^{x}$ and write each power as a power of $t$",
+        "Discard roots with $t\\le 0$, because $a^{x}>0$",
+        "For a sum of solutions, the sum of the logarithms of the $t$-roots is $\\log_a(t_1t_2)$"
       ],
-      "whenToUse": "The problem mixes logarithms with different bases, or has a sum or product of logs that you want to combine into one."
+      "whenToUse": "The unknown appears in exponents of several related bases, or the equation has the shape $p\\,(a^{x})^{2}+q\\,a^{x}+r=0$ after rewriting.",
+      "commonMistakes": [
+        "Keeping a negative or zero value of $t$, which corresponds to no real $x$",
+        "Treating $4^{x}$ as an independent unknown instead of $(2^{x})^{2}$"
+      ],
+      "example": {
+        "problem": "Find the sum of all real solutions of $4^{x}-6\\cdot 2^{x}+8=0$.",
+        "solution": "Since $4^{x}=(2^{x})^{2}$, put $t=2^{x}>0$. The equation becomes $t^{2}-6t+8=0$, so $(t-2)(t-4)=0$, giving $t=2$ or $t=4$. These give $x=1$ and $x=2$, whose sum is $3$. Equivalently, the product of the $t$-roots is $8=2^{3}$, so the sum of the exponents is $3$.",
+        "answer": "3",
+        "verify": "\ndef f(x): return 4**x-6*2**x+8\nN=120000\nxs=[-6+12*i/N+1e-7 for i in range(N+1)]\nroots=[]\nfor a,b in zip(xs,xs[1:]):\n    if f(a)*f(b)<0:\n        lo,hi=a,b\n        for _ in range(100):\n            m=(lo+hi)/2\n            if f(lo)*f(m)<=0: hi=m\n            else: lo=m\n        roots.append((lo+hi)/2)\nprint(round(sum(roots)))\n"
+      }
     },
     {
-      "title": "Solving exponential and logarithmic equations",
-      "body": "If both sides of an exponential equation can be written as powers of the same base, equate the exponents: $2^{x+1}=8=2^3$ gives $x+1=3$, so $x=2$. If the equation mixes powers such as $4^x$ and $2^x$, rewrite $4^x=(2^x)^2$ and substitute $y=2^x$. This turns the equation into an ordinary polynomial in $y$. Solve for $y$, then convert back with $x=\\log_2 y$ for each positive $y$.\n\nFor logarithmic equations, first combine the logs into one using the product and power rules, then rewrite the equation as an exponential. Example: $\\log_2 x+\\log_2(x-2)=3$ becomes $\\log_2\\big(x(x-2)\\big)=3$, so $x(x-2)=2^3=8$. Then $x^2-2x-8=0$ gives $x=4$ or $x=-2$.\n\nThe domain check is the step most often skipped. The original equation needs $x>0$ and $x-2>0$, so $x=-2$ is rejected even though it satisfies the combined equation. A root that breaks the domain is called extraneous.",
+      "title": "Logarithm laws and change of base",
+      "body": "The logarithm $\\log_a b$ is the exponent to which $a$ must be raised to produce $b$, so $a^{\\log_a b}=b$. It is the inverse of the exponential, and every logarithm law is an exponent law read in reverse. For $a>0$, $a\\neq 1$ and $x,y>0$ we have $\\log_a(xy)=\\log_a x+\\log_a y$, $\\log_a\\!\\left(\\frac xy\\right)=\\log_a x-\\log_a y$, and $\\log_a(x^{r})=r\\log_a x$.\n\nTo justify the product law, let $u=\\log_a x$ and $v=\\log_a y$, so $x=a^{u}$ and $y=a^{v}$. Then $xy=a^{u+v}$, and taking $\\log_a$ gives $\\log_a(xy)=u+v$. The power law follows the same way, since $x^{r}=a^{ru}$. Each law is simply the corresponding exponent law, which is why it is worth remembering the logic rather than only the formulas.\n\nThe change-of-base formula says that for any positive $c\\neq 1$, $\\log_a b=\\frac{\\log_c b}{\\log_c a}$. To prove it, let $t=\\log_a b$, so $a^{t}=b$. Taking $\\log_c$ of both sides gives $t\\log_c a=\\log_c b$, and dividing gives the formula. This identity drives most logarithm simplifications: rewrite everything in one base, often the base that makes the answer clean, and the problem becomes a ratio.\n\nTwo consequences are used constantly. First, $\\log_a b\\cdot\\log_b a=1$. Second, the chain $\\log_2 3\\cdot\\log_3 4\\cdots\\log_{n}(n+1)$ telescopes to $\\log_2(n+1)$, because each denominator cancels the next numerator. Any product in which the argument of one logarithm is the base of the next should trigger this telescoping instinct.\n\nHere is a model simplification. Evaluate $\\log_4 27\\cdot\\log_9 16$ by writing both logarithms in base $2$. We have $\\log_4 27=\\frac{\\log_2 27}{\\log_2 4}=\\frac32\\log_2 3$ and $\\log_9 16=\\frac{\\log_2 16}{\\log_2 9}=\\frac{4}{2\\log_2 3}=\\frac{2}{\\log_2 3}$. Their product is $3$. The expression looked unrelated until the common base was chosen. A poor choice of base leaves irrational logarithms that hide the structure.",
       "keyFacts": [
-        "If $b^u=b^v$ with $b>0$ and $b\\neq 1$, then $u=v$",
-        "Substitute $y=b^x$, so that $b^{2x}=y^2$",
-        "Combine logs first, then convert the equation to a power",
-        "Every argument of a logarithm must be positive"
+        "$\\log_a(xy)=\\log_a x+\\log_a y$ and $\\log_a(x^{r})=r\\log_a x$ for $x,y>0$",
+        "$\\log_a b=\\dfrac{\\log_c b}{\\log_c a}$ for any $c>0$, $c\\neq 1$",
+        "$\\log_a b\\cdot\\log_b a=1$",
+        "Telescoping: $\\log_2 3\\cdot\\log_3 4\\cdots\\log_{n}(n+1)=\\log_2(n+1)$"
       ],
-      "whenToUse": "The unknown sits in an exponent or inside a logarithm, possibly in several places at once."
+      "whenToUse": "A problem contains logarithms with different bases, or a product or quotient of logarithms whose arguments and bases interact.",
+      "commonMistakes": [
+        "Writing $\\log(x+y)=\\log x+\\log y$, which is false",
+        "Swapping the base and the argument when applying the change-of-base formula"
+      ],
+      "example": {
+        "problem": "Compute $\\log_{4}27\\cdot\\log_{9}16$.",
+        "solution": "Change every logarithm to base $2$. Then $\\log_4 27=\\frac{3\\log_2 3}{2}$ and $\\log_9 16=\\frac{4}{2\\log_2 3}=\\frac{2}{\\log_2 3}$. The product is $\\frac{3\\log_2 3}{2}\\cdot\\frac{2}{\\log_2 3}=3$, since the $\\log_2 3$ factors cancel.",
+        "answer": "3",
+        "verify": "\nimport math\nprint(round(math.log(27,4)*math.log(16,9)))\n"
+      }
     },
     {
-      "title": "Floor and absolute value functions",
-      "body": "The floor $\\lfloor x\\rfloor$ is the largest integer that is at most $x$. It always rounds down, so $\\lfloor 3.7\\rfloor=3$ but $\\lfloor -3.7\\rfloor=-4$. To use it, write $\\lfloor x\\rfloor=n$ as the inequality $n\\le x<n+1$. Since $k$ is an integer, $\\lfloor x+k\\rfloor=\\lfloor x\\rfloor+k$ for every integer $k$.\n\nThe absolute value $|x|$ is the distance from $x$ to $0$, and $|a-b|$ is the distance between $a$ and $b$. Because $|x|$ is defined in two pieces ($|x|=x$ if $x\\ge 0$, and $|x|=-x$ if $x<0$), an equation with several absolute values is solved by splitting the number line at the breakpoints, the points where an expression inside a bar equals zero. Example: $|x-1|+|x+2|=5$ has breakpoints $x=-2$ and $x=1$. For $x\\ge 1$ it reads $2x+1=5$, so $x=2$. For $x\\le -2$ it reads $-2x-1=5$, so $x=-3$. For $-2<x<1$ the left side always equals $3$, so there are no solutions there.\n\nFloor problems are often counting problems. To count the $n$ with $\\lfloor n/k\\rfloor=j$, find the block of integers with $jk\\le n<(j+1)k$ instead of checking one value at a time.",
+      "title": "Log equations and domain traps",
+      "body": "A logarithm is defined only when its argument is positive and its base is positive and different from $1$. When you solve $\\log_a f(x)=\\log_a g(x)$, the algebra reduces it to $f(x)=g(x)$, and that step is valid only for points where both sides are defined. Every root of the algebraic equation must be checked against $f(x)>0$ and $g(x)>0$. Failing to check is the most common reason a logarithm answer is wrong.\n\nWhy does the reduction lose information? The function $u\\mapsto\\log_a u$ is one-to-one on $(0,\\infty)$, so $\\log_a f=\\log_a g$ implies $f=g$ provided both are positive. The polynomial equation $f=g$, however, has solutions on the whole real line, including points where $f$ or $g$ is negative. Those points are extraneous: the domain is exactly what the derivation silently assumed.\n\nConsider $\\log_3(x^{2}-1)=\\log_3(2x+2)$. Equating arguments gives $x^{2}-2x-3=0$, so $x=3$ or $x=-1$. For $x=-1$ we get $x^{2}-1=0$, which is not positive, so $x=-1$ is extraneous. For $x=3$ we get $x^{2}-1=8>0$ and $2x+2=8>0$, so $x=3$ is a genuine solution. There is exactly one solution.\n\nA reliable method is to write the domain as inequalities first, solve the equation, and intersect the solutions with the domain. The domain step often removes half the roots of a quadratic. For a sum of logarithms, $\\log_a f+\\log_a g=\\log_a(fg)$ is valid when $f>0$ and $g>0$ individually. The condition $fg>0$ is not enough, because a product of two negatives is positive and would admit spurious solutions.\n\nEquations with the unknown in the base need a different substitution. Consider $\\log_2 x+\\log_x 2=\\frac52$. Let $t=\\log_2 x$, which requires $x>0$ and $x\\neq 1$. Then $\\log_x 2=\\frac1t$, and the equation becomes $t+\\frac1t=\\frac52$, with roots $t=2$ and $t=\\frac12$. These give $x=4$ and $x=\\sqrt2$, both admissible, and the domain check here is the condition $t\\neq 0$.",
       "keyFacts": [
-        "$\\lfloor x\\rfloor=n \\iff n\\le x<n+1$ for an integer $n$",
-        "$\\lfloor x+k\\rfloor=\\lfloor x\\rfloor+k$ for an integer $k$",
-        "$|a|=b$ with $b\\ge 0$ gives $a=b$ or $a=-b$",
-        "Breakpoints are where the expression inside each absolute value equals $0$"
+        "$\\log_a u$ is defined only for $u>0$, $a>0$, $a\\neq 1$",
+        "$\\log_a f+\\log_a g=\\log_a(fg)$ requires $f>0$ and $g>0$ separately",
+        "Intersect the solution set of an algebraic reduction with the domain",
+        "If the unknown is the base, substitute $t=\\log_2 x$ and solve for $t$"
       ],
-      "whenToUse": "A floor appears in a sum or a count, or an equation contains absolute values and you need all of its solutions."
+      "whenToUse": "Any equation with logarithms, especially when a quadratic emerges after the logarithms are removed.",
+      "commonMistakes": [
+        "Keeping a root that makes an argument zero or negative",
+        "Combining logarithms into $\\log_a(fg)$ without checking $f>0$ and $g>0$"
+      ],
+      "example": {
+        "problem": "Find all real $x$ satisfying $\\log_{2}(x^{2}-2)=\\log_{2}x$.",
+        "solution": "Equating arguments gives $x^{2}-x-2=0$, so $x=2$ or $x=-1$. The right side requires $x>0$, which rejects $x=-1$. For $x=2$ the left argument is $4-2=2>0$, so $x=2$ is valid. The unique solution is $x=2$.",
+        "answer": "2",
+        "verify": "\nimport math\nfrom fractions import Fraction as F\nsols=[]\nfor k in range(-50,51):\n    x=F(k,10)\n    if x>0 and x*x-2>0:\n        if abs(math.log2(float(x*x-2))-math.log2(float(x)))<1e-12:\n            sols.append(x)\nprint(sum(sols))\n"
+      }
     },
     {
-      "title": "Functional equations",
-      "body": "A functional equation is a rule that must hold for every allowed input, and the unknown is the function itself. The method is to substitute carefully chosen inputs, such as $x$, $-x$, $1/x$ or $1-x$, so that the same unknown values appear again. Each substitution gives one equation about values such as $f(4)$ and $f\\left(\\tfrac14\\right)$.\n\nTwo or three substitutions usually produce a small linear system, which you solve like any other system. For example, suppose $f(x)+2f(-x)=3x$ for all real $x$. Replacing $x$ by $-x$ gives $f(-x)+2f(x)=-3x$. Writing $A=f(x)$ and $B=f(-x)$, we have $A+2B=3x$ and $2A+B=-3x$. Doubling the second equation and subtracting the first gives $3A=-9x$, so $f(x)=-3x$.\n\nAlways check your candidate in the original rule. If it does not satisfy the equation for every allowed input, it is not a solution.",
+      "title": "Floor, ceiling and fractional part",
+      "body": "The floor $\\lfloor x\\rfloor$ is the largest integer not exceeding $x$, the ceiling $\\lceil x\\rceil$ is the smallest integer not less than $x$, and the fractional part is $\\{x\\}=x-\\lfloor x\\rfloor\\in[0,1)$. Everything begins from the defining inequality $\\lfloor x\\rfloor\\le x<\\lfloor x\\rfloor+1$. Equivalently, write $x=n+\\{x\\}$ with $n$ an integer and $0\\le\\{x\\}<1$, and most floor equations become a problem about intervals.\n\nUseful identities: $\\lfloor x+n\\rfloor=\\lfloor x\\rfloor+n$ for every integer $n$, so integer shifts can be pulled out of a floor, but scalar multiples cannot: $\\lfloor 2x\\rfloor\\neq 2\\lfloor x\\rfloor$ in general. For non-integer $x$, $\\lfloor x\\rfloor+\\lfloor -x\\rfloor=-1$, and always $\\lceil x\\rceil=-\\lfloor -x\\rfloor$. Negative numbers round down under the floor, so $\\lfloor -2.5\\rfloor=-3$.\n\nCounting with floors reduces to counting blocks. The value $\\lfloor\\sqrt n\\rfloor=k$ holds exactly when $k^{2}\\le n\\le (k+1)^{2}-1$, a block of $2k+1$ consecutive integers. Likewise $\\lfloor n/m\\rfloor=q$ holds exactly for $n$ in $[qm,\\,qm+m-1]$, a block of $m$ integers. Summing over blocks replaces a long sum of $N$ terms by a sum of about $\\sqrt N$ block values.\n\nThe block method proves that $\\sum_{n=1}^{N}\\lfloor\\sqrt n\\rfloor=\\sum_{k}k\\cdot\\#\\{n:\\lfloor\\sqrt n\\rfloor=k\\}$, and the count of each $k$ is the block length. Converting a sum over $n$ into a sum over the values $k$ is one of the most important tricks in the topic, and the same idea evaluates divisor-type sums such as $\\sum_{n}\\lfloor N/n\\rfloor$ and counts such as the number of $n$ with $\\lfloor\\log_2 n\\rfloor=j$.\n\nTypical mistakes: miscounting block lengths by using $k^{2}$ to $k^{2}+k$ instead of $k^{2}$ to $(k+1)^{2}-1$, and forgetting that the floor of a negative number rounds down. Fractional part questions often reduce to an equation like $x+\\{x\\}=c$, which you solve by splitting $x$ into its integer and fractional parts and testing the allowed integers.",
       "keyFacts": [
-        "Substitute special inputs such as $-x$, $1/x$ or $1-x$",
-        "Each substitution gives one equation linking the unknown values",
-        "Treat the unknown values as variables and solve the system",
-        "Check the result in the original equation"
+        "$\\lfloor x\\rfloor\\le x<\\lfloor x\\rfloor+1$, and $\\{x\\}=x-\\lfloor x\\rfloor$",
+        "$\\lfloor x+n\\rfloor=\\lfloor x\\rfloor+n$ for integers $n$, but $\\lfloor 2x\\rfloor\\neq 2\\lfloor x\\rfloor$ in general",
+        "For non-integer $x$, $\\lfloor x\\rfloor+\\lfloor -x\\rfloor=-1$",
+        "$\\lfloor\\sqrt n\\rfloor=k$ exactly when $k^{2}\\le n\\le (k+1)^{2}-1$"
       ],
-      "whenToUse": "The problem states an equation that $f$ must satisfy for all inputs and asks for a value of $f$."
+      "whenToUse": "A problem has a floor, ceiling or fractional part, or a sum whose terms are constant on long blocks.",
+      "commonMistakes": [
+        "Treating $\\lfloor -2.5\\rfloor$ as $-2$",
+        "Using the wrong block endpoint, such as ending the block for $\\lfloor\\sqrt n\\rfloor=k$ at $k^{2}+k$"
+      ],
+      "example": {
+        "problem": "Compute $\\displaystyle\\sum_{n=1}^{20}\\left\\lfloor\\sqrt n\\right\\rfloor$.",
+        "solution": "Group by blocks. $\\lfloor\\sqrt n\\rfloor=1$ for $n=1,2,3$ (three terms, sum $3$). It equals $2$ for $n=4,\\dots,8$ (five terms, sum $10$). It equals $3$ for $n=9,\\dots,15$ (seven terms, sum $21$). It equals $4$ for $n=16,\\dots,20$ (five terms, sum $20$). The total is $3+10+21+20=54$.",
+        "answer": "54",
+        "verify": "\nimport math\nprint(sum(math.isqrt(n) for n in range(1,21)))\n"
+      }
+    },
+    {
+      "title": "Comparing huge numbers",
+      "body": "Contest problems often ask which of several enormous numbers is largest, or how many digits a power has. Direct computation is impossible, so the method is to compare logarithms, or to rewrite both quantities with a common exponent or base. Taking $\\log$ is legitimate because $\\log$ is strictly increasing on positive numbers: for $A,B>0$, $A<B$ if and only if $\\log A<\\log B$. Then $\\log(a^{b})=b\\log a$ turns a power into a product that can be estimated by hand.\n\nGood estimates need a small toolkit: $\\log_{10}2\\approx 0.30103$, $\\log_{10}3\\approx 0.47712$, and $\\log_2 3\\approx 1.58496$. For example $\\log_{10}(2^{300})=300\\cdot 0.30103\\approx 90.31$, while $\\log_{10}(3^{200})=200\\cdot 0.47712\\approx 95.42$. The second is larger by about $10^{5}$. Keep only as many digits as the comparison requires, and rewrite exactly if two estimates agree to that precision.\n\nDigit counts use the same tool. A positive integer $N$ has $\\lfloor\\log_{10}N\\rfloor+1$ digits, because $10^{d-1}\\le N<10^{d}$ exactly when $d-1\\le \\log_{10}N<d$. For $N=3^{1000}$, $1000\\log_{10}3\\approx 477.12$, so $3^{1000}$ has $478$ digits. The floor and the $+1$ are where most errors occur, so check the boundary cases explicitly.\n\nThe common-exponent trick is equally important. Since $a^{mk}=(a^{m})^{k}=(a^{k})^{m}$, two powers can be compared by writing both with the same exponent and comparing the bases. For instance $2^{100}=(2^{10})^{10}=1024^{10}$ and $10^{30}=(10^{3})^{10}=1000^{10}$, so $2^{100}$ is larger. The same idea shows that $n^{k}$ versus $k^{n}$ is decided by the sign of $\\ln n/n-\\ln k/k$, which depends on the monotonicity of $\\ln x/x$.\n\nThe function $\\frac{\\ln x}{x}$ increases on $(0,e]$ and decreases on $[e,\\infty)$. This is the key to inequalities such as $n^{2025}$ versus $2025^{n}$: for $n\\ge 3$ and $n<2025$ the larger exponent sits on the wrong side of the peak, while for $n\\ge 2025$ the inequality reverses. Mistakes to avoid include comparing only leading digits, rounding logarithms too coarsely near a tie, and forgetting to convert between bases.",
+      "keyFacts": [
+        "For $A,B>0$: $A<B \\iff \\log A<\\log B$",
+        "A positive integer $N$ has $\\lfloor\\log_{10}N\\rfloor+1$ digits",
+        "$\\log_{10}2\\approx 0.30103$ and $\\log_{10}3\\approx 0.47712$",
+        "$a^{mk}=(a^{m})^{k}=(a^{k})^{m}$, so rewrite both sides with a common exponent"
+      ],
+      "whenToUse": "The question compares or counts digits of very large powers, or compares $n^{a}$ with $a^{n}$.",
+      "commonMistakes": [
+        "Estimating $\\log$ values too roughly to decide a close comparison",
+        "Forgetting the $+1$ in the digit count formula"
+      ],
+      "example": {
+        "problem": "Which is larger, $2^{300}$ or $3^{200}$?",
+        "solution": "Compare logarithms. $\\log_{10}2^{300}=300\\log_{10}2\\approx 90.31$ and $\\log_{10}3^{200}=200\\log_{10}3\\approx 95.42$. Since $95.42>90.31$, the number $3^{200}$ is larger, by a factor of roughly $10^{5}$.",
+        "answer": "3^{200}",
+        "verify": "\nprint(\"3^{200}\" if 3**200 > 2**300 else \"2^{300}\")\n"
+      }
+    },
+    {
+      "title": "Graph transformations",
+      "body": "Given the graph of $y=f(x)$, the graph of a transformed function is obtained by a sequence of standard moves. Replacing $f(x)$ by $f(x-h)+k$ translates the graph right by $h$ and up by $k$. Replacing $f(x)$ by $a\\,f(x)$ stretches vertically by $|a|$ and reflects across the $x$-axis when $a<0$. Replacing $f(x)$ by $f(bx)$ compresses horizontally by a factor of $|b|$, and $f(-x)$ reflects across the $y$-axis.\n\nTracking a single point is the most reliable method. A point $(p,q)$ on $y=f(x)$ produces a point on the transformed graph whose input is found by solving the inner argument for $x$. For $y=a\\,f(x-h)+k$, the point $(p,q)$ maps to $(p+h,\\ aq+k)$. Check this by substitution: setting $x=p+h$ makes $x-h=p$, so the new output is $aq+k$.\n\nHorizontal and vertical operations behave differently, and the signs are where errors happen. A horizontal change acts on the input before $f$ is applied, so $f(x-h)$ moves points right by $h$, the opposite of the sign inside the bracket. A vertical change acts on outputs and moves points in the direction of its sign: $f(x)+k$ moves points up by $k$. Mixing these two rules is the most common graph error.\n\nTransformations compose like functions. The graph of $y=-f(2-x)+3$ is obtained by three steps. Write $2-x=-(x-2)$, so the input map $p\\mapsto 2-p$ is a reflection across the line $x=1$. The output map $q\\mapsto -q+3$ is a reflection across the $x$-axis followed by a vertical shift. A point $(p,q)$ on $y=f(x)$ therefore goes to $(2-p,\\ 3-q)$. Writing the new function explicitly and then tracking one point avoids confusion.\n\nMistakes to avoid: applying a horizontal shift to the output, reflecting across the $y$-axis when you meant the $x$-axis, and treating a horizontal stretch by $b$ as moving $p$ to $bp$ instead of $p/b$. When in doubt, plug the candidate point into the new formula and confirm that the output matches.",
+      "keyFacts": [
+        "$y=a\\,f(x-h)+k$ maps $(p,q)$ to $(p+h,\\ aq+k)$",
+        "$f(-x)$ reflects across the $y$-axis, and $-f(x)$ reflects across the $x$-axis",
+        "$f(bx)$ maps $(p,q)$ to $\\left(\\dfrac pb,\\ q\\right)$",
+        "A point is on the new graph exactly when substituting it into the new formula gives a true statement"
+      ],
+      "whenToUse": "A problem describes a curve by a transformed formula and asks about points, intercepts, symmetry or the number of intersections.",
+      "commonMistakes": [
+        "Shifting the wrong way when the shift acts on the input",
+        "Applying a horizontal stretch by $b$ as $p\\mapsto bp$ instead of $p\\mapsto p/b$"
+      ],
+      "example": {
+        "problem": "The point $(2,-5)$ lies on the graph of $y=f(x)$. Find the image of this point on the graph of $y=3f(x+1)-2$, and report it as an ordered pair.",
+        "solution": "On the new graph, the input is $x=p-1$ where $p=2$ is the input on $f$, so $x=1$. The output is $3q-2$ where $q=-5$, which gives $-17$. The image point is $(1,-17)$. Check: at $x=1$ the new formula gives $3f(2)-2=3(-5)-2=-17$.",
+        "answer": "(1,-17)",
+        "verify": "\nf={2:-5}\np,q=2,f[2]\nx=p-1\ny=3*q-2\nprint(f\"({x},{y})\")\n"
+      }
+    }
+  ],
+  "strategies": [
+    {
+      "name": "Substitute special values first",
+      "description": "Before manipulating a functional or exponential relation, plug in $0$, $1$, $-1$, a reciprocal, or a value that makes an expression vanish. The output often reveals a special value of $f$, or a symmetric pair of equations to eliminate with."
+    },
+    {
+      "name": "Put every power over one base",
+      "description": "When bases are $4,8,9,16,27$ or similar, rewrite them as powers of the common prime before doing anything else. Most exponential identities collapse once everything is a power of $2$ or $3$."
+    },
+    {
+      "name": "Write the domain before solving a log equation",
+      "description": "List the inequalities that each argument and base must satisfy, solve the algebraic equation, and then intersect. On the AMC this single habit removes a large share of wrong answers in logarithm problems."
+    },
+    {
+      "name": "Count floors by blocks, not term by term",
+      "description": "A floor sum or count is constant on blocks of integers, such as $k^{2}\\le n<(k+1)^{2}$ for square roots or $qm\\le n<(q+1)m$ for division. Count block lengths, multiply by the value, and sum over the few blocks."
+    },
+    {
+      "name": "Look for a period, then reduce the exponent",
+      "description": "Compute the first few iterates until a value repeats, then reduce the large index modulo the period. Also check whether the map is an involution, since then $f^{2}=\\mathrm{id}$ and only parity of the index matters."
+    },
+    {
+      "name": "Compare logarithms, not the numbers",
+      "description": "For enormous powers, take $\\log_{10}$ (or rewrite with a common exponent) and compare the estimates. Keep enough digits to separate close candidates, and rewrite exactly when two estimates agree."
+    },
+    {
+      "name": "Substitute t = a^x for exponential equations",
+      "description": "Rewrite every exponential term as a power of a single quantity $t=a^{x}$, solve the resulting algebraic equation, and discard roots with $t\\le 0$. For sums of solutions, the product of the $t$-roots gives the answer through a logarithm."
     }
   ],
   "workedExamples": [
     {
-      "title": "Composition is not commutative",
+      "title": "Composition order matters",
       "difficulty": 1,
-      "problem": "Let $f(x)=2x+1$ and $g(x)=x^2$. What is $g(f(3))-f(g(3))$?",
+      "problem": "Let $f(x)=x+3$ and $g(x)=x^{2}$. What is $g(f(2))-f(g(2))$?",
       "choices": [
-        "8",
-        "13",
-        "19",
-        "30",
-        "49"
+        "4",
+        "7",
+        "11",
+        "18",
+        "25"
       ],
       "answer": "D",
+      "approach": "Evaluate each composition from the inside out and keep the two orders separate; do not assume they agree.",
       "steps": [
-        "Compute the inner value $f(3)=2\\cdot 3+1=7$, then apply $g$: $g(7)=49$.",
-        "Compute $g(3)=9$, then apply $f$: $f(9)=2\\cdot 9+1=19$.",
-        "Subtract: $49-19=30$.",
-        "The two composites differ, which shows that composition is not commutative."
+        "Compute $f(2)=5$, then $g(5)=25$, so $g(f(2))=25$.",
+        "Compute $g(2)=4$, then $f(4)=7$, so $f(g(2))=7$.",
+        "The two orders give different values, so the operation is not commutative.",
+        "Subtract: $25-7=18$."
       ],
-      "takeaway": "Apply the inner function first, and never assume $f(g(x))$ equals $g(f(x))$.",
-      "verify": "f = lambda x: 2 * x + 1\ng = lambda x: x * x\nprint(g(f(3)) - f(g(3)))\n"
+      "alternative": "",
+      "takeaway": "Composition is not commutative; always evaluate the innermost function first.",
+      "verify": "\nf=lambda x: x+3\ng=lambda x: x*x\nprint(g(f(2))-f(g(2)))\n"
     },
     {
-      "title": "Sum of solutions to an exponential quadratic",
+      "title": "Change of base to a single parameter",
       "difficulty": 2,
-      "problem": "Find the sum of all real solutions of $4^{x}-9\\cdot 2^{x}+8=0$.",
+      "problem": "Let $a=\\log_3 2$. Which expression equals $\\log_6 16$?",
+      "choices": [
+        "$\\frac{4}{1+a}$",
+        "$\\frac{2a}{1+a}$",
+        "$\\frac{a}{4(1+a)}$",
+        "$4a(1+a)$",
+        "$\\frac{4a}{1+a}$"
+      ],
+      "answer": "E",
+      "approach": "Change the base to $3$, because $\\log_3 2$ is the only irrational quantity given.",
+      "steps": [
+        "Write $\\log_6 16=\\dfrac{\\log_3 16}{\\log_3 6}$.",
+        "Since $16=2^{4}$, $\\log_3 16=4a$.",
+        "Since $6=2\\cdot 3$, $\\log_3 6=1+a$.",
+        "Therefore $\\log_6 16=\\dfrac{4a}{1+a}$."
+      ],
+      "alternative": "Test a value: $a=\\log_3 2\\approx 0.6309$ gives $\\log_6 16\\approx 1.5474$, and $\\frac{4a}{1+a}\\approx 1.5474$, which matches only choice E.",
+      "takeaway": "Changing to a base that the problem already uses turns a logarithm into a ratio of simple terms.",
+      "verify": "\nimport math\na=math.log(2,3)\nassert abs(math.log(16,6)-4*a/(1+a))<1e-12\nprint(r\"\\frac{4a}{1+a}\")\n"
+    },
+    {
+      "title": "Solve a power equation by one base",
+      "difficulty": 2,
+      "problem": "Solve $\\dfrac{8^{x}}{2^{x+1}}=16$ for $x$.",
       "choices": [
         "2",
+        "$\\frac{5}{2}$",
         "3",
-        "4",
-        "8",
-        "9"
+        "$\\frac{7}{2}$",
+        "4"
       ],
       "answer": "B",
+      "approach": "Every term is a power of $2$, so the equation is an exponent comparison.",
       "steps": [
-        "Rewrite $4^x=(2^x)^2$, so with $y=2^x$ the equation becomes $y^2-9y+8=0$.",
-        "Factor: $(y-1)(y-8)=0$, so $y=1$ or $y=8$.",
-        "Convert back: $2^x=1$ gives $x=0$, and $2^x=8$ gives $x=3$.",
-        "The sum of the solutions is $0+3=3$. The product $0$ is a common wrong answer."
+        "Write $8^{x}=2^{3x}$ and $16=2^{4}$.",
+        "The left side becomes $2^{3x-(x+1)}=2^{2x-1}$.",
+        "Equate exponents: $2x-1=4$.",
+        "Solve: $x=\\frac52$."
       ],
-      "takeaway": "When an exponential equation has $b^{2x}$ and $b^x$ terms, substitute $y=b^x$, then convert back to $x$.",
-      "verify": "from fractions import Fraction\n\ndef h(x):\n    return 4 ** x - 9 * 2 ** x + 8\n\nN = 20000\nxs = [-10 + 20 * i / N for i in range(N + 1)]\nroots = []\nfor a, b in zip(xs, xs[1:]):\n    if h(a) == 0:\n        roots.append(a)\n    elif h(a) * h(b) < 0:\n        lo, hi = a, b\n        for _ in range(100):\n            mid = (lo + hi) / 2\n            if h(lo) * h(mid) <= 0:\n                hi = mid\n            else:\n                lo = mid\n        roots.append((lo + hi) / 2)\nprint(Fraction(round(sum(roots), 6)).limit_denominator(100))\n"
+      "alternative": "",
+      "takeaway": "Before solving any exponential equation, check whether all bases are powers of a common prime.",
+      "verify": "\nfrom fractions import Fraction as F\ndef f(x): return 8**x/2**(x+1)-16\nlo,hi=-10.0,10.0\nfor _ in range(200):\n    m=(lo+hi)/2\n    if f(m)<0: lo=m\n    else: hi=m\nx=(lo+hi)/2\nprint(F(round(x*2),2))\n"
     },
     {
-      "title": "Solving a nested absolute value equation",
+      "title": "Floor equation with a fractional part",
       "difficulty": 3,
-      "problem": "Let $f(x)=|x|-2$. How many real numbers $x$ satisfy $f(f(x))=0$?",
+      "problem": "Let $\\{x\\}=x-\\lfloor x\\rfloor$. Find the sum of all real $x$ satisfying $x+\\{x\\}=5$.",
+      "choices": [
+        "$\\frac{17}{2}$",
+        "9",
+        "$\\frac{19}{2}$",
+        "10",
+        "$\\frac{21}{2}$"
+      ],
+      "answer": "C",
+      "approach": "Write $x=n+f$ with $n=\\lfloor x\\rfloor$ and $0\\le f<1$, then the equation becomes an integer-and-fraction problem.",
+      "steps": [
+        "Put $x=n+f$, so $\\{x\\}=f$, and the equation becomes $n+2f=5$.",
+        "Since $0\\le f<1$, we need $0\\le 5-n<2$, so $n\\in\\{4,5\\}$.",
+        "If $n=4$, then $f=\\frac12$ and $x=\\frac92$.",
+        "If $n=5$, then $f=0$ and $x=5$. The sum is $\\frac92+5=\\frac{19}{2}$."
+      ],
+      "alternative": "",
+      "takeaway": "An equation involving $x$ and $\\{x\\}$ is solved by splitting $x$ into integer and fractional parts and testing the allowed integers.",
+      "verify": "\nimport math\nfrom fractions import Fraction as F\nsols=[]\nfor k in range(0,1000):\n    x=F(k,100)\n    fr=x-math.floor(x)\n    if x+fr==5:\n        sols.append(x)\nprint(sum(sols))\n"
+    },
+    {
+      "title": "Divisor-counting sum via lattice pairs",
+      "difficulty": 4,
+      "problem": "Find $\\displaystyle\\sum_{n=1}^{100}\\left\\lfloor\\frac{100}{n}\\right\\rfloor$.",
+      "choices": [
+        "400",
+        "460",
+        "482",
+        "500",
+        "520"
+      ],
+      "answer": "C",
+      "approach": "Each term $\\lfloor 100/n\\rfloor$ counts the multiples $m$ with $nm\\le 100$, so the sum counts lattice pairs under a hyperbola.",
+      "steps": [
+        "Interpret $\\lfloor 100/n\\rfloor$ as the number of positive integers $m$ with $nm\\le 100$.",
+        "The sum is therefore the number of ordered pairs $(n,m)$ of positive integers with $nm\\le 100$.",
+        "The region $nm\\le 100$ is symmetric in $n$ and $m$, so pairs with $n<m$ and $n>m$ are equinumerous.",
+        "Pairs with $n=m$ need $n^{2}\\le 100$, giving $10$ pairs.",
+        "Pairs with $n<m$ and $nm\\le 100$: for each $n\\le 10$ there are $\\lfloor 100/n\\rfloor-n$ values of $m$, and the total is $\\sum_{n=1}^{10}\\left(\\lfloor 100/n\\rfloor-n\\right)=291-55=236$.",
+        "Total: $2\\cdot 236+10=482$."
+      ],
+      "alternative": "Direct addition of the $100$ floors gives the same total, but it takes far longer and invites arithmetic slips. The lattice count is a good template for any $\\sum\\lfloor N/n\\rfloor$.",
+      "takeaway": "A sum of floors of $N/n$ is a count of lattice points under a hyperbola, which symmetry halves.",
+      "verify": "\nprint(sum(1 for n in range(1,101) for m in range(1,101) if n*m<=100))\n"
+    },
+    {
+      "title": "Functional equation on a three-cycle",
+      "difficulty": 5,
+      "problem": "Let $f$ be a real function such that $f(x)+f\\!\\left(\\dfrac{1}{1-x}\\right)=x$ for all real $x\\neq 0,1$. What is $f(2)$?",
+      "choices": [
+        "1",
+        "$\\frac{5}{4}$",
+        "$\\frac{3}{2}$",
+        "$\\frac{7}{4}$",
+        "2"
+      ],
+      "answer": "D",
+      "approach": "The substitution $x\\mapsto\\frac{1}{1-x}$ has order three, so the three equations along one orbit can be combined.",
+      "steps": [
+        "The map $g(x)=\\frac{1}{1-x}$ satisfies $g(2)=-1$, $g(-1)=\\frac12$, $g(\\frac12)=2$, so the orbit of $2$ closes after three steps.",
+        "The relation at $x=2$, $x=-1$ and $x=\\frac12$ gives $f(2)+f(-1)=2$, $f(-1)+f(\\frac12)=-1$, and $f(\\frac12)+f(2)=\\frac12$.",
+        "Adding the three equations gives $2\\bigl(f(2)+f(-1)+f(\\tfrac12)\\bigr)=\\frac32$, so the bracket equals $\\frac34$.",
+        "Subtract the second equation: $f(2)=\\frac34-(-1)=\\frac74$."
+      ],
+      "alternative": "Solve the general system: applying the relation at $x$, $g(x)$ and $g(g(x))$ and adding gives $2f(x)=x+g(g(x))-g(x)$, whose value at $x=2$ is $\\frac{2+\\frac12+1}{2}=\\frac74$.",
+      "takeaway": "When a substitution has order $k$, the $k$ equations along an orbit can be added or solved as a linear system.",
+      "verify": "\nfrom fractions import Fraction as F\n# unknowns: A=f(2), B=f(-1), C=f(1/2)\nM=[[F(1),F(1),F(0),F(2)],[F(0),F(1),F(1),F(-1)],[F(1),F(0),F(1),F(1,2)]]\nn=3\nfor i in range(n):\n    p=next(r for r in range(i,n) if M[r][i]!=0)\n    M[i],M[p]=M[p],M[i]\n    piv=M[i][i]\n    M[i]=[v/piv for v in M[i]]\n    for r in range(n):\n        if r!=i and M[r][i]!=0:\n            fac=M[r][i]\n            M[r]=[a-fac*b for a,b in zip(M[r],M[i])]\nprint(M[0][3])\n"
+    }
+  ],
+  "problems": [
+    {
+      "id": "fn-01",
+      "difficulty": 1,
+      "problem": "Let $f(x)=3x-4$ and $g(x)=x^{2}+1$. What is $f(g(2))$?",
+      "choices": [
+        "5",
+        "7",
+        "11",
+        "15",
+        "21"
+      ],
+      "answer": "C",
+      "hint": "Evaluate the inner function first, then feed its value into $f$.",
+      "solution": "First $g(2)=2^{2}+1=5$. Then $f(5)=3\\cdot 5-4=11$. The choice $5$ is $g(2)$ itself, which is what you get if you stop after the inner function.",
+      "concepts": [
+        0
+      ],
+      "verify": "\nf=lambda x: 3*x-4\ng=lambda x: x*x+1\nprint(f(g(2)))\n"
+    },
+    {
+      "id": "fn-02",
+      "difficulty": 1,
+      "problem": "Let $f(x)=\\dfrac{3x-2}{5}$. What is $f^{-1}(4)$?",
+      "choices": [
+        "2",
+        "6",
+        "$\\frac{22}{3}$",
+        "8",
+        "$\\frac{26}{3}$"
+      ],
+      "answer": "C",
+      "hint": "Solve $f(x)=4$ for $x$; you never need a formula for $f^{-1}$.",
+      "solution": "Set $\\frac{3x-2}{5}=4$, so $3x-2=20$ and $x=\\frac{22}{3}$. The choice $2$ comes from forgetting to multiply by $5$, and $6$ from a sign error in $3x+2=20$.",
+      "concepts": [
+        0
+      ],
+      "verify": "\nfrom fractions import Fraction as F\ndef f(x): return (3*x-2)/5\nfor k in range(-300,301):\n    x=F(k,3)\n    if f(x)==4:\n        print(x)\n"
+    },
+    {
+      "id": "fn-03",
+      "difficulty": 1,
+      "problem": "What is $\\dfrac{6^{4}}{2^{3}\\cdot 3^{2}}$?",
+      "choices": [
+        "18",
+        "24",
+        "36",
+        "48",
+        "72"
+      ],
+      "answer": "A",
+      "hint": "Factor $6^{4}$ into primes and cancel against the denominator.",
+      "solution": "Since $6^{4}=2^{4}3^{4}$, the quotient is $\\frac{2^{4}3^{4}}{2^{3}3^{2}}=2\\cdot 3^{2}=18$. Counting primes cleanly avoids the arithmetic of $1296/72$ under time pressure.",
+      "concepts": [
+        3
+      ],
+      "verify": "\nfrom fractions import Fraction as F\nprint(F(6**4, 2**3*3**2))\n"
+    },
+    {
+      "id": "fn-04",
+      "difficulty": 1,
+      "problem": "Let $g(x)=\\dfrac{x+1}{x-1}$. What is $g(g(g(3)))$?",
+      "choices": [
+        "-1",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "answer": "D",
+      "hint": "Compute $g(3)$ and then $g$ of that value; watch for a pattern in the values.",
+      "solution": "We get $g(3)=\\frac{4}{2}=2$, then $g(2)=\\frac{3}{1}=3$, then $g(3)=2$ again. So $g(g(g(3)))=2$. The choice $3$ is what you get by applying $g$ only twice, which gives $g(g(3))=3$.",
+      "concepts": [
+        1
+      ],
+      "verify": "\nfrom fractions import Fraction as F\ng=lambda x: (x+1)/(x-1)\nx=F(3)\nfor _ in range(3):\n    x=g(x)\nprint(x)\n"
+    },
+    {
+      "id": "fn-05",
+      "difficulty": 1,
+      "problem": "What is $\\displaystyle\\sum_{k=1}^{20}\\left\\lfloor\\frac{k}{3}\\right\\rfloor$?",
+      "choices": [
+        "54",
+        "57",
+        "60",
+        "63",
+        "66"
+      ],
+      "answer": "D",
+      "hint": "Group the values of $k$ in blocks of three where the floor is constant.",
+      "solution": "The floor equals $0$ for $k=1,2$, $1$ for $k=3,4,5$, and so on, up to $6$ for $k=18,19,20$. The sum is $0+3+6+9+12+15+18=63$.",
+      "concepts": [
+        7
+      ],
+      "verify": "\nprint(sum(k//3 for k in range(1,21)))\n"
+    },
+    {
+      "id": "fn-06",
+      "difficulty": 1,
+      "problem": "Find the sum of all real $x$ satisfying $|2x-1|+|x+3|=7$.",
+      "choices": [
+        "$-\\frac{10}{3}$",
+        "-3",
+        "$-\\frac{4}{3}$",
+        "$\\frac{5}{3}$",
+        "2"
+      ],
+      "answer": "C",
+      "hint": "The absolute values change form at $x=\\frac12$ and $x=-3$; solve on each piece.",
+      "solution": "For $x\\ge\\frac12$ the equation is $3x+2=7$, giving $x=\\frac53$. For $x\\le -3$ it is $-3x-2=7$, giving $x=-3$. On $-3<x<\\frac12$ it becomes $4-x=7$, whose only solution $x=-3$ is an endpoint already counted. The sum is $\\frac53-3=-\\frac43$.",
+      "concepts": [
+        9
+      ],
+      "verify": "\nfrom fractions import Fraction as F\nsols=[]\nfor k in range(-240,241):\n    x=F(k,12)\n    if abs(2*x-1)+abs(x+3)==7:\n        sols.append(x)\nprint(sum(sols))\n"
+    },
+    {
+      "id": "fn-07",
+      "difficulty": 2,
+      "problem": "What is $\\log_{8}9\\cdot\\log_{27}4$?",
+      "choices": [
+        "$\\frac{1}{3}$",
+        "$\\frac{4}{9}$",
+        "$\\frac{2}{3}$",
+        "$\\frac{4}{3}$",
+        "2"
+      ],
+      "answer": "B",
+      "hint": "Rewrite each logarithm using the prime bases $2$ and $3$.",
+      "solution": "We have $\\log_8 9=\\frac23\\log_2 3$ and $\\log_{27}4=\\frac23\\log_3 2$. Their product is $\\frac49\\log_2 3\\cdot\\log_3 2=\\frac49$. The choice $\\frac23$ comes from dropping one of the factors of $\\frac23$.",
+      "concepts": [
+        5
+      ],
+      "verify": "\nimport math\nfrom fractions import Fraction\nx=math.log(9)/math.log(8)*(math.log(4)/math.log(27))\nprint(Fraction(x).limit_denominator(100))\n"
+    },
+    {
+      "id": "fn-08",
+      "difficulty": 2,
+      "problem": "If $2^{x}=3$, what is $\\dfrac{8^{x}}{4^{x}}\\cdot 2^{x}$?",
+      "choices": [
+        "3",
+        "6",
+        "9",
+        "12",
+        "27"
+      ],
+      "answer": "C",
+      "hint": "Write $8$ and $4$ as powers of $2$ and use $2^{x}=3$.",
+      "solution": "We have $8^{x}=2^{3x}$ and $4^{x}=2^{2x}$, so $\\frac{8^{x}}{4^{x}}=2^{x}=3$. Multiplying by $2^{x}=3$ gives $9$. The choice $27$ is $8^{x}$ alone, which is a common slip.",
+      "concepts": [
+        3,
+        4
+      ],
+      "verify": "\nimport math\nx=math.log(3,2)\nval=8**x/4**x*2**x\nprint(round(val))\n"
+    },
+    {
+      "id": "fn-09",
+      "difficulty": 2,
+      "problem": "What is $\\left\\lfloor\\dfrac{2025^{2}}{2024\\cdot 2026}\\right\\rfloor$?",
+      "choices": [
+        "0",
+        "1",
+        "2",
+        "4",
+        "2025"
+      ],
+      "answer": "B",
+      "hint": "Write the denominator as the numerator minus $1$.",
+      "solution": "Since $2024\\cdot 2026=(2025-1)(2025+1)=2025^{2}-1$, the quotient equals $1+\\frac{1}{2025^{2}-1}$, which lies strictly between $1$ and $2$. Its floor is $1$.",
+      "concepts": [
+        7
+      ],
+      "verify": "\nprint((2025**2)//(2024*2026))\n"
+    },
+    {
+      "id": "fn-10",
+      "difficulty": 2,
+      "problem": "How many real $x$ satisfy $\\log_{3}(x^{2}-1)=\\log_{3}(2x+2)$?",
+      "choices": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "answer": "B",
+      "hint": "Equate the arguments, then check each root against the domain.",
+      "solution": "Equating arguments gives $x^{2}-2x-3=0$, so $x=3$ or $x=-1$. At $x=-1$ the argument $x^{2}-1$ is $0$, not positive, so that root is rejected. At $x=3$ both arguments equal $8$. There is exactly one solution.",
+      "concepts": [
+        6
+      ],
+      "verify": "\nimport math\nfrom fractions import Fraction as F\ncnt=0\nfor k in range(-500,501):\n    x=F(k,10)\n    if x*x-1>0 and 2*x+2>0:\n        if abs(math.log(float(x*x-1),3)-math.log(float(2*x+2),3))<1e-12:\n            cnt+=1\nprint(cnt)\n"
+    },
+    {
+      "id": "fn-11",
+      "difficulty": 2,
+      "problem": "Suppose $f(x+1)=f(x)+2x+1$ for all real $x$, and $f(0)=5$. What is $f(10)$?",
+      "choices": [
+        "100",
+        "105",
+        "110",
+        "115",
+        "120"
+      ],
+      "answer": "B",
+      "hint": "Each step adds an odd number; add them up.",
+      "solution": "Setting $x=n$ gives $f(n+1)-f(n)=2n+1$. Summing over $n=0,\\dots,9$ telescopes to $f(10)-f(0)=\\sum_{n=0}^{9}(2n+1)=100$, so $f(10)=105$. The choice $100$ forgets the initial value $f(0)=5$.",
+      "concepts": [
+        2
+      ],
+      "verify": "\nf=5\nfor n in range(10):\n    f=f+2*n+1\nprint(f)\n"
+    },
+    {
+      "id": "fn-12",
+      "difficulty": 2,
+      "problem": "Let $f(x)=x^{3}+3x$. What is $f^{-1}(4)+f^{-1}(-4)$?",
+      "choices": [
+        "0",
+        "2",
+        "4",
+        "8",
+        "12"
+      ],
+      "answer": "A",
+      "hint": "Find $f^{-1}(4)$ by solving $f(x)=4$, then notice the symmetry of $f$.",
+      "solution": "The function $f$ is odd, so $f(-x)=-f(x)$, and therefore $f^{-1}(-4)=-f^{-1}(4)$. The sum is $0$. Since $f(1)=4$, we have $f^{-1}(4)=1$ and $f^{-1}(-4)=-1$; the choice $2$ comes from adding $f^{-1}(4)$ twice.",
+      "concepts": [
+        0
+      ],
+      "verify": "\ndef f(x): return x**3+3*x\ndef solve(c):\n    lo,hi=-10.0,10.0\n    for _ in range(200):\n        m=(lo+hi)/2\n        if f(m)<c: lo=m\n        else: hi=m\n    return (lo+hi)/2\nprint(round(solve(4)+solve(-4)))\n"
+    },
+    {
+      "id": "fn-13",
+      "difficulty": 3,
+      "problem": "How many integers $n$ with $1\\le n\\le 200$ have $\\lfloor\\sqrt{n}\\rfloor$ even?",
+      "choices": [
+        "90",
+        "92",
+        "95",
+        "98",
+        "100"
+      ],
+      "answer": "C",
+      "hint": "Group the integers $n$ into the blocks where $\\lfloor\\sqrt n\\rfloor=k$ is constant.",
+      "solution": "For $\\lfloor\\sqrt n\\rfloor=k$ we need $k^{2}\\le n\\le (k+1)^{2}-1$, which has $2k+1$ integers. Even $k=2,4,\\dots,14$ contribute $5,9,13,17,21,25$, and the last block is cut off at $200$: $196$ to $200$ gives $5$. The total is $95$.",
+      "concepts": [
+        7
+      ],
+      "verify": "\nimport math\nprint(sum(1 for n in range(1,201) if math.isqrt(n)%2==0))\n"
+    },
+    {
+      "id": "fn-14",
+      "difficulty": 3,
+      "problem": "Find the sum of all real solutions of $2^{2x+1}-9\\cdot 2^{x}+4=0$.",
+      "choices": [
+        "-2",
+        "-1",
+        "0",
+        "1",
+        "2"
+      ],
+      "answer": "D",
+      "hint": "Put $t=2^{x}$ so that the equation is quadratic in $t$.",
+      "solution": "With $t=2^{x}$ the equation becomes $2t^{2}-9t+4=0$, with roots $t=4$ and $t=\\frac12$. These give $x=2$ and $x=-1$, whose sum is $1$. The product of the $t$-roots is $2$, not $4$, so the sum of exponents is $\\\\log_2 2=1$.",
+      "concepts": [
+        4
+      ],
+      "verify": "\nimport math\ndef f(x): return 2**(2*x+1)-9*2**x+4\nN=200000\nxs=[-10+20*i/N+1e-7 for i in range(N+1)]\nroots=[]\nfor a,b in zip(xs,xs[1:]):\n    if f(a)*f(b)<0:\n        lo,hi=a,b\n        for _ in range(100):\n            m=(lo+hi)/2\n            if f(lo)*f(m)<=0: hi=m\n            else: lo=m\n        roots.append((lo+hi)/2)\nprint(round(sum(roots)))\n"
+    },
+    {
+      "id": "fn-15",
+      "difficulty": 3,
+      "problem": "Find the sum of all real solutions of $\\log_{2}(x-1)+\\log_{2}(x+2)=2$.",
+      "choices": [
+        "-3",
+        "-1",
+        "0",
+        "1",
+        "2"
+      ],
+      "answer": "E",
+      "hint": "Combine the logarithms, then check which roots make both arguments positive.",
+      "solution": "Since both arguments must be positive, $x>1$. Combining gives $(x-1)(x+2)=4$, so $x^{2}+x-6=0$ and $x=2$ or $x=-3$. The root $x=-3$ fails $x>1$. The unique solution is $x=2$, so the sum is $2$. The choice $-1$ is the sum of both algebraic roots, which is the trap.",
+      "concepts": [
+        6
+      ],
+      "verify": "\nimport math\nfrom fractions import Fraction as F\ntot=F(0)\nfor k in range(-600,601):\n    x=F(k,12)\n    if x-1>0 and x+2>0:\n        if abs(math.log2(float(x-1))+math.log2(float(x+2))-2)<1e-12:\n            tot+=x\nprint(tot)\n"
+    },
+    {
+      "id": "fn-16",
+      "difficulty": 3,
+      "problem": "Evaluate $\\log_{2}3\\cdot\\log_{3}4\\cdot\\log_{4}5\\cdots\\log_{63}64$.",
+      "choices": [
+        "5",
+        "6",
+        "7",
+        "8",
+        "64"
+      ],
+      "answer": "B",
+      "hint": "Each argument is the next base, so the product telescopes.",
+      "solution": "Write each factor $\\log_k(k+1)=\\frac{\\ln(k+1)}{\\ln k}$. Consecutive numerators and denominators cancel, leaving $\\frac{\\ln 64}{\\ln 2}=\\log_2 64=6$. The answer is therefore $6$, and $64$ is what you get by forgetting that the product gives an exponent.",
+      "concepts": [
+        5
+      ],
+      "verify": "\nimport math\nx=1.0\nfor k in range(2,64):\n    x*=math.log(k+1)/math.log(k)\nprint(round(x))\n"
+    },
+    {
+      "id": "fn-17",
+      "difficulty": 3,
+      "problem": "What is $\\displaystyle\\sum_{n=1}^{99}\\left\\lfloor\\log_{2} n\\right\\rfloor$?",
+      "choices": [
+        "474",
+        "480",
+        "500",
+        "512",
+        "520"
+      ],
+      "answer": "A",
+      "hint": "$\\lfloor\\log_2 n\\rfloor=j$ exactly when $2^{j}\\le n<2^{j+1}$, so count the block sizes.",
+      "solution": "For $j=0,\\dots,5$ the blocks $[2^{j},2^{j+1}-1]$ are complete and contribute $j\\cdot 2^{j}$, giving $0+2+8+24+64+160=258$. The final partial block $64\\le n\\le 99$ has $36$ terms, each equal to $6$, contributing $216$. The total is $474$.",
+      "concepts": [
+        7
+      ],
+      "verify": "\nprint(sum(n.bit_length()-1 for n in range(1,100)))\n"
+    },
+    {
+      "id": "fn-18",
+      "difficulty": 3,
+      "problem": "Let $f(x)=\\dfrac{1}{1-x}$ and let $f^{n}$ denote the $n$-fold composition. What is $f^{2024}(2)$?",
+      "choices": [
+        "-1",
+        "$\\frac{1}{2}$",
+        "1",
+        "2",
+        "3"
+      ],
+      "answer": "B",
+      "hint": "Compute the first few iterates of $2$ until a value repeats.",
+      "solution": "We get $f(2)=-1$, $f(-1)=\\frac12$, and $f\\!\\left(\\frac12\\right)=2$, so the orbit has period $3$. Since $2024\\equiv 2\\pmod 3$, we have $f^{2024}(2)=f^{2}(2)=f(-1)=\\frac12$.",
+      "concepts": [
+        1
+      ],
+      "verify": "\nfrom fractions import Fraction as F\nx=F(2)\nfor _ in range(2024):\n    x=1/(1-x)\nprint(x)\n"
+    },
+    {
+      "id": "fn-19",
+      "difficulty": 3,
+      "problem": "The point $(1,4)$ lies on the graph of $y=f(x)$. The graph of $y=2f(x-3)+1$ contains the image of $(1,4)$ under the transformation that produces it, a point $(a,b)$. What is $a+b$?",
+      "choices": [
+        "7",
+        "9",
+        "11",
+        "12",
+        "13"
+      ],
+      "answer": "E",
+      "hint": "Solve the inner argument for $x$, then apply the output transformation.",
+      "solution": "We need $x-3=1$, so $a=4$. The output is $2\\cdot 4+1=9$, so $b=9$. Hence $a+b=13$. The choice $12$ comes from forgetting the final $+1$.",
+      "concepts": [
+        9
+      ],
+      "verify": "\nf={1:4}\np,q=1,f[1]\na=p+3\nb=2*q+1\nprint(a+b)\n"
+    },
+    {
+      "id": "fn-20",
+      "difficulty": 3,
+      "problem": "Which of the following is largest: $2^{30}$, $3^{19}$, $5^{13}$, $6^{10}$, or $10^{9}$?",
+      "choices": [
+        "$5^{13}$",
+        "$2^{30}$",
+        "$3^{19}$",
+        "$6^{10}$",
+        "$10^{9}$"
+      ],
+      "answer": "A",
+      "hint": "Compare $\\log_{10}$ values, or compare the two closest candidates precisely.",
+      "solution": "Using $\\log_{10}$: $2^{30}\\approx 9.030$, $3^{19}\\approx 9.065$, $5^{13}\\approx 9.086$, $6^{10}\\approx 7.78$, and $10^{9}$ has $\\log_{10}=9$. The largest is $5^{13}$. The closest pair is $3^{19}$ and $5^{13}$, which differ by only about $5\\%$, so the logarithm estimate must be precise enough to separate them.",
+      "concepts": [
+        8
+      ],
+      "verify": "\nvals={\"2^{30}\":2**30,\"3^{19}\":3**19,\"5^{13}\":5**13,\"6^{10}\":6**10,\"10^{9}\":10**9}\nprint(max(vals,key=vals.get))\n"
+    },
+    {
+      "id": "fn-21",
+      "difficulty": 4,
+      "problem": "Let $f$ be a real function with $f(x)+2f(1-x)=x$ for all real $x$. What is $f(5)$?",
+      "choices": [
+        "$-\\frac{13}{3}$",
+        "$-\\frac{11}{3}$",
+        "$-\\frac{7}{3}$",
+        "$\\frac{11}{3}$",
+        "$\\frac{13}{3}$"
+      ],
+      "answer": "A",
+      "hint": "Substitute $1-x$ for $x$ to get a second equation involving the same two values.",
+      "solution": "Replacing $x$ by $1-x$ gives $f(1-x)+2f(x)=1-x$. Multiply this by $2$, subtract the original equation, and the $f(1-x)$ terms cancel: $3f(x)=2-3x$, which gives $f(x)=\\frac23-x$. Then $f(5)=\\frac23-5=-\\frac{13}{3}$. The sign-flipped choice $\\frac{13}{3}$ is the trap for anyone who drops a sign while eliminating.",
+      "concepts": [
+        2
+      ],
+      "verify": "\nfrom fractions import Fraction as F\n# f(5)+2f(-4)=5 and f(-4)+2f(5)=-4\na,b,c=F(1),F(2),F(5)\nd,e,f_=F(2),F(1),F(-4)\ndet=a*e-b*d\nprint((c*e-b*f_)/det)\n"
+    },
+    {
+      "id": "fn-22",
+      "difficulty": 4,
+      "problem": "How many decimal digits does $3^{1000}$ have?",
+      "choices": [
+        "475",
+        "476",
+        "477",
+        "478",
+        "479"
+      ],
+      "answer": "D",
+      "hint": "Use $\\lfloor\\log_{10}N\\rfloor+1$ for the number of digits, and estimate $1000\\log_{10}3$ carefully.",
+      "solution": "A positive integer $N$ has $\\lfloor\\log_{10}N\\rfloor+1$ digits. Since $\\log_{10}3\\approx 0.4771213$, we get $1000\\log_{10}3\\approx 477.12$, so $\\lfloor\\log_{10}3^{1000}\\rfloor=477$ and the number of digits is $478$. The choice $477$ results from forgetting the $+1$, and a careful estimate keeps the fractional part $0.12$ in view, since it is not close to an integer.",
+      "concepts": [
+        8
+      ],
+      "verify": "\nprint(len(str(3**1000)))\n"
+    },
+    {
+      "id": "fn-23",
+      "difficulty": 4,
+      "problem": "Positive reals $x$ and $y$ satisfy $\\log_{2}x+\\log_{4}y=4$ and $\\log_{4}x+\\log_{2}y=5$. What is $xy$?",
+      "choices": [
+        "16",
+        "32",
+        "56",
+        "60",
+        "64"
+      ],
+      "answer": "E",
+      "hint": "Set $a=\\log_2 x$ and $b=\\log_2 y$, then the requested product is $2^{a+b}$.",
+      "solution": "Since $\\log_4 y=\\frac{b}{2}$ and $\\log_4 x=\\frac{a}{2}$, the system is $a+\\frac b2=4$ and $\\frac a2+b=5$, i.e. $2a+b=8$ and $a+2b=10$. Solving gives $a=2$, $b=4$. Then $xy=2^{a+b}=2^{6}=64$. The choice $32$ comes from computing $2^{a+b-1}$ by mistake.",
+      "concepts": [
+        5
+      ],
+      "verify": "\nfrom fractions import Fraction as F\nA=[[F(2),F(1),F(8)],[F(1),F(2),F(10)]]\ndet=A[0][0]*A[1][1]-A[0][1]*A[1][0]\na=(A[0][2]*A[1][1]-A[0][1]*A[1][2])/det\nb=(A[0][0]*A[1][2]-A[0][2]*A[1][0])/det\nprint(2**int(a+b))\n"
+    },
+    {
+      "id": "fn-24",
+      "difficulty": 4,
+      "problem": "How many real $x$ satisfy $x^{2}-\\lfloor x\\rfloor=2$?",
       "choices": [
         "1",
         "2",
@@ -128,256 +842,149 @@
         "5"
       ],
       "answer": "C",
-      "steps": [
-        "Let $u=f(x)$. The equation $f(u)=0$ means $|u|-2=0$, so $|u|=2$ and $u=2$ or $u=-2$.",
-        "Case $u=2$: $|x|-2=2$, so $|x|=4$ and $x=\\pm 4$.",
-        "Case $u=-2$: $|x|-2=-2$, so $|x|=0$ and $x=0$.",
-        "Three real numbers work: $-4$, $0$ and $4$."
+      "hint": "Let $n=\\lfloor x\\rfloor$, so $x^{2}=n+2$, and then check that the floor of $x$ really is $n$.",
+      "solution": "Write $n=\\lfloor x\\rfloor$, so $x^{2}=n+2$ and $n\\le x<n+1$. Checking integers: $n=-1$ gives $x=-1$; $n=1$ gives $x=\\sqrt3$; $n=2$ gives $x=2$. The values $x=\\pm\\sqrt2$ fail because $\\lfloor\\sqrt2\\rfloor=1\\ne 0$ and $\\lfloor-\\sqrt2\\rfloor=-2\\ne 0$, and $n=-2$ gives $x=0$ with floor $0\\neq -2$. The total is $3$.",
+      "concepts": [
+        7
       ],
-      "takeaway": "For a nested function, solve from the outside in: find the inner values that work, then solve for $x$ in each case.",
-      "verify": "from fractions import Fraction\n\ndef f(x):\n    return abs(x) - 2\n\ncount = 0\nfor n in range(-80, 81):\n    x = Fraction(n, 8)\n    if f(f(x)) == 0:\n        count += 1\nprint(count)\n"
-    }
-  ],
-  "problems": [
-    {
-      "id": "fn-01",
-      "difficulty": 1,
-      "problem": "Let $f(x)=3x-4$ and $g(x)=x^2+1$. What is $f(g(2))$?",
-      "choices": [
-        "5",
-        "11",
-        "14",
-        "20",
-        "26"
-      ],
-      "answer": "B",
-      "hint": "Work from the inside out: first find $g(2)$.",
-      "solution": "$g(2)=2^2+1=5$. Then $f(5)=3\\cdot 5-4=11$. The choice $5$ is only $g(2)$, and $26$ is $g(g(2))$, a different composition.",
-      "verify": "f = lambda x: 3 * x - 4\ng = lambda x: x * x + 1\nprint(f(g(2)))\n"
+      "verify": "\nimport math\nsols=set()\nfor n in range(-20,21):\n    if n+2<0: continue\n    for s in (1,-1):\n        x=s*math.sqrt(n+2)\n        if math.floor(x)==n and abs(x*x-(n+2))<1e-9:\n            sols.add(round(x,9))\nprint(len(sols))\n"
     },
     {
-      "id": "fn-02",
-      "difficulty": 1,
-      "problem": "Let $f(x)=\\dfrac{3x-2}{5}$. What is $f^{-1}(4)$?",
+      "id": "fn-25",
+      "difficulty": 4,
+      "problem": "Let $g(x)=\\dfrac{x+1}{x-1}$ and let $g^{n}$ denote the $n$-fold composition. How many integers $n$ with $1\\le n\\le 2025$ satisfy $g^{n}(3)=3$?",
       "choices": [
-        "$\\frac{22}{3}$",
-        "8",
-        "$\\frac{26}{3}$",
-        "$\\frac{154}{15}$",
-        "$\\frac{32}{3}$"
+        "675",
+        "1000",
+        "1010",
+        "1011",
+        "1012"
       ],
-      "answer": "A",
-      "hint": "$f^{-1}(4)$ is the input $x$ for which $f(x)=4$. Solve that equation.",
-      "solution": "We need $\\dfrac{3x-2}{5}=4$, so $3x-2=20$ and $x=\\dfrac{22}{3}$. Check: $\\dfrac{3\\cdot\\frac{22}{3}-2}{5}=\\dfrac{20}{5}=4$.",
-      "verify": "from fractions import Fraction\n\nfound = None\nfor d in range(1, 40):\n    for n in range(-400, 401):\n        x = Fraction(n, d)\n        if (3 * x - 2) / 5 == 4:\n            found = x\n            break\n    if found is not None:\n        break\nprint(found)\n"
+      "answer": "E",
+      "hint": "Check whether $g$ is an involution, meaning $g(g(x))=x$, before counting.",
+      "solution": "We have $g(g(x))=\\dfrac{\\frac{x+1}{x-1}+1}{\\frac{x+1}{x-1}-1}=\\dfrac{2x}{2}=x$, so $g$ is its own inverse. Thus $g^{n}(3)$ alternates between $3$ and $g(3)=2$, and equals $3$ exactly when $n$ is even. There are $\\lfloor 2025/2\\rfloor=1012$ even values in the range. A miscount of the even values by one gives $1011$, and $675$ comes from a wrong period of $3$.",
+      "concepts": [
+        1
+      ],
+      "verify": "\nfrom fractions import Fraction as F\nx=F(3); cnt=0\nfor n in range(1,2026):\n    x=(x+1)/(x-1)\n    if x==3: cnt+=1\nprint(cnt)\n"
     },
     {
-      "id": "fn-03",
-      "difficulty": 1,
-      "problem": "What is $\\dfrac{6^{4}}{2^{3}\\cdot 3^{2}}$?",
+      "id": "fn-26",
+      "difficulty": 4,
+      "problem": "The point $(1,5)$ lies on the graph of $y=f(x)$. The graph of $y=-f(2-x)+3$ contains a point $(a,b)$ that is the image of $(1,5)$ under the transformation producing that graph. What is $a+b$?",
       "choices": [
-        "18",
-        "36",
-        "72",
-        "108",
-        "216"
-      ],
-      "answer": "A",
-      "hint": "Write $6=2\\cdot 3$ and collect the powers of $2$ and of $3$ separately.",
-      "solution": "$6^4=2^4\\cdot 3^4$, so the fraction equals $\\dfrac{2^4\\cdot 3^4}{2^3\\cdot 3^2}=2^{1}\\cdot 3^{2}=2\\cdot 9=18$.",
-      "verify": "from fractions import Fraction\nprint(Fraction(6 ** 4, 2 ** 3 * 3 ** 2))\n"
-    },
-    {
-      "id": "fn-04",
-      "difficulty": 2,
-      "problem": "Suppose $f(x)+3f\\left(\\dfrac{1}{x}\\right)=2x$ for every nonzero real number $x$. What is $f(4)$?",
-      "choices": [
-        "$-\\frac{13}{16}$",
-        "$\\frac{3}{8}$",
-        "$\\frac{13}{16}$",
-        "$\\frac{47}{16}$",
-        "8"
-      ],
-      "answer": "A",
-      "hint": "Substitute $x=4$, then substitute $x=\\frac14$. The second substitution brings $f(4)$ back in.",
-      "solution": "Let $a=f(4)$ and $b=f\\left(\\tfrac14\\right)$. Substituting $x=4$ gives $a+3b=8$. Substituting $x=\\tfrac14$ gives $b+3a=\\tfrac12$. From the second, $b=\\tfrac12-3a$. Put this into the first: $a+\\tfrac32-9a=8$, so $-8a=\\tfrac{13}{2}$ and $a=-\\tfrac{13}{16}$. Check: $b=\\tfrac{47}{16}$, and $-\\tfrac{13}{16}+3\\cdot\\tfrac{47}{16}=8$.",
-      "verify": "from fractions import Fraction\n\n# Unknowns: a = f(4) and b = f(1/4). Search pairs on a grid of 1/16.\nsols = []\nfor i in range(-64, 65):\n    for j in range(-64, 65):\n        a = Fraction(i, 16)\n        b = Fraction(j, 16)\n        if a + 3 * b == 8 and b + 3 * a == Fraction(1, 2):\n            sols.append(a)\nassert len(sols) == 1\nprint(sols[0])\n"
-    },
-    {
-      "id": "fn-05",
-      "difficulty": 2,
-      "problem": "What is $\\displaystyle\\sum_{k=1}^{20}\\left\\lfloor \\frac{k}{3}\\right\\rfloor$?",
-      "choices": [
-        "60",
-        "63",
-        "69",
-        "72",
-        "78"
-      ],
-      "answer": "B",
-      "hint": "Group the terms into blocks on which $\\lfloor k/3\\rfloor$ stays the same.",
-      "solution": "For $k=3j,\\,3j+1,\\,3j+2$ the floor is $j$. The values $k=1,2$ give floor $0$, and the blocks $\\{3,4,5\\},\\{6,7,8\\},\\dots,\\{18,19,20\\}$ give floors $1,2,\\dots,6$. The sum is $0+3(1+2+3+4+5+6)=3\\cdot 21=63$.",
-      "verify": "import math\nprint(sum(math.floor(k / 3) for k in range(1, 21)))\n"
-    },
-    {
-      "id": "fn-06",
-      "difficulty": 2,
-      "problem": "Let $S$ be the sum of all real solutions of $|x-1|+|x+2|=5$. What is $S$?",
-      "choices": [
-        "-7",
-        "-5",
         "-3",
         "-1",
-        "1"
-      ],
-      "answer": "D",
-      "hint": "The expressions inside the absolute values change sign at $x=1$ and $x=-2$. Split into three cases.",
-      "solution": "For $x\\ge 1$ the equation is $2x+1=5$, giving $x=2$, which is valid. For $x\\le -2$ it is $-2x-1=5$, giving $x=-3$, which is valid. For $-2<x<1$ the left side equals $3$, never $5$. So the solutions are $2$ and $-3$, and their sum is $-1$.",
-      "verify": "from fractions import Fraction\n\nsols = [Fraction(n, 4) for n in range(-40, 41)\n        if abs(Fraction(n, 4) - 1) + abs(Fraction(n, 4) + 2) == 5]\nprint(sum(sols))\n"
-    },
-    {
-      "id": "fn-07",
-      "difficulty": 3,
-      "problem": "What is $\\log_{8}9\\cdot\\log_{27}4$?",
-      "choices": [
-        "$\\frac{1}{4}$",
-        "$\\frac{4}{9}$",
-        "$\\frac{2}{3}$",
-        "$\\frac{3}{2}$",
-        "$\\frac{9}{4}$"
+        "1",
+        "5",
+        "9"
       ],
       "answer": "B",
-      "hint": "Change both logarithms to a common base, such as $2$ or $3$.",
-      "solution": "Write $\\log_8 9=\\dfrac{\\log 9}{\\log 8}=\\dfrac{2\\log 3}{3\\log 2}$ and $\\log_{27} 4=\\dfrac{\\log 4}{\\log 27}=\\dfrac{2\\log 2}{3\\log 3}$. Multiplying, the $\\log 2$ and $\\log 3$ factors cancel, leaving $\\dfrac{4}{9}$.",
-      "verify": "import math\nfrom fractions import Fraction\n\nvalue = (math.log(9) / math.log(8)) * (math.log(4) / math.log(27))\nprint(Fraction(value).limit_denominator(1000))\n"
-    },
-    {
-      "id": "fn-08",
-      "difficulty": 3,
-      "problem": "Find the sum of all real solutions of $2^{2x+1}-9\\cdot 2^{x}+4=0$.",
-      "choices": [
-        "-5",
-        "-2",
-        "-1",
-        "0",
-        "1"
+      "hint": "The input map is a reflection, so solve $2-a=1$ before computing the output.",
+      "solution": "Set $2-a=1$, so $a=1$: the input $p=1$ is fixed by the reflection $p\\mapsto 2-p$, so the new input equals the old one. The new output is $-f(1)+3=-5+3=-2$, so $b=-2$. Therefore $a+b=1+(-2)=-1$. The point $(1,5)$ is unchanged horizontally, but its height is flipped across the $x$-axis and then shifted up by $3$, which is why the output is $-2$ rather than $8$. Sign slips in either the reflection or the shift are the source of the other choices.",
+      "concepts": [
+        9
       ],
-      "answer": "E",
-      "hint": "Note that $2^{2x+1}=2\\cdot(2^x)^2$. Substitute $y=2^x$.",
-      "solution": "Let $y=2^x>0$. The equation becomes $2y^2-9y+4=0$, which factors as $(2y-1)(y-4)=0$. So $y=\\tfrac12$ or $y=4$, giving $x=-1$ or $x=2$. The sum is $-1+2=1$. The value $-2$ is the product of the solutions, a common slip.",
-      "verify": "from fractions import Fraction\n\ndef h(x):\n    return 2 ** (2 * x + 1) - 9 * 2 ** x + 4\n\nN = 20000\nxs = [-10 + 20 * i / N for i in range(N + 1)]\nroots = []\nfor a, b in zip(xs, xs[1:]):\n    if h(a) == 0:\n        roots.append(a)\n    elif h(a) * h(b) < 0:\n        lo, hi = a, b\n        for _ in range(100):\n            mid = (lo + hi) / 2\n            if h(lo) * h(mid) <= 0:\n                hi = mid\n            else:\n                lo = mid\n        roots.append((lo + hi) / 2)\nprint(Fraction(round(sum(roots), 6)).limit_denominator(100))\n"
+      "verify": "\nf={1:5}\np,q=1,f[1]\na=2-p\nb=-q+3\nprint(a+b)\n"
     },
     {
-      "id": "fn-09",
-      "difficulty": 3,
-      "problem": "Find the only real number $x$ satisfying $\\log_2 x+\\log_2(x-2)=3$.",
+      "id": "fn-27",
+      "difficulty": 5,
+      "problem": "Let $f$ be a real function such that $f(x+y)=f(x)+f(y)-xy$ for all real $x$ and $y$, and $f(1)=3$. What is $f(12)$?",
       "choices": [
-        "-2",
-        "0",
-        "2",
-        "3",
-        "4"
-      ],
-      "answer": "E",
-      "hint": "Combine the two logarithms, then check the domain before accepting any root.",
-      "solution": "By the product rule the equation becomes $\\log_2\\big(x(x-2)\\big)=3$, so $x(x-2)=8$, i.e. $x^2-2x-8=0$, which factors as $(x-4)(x+2)=0$. The roots are $x=4$ and $x=-2$. Since $\\log_2 x$ needs $x>0$, the root $x=-2$ is rejected. Check: $\\log_2 4+\\log_2 2=2+1=3$.",
-      "verify": "import math\n\nsols = []\nfor n in range(-100, 101):\n    x = n / 10\n    if x > 2 and abs(math.log2(x) + math.log2(x - 2) - 3) < 1e-9:\n        sols.append(x)\nassert len(sols) == 1\nprint(round(sols[0]))\n"
-    },
-    {
-      "id": "fn-10",
-      "difficulty": 3,
-      "problem": "How many integers $n$ with $1\\le n\\le 200$ have $\\lfloor\\sqrt{n}\\rfloor$ even?",
-      "choices": [
-        "90",
-        "95",
-        "100",
-        "105",
-        "110"
-      ],
-      "answer": "B",
-      "hint": "If $\\lfloor\\sqrt{n}\\rfloor=k$, then $k^2\\le n<(k+1)^2$. Count the integers in each such block.",
-      "solution": "When $\\lfloor\\sqrt n\\rfloor=k$, the integers $n$ run from $k^2$ to $(k+1)^2-1$, which is $2k+1$ numbers. The even values of $k$ give blocks of sizes $5,9,13,17,21,25$ for $k=2,4,6,8,10,12$. The block for $k=14$ is cut off by the bound $200$: it contains only $196,\\dots,200$, which is $5$ numbers. Total: $5+9+13+17+21+25+5=95$.",
-      "verify": "import math\nprint(sum(1 for n in range(1, 201) if math.isqrt(n) % 2 == 0))\n"
-    },
-    {
-      "id": "fn-11",
-      "difficulty": 4,
-      "problem": "Suppose $f(x)+f\\left(\\dfrac{1}{1-x}\\right)=x$ for every real $x$ except $0$ and $1$. What is $f(2)$?",
-      "choices": [
-        "$\\frac{7}{4}$",
-        "2",
-        "$\\frac{9}{4}$",
-        "$\\frac{5}{2}$",
-        "$\\frac{11}{4}$"
-      ],
-      "answer": "A",
-      "hint": "Apply the rule to $x=2$, then to $\\frac{1}{1-2}$, then to the next value. Three substitutions close the loop.",
-      "solution": "The map $x\\mapsto \\dfrac{1}{1-x}$ sends $2\\to -1\\to \\tfrac12\\to 2$. Let $a=f(2)$, $b=f(-1)$ and $c=f(\\tfrac12)$. Then $a+b=2$ (from $x=2$), $b+c=-1$ (from $x=-1$) and $c+a=\\tfrac12$ (from $x=\\tfrac12$). Adding gives $a+b+c=\\tfrac34$, so $a=\\tfrac34-(b+c)=\\tfrac74$. Check: $b=\\tfrac14$ and $c=-\\tfrac54$, and all three equations hold.",
-      "verify": "from fractions import Fraction as F\n\nsols = []\nR = range(-16, 17)\nfor i in R:\n    for j in R:\n        for k in R:\n            a, b, c = F(i, 4), F(j, 4), F(k, 4)\n            if a + b == 2 and b + c == -1 and c + a == F(1, 2):\n                sols.append(a)\nassert len(sols) == 1\nprint(sols[0])\n"
-    },
-    {
-      "id": "fn-12",
-      "difficulty": 4,
-      "problem": "How many ordered pairs $(m,n)$ of positive integers with $m\\le 100$ and $n\\le 100$ make $2^{m}+2^{n}$ a perfect square?",
-      "choices": [
-        "50",
-        "96",
-        "120",
-        "144",
-        "146"
-      ],
-      "answer": "E",
-      "hint": "Factor out the smaller power of $2$, and treat the cases $m=n$ and $m\\neq n$ separately.",
-      "solution": "If $m=n$, the sum is $2^{m+1}$, a perfect square exactly when $m+1$ is even, so $m$ is odd: there are $50$ such pairs. If $m<n$, write $2^m+2^n=2^m(1+2^{k})$ with $k=n-m$. The factor $1+2^k$ is odd, so $m$ must be even and $1+2^k$ must itself be a perfect square $s^2$. Then $(s-1)(s+1)=2^k$; the only two powers of $2$ that differ by $2$ are $2$ and $4$, so $s=3$ and $k=3$. Thus $n=m+3$ with $m$ even and $m+3\\le 100$, giving $m=2,4,\\dots,96$: $48$ pairs. The pairs with $m>n$ give another $48$. Total: $50+48+48=146$.",
-      "verify": "import math\n\ndef is_square(v):\n    r = math.isqrt(v)\n    return r * r == v\n\ncount = 0\nfor m in range(1, 101):\n    for n in range(1, 101):\n        if is_square(2 ** m + 2 ** n):\n            count += 1\nprint(count)\n"
-    },
-    {
-      "id": "fn-13",
-      "difficulty": 4,
-      "problem": "Positive real numbers $x$ and $y$ satisfy $\\log_2 x+\\log_4 y=4$ and $\\log_4 x+\\log_2 y=5$. What is $xy$?",
-      "choices": [
-        "32",
-        "48",
-        "64",
-        "112",
-        "128"
+        "-42",
+        "-36",
+        "-30",
+        "30",
+        "102"
       ],
       "answer": "C",
-      "hint": "Let $p=\\log_2 x$ and $q=\\log_2 y$. Rewrite $\\log_4 y$ as $\\frac{q}{2}$, and find $xy$ from $p+q$.",
-      "solution": "Let $p=\\log_2 x$ and $q=\\log_2 y$. Since $\\log_4 y=\\dfrac{q}{2}$ and $\\log_4 x=\\dfrac{p}{2}$, the equations become $p+\\dfrac{q}{2}=4$ and $\\dfrac{p}{2}+q=5$. Solving gives $p=2$ and $q=4$, so $x=4$ and $y=16$. Then $\\log_2(xy)=p+q=6$, and $xy=2^6=64$.",
-      "verify": "from fractions import Fraction as F\n\nsols = []\nfor i in range(-40, 41):\n    for j in range(-40, 41):\n        p, q = F(i, 4), F(j, 4)\n        if p + q / 2 == 4 and p / 2 + q == 5:\n            sols.append((p, q))\nassert len(sols) == 1\np, q = sols[0]\nprint(2 ** int(p + q))\n"
-    },
-    {
-      "id": "fn-14",
-      "difficulty": 5,
-      "problem": "A function $f$ from the positive integers to the positive integers is strictly increasing and satisfies $f(f(n))=3n$ for every positive integer $n$. What is $f(2025)$?",
-      "choices": [
-        "3888",
-        "4050",
-        "5589",
-        "5751",
-        "6075"
+      "hint": "Set $y=1$ to obtain a recurrence for $f(n+1)$ in terms of $f(n)$.",
+      "solution": "Taking $y=1$ gives $f(x+1)=f(x)+f(1)-x=f(x)+3-x$. Starting from $f(1)=3$, the values are $f(2)=5$, $f(3)=6$, $f(4)=6$, $f(5)=5$, $f(6)=3$, $f(7)=0$, $f(8)=-4$, $f(9)=-9$, $f(10)=-15$, $f(11)=-22$, and $f(12)=-30$. The closed form $f(x)=\\frac{7x-x^{2}}{2}$ confirms this. Choice $102$ comes from assuming $f(x)=\\frac{x^{2}}{2}+\\frac{5x}{2}$, which reverses the sign of the quadratic term.",
+      "concepts": [
+        2
       ],
-      "answer": "A",
-      "hint": "Note that $f(3n)=3f(n)$. Compute the first few values, then look for a pattern on the blocks $[3^k,\\,2\\cdot 3^k]$ and $[2\\cdot 3^k,\\,3^{k+1}]$.",
-      "solution": "Small values are forced: $f(1)=2$, $f(2)=3$, $f(3)=6$, $f(6)=9$, $f(9)=18$. The pattern is that for $3^k\\le n\\le 2\\cdot 3^k$ we have $f(n)=n+3^k$, and for $2\\cdot 3^k\\le n\\le 3^{k+1}$ we have $f(n)=3n-3^{k+1}$. Since $2\\cdot 3^6=1458\\le 2025\\le 3^7=2187$, the second rule with $k=6$ applies: $f(2025)=3\\cdot 2025-2187=3888$. Check: $f(3888)=3888+2187=6075=3\\cdot 2025$.",
-      "verify": "def f(n):\n    k = 0\n    while 3 ** (k + 1) <= n:\n        k += 1\n    # now 3^k <= n < 3^(k+1)\n    if n <= 2 * 3 ** k:\n        return n + 3 ** k\n    return 3 * n - 3 ** (k + 1)\n\nassert all(f(f(n)) == 3 * n for n in range(1, 3001))\nassert all(f(n) < f(n + 1) for n in range(1, 3000))\nprint(f(2025))\n"
+      "verify": "\nf={1:3}\nfor n in range(1,12):\n    f[n+1]=f[n]+f[1]-n\nprint(f[12])\n"
     },
     {
-      "id": "fn-15",
+      "id": "fn-28",
       "difficulty": 5,
-      "problem": "How many integers $n$ with $1\\le n\\le 1000$ satisfy $\\lfloor\\log_2 n\\rfloor=\\lfloor\\log_3 n\\rfloor+1$?",
+      "problem": "How many integers $n$ with $1\\le n\\le 1000$ satisfy $\\lfloor\\log_{2} n\\rfloor=\\lfloor\\log_{3} n\\rfloor+1$?",
       "choices": [
-        "12",
-        "16",
         "17",
         "18",
-        "22"
+        "19",
+        "20",
+        "21"
       ],
-      "answer": "C",
-      "hint": "Let $j=\\lfloor\\log_3 n\\rfloor$. The condition says $2^{j+1}\\le n<2^{j+2}$. Intersect this with $3^j\\le n<3^{j+1}$.",
-      "solution": "Let $j=\\lfloor\\log_3 n\\rfloor$, so $3^j\\le n<3^{j+1}$. The condition $\\lfloor\\log_2 n\\rfloor=j+1$ means $2^{j+1}\\le n<2^{j+2}$. Intersect the two intervals: $j=0$ gives $n=2$ (1 value); $j=1$ gives $4\\le n\\le 7$ (4 values); $j=2$ gives $9\\le n\\le 15$ (7 values); $j=3$ gives $27\\le n\\le 31$ (5 values). For $j\\ge 4$ the intervals are disjoint, because $3^j\\ge 2^{j+2}$. Total: $1+4+7+5=17$.",
-      "verify": "def floor_log(base, n):\n    j = 0\n    while base ** (j + 1) <= n:\n        j += 1\n    return j\n\ncount = 0\nfor n in range(1, 1001):\n    if floor_log(2, n) == floor_log(3, n) + 1:\n        count += 1\nprint(count)\n"
+      "answer": "A",
+      "hint": "Both floors change only at powers of $2$ and $3$, so the common value is locally constant between those powers.",
+      "solution": "For each $k$, the integers with $\\lfloor\\log_3 n\\rfloor=k$ lie in $[3^{k},3^{k+1})$, and those with $\\lfloor\\log_2 n\\rfloor=k+1$ lie in $[2^{k+1},2^{k+2})$. Intersecting the two intervals: for $k=0$ we get $[2,3)$, one integer; for $k=1$ we get $[4,8)$, four integers; for $k=2$ we get $[9,16)$, seven integers; for $k=3$ we get $[27,32)$, five integers. For $k\\ge 4$ the intervals $[3^{k},3^{k+1})$ and $[2^{k+1},2^{k+2})$ are disjoint within $[1,1000]$, since $3^{4}=81$ already exceeds the top of the binary block $[32,64)$ and the next binary blocks lie entirely below $3^{k}$. The total is $1+4+7+5=17$. Exact enumeration with integer arithmetic confirms this count.",
+      "concepts": [
+        5,
+        7
+      ],
+      "verify": "\ncnt=0\nfor n in range(1,1001):\n    j=n.bit_length()-1\n    k=0\n    while 3**(k+1)<=n: k+=1\n    if j==k+1: cnt+=1\nprint(cnt)\n"
+    },
+    {
+      "id": "fn-29",
+      "difficulty": 5,
+      "problem": "How many integers $n$ with $1\\le n\\le 10000$ satisfy $n^{2025}\\le 2025^{n}$?",
+      "choices": [
+        "7973",
+        "7975",
+        "7976",
+        "7977",
+        "7978"
+      ],
+      "answer": "D",
+      "hint": "Take logarithms, then study $\\frac{\\ln x}{x}$, which increases up to $e$ and then decreases.",
+      "solution": "The inequality is equivalent to $\\frac{\\ln n}{n}\\le\\frac{\\ln 2025}{2025}$. The function $\\frac{\\ln x}{x}$ increases on $(0,e]$ and decreases on $[e,\\infty)$. For $3\\le n<2025$ the value $\\frac{\\ln n}{n}$ exceeds $\\frac{\\ln 2025}{2025}$, so these fail. For $n\\ge 2025$ the inequality holds. The value $n=1$ also works since $1\\le 2025$, and $n=2$ fails. So the solutions are $n=1$ and $2025\\le n\\le 10000$, which is $1+7976=7977$ integers. Dropping $n=1$ gives $7976$.",
+      "concepts": [
+        8,
+        5
+      ],
+      "verify": "\ncnt=0\nfor n in range(1,10001):\n    if n**2025 <= 2025**n: cnt+=1\nprint(cnt)\n"
+    },
+    {
+      "id": "fn-30",
+      "difficulty": 5,
+      "problem": "How many real $x$ satisfy $f(f(x))=x$, where $f(x)=4x(1-x)$?",
+      "choices": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "6"
+      ],
+      "answer": "D",
+      "hint": "Count the fixed points of $f$ first, then look for period-$2$ points by sign changes on $[0,1]$.",
+      "solution": "Since $f(f(x))-x$ is a polynomial of degree $4$, there are at most $4$ real roots. The fixed points $x=0$ and $x=\\frac34$ are two of them. The remaining two are the period-$2$ points $\\frac{5\\pm\\sqrt5}{8}$, which lie in $[0,1]$. The sign of $f(f(x))-x$ changes at both, so all four roots are real. Counting only fixed points gives $2$, which is the trap.",
+      "concepts": [
+        2,
+        1
+      ],
+      "verify": "\nfrom fractions import Fraction as F\ndef f(x): return 4*x*(1-x)\ndef g(x): return f(f(x))-x\nN=1000\nroots=0\nprev=None\nfor i in range(N+1):\n    x=F(i,N)\n    v=g(x)\n    if v==0:\n        roots+=1\n        prev=0\n        continue\n    s=1 if v>0 else -1\n    if prev not in (None,0) and s!=prev:\n        roots+=1\n    prev=s\nprint(roots)\n"
+    }
+  ],
+  "videos": [
+    {
+      "youtubeId": "NkiOw87hjNI",
+      "title": "Art of Problem Solving: Floor and Ceiling Functions",
+      "channel": "Art of Problem Solving",
+      "why": "Richard Rusczyk's introduction to the floor and ceiling functions, with the defining inequality and basic evaluations; watch before the block-counting problems."
+    },
+    {
+      "youtubeId": "oNT4iwU6Pew",
+      "title": "A fun functional equation!!",
+      "channel": "Michael Penn",
+      "why": "A short functional-equation solution that shows how special values and reusing the relation pin down $f$; watch when you meet symmetric functional equations."
+    },
+    {
+      "youtubeId": "4RVYoeiyC4w",
+      "title": "2020 AMC 10 B Problem 24, 12 B Problem 21",
+      "channel": "TheBeautyofMath",
+      "why": "A worked AMC 12 solution that combines floor functions with algebra; watch after the floor lesson to see the block idea on a real contest problem."
     }
   ]
 }

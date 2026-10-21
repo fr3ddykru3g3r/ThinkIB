@@ -1,128 +1,369 @@
 {
   "id": "geometry",
-  "title": "Geometry",
-  "summary": "Similar triangles and Pythagoras, area formulas (Heron, shoelace, sine), circle theorems and power of a point, coordinate geometry, and volume and surface area of solids.",
-  "examWeight": "≈5 problems per paper",
+  "title": "Plane Geometry",
+  "summary": "Similar triangles and Pythagoras, area methods (base-height, sine, Heron, shoelace and ratios of areas), medians, bisectors and altitudes, circle theorems and power of a point, incircle and circumcircle, cyclic quadrilaterals with Ptolemy, and special triangles.",
+  "examWeight": "≈5–6 problems per paper",
+  "prerequisites": [
+    "algebra",
+    "trigonometry"
+  ],
+  "overview": "Plane geometry on the AMC 12 rarely asks you to measure a figure. It asks you to find the single relation that makes every length determined. A typical paper has roughly five geometry-flavoured problems, running from a Pythagoras calculation near #5 to a configuration of circles, tangents and triangle centres near #20–25. The early problems reward fluency with right triangles, similar triangles and the area formulas. The late problems reward recognising a hidden circle, a hidden ratio, or a hidden cyclic quadrilateral that unlocks a theorem.\n\nDifficulty climbs in a predictable way. Early problems use one formula in a clean figure. Middle problems combine two ideas, such as area with similarity, or power of a point with a tangent length. The hardest problems introduce a construction, such as a parallel line through the incentre, an excentre or an orthocentre, and expect every length to follow from coordinates or from a triangle's standard invariants $K$, $s$, $r$ and $R$.\n\nThe most effective study method is to learn each theorem with its proof, because a theorem you can rederive is one you can recognise in an unfamiliar figure. Then solve problems in which the first task is to name the theorem that applies. Coordinates are a dependable fallback: placing a side on the $x$-axis and computing exactly turns most geometry into arithmetic, and it is a good way to check an answer that came from a clever argument.",
   "concepts": [
     {
       "title": "Similar triangles and the Pythagorean theorem",
-      "body": "Two triangles are similar when their angles match exactly. Then each side of one triangle is the same multiple (the scale factor) of the matching side in the other, so the ratios of matching sides are all equal. The most useful source of similar triangles is a line drawn parallel to one side. It cuts off a small triangle whose angles copy the big triangle's angles, so its sides are a fixed fraction of the big triangle's sides.\n\nFor right triangles, the Pythagorean theorem $a^2+b^2=c^2$ links the two legs $a$ and $b$ with the hypotenuse $c$. The converse is also true: if $a^2+b^2=c^2$, the angle opposite $c$ is a right angle. Drop an altitude from the right angle to the hypotenuse and you get two smaller right triangles, each similar to the original. This gives $h^2=pq$, where $h$ is the altitude and $p,q$ are the two pieces of the hypotenuse. For example, in a $3$-$4$-$5$ triangle the altitude to the hypotenuse is $\\frac{3\\cdot 4}{5}=\\frac{12}{5}$.",
+      "body": "Two triangles are similar when their corresponding angles are equal. Then their corresponding sides are proportional: if triangle $XYZ$ is similar to $ABC$ with $X$ matching $A$, $Y$ matching $B$, and $Z$ matching $C$, there is a constant $k$, the scale factor, with $XY=k\\,AB$, $YZ=k\\,BC$, and $ZX=k\\,CA$. Equal angles force proportional sides, so the AA, SAS and SSS criteria all reduce to this one idea. Write every ratio with the matching vertices in the same order. Most similarity mistakes are mismatched ratios, not false claims of similarity.\n\nThe most useful source of similar triangles is a line parallel to a side. Suppose a line parallel to $BC$ meets $AB$ at $D$ and $AC$ at $E$. The angles $\\angle ADE$ and $\\angle ABC$ are corresponding angles, and likewise $\\angle AED=\\angle ACB$. So triangles $ADE$ and $ABC$ are similar, with $\\frac{AD}{AB}=\\frac{AE}{AC}=\\frac{DE}{BC}$. The small triangle is a scaled copy of the big one, so every length on it is a fixed fraction of the matching length on the whole triangle. When a problem mentions a parallel line, write the scale factor down immediately.\n\nNow the Pythagorean theorem. Let the right angle be at $C$, with legs $a=BC$ and $b=CA$ and hypotenuse $c=AB$. Drop the altitude from $C$ to $AB$, with foot $H$, and write $p=AH$ and $q=HB$, so $c=p+q$. Triangles $ACH$ and $ABC$ share the angle at $A$ and each has a right angle, so they are similar. Hence $\\frac{AC}{AB}=\\frac{AH}{AC}$, which is $b^2=pc$. In the same way $a^2=qc$. Adding gives $a^2+b^2=(p+q)c=c^2$. This proof is more useful than the bare formula, because the same similar triangles also give the altitude.\n\nThe altitude to the hypotenuse satisfies $h^2=pq$, where $h=CH$. The triangles $CHA$ and $CHB$ are similar to each other, so $\\frac{CH}{HA}=\\frac{HB}{CH}$. This gives $h=\\sqrt{pq}$ directly from the two pieces of the hypotenuse, without computing the area. The converse of Pythagoras also holds. If $a^2+b^2=c^2$, build a right triangle with legs $a$ and $b$. Its hypotenuse is $c$ by Pythagoras, and the triangle with sides $a,b,c$ is congruent to it by SSS, so the original angle opposite $c$ is a right angle.\n\nOn the AMC the common right triangles are the $3$-$4$-$5$, $5$-$12$-$13$, $8$-$15$-$17$, $7$-$24$-$25$ and $20$-$21$-$29$ families, together with their multiples. Recognising a triple gives every side at once and saves a long computation. The practical habit is to test $a^2+b^2$ against $c^2$ as soon as two lengths are known. A triangle whose sides are $5,12,13$ is right even if the problem never says so.",
       "keyFacts": [
-        "$a^2+b^2=c^2$ for a right triangle with hypotenuse $c$",
-        "Similar triangles have equal angles and proportional sides",
-        "Altitude to the hypotenuse: $h^2=pq$"
+        "$a^2+b^2=c^2$ for a right triangle with legs $a,b$ and hypotenuse $c$",
+        "Similar triangles have equal angles and proportional sides: $\\frac{XY}{AB}=\\frac{YZ}{BC}=\\frac{ZX}{CA}$",
+        "Altitude to the hypotenuse: $h^2=pq$, with $b^2=pc$ and $a^2=qc$"
       ],
-      "whenToUse": "A line parallel to one side of a triangle, a right triangle with a perpendicular drawn to its hypotenuse, or any length question about a right triangle."
+      "whenToUse": "A line parallel to a side, a right triangle with a perpendicular drawn to its hypotenuse, or any length question about a right triangle.",
+      "commonMistakes": [
+        "Matching the sides in the wrong order when writing a similarity ratio.",
+        "Applying Pythagoras when the angle is not known to be right.",
+        "Treating the altitude to the hypotenuse as a leg."
+      ],
+      "example": {
+        "problem": "A triangle has sides $20$, $21$, and $29$. What is the length of the altitude drawn to the side of length $29$?",
+        "solution": "The triangle is right, because $20^2+21^2=841=29^2$, with legs $20$ and $21$. Its area is $\\frac12\\cdot 20\\cdot 21=210$. Using $29$ as the base, $\\frac12\\cdot 29\\cdot h=210$, so $h=\\frac{420}{29}$.",
+        "answer": "$\\frac{420}{29}$",
+        "verify": "\nimport math\na, b = 20, 21\nc = math.hypot(a, b)\nassert abs(c - 29) < 1e-9\nh = a * b / c\nassert abs(h - 420 / 29) < 1e-9\nprint(r'$\\frac{420}{29}$')\n"
+      }
     },
     {
-      "title": "Area: base-height, sine, Heron and shoelace",
-      "body": "Every area formula reads the same quantity from different information. The base-height formula $\\frac12 bh$ is the starting point: any side can be the base, and the height is the perpendicular distance from the opposite vertex to the line of that base. If you know two sides $b$ and $c$ and the angle $A$ between them, drop an altitude onto $b$. Its length is $c\\sin A$, so the area is $\\frac12 bc\\sin A$. This works even when the triangle is not right, because the altitude always exists.\n\nIf you know all three sides, Heron's formula $K=\\sqrt{s(s-a)(s-b)(s-c)}$, with $s=\\frac{a+b+c}{2}$, gives the area without any angle. It comes from the base-height formula after the altitude is eliminated with the Pythagorean theorem. When the vertices are given as coordinates, the shoelace formula is easier. Multiply each $x$ by the next $y$, subtract the product of the next $x$ and the current $y$, add the results around the polygon, and halve the absolute value. It works for any simple polygon because it adds up signed trapezoid areas.\n\nFor example, the triangle with vertices $(0,0)$, $(4,0)$, $(0,3)$ has the terms $0\\cdot 0-4\\cdot 0=0$, $4\\cdot 3-0\\cdot 0=12$, and $0\\cdot 0-0\\cdot 3=0$. Their sum is $12$, so the area is $6$, which matches $\\frac12\\cdot 4\\cdot 3$.",
+      "title": "Area: base-height, sine formula, and ratios of areas",
+      "body": "Area is the first formula anyone learns, and on the AMC it is the most flexible tool for relating lengths. For a triangle with sides $a,b,c$ and altitudes $h_a,h_b,h_c$ to those sides, the area $K$ satisfies $K=\\frac12ah_a=\\frac12bh_b=\\frac12ch_c$. You may choose any side as the base. When a problem gives one altitude, write the area in terms of that base, then reuse the same area for a different altitude. Since $ah_a=bh_b=2K$, the altitudes are inversely proportional to the sides.\n\nThe sine formula comes from the base-height formula. Take sides $b=AC$ and $c=AB$ meeting at $A$, with $AB$ as base. The altitude from $C$ to line $AB$ has length $b\\sin A$, because it is the leg opposite $A$ in the right triangle formed by the altitude and $AC$. Therefore $K=\\frac12 bc\\sin A$, and by symmetry $K=\\frac12ab\\sin C=\\frac12ca\\sin B$. Whenever two sides and the included angle are known, this is the fastest route to the area. It also shows the area is largest when the included angle is $90^\\circ$, since $\\sin$ peaks there.\n\nRatios of areas are where contest time is saved. Two triangles with the same height have areas in the ratio of their bases, because $\\frac12 b_1h$ and $\\frac12 b_2h$ differ only by the factor $\\frac{b_1}{b_2}$. Two triangles with the same base have areas in the ratio of their heights. The general identity is the one to memorise. If $D$ lies on line $AB$ and $E$ lies on line $AC$, then $\\frac{[ADE]}{[ABC]}=\\frac{AD}{AB}\\cdot\\frac{AE}{AC}$. Both triangles have the angle $A$, and the sine formula contributes exactly the two side ratios.\n\nApply the same reasoning to a cevian. If $D$ lies on side $BC$, then $\\frac{[ABD]}{[ABC]}=\\frac{BD}{BC}$, because both triangles share the altitude from $A$. The two pieces satisfy $[ABD]+[ADC]=[ABC]$, so their areas are proportional to the lengths of the parts of $BC$. Splitting a triangle along one side is a linear rule, and it is the basis of most mass-point and area-chasing arguments. The three medians of a triangle cut it into six triangles of equal area, a fact that follows by applying the base rule twice.\n\nCommon mistakes: using a base and an altitude that do not belong to the same side; dropping the factor $\\frac12$ when writing the sine formula; and forming a ratio of two triangles that do not share a vertex, or whose opposite sides do not lie on a common line. When unsure, place the figure on coordinates and compute the shoelace area of each piece. The ratio is then a plain computation, and it cannot be fooled by a figure that looks symmetric but is not.",
       "keyFacts": [
-        "Area $=\\frac12 bh=\\frac12 bc\\sin A$",
-        "Heron: $K=\\sqrt{s(s-a)(s-b)(s-c)}$ with $s=\\frac{a+b+c}{2}$",
-        "Shoelace: $K=\\frac12\\left|\\sum_i (x_i y_{i+1}-x_{i+1}y_i)\\right|$",
-        "Triangles with the same height have areas in the ratio of their bases"
+        "$2K=a\\,h_a=b\\,h_b=c\\,h_c$",
+        "$K=\\frac12 bc\\sin A$",
+        "$\\frac{[ADE]}{[ABC]}=\\frac{AD}{AB}\\cdot\\frac{AE}{AC}$ and $\\frac{[ABD]}{[ABC]}=\\frac{BD}{BC}$"
       ],
-      "whenToUse": "Two sides with the angle between them, all three sides, or vertices given as coordinates. Pick the formula that matches the data you are given."
+      "whenToUse": "Two sides and an included angle are given, a triangle has a known altitude, or a problem asks for the ratio of two regions cut by lines through a vertex or along a side.",
+      "commonMistakes": [
+        "Using an altitude that is not perpendicular to the chosen base.",
+        "Forgetting the factor $\\frac12$ or the $\\sin$ when moving from base-height to the sine formula.",
+        "Taking a ratio of triangles that share no common vertex or height."
+      ],
+      "example": {
+        "problem": "Triangle $ABC$ has area $90$. Point $D$ lies on side $AB$ with $AD:DB=1:2$, and point $E$ is the midpoint of side $AC$. What is the area of triangle $ADE$?",
+        "solution": "Triangles $ADE$ and $ABC$ share the angle at $A$, so $\\frac{[ADE]}{[ABC]}=\\frac{AD}{AB}\\cdot\\frac{AE}{AC}=\\frac13\\cdot\\frac12=\\frac16$. Hence $[ADE]=\\frac{90}{6}=15$.",
+        "answer": "15",
+        "verify": "\nA = (0.0, 0.0); B = (3.0, 0.0); C = (0.0, 60.0)\ndef area(P, Q, R):\n    return abs((Q[0]-P[0])*(R[1]-P[1]) - (R[0]-P[0])*(Q[1]-P[1])) / 2\nassert abs(area(A, B, C) - 90) < 1e-9\nD = (1.0, 0.0)\nE = ((A[0]+C[0])/2, (A[1]+C[1])/2)\nassert abs(area(A, D, E) - 15) < 1e-9\nprint(\"15\")\n"
+      }
     },
     {
-      "title": "Circle theorems and power of a point",
-      "body": "Circle theorems turn angle questions into arc questions. A central angle equals the arc it cuts off, and an inscribed angle (its vertex on the circle) is half of that arc. This is why every angle inscribed in a semicircle is a right angle. Two inscribed angles on the same arc are equal, and opposite angles of a cyclic quadrilateral add to $180^\\circ$. A tangent is perpendicular to the radius at the point of contact, and the two tangent segments from an outside point have equal length.\n\nWhen two chords cross inside a circle, the angle between them is half the sum of the arc it cuts off and the arc of its vertical angle. The reason is that this angle is an exterior angle of a triangle, and an exterior angle equals the sum of the two remote angles. Each remote angle is an inscribed angle, so each is half an arc.\n\nPower of a point connects lengths. For a point $P$ outside a circle, any line through $P$ meets the circle at two points $A$ and $B$, and the product $PA\\cdot PB$ is the same for every such line. It also equals $PT^2$, where $PT$ is the length of a tangent from $P$. For example, if a secant has $PA=4$ and $PB=9$, a tangent from $P$ has length $\\sqrt{36}=6$.",
+      "title": "Heron's formula and the shoelace formula",
+      "body": "Heron's formula gives the area of a triangle from its three sides alone, which is valuable when no altitude is easy to find. With semiperimeter $s=\\frac{a+b+c}{2}$, the area is $K=\\sqrt{s(s-a)(s-b)(s-c)}$. Read $s-a$ as the distance from the vertex $A$ to a tangency point of the incircle, and the formula becomes a statement about tangent lengths, which is one reason it appears alongside the incircle in competition problems.\n\nDerivation. Start from $K=\\frac12 bc\\sin A$, so $16K^2=4b^2c^2\\sin^2A=4b^2c^2-4b^2c^2\\cos^2A$. By the law of cosines $2bc\\cos A=b^2+c^2-a^2$, so $16K^2=4b^2c^2-(b^2+c^2-a^2)^2$. This difference of squares factors as $\\bigl(2bc-(b^2+c^2-a^2)\\bigr)\\bigl(2bc+(b^2+c^2-a^2)\\bigr)=\\bigl(a^2-(b-c)^2\\bigr)\\bigl((b+c)^2-a^2\\bigr)$. Each factor is again a difference of squares, giving $(a-b+c)(a+b-c)(b+c-a)(a+b+c)$. In terms of $s$ this is $16s(s-a)(s-b)(s-c)$, which is Heron's formula.\n\nExample: the $13$-$14$-$15$ triangle has $s=21$, so $K=\\sqrt{21\\cdot 8\\cdot 7\\cdot 6}=\\sqrt{7056}=84$. The product under the root is a perfect square, which is typical of triangles with integer area. Before applying the formula, check the triangle inequality, because Heron's formula silently returns a meaningless square root when three lengths do not form a triangle.\n\nThe shoelace formula handles triangles given by coordinates. For vertices $(x_1,y_1)$, $(x_2,y_2)$, $(x_3,y_3)$ listed in order around the triangle, $K=\\frac12\\left|x_1y_2-x_2y_1+x_2y_3-x_3y_2+x_3y_1-x_1y_3\\right|$. The reason is that the area of triangle $OPQ$ with $O$ at the origin is $\\frac12|x_Py_Q-x_Qy_P|$, which is the sine formula applied to the vectors $OP$ and $OQ$. The expression is invariant under translation, so a general triangle can be moved until one vertex sits at the origin.\n\nThe same cross-product idea gives the area of any polygon with vertices in order, by summing $\\frac12(x_iy_{i+1}-x_{i+1}y_i)$ around the boundary. On the AMC, the shoelace formula is often the quickest way to finish a coordinate problem, because it avoids finding a foot of a perpendicular. Listing the vertices in consistent order keeps the signs right, and the absolute value removes any dependence on orientation.\n\nCommon mistakes: writing $s$ where $s-a$ belongs inside the root; forgetting that Heron's formula needs all three sides; and dropping the $\\frac12$ in the shoelace formula. A useful check is that when $s$ is an integer and the four factors multiply to a perfect square, the area is an integer, as in the $13$-$14$-$15$ example.",
       "keyFacts": [
-        "Central angle equals its arc; inscribed angle is half its arc",
-        "Opposite angles of a cyclic quadrilateral add to $180^\\circ$",
-        "Angle between two crossing chords $=\\frac12(\\text{arc}_1+\\text{arc}_2)$",
-        "Power of a point: $PA\\cdot PB=PT^2$ for a secant and a tangent from $P$"
+        "$K=\\sqrt{s(s-a)(s-b)(s-c)}$ with $s=\\frac{a+b+c}{2}$",
+        "$16K^2=4b^2c^2-(b^2+c^2-a^2)^2$",
+        "Shoelace: $K=\\frac12\\left|\\sum (x_iy_{i+1}-x_{i+1}y_i)\\right|$"
       ],
-      "whenToUse": "Circles with chords, secants or tangents, especially when a tangent length or a product of segments from an outside point is asked for."
+      "whenToUse": "Three sides are given, or the vertices are given as coordinates and no altitude is easy to read off.",
+      "commonMistakes": [
+        "Using $s$ instead of $s-a$ inside the square root.",
+        "Applying Heron's formula to three lengths that violate the triangle inequality.",
+        "Omitting the factor $\\frac12$ or the absolute value in the shoelace formula."
+      ],
+      "example": {
+        "problem": "Triangle $ABC$ has sides $AB=13$, $BC=14$, and $CA=15$. What is its area?",
+        "solution": "The semiperimeter is $s=\\frac{13+14+15}{2}=21$. Then $K=\\sqrt{21\\cdot 8\\cdot 7\\cdot 6}=\\sqrt{7056}=84$.",
+        "answer": "84",
+        "verify": "\nimport math\na, b, c = 13, 14, 15\ns = (a + b + c) / 2\nK = math.sqrt(s * (s - a) * (s - b) * (s - c))\nassert abs(K - 84) < 1e-9\nprint(\"84\")\n"
+      }
     },
     {
-      "title": "Coordinate geometry",
-      "body": "Coordinates turn a picture into arithmetic. For points $(x_1,y_1)$ and $(x_2,y_2)$, the distance is $\\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}$. This is just Pythagoras applied to the horizontal and vertical gaps. The midpoint is the average of the coordinates. A line can be written $y=mx+c$, where $m$ is the slope (rise over run). Two lines are perpendicular exactly when their slopes multiply to $-1$, because turning a line of slope $m$ through a right angle gives slope $-\\frac1m$.\n\nTo find where two lines meet, set their equations equal. For instance, $3x=7-\\frac x2$ gives $\\frac72 x=7$, so $x=2$ and $y=6$. A line crosses the $x$-axis where $y=0$. Once the vertices are known, the shoelace formula gives the area. A triangle with a horizontal base has area $\\frac12\\cdot\\text{base}\\cdot\\text{height}$, where the height is the vertical gap from the apex to the base line.\n\nReflection is a useful tool. The reflection $Q$ of a point $P$ across a line is the same distance from the line as $P$, on the other side. The segment $PQ$ is perpendicular to the line, and the line passes through the midpoint of $PQ$. Those two facts pin down $Q$ without a formula.",
+      "title": "Medians, angle bisectors and altitudes",
+      "body": "A median joins a vertex to the midpoint of the opposite side. Let $M$ be the midpoint of $BC$, so $BM=MC=\\frac a2$, and let $m=AM$. Apply the law of cosines in triangles $ABM$ and $AMC$. The angles at $M$ are supplementary, so their cosines are opposite, and $c^2=m^2+\\frac{a^2}{4}-am\\cos\\theta$, $b^2=m^2+\\frac{a^2}{4}+am\\cos\\theta$. Adding the two equations gives the median formula $m^2=\\frac{2b^2+2c^2-a^2}{4}$. It needs no angles, only the three sides.\n\nThe angle bisector from $A$ meets $BC$ at $D$, and the bisector theorem says $\\frac{BD}{DC}=\\frac{AB}{AC}=\\frac cb$. Proof by areas: the bisector splits angle $A$ into two halves of $\\frac A2$. Using the sine formula, $[ABD]=\\frac12\\,c\\cdot AD\\sin\\frac A2$ and $[ADC]=\\frac12\\,b\\cdot AD\\sin\\frac A2$, so $\\frac{[ABD]}{[ADC]}=\\frac cb$. Triangles $ABD$ and $ADC$ also share the altitude from $A$ to $BC$, so the same ratio equals $\\frac{BD}{DC}$.\n\nThe length of the bisector follows from Stewart's theorem. For a cevian of length $d$ from $A$ to $BC$, splitting $BC$ into $m$ (next to $B$) and $n$ (next to $C$), Stewart's theorem reads $b^2m+c^2n=a(d^2+mn)$. For the bisector, $m=\\frac{ac}{b+c}$ and $n=\\frac{ab}{b+c}$. Then $b^2m+c^2n=abc$, and solving $abc=a(d^2+mn)$ gives $t_a^2=bc\\left(1-\\frac{a^2}{(b+c)^2}\\right)$. Check the formula on the isosceles case $b=c$: it gives the altitude squared, as it should.\n\nThe altitude from $A$ has length $h_a=\\frac{2K}{a}$. Two altitude facts appear constantly. The altitude to the hypotenuse of a right triangle is $\\frac{ab}{c}$, and the distance from a vertex to the orthocenter is $AH=2R\\cos A$, where $R$ is the circumradius. The second fact is derived in the circumcircle concept below. Keep the orthocenter in mind when a problem mentions three altitudes meeting at a point.\n\nCommon mistakes: writing the median formula with $+a^2$ instead of $-a^2$; reversing $b$ and $c$ in the bisector ratio, so that $BD$ is assigned the wrong part; and confusing the internal bisector with the external one. A quick sanity check is that a median is always shorter than the longer of the two sides adjacent to its vertex, and a bisector lies between the altitude and the median from the same vertex.",
       "keyFacts": [
-        "Distance: $\\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}$",
-        "Midpoint: $\\left(\\frac{x_1+x_2}{2},\\frac{y_1+y_2}{2}\\right)$",
-        "Perpendicular lines: $m_1 m_2=-1$",
-        "Reflection $Q$ of $P$: $PQ$ is perpendicular to the mirror and its midpoint lies on the mirror"
+        "$m_a^2=\\frac{2b^2+2c^2-a^2}{4}$",
+        "$\\frac{BD}{DC}=\\frac{AB}{AC}$ for the internal bisector",
+        "$t_a^2=bc\\left(1-\\frac{a^2}{(b+c)^2}\\right)$ and $h_a=\\frac{2K}{a}$"
       ],
-      "whenToUse": "Problems that give points or lines as coordinates, or ask for intersections, perpendiculars, reflections or areas of regions in the plane."
+      "whenToUse": "A problem asks for a length from a vertex to a point on the opposite side, or gives the three sides and asks for a bisector or median length.",
+      "commonMistakes": [
+        "Sign error in the median formula: it is $2b^2+2c^2-a^2$, not $+a^2$.",
+        "Reversing the bisector ratio, which swaps the two pieces of the opposite side.",
+        "Confusing the internal and external bisector theorems."
+      ],
+      "example": {
+        "problem": "In triangle $ABC$, $AB=8$, $AC=4$, and $BC=6$. The internal bisector of angle $A$ meets $BC$ at $D$. Find the length $AD$.",
+        "solution": "By the bisector theorem $BD:DC=AB:AC=2:1$, so with $BD+DC=6$ we get $BD=4$, $DC=2$. Hence $\\frac{BD}{BC}=\\frac23$. Stewart with $b=AC=4$, $c=AB=8$, $a=6$ gives $t_a^2=bc\\left(1-\\frac{a^2}{(b+c)^2}\\right)=32\\cdot\\frac{3}{4}=24$, so $AD=2\\sqrt6$.",
+        "answer": "$2\\sqrt{6}$",
+        "verify": "\nimport math\nA = (0.0, 0.0); B = (8.0, 0.0)\nx = (4**2 - 6**2 + 8**2) / (2 * 8)\nC = (x, math.sqrt(4**2 - x**2))\nassert abs(math.dist(B, C) - 6) < 1e-9\nt = 8 / (8 + 4)                 # BD/BC = AB/(AB+AC)\nD = (B[0] + t*(C[0]-B[0]), B[1] + t*(C[1]-B[1]))\nAD = math.dist(A, D)\nassert abs(AD**2 - 24) < 1e-9\nprint(r'$2\\sqrt{6}$')\n"
+      }
     },
     {
-      "title": "Volume and surface area of solids",
-      "body": "Volume measures how much space a solid fills, and surface area measures the total area of its outside. For a prism or cylinder, every horizontal slice is a copy of the base, so $V=Bh$, where $B$ is the base area and $h$ is the height. For a pyramid or cone, the slices shrink toward the apex. A slice at a fraction $t$ of the height above the base has area $(1-t)^2 B$, because its linear size is $1-t$ of the base. Adding up all the slices gives one third of the prism's volume, so $V=\\frac13 Bh$.\n\nScaling is the key shortcut for solids. If every length is multiplied by $k$, areas are multiplied by $k^2$ and volumes by $k^3$. So a plane cutting a cone parallel to its base at half the height leaves a small cone with $\\left(\\frac12\\right)^3=\\frac18$ of the original volume.\n\nSpheres and cones need a little more. A ball of radius $r$ has $V=\\frac43\\pi r^3$ and $S=4\\pi r^2$. When a ball touches the faces of a solid, its centre is at distance $r$ from each face. A cross-section through the centre often turns the 3D problem into a circle inscribed in a triangle. The lateral surface of a cone unrolls into a sector of radius $\\ell$ (the slant height) whose arc has length $2\\pi r$, so its area is $\\pi r\\ell$, and the total surface area is $\\pi r^2+\\pi r\\ell$.",
+      "title": "Circle theorems: inscribed angles and tangents",
+      "body": "The inscribed angle theorem says that the central angle subtending an arc is twice any inscribed angle subtending the same arc. Proof sketch: first take the case where one side of the inscribed angle is a diameter $CC'$. Triangle $OAC$ is isosceles with $OA=OC$, so its base angles are equal, and the exterior angle at $O$ is the sum of those two equal angles. This gives $\\angle AOC'=2\\angle ACC'$. For a general inscribed angle, draw the diameter through the vertex, split the angle into two pieces, and apply the diameter case to each.\n\nThree consequences do most of the work. Inscribed angles on the same arc are equal. An angle inscribed in a semicircle is a right angle, which is why the hypotenuse of a right triangle inscribed in a circle is a diameter. The opposite angles of a cyclic quadrilateral sum to $180^\\circ$, since they subtend arcs that together make the whole circle. The converse also holds, so showing that two opposite angles are supplementary proves a quadrilateral is cyclic.\n\nTangents bring in two more facts. The radius to a point of tangency is perpendicular to the tangent, so $OT\\perp PT$ at the point of contact. Two tangent segments drawn from one external point have equal length, because the two right triangles formed with the radii are congruent by hypotenuse and leg. The tangent-chord angle is the angle between a tangent and a chord through the point of contact. It equals the inscribed angle on the arc cut off by the chord, which is half the arc.\n\nA chord of length $\\ell$ in a circle of radius $r$ lies at distance $d$ from the centre, where $\\ell=2\\sqrt{r^2-d^2}$. This is Pythagoras applied to the right triangle formed by the centre, the chord's midpoint and an endpoint of the chord. Use this relation whenever a problem gives a chord length and asks for a distance from the centre, or the reverse.\n\nWhen two chords cross inside a circle, the angle between them equals half the sum of the two arcs they intercept, the arc inside the angle and its vertical partner. This generalises the inscribed angle theorem and explains why the intersecting chords and secants results are natural. Common mistakes: confusing an arc's measure with the angle that subtends it; using a central angle where the inscribed angle is needed; and assuming a tangent is perpendicular to a chord, which is true only when the chord is a diameter.",
       "keyFacts": [
-        "Prism or cylinder: $V=Bh$",
-        "Pyramid or cone: $V=\\frac13 Bh$",
-        "Sphere: $V=\\frac43\\pi r^3$ and $S=4\\pi r^2$",
-        "Cone: $S=\\pi r^2+\\pi r\\ell$ with slant height $\\ell$",
-        "Scaling all lengths by $k$ multiplies areas by $k^2$ and volumes by $k^3$"
+        "Central angle $=2\\times$ inscribed angle on the same arc",
+        "An angle inscribed in a semicircle is $90^\\circ$; opposite angles of a cyclic quadrilateral sum to $180^\\circ$",
+        "Tangent-chord angle $=\\frac12$ (arc cut off), and $\\ell=2\\sqrt{r^2-d^2}$ for a chord at distance $d$"
       ],
-      "whenToUse": "Any problem about a solid that is cut, stacked, scaled, or has a ball or cone inside or on top of it."
+      "whenToUse": "A problem mentions a circle, an arc, a tangent, a chord or a cyclic quadrilateral. Find the arc or the inscribed angle that the figure is really about.",
+      "commonMistakes": [
+        "Taking the inscribed angle to be the full arc rather than half of it.",
+        "Assuming the tangent is perpendicular to a chord instead of to the radius at the point of contact.",
+        "Using the central angle at the centre when the vertex lies on the circle."
+      ],
+      "example": {
+        "problem": "Points $A$, $B$, and $C$ lie on a circle, and the arc $AB$ that does not contain $C$ measures $110^\\circ$. What is the measure of angle $ACB$ in degrees?",
+        "solution": "The inscribed angle $\\angle ACB$ intercepts the arc $AB$ that does not contain $C$. By the inscribed angle theorem it equals half of that arc, so $\\angle ACB=\\frac{110^\\circ}{2}=55^\\circ$.",
+        "answer": "55",
+        "verify": "\nimport math\ndef pt(deg):\n    return (math.cos(math.radians(deg)), math.sin(math.radians(deg)))\nA = pt(0); B = pt(110); C = pt(250)\nu = (A[0]-C[0], A[1]-C[1]); w = (B[0]-C[0], B[1]-C[1])\ncosang = (u[0]*w[0] + u[1]*w[1]) / (math.hypot(*u) * math.hypot(*w))\nang = math.degrees(math.acos(cosang))\nassert abs(ang - 55) < 1e-9\nprint(\"55\")\n"
+      }
+    },
+    {
+      "title": "Power of a point",
+      "body": "Fix a circle with centre $O$ and radius $r$, and a point $P$. The power of $P$ is $p(P)=OP^2-r^2$. The theorem is that for every line through $P$ that meets the circle at points $X$ and $Y$, the product of the signed distances $\\overline{PX}\\cdot\\overline{PY}$ is the same number $p(P)$, whatever the line. Proof: parametrise the line as $P+tu$ for a unit vector $u$. The points on the circle satisfy $|P+tu-O|^2=r^2$, which expands to $t^2+2t\\,(P-O)\\cdot u+(OP^2-r^2)=0$. The two roots $t_1,t_2$ give $X$ and $Y$, and by Vieta their product is $t_1t_2=OP^2-r^2$.\n\nThe tangent case is the same theorem with the two intersection points coinciding. If $PT$ is tangent at $T$, then $OT\\perp PT$, so $PT^2=OP^2-r^2$ by Pythagoras. Thus the tangent length squared is the power, and any secant through $P$ satisfies $PX\\cdot PY=PT^2$. This is the single most used form, and it turns a tangent length into a product of secant pieces with no angles at all.\n\nFor a point inside the circle, the power is negative, $p(P)=-PA\\cdot PB$ with $PA\\cdot PB$ positive, and the intersecting chords theorem is the statement that $AP\\cdot PB=CP\\cdot PD$ for any two chords through $P$. The proof through similar triangles is also instructive. Inscribed angles on the same arc make $\\triangle PAC\\sim\\triangle PDB$, which gives $\\frac{PA}{PD}=\\frac{PC}{PB}$. Cross-multiplying yields the product identity.\n\nPower of a point is valuable because it converts a configuration of lines and circles into a multiplicative equation with no angles. Whenever a problem contains a point together with two or more segments from it that end on a circle, write the product of the segments on each line and set them equal. The tangent is the degenerate case, and that is why it is often the first piece of information to extract.\n\nCommon mistakes: using the whole secant length instead of the external piece when the point is outside; forgetting that the external piece is the distance from $P$ to the nearer point; and mixing the chord products for a point inside with those for a point outside. The sign convention is harmless if you always use lengths, but it matters in coordinate proofs.",
+      "keyFacts": [
+        "$p(P)=OP^2-r^2$",
+        "Tangent-secant: $PT^2=PX\\cdot PY$",
+        "Intersecting chords: $AP\\cdot PB=CP\\cdot PD$"
+      ],
+      "whenToUse": "A point lies on the extension of a secant, or lines through a point meet a circle in two points each. Look for a product of segments that can be set equal.",
+      "commonMistakes": [
+        "Using the far point of the secant where the near point is needed, or the reverse.",
+        "Forgetting to square the tangent length.",
+        "Applying the tangent formula when the point lies inside the circle."
+      ],
+      "example": {
+        "problem": "A circle has centre $O$ and radius $5$. A point $P$ satisfies $OP^2=61$. A tangent from $P$ touches the circle at $T$, and a secant from $P$ meets the circle at $X$ (nearer to $P$) and $Y$ with $PX=4$. What is $PY$?",
+        "solution": "The power of $P$ is $OP^2-r^2=61-25=36$, which equals $PT^2$ and also $PX\\cdot PY$. Hence $4\\cdot PY=36$ and $PY=9$.",
+        "answer": "9",
+        "verify": "\nimport math\nO = (0.0, 0.0); r = 5.0; P = (math.sqrt(61), 0.0)\npower = math.dist(O, P)**2 - r*r\nassert abs(power - 36) < 1e-9\nPY = power / 4\nassert abs(PY - 9) < 1e-9\nprint(\"9\")\n"
+      }
+    },
+    {
+      "title": "Incircle and circumcircle: r and R",
+      "body": "The incircle touches each side once. Join the incentre $I$ to the three vertices: the triangle splits into three pieces, each with height $r$ from $I$ to a side. Adding their areas gives $K=\\frac12 r(a+b+c)=rs$, so $r=\\frac Ks$. Combined with Heron's formula, $r=\\sqrt{\\frac{(s-a)(s-b)(s-c)}{s}}$. This is the cleanest way to find the inradius from the sides, and it is why the semiperimeter appears so often in contest solutions.\n\nTangent lengths give the most useful coordinates. The two tangent segments from a vertex to the incircle are equal, because the two right triangles formed with $I$ and the tangency points are congruent. If the incircle touches $BC$, $CA$, $AB$ at $D$, $E$, $F$, then $AE=AF=s-a$, $BD=BF=s-b$, and $CD=CE=s-c$. In coordinates, placing $BC$ on the $x$-axis and reading off $BD=s-b$ fixes the tangency point.\n\nThe circumradius satisfies $R=\\frac{abc}{4K}$. The law of sines gives $a=2R\\sin A$, and $K=\\frac12 bc\\sin A$. Multiplying $a=2R\\sin A$ by $bc$ gives $abc=2R\\cdot bc\\sin A=4RK$. For a right triangle the circumcentre is the midpoint of the hypotenuse, so $R=\\frac c2$. For an equilateral triangle of side $s$, $R=\\frac{s}{\\sqrt3}$ and $r=\\frac{s}{2\\sqrt3}$.\n\nTwo distances between centres are standard. Euler's formula $OI^2=R^2-2Rr$ gives the distance between the circumcentre $O$ and incentre $I$. It can be checked on the $13$-$14$-$15$ triangle, where $R=\\frac{65}{8}$, $r=4$, and $OI^2=\\frac{65}{8}\\cdot\\frac18=\\frac{65}{64}$. The distance from the circumcentre to a side is $R\\cos A$, since the central angle over that side is $2A$. The excentre opposite $A$ has radius $r_a=\\frac{K}{s-a}$.\n\nCommon mistakes: using $s$ where $s-a$ is needed for a tangent length; using the semiperimeter in $R=\\frac{abc}{4K}$ instead of the sides; and assuming the circumcentre lies inside an obtuse triangle. For an obtuse triangle $O$ lies on the other side of the longest side from the obtuse vertex, so check the angle before reading a distance off the formula $R\\cos A$.",
+      "keyFacts": [
+        "$r=\\frac Ks$ and $R=\\frac{abc}{4K}$",
+        "Tangent lengths from $A,B,C$ are $s-a,\\ s-b,\\ s-c$",
+        "$OI^2=R^2-2Rr$ (Euler) and $r_a=\\frac{K}{s-a}$"
+      ],
+      "whenToUse": "A problem asks for an inradius, a circumradius, a distance between centres, or a tangent length from a vertex to the incircle.",
+      "commonMistakes": [
+        "Using $s$ where $s-a$ belongs in a tangent length.",
+        "Confusing $r$ and $R$ in Euler's formula.",
+        "Forgetting that the circumcentre of an obtuse triangle lies outside the triangle."
+      ],
+      "example": {
+        "problem": "A triangle has sides $3$, $4$, and $5$. Find $r+R$, where $r$ is the inradius and $R$ is the circumradius.",
+        "solution": "The area is $K=6$ and $s=6$, so $r=\\frac Ks=1$. For the right triangle, $R=\\frac c2=\\frac52$. Hence $r+R=\\frac72$.",
+        "answer": "$\\frac{7}{2}$",
+        "verify": "\nimport math\na, b, c = 3.0, 4.0, 5.0\ns = (a + b + c) / 2\nK = a * b / 2\nr = K / s\nR = a * b * c / (4 * K)\nassert abs(R - c / 2) < 1e-9\nassert abs(r + R - 3.5) < 1e-9\nprint(r'$\\frac{7}{2}$')\n"
+      }
+    },
+    {
+      "title": "Cyclic quadrilaterals and Ptolemy",
+      "body": "A cyclic quadrilateral has all four vertices on one circle. Its opposite angles are supplementary, which follows from the inscribed angle theorem: the two opposite angles subtend arcs that together make the full circle. The converse holds too. If $\\angle A+\\angle C=180^\\circ$ in a convex quadrilateral, then $ABCD$ is cyclic. Recognising a cyclic quadrilateral lets you use the circle's theorems, especially power of a point and inscribed angles.\n\nPtolemy's theorem states that for a cyclic quadrilateral $ABCD$, $AC\\cdot BD=AB\\cdot CD+BC\\cdot DA$. Proof: choose a point $E$ on the diagonal $BD$ with $\\angle BAE=\\angle CAD$. Triangles $ABE$ and $ACD$ have equal angles at $A$ and at $B$ and $C$ (inscribed angles on arc $AD$), so they are similar, giving $AB\\cdot CD=AC\\cdot BE$. Triangles $ABC$ and $AED$ are similar in the same way, giving $BC\\cdot AD=AC\\cdot ED$. Adding the two identities and using $BE+ED=BD$ gives the theorem.\n\nPtolemy becomes especially powerful in symmetric figures. For a rectangle with sides $a$ and $b$, the theorem reads $d^2=a^2+b^2$, which is Pythagoras again. For an isosceles trapezoid with parallel sides $p$ and $q$ and legs $\\ell$, the two diagonals are equal, say $d$, and Ptolemy gives $d^2=pq+\\ell^2$, because the pairs of opposite sides are $(p,q)$ and $(\\ell,\\ell)$. A diagonal of an isosceles trapezoid can therefore be found in one line once the bases and legs are known.\n\nBrahmagupta's formula gives the area of a cyclic quadrilateral with sides $a,b,c,d$ as $K=\\sqrt{(s-a)(s-b)(s-c)(s-d)}$, where $s=\\frac{a+b+c+d}{2}$. It is Heron's formula with one side equal to zero, and it holds exactly when the quadrilateral is cyclic, because the cyclic condition makes the two opposite angles supplementary, which turns the area into a sum of two sine terms with equal sine.\n\nCommon mistakes: applying Ptolemy to a quadrilateral that is not cyclic; pairing sides incorrectly so that a side is multiplied by the wrong diagonal; and forgetting that Ptolemy relates products of two diagonals, not the diagonals individually. In any problem with four concyclic points, list the sides in cyclic order before you write the identity.",
+      "keyFacts": [
+        "Opposite angles of a cyclic quadrilateral sum to $180^\\circ$",
+        "Ptolemy: $AC\\cdot BD=AB\\cdot CD+BC\\cdot DA$",
+        "Brahmagupta: $K=\\sqrt{(s-a)(s-b)(s-c)(s-d)}$"
+      ],
+      "whenToUse": "Four points lie on a circle, or a quadrilateral is inscribed. Use Ptolemy when the problem asks for a diagonal, and Brahmagupta when it asks for the area.",
+      "commonMistakes": [
+        "Applying Ptolemy when the quadrilateral is not cyclic.",
+        "Listing the sides out of cyclic order, which swaps the pairs in the identity.",
+        "Forgetting that Ptolemy's theorem gives a product of diagonals."
+      ],
+      "example": {
+        "problem": "Rectangle $ABCD$ has $AB=6$ and $BC=8$. Use Ptolemy's theorem to find the diagonal $AC$.",
+        "solution": "The rectangle is cyclic, and $AC=BD$. Ptolemy gives $AC\\cdot BD=AB\\cdot CD+BC\\cdot DA=6\\cdot6+8\\cdot8=100$, so $AC^2=100$ and $AC=10$.",
+        "answer": "10",
+        "verify": "\nimport math\nA = (0.0, 0.0); B = (6.0, 0.0); C = (6.0, 8.0); D = (0.0, 8.0)\nAC = math.dist(A, C); BD = math.dist(B, D)\nAB = math.dist(A, B); CD = math.dist(C, D); BC = math.dist(B, C); DA = math.dist(D, A)\nassert abs(AC * BD - (AB * CD + BC * DA)) < 1e-9\nassert abs(AC - 10) < 1e-9\nprint(\"10\")\n"
+      }
+    },
+    {
+      "title": "Special triangles",
+      "body": "The $45^\\circ$-$45^\\circ$-$90^\\circ$ triangle is half a square. If its legs are $a$, the hypotenuse is $a\\sqrt2$, by Pythagoras with $a^2+a^2=c^2$. Its sides are in the ratio $1:1:\\sqrt2$. Whenever a problem has a square, the diagonal of the square and the isosceles right triangles it creates give this ratio instantly, and a square diagonal is never a surprise.\n\nThe $30^\\circ$-$60^\\circ$-$90^\\circ$ triangle is half an equilateral triangle. Take an equilateral triangle of side $2a$ and drop an altitude. It bisects the opposite side, so it splits the triangle into two copies of the $30^\\circ$-$60^\\circ$-$90^\\circ$ triangle with hypotenuse $2a$ and short leg $a$. The long leg is $\\sqrt{(2a)^2-a^2}=a\\sqrt3$. The sides are in the ratio $1:\\sqrt3:2$, with the short leg opposite $30^\\circ$ and the long leg opposite $60^\\circ$.\n\nThe equilateral triangle itself has a short list of formulas. With side $s$, the altitude is $\\frac{\\sqrt3}{2}s$, the area is $\\frac{\\sqrt3}{4}s^2$, the circumradius is $\\frac{s}{\\sqrt3}$, and the inradius is $\\frac{s}{2\\sqrt3}$. The inradius is one third of the altitude, since the centre divides each altitude in the ratio $2:1$. Keep these in mind so that they never need to be rederived under time pressure.\n\nPythagorean triples generate more special triangles. Every primitive triple has the form $m^2-n^2$, $2mn$, $m^2+n^2$ with $m>n$ of opposite parity and coprime. The triples $3$-$4$-$5$, $5$-$12$-$13$, $8$-$15$-$17$ and $7$-$24$-$25$ come from small choices of $m$ and $n$. A problem that gives one of these pairs of sides is often built around the triple, and the third side is then immediate.\n\nCommon mistakes: confusing which leg is opposite which angle in the $30$-$60$-$90$ triangle; writing the long leg as $2a$ instead of $a\\sqrt3$; and applying the equilateral formulas to a triangle that is only isosceles. When a figure contains a $60^\\circ$ angle and an altitude, look for the $30$-$60$-$90$ triangle hidden inside before reaching for trigonometry.",
+      "keyFacts": [
+        "$45^\\circ$-$45^\\circ$-$90^\\circ$: sides $1:1:\\sqrt2$",
+        "$30^\\circ$-$60^\\circ$-$90^\\circ$: sides $1:\\sqrt3:2$",
+        "Equilateral side $s$: altitude $\\frac{\\sqrt3}{2}s$, area $\\frac{\\sqrt3}{4}s^2$, $R=\\frac{s}{\\sqrt3}$"
+      ],
+      "whenToUse": "A right triangle has an angle of $30^\\circ$, $45^\\circ$ or $60^\\circ$, or an equilateral triangle appears with an altitude drawn in it.",
+      "commonMistakes": [
+        "Swapping the short and long legs of the $30$-$60$-$90$ triangle.",
+        "Writing the long leg as $2a$ instead of $a\\sqrt3$.",
+        "Using equilateral-triangle formulas for a triangle that is only isosceles."
+      ],
+      "example": {
+        "problem": "A right triangle has hypotenuse $12$ and one angle of $30^\\circ$. What is the length of its longer leg?",
+        "solution": "In a $30$-$60$-$90$ triangle the short leg is half the hypotenuse, so it is $6$. The longer leg is $\\sqrt{12^2-6^2}=6\\sqrt3$.",
+        "answer": "$6\\sqrt{3}$",
+        "verify": "\nimport math\nhyp = 12.0\nshort = hyp / 2\nlong = math.sqrt(hyp**2 - short**2)\nassert abs(long - 6 * math.sqrt(3)) < 1e-9\nprint(r'$6\\sqrt{3}$')\n"
+      }
+    }
+  ],
+  "strategies": [
+    {
+      "name": "Mark the scale factor at once",
+      "description": "When a line is drawn parallel to a side, write the ratio $\\frac{AD}{AB}=\\frac{AE}{AC}=\\frac{DE}{BC}$ on the figure immediately. Every length on the small triangle is then a fixed fraction of the big one, and most problems reduce to choosing the right fraction."
+    },
+    {
+      "name": "Pick the base that matches the altitude you know",
+      "description": "Write the area as $\\frac12 ah_a$ for whichever side has a known altitude, then reuse the same area for another side. Because $ah_a=bh_b=2K$, this turns a hard altitude into an easy one with a single multiplication."
+    },
+    {
+      "name": "Use power of a point before angle chasing",
+      "description": "When a point has two or more segments running to a circle, or a tangent appears, write the products $PT^2=PX\\cdot PY$ or $AP\\cdot PB=CP\\cdot PD$ first. These equations need no angles and often give the answer in one line."
+    },
+    {
+      "name": "Recognise triples and the special triangles",
+      "description": "Check $3$-$4$-$5$, $5$-$12$-$13$, $7$-$24$-$25$ and $20$-$21$-$29$ families, and the $30$-$60$-$90$ triangle hidden inside an equilateral triangle with an altitude. Recognising the shape gives every side at once and avoids trigonometry on the AMC."
+    },
+    {
+      "name": "Compute the triangle invariants once",
+      "description": "For a triangle with known sides, compute $s$, $K$ by Heron, $r=\\frac Ks$ and $R=\\frac{abc}{4K}$ at the start. Most incircle, circumcircle and centre questions then follow from these four numbers, and Euler's formula $OI^2=R^2-2Rr$ handles the distance between the centres."
+    },
+    {
+      "name": "Fall back on exact coordinates",
+      "description": "When a configuration resists synthetic argument, place one side on the $x$-axis, write the other vertices with the given lengths, and compute. Keep everything exact and simplify at the end. This is slower than a clever idea, but it cannot silently fail, and it is an excellent check on a synthetic answer."
     }
   ],
   "workedExamples": [
     {
-      "title": "Altitude to the hypotenuse",
+      "title": "Hypotenuse and one leg",
       "difficulty": 1,
-      "problem": "In right triangle $ABC$, the right angle is at $C$, with $AC=9$ and $BC=12$. Let $H$ be the foot of the perpendicular from $C$ to the hypotenuse $AB$. What is the length of $CH$?",
+      "problem": "A right triangle has hypotenuse $25$ and one leg of length $7$. What is the length of the other leg?",
       "choices": [
-        "$6$",
-        "$\\frac{36}{5}$",
-        "$\\frac{15}{2}$",
-        "$8$",
-        "$9$"
+        "18",
+        "22",
+        "24",
+        "26",
+        "32"
+      ],
+      "answer": "C",
+      "approach": "Recognise $7$-$24$-$25$, or subtract squares directly.",
+      "steps": [
+        "Write Pythagoras with the unknown leg $x$: $x^2+7^2=25^2$.",
+        "Compute $25^2=625$ and $7^2=49$.",
+        "Subtract to get $x^2=625-49=576$.",
+        "Take the positive square root to get $x=24$."
+      ],
+      "alternative": "",
+      "takeaway": "A familiar triple gives the answer faster than the arithmetic, and a second check costs nothing.",
+      "verify": "import math\nassert abs(math.sqrt(25**2 - 7**2) - 24) < 1e-9\nprint('24')\n"
+    },
+    {
+      "title": "Area from two sides and the included angle",
+      "difficulty": 2,
+      "problem": "In triangle $PQR$, $PQ=4$, $PR=6$, and the angle $\\angle QPR$ equals $60^\\circ$. What is the area of triangle $PQR$?",
+      "choices": [
+        "6",
+        "$6\\sqrt{3}$",
+        "12",
+        "$12\\sqrt{3}$",
+        "24"
       ],
       "answer": "B",
+      "approach": "Two sides and the angle between them are given, so the sine formula applies directly without any altitude.",
       "steps": [
-        "Pythagoras gives the hypotenuse: $AB=\\sqrt{9^2+12^2}=\\sqrt{225}=15$.",
-        "Compute the area with the legs as base and height: $\\frac12\\cdot 9\\cdot 12=54$.",
-        "Compute the same area with $AB$ as base and $CH$ as height: $\\frac12\\cdot 15\\cdot CH$.",
-        "Set the two expressions equal: $\\frac12\\cdot 15\\cdot CH=54$, so $CH=\\frac{108}{15}=\\frac{36}{5}$."
+        "Identify the two sides $PQ=4$ and $PR=6$ that meet at $P$, with the included angle $60^\\circ$.",
+        "Apply $K=\\frac12\\cdot PQ\\cdot PR\\cdot\\sin P$.",
+        "Use $\\sin60^\\circ=\\frac{\\sqrt3}{2}$ to write $K=\\frac12\\cdot4\\cdot6\\cdot\\frac{\\sqrt3}{2}$.",
+        "Simplify to $K=6\\sqrt3$."
       ],
-      "takeaway": "The altitude to the hypotenuse equals the product of the legs divided by the hypotenuse, because the area can be computed two ways.",
-      "verify": "from fractions import Fraction as F\nimport math\n# C=(0,0), A=(0,9), B=(12,0): right angle at C, AC = 9, BC = 12\nA = (0, 9); B = (12, 0); C = (0, 0)\ndx, dy = B[0] - A[0], B[1] - A[1]\nAB2 = dx*dx + dy*dy\nAB = math.isqrt(AB2); assert AB*AB == AB2      # hypotenuse 15\ncross = dx*(C[1] - A[1]) - dy*(C[0] - A[0])    # signed twice-area of ABC\nprint(F(abs(cross), AB))                       # distance from C to line AB"
+      "alternative": "Drop an altitude from $R$ to line $PQ$. Its length is $6\\sin60^\\circ=3\\sqrt3$, so the area is $\\frac12\\cdot4\\cdot3\\sqrt3=6\\sqrt3$.",
+      "takeaway": "Two sides and an included angle give the area through the sine formula, with no altitude needed.",
+      "verify": "import math\nP = (0.0, 0.0); Q = (4.0, 0.0); R = (3.0, 3 * math.sqrt(3))\nassert abs(math.dist(P, R) - 6) < 1e-9\narea = abs((Q[0]-P[0])*(R[1]-P[1]) - (R[0]-P[0])*(Q[1]-P[1])) / 2\nassert abs(area - 6 * math.sqrt(3)) < 1e-9\nprint('$6\\\\sqrt{3}$')\n"
     },
     {
-      "title": "Area from three sides",
-      "difficulty": 2,
-      "problem": "A triangle has side lengths $7$, $15$, and $20$. What is its area?",
-      "choices": [
-        "$42$",
-        "$48$",
-        "54",
-        "$56$",
-        "$84$"
-      ],
-      "answer": "A",
-      "steps": [
-        "Find the semiperimeter: $s=\\frac{7+15+20}{2}=21$.",
-        "Find the three differences: $s-7=14$, $s-15=6$, $s-20=1$.",
-        "Apply Heron's formula: $K=\\sqrt{21\\cdot 14\\cdot 6\\cdot 1}=\\sqrt{1764}$.",
-        "Since $42^2=1764$, the area is $K=42$."
-      ],
-      "takeaway": "Heron's formula needs only the three sides, and checking whether the product is a perfect square keeps the arithmetic clean.",
-      "verify": "import math\n# B=(0,0), C=(15,0); A=(x,y) with AB = 7 and AC = 20\nx = (7*7 - 20*20 + 15*15) / (2*15)     # -4.2\ny = math.sqrt(7*7 - x*x)               # 5.6\narea = 0.5 * 15 * y\nassert abs(area - 42) < 1e-9\nassert abs(math.hypot(x - 15, y) - 20) < 1e-9   # AC really is 20\nprint(round(area))"
-    },
-    {
-      "title": "Tangent from a secant",
+      "title": "Intersecting chords",
       "difficulty": 3,
-      "problem": "A point $P$ lies outside a circle. A line through $P$ meets the circle at $A$ and then at $B$, with $PA=4$ and $AB=5$. A tangent from $P$ touches the circle at $T$. What is $PT$?",
+      "problem": "Chords $AB$ and $CD$ of a circle meet at a point $P$ inside the circle. Suppose $AP=2$, $PB=9$, and $CP=3$. What is the length of chord $CD$?",
       "choices": [
-        "$6$",
-        "7",
-        "$8$",
-        "$9$",
-        "11"
+        "6",
+        "8",
+        "9",
+        "11",
+        "12"
       ],
-      "answer": "A",
+      "answer": "C",
+      "approach": "The chords cross inside the circle, so the intersecting chords theorem gives a product equation.",
       "steps": [
-        "The secant runs from $P$ through $A$ to $B$, so $PB=PA+AB=4+5=9$.",
-        "Power of a point: the square of the tangent equals the product of the whole secant and its outside part, so $PT^2=PA\\cdot PB=4\\cdot 9=36$.",
-        "Therefore $PT=6$.",
-        "Sanity check: $PT$ is the geometric mean of $PA$ and $PB$, so it must lie between them, and $4<6<9$."
+        "Write $AP\\cdot PB=CP\\cdot PD$.",
+        "Compute the left side as $2\\cdot9=18$.",
+        "Then $3\\cdot PD=18$, so $PD=6$.",
+        "Add the pieces: $CD=CP+PD=3+6=9$."
       ],
-      "takeaway": "A tangent length squared equals the product of the two secant segments from the outside point.",
-      "verify": "import math\n# P = (0,0); the secant is the x-axis, meeting the circle at A = (4,0) and B = (9,0)\nO = (6.5, 2.0)                          # centre lies above the midpoint of AB\nr2 = (4 - O[0])**2 + (0 - O[1])**2\nassert abs((9 - O[0])**2 + (0 - O[1])**2 - r2) < 1e-9   # B is on the circle\nPT = math.sqrt((O[0]**2 + O[1]**2) - r2)                # tangent length from P\nprint(round(PT))"
+      "alternative": "",
+      "takeaway": "Each point inside a circle gives a product of chord pieces that is the same along every chord through it.",
+      "verify": "AP, PB, CP = 2.0, 9.0, 3.0\nPD = AP * PB / CP\nCD = CP + PD\nassert abs(CD - 9) < 1e-9\nprint('9')\n"
+    },
+    {
+      "title": "Inradius from the sides",
+      "difficulty": 3,
+      "problem": "What is the radius of the inscribed circle of the triangle with side lengths $5$, $6$, and $7$?",
+      "choices": [
+        "$\\frac{\\sqrt{6}}{2}$",
+        "$\\frac{2\\sqrt{6}}{3}$",
+        "2",
+        "$\\frac{3\\sqrt{6}}{2}$",
+        "6"
+      ],
+      "answer": "B",
+      "approach": "All three sides are given, so compute the area with Heron's formula and divide by the semiperimeter.",
+      "steps": [
+        "The semiperimeter is $s=\\frac{5+6+7}{2}=9$.",
+        "Heron gives $K=\\sqrt{9\\cdot4\\cdot3\\cdot2}=\\sqrt{216}=6\\sqrt6$.",
+        "Use $K=rs$ to get $r=\\frac{K}{s}=\\frac{6\\sqrt6}{9}$.",
+        "Simplify to $r=\\frac{2\\sqrt6}{3}$."
+      ],
+      "alternative": "Split the triangle into three pieces from the incentre. Their areas add to $\\frac12 r(a+b+c)=rs$, which is the same identity.",
+      "takeaway": "The inradius is area divided by semiperimeter, because the incentre cuts the triangle into three pieces each of height $r$.",
+      "verify": "import math\nB = (0.0, 0.0); C = (7.0, 0.0)\nx = (5**2 - 6**2 + 7**2) / (2 * 7)\ny = math.sqrt(5**2 - x**2)\nK = 0.5 * 7 * y\ns = (5 + 6 + 7) / 2\nr = K / s\nassert abs(r - 2 * math.sqrt(6) / 3) < 1e-9\nprint('$\\\\frac{2\\\\sqrt{6}}{3}$')\n"
+    },
+    {
+      "title": "Equilateral triangle on a circle",
+      "difficulty": 4,
+      "problem": "Equilateral triangle $ABC$ is inscribed in a circle. Point $P$ lies on the minor arc $BC$, the arc not containing $A$, with $PB=2$ and $PC=6$. What is $PA$?",
+      "choices": [
+        "4",
+        "6",
+        "8",
+        "10",
+        "12"
+      ],
+      "answer": "C",
+      "approach": "The four points $A,B,P,C$ lie on a circle, so Ptolemy's theorem for the quadrilateral $ABPC$ applies.",
+      "steps": [
+        "List the quadrilateral in cyclic order: $A,B,P,C$, with sides $AB,BP,PC,CA$ and diagonals $AP$ and $BC$.",
+        "Ptolemy gives $AP\\cdot BC=AB\\cdot PC+BP\\cdot CA$.",
+        "Every side of the equilateral triangle equals $s$, so $BC=AB=CA=s$.",
+        "Cancel $s$ to get $AP=PC+PB$.",
+        "Substitute $PB=2$ and $PC=6$ to get $PA=8$."
+      ],
+      "alternative": "A coordinate check on the unit circle places $P$ at the right angle and recovers $PA=8$, which is what the verify snippet computes.",
+      "takeaway": "Ptolemy turns a configuration on a circle into a linear relation between distances, which is much easier than the law of cosines.",
+      "verify": "import math\ndef h(phi):\n    return 3*math.sin(math.radians((phi - 210) / 2)) - math.sin(math.radians((330 - phi) / 2))\nlo, hi = 210.0, 330.0\nfor _ in range(200):\n    mid = (lo + hi) / 2\n    if h(mid) < 0:\n        lo = mid\n    else:\n        hi = mid\nphi = (lo + hi) / 2\nR = 2 / (2 * math.sin(math.radians((phi - 210) / 2)))\nPA = 2 * R * abs(math.sin(math.radians((phi - 90) / 2)))\nPC = 2 * R * math.sin(math.radians((330 - phi) / 2))\nassert abs(PC - 6) < 1e-9\nassert abs(PA - 8) < 1e-9\nprint('8')\n"
+    },
+    {
+      "title": "Distance from circumcentre to a side",
+      "difficulty": 5,
+      "problem": "Triangle $ABC$ has $BC=14$, $CA=13$, and $AB=15$. Let $O$ be the circumcentre. What is the distance from $O$ to line $BC$?",
+      "choices": [
+        "4",
+        "$\\frac{65}{16}$",
+        "$\\frac{33}{8}$",
+        "8",
+        "$\\frac{65}{8}$"
+      ],
+      "answer": "C",
+      "approach": "The distance from the circumcentre to a side is $R\\cos A$, so the work reduces to finding $R$ and $\\cos A$.",
+      "steps": [
+        "Heron gives $s=21$ and $K=84$.",
+        "The circumradius is $R=\\frac{abc}{4K}=\\frac{14\\cdot13\\cdot15}{336}=\\frac{65}{8}$.",
+        "The law of cosines at $A$ gives $\\cos A=\\frac{13^2+15^2-14^2}{2\\cdot13\\cdot15}=\\frac{33}{65}$.",
+        "The central angle over $BC$ is $2A$, so the distance from $O$ to $BC$ is $R\\cos A=\\frac{65}{8}\\cdot\\frac{33}{65}=\\frac{33}{8}$."
+      ],
+      "alternative": "Put $B=(0,0)$, $C=(14,0)$, $A=(9,12)$. The circumcentre is $O=(7,\\frac{33}{8})$, whose distance to the $x$-axis is $\\frac{33}{8}$.",
+      "takeaway": "The distance from the circumcentre to a side is $R\\cos A$, because the central angle over that side is $2A$.",
+      "verify": "import math\nB = (0.0, 0.0); C = (14.0, 0.0); A = (9.0, 12.0)\nox = (B[0] + C[0]) / 2\noy = (A[0]**2 + A[1]**2 - 2 * ox * A[0]) / (2 * A[1])\nO = (ox, oy)\nassert abs(math.dist(O, A) - math.dist(O, B)) < 1e-9\nassert abs(math.dist(O, B) - math.dist(O, C)) < 1e-9\nassert abs(abs(O[1]) - 33 / 8) < 1e-9\nprint('$\\\\frac{33}{8}$')\n"
     }
   ],
   "problems": [
@@ -131,240 +372,607 @@
       "difficulty": 1,
       "problem": "A ladder $13$ metres long leans against a vertical wall. Its foot rests on level ground $5$ metres from the base of the wall. How many metres up the wall does the top of the ladder reach?",
       "choices": [
-        "$8$",
-        "$10$",
-        "$12$",
-        "$14$",
-        "$18$"
+        "12",
+        "13",
+        "17",
+        "18",
+        "25"
       ],
-      "answer": "C",
-      "hint": "The wall, the ground and the ladder form a right triangle. Which side is the hypotenuse?",
-      "solution": "The ladder is the hypotenuse, $13$, and the distance from the wall to the foot is a leg, $5$. The height $h$ satisfies $h^2=13^2-5^2=169-25=144$, so $h=12$.",
-      "verify": "hits = [h for h in range(0, 100) if 5*5 + h*h == 13*13]\nprint(hits[0])"
+      "answer": "A",
+      "hint": "The wall, the ground and the ladder form a right triangle with the ladder as the hypotenuse.",
+      "solution": "The wall and ground meet at a right angle, so the ladder, wall and ground form a right triangle with hypotenuse $13$ and one leg $5$. If the height is $h$, then $h^2+5^2=13^2$, so $h^2=144$ and $h=12$. The distractor $13$ mistakes the ladder length for the height.",
+      "concepts": [
+        0
+      ],
+      "verify": "import math\nh = math.sqrt(13**2 - 5**2)\nassert abs(h - 12) < 1e-9\nprint('12')\n"
     },
     {
       "id": "geo-02",
       "difficulty": 1,
-      "problem": "In triangle $ABC$, point $D$ lies on side $AB$ with $AD=4$ and $DB=6$. Point $E$ lies on side $AC$ so that segment $DE$ is parallel to $BC$, and $DE=5$. What is the length of $BC$?",
+      "problem": "In triangle $ABC$, point $D$ lies on side $AB$ with $AD=4$ and $DB=6$. Point $E$ lies on side $AC$ so that segment $DE$ is parallel to side $BC$. If $BC=15$, what is the length of $DE$?",
       "choices": [
-        "$\\frac{25}{2}$",
-        "$15$",
-        "17",
-        "$20$",
-        "$\\frac{45}{2}$"
+        "6",
+        "9",
+        "10",
+        "12",
+        "15"
       ],
       "answer": "A",
-      "hint": "Parallel lines create similar triangles. Compare $AD$ with the whole side $AB$.",
-      "solution": "Since $DE\\parallel BC$, triangles $ADE$ and $ABC$ are similar. Their ratio is $\\frac{AD}{AB}=\\frac{4}{10}=\\frac25$, so $\\frac{DE}{BC}=\\frac25$. Hence $BC=\\frac{DE}{2/5}=\\frac{5}{2/5}=\\frac{25}{2}$.",
-      "verify": "from fractions import Fraction as F\nA = (F(0), F(0)); B = (F(10), F(0)); C = (F(3), F(4))   # AB = 10\nD = (F(4), F(0))                                          # AD = 4\nt = (D[0] - A[0]) / (B[0] - A[0])                         # AD/AB = 2/5\nE = (A[0] + t*(C[0] - A[0]), A[1] + t*(C[1] - A[1]))      # E on AC with AE/AC = 2/5\ndef d2(P, Q):\n    return (P[0] - Q[0])**2 + (P[1] - Q[1])**2\nassert d2(D, E) * 25 == d2(B, C) * 4                      # DE/BC = 2/5 for this shape\nprint(F(5) / t)                                           # BC = DE / (2/5)"
+      "hint": "Compare the small triangle cut off by $DE$ with the whole triangle $ABC$.",
+      "solution": "Since $DE\\parallel BC$, triangle $ADE$ is similar to triangle $ABC$, with scale factor $\\frac{AD}{AB}=\\frac{4}{10}=\\frac25$. So $DE=\\frac25\\cdot15=6$. The distractor $9$ comes from using $\\frac{DB}{AB}=\\frac35$ instead.",
+      "concepts": [
+        0
+      ],
+      "verify": "import math\nA = (0.0, 0.0); B = (10.0, 0.0); C = (2.0, 8.0); D = (4.0, 0.0)\ndef cross(u, v):\n    return u[0]*v[1] - u[1]*v[0]\nBCv = (C[0]-B[0], C[1]-B[1])\nt = cross(D, BCv) / cross(C, BCv)\nE = (t*C[0], t*C[1])\nDE = 15 * math.dist(D, E) / math.dist(B, C)\nassert abs(DE - 6) < 1e-9\nprint('6')\n"
     },
     {
       "id": "geo-03",
       "difficulty": 1,
-      "problem": "Triangle $ABC$ has vertices $A=(1,2)$, $B=(7,2)$, and $C=(4,9)$ in the coordinate plane. What is its area?",
+      "problem": "Triangle $PQR$ has vertices $P=(0,0)$, $Q=(8,0)$, and $R=(3,6)$ in the coordinate plane. What is the area of triangle $PQR$?",
       "choices": [
-        "$14$",
-        "$16$",
-        "$18$",
-        "$21$",
-        "$24$"
+        "12",
+        "18",
+        "21",
+        "24",
+        "48"
       ],
       "answer": "D",
-      "hint": "Pick $AB$ as the base. How far is $C$ from the horizontal line through $A$ and $B$?",
-      "solution": "Side $AB$ is horizontal with length $7-1=6$. The vertex $C$ is $9-2=7$ units above that line, so the area is $\\frac12\\cdot 6\\cdot 7=21$. The shoelace formula gives the same value.",
-      "verify": "from fractions import Fraction as F\npts = [(1, 2), (7, 2), (4, 9)]\ns = 0\nfor i in range(len(pts)):\n    x1, y1 = pts[i]\n    x2, y2 = pts[(i + 1) % len(pts)]\n    s += x1*y2 - x2*y1\nprint(F(abs(s), 2))"
+      "hint": "Side $PQ$ lies on the $x$-axis, so its length is a base and the height is a $y$-coordinate.",
+      "solution": "The base $PQ$ has length $8$ and the vertex $R$ is $6$ units above the $x$-axis. So the area is $\\frac12\\cdot8\\cdot6=24$. The distractor $48$ comes from forgetting the factor $\\frac12$.",
+      "concepts": [
+        2
+      ],
+      "verify": "P = (0, 0); Q = (8, 0); R = (3, 6)\narea = abs((Q[0]-P[0])*(R[1]-P[1]) - (R[0]-P[0])*(Q[1]-P[1])) / 2\nassert area == 24\nprint('24')\n"
     },
     {
       "id": "geo-04",
-      "difficulty": 2,
-      "problem": "In triangle $ABC$, $AB=8$ and $AC=12$, and the area of the triangle is $24$. What is $\\sin A$, where $A$ is the angle at vertex $A$?",
+      "difficulty": 1,
+      "problem": "A rectangle has side lengths $6$ and $8$. What is the radius of the circle that passes through all four vertices of the rectangle?",
       "choices": [
-        "$\\frac{1}{4}$",
-        "$\\frac{1}{3}$",
-        "$\\frac{1}{2}$",
-        "$\\frac{2}{3}$",
-        "$\\frac{3}{4}$"
+        "5",
+        "6",
+        "7",
+        "10",
+        "12"
       ],
-      "answer": "C",
-      "hint": "The formula $\\frac12 bc\\sin A$ uses exactly the two sides that meet at $A$.",
-      "solution": "Using the two sides that meet at $A$, the area is $\\frac12\\cdot AB\\cdot AC\\cdot\\sin A=\\frac12\\cdot 8\\cdot 12\\cdot\\sin A=48\\sin A$. Setting this equal to $24$ gives $\\sin A=\\frac12$.",
-      "verify": "from fractions import Fraction as F\nAB, AC, K = 8, 12, 24\n# A=(0,0), B=(AB,0), C=(x,y) with |AC| = 12; area = (1/2)*AB*|y|\ny = F(2*K, AB)                 # height of C above AB = 6\nassert AC*AC - y*y > 0        # such a C exists\nprint(y / AC)                  # sin A = height / AC"
+      "answer": "A",
+      "hint": "A rectangle is cyclic. Its diagonal is a diameter of the circle through its vertices.",
+      "solution": "The diagonal is $\\sqrt{6^2+8^2}=10$, which is a diameter, so the radius is $5$. The distractor $10$ is the diameter itself, and $7$ is the average of the two sides.",
+      "concepts": [
+        0,
+        6
+      ],
+      "verify": "import math\nO = (3.0, 4.0)\nverts = [(0, 0), (6, 0), (6, 8), (0, 8)]\nrs = [math.dist(O, v) for v in verts]\nassert all(abs(r - 5) < 1e-9 for r in rs)\nprint('5')\n"
     },
     {
       "id": "geo-05",
-      "difficulty": 2,
-      "problem": "Quadrilateral $PQRS$ has vertices $P=(0,0)$, $Q=(5,1)$, $R=(8,6)$, and $S=(2,4)$, listed in order around its boundary. What is its area?",
+      "difficulty": 1,
+      "problem": "An equilateral triangle has side length $6$. What is the length of one of its altitudes?",
       "choices": [
-        "$14$",
-        "$18$",
-        "$21$",
-        "$42$",
-        "$84$"
+        "$3\\sqrt{3}$",
+        "6",
+        "9",
+        "$6\\sqrt{3}$",
+        "12"
       ],
-      "answer": "C",
-      "hint": "Use the shoelace formula on the four vertices in order. Do not forget the factor $\\frac12$.",
-      "solution": "The edge terms $x_iy_{i+1}-x_{i+1}y_i$ are $0$, $5\\cdot 6-8\\cdot 1=22$, $8\\cdot 4-2\\cdot 6=20$, and $2\\cdot 0-0\\cdot 4=0$. They sum to $42$, so the area is $\\frac12\\cdot 42=21$.",
-      "verify": "from fractions import Fraction as F\npts = [(0, 0), (5, 1), (8, 6), (2, 4)]\ns = 0\nfor i in range(len(pts)):\n    x1, y1 = pts[i]\n    x2, y2 = pts[(i + 1) % len(pts)]\n    s += x1*y2 - x2*y1\nprint(F(abs(s), 2))"
+      "answer": "A",
+      "hint": "An altitude of an equilateral triangle is also a median, so it splits the base into two halves of length $3$.",
+      "solution": "The altitude is a leg of a right triangle with hypotenuse $6$ and other leg $3$. Pythagoras gives $\\sqrt{36-9}=\\sqrt{27}=3\\sqrt3$. The distractor $6\\sqrt3$ treats the altitude as the side times $\\sqrt3$.",
+      "concepts": [
+        8,
+        0
+      ],
+      "verify": "import math\nalt = math.sqrt(6**2 - 3**2)\nassert abs(alt - 3 * math.sqrt(3)) < 1e-9\nprint('$3\\\\sqrt{3}$')\n"
     },
     {
       "id": "geo-06",
-      "difficulty": 2,
-      "problem": "What is the area of a triangle whose three side lengths are $11$, $13$, and $20$?",
+      "difficulty": 1,
+      "problem": "A right triangle has legs of length $5$ and $12$. What is the radius of its inscribed circle?",
       "choices": [
-        "$60$",
-        "$66$",
-        "$72$",
-        "$78$",
-        "$132$"
+        "1",
+        "2",
+        "$\\frac{5}{2}$",
+        "3",
+        "6"
       ],
       "answer": "B",
-      "hint": "Heron's formula needs the semiperimeter $s$. Check whether $s$, $s-a$, $s-b$ and $s-c$ give a perfect square product.",
-      "solution": "The semiperimeter is $s=\\frac{11+13+20}{2}=22$. Then $s-11=11$, $s-13=9$, $s-20=2$, so the area is $\\sqrt{22\\cdot 11\\cdot 9\\cdot 2}=\\sqrt{4356}=66$.",
-      "verify": "import math\n# B=(0,0), C=(20,0), A=(x,y) with AB = 13 and AC = 11\nx = (13*13 - 11*11 + 20*20) / (2*20)     # 11.2\ny = math.sqrt(13*13 - x*x)               # 6.6\narea = 0.5 * 20 * y\nassert abs(area - 66) < 1e-9\nassert abs(math.hypot(x - 20, y) - 11) < 1e-9   # AC really is 11\nprint(round(area))"
+      "hint": "The inradius is area divided by semiperimeter, and both are easy for a right triangle.",
+      "solution": "The hypotenuse is $13$, so $s=\\frac{5+12+13}{2}=15$. The area is $\\frac12\\cdot5\\cdot12=30$. From $K=rs$, $r=\\frac{30}{15}=2$. The distractor $\\frac52$ comes from halving the shorter leg.",
+      "concepts": [
+        6
+      ],
+      "verify": "import math\na, b = 5, 12\nc = math.hypot(a, b)\ns = (a + b + c) / 2\nr = (a * b / 2) / s\nassert abs(r - 2) < 1e-9\nprint('2')\n"
     },
     {
       "id": "geo-07",
-      "difficulty": 3,
-      "problem": "Four distinct points $A$, $B$, $C$, $D$ lie on a circle, in that order around the circle. The arc from $A$ to $B$ that does not contain $C$ or $D$ measures $80$ degrees, and the arc from $C$ to $D$ that does not contain $A$ or $B$ measures $40$ degrees. The chords $AC$ and $BD$ meet at $P$ inside the circle. What is the measure of $\\angle APB$, in degrees?",
+      "difficulty": 2,
+      "problem": "A triangle has side lengths $11$, $13$, and $20$. What is its area?",
       "choices": [
-        "$40$",
-        "$60$",
-        "$80$",
-        "$120$",
-        "$140$"
+        "44",
+        "60",
+        "66",
+        "72",
+        "132"
       ],
-      "answer": "B",
-      "hint": "The angle between two crossing chords is half the sum of the two arcs it cuts off, one on each side of the crossing.",
-      "solution": "$\\angle APB$ is an exterior angle of triangle $PBC$, so it equals $\\angle PBC+\\angle PCB$. The angle $\\angle PBC$ is the inscribed angle $\\angle DBC$, which intercepts arc $CD$ of $40^\\circ$, so it is $20^\\circ$. The angle $\\angle PCB$ is the inscribed angle $\\angle ACB$, which intercepts arc $AB$ of $80^\\circ$, so it is $40^\\circ$. Therefore $\\angle APB=60^\\circ$.",
-      "verify": "import math\ndef pt(deg):\n    t = math.radians(deg)\n    return (math.cos(t), math.sin(t))\nA, B, C, D = pt(0), pt(80), pt(180), pt(220)   # arc AB = 80, arc CD = 40\ndef cross(u, v):\n    return u[0]*v[1] - u[1]*v[0]\nr = (C[0] - A[0], C[1] - A[1])     # direction of chord AC\ns = (D[0] - B[0], D[1] - B[1])     # direction of chord BD\nqp = (B[0] - A[0], B[1] - A[1])\nu = cross(qp, s) / cross(r, s)\nP = (A[0] + u*r[0], A[1] + u*r[1])  # crossing point of the two chords\nva = (A[0] - P[0], A[1] - P[1])\nvb = (B[0] - P[0], B[1] - P[1])\ncosang = (va[0]*vb[0] + va[1]*vb[1]) / (math.hypot(*va) * math.hypot(*vb))\nprint(round(math.degrees(math.acos(cosang))))"
+      "answer": "C",
+      "hint": "Three sides are given, so Heron's formula is the tool. Check the triangle inequality first.",
+      "solution": "The triangle inequality holds since $11+13>20$. The semiperimeter is $s=22$, so $K=\\sqrt{22\\cdot11\\cdot9\\cdot2}=\\sqrt{4356}=66$. The distractor $132$ is twice the area.",
+      "concepts": [
+        2
+      ],
+      "verify": "import math\na, b, c = 11, 13, 20\ns = (a + b + c) / 2\nK = math.sqrt(s * (s - a) * (s - b) * (s - c))\nassert abs(K - 66) < 1e-9\nprint('66')\n"
     },
     {
       "id": "geo-08",
-      "difficulty": 3,
-      "problem": "A point $P$ lies outside a circle. One line through $P$ meets the circle at $A$ and at $B$, where $A$ is closer to $P$, with $PA=5$ and $AB=7$. A second line through $P$ meets the circle at $C$ and $D$, where $C$ is closer to $P$, with $PC=6$. What is $CD$?",
+      "difficulty": 2,
+      "problem": "A triangle has sides of lengths $7$, $24$, and $25$. What is the length of the altitude drawn to the side of length $25$?",
       "choices": [
-        "$2$",
-        "$4$",
-        "$6$",
-        "$8$",
-        "$10$"
+        "$\\frac{168}{25}$",
+        "7",
+        "$\\frac{336}{25}$",
+        "24",
+        "25"
       ],
-      "answer": "B",
-      "hint": "The product of the two distances from $P$ to the circle along any line through $P$ is the same for every such line.",
-      "solution": "The power of $P$ is $PA\\cdot PB=5\\cdot 12=60$. On the second line, $PC\\cdot PD=60$, so $PD=\\frac{60}{6}=10$. Hence $CD=PD-PC=10-6=4$.",
-      "verify": "from fractions import Fraction as F\nimport math\n# A circle that realises the data: A=(5,0), B=(12,0) on the x-axis, and P=(0,0)\nO = (F(17, 2), F(29, 8))\nr2 = (F(5) - O[0])**2 + (F(0) - O[1])**2           # A lies on the circle\nassert (F(12) - O[0])**2 + (F(0) - O[1])**2 == r2  # B lies on the circle\npower = (O[0]**2 + O[1]**2) - r2                    # power of P\nassert power == 60\nw = (F(3, 5), F(4, 5))                              # unit direction of second line\nwO = w[0]*O[0] + w[1]*O[1]\ndisc = wO*wO - power                                # points P + s*w on circle: s^2 - 2*wO*s + power = 0\ns1 = wO - math.sqrt(disc)\ns2 = wO + math.sqrt(disc)\nprint(round(s2 - s1))"
+      "answer": "A",
+      "hint": "Recognise the triangle as right, then compute the area in two ways.",
+      "solution": "Since $7^2+24^2=25^2$, the triangle is right with legs $7$ and $24$, so its area is $\\frac12\\cdot7\\cdot24=84$. Using $25$ as the base, $\\frac12\\cdot25\\cdot h=84$, so $h=\\frac{168}{25}$. The distractor $\\frac{336}{25}$ forgets the factor $\\frac12$.",
+      "concepts": [
+        1,
+        0
+      ],
+      "verify": "import math\nlegs = (7, 24)\nhyp = math.hypot(*legs)\nassert abs(hyp - 25) < 1e-9\narea = legs[0] * legs[1] / 2\nh = 2 * area / 25\nassert abs(h - 168 / 25) < 1e-12\nprint('$\\\\frac{168}{25}$')\n"
     },
     {
       "id": "geo-09",
-      "difficulty": 3,
-      "problem": "In the coordinate plane, the lines $y=3x$, $y=7-\\frac{x}{2}$, and the $x$-axis enclose a triangle. What is the area of this triangle?",
+      "difficulty": 2,
+      "problem": "Triangle $ABC$ is inscribed in a circle. The arc $BC$ that does not contain $A$ measures $84^\\circ$, and the arc $CA$ that does not contain $B$ measures $120^\\circ$. What is the measure of angle $ABC$ in degrees?",
       "choices": [
-        "$21$",
-        "$28$",
-        "$42$",
-        "$56$",
-        "$84$"
+        "42",
+        "60",
+        "78",
+        "84",
+        "120"
       ],
-      "answer": "C",
-      "hint": "Find the three vertices first, by solving the lines in pairs.",
-      "solution": "The line $y=3x$ meets the $x$-axis at $(0,0)$, and the line $y=7-\\frac x2$ meets it at $(14,0)$. The two slanted lines meet where $3x=7-\\frac x2$, giving $x=2$ and $y=6$. The base on the $x$-axis has length $14$ and the apex is at height $6$, so the area is $\\frac12\\cdot 14\\cdot 6=42$.",
-      "verify": "from fractions import Fraction as F\ndef inter(m1, c1, m2, c2):          # intersection of y = m1*x + c1 and y = m2*x + c2\n    x = (c2 - c1) / (m1 - m2)\n    return (x, m1*x + c1)\nP1 = inter(F(3), F(0), F(0), F(0))          # y = 3x meets y = 0\nP2 = inter(F(3), F(0), F(-1, 2), F(7))      # y = 3x meets y = 7 - x/2\nP3 = inter(F(-1, 2), F(7), F(0), F(0))      # y = 7 - x/2 meets y = 0\npts = [P1, P2, P3]\ns = 0\nfor i in range(3):\n    x1, y1 = pts[i]\n    x2, y2 = pts[(i + 1) % 3]\n    s += x1*y2 - x2*y1\nprint(F(abs(s), 2))"
+      "answer": "B",
+      "hint": "Angle $ABC$ is an inscribed angle. Find the arc it intercepts.",
+      "solution": "Angle $ABC$ intercepts arc $CA$ not containing $B$. By the inscribed angle theorem it is half of $120^\\circ$, which is $60^\\circ$. The distractor $42^\\circ$ halves the wrong arc, and $120^\\circ$ forgets to halve.",
+      "concepts": [
+        4
+      ],
+      "verify": "import math\ndef pt(deg):\n    return (math.cos(math.radians(deg)), math.sin(math.radians(deg)))\nA = pt(0); B = pt(156); C = pt(240)\nu = (A[0]-B[0], A[1]-B[1]); w = (C[0]-B[0], C[1]-B[1])\nang = math.degrees(math.acos((u[0]*w[0] + u[1]*w[1]) / (math.hypot(*u) * math.hypot(*w))))\nassert abs(ang - 60) < 1e-9\nprint('60')\n"
     },
     {
       "id": "geo-10",
-      "difficulty": 3,
-      "problem": "A solid is formed by attaching a square pyramid to the top face of a cube. The cube has edge length $4$. The base of the pyramid is exactly the top face of the cube, and the apex of the pyramid is $3$ units above that face, directly over its centre. What is the volume of the whole solid?",
+      "difficulty": 2,
+      "problem": "A right triangle has angles $30^\\circ$, $60^\\circ$, and $90^\\circ$, and its hypotenuse has length $8$. What is its area?",
       "choices": [
-        "$72$",
-        "$80$",
-        "$96$",
-        "$112$",
-        "128"
+        "$4\\sqrt{3}$",
+        "8",
+        "12",
+        "$8\\sqrt{3}$",
+        "$16\\sqrt{3}$"
       ],
-      "answer": "B",
-      "hint": "Add the volume of the cube to the volume of the pyramid, using $V=\\frac13 Bh$ for the pyramid.",
-      "solution": "The cube has volume $4^3=64$. The pyramid has base area $16$ and height $3$, so its volume is $\\frac13\\cdot 16\\cdot 3=16$. The total volume is $64+16=80$.",
-      "verify": "# Volume by summing horizontal slices (midpoint rule)\nN = 300000\ntotal = 16.0 * 4                        # cube: height 4, cross-section 4 x 4\ndz = 3.0 / N\nfor i in range(N):\n    u = (i + 0.5) * dz                  # height above the top face\n    total += (4 * (1 - u / 3))**2 * dz  # pyramid slice shrinks linearly to the apex\nprint(round(total))"
+      "answer": "D",
+      "hint": "Find the two legs first, using the $30$-$60$-$90$ ratios.",
+      "solution": "The short leg is half the hypotenuse, so it is $4$, and the long leg is $4\\sqrt3$. The area is $\\frac12\\cdot4\\cdot4\\sqrt3=8\\sqrt3$. The distractor $4\\sqrt3$ is the long leg itself.",
+      "concepts": [
+        8,
+        1
+      ],
+      "verify": "import math\nhyp = 8.0\nshort = hyp / 2\nlong = math.sqrt(hyp**2 - short**2)\narea = short * long / 2\nassert abs(area - 8 * math.sqrt(3)) < 1e-9\nprint('$8\\\\sqrt{3}$')\n"
     },
     {
       "id": "geo-11",
-      "difficulty": 4,
-      "problem": "Triangle $ABC$ has a right angle at $C$. Let $H$ be the foot of the altitude from $C$ to the hypotenuse $AB$. Suppose $AH=4$ and $HB=9$. What is the perimeter of triangle $ABC$?",
+      "difficulty": 2,
+      "problem": "The two legs of a right triangle have lengths $9$ and $12$. What is the length of the altitude from the right-angle vertex to the hypotenuse?",
       "choices": [
-        "$13+4\\sqrt{13}$",
-        "$13+5\\sqrt{13}$",
-        "$26+\\sqrt{13}$",
-        "$13+6\\sqrt{13}$",
-        "$9+4\\sqrt{13}$"
+        "$\\frac{36}{5}$",
+        "8",
+        "9",
+        "$\\frac{45}{4}$",
+        "12"
       ],
-      "answer": "B",
-      "hint": "Similar triangles give $AC^2=AH\\cdot AB$ and $BC^2=HB\\cdot AB$.",
-      "solution": "The hypotenuse is $AB=4+9=13$. Since $AC^2=AH\\cdot AB=4\\cdot 13=52$, we get $AC=2\\sqrt{13}$. Since $BC^2=HB\\cdot AB=9\\cdot 13=117$, we get $BC=3\\sqrt{13}$. The perimeter is $13+2\\sqrt{13}+3\\sqrt{13}=13+5\\sqrt{13}$.",
-      "verify": "import math\nA = (-4, 0); B = (9, 0); C = (0, 6)     # H = (0,0) is the foot of the altitude\ndef d(P, Q):\n    return math.hypot(P[0] - Q[0], P[1] - Q[1])\nassert (A[0] - C[0])*(B[0] - C[0]) + (A[1] - C[1])*(B[1] - C[1]) == 0   # right angle at C\nperim = d(A, B) + d(B, C) + d(C, A)\nassert abs(perim - (13 + 5*math.sqrt(13))) < 1e-9\nprint(\"13+5\\\\sqrt{13}\")"
+      "answer": "A",
+      "hint": "Compute the area in two ways, once from the legs and once from the hypotenuse with the altitude.",
+      "solution": "The hypotenuse is $\\sqrt{81+144}=15$. Since $\\frac12\\cdot9\\cdot12=\\frac12\\cdot15\\cdot h$, we get $h=\\frac{108}{15}=\\frac{36}{5}$. The distractor $9$ is a leg, and $12$ is the other leg.",
+      "concepts": [
+        0,
+        1
+      ],
+      "verify": "import math\na, b = 9, 12\nc = math.hypot(a, b)\nh = a * b / c\nassert abs(h - 36 / 5) < 1e-12\nprint('$\\\\frac{36}{5}$')\n"
     },
     {
       "id": "geo-12",
-      "difficulty": 4,
-      "problem": "A circle has centre $O$ and radius $5$. A chord $AB$ of the circle has length $8$. The chord is extended past $B$ to a point $P$ with $BP=4$. A tangent from $P$ touches the circle at $T$. What is $PT$?",
+      "difficulty": 2,
+      "problem": "Triangle $ABC$ has area $60$. Point $D$ lies on side $BC$ with $BD:DC=2:3$. What is the area of triangle $ABD$?",
       "choices": [
-        "$2\\sqrt{3}$",
-        "$4\\sqrt{3}$",
-        "$6\\sqrt{2}$",
-        "$8$",
-        "$10$"
+        "12",
+        "15",
+        "18",
+        "20",
+        "24"
       ],
-      "answer": "B",
-      "hint": "Power of a point: the square of a tangent equals the product of the two segments of a secant from $P$.",
-      "solution": "Here $PA=AB+BP=12$ and $PB=4$, so $PT^2=PA\\cdot PB=48$, giving $PT=\\sqrt{48}=4\\sqrt{3}$. The radius is not needed for the calculation; it only fixes the picture.",
-      "verify": "import math\nO = (0, 0); r = 5\nA = (-4, 3); B = (4, 3); P = (8, 3)     # chord AB is 8 long and P is 4 past B\nfor X in (A, B):\n    assert abs(math.hypot(X[0] - O[0], X[1] - O[1]) - r) < 1e-9\nassert abs(math.hypot(B[0] - A[0], B[1] - A[1]) - 8) < 1e-9\nPT = math.sqrt((P[0] - O[0])**2 + (P[1] - O[1])**2 - r*r)   # tangent length from P\nassert abs(PT - 4*math.sqrt(3)) < 1e-9\nprint(\"4\\\\sqrt{3}\")"
+      "answer": "E",
+      "hint": "Triangles $ABD$ and $ABC$ share the vertex $A$ and have bases on the same line.",
+      "solution": "Triangles $ABD$ and $ABC$ share the vertex $A$ and have their bases $BD$ and $BC$ on one line, so they have the same altitude from $A$. Their areas are therefore in the ratio $BD:BC=2:5$, and $[ABD]=\\frac25\\cdot60=24$. The distractor $20$ is $\\frac13\\cdot60$, which is what you get by misreading the ratio as $1:3$.",
+      "concepts": [
+        1
+      ],
+      "verify": "def area(P, Q, R):\n    return abs((Q[0]-P[0])*(R[1]-P[1]) - (R[0]-P[0])*(Q[1]-P[1])) / 2\nA = (0.0, 24.0); B = (0.0, 0.0); C = (5.0, 0.0); D = (2.0, 0.0)\nassert abs(area(A, B, C) - 60) < 1e-9\nABD = area(A, B, D)\nassert abs(ABD - 24) < 1e-9\nprint('24')\n"
     },
     {
       "id": "geo-13",
-      "difficulty": 4,
-      "problem": "Let $P=(1,7)$, and let $Q$ be the reflection of $P$ across the line $y=x-1$. What is the area of the triangle with vertices $O=(0,0)$, $P$, and $Q$?",
+      "difficulty": 3,
+      "problem": "A point $P$ lies outside a circle. A segment from $P$ is tangent to the circle at $T$, with $PT=12$. Another line from $P$ meets the circle at two points $X$ and $Y$, where $X$ is the nearer point to $P$ and $PX=8$. What is $PY$?",
       "choices": [
-        "$28$",
-        "$35$",
-        "42",
-        "$56$",
-        "63"
+        "9",
+        "12",
+        "16",
+        "18",
+        "24"
       ],
-      "answer": "A",
-      "hint": "Segment $PQ$ is perpendicular to the mirror line, and its midpoint lies on the mirror line.",
-      "solution": "Write $Q=(1+t,\\,7-t)$, which moves in the direction $(1,-1)$ perpendicular to the line. The midpoint $\\left(1+\\frac t2,\\,7-\\frac t2\\right)$ must lie on $y=x-1$, so $7-\\frac t2=\\frac t2$, giving $t=7$ and $Q=(8,0)$. The area of $OPQ$ is $\\frac12\\left|1\\cdot 0-8\\cdot 7\\right|=28$.",
-      "verify": "from fractions import Fraction as F\nP = (F(1), F(7))\na, b, c = F(1), F(-1), F(-1)              # mirror line x - y - 1 = 0, i.e. y = x - 1\nk = (a*P[0] + b*P[1] + c) / (a*a + b*b)\nQ = (P[0] - 2*k*a, P[1] - 2*k*b)          # standard reflection formula\nM = ((P[0] + Q[0]) / 2, (P[1] + Q[1]) / 2)\nassert a*M[0] + b*M[1] + c == 0           # midpoint lies on the mirror\nassert (Q[0] - P[0])*b - (Q[1] - P[1])*a == 0   # PQ is parallel to the normal (a, b)\nprint(F(abs(P[0]*Q[1] - Q[0]*P[1]), 2))  # shoelace area of O, P, Q"
+      "answer": "D",
+      "hint": "Power of a point: the tangent squared equals the product of the two secant pieces.",
+      "solution": "The power of $P$ equals $PT^2=144$ and also $PX\\cdot PY$. So $8\\cdot PY=144$, giving $PY=18$. The distractor $12$ is the tangent length itself.",
+      "concepts": [
+        5
+      ],
+      "verify": "PT = 12.0\nPX = 8.0\nPY = PT**2 / PX\nassert abs(PY - 18) < 1e-9\nprint('18')\n"
     },
     {
       "id": "geo-14",
-      "difficulty": 5,
-      "problem": "A right circular cone has base radius $6$ and height $8$, with its apex at the top. A sphere is placed inside the cone so that it touches the flat base and the curved lateral surface all the way around. What is the radius of the sphere?",
+      "difficulty": 3,
+      "problem": "A triangle has side lengths $7$, $8$, and $9$. What is the length of the median drawn to the side of length $9$?",
       "choices": [
-        "$\\frac{5}{2}$",
-        "$3$",
-        "$\\frac{7}{2}$",
-        "$4$",
-        "5"
+        "6",
+        "$\\frac{\\sqrt{145}}{2}$",
+        "7",
+        "9",
+        "$\\frac{\\sqrt{339}}{2}$"
       ],
       "answer": "B",
-      "hint": "Look at the cross-section through the axis. It is an isosceles triangle, and the sphere's cross-section is a circle inside it.",
-      "solution": "The axial cross-section is an isosceles triangle with base $12$ and height $8$, so its sides are $10$, $10$, $12$. The sphere's centre lies on the axis at height $r$, and it is at distance $r$ from the slanted sides, so the sphere's cross-section is the incircle of this triangle. Its radius is $r=\\frac{K}{s}$, where $K=\\frac12\\cdot 12\\cdot 8=48$ and $s=\\frac{10+10+12}{2}=16$. So $r=\\frac{48}{16}=3$.",
-      "verify": "import math\n# Axial cross-section: triangle with base (-6,0)-(6,0) and apex (0,8).\n# Slanted side through (6,0) and (0,8) is 8x + 6y - 48 = 0.\ndef dist(r):\n    # distance from the centre (0, r) to that slanted side\n    return abs(6*r - 48) / math.hypot(8, 6)\nlo, hi = 0.0, 8.0\nf = lambda r: dist(r) - r\nfor _ in range(200):\n    mid = (lo + hi) / 2\n    if f(lo) * f(mid) <= 0:\n        hi = mid\n    else:\n        lo = mid\nprint(round((lo + hi) / 2))"
+      "hint": "Use the median formula; it needs only the three sides.",
+      "solution": "The median formula gives $m^2=\\frac{2\\cdot7^2+2\\cdot8^2-9^2}{4}=\\frac{98+128-81}{4}=\\frac{145}{4}$, so $m=\\frac{\\sqrt{145}}{2}$. The distractor $\\frac{\\sqrt{339}}{2}$ comes from the sign error $+a^2$.",
+      "concepts": [
+        3
+      ],
+      "verify": "import math\nx = (7**2 - 8**2 + 9**2) / (2 * 9)\ny = math.sqrt(7**2 - x**2)\nV = (x, y)\nM = (4.5, 0.0)\nm = math.dist(V, M)\nassert abs(m - math.sqrt(145) / 2) < 1e-9\nprint('$\\\\frac{\\\\sqrt{145}}{2}$')\n"
     },
     {
       "id": "geo-15",
-      "difficulty": 5,
-      "problem": "Point $P$ lies inside rectangle $ABCD$. Its distances to three of the vertices are $PA=3$, $PB=4$, and $PC=5$. What is $PD$?",
+      "difficulty": 3,
+      "problem": "In triangle $ABC$, $AB=6$, $AC=9$, and $BC=10$. The internal bisector of angle $A$ meets side $BC$ at $D$. What is $AD$?",
       "choices": [
-        "$\\sqrt{17}$",
-        "$2\\sqrt{5}$",
-        "$3\\sqrt{2}$",
-        "$\\sqrt{19}$",
-        "$\\sqrt{21}$"
+        "5",
+        "$\\sqrt{30}$",
+        "$\\sqrt{34}$",
+        "6",
+        "$\\sqrt{37}$"
+      ],
+      "answer": "B",
+      "hint": "Find $BD$ from the bisector theorem, then use Stewart's theorem.",
+      "solution": "By the bisector theorem $BD:DC=6:9=2:3$, so $BD=4$ and $DC=6$. Stewart's theorem $b^2\\cdot BD+c^2\\cdot DC=a(AD^2+BD\\cdot DC)$ with $b=9$, $c=6$, $a=10$ gives $324+216=10(AD^2+24)$, so $AD^2=30$. The distractor $6$ is the side $AB$ itself.",
+      "concepts": [
+        3
+      ],
+      "verify": "import math\nB = (0.0, 0.0); C = (10.0, 0.0)\nx = (6**2 - 9**2 + 10**2) / (2 * 10)\ny = math.sqrt(6**2 - x**2)\nA = (x, y)\nBD = 6 * 10 / (6 + 9)\nD = (BD, 0.0)\nassert abs(math.dist(A, D)**2 - 30) < 1e-9\nprint('$\\\\sqrt{30}$')\n"
+    },
+    {
+      "id": "geo-16",
+      "difficulty": 3,
+      "problem": "A circle has centre $O$ and radius $5$. A chord $AB$ of the circle has length $8$. The tangent to the circle at $A$ and the tangent at $B$ meet at a point $T$. What is the length of $TA$?",
+      "choices": [
+        "$\\frac{16}{3}$",
+        "$\\frac{20}{3}$",
+        "8",
+        "$\\frac{25}{3}$",
+        "10"
+      ],
+      "answer": "B",
+      "hint": "Find the central angle with the half-chord, then use the right triangle formed with the tangent.",
+      "solution": "Let $M$ be the midpoint of $AB$, so $AM=4$ and $OM=3$. In right triangle $OMA$, $\\tan\\angle AOM=\\frac43$. Since $OT$ bisects $\\angle AOB$, in right triangle $OAT$ we get $TA=OA\\tan\\angle AOM=5\\cdot\\frac43=\\frac{20}{3}$.",
+      "concepts": [
+        4
+      ],
+      "verify": "import math\nA = (-4.0, 3.0); B = (4.0, 3.0)\nr = 5.0\nassert abs(math.dist((0, 0), A) - r) < 1e-9\ndet = A[0]*B[1] - A[1]*B[0]\nTx = (r*r*B[1] - A[1]*r*r) / det\nTy = (A[0]*r*r - B[0]*r*r) / det\nT = (Tx, Ty)\nTA = math.dist(T, A)\nassert abs(TA - 20 / 3) < 1e-9\nprint('$\\\\frac{20}{3}$')\n"
+    },
+    {
+      "id": "geo-17",
+      "difficulty": 3,
+      "problem": "Triangle $ABC$ has side lengths $13$, $14$, and $15$. Let $r$ be the radius of its inscribed circle and $R$ the radius of its circumscribed circle. What is $r+R$?",
+      "choices": [
+        "4",
+        "$\\frac{65}{8}$",
+        "$\\frac{97}{8}$",
+        "14",
+        "$\\frac{97}{4}$"
       ],
       "answer": "C",
-      "hint": "For a point inside a rectangle, the sums of squared distances to two opposite corners are equal for both pairs of opposite corners.",
-      "solution": "This is the rectangle identity $PA^2+PC^2=PB^2+PD^2$, which holds for every point inside a rectangle. So $9+25=16+PD^2$, giving $PD^2=18$ and $PD=3\\sqrt{2}$. To see why, put $A$ at the origin with the sides along the axes and add up the squared coordinate gaps for each pair of opposite corners.",
-      "verify": "import math\n# Build a rectangle A=(0,0), B=(w,0), C=(w,h), D=(0,h) and a point P=(x,y) with PA=3, PB=4, PC=5\nx = 1.0; y = math.sqrt(8.0)\nw = x + math.sqrt(16 - y*y)                 # PB = 4\nh = y + math.sqrt(25 - (w - x)**2)          # PC = 5\nPA = math.hypot(x, y)\nPB = math.hypot(w - x, y)\nPC = math.hypot(w - x, h - y)\nassert abs(PA - 3) < 1e-9 and abs(PB - 4) < 1e-9 and abs(PC - 5) < 1e-9\nassert 0 < x < w and 0 < y < h             # P is inside the rectangle\nPD = math.hypot(x, h - y)                   # D = (0, h)\nassert abs(PD - 3*math.sqrt(2)) < 1e-9\nprint(\"3\\\\sqrt{2}\")"
+      "hint": "Compute the area once, then use $r=\\frac{K}{s}$ and $R=\\frac{abc}{4K}$.",
+      "solution": "The semiperimeter is $21$ and the area is $84$, so $r=\\frac{84}{21}=4$. Also $R=\\frac{13\\cdot14\\cdot15}{4\\cdot84}=\\frac{65}{8}$. Therefore $r+R=\\frac{32+65}{8}=\\frac{97}{8}$. The distractor $\\frac{97}{4}$ is twice the correct sum.",
+      "concepts": [
+        6
+      ],
+      "verify": "import math\na, b, c = 13, 14, 15\ns = (a + b + c) / 2\nK = math.sqrt(s * (s - a) * (s - b) * (s - c))\nr = K / s\nR = a * b * c / (4 * K)\nassert abs((r + R) - 97 / 8) < 1e-9\nprint('$\\\\frac{97}{8}$')\n"
+    },
+    {
+      "id": "geo-18",
+      "difficulty": 3,
+      "problem": "In a right triangle, the altitude to the hypotenuse divides the hypotenuse into two segments of lengths $9$ and $16$. What is the length of the shorter leg?",
+      "choices": [
+        "9",
+        "12",
+        "15",
+        "20",
+        "25"
+      ],
+      "answer": "C",
+      "hint": "Each leg squared equals the hypotenuse times the adjacent segment.",
+      "solution": "The hypotenuse is $25$. The leg next to the segment $9$ satisfies $a^2=9\\cdot25$, so $a=15$, and the other leg satisfies $b^2=16\\cdot25$, so $b=20$. The shorter leg is $15$. The distractor $12$ is the altitude.",
+      "concepts": [
+        0
+      ],
+      "verify": "import math\nH = (0.0, 0.0); K2 = (25.0, 0.0); apex = (9.0, 12.0)\nlegs = [math.dist(apex, H), math.dist(apex, K2)]\nassert abs((H[0]-apex[0])*(K2[0]-apex[0]) + (H[1]-apex[1])*(K2[1]-apex[1])) < 1e-9\nshort = min(legs)\nassert abs(short - 15) < 1e-9\nprint('15')\n"
+    },
+    {
+      "id": "geo-19",
+      "difficulty": 3,
+      "problem": "In triangle $ABC$, $AB=8$, $AC=10$, and $\\angle BAC=60^\\circ$. What is the area of triangle $ABC$?",
+      "choices": [
+        "$10\\sqrt{3}$",
+        "20",
+        "24",
+        "30",
+        "$20\\sqrt{3}$"
+      ],
+      "answer": "E",
+      "hint": "Two sides and the included angle are given, so use the sine formula.",
+      "solution": "The sine formula gives $K=\\frac12\\cdot AB\\cdot AC\\cdot\\sin60^\\circ=\\frac12\\cdot8\\cdot10\\cdot\\frac{\\sqrt3}{2}=20\\sqrt3$. The distractor $10\\sqrt3$ comes from applying an extra factor of $\\frac12$ to the product of the sides, and the distractor $30$ comes from a mistaken value of the sine.",
+      "concepts": [
+        1
+      ],
+      "verify": "import math\nA = (0.0, 0.0); B = (8.0, 0.0); C = (5.0, 5 * math.sqrt(3))\nassert abs(math.dist(A, C) - 10) < 1e-9\narea = abs((B[0]-A[0])*(C[1]-A[1]) - (C[0]-A[0])*(B[1]-A[1])) / 2\nassert abs(area - 20 * math.sqrt(3)) < 1e-9\nprint('$20\\\\sqrt{3}$')\n"
+    },
+    {
+      "id": "geo-20",
+      "difficulty": 3,
+      "problem": "Two circles have radii $3$ and $5$, and their centres are $10$ units apart. A line is tangent to both circles with both circles on the same side of it. What is the length of the segment joining the two points where the line touches the circles?",
+      "choices": [
+        "$2\\sqrt{6}$",
+        "6",
+        "8",
+        "$4\\sqrt{6}$",
+        "10"
+      ],
+      "answer": "D",
+      "hint": "This is an external tangent. Subtract the radii to get a right triangle with the centre line as hypotenuse.",
+      "solution": "Let $O_1,O_2$ be the centres. The difference of radii $5-3=2$ is one leg of a right triangle whose hypotenuse is $O_1O_2=10$. The tangent segment is the other leg, $\\sqrt{10^2-2^2}=\\sqrt{96}=4\\sqrt6$. The distractor $6$ is the internal tangent, which uses $3+5=8$.",
+      "concepts": [
+        0,
+        4
+      ],
+      "verify": "import math\nO1 = (0.0, 0.0); O2 = (10.0, 0.0); r1, r2 = 3.0, 5.0\nnx = (r1 - r2) / 10.0\nny = math.sqrt(1 - nx*nx)\nn = (nx, ny)\nc = n[0]*O1[0] + n[1]*O1[1] + r1\nd1 = n[0]*O1[0] + n[1]*O1[1] - c\nd2 = n[0]*O2[0] + n[1]*O2[1] - c\nassert abs(abs(d1) - r1) < 1e-9 and abs(abs(d2) - r2) < 1e-9 and d1 * d2 > 0\nT1 = (O1[0] - d1*n[0], O1[1] - d1*n[1])\nT2 = (O2[0] - d2*n[0], O2[1] - d2*n[1])\nL = math.dist(T1, T2)\nassert abs(L - 4 * math.sqrt(6)) < 1e-9\nprint('$4\\\\sqrt{6}$')\n"
+    },
+    {
+      "id": "geo-21",
+      "difficulty": 4,
+      "problem": "A quadrilateral $ABCD$ is an isosceles trapezoid with $AB=14$ and $CD=6$ as its two parallel sides, and legs $BC=5$ and $DA=5$. What is the length of the diagonal $AC$?",
+      "choices": [
+        "6",
+        "8",
+        "9",
+        "10",
+        "$\\sqrt{109}$"
+      ],
+      "answer": "E",
+      "hint": "The trapezoid is cyclic. Apply Ptolemy's theorem to get the product of the two diagonals.",
+      "solution": "Ptolemy's theorem applies because $ABCD$ is an isosceles trapezoid, and every isosceles trapezoid is cyclic. Its diagonals are equal, say $AC=BD=d$. For the cyclic order $A,B,C,D$, Ptolemy gives $AC\\cdot BD=AB\\cdot CD+BC\\cdot DA$, which is $d^2=14\\cdot6+5\\cdot5=84+25=109$. So $AC=\\sqrt{109}$. As a check, the coordinates $A=(0,0)$, $B=(14,0)$, $C=(10,3)$, $D=(4,3)$ give all four side lengths correctly, and $AC^2=10^2+3^2=109$. The distractor $10$ is the average of the two parallel sides, which has no reason to be a diagonal.",
+      "concepts": [
+        7,
+        0
+      ],
+      "verify": "import math\nA = (0.0, 0.0); B = (14.0, 0.0); C = (10.0, 3.0); D = (4.0, 3.0)\nassert abs(math.dist(B, C) - 5) < 1e-9 and abs(math.dist(D, A) - 5) < 1e-9\nAC = math.dist(A, C); BD = math.dist(B, D)\nAB = math.dist(A, B); CD = math.dist(C, D); BC = math.dist(B, C); DA = math.dist(D, A)\nassert abs(AC * BD - (AB * CD + BC * DA)) < 1e-9\nassert abs(AC - 109**0.5) < 1e-9\nprint('$\\\\sqrt{109}$')\n"
+    },
+    {
+      "id": "geo-22",
+      "difficulty": 4,
+      "problem": "Triangle $ABC$ has $BC=14$, $CA=13$, and $AB=15$. Let $I$ be its incentre and $O$ its circumcentre. What is the distance $IO$?",
+      "choices": [
+        "1",
+        "$\\frac{\\sqrt{65}}{8}$",
+        "$\\frac{65}{64}$",
+        "2",
+        "$\\frac{\\sqrt{65}}{4}$"
+      ],
+      "answer": "B",
+      "hint": "Use Euler's formula $OI^2=R(R-2r)$, with $R$ and $r$ found from the standard formulas.",
+      "solution": "Euler's formula $OI^2=R^2-2Rr$ gives the distance between the circumcentre and the incentre, and it is much faster than locating the two centres separately. Here $R=\\frac{65}{8}$, from $R=\\frac{abc}{4K}$ with $K=84$, and $r=\\frac{K}{s}=4$. Then $OI^2=\\frac{65}{8}\\left(\\frac{65}{8}-8\\right)=\\frac{65}{8}\\cdot\\frac18=\\frac{65}{64}$, so $IO=\\frac{\\sqrt{65}}{8}$. As a check, with $B=(0,0)$, $C=(14,0)$, $A=(9,12)$ one finds $I=(8,4)$ and $O=(7,\\frac{33}{8})$, giving $IO^2=1+\\frac1{64}=\\frac{65}{64}$. The distractor $\\frac{65}{64}$ is $IO^2$ itself, which is the slip of forgetting the square root.",
+      "concepts": [
+        6
+      ],
+      "verify": "import math\nA = (9.0, 12.0); B = (0.0, 0.0); C = (14.0, 0.0)\na = math.dist(B, C); b = math.dist(C, A); c = math.dist(A, B)\nI = tuple((a*A[i] + b*B[i] + c*C[i]) / (a + b + c) for i in range(2))\nox = (B[0] + C[0]) / 2\noy = (A[0]**2 + A[1]**2 - 2*ox*A[0]) / (2*A[1])\nO = (ox, oy)\nassert abs(math.dist(O, A) - math.dist(O, B)) < 1e-9\nd = math.dist(I, O)\nassert abs(d - 65**0.5 / 8) < 1e-9\nprint('$\\\\frac{\\\\sqrt{65}}{8}$')\n"
+    },
+    {
+      "id": "geo-23",
+      "difficulty": 4,
+      "problem": "Chords $AB$ and $CD$ of a circle intersect at a point $P$ inside the circle. Suppose $AP=3$, $PB=8$, and $CP:PD=2:3$. What is the length of chord $CD$?",
+      "choices": [
+        "6",
+        "8",
+        "9",
+        "10",
+        "20"
+      ],
+      "answer": "D",
+      "hint": "Intersecting chords give $AP\\cdot PB=CP\\cdot PD$, and the ratio fixes both pieces up to one unknown.",
+      "solution": "The intersecting chords theorem says that the two pieces of one chord multiply to the same product as the two pieces of the other: $AP\\cdot PB=CP\\cdot PD$. Here $AP\\cdot PB=3\\cdot8=24$. Writing $CP=2k$ and $PD=3k$ turns the ratio into a single unknown, and $2k\\cdot3k=6k^2=24$ gives $k^2=4$, so $k=2$. Then $CP=4$, $PD=6$, and $CD=CP+PD=10$. The distractor $20$ counts the chord $CD$ twice.",
+      "concepts": [
+        5
+      ],
+      "verify": "import math\nAP, PB = 3.0, 8.0\nk = math.sqrt(AP * PB / (2 * 3))\nCD = 5 * k\nassert abs(CD - 10) < 1e-9\nprint('10')\n"
+    },
+    {
+      "id": "geo-24",
+      "difficulty": 4,
+      "problem": "A cyclic quadrilateral $ABCD$ has consecutive sides $AB=2$, $BC=3$, $CD=5$, and $DA=6$. What is the area of $ABCD$?",
+      "choices": [
+        "6",
+        "8",
+        "10",
+        "12",
+        "$6\\sqrt{5}$"
+      ],
+      "answer": "E",
+      "hint": "A cyclic quadrilateral has a Brahmagupta area formula, which is the cyclic version of Heron's formula.",
+      "solution": "The semiperimeter is $s=8$, since the four sides sum to $16$. Brahmagupta's formula for a cyclic quadrilateral with sides $a,b,c,d$ is $K=\\sqrt{(s-a)(s-b)(s-c)(s-d)}$. Here it gives $\\sqrt{(8-2)(8-3)(8-5)(8-6)}=\\sqrt{6\\cdot5\\cdot3\\cdot2}=\\sqrt{180}=6\\sqrt5$. The formula applies because the quadrilateral is cyclic, which makes opposite angles supplementary. Check the product carefully, since a single wrong factor changes the square root.",
+      "concepts": [
+        7,
+        2
+      ],
+      "verify": "import math\na, b, c, d = 2, 3, 5, 6\ns = (a + b + c + d) / 2\nK = math.sqrt((s - a) * (s - b) * (s - c) * (s - d))\nassert abs(K - 6 * 5**0.5) < 1e-9\nprint('$6\\\\sqrt{5}$')\n"
+    },
+    {
+      "id": "geo-25",
+      "difficulty": 4,
+      "problem": "In triangle $ABC$, $AB=15$, $BC=14$, and $CA=13$. The incircle of the triangle touches side $BC$ at point $T$. What is the length of segment $AT$?",
+      "choices": [
+        "10",
+        "11",
+        "$\\sqrt{130}$",
+        "12",
+        "$\\sqrt{145}$"
+      ],
+      "answer": "E",
+      "hint": "Locate $T$ with the tangent length $s-CA$, then place the triangle on coordinates.",
+      "solution": "The semiperimeter is $s=\\frac{15+14+13}{2}=21$. The incircle touches $BC$ at a point $T$ with $BT=s-CA=21-13=8$ and $TC=s-AB=6$, since tangent lengths from a vertex are equal and the two tangent lengths along $BC$ add to $BC=14$. Place $B=(0,0)$, $C=(14,0)$, and $A=(9,12)$, which satisfy $AB=15$, $BC=14$, $CA=13$. Then $T=(8,0)$, and $AT^2=(9-8)^2+12^2=145$, so $AT=\\sqrt{145}$. The distractor $12$ is the altitude from $A$, whose foot is $(9,0)$ rather than $T$. The altitude is shorter than $AT$ because $T$ is not the foot of the perpendicular.",
+      "concepts": [
+        6,
+        0
+      ],
+      "verify": "import math\nB = (0.0, 0.0); C = (14.0, 0.0); A = (9.0, 12.0)\na = math.dist(B, C); b = math.dist(C, A); c = math.dist(A, B)\nassert abs(c - 15) < 1e-9 and abs(b - 13) < 1e-9\nI = tuple((a*A[i] + b*B[i] + c*C[i]) / (a + b + c) for i in range(2))\nT = (I[0], 0.0)\nAT = math.dist(A, T)\nassert abs(AT - 145**0.5) < 1e-9\nprint('$\\\\sqrt{145}$')\n"
+    },
+    {
+      "id": "geo-26",
+      "difficulty": 4,
+      "problem": "Triangle $XYZ$ has $XY=5$, $YZ=6$, and $ZX=5$. What is the radius of its circumscribed circle?",
+      "choices": [
+        "$\\frac{3}{2}$",
+        "3",
+        "$\\frac{25}{8}$",
+        "4",
+        "5"
+      ],
+      "answer": "C",
+      "hint": "The triangle is isosceles, so the circumcentre lies on the axis of symmetry. Use $R=\\frac{abc}{4K}$ as a check.",
+      "solution": "Place $Y=(-3,0)$, $Z=(3,0)$, and $X=(0,4)$, which gives $XY=XZ=5$ and $YZ=6$. The circumcentre lies on the axis $x=0$, at $(0,k)$ with $(4-k)^2=9+k^2$, so $16-8k=9$ and $k=\\frac78$. Thus $R=4-\\frac78=\\frac{25}{8}$. Equivalently, $K=\\frac12\\cdot6\\cdot4=12$ and $R=\\frac{abc}{4K}=\\frac{5\\cdot5\\cdot6}{48}=\\frac{25}{8}$, which confirms the value. The distractor $\\frac32$ is the inradius $\\frac{K}{s}=\\frac{12}{8}$, which belongs to the incentre rather than the circumcentre.",
+      "concepts": [
+        6
+      ],
+      "verify": "import math\nY = (-3.0, 0.0); Z = (3.0, 0.0); X = (0.0, 4.0)\nk = (X[1]**2 - Y[0]**2) / (2 * X[1])\nO = (0.0, k)\nR = math.dist(O, X)\nassert abs(math.dist(O, Y) - R) < 1e-9 and abs(math.dist(O, Z) - R) < 1e-9\nassert abs(R - 25 / 8) < 1e-9\nprint('$\\\\frac{25}{8}$')\n"
+    },
+    {
+      "id": "geo-27",
+      "difficulty": 5,
+      "problem": "Point $P$ lies in the interior of equilateral triangle $ABC$. Its distances to the vertices are $PA=2$, $PB=2$, and $PC=3$. What is the side length of triangle $ABC$?",
+      "choices": [
+        "$\\sqrt{7}$",
+        "3",
+        "$2\\sqrt{3}$",
+        "$\\sqrt{15}$",
+        "$\\frac{3\\sqrt{3}+\\sqrt{7}}{2}$"
+      ],
+      "answer": "E",
+      "hint": "Since $PA=PB$, the point lies on the perpendicular bisector of $AB$. Set up coordinates with side $s$ and use $PC=3$.",
+      "solution": "Put $A=(0,0)$, $B=(s,0)$, $C=(\\frac s2,\\frac{\\sqrt3 s}{2})$. Then $P=(\\frac s2,y)$ with $y=\\sqrt{4-\\frac{s^2}{4}}$, and $PC=3$ becomes $\\frac{\\sqrt3 s}{2}-\\sqrt{4-\\frac{s^2}{4}}=3$. This is increasing in $s$, so it has one root, found numerically in verify. The root satisfies $s^2=\\frac{17+3\\sqrt{21}}{2}$, which is the square of $\\frac{3\\sqrt3+\\sqrt7}{2}$. The distractor $3$ is the value of $PC$ itself.",
+      "concepts": [
+        0
+      ],
+      "verify": "import math\ndef f(s):\n    h2 = 4 - (s / 2)**2\n    y = math.sqrt(h2)\n    return s * math.sqrt(3) / 2 - y - 3\nlo, hi = 3.0, 4.0\nflo = f(lo)\nfor _ in range(200):\n    mid = (lo + hi) / 2\n    fm = f(mid)\n    if (fm > 0) == (flo > 0):\n        lo, flo = mid, fm\n    else:\n        hi = mid\ns = (lo + hi) / 2\ntarget = (3 * math.sqrt(3) + math.sqrt(7)) / 2\nassert abs(s - target) < 1e-9\nprint('$\\\\frac{3\\\\sqrt{3}+\\\\sqrt{7}}{2}$')\n"
+    },
+    {
+      "id": "geo-28",
+      "difficulty": 5,
+      "problem": "Triangle $ABC$ has $BC=14$, $CA=13$, and $AB=15$. Let $I$ be its incentre. The line through $I$ parallel to $BC$ meets side $AB$ at $P$ and side $AC$ at $Q$. What is $PQ$?",
+      "choices": [
+        "8",
+        "9",
+        "$\\frac{28}{3}$",
+        "10",
+        "14"
+      ],
+      "answer": "C",
+      "hint": "Find the altitude from $A$ and the inradius, then use the similar triangle cut off by the line through $I$.",
+      "solution": "Here $h_a=\\frac{2K}{a}=\\frac{168}{14}=12$ and $r=4$. The line through $I$ lies $r$ above $BC$, so it is at distance $h_a-r=8$ from $A$. Triangle $APQ$ is similar to $ABC$ with ratio $\\frac{8}{12}=\\frac23$, so $PQ=\\frac23\\cdot14=\\frac{28}{3}$. The distractor $14$ is the side $BC$ itself.",
+      "concepts": [
+        6,
+        0
+      ],
+      "verify": "import math\nA = (9.0, 12.0); B = (0.0, 0.0); C = (14.0, 0.0)\na = math.dist(B, C); b = math.dist(C, A); c = math.dist(A, B)\nI = tuple((a*A[i] + b*B[i] + c*C[i]) / (a + b + c) for i in range(2))\nt = I[1] / A[1]\nP = (t * A[0], t * A[1])\nu = I[1] / A[1]\nQ = (C[0] + u * (A[0] - C[0]), C[1] + u * (A[1] - C[1]))\nassert abs(P[1] - I[1]) < 1e-9 and abs(Q[1] - I[1]) < 1e-9\nassert abs(math.dist(P, Q) - 28 / 3) < 1e-9\nprint('$\\\\frac{28}{3}$')\n"
+    },
+    {
+      "id": "geo-29",
+      "difficulty": 5,
+      "problem": "Triangle $ABC$ has $BC=14$, $CA=13$, and $AB=15$. Let $H$ be the orthocentre, the point where the three altitudes meet. What is the length $AH$?",
+      "choices": [
+        "8",
+        "$\\frac{65}{8}$",
+        "$\\frac{33}{4}$",
+        "$\\frac{35}{4}$",
+        "9"
+      ],
+      "answer": "C",
+      "hint": "Use $AH=2R\\cos A$, with $R$ and $\\cos A$ from the standard formulas.",
+      "solution": "Use $AH=2R\\cos A$. Here $R=\\frac{65}{8}$, from $R=\\frac{abc}{4K}$ with $K=84$. By the law of cosines at $A$, opposite $BC=14$, we get $\\cos A=\\frac{13^2+15^2-14^2}{2\\cdot13\\cdot15}=\\frac{198}{390}=\\frac{33}{65}$. So $AH=2\\cdot\\frac{65}{8}\\cdot\\frac{33}{65}=\\frac{33}{4}$. Coordinates confirm it: with $B=(0,0)$, $C=(14,0)$, $A=(9,12)$, the altitude from $B$ meets the altitude from $A$ at $H=(9,\\frac{15}{4})$, and $AH=12-\\frac{15}{4}=\\frac{33}{4}$. The distractor $\\frac{65}{8}$ is the circumradius $R$ itself.",
+      "concepts": [
+        3,
+        6
+      ],
+      "verify": "import math\nA = (9.0, 12.0); B = (0.0, 0.0); C = (14.0, 0.0)\nca = (C[0] - A[0], C[1] - A[1])\ny = -(9 * ca[0]) / ca[1]\nH = (9.0, y)\nab = (A[0] - B[0], A[1] - B[1])\nassert abs((H[0] - C[0]) * ab[0] + (H[1] - C[1]) * ab[1]) < 1e-9\nassert abs(math.dist(A, H) - 33 / 4) < 1e-9\nprint('$\\\\frac{33}{4}$')\n"
+    },
+    {
+      "id": "geo-30",
+      "difficulty": 5,
+      "problem": "Triangle $ABC$ has $BC=14$, $CA=13$, and $AB=15$. Let $I$ be its incentre and $I_A$ the excentre opposite $A$, the centre of the circle that touches side $BC$ and the extensions of sides $AB$ and $AC$. What is the distance $II_A$?",
+      "choices": [
+        "8",
+        "$\\sqrt{65}$",
+        "12",
+        "$2\\sqrt{65}$",
+        "17"
+      ],
+      "answer": "D",
+      "hint": "Both centres lie on the bisector of angle $A$. Use the weighted formulas for the incentre and the excentre.",
+      "solution": "With $B=(0,0)$, $C=(14,0)$, $A=(9,12)$, the incentre is $I=(8,4)$. The excentre is $I_A=\\frac{-aA+bB+cC}{-a+b+c}=(6,-12)$, whose distance to $BC$ is $r_a=\\frac{84}{21-14}=12$, as it should be. Then $II_A=\\sqrt{2^2+16^2}=\\sqrt{260}=2\\sqrt{65}$. The distractor $\\sqrt{65}$ is half the answer.",
+      "concepts": [
+        6
+      ],
+      "verify": "import math\nA = (9.0, 12.0); B = (0.0, 0.0); C = (14.0, 0.0)\na = math.dist(B, C); b = math.dist(C, A); c = math.dist(A, B)\nI = tuple((a*A[i] + b*B[i] + c*C[i]) / (a + b + c) for i in range(2))\nIA = tuple((-a*A[i] + b*B[i] + c*C[i]) / (-a + b + c) for i in range(2))\nassert abs(IA[0] - 6) < 1e-9 and abs(IA[1] + 12) < 1e-9\nassert abs(math.dist(I, IA) - 2 * 65**0.5) < 1e-9\nprint('$2\\\\sqrt{65}$')\n"
+    }
+  ],
+  "videos": [
+    {
+      "youtubeId": "4u7-qKSR3gs",
+      "title": "The Most Powerful Theorem in Circle Geometry: Power of a Point",
+      "channel": "Mathilda Academy",
+      "why": "A clear walkthrough of the power-of-a-point theorem for chords, secants and tangents, the right place to start before problems 13 and 23."
+    },
+    {
+      "youtubeId": "5zuU0UiQOf4",
+      "title": "Heron's formula (example and proof)",
+      "channel": "bprp math basics",
+      "why": "Works an example and then derives Heron's formula, which makes the area identity easier to trust and remember."
+    },
+    {
+      "youtubeId": "TlzCEwGp4VM",
+      "title": "How to Prove Ptolemy's Theorem for Cyclic Quadrilaterals",
+      "channel": "Mohamed Omar",
+      "why": "Proves Ptolemy's theorem step by step, the argument behind the cyclic-quadrilateral concept and problems 21 and 24."
+    },
+    {
+      "youtubeId": "uT6N5Qx3964",
+      "title": "Distance Between Circumcenter & Incenter | Properties of Triangle | JEE | CBSE | ISC",
+      "channel": "FineMath",
+      "why": "Computes the distance between the circumcentre and incentre of a triangle, the setting of problem 22 and the Euler formula in the incircle concept."
     }
   ]
 }

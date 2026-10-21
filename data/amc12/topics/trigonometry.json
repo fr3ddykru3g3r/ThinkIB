@@ -1,0 +1,994 @@
+{
+  "id": "trigonometry",
+  "title": "Trigonometry",
+  "summary": "Exact values on the unit circle, the standard identities, triangle laws, and solving, counting and optimizing trigonometric expressions at AMC 12 level.",
+  "examWeight": "≈4–5 problems per paper",
+  "prerequisites": [
+    "algebra",
+    "geometry",
+    "functions-logs"
+  ],
+  "overview": "On the AMC 12, trigonometry appears in two distinct ways. Early problems ask for exact values, simple identities and the law of cosines on a single triangle, and they are won by recognizing special angles and sign patterns quickly. Middle problems combine identities with an equation or an extremum, such as simplifying a product of cosines or finding the amplitude of a combination of sines and cosines. Late problems, roughly numbers 20 through 25, use trigonometry as a tool for counting: how many solutions an equation has on an interval, or which triangle maximizes an expression. These are the problems where the algebra of identities meets the geometry of the unit circle and the periodicity of the functions.\n\nThe difficulty escalates in a predictable way. A #5 problem asks for one exact value; a #10 problem asks for an identity applied to a single angle; a #15 problem combines two identities or uses the triangle laws on a configuration; a #20 problem requires a clean reduction, often through a half-angle or a product-to-sum step, followed by a count or an optimization. The most reliable way to climb is to rewrite every expression in terms of one angle or one symmetric quantity, then solve, rather than trying to recall a formula for each situation.\n\nFor study, learn the unit circle and its sign pattern until both are automatic, then master the sum, double, half-angle and product-to-sum formulas by deriving them once. Practise the triangle laws until the SSA ambiguity no longer surprises you. Finally, spend time on counting and extremal problems, because they are where the subtle errors live: double roots, overlapping solution sets, periods of squares, and branch corrections for inverse functions. Check answers with special angles and simple numerical sanity tests.",
+  "concepts": [
+    {
+      "title": "Unit circle, radians and exact values",
+      "body": "Every real angle $\\theta$ determines a point $(\\cos\\theta,\\sin\\theta)$ on the unit circle $x^2+y^2=1$: start at $(1,0)$ and rotate counterclockwise by $\\theta$. This definition is what makes trigonometry work for every real angle rather than only the acute angles of a triangle, and it is why the sign of each function is controlled by the quadrant.\n\nRadians measure arc length on the unit circle. An arc of length $s$ subtends the angle $s$, so a full turn is $2\\pi$ and $180^\\circ=\\pi$. The conversion $\\theta_{\\text{rad}}=\\theta_{\\text{deg}}\\cdot\\frac{\\pi}{180}$ follows immediately. Contest answers are almost always written as multiples of $\\pi$, so get fluent in converting both ways.\n\nExact values come from two special right triangles. The $45^\\circ$-$45^\\circ$-$90^\\circ$ triangle with legs $1$ has hypotenuse $\\sqrt2$, so $\\sin\\frac{\\pi}{4}=\\cos\\frac{\\pi}{4}=\\frac{\\sqrt2}{2}$. The $30^\\circ$-$60^\\circ$-$90^\\circ$ triangle with hypotenuse $2$ has short leg $1$ and long leg $\\sqrt3$, because $1^2+(\\sqrt3)^2=2^2$. Reading it off gives $\\sin\\frac{\\pi}{6}=\\frac12$, $\\cos\\frac{\\pi}{6}=\\frac{\\sqrt3}{2}$, and by complementarity $\\sin\\frac{\\pi}{3}=\\frac{\\sqrt3}{2}$, $\\cos\\frac{\\pi}{3}=\\frac12$.\n\nReference angles and signs: the absolute values of $\\sin\\theta$ and $\\cos\\theta$ equal those at the reference angle, the acute angle between the terminal ray and the x-axis. The signs are the ASTC rule: all functions are positive in quadrant I, only sine in II, only tangent in III, and only cosine in IV.\n\nReflections give reduction formulas: $\\sin(\\pi-\\theta)=\\sin\\theta$, $\\cos(\\pi-\\theta)=-\\cos\\theta$, $\\sin(\\pi+\\theta)=-\\sin\\theta$, and $\\cos(\\pi+\\theta)=-\\cos\\theta$. Any angle can be brought into $[0,\\frac{\\pi}{2}]$ with a sign, which is the first step of nearly every computation in this topic.",
+      "keyFacts": [
+        "$(\\cos\\theta,\\sin\\theta)$ is the point at angle $\\theta$ on $x^2+y^2=1$",
+        "$1^\\circ=\\frac{\\pi}{180}$ radians, so $150^\\circ=\\frac{5\\pi}{6}$",
+        "$\\sin\\frac{\\pi}{6}=\\frac12$, $\\cos\\frac{\\pi}{6}=\\frac{\\sqrt3}{2}$, $\\sin\\frac{\\pi}{4}=\\frac{\\sqrt2}{2}$",
+        "$\\cos(\\pi+\\theta)=-\\cos\\theta$ and $\\sin(\\pi-\\theta)=\\sin\\theta$"
+      ],
+      "whenToUse": "Any problem that gives an angle in degrees or as a multiple of $\\pi$, or asks for a value at a special angle, begins by reducing to a reference angle and fixing the sign by quadrant.",
+      "commonMistakes": [
+        "Mixing degrees and radians, for example using $\\frac{\\pi}{180}$ in the wrong direction.",
+        "Reading the cosine sign from the reference angle and forgetting the quadrant, so $\\cos\\frac{7\\pi}{6}$ is written as positive."
+      ],
+      "example": {
+        "problem": "Find $\\cos\\frac{7\\pi}{6}$.",
+        "solution": "The angle $\\frac{7\\pi}{6}=\\pi+\\frac{\\pi}{6}$ lies in quadrant III, where cosine is negative. The reference angle is $\\frac{\\pi}{6}$, so $\\cos\\frac{7\\pi}{6}=-\\cos\\frac{\\pi}{6}=-\\frac{\\sqrt3}{2}$.",
+        "answer": "-\\frac{\\sqrt{3}}{2}",
+        "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\nval = math.cos(7 * math.pi / 6)\nassert abs(val + math.sqrt(3) / 2) < 1e-12\nprint(r\"-\\frac{\\sqrt{3}}{2}\")\n"
+      }
+    },
+    {
+      "title": "Pythagorean identities, signs and reduction",
+      "body": "The identity $\\sin^2\\theta+\\cos^2\\theta=1$ is the equation $x^2+y^2=1$ written at the point $(\\cos\\theta,\\sin\\theta)$. Dividing by $\\cos^2\\theta$ when it is nonzero gives $\\tan^2\\theta+1=\\sec^2\\theta$, and dividing by $\\sin^2\\theta$ gives $1+\\cot^2\\theta=\\csc^2\\theta$. Memorize all three and practice rearranging them, because most problems give one of $\\sin$, $\\cos$ or $\\tan$ and ask for another.\n\nThe Pythagorean identity fixes only the magnitude. If $\\sin\\theta=-\\frac{5}{13}$ then $\\cos^2\\theta=\\frac{144}{169}$, so $\\cos\\theta=\\pm\\frac{12}{13}$, and the quadrant decides the sign. The most common lost point in this topic is writing $\\cos\\theta=\\sqrt{1-\\sin^2\\theta}$ with the positive root without checking the quadrant. Always write the sign of each function before combining them.\n\nSquaring a sum is a powerful trick. Since $(\\sin x+\\cos x)^2=1+2\\sin x\\cos x$, knowing $\\sin x+\\cos x$ determines the product $\\sin x\\cos x$ without solving for $x$. The sign ambiguity disappears because the quantity is squared, and only the magnitude is needed. The derivation is one expansion followed by the Pythagorean identity to replace the $1$.\n\nParity gives the reduction rules: $\\sin(-\\theta)=-\\sin\\theta$ (odd), $\\cos(-\\theta)=\\cos\\theta$ (even), and $\\tan$ is odd. Combined with the shifts by $\\pi$ and $\\frac{\\pi}{2}$, every expression can be rewritten using a single acute angle, which keeps the sign bookkeeping honest. Carry out the reduction before you square or add anything.",
+      "keyFacts": [
+        "$\\sin^2\\theta+\\cos^2\\theta=1$, hence $\\tan^2\\theta+1=\\sec^2\\theta$ and $1+\\cot^2\\theta=\\csc^2\\theta$",
+        "$\\sin(-\\theta)=-\\sin\\theta$ and $\\cos(-\\theta)=\\cos\\theta$",
+        "$(\\sin x+\\cos x)^2=1+2\\sin x\\cos x$"
+      ],
+      "whenToUse": "When one of $\\sin\\theta$, $\\cos\\theta$, $\\tan\\theta$ is given and another is requested, or when a symmetric expression in $\\sin$ and $\\cos$ appears.",
+      "commonMistakes": [
+        "Taking the positive square root of $\\cos^2\\theta$ without using the quadrant.",
+        "Applying $\\sin^2 a+\\cos^2 a=1$ to unequal angles, for example $\\sin^2 10^\\circ+\\cos^2 20^\\circ$."
+      ],
+      "example": {
+        "problem": "If $\\sin\\theta=-\\frac{5}{13}$ and $\\frac{3\\pi}{2}<\\theta<2\\pi$, find $\\cos\\theta$.",
+        "solution": "The Pythagorean identity gives $\\cos^2\\theta=1-\\frac{25}{169}=\\frac{144}{169}$. In quadrant IV the cosine is positive, so $\\cos\\theta=\\frac{12}{13}$.",
+        "answer": "\\frac{12}{13}",
+        "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\nth = math.asin(-5 / 13)  # principal value lies in quadrant IV\nassert abs(math.cos(th) - 12 / 13) < 1e-12\nprint(r\"\\frac{12}{13}\")\n"
+      }
+    },
+    {
+      "title": "Addition, double and half-angle formulas",
+      "body": "The cleanest derivation of the difference formula compares two chords of the unit circle. Let $P=(\\cos a,\\sin a)$ and $Q=(\\cos b,\\sin b)$. They are separated by the central angle $a-b$, so by the law of cosines in the isosceles triangle with apex at the origin, $|PQ|^2=2-2\\cos(a-b)$. Computing the same squared length in coordinates gives $(\\cos a-\\cos b)^2+(\\sin a-\\sin b)^2=2-2(\\cos a\\cos b+\\sin a\\sin b)$. Comparing the two yields $\\cos(a-b)=\\cos a\\cos b+\\sin a\\sin b$.\n\nReplacing $b$ by $-b$ gives $\\cos(a+b)=\\cos a\\cos b-\\sin a\\sin b$. Using $\\sin(a+b)=\\cos\\left(\\frac{\\pi}{2}-a-b\\right)$ and then expanding gives $\\sin(a+b)=\\sin a\\cos b+\\cos a\\sin b$, and $b\\to -b$ gives the difference version. Dividing the sine formula by the cosine formula gives $\\tan(a+b)=\\frac{\\tan a+\\tan b}{1-\\tan a\\tan b}$, which is the workhorse for tangent problems.\n\nSetting $a=b=x$ gives the double-angle formulas $\\sin2x=2\\sin x\\cos x$ and $\\cos2x=\\cos^2x-\\sin^2x=2\\cos^2x-1=1-2\\sin^2x$. Rearranging the last form gives the half-angle formulas $\\sin^2\\frac{x}{2}=\\frac{1-\\cos x}{2}$ and $\\cos^2\\frac{x}{2}=\\frac{1+\\cos x}{2}$. The sign of a half-angle root depends on the quadrant of $\\frac{x}{2}$, so the squared versions are usually what you want.\n\nTwo simplifications recur in contests: $\\frac{1-\\cos2x}{\\sin2x}=\\tan x$ and $\\frac{\\sin2x}{1+\\cos2x}=\\tan x$, both immediate from the double-angle formulas. The triple-angle identities $\\sin3x=3\\sin x-4\\sin^3x$ and $\\cos3x=4\\cos^3x-3\\cos x$ follow from the sum formulas applied to $2x+x$.",
+      "keyFacts": [
+        "$\\cos(a-b)=\\cos a\\cos b+\\sin a\\sin b$, $\\sin(a+b)=\\sin a\\cos b+\\cos a\\sin b$",
+        "$\\tan(a+b)=\\frac{\\tan a+\\tan b}{1-\\tan a\\tan b}$",
+        "$\\sin2x=2\\sin x\\cos x$, $\\cos2x=2\\cos^2x-1=1-2\\sin^2x$",
+        "$\\sin^2\\frac{x}{2}=\\frac{1-\\cos x}{2}$ and $\\cos^2\\frac{x}{2}=\\frac{1+\\cos x}{2}$",
+        "$\\sin3x=3\\sin x-4\\sin^3x$"
+      ],
+      "whenToUse": "A sum or difference of angles, a double or half angle, or a ratio of $\\sin 2x$ and $\\cos 2x$ that should collapse to a tangent.",
+      "commonMistakes": [
+        "Writing $\\sin(a+b)=\\sin a+\\sin b$, which fails for every pair except special cases.",
+        "Dropping the constant term when converting $\\cos 2x$ to $1-2\\sin^2x$ or $2\\cos^2x-1$."
+      ],
+      "example": {
+        "problem": "Find $\\sin 75^\\circ$.",
+        "solution": "Write $75^\\circ=45^\\circ+30^\\circ$ and apply $\\sin(a+b)=\\sin a\\cos b+\\cos a\\sin b$. This gives $\\frac{\\sqrt2}{2}\\cdot\\frac{\\sqrt3}{2}+\\frac{\\sqrt2}{2}\\cdot\\frac12=\\frac{\\sqrt6+\\sqrt2}{4}$.",
+        "answer": "\\frac{\\sqrt{6}+\\sqrt{2}}{4}",
+        "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\nval = math.sin(math.radians(75))\nassert abs(val - (math.sqrt(6) + math.sqrt(2)) / 4) < 1e-12\nprint(r\"\\frac{\\sqrt{6}+\\sqrt{2}}{4}\")\n"
+      }
+    },
+    {
+      "title": "Product-to-sum and sum-to-product",
+      "body": "Product-to-sum identities come from adding and subtracting the sum formulas. Adding $\\cos(a-b)$ and $\\cos(a+b)$ gives $2\\cos a\\cos b$, so $\\cos a\\cos b=\\frac12[\\cos(a-b)+\\cos(a+b)]$. Subtracting gives $\\sin a\\sin b=\\frac12[\\cos(a-b)-\\cos(a+b)]$. Adding $\\sin(a+b)$ and $\\sin(a-b)$ gives $\\sin a\\cos b=\\frac12[\\sin(a+b)+\\sin(a-b)]$. These three forms are all you need, and they are quick to rederive when you need them.\n\nSum-to-product identities come from the substitution $a=\\frac{u+v}{2}$, $b=\\frac{u-v}{2}$, which gives $a+b=u$ and $a-b=v$. For instance $\\sin u+\\sin v=2\\sin\\frac{u+v}{2}\\cos\\frac{u-v}{2}$, and similarly $\\cos u+\\cos v=2\\cos\\frac{u+v}{2}\\cos\\frac{u-v}{2}$ and $\\cos u-\\cos v=-2\\sin\\frac{u+v}{2}\\sin\\frac{u-v}{2}$. The minus sign in the last identity is the most frequent source of error on the exam.\n\nThe doubling trick is the classic payoff. Multiplying $\\cos x\\cos2x\\cos4x\\cdots\\cos2^{n-1}x$ by $\\sin x$ and repeatedly applying $2\\sin y\\cos y=\\sin2y$ gives the product $\\frac{\\sin2^nx}{2^n\\sin x}$. Problems that look like hard products of cosines in arithmetic or geometric progression often reduce to this shape after the substitution $x\\to\\frac{\\pi}{n}$.\n\nTelescoping sums are the second payoff. From the product-to-sum identity, $2\\sin\\frac{x}{2}\\cos kx=\\sin\\left((k+\\tfrac12)x\\right)-\\sin\\left((k-\\tfrac12)x\\right)$. Multiplying a sum of cosines in arithmetic progression by $2\\sin\\frac{x}{2}$ therefore makes it collapse to two terms. This is the engine behind the sums in the next concept.",
+      "keyFacts": [
+        "$\\cos a\\cos b=\\frac12[\\cos(a-b)+\\cos(a+b)]$",
+        "$\\sin a\\cos b=\\frac12[\\sin(a+b)+\\sin(a-b)]$",
+        "$\\cos u-\\cos v=-2\\sin\\frac{u+v}{2}\\sin\\frac{u-v}{2}$",
+        "$\\cos x\\cos2x\\cdots\\cos2^{n-1}x=\\frac{\\sin2^nx}{2^n\\sin x}$"
+      ],
+      "whenToUse": "A product of two or more trig functions with arguments in arithmetic progression, or a sum of trig functions that should factor.",
+      "commonMistakes": [
+        "Expecting $\\cos a\\cos b$ to simplify to a single function; it only becomes a sum of two cosines.",
+        "Forgetting that $\\cos u-\\cos v$ carries a minus sign and a factor of $-2$."
+      ],
+      "example": {
+        "problem": "Find $\\sin75^\\circ\\sin15^\\circ$.",
+        "solution": "Use $\\sin a\\sin b=\\frac12[\\cos(a-b)-\\cos(a+b)]$ with $a=75^\\circ$, $b=15^\\circ$: the product is $\\frac12[\\cos60^\\circ-\\cos90^\\circ]=\\frac12\\cdot\\frac12=\\frac14$.",
+        "answer": "\\frac{1}{4}",
+        "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\nval = math.sin(math.radians(75)) * math.sin(math.radians(15))\nassert abs(val - 0.25) < 1e-12\nprint(r\"\\frac{1}{4}\")\n"
+      }
+    },
+    {
+      "title": "Law of sines, law of cosines and area",
+      "body": "Drop the altitude $h$ from $C$ to side $AB=c$ in triangle $ABC$. The altitude gives $h=b\\sin A=a\\sin B$, so $\\frac{a}{\\sin A}=\\frac{b}{\\sin B}$. Repeating with the altitude from $A$ yields the law of sines $\\frac{a}{\\sin A}=\\frac{b}{\\sin B}=\\frac{c}{\\sin C}=2R$, where $R$ is the circumradius. The common ratio is the diameter of the circumcircle, a fact worth keeping in mind for problems about circles through the vertices.\n\nThe area is $\\frac12ch$, and $h=a\\sin B$, so $[ABC]=\\frac12ca\\sin B=\\frac12ab\\sin C=\\frac12bc\\sin A$. Heron's formula $\\sqrt{s(s-a)(s-b)(s-c)}$ with $s=\\frac{a+b+c}{2}$ is an equivalent route when all three sides are known.\n\nFor the law of cosines, place $C$ at the origin with $CA$ along the positive x-axis, so $A=(b,0)$ and $B=(a\\cos C,a\\sin C)$. Then $c^2=(a\\cos C-b)^2+a^2\\sin^2C=a^2+b^2-2ab\\cos C$. This is the Pythagorean theorem with a correction term, and the correction vanishes exactly when $C=90^\\circ$.\n\nChoosing the right law is a matter of the given data. Use the law of sines when you know an angle together with its opposite side. Use the law of cosines for SAS and SSS. The SSA configuration is the classic trap: with sides $a,b$ and angle $A$, if $a<b\\sin A$ there is no triangle, if $a=b\\sin A$ there is one right triangle, if $b\\sin A<a<b$ there are two triangles, and if $a\\ge b$ there is exactly one.",
+      "keyFacts": [
+        "$\\frac{a}{\\sin A}=\\frac{b}{\\sin B}=\\frac{c}{\\sin C}=2R$",
+        "$c^2=a^2+b^2-2ab\\cos C$",
+        "$[ABC]=\\frac12ab\\sin C$",
+        "$\\cos C=\\frac{a^2+b^2-c^2}{2ab}$"
+      ],
+      "whenToUse": "Any triangle problem with side lengths and angles given, or any question about area that involves two sides and an included angle.",
+      "commonMistakes": [
+        "Using the law of sines in SSA without checking for the ambiguous case.",
+        "Forgetting the factor $\\frac12$ in the area formula, or using the sine of the wrong angle."
+      ],
+      "example": {
+        "problem": "A triangle has sides $3$, $5$ and $7$. Find its area.",
+        "solution": "The cosine of the angle opposite $7$ is $\\frac{9+25-49}{2\\cdot3\\cdot5}=-\\frac12$, so that angle is $120^\\circ$. The area is $\\frac12\\cdot3\\cdot5\\cdot\\sin120^\\circ=\\frac{15\\sqrt3}{4}$.",
+        "answer": "\\frac{15\\sqrt{3}}{4}",
+        "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\na, b, c = 3.0, 5.0, 7.0\ns = (a + b + c) / 2\narea = math.sqrt(s * (s - a) * (s - b) * (s - c))  # Heron\nassert abs(area - 15 * math.sqrt(3) / 4) < 1e-12\nprint(r\"\\frac{15\\sqrt{3}}{4}\")\n"
+      }
+    },
+    {
+      "title": "Solving trig equations and counting solutions",
+      "body": "Trigonometric equations have infinitely many solutions on the real line, so contest questions ask for solutions in an interval, the number of solutions, or a sum of solutions. The method is always the same: reduce to a single function of a single angle, solve the basic equation using the unit circle, and then add the period.\n\nFor $\\sin x=c$ with $|c|<1$, the solutions in $[0,2\\pi)$ are $\\alpha$ and $\\pi-\\alpha$, where $\\alpha=\\arcsin c$. For $\\cos x=c$ they are $\\alpha$ and $2\\pi-\\alpha$ with $\\alpha=\\arccos c$. Each pair is symmetric about an axis of the circle, and that symmetry is the fastest way to list them all.\n\nWhen an equation is $\\sin(kx)=c$ on $[0,L)$, count the solutions in one period of $\\sin(kx)$, which is $\\frac{2\\pi}{k}$ and contains two solutions when $|c|<1$, then multiply by the number of periods in the interval. Be careful at the endpoints: a half-open interval includes its left endpoint and excludes its right.\n\nFactoring is the usual next step. The equation $\\sin2x=\\cos x$ becomes $\\cos x(2\\sin x-1)=0$, a product of two simpler equations. Solutions from different factors can coincide, so take the union of the solution sets rather than adding the counts. A double root such as $(\\sin x-1)^2=0$ contributes one solution.\n\nTangency needs care. The equation $2\\sin^2x-3\\sin x+1=0$ factors as $(2\\sin x-1)(\\sin x-1)=0$, and the root $\\sin x=1$ touches the graph without crossing it. Sign-change methods miss such roots, so count geometric solutions directly from the factored form.",
+      "keyFacts": [
+        "$\\sin x=c$ has solutions $\\arcsin c$ and $\\pi-\\arcsin c$ per period",
+        "$\\sin A-\\sin B=2\\cos\\frac{A+B}{2}\\sin\\frac{A-B}{2}$ turns difference equations into products",
+        "$\\sin(kx)=c$ has $2$ solutions per period $\\frac{2\\pi}{k}$ when $|c|<1$"
+      ],
+      "whenToUse": "A trigonometric equation with a bounded interval, a request for the number of solutions, or a request for the sum of solutions.",
+      "commonMistakes": [
+        "Adding counts from two factors when their solution sets overlap.",
+        "Forgetting that a half-open interval $[0,2\\pi)$ excludes $2\\pi$."
+      ],
+      "example": {
+        "problem": "How many solutions does $\\sin3x=\\sin x$ have in $[0,2\\pi)$?",
+        "solution": "Write $\\sin3x-\\sin x=2\\cos2x\\sin x$. The factor $\\sin x=0$ gives $x=0,\\pi$, and $\\cos2x=0$ gives $x=\\frac\\pi4,\\frac{3\\pi}4,\\frac{5\\pi}4,\\frac{7\\pi}4$. The sets are disjoint, so there are $6$ solutions.",
+        "answer": "6",
+        "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\nN = 400000\nf = [math.sin(3 * x) - math.sin(x) for x in (2 * math.pi * i / N for i in range(N))]\ncnt = sum(1 for v in f if v == 0) + sum(1 for i in range(N - 1) if f[i] * f[i + 1] < 0)\nprint(cnt)\n"
+      }
+    },
+    {
+      "title": "Inverse trigonometric functions",
+      "body": "The inverse functions need restricted domains to be well defined: $\\arcsin:[-1,1]\\to[-\\frac{\\pi}{2},\\frac{\\pi}{2}]$, $\\arccos:[-1,1]\\to[0,\\pi]$, and $\\arctan:\\mathbb R\\to(-\\frac{\\pi}{2},\\frac{\\pi}{2})$. The value $\\arcsin(\\sin\\theta)$ is not always $\\theta$. It is the unique angle in $[-\\frac{\\pi}{2},\\frac{\\pi}{2}]$ with the same sine, so $\\arcsin\\left(\\sin\\frac{5\\pi}{4}\\right)=-\\frac{\\pi}{4}$, not $\\frac{5\\pi}{4}$.\n\nThe complementary identity $\\arcsin x+\\arccos x=\\frac{\\pi}{2}$ holds on $[-1,1]$. To see it, put $\\alpha=\\arcsin x\\in[-\\frac{\\pi}{2},\\frac{\\pi}{2}]$. Then $\\cos(\\frac{\\pi}{2}-\\alpha)=\\sin\\alpha=x$, and $\\frac{\\pi}{2}-\\alpha$ lies in $[0,\\pi]$, so it equals $\\arccos x$.\n\nCompositions are the workhorse. Because $\\arccos u\\in[0,\\pi]$, its sine is nonnegative, and $\\sin(\\arccos u)=\\sqrt{1-u^2}$. A right triangle with legs $u$ and $\\sqrt{1-u^2}$ gives the same answer picturally, and similarly $\\tan(\\arcsin u)=\\frac{u}{\\sqrt{1-u^2}}$. The sign comes from the principal range of the inner function, not from the original angle.\n\nArctangent sums follow from the tangent addition formula. For $a,b>0$ with $ab<1$, the sum $\\arctan a+\\arctan b$ lies in $(0,\\frac{\\pi}{2})$, so it equals $\\arctan\\frac{a+b}{1-ab}$. If $ab>1$, the sum lies in $(\\frac{\\pi}{2},\\pi)$ and one must add $\\pi$ to the arctangent of the fraction. For example $\\arctan2+\\arctan3=\\pi+\\arctan\\frac{5}{-5}=\\frac{3\\pi}{4}$, a value that a naive formula gets wrong by $\\pi$.",
+      "keyFacts": [
+        "$\\arcsin x+\\arccos x=\\frac{\\pi}{2}$ for $x\\in[-1,1]$",
+        "$\\sin(\\arccos u)=\\sqrt{1-u^2}$ and $\\tan(\\arcsin u)=\\frac{u}{\\sqrt{1-u^2}}$",
+        "$\\arctan a+\\arctan b=\\arctan\\frac{a+b}{1-ab}$ when $ab<1$, and $+\\pi$ when $ab>1$ with $a,b>0$"
+      ],
+      "whenToUse": "Any expression with $\\arcsin$, $\\arccos$ or $\\arctan$ applied to a number, or a sum of arctangents.",
+      "commonMistakes": [
+        "Concluding $\\arcsin(\\sin\\theta)=\\theta$ without checking the principal range.",
+        "Applying the arctangent sum formula when $ab>1$ and forgetting the $\\pi$ correction."
+      ],
+      "example": {
+        "problem": "Evaluate $\\sin\\left(\\arccos\\frac{2}{3}\\right)$.",
+        "solution": "Let $\\theta=\\arccos\\frac23$, so $\\cos\\theta=\\frac23$ with $\\theta\\in[0,\\pi]$. Then $\\sin\\theta\\ge0$ and $\\sin\\theta=\\sqrt{1-\\frac49}=\\frac{\\sqrt5}{3}$.",
+        "answer": "\\frac{\\sqrt{5}}{3}",
+        "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\nval = math.sin(math.acos(2 / 3))\nassert abs(val - math.sqrt(5) / 3) < 1e-12\nprint(r\"\\frac{\\sqrt{5}}{3}\")\n"
+      }
+    },
+    {
+      "title": "Linear combinations and sums of sines and cosines",
+      "body": "Any expression $a\\sin x+b\\cos x$ is a single sinusoid. Let $R=\\sqrt{a^2+b^2}$ and choose $\\varphi$ with $\\cos\\varphi=\\frac aR$ and $\\sin\\varphi=\\frac bR$, which is possible because $\\left(\\frac aR\\right)^2+\\left(\\frac bR\\right)^2=1$. Then $a\\sin x+b\\cos x=R(\\cos\\varphi\\sin x+\\sin\\varphi\\cos x)=R\\sin(x+\\varphi)$. The maximum is $R$ and the minimum is $-R$, which answers \"find the maximum\" questions at once.\n\nExpressions quadratic in $\\sin$ and $\\cos$ reduce to this form. For example $\\sin^2x+\\sqrt3\\sin x\\cos x=\\frac{1-\\cos2x}{2}+\\frac{\\sqrt3}{2}\\sin2x=\\frac12+\\left(\\frac{\\sqrt3}{2}\\sin2x-\\frac12\\cos2x\\right)$. The bracket has amplitude $\\sqrt{\\frac34+\\frac14}=1$, so the maximum is $\\frac12+1=\\frac32$. Forgetting the constant $\\frac12$ is the characteristic error.\n\nFor $\\theta\\notin2\\pi\\mathbb Z$, the sum of cosines in arithmetic progression is $\\sum_{k=1}^{n}\\cos k\\theta=\\frac{\\sin\\left((n+\\frac12)\\theta\\right)-\\sin\\frac{\\theta}{2}}{2\\sin\\frac{\\theta}{2}}$. Derivation: multiply by $2\\sin\\frac\\theta2$ and telescope with the product-to-sum identity from the previous concept. The sine analogue is proved the same way.\n\nRoots of unity give a clean special case. The real parts of the $N$th roots of unity sum to zero. Taking $\\theta=\\frac{2\\pi}{N}$ in the cosine sum, the terms $k$ and $N-k$ are equal, so half of the total is determined. For instance $\\sum_{k=1}^{20}\\cos\\frac{2k\\pi}{41}=-\\frac12$, because the full sum over $k=0,\\ldots,40$ is zero and contains the term $1$ at $k=0$.",
+      "keyFacts": [
+        "$a\\sin x+b\\cos x=\\sqrt{a^2+b^2}\\,\\sin(x+\\varphi)$ with $\\cos\\varphi=\\frac{a}{R}$, $\\sin\\varphi=\\frac{b}{R}$",
+        "$\\sum_{k=1}^{n}\\cos k\\theta=\\frac{\\sin((n+\\frac12)\\theta)-\\sin\\frac\\theta2}{2\\sin\\frac\\theta2}$",
+        "$\\sum_{k=0}^{N-1}\\cos\\frac{2\\pi k}{N}=0$ for $N\\ge2$"
+      ],
+      "whenToUse": "A maximum or minimum of a combination of $\\sin$ and $\\cos$, or a sum over an arithmetic progression of angles.",
+      "commonMistakes": [
+        "Taking the amplitude as $a+b$ instead of $\\sqrt{a^2+b^2}$.",
+        "Dropping the constant term when a squared trig expression is rewritten."
+      ],
+      "example": {
+        "problem": "Find the maximum value of $\\sqrt3\\cos x+\\sin x$.",
+        "solution": "The amplitude is $\\sqrt{(\\sqrt3)^2+1^2}=2$, since $\\sqrt3\\cos x+\\sin x=2\\sin\\left(x+\\frac{\\pi}{3}\\right)$. The maximum is $2$.",
+        "answer": "2",
+        "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\nN = 200000\nval = max(math.sqrt(3) * math.cos(2 * math.pi * i / N) + math.sin(2 * math.pi * i / N) for i in range(N))\nassert abs(val - 2) < 1e-6\nprint(2)\n"
+      }
+    },
+    {
+      "title": "Periodicity and graphs",
+      "body": "A function $f$ has period $T$ when $f(x+T)=f(x)$ for all $x$. The functions $\\sin(ax+b)$ and $\\cos(ax+b)$ have period $\\frac{2\\pi}{|a|}$, and $\\tan(ax+b)$ has period $\\frac{\\pi}{|a|}$. These follow from substituting $u=ax+b$: the base function completes a full cycle exactly when $u$ increases by its own period, which means $x$ increases by that period divided by $|a|$.\n\nFor a sum $f+g$ where $f$ has period $p$ and $g$ has period $q$ with $p/q$ rational, the period of the sum is the least common multiple of $p$ and $q$: the least positive $T$ that is an integer multiple of both. Concretely, for $p=\\pi$ and $q=\\frac{2\\pi}{3}$ we need $m\\pi=n\\cdot\\frac{2\\pi}{3}$, so $3m=2n$, giving $m=2$, $n=3$ and $T=2\\pi$. The least common multiple can be larger than either period, so always solve the integer equation rather than guessing.\n\nAbsolute values and squares change the period. The functions $|\\sin x|$ and $\\sin^2x$ have period $\\pi$, not $2\\pi$, because the negative lobes of $\\sin$ are reflected to positive ones. This is the most common error when combining periods: $\\sin^2x+\\cos3x$ has period $2\\pi$, not $\\pi$ or $\\frac{2\\pi}{3}$.\n\nGraphs are used to count intersections. To count the intersections of $y=\\sin x$ with a line such as $y=\\frac{x}{10}$, examine one lobe at a time. On a lobe where $\\sin$ is positive, the second derivative $-\\sin x$ is negative, so the graph is concave and meets a line at most twice. Endpoint sign checks establish existence. Combining the lobe counts with the bound $|\\sin x|\\le1$ finishes the count.",
+      "keyFacts": [
+        "$\\sin(ax+b)$ and $\\cos(ax+b)$ have period $\\frac{2\\pi}{|a|}$; $\\tan(ax+b)$ has period $\\frac{\\pi}{|a|}$",
+        "$\\sin^2x$ and $|\\sin x|$ have period $\\pi$",
+        "The period of $f+g$ is the least common multiple of the periods of $f$ and $g$"
+      ],
+      "whenToUse": "Any question about the smallest period of a combination of trig functions, or a count of intersections with a line.",
+      "commonMistakes": [
+        "Reporting the period of $\\sin^2x$ as $2\\pi$ rather than $\\pi$.",
+        "Taking the least common period as the product of the two periods."
+      ],
+      "example": {
+        "problem": "What is the smallest positive period of $\\tan\\frac{x}{3}+\\cos 2x$?",
+        "solution": "The term $\\tan\\frac{x}{3}$ has period $3\\pi$ and $\\cos2x$ has period $\\pi$. We need $3\\pi m=\\pi n$ with the least $T=3\\pi m$, which holds for $m=1$, $n=3$. So the period is $3\\pi$.",
+        "answer": "3\\pi",
+        "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\ndef f(x):\n    return math.tan(x / 3) + math.cos(2 * x)\npts = [0.1, 0.4, 0.9, 1.3, 2.2, 2.9]\ndef is_period(T):\n    return all(abs(f(x + T) - f(x)) < 1e-9 for x in pts)\nk = next(k for k in range(1, 601) if is_period(k * math.pi / 60))\nassert abs(k * math.pi / 60 - 3 * math.pi) < 1e-9\nprint(r\"3\\pi\")\n"
+      }
+    },
+    {
+      "title": "Tangent identities in triangles",
+      "body": "If $A+B+C=\\pi$ then $\\tan C=-\\tan(A+B)=-\\frac{\\tan A+\\tan B}{1-\\tan A\\tan B}$. Clearing the denominator gives $\\tan C\\,(1-\\tan A\\tan B)=-(\\tan A+\\tan B)$, which rearranges to the key identity $\\tan A+\\tan B+\\tan C=\\tan A\\tan B\\tan C$. It holds in every triangle with no right angle, because then all three tangents are defined. The identity turns a sum of tangents into a product and back, and it is often the fastest route through a problem about a triangle's angles.\n\nThe cotangent analogue is $\\cot A\\cot B+\\cot B\\cot C+\\cot C\\cot A=1$. It follows from the tangent identity by replacing each tangent with the reciprocal of its cotangent and multiplying through by the product of the cotangents. Use whichever form matches the expression in the problem.\n\nFor half-angles, the three angles $\\frac A2,\\frac B2,\\frac C2$ sum to $\\frac\\pi2$. Therefore $\\tan\\frac A2\\tan\\frac B2+\\tan\\frac B2\\tan\\frac C2+\\tan\\frac C2\\tan\\frac A2=1$, which follows from the tangent-of-sum identity applied to $\\frac A2+\\frac B2=\\frac\\pi2-\\frac C2$.\n\nThe half-angle substitution $t=\\tan\\frac x2$ rationalizes the trigonometric functions: $\\sin x=\\frac{2t}{1+t^2}$ and $\\cos x=\\frac{1-t^2}{1+t^2}$. These come from the double-angle formulas divided by $\\cos^2\\frac x2$, using $1+\\tan^2=\\sec^2$. Once a messy expression has been rewritten in $t$, it is an ordinary rational function, which is why this substitution appears in hard problems about the extremes of triangle expressions.",
+      "keyFacts": [
+        "If $A+B+C=\\pi$ then $\\tan A+\\tan B+\\tan C=\\tan A\\tan B\\tan C$",
+        "$\\cot A\\cot B+\\cot B\\cot C+\\cot C\\cot A=1$ in any triangle",
+        "$\\sin x=\\frac{2t}{1+t^2}$ and $\\cos x=\\frac{1-t^2}{1+t^2}$ where $t=\\tan\\frac{x}{2}$"
+      ],
+      "whenToUse": "A triangle with a tangent or cotangent condition on its angles, or a rational expression in $\\sin$ and $\\cos$ that calls for the substitution $t=\\tan\\frac x2$.",
+      "commonMistakes": [
+        "Applying $\\tan A+\\tan B+\\tan C=\\tan A\\tan B\\tan C$ to a right triangle, where one tangent is undefined.",
+        "Forgetting the sign: an obtuse angle has a negative tangent."
+      ],
+      "example": {
+        "problem": "In triangle $ABC$, $\\tan A=1$ and $\\tan B=2$. Find $\\tan A+\\tan B+\\tan C$.",
+        "solution": "By the identity, $\\tan A+\\tan B+\\tan C=\\tan A\\tan B\\tan C$. Here $\\tan C=-\\tan(A+B)=-\\frac{1+2}{1-2}=3$. The sum is $1+2+3=6$, and the product is also $1\\cdot2\\cdot3=6$.",
+        "answer": "6",
+        "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\nA = math.atan(1.0)\nB = math.atan(2.0)\nC = math.pi - A - B\ntA, tB, tC = math.tan(A), math.tan(B), math.tan(C)\nassert abs((tA + tB + tC) - tA * tB * tC) < 1e-9\nprint(round(tA + tB + tC))\n"
+      }
+    }
+  ],
+  "strategies": [
+    {
+      "name": "Reduce to a reference angle first",
+      "description": "Before doing any algebra, rewrite every angle as a reference angle plus a sign from the quadrant. Most sign errors come from skipping this step, and it turns many problems into lookups on the unit circle."
+    },
+    {
+      "name": "Square a symmetric sum",
+      "description": "When a problem gives $\\sin x+\\cos x$ or $\\sin x-\\cos x$, square it. The Pythagorean identity converts the square into the product $\\sin x\\cos x$, which is often what is asked for, and no quadrant analysis is needed."
+    },
+    {
+      "name": "Turn sums into products and back",
+      "description": "Sums of sines and cosines factor through the sum-to-product identities, and products telescope through product-to-sum. Try the form that makes a factor of $\\sin$ or $\\cos$ of a common angle appear, because a shared factor is what makes an equation solvable."
+    },
+    {
+      "name": "Use the triangle constraint",
+      "description": "When $A+B+C=\\pi$ appears, replace $C$ by $\\pi-A-B$ and use the tangent or cotangent identities. Remember that the largest angle can be obtuse, so its cosine and tangent are negative."
+    },
+    {
+      "name": "Count by period and symmetry",
+      "description": "To count solutions in an interval, find the period of the equation, count within one period, and multiply. Check endpoints, and merge overlapping solution sets from different factors rather than adding them."
+    },
+    {
+      "name": "Reduce to one variable, then optimize",
+      "description": "Expressions in $\\sin^2$ and $\\cos^2$ depend only on a single symmetric quantity such as $\\sin^2x\\cos^2x$ or $\\sin^22x$. Substitute it, check monotonicity, and read off the extreme value at an endpoint of the allowed range."
+    },
+    {
+      "name": "Check with special angles",
+      "description": "Plug in $0$, $\\frac{\\pi}{6}$, $\\frac{\\pi}{4}$, $\\frac{\\pi}{3}$, $\\frac{\\pi}{2}$ and the equilateral triangle to test a conjectured identity or answer. Cheap checks catch the sign and factor-of-two errors that dominate wrong answers."
+    }
+  ],
+  "workedExamples": [
+    {
+      "title": "Complementary values on the circle",
+      "difficulty": 1,
+      "problem": "Evaluate $\\sin\\frac{11\\pi}{6}+\\cos\\frac{5\\pi}{3}$.",
+      "choices": [
+        "$-1$",
+        "$-\\frac{1}{2}$",
+        "$0$",
+        "$\\frac{1}{2}$",
+        "$1$"
+      ],
+      "answer": "C",
+      "approach": "Both angles lie in quadrant IV, so reduce each to a reference angle and track the sign.",
+      "steps": [
+        "$\\frac{11\\pi}{6}=2\\pi-\\frac{\\pi}{6}$ lies in quadrant IV, where sine is negative, so $\\sin\\frac{11\\pi}{6}=-\\sin\\frac{\\pi}{6}=-\\frac12$.",
+        "$\\frac{5\\pi}{3}=2\\pi-\\frac{\\pi}{3}$ also lies in quadrant IV, where cosine is positive, so $\\cos\\frac{5\\pi}{3}=\\cos\\frac{\\pi}{3}=\\frac12$.",
+        "Adding the two values gives $-\\frac12+\\frac12=0$.",
+        "The sign check agrees: quadrant IV has a negative sine and a positive cosine, and these cancel exactly."
+      ],
+      "alternative": "",
+      "takeaway": "Reduce each angle to its reference angle and let the quadrant fix the sign.",
+      "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\nval = math.sin(11 * math.pi / 6) + math.cos(5 * math.pi / 3)\nprint(pick(val, [(-1, \"-1\"), (-0.5, r\"-\\frac{1}{2}\"), (0, \"0\"), (0.5, r\"\\frac{1}{2}\"), (1, \"1\")]))\n"
+    },
+    {
+      "title": "A half-angle ratio",
+      "difficulty": 2,
+      "problem": "If $\\tan x=2$, find $\\dfrac{\\sin 2x}{1+\\cos 2x}$.",
+      "choices": [
+        "$\\frac{1}{2}$",
+        "$1$",
+        "$2$",
+        "$3$",
+        "$4$"
+      ],
+      "answer": "C",
+      "approach": "Recognize $1+\\cos2x=2\\cos^2x$, which cancels against $\\sin2x$.",
+      "steps": [
+        "Use $\\sin2x=2\\sin x\\cos x$ and $1+\\cos2x=2\\cos^2x$.",
+        "The ratio becomes $\\frac{2\\sin x\\cos x}{2\\cos^2x}=\\frac{\\sin x}{\\cos x}=\\tan x$.",
+        "Since $\\tan x=2$, the value is $2$.",
+        "No quadrant issue arises, because the cosine cancels without taking a root."
+      ],
+      "alternative": "Use $\\sin2x=\\frac{2\\tan x}{1+\\tan^2x}=\\frac45$ and $\\cos2x=\\frac{1-\\tan^2x}{1+\\tan^2x}=-\\frac35$, so the ratio is $\\frac{4/5}{2/5}=2$.",
+      "takeaway": "The ratio $\\frac{\\sin2x}{1+\\cos2x}$ is $\\tan x$; spot it before expanding.",
+      "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\nx = math.atan(2.0)\nval = math.sin(2 * x) / (1 + math.cos(2 * x))\nprint(pick(val, [(0.5, r\"\\frac{1}{2}\"), (1, \"1\"), (2, \"2\"), (3, \"3\"), (4, \"4\")]))\n"
+    },
+    {
+      "title": "Square the sum",
+      "difficulty": 3,
+      "problem": "If $\\sin x+\\cos x=\\frac12$, find $\\sin x\\cos x$.",
+      "choices": [
+        "$-\\frac{1}{2}$",
+        "$-\\frac{3}{8}$",
+        "$-\\frac{1}{4}$",
+        "$\\frac{3}{8}$",
+        "$\\frac{1}{2}$"
+      ],
+      "answer": "B",
+      "approach": "Square the given sum, since the square contains exactly the product that is requested.",
+      "steps": [
+        "Square both sides: $(\\sin x+\\cos x)^2=\\frac14$.",
+        "Expand: $\\sin^2x+2\\sin x\\cos x+\\cos^2x=\\frac14$.",
+        "Apply $\\sin^2x+\\cos^2x=1$ to get $1+2\\sin x\\cos x=\\frac14$.",
+        "Solve: $\\sin x\\cos x=\\frac12\\left(\\frac14-1\\right)=-\\frac38$.",
+        "Existence: $\\frac12\\le\\sqrt2$, so the equation has solutions in $[0,2\\pi)$ and the value is attained."
+      ],
+      "alternative": "",
+      "takeaway": "When a symmetric sum of sine and cosine is given, square it to read off the product.",
+      "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\ndef f(x):\n    return math.sin(x) + math.cos(x) - 0.5\nN = 200000\nprods = []\nfor i in range(N):\n    x0, x1 = 2 * math.pi * i / N, 2 * math.pi * (i + 1) / N\n    if f(x0) * f(x1) < 0:\n        lo, hi = x0, x1\n        for _ in range(100):\n            mid = (lo + hi) / 2\n            if f(lo) * f(mid) <= 0:\n                hi = mid\n            else:\n                lo = mid\n        x = (lo + hi) / 2\n        prods.append(math.sin(x) * math.cos(x))\nassert len(prods) == 2 and abs(prods[0] - prods[1]) < 1e-9\nprint(pick(prods[0], [(-0.5, r\"-\\frac{1}{2}\"), (-0.375, r\"-\\frac{3}{8}\"), (-0.25, r\"-\\frac{1}{4}\"), (0.375, r\"\\frac{3}{8}\"), (0.5, r\"\\frac{1}{2}\")]))\n"
+    },
+    {
+      "title": "Angles and sides in an obtuse triangle",
+      "difficulty": 4,
+      "problem": "In triangle $ABC$, $\\cos A=\\frac35$ and $\\sin B=\\frac{5}{13}$, where $\\angle B$ is acute. Find $\\cos C$.",
+      "choices": [
+        "$-\\frac{56}{65}$",
+        "$-\\frac{33}{65}$",
+        "$-\\frac{16}{65}$",
+        "$\\frac{16}{65}$",
+        "$\\frac{33}{65}$"
+      ],
+      "answer": "C",
+      "approach": "Get the sine of $A$ and the cosine of $B$ from the data, then use $C=\\pi-(A+B)$.",
+      "steps": [
+        "Since $A$ is acute with $\\cos A=\\frac35$, we have $\\sin A=\\frac45$.",
+        "Since $B$ is acute with $\\sin B=\\frac5{13}$, we have $\\cos B=\\frac{12}{13}$.",
+        "Compute $\\cos(A+B)=\\cos A\\cos B-\\sin A\\sin B=\\frac{36}{65}-\\frac{20}{65}=\\frac{16}{65}$.",
+        "Since $C=\\pi-(A+B)$, we get $\\cos C=-\\cos(A+B)=-\\frac{16}{65}$.",
+        "Sanity check: $C\\approx104^\\circ$ is obtuse, so a negative cosine is correct."
+      ],
+      "alternative": "",
+      "takeaway": "The third angle of a triangle is determined by the other two; compute its cosine through the sum formula and watch for obtuseness.",
+      "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\nA = math.acos(3 / 5)\nB = math.asin(5 / 13)\nC = math.pi - A - B\nval = math.cos(C)\nprint(pick(val, [(-56 / 65, r\"-\\frac{56}{65}\"), (-33 / 65, r\"-\\frac{33}{65}\"), (-16 / 65, r\"-\\frac{16}{65}\"), (16 / 65, r\"\\frac{16}{65}\"), (33 / 65, r\"\\frac{33}{65}\")]))\n"
+    },
+    {
+      "title": "A telescoping cosine sum",
+      "difficulty": 4,
+      "problem": "Find $\\cos\\frac{\\pi}{7}+\\cos\\frac{3\\pi}{7}+\\cos\\frac{5\\pi}{7}$.",
+      "choices": [
+        "$\\frac{1}{4}$",
+        "$\\frac{1}{2}$",
+        "$\\frac{3}{4}$",
+        "$1$",
+        "$\\frac{3}{2}$"
+      ],
+      "answer": "B",
+      "approach": "Multiply by $2\\sin\\frac{\\pi}{7}$ so that each term becomes a difference of sines.",
+      "steps": [
+        "Let $S$ be the sum, and use $2\\sin a\\cos b=\\sin(a+b)-\\sin(b-a)$ with $a=\\frac{\\pi}{7}$.",
+        "Then $2\\sin\\frac{\\pi}{7}\\cos\\frac{(2j-1)\\pi}{7}=\\sin\\frac{2j\\pi}{7}-\\sin\\frac{(2j-2)\\pi}{7}$ for $j=1,2,3$.",
+        "Summing over $j$ telescopes to $\\sin\\frac{6\\pi}{7}$.",
+        "Since $\\sin\\frac{6\\pi}{7}=\\sin\\frac{\\pi}{7}$, we get $2S\\sin\\frac{\\pi}{7}=\\sin\\frac{\\pi}{7}$, so $S=\\frac12$."
+      ],
+      "alternative": "Numerically, $0.9010+0.2225-0.6235=0.5$, which confirms the telescoped result.",
+      "takeaway": "A cosine sum over odd multiples of a base angle telescopes after multiplying by $2\\sin$ of that base angle.",
+      "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\nval = math.cos(math.pi / 7) + math.cos(3 * math.pi / 7) + math.cos(5 * math.pi / 7)\nprint(pick(val, [(0.25, r\"\\frac{1}{4}\"), (0.5, r\"\\frac{1}{2}\"), (0.75, r\"\\frac{3}{4}\"), (1, \"1\"), (1.5, r\"\\frac{3}{2}\")]))\n"
+    },
+    {
+      "title": "Minimizing a sum of fourth powers",
+      "difficulty": 5,
+      "problem": "Find the minimum value of $\\sec^4x+\\csc^4x$ for $0<x<\\frac{\\pi}{2}$.",
+      "choices": [
+        "$4$",
+        "$6$",
+        "$8$",
+        "$10$",
+        "$16$"
+      ],
+      "answer": "C",
+      "approach": "Write the expression over $\\sin^4x\\cos^4x$ and note that everything depends on $p=\\sin^2x\\cos^2x$.",
+      "steps": [
+        "Combine: $\\sec^4x+\\csc^4x=\\frac{\\sin^4x+\\cos^4x}{\\sin^4x\\cos^4x}$.",
+        "Let $p=\\sin^2x\\cos^2x$. Then $\\sin^4x+\\cos^4x=(\\sin^2x+\\cos^2x)^2-2p=1-2p$.",
+        "The expression equals $\\frac{1-2p}{p^2}$, which is decreasing in $p$ on $(0,\\frac14]$ because its derivative is $\\frac{2p(p-1)}{p^4}<0$.",
+        "Since $p\\le\\frac14$ with equality at $x=\\frac{\\pi}{4}$, the minimum is at $p=\\frac14$, giving $\\frac{1/2}{1/16}=8$."
+      ],
+      "alternative": "Set $u=\\sin^22x$. Then $p=\\frac u4$ and the expression is $\\frac{16-8u}{u^2}$, which is minimized at $u=1$ with value $8$.",
+      "takeaway": "Reduce a symmetric trig expression to a single quantity such as $\\sin^2x\\cos^2x$ and optimize there.",
+      "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\nN = 200000\nval = min(1 / math.cos(x) ** 4 + 1 / math.sin(x) ** 4 for x in (math.pi / 2 * i / N for i in range(1, N)))\nprint(pick(val, [(4, \"4\"), (6, \"6\"), (8, \"8\"), (10, \"10\"), (16, \"16\")], tol=1e-6))\n"
+    }
+  ],
+  "problems": [
+    {
+      "id": "trig-01",
+      "difficulty": 1,
+      "problem": "Find $\\tan\\frac{5\\pi}{4}+\\sec\\frac{\\pi}{3}$.",
+      "choices": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "answer": "C",
+      "hint": "Find the reference angle of $\\frac{5\\pi}{4}$, and recall that $\\sec\\theta=\\frac{1}{\\cos\\theta}$.",
+      "solution": "Since $\\frac{5\\pi}{4}=\\pi+\\frac{\\pi}{4}$, its tangent equals $\\tan\\frac{\\pi}{4}=1$, because tangent has period $\\pi$. Also $\\cos\\frac{\\pi}{3}=\\frac12$, so $\\sec\\frac{\\pi}{3}=2$. The total is $1+2=3$.",
+      "concepts": [
+        0,
+        1
+      ],
+      "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\nval = math.tan(5 * math.pi / 4) + 1 / math.cos(math.pi / 3)\nprint(pick(val, [(1, \"1\"), (2, \"2\"), (3, \"3\"), (4, \"4\"), (5, \"5\")]))\n"
+    },
+    {
+      "id": "trig-02",
+      "difficulty": 1,
+      "problem": "Suppose $\\theta$ is acute with $\\sin\\theta=\\frac35$. Find $\\cos\\theta$.",
+      "choices": [
+        "$\\frac{1}{5}$",
+        "$\\frac{3}{5}$",
+        "$\\frac{2}{3}$",
+        "$\\frac{4}{5}$",
+        "$\\frac{12}{13}$"
+      ],
+      "answer": "D",
+      "hint": "Use the Pythagorean identity and remember that the angle is acute, so the cosine is positive.",
+      "solution": "Since $\\cos^2\\theta=1-\\frac{9}{25}=\\frac{16}{25}$ and $\\cos\\theta>0$, we get $\\cos\\theta=\\frac45$. This is the familiar $3$-$4$-$5$ triangle. The value $\\frac{12}{13}$ is the cosine of the angle whose sine is $\\frac{5}{13}$, a different angle.",
+      "concepts": [
+        1
+      ],
+      "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\nval = math.cos(math.asin(3 / 5))\nprint(pick(val, [(1 / 5, r\"\\frac{1}{5}\"), (3 / 5, r\"\\frac{3}{5}\"), (2 / 3, r\"\\frac{2}{3}\"), (4 / 5, r\"\\frac{4}{5}\"), (12 / 13, r\"\\frac{12}{13}\")]))\n"
+    },
+    {
+      "id": "trig-03",
+      "difficulty": 1,
+      "problem": "Compute $\\sin^2 10^\\circ+\\sin^2 80^\\circ$.",
+      "choices": [
+        "$\\frac{1}{2}$",
+        "1",
+        "$\\sqrt{2}$",
+        "2",
+        "3"
+      ],
+      "answer": "B",
+      "hint": "Notice that $80^\\circ$ and $10^\\circ$ are complementary.",
+      "solution": "Since $\\sin 80^\\circ=\\cos 10^\\circ$, the sum is $\\sin^2 10^\\circ+\\cos^2 10^\\circ=1$. Recognizing complementary angles is the entire problem.",
+      "concepts": [
+        1
+      ],
+      "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\nval = math.sin(math.radians(10)) ** 2 + math.sin(math.radians(80)) ** 2\nprint(pick(val, [(0.5, r\"\\frac{1}{2}\"), (1, \"1\"), (math.sqrt(2), r\"\\sqrt{2}\"), (2, \"2\"), (3, \"3\")]))\n"
+    },
+    {
+      "id": "trig-04",
+      "difficulty": 1,
+      "problem": "The point on the unit circle at angle $\\frac{2\\pi}{3}$ has coordinates $(a,b)$. Find $a+b$.",
+      "choices": [
+        "$\\frac{-1-\\sqrt{3}}{2}$",
+        "$-\\frac{1}{2}$",
+        "$\\frac{\\sqrt{3}-1}{2}$",
+        "$\\frac{1}{2}$",
+        "$\\frac{1+\\sqrt{3}}{2}$"
+      ],
+      "answer": "C",
+      "hint": "The angle $\\frac{2\\pi}{3}$ lies in quadrant II with reference angle $\\frac{\\pi}{3}$.",
+      "solution": "The point at angle $\\frac{2\\pi}{3}$ is $\\left(-\\frac12,\\frac{\\sqrt3}{2}\\right)$, since cosine is negative and sine positive in quadrant II. Adding the coordinates gives $\\frac{\\sqrt3-1}{2}$.",
+      "concepts": [
+        0
+      ],
+      "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\nval = math.cos(2 * math.pi / 3) + math.sin(2 * math.pi / 3)\nprint(pick(val, [(-(1 + math.sqrt(3)) / 2, r\"\\frac{-1-\\sqrt{3}}{2}\"), (-0.5, r\"-\\frac{1}{2}\"), ((math.sqrt(3) - 1) / 2, r\"\\frac{\\sqrt{3}-1}{2}\"), (0.5, r\"\\frac{1}{2}\"), ((1 + math.sqrt(3)) / 2, r\"\\frac{1+\\sqrt{3}}{2}\")]))\n"
+    },
+    {
+      "id": "trig-05",
+      "difficulty": 1,
+      "problem": "Compute $\\sin45^\\circ\\cos15^\\circ-\\cos45^\\circ\\sin15^\\circ$.",
+      "choices": [
+        "$\\frac{1}{2}$",
+        "$\\frac{\\sqrt{2}}{2}$",
+        "$\\frac{\\sqrt{3}}{2}$",
+        "1",
+        "$\\sqrt{3}$"
+      ],
+      "answer": "A",
+      "hint": "This is exactly the right-hand side of a difference formula.",
+      "solution": "By $\\sin(a-b)=\\sin a\\cos b-\\cos a\\sin b$ with $a=45^\\circ$ and $b=15^\\circ$, the expression equals $\\sin30^\\circ=\\frac12$. Adding instead of subtracting would give $\\sin60^\\circ$, which is the trap.",
+      "concepts": [
+        2
+      ],
+      "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\nval = math.sin(math.radians(45)) * math.cos(math.radians(15)) - math.cos(math.radians(45)) * math.sin(math.radians(15))\nprint(pick(val, [(0.5, r\"\\frac{1}{2}\"), (math.sqrt(2) / 2, r\"\\frac{\\sqrt{2}}{2}\"), (math.sqrt(3) / 2, r\"\\frac{\\sqrt{3}}{2}\"), (1, \"1\"), (math.sqrt(3), r\"\\sqrt{3}\")]))\n"
+    },
+    {
+      "id": "trig-06",
+      "difficulty": 1,
+      "problem": "An angle measures $150^\\circ$. Write its measure in radians as $c\\pi$. What is $c$?",
+      "choices": [
+        "$\\frac{1}{3}$",
+        "$\\frac{1}{2}$",
+        "$\\frac{2}{3}$",
+        "$\\frac{3}{4}$",
+        "$\\frac{5}{6}$"
+      ],
+      "answer": "E",
+      "hint": "Use $180^\\circ=\\pi$ radians.",
+      "solution": "Since $180^\\circ=\\pi$, we have $150^\\circ=\\frac{150}{180}\\pi=\\frac56\\pi$. The distractor $\\frac34$ would correspond to $135^\\circ$.",
+      "concepts": [
+        0
+      ],
+      "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\nval = math.radians(150) / math.pi\nprint(pick(val, [(1 / 3, r\"\\frac{1}{3}\"), (1 / 2, r\"\\frac{1}{2}\"), (2 / 3, r\"\\frac{2}{3}\"), (3 / 4, r\"\\frac{3}{4}\"), (5 / 6, r\"\\frac{5}{6}\")]))\n"
+    },
+    {
+      "id": "trig-07",
+      "difficulty": 2,
+      "problem": "Evaluate $\\dfrac{1-\\cos 2x}{\\sin 2x}$ at $x=\\dfrac{\\pi}{6}$.",
+      "choices": [
+        "$\\frac{1}{2}$",
+        "$\\frac{\\sqrt{3}}{3}$",
+        "$\\frac{\\sqrt{2}}{2}$",
+        "1",
+        "$\\sqrt{3}$"
+      ],
+      "answer": "B",
+      "hint": "Use $1-\\cos2x=2\\sin^2x$ and $\\sin 2x=2\\sin x\\cos x$.",
+      "solution": "The ratio simplifies to $\\tan x$, so at $x=\\frac{\\pi}{6}$ it equals $\\frac{1}{\\sqrt3}=\\frac{\\sqrt3}{3}$. Directly: $\\frac{1-\\cos\\frac\\pi3}{\\sin\\frac\\pi3}=\\frac{1/2}{\\sqrt3/2}=\\frac{\\sqrt3}{3}$.",
+      "concepts": [
+        2
+      ],
+      "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\nx = math.pi / 6\nval = (1 - math.cos(2 * x)) / math.sin(2 * x)\nprint(pick(val, [(0.5, r\"\\frac{1}{2}\"), (math.sqrt(3) / 3, r\"\\frac{\\sqrt{3}}{3}\"), (math.sqrt(2) / 2, r\"\\frac{\\sqrt{2}}{2}\"), (1, \"1\"), (math.sqrt(3), r\"\\sqrt{3}\")]))\n"
+    },
+    {
+      "id": "trig-08",
+      "difficulty": 2,
+      "problem": "Suppose $\\cos x=\\frac13$ with $0<x<\\frac{\\pi}{2}$. Find $\\cos 2x$.",
+      "choices": [
+        "$-\\frac{8}{9}$",
+        "$-\\frac{5}{6}$",
+        "$-\\frac{7}{9}$",
+        "$-\\frac{1}{3}$",
+        "$\\frac{1}{9}$"
+      ],
+      "answer": "C",
+      "hint": "Use $\\cos2x=2\\cos^2x-1$.",
+      "solution": "Using $\\cos 2x=2\\cos^2x-1$ gives $2\\cdot\\frac19-1=-\\frac79$. Using the other form $1-2\\sin^2x$ with $\\sin^2x=\\frac89$ gives the same value, which is a useful check. The distractor $-\\frac13$ comes from confusing $\\cos 2x$ with $2\\cos x$ and then subtracting.",
+      "concepts": [
+        2
+      ],
+      "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\nx = math.acos(1 / 3)\nval = math.cos(2 * x)\nprint(pick(val, [(-8 / 9, r\"-\\frac{8}{9}\"), (-5 / 6, r\"-\\frac{5}{6}\"), (-7 / 9, r\"-\\frac{7}{9}\"), (-1 / 3, r\"-\\frac{1}{3}\"), (1 / 9, r\"\\frac{1}{9}\")]))\n"
+    },
+    {
+      "id": "trig-09",
+      "difficulty": 2,
+      "problem": "In triangle $PQR$, $PQ=5$, $PR=8$ and $QR=7$. Find $\\cos\\angle P$.",
+      "choices": [
+        "$\\frac{1}{7}$",
+        "$\\frac{1}{4}$",
+        "$\\frac{1}{3}$",
+        "$\\frac{1}{2}$",
+        "$\\frac{5}{7}$"
+      ],
+      "answer": "D",
+      "hint": "The angle at $P$ is opposite the side $QR=7$. Use the law of cosines.",
+      "solution": "By the law of cosines, $\\cos P=\\frac{PQ^2+PR^2-QR^2}{2\\cdot PQ\\cdot PR}=\\frac{25+64-49}{80}=\\frac12$. Using the wrong opposite side would give a different value.",
+      "concepts": [
+        4
+      ],
+      "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\nQ = (5.0, 0.0)\nR = (4.0, math.sqrt(48))\nassert abs(math.hypot(R[0] - Q[0], R[1] - Q[1]) - 7) < 1e-9\nassert abs(math.hypot(*R) - 8) < 1e-9\nval = (Q[0] * R[0] + Q[1] * R[1]) / (math.hypot(*Q) * math.hypot(*R))\nprint(pick(val, [(1 / 7, r\"\\frac{1}{7}\"), (1 / 4, r\"\\frac{1}{4}\"), (1 / 3, r\"\\frac{1}{3}\"), (1 / 2, r\"\\frac{1}{2}\"), (5 / 7, r\"\\frac{5}{7}\")]))\n"
+    },
+    {
+      "id": "trig-10",
+      "difficulty": 2,
+      "problem": "Two sides of a triangle have lengths $4$ and $6$, and the angle between them is $30^\\circ$. Find the area of the triangle.",
+      "choices": [
+        "3",
+        "6",
+        "8",
+        "10",
+        "12"
+      ],
+      "answer": "B",
+      "hint": "Place one vertex at the origin and use the shoelace formula, or use $\\frac12ab\\sin C$.",
+      "solution": "The area is $\\frac12\\cdot4\\cdot6\\cdot\\sin30^\\circ=\\frac12\\cdot24\\cdot\\frac12=6$. The choice $12$ comes from forgetting the sine factor.",
+      "concepts": [
+        4
+      ],
+      "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\nP0 = (0.0, 0.0)\nQ = (4.0, 0.0)\nR = (6 * math.cos(math.radians(30)), 6 * math.sin(math.radians(30)))\nval = 0.5 * abs(Q[0] * R[1] - Q[1] * R[0])\nprint(pick(val, [(3, \"3\"), (6, \"6\"), (8, \"8\"), (10, \"10\"), (12, \"12\")]))\n"
+    },
+    {
+      "id": "trig-11",
+      "difficulty": 2,
+      "problem": "How many solutions does $\\sin x=\\frac12$ have in the interval $[0,4\\pi)$?",
+      "choices": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "6"
+      ],
+      "answer": "D",
+      "hint": "Count the solutions in one period of length $2\\pi$, then multiply.",
+      "solution": "In each period $2\\pi$ the equation $\\sin x=\\frac12$ has exactly two solutions. The interval $[0,4\\pi)$ contains two periods, giving $4$ solutions: $\\frac\\pi6,\\frac{5\\pi}6,\\frac{13\\pi}6,\\frac{17\\pi}6$.",
+      "concepts": [
+        5
+      ],
+      "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\nN = 400000\nL = 4 * math.pi\nf = [math.sin(L * i / N) - 0.5 for i in range(N)]\ncnt = sum(1 for v in f if v == 0) + sum(1 for i in range(N - 1) if f[i] * f[i + 1] < 0)\nprint(cnt)\n"
+    },
+    {
+      "id": "trig-12",
+      "difficulty": 2,
+      "problem": "Evaluate $\\arcsin\\left(\\sin\\frac{5\\pi}{4}\\right)$.",
+      "choices": [
+        "$-\\frac{\\pi}{2}$",
+        "$-\\frac{\\pi}{3}$",
+        "$-\\frac{\\pi}{4}$",
+        "$\\frac{\\pi}{4}$",
+        "$\\frac{5\\pi}{4}$"
+      ],
+      "answer": "C",
+      "hint": "The output of $\\arcsin$ must lie in $[-\\frac\\pi2,\\frac\\pi2]$.",
+      "solution": "We have $\\sin\\frac{5\\pi}{4}=-\\frac{\\sqrt2}{2}$. The angle in $[-\\frac{\\pi}{2},\\frac{\\pi}{2}]$ with that sine is $-\\frac\\pi4$. The naive value $\\frac{5\\pi}4$ lies outside the range of $\\arcsin$.",
+      "concepts": [
+        6
+      ],
+      "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\nval = math.asin(math.sin(5 * math.pi / 4))\nprint(pick(val, [(-math.pi / 2, r\"-\\frac{\\pi}{2}\"), (-math.pi / 3, r\"-\\frac{\\pi}{3}\"), (-math.pi / 4, r\"-\\frac{\\pi}{4}\"), (math.pi / 4, r\"\\frac{\\pi}{4}\"), (5 * math.pi / 4, r\"\\frac{5\\pi}{4}\")]))\n"
+    },
+    {
+      "id": "trig-13",
+      "difficulty": 3,
+      "problem": "Find $\\cos 20^\\circ\\cos 40^\\circ\\cos 80^\\circ$.",
+      "choices": [
+        "$\\frac{1}{8}$",
+        "$\\frac{1}{4}$",
+        "$\\frac{3}{8}$",
+        "$\\frac{1}{2}$",
+        "$\\frac{3}{4}$"
+      ],
+      "answer": "A",
+      "hint": "Multiply by $\\sin20^\\circ$ and use $2\\sin y\\cos y=\\sin 2y$ repeatedly.",
+      "solution": "Let $P$ be the product. Then $8\\sin20^\\circ\\cdot P=\\sin160^\\circ=\\sin20^\\circ$ after three doublings, so $P=\\frac18$. The product-to-sum method is cleanest for this shape.",
+      "concepts": [
+        3
+      ],
+      "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\nval = math.cos(math.radians(20)) * math.cos(math.radians(40)) * math.cos(math.radians(80))\nprint(pick(val, [(1 / 8, r\"\\frac{1}{8}\"), (1 / 4, r\"\\frac{1}{4}\"), (3 / 8, r\"\\frac{3}{8}\"), (1 / 2, r\"\\frac{1}{2}\"), (3 / 4, r\"\\frac{3}{4}\")]))\n"
+    },
+    {
+      "id": "trig-14",
+      "difficulty": 3,
+      "problem": "If $\\sin\\theta=\\frac13$, find $\\sin3\\theta$.",
+      "choices": [
+        "$\\frac{1}{3}$",
+        "$\\frac{5}{9}$",
+        "$\\frac{2}{3}$",
+        "$\\frac{7}{9}$",
+        "$\\frac{23}{27}$"
+      ],
+      "answer": "E",
+      "hint": "Use the triple-angle identity $\\sin3\\theta=3\\sin\\theta-4\\sin^3\\theta$.",
+      "solution": "We get $3\\cdot\\frac13-4\\cdot\\frac{1}{27}=1-\\frac{4}{27}=\\frac{23}{27}$. The triple-angle identity comes from the sum formula with $\\sin(2\\theta+\\theta)$.",
+      "concepts": [
+        2
+      ],
+      "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\nval = math.sin(3 * math.asin(1 / 3))\nprint(pick(val, [(1 / 3, r\"\\frac{1}{3}\"), (5 / 9, r\"\\frac{5}{9}\"), (2 / 3, r\"\\frac{2}{3}\"), (7 / 9, r\"\\frac{7}{9}\"), (23 / 27, r\"\\frac{23}{27}\")]))\n"
+    },
+    {
+      "id": "trig-15",
+      "difficulty": 3,
+      "problem": "In triangle $ABC$, $a=2$, $\\angle A=30^\\circ$ and $\\angle B=45^\\circ$. Find $b$.",
+      "choices": [
+        "$\\sqrt{2}$",
+        "$2\\sqrt{2}$",
+        "3",
+        "$2\\sqrt{3}$",
+        "4"
+      ],
+      "answer": "B",
+      "hint": "The law of sines relates a side to the sine of its opposite angle.",
+      "solution": "By the law of sines, $b=\\frac{a\\sin B}{\\sin A}=\\frac{2\\sin45^\\circ}{\\sin30^\\circ}=\\frac{\\sqrt2}{1/2}=2\\sqrt2$.",
+      "concepts": [
+        4
+      ],
+      "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\nval = 2 * math.sin(math.radians(45)) / math.sin(math.radians(30))\nprint(pick(val, [(math.sqrt(2), r\"\\sqrt{2}\"), (2 * math.sqrt(2), r\"2\\sqrt{2}\"), (3, \"3\"), (2 * math.sqrt(3), r\"2\\sqrt{3}\"), (4, \"4\")]))\n"
+    },
+    {
+      "id": "trig-16",
+      "difficulty": 3,
+      "problem": "How many solutions does $2\\sin^2x-3\\sin x+1=0$ have in $[0,2\\pi)$?",
+      "choices": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "answer": "D",
+      "hint": "Factor the quadratic in $\\sin x$ and count the solutions of each factor separately.",
+      "solution": "The equation factors as $(2\\sin x-1)(\\sin x-1)=0$. The factor $\\sin x=\\frac12$ gives $\\frac\\pi6$ and $\\frac{5\\pi}6$, and the factor $\\sin x=1$ gives $\\frac\\pi2$. These three are distinct, so there are $3$ solutions.",
+      "concepts": [
+        5
+      ],
+      "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\nN = 400000\nxs = [2 * math.pi * i / N for i in range(N)]\ng = [abs(2 * math.sin(x) ** 2 - 3 * math.sin(x) + 1) for x in xs]\nhits = []\nfor i in range(N):\n    if g[i] < 1e-4 and g[i] <= g[i - 1] and g[i] <= g[(i + 1) % N]:\n        hits.append(xs[i])\nroots = []\nfor x in hits:\n    if not roots or x - roots[-1] > 1e-3:\n        roots.append(x)\nprint(len(roots))\n"
+    },
+    {
+      "id": "trig-17",
+      "difficulty": 3,
+      "problem": "Find the maximum value of $3\\sin\\theta+4\\cos\\theta$.",
+      "choices": [
+        "5",
+        "6",
+        "7",
+        "10",
+        "12"
+      ],
+      "answer": "A",
+      "hint": "Write the expression as $R\\sin(\\theta+\\varphi)$ with $R=\\sqrt{3^2+4^2}$.",
+      "solution": "The amplitude is $\\sqrt{3^2+4^2}=5$, so the maximum is $5$. The value $7=3+4$ is the common error of adding the coefficients.",
+      "concepts": [
+        7
+      ],
+      "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\nN = 200000\nval = max(3 * math.sin(2 * math.pi * i / N) + 4 * math.cos(2 * math.pi * i / N) for i in range(N))\nprint(pick(val, [(5, \"5\"), (6, \"6\"), (7, \"7\"), (10, \"10\"), (12, \"12\")], tol=1e-6))\n"
+    },
+    {
+      "id": "trig-18",
+      "difficulty": 3,
+      "problem": "Find $\\tan\\left(\\arcsin\\frac{3}{5}\\right)$.",
+      "choices": [
+        "$\\frac{1}{3}$",
+        "$\\frac{1}{2}$",
+        "$\\frac{3}{5}$",
+        "$\\frac{3}{4}$",
+        "$\\frac{5}{4}$"
+      ],
+      "answer": "D",
+      "hint": "Draw the right triangle with hypotenuse $5$ and opposite side $3$.",
+      "solution": "Let $\\theta=\\arcsin\\frac35$. Then the adjacent side is $4$, so $\\tan\\theta=\\frac34$. The value $\\frac35$ is the sine, not the tangent.",
+      "concepts": [
+        6
+      ],
+      "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\nval = math.tan(math.asin(3 / 5))\nprint(pick(val, [(1 / 3, r\"\\frac{1}{3}\"), (1 / 2, r\"\\frac{1}{2}\"), (3 / 5, r\"\\frac{3}{5}\"), (3 / 4, r\"\\frac{3}{4}\"), (5 / 4, r\"\\frac{5}{4}\")]))\n"
+    },
+    {
+      "id": "trig-19",
+      "difficulty": 3,
+      "problem": "What is the smallest positive period of $f(x)=\\sin^2 x+\\cos 3x$?",
+      "choices": [
+        "$\\frac{\\pi}{2}$",
+        "$\\pi$",
+        "$\\frac{5\\pi}{4}$",
+        "$\\frac{3\\pi}{2}$",
+        "$2\\pi$"
+      ],
+      "answer": "E",
+      "hint": "Find the periods of $\\sin^2x$ and of $\\cos3x$ separately, then take a common period.",
+      "solution": "The function $\\sin^2x=\\frac{1-\\cos2x}{2}$ has period $\\pi$, and $\\cos3x$ has period $\\frac{2\\pi}{3}$. A common period $m\\pi=n\\cdot\\frac{2\\pi}{3}$ needs $3m=2n$, so $m=2$ and $T=2\\pi$. The period $\\pi$ fails because $\\cos3(x+\\pi)=-\\cos3x$.",
+      "concepts": [
+        8
+      ],
+      "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\ndef f(x):\n    return math.sin(x) ** 2 + math.cos(3 * x)\npts = [0.1, 0.7, 1.9, 2.6, 4.2, 5.5]\ndef is_period(T):\n    return all(abs(f(x + T) - f(x)) < 1e-9 for x in pts)\nk = next(k for k in range(1, 601) if is_period(k * math.pi / 60))\nprint(pick(k * math.pi / 60, [(math.pi / 2, r\"\\frac{\\pi}{2}\"), (math.pi, r\"\\pi\"), (5 * math.pi / 4, r\"\\frac{5\\pi}{4}\"), (3 * math.pi / 2, r\"\\frac{3\\pi}{2}\"), (2 * math.pi, r\"2\\pi\")]))\n"
+    },
+    {
+      "id": "trig-20",
+      "difficulty": 3,
+      "problem": "Find $\\cos^2 22.5^\\circ$.",
+      "choices": [
+        "$\\frac{1}{2}$",
+        "$\\frac{\\sqrt{2}}{2}$",
+        "$\\frac{3}{4}$",
+        "$\\frac{2+\\sqrt{2}}{4}$",
+        "$\\frac{2+\\sqrt{3}}{4}$"
+      ],
+      "answer": "D",
+      "hint": "Use the half-angle formula $\\cos^2\\frac{x}{2}=\\frac{1+\\cos x}{2}$ with $x=45^\\circ$.",
+      "solution": "We get $\\cos^2 22.5^\\circ=\\frac{1+\\cos45^\\circ}{2}=\\frac{1+\\frac{\\sqrt2}{2}}{2}=\\frac{2+\\sqrt2}{4}$. Check the size: $\\cos 22.5^\\circ\\approx0.924$, so its square is about $0.854$, which matches $\\frac{2+\\sqrt2}{4}$.",
+      "concepts": [
+        2
+      ],
+      "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\nval = math.cos(math.radians(22.5)) ** 2\nprint(pick(val, [(1 / 2, r\"\\frac{1}{2}\"), (math.sqrt(2) / 2, r\"\\frac{\\sqrt{2}}{2}\"), (3 / 4, r\"\\frac{3}{4}\"), ((2 + math.sqrt(2)) / 4, r\"\\frac{2+\\sqrt{2}}{4}\"), ((2 + math.sqrt(3)) / 4, r\"\\frac{2+\\sqrt{3}}{4}\")]))\n"
+    },
+    {
+      "id": "trig-21",
+      "difficulty": 4,
+      "problem": "In triangle $ABC$, $\\tan A=\\frac12$ and $\\tan B=\\frac13$. Find $\\tan C$.",
+      "choices": [
+        "$-1$",
+        "$-\\frac{1}{3}$",
+        "$0$",
+        "$1$",
+        "$2$"
+      ],
+      "answer": "A",
+      "hint": "First find $\\tan(A+B)$. Then remember that $C=\\pi-(A+B)$ and ask whether $A+B$ is acute or obtuse.",
+      "solution": "We have $\\tan(A+B)=\\frac{\\frac12+\\frac13}{1-\\frac16}=1$. Both $A$ and $B$ are acute because their tangents are positive, so $0<A+B<\\pi$, and the only angle with tangent $1$ in that range is $A+B=\\frac\\pi4$. Then $C=\\pi-\\frac\\pi4=\\frac{3\\pi}{4}$, which is obtuse, and $\\tan C=-1$. Reporting $+1$ forgets that the third angle is obtuse, and it is the central trap of this problem: the tangent identity $\\tan A+\\tan B+\\tan C=\\tan A\\tan B\\tan C$ would also tell you that the sign of $\\tan C$ must be negative here, since $\\tan A\\tan B>0$ and the sum must be consistent with it.",
+      "concepts": [
+        9
+      ],
+      "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\nA = math.atan(1 / 2)\nB = math.atan(1 / 3)\nC = math.pi - A - B\nval = math.tan(C)\nprint(pick(val, [(-1, \"-1\"), (-1 / 3, r\"-\\frac{1}{3}\"), (0, \"0\"), (1, \"1\"), (2, \"2\")]))\n"
+    },
+    {
+      "id": "trig-22",
+      "difficulty": 4,
+      "problem": "A triangle has sides $7$, $8$ and $9$. Find its area.",
+      "choices": [
+        "$6\\sqrt{5}$",
+        "$18\\sqrt{2}$",
+        "$12\\sqrt{5}$",
+        "$24\\sqrt{2}$",
+        "$24\\sqrt{3}$"
+      ],
+      "answer": "C",
+      "hint": "Heron's formula with $s=12$ gives the area directly, but it helps to check it with coordinates.",
+      "solution": "With $s=\\frac{7+8+9}{2}=12$, Heron's formula gives $\\sqrt{12\\cdot5\\cdot4\\cdot3}=\\sqrt{720}=12\\sqrt5\\approx26.83$. As a check, place the side of length $7$ on the x-axis with endpoints $(0,0)$ and $(7,0)$, and let the third vertex be $(x,y)$ with distance $8$ from the origin and $9$ from $(7,0)$. Subtracting the two distance equations gives $14x=32$, so $x=\\frac{16}{7}$ and $y^2=64-\\frac{256}{49}$. The area is $\\frac12\\cdot7\\cdot y=\\frac12\\sqrt{2880}=12\\sqrt5$, which matches Heron's formula. The square root of $720$ must be simplified to $12\\sqrt5$ rather than left as $\\sqrt{720}$, since $720=144\\cdot5$.",
+      "concepts": [
+        4
+      ],
+      "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\nx = (8 ** 2 + 7 ** 2 - 9 ** 2) / (2 * 7)\ny = math.sqrt(8 ** 2 - x ** 2)\nassert abs(math.hypot(x - 7, y) - 9) < 1e-9\nval = 0.5 * 7 * y\nprint(pick(val, [(6 * math.sqrt(5), r\"6\\sqrt{5}\"), (18 * math.sqrt(2), r\"18\\sqrt{2}\"), (12 * math.sqrt(5), r\"12\\sqrt{5}\"), (24 * math.sqrt(2), r\"24\\sqrt{2}\"), (24 * math.sqrt(3), r\"24\\sqrt{3}\")]))\n"
+    },
+    {
+      "id": "trig-23",
+      "difficulty": 4,
+      "problem": "Find the maximum value of $\\sin^2x+\\sqrt3\\sin x\\cos x$.",
+      "choices": [
+        "1",
+        "$\\frac{3}{2}$",
+        "$\\frac{5}{3}$",
+        "2",
+        "$\\sqrt{5}$"
+      ],
+      "answer": "B",
+      "hint": "Rewrite both quadratic terms using double angles, then find the amplitude of the resulting sinusoid.",
+      "solution": "Write $\\sin^2x=\\frac{1-\\cos2x}{2}$ and $\\sqrt3\\sin x\\cos x=\\frac{\\sqrt3}{2}\\sin2x$. The expression is $\\frac12+\\left(\\frac{\\sqrt3}{2}\\sin2x-\\frac12\\cos2x\\right)$, and the bracket has amplitude $\\sqrt{\\frac34+\\frac14}=1$. The maximum is $\\frac12+1=\\frac32$. Forgetting the constant $\\frac12$ gives the wrong answer $1$.",
+      "concepts": [
+        7
+      ],
+      "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\nN = 200000\nval = max(math.sin(2 * math.pi * i / N) ** 2 + math.sqrt(3) * math.sin(2 * math.pi * i / N) * math.cos(2 * math.pi * i / N) for i in range(N))\nprint(pick(val, [(1, \"1\"), (1.5, r\"\\frac{3}{2}\"), (5 / 3, r\"\\frac{5}{3}\"), (2, \"2\"), (math.sqrt(5), r\"\\sqrt{5}\")], tol=1e-6))\n"
+    },
+    {
+      "id": "trig-24",
+      "difficulty": 4,
+      "problem": "Compute $\\displaystyle\\sum_{k=1}^{20}\\cos\\frac{2k\\pi}{41}$.",
+      "choices": [
+        "$-2$",
+        "$-1$",
+        "$-\\frac{3}{4}$",
+        "$-\\frac{2}{3}$",
+        "$-\\frac{1}{2}$"
+      ],
+      "answer": "E",
+      "hint": "Consider the full sum over $k=0,\\ldots,40$, which is a sum of the real parts of the $41$st roots of unity.",
+      "solution": "Let $S=\\sum_{k=0}^{40}\\cos\\frac{2k\\pi}{41}$. The $41$st roots of unity sum to zero, so $S=0$. Since $\\cos\\frac{2k\\pi}{41}=\\cos\\frac{2(41-k)\\pi}{41}$, the sum over $k=1$ to $20$ equals $\\frac{S-1}{2}=-\\frac12$. The naive guess $-1$ comes from the full cycle, and ignoring the $k=0$ term is the trap.",
+      "concepts": [
+        3,
+        7
+      ],
+      "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\nval = sum(math.cos(2 * k * math.pi / 41) for k in range(1, 21))\nprint(pick(val, [(-2, \"-2\"), (-1, \"-1\"), (-0.75, r\"-\\frac{3}{4}\"), (-2 / 3, r\"-\\frac{2}{3}\"), (-0.5, r\"-\\frac{1}{2}\")]))\n"
+    },
+    {
+      "id": "trig-25",
+      "difficulty": 4,
+      "problem": "Find the value of $\\arctan 2+\\arctan 3$.",
+      "choices": [
+        "$\\frac{3\\pi}{4}$",
+        "$\\frac{5\\pi}{6}$",
+        "$\\pi$",
+        "$\\frac{5\\pi}{4}$",
+        "$\\frac{3\\pi}{2}$"
+      ],
+      "answer": "A",
+      "hint": "Compute the tangent of the sum first, then decide which branch the sum lies in.",
+      "solution": "The tangent of the sum is $\\frac{2+3}{1-6}=-1$. A naive reading of the tangent addition formula would return $\\arctan(-1)=-\\frac{\\pi}{4}$, but that is wrong here. Since $\\arctan 2\\approx1.107$ and $\\arctan 3\\approx1.249$, the sum is about $2.356$, which lies in $(\\frac\\pi2,\\pi)$. The sum of two arctangents of positive numbers is in $(0,\\pi)$, and the principal arctangent is always in $(-\\frac\\pi2,\\frac\\pi2)$, so the correct value is $\\pi+\\arctan(-1)=\\frac{3\\pi}{4}$. The general rule is that when $ab>1$ for $a,b>0$, one must add $\\pi$ to the arctangent of the fraction.",
+      "concepts": [
+        6
+      ],
+      "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\nval = math.atan(2) + math.atan(3)\nprint(pick(val, [(3 * math.pi / 4, r\"\\frac{3\\pi}{4}\"), (5 * math.pi / 6, r\"\\frac{5\\pi}{6}\"), (math.pi, r\"\\pi\"), (5 * math.pi / 4, r\"\\frac{5\\pi}{4}\"), (3 * math.pi / 2, r\"\\frac{3\\pi}{2}\")]))\n"
+    },
+    {
+      "id": "trig-26",
+      "difficulty": 4,
+      "problem": "How many solutions does $\\sin5x=\\sin x$ have in $[0,2\\pi)$?",
+      "choices": [
+        "6",
+        "7",
+        "8",
+        "10",
+        "12"
+      ],
+      "answer": "C",
+      "hint": "Use $\\sin5x-\\sin x=2\\cos3x\\sin2x$ and count the zeros of each factor, watching for overlaps.",
+      "solution": "The equation becomes $2\\cos3x\\sin2x=0$. The zeros of $\\cos3x$ in $[0,2\\pi)$ are $\\frac\\pi6+\\frac{k\\pi}{3}$, giving six values. The zeros of $\\sin2x$ are $0,\\frac\\pi2,\\pi,\\frac{3\\pi}2$, and two of these, $\\frac\\pi2$ and $\\frac{3\\pi}2$, already appear among the six. The union has $6+2=8$ elements.",
+      "concepts": [
+        5
+      ],
+      "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\nN = 400000\nxs = [2 * math.pi * i / N for i in range(N)]\ng = [abs(math.sin(5 * x) - math.sin(x)) for x in xs]\nhits = []\nfor i in range(N):\n    if g[i] < 1e-4 and g[i] <= g[i - 1] and g[i] <= g[(i + 1) % N]:\n        hits.append(xs[i])\nroots = []\nfor x in hits:\n    if not roots or x - roots[-1] > 1e-3:\n        roots.append(x)\nprint(len(roots))\n"
+    },
+    {
+      "id": "trig-27",
+      "difficulty": 5,
+      "problem": "How many real numbers $x$ satisfy $\\sin x=\\dfrac{x}{10}$?",
+      "choices": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "answer": "E",
+      "hint": "Note that $|\\sin x|\\le1$, so every solution satisfies $|x|\\le10$. The function $\\sin x-\\frac{x}{10}$ is odd, so the solutions are symmetric about $0$.",
+      "solution": "On $(0,\\pi]$ there is exactly one solution, since the graph of $\\sin x$ rises above the line and then falls below it. On the positive lobe $(2\\pi,3\\pi)$ the sine is concave and rises above the line, which gives two solutions. The lobe $(\\pi,2\\pi)$ lies below the line, and $(3\\pi,4\\pi)$ is negative. So there are $3$ positive solutions, $3$ negative ones by symmetry, and $x=0$, giving $7$.",
+      "concepts": [
+        5,
+        8
+      ],
+      "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\nN = 400000\nxs = [-11 + 22 * i / N for i in range(N + 1)]\ng = [math.sin(x) - x / 10 for x in xs]\ncnt = sum(1 for v in g if v == 0) + sum(1 for i in range(N) if g[i] * g[i + 1] < 0)\nprint(pick(cnt, [(3, \"3\"), (4, \"4\"), (5, \"5\"), (6, \"6\"), (7, \"7\")], tol=0.5))\n"
+    },
+    {
+      "id": "trig-28",
+      "difficulty": 5,
+      "problem": "Find the sum of all $x\\in[0,2\\pi)$ satisfying $\\sin x+\\sin 2x+\\sin 3x=0$.",
+      "choices": [
+        "$3\\pi$",
+        "$5\\pi$",
+        "$6\\pi$",
+        "$7\\pi$",
+        "$8\\pi$"
+      ],
+      "answer": "B",
+      "hint": "Use $\\sin x+\\sin3x=2\\sin2x\\cos x$ to factor the expression, then sum the roots of each factor.",
+      "solution": "Using $\\sin x+\\sin3x=2\\sin2x\\cos x$, the expression becomes $\\sin x+\\sin2x+\\sin3x=\\sin2x+2\\sin2x\\cos x=\\sin2x\\,(2\\cos x+1)$. The equation therefore splits into $\\sin2x=0$ and $\\cos x=-\\frac12$. The zeros of $\\sin2x$ in $[0,2\\pi)$ are $0,\\frac\\pi2,\\pi,\\frac{3\\pi}2$, summing to $3\\pi$. The zeros of $\\cos x=-\\frac12$ are $\\frac{2\\pi}3$ and $\\frac{4\\pi}3$, summing to $2\\pi$. The two families do not overlap, since $\\cos x=-\\frac12$ is not satisfied at any zero of $\\sin 2x$ in the interval, so the total is $3\\pi+2\\pi=5\\pi$. Forgetting the factor $\\cos x$ in the middle term is the usual error.",
+      "concepts": [
+        5,
+        7
+      ],
+      "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\nN = 400000\nxs = [2 * math.pi * i / N for i in range(N)]\nf = [math.sin(x) + math.sin(2 * x) + math.sin(3 * x) for x in xs]\ntotal = 0.0\nfor i in range(N):\n    if f[i] == 0:\n        total += xs[i]\n    elif i + 1 < N and f[i] * f[i + 1] < 0:\n        t = -f[i] / (f[i + 1] - f[i])\n        total += xs[i] + t * (xs[i + 1] - xs[i])\nprint(pick(total, [(3 * math.pi, r\"3\\pi\"), (5 * math.pi, r\"5\\pi\"), (6 * math.pi, r\"6\\pi\"), (7 * math.pi, r\"7\\pi\"), (8 * math.pi, r\"8\\pi\")], tol=1e-4))\n"
+    },
+    {
+      "id": "trig-29",
+      "difficulty": 5,
+      "problem": "Over all triangles $ABC$, find the maximum of $\\sin^2A+\\sin^2B+\\sin^2C$.",
+      "choices": [
+        "$\\frac{9}{4}$",
+        "$\\frac{5}{2}$",
+        "3",
+        "$\\frac{27}{8}$",
+        "4"
+      ],
+      "answer": "A",
+      "hint": "Use the identity $\\sin^2A+\\sin^2B+\\sin^2C=2+2\\cos A\\cos B\\cos C$ and maximize the product of cosines.",
+      "solution": "For a triangle, $\\sin^2A+\\sin^2B+\\sin^2C=2+2\\cos A\\cos B\\cos C$. The product of cosines is largest when the triangle is equilateral, where each cosine is $\\frac12$ and the product is $\\frac18$. This gives $2+\\frac14=\\frac94$. Any triangle with an obtuse angle has a negative product, so it cannot do better.",
+      "concepts": [
+        9
+      ],
+      "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\nN = 600\nbest = 0.0\nfor i in range(1, N):\n    for j in range(1, N):\n        A = math.pi * i / N\n        B = math.pi * j / N\n        if A + B >= math.pi:\n            continue\n        C = math.pi - A - B\n        best = max(best, sum(math.sin(t) ** 2 for t in (A, B, C)))\nprint(pick(best, [(9 / 4, r\"\\frac{9}{4}\"), (5 / 2, r\"\\frac{5}{2}\"), (3, \"3\"), (27 / 8, r\"\\frac{27}{8}\"), (4, \"4\")], tol=1e-6))\n"
+    },
+    {
+      "id": "trig-30",
+      "difficulty": 5,
+      "problem": "Real numbers $\\alpha$ and $\\beta$ satisfy $\\tan\\alpha+\\tan\\beta=2$ and $\\cot\\alpha+\\cot\\beta=3$. Find $\\tan(\\alpha+\\beta)$.",
+      "choices": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "answer": "E",
+      "hint": "Relate $\\cot\\alpha+\\cot\\beta$ to $\\tan\\alpha+\\tan\\beta$ through the product $\\tan\\alpha\\tan\\beta$.",
+      "solution": "Let $p=\\tan\\alpha\\tan\\beta$. Then $\\cot\\alpha+\\cot\\beta=\\frac{\\tan\\alpha+\\tan\\beta}{\\tan\\alpha\\tan\\beta}=\\frac{2}{p}=3$, so $p=\\frac23$. Hence $\\tan(\\alpha+\\beta)=\\frac{2}{1-\\frac23}=6$. The values $\\tan\\alpha$ and $\\tan\\beta$ are the real roots of $t^2-2t+\\frac23=0$, whose discriminant is positive, so the configuration exists.",
+      "concepts": [
+        2,
+        9
+      ],
+      "verify": "import math\n\ndef pick(val, cands, tol=1e-9):\n    hits = [s for v, s in cands if abs(v - val) < tol]\n    assert len(hits) == 1, (val, hits)\n    return hits[0]\ndef h(a):\n    b = math.atan(2 - math.tan(a))\n    return 1 / math.tan(a) + 1 / math.tan(b) - 3\nlo, hi = 1e-6, math.atan(2) - 1e-6\ngrid = [lo + (hi - lo) * i / 20000 for i in range(20001)]\nvals = [h(a) for a in grid]\nroots = []\nfor i in range(20000):\n    if vals[i] * vals[i + 1] < 0:\n        a, c = grid[i], grid[i + 1]\n        for _ in range(200):\n            m = (a + c) / 2\n            if h(a) * h(m) <= 0:\n                c = m\n            else:\n                a = m\n        roots.append((a + c) / 2)\nal = roots[0]\nbe = math.atan(2 - math.tan(al))\nprint(pick(math.tan(al + be), [(2, \"2\"), (3, \"3\"), (4, \"4\"), (5, \"5\"), (6, \"6\")], tol=1e-6))\n"
+    }
+  ],
+  "videos": [
+    {
+      "youtubeId": "R0EQg9vgbQw",
+      "title": "Proof of angle addition formula for sine | Trigonometry | Khan Academy",
+      "channel": "Khan Academy",
+      "why": "A clear derivation of the sine addition formula, the starting point for every identity in the sum and double-angle concept."
+    },
+    {
+      "youtubeId": "XdYTTBFm5Hw",
+      "title": "Sine and Cosine Addition Formula Proof",
+      "channel": "Erik Jacobsen",
+      "why": "A second proof of the sum formulas, useful when you want to see the algebra done with a different picture."
+    },
+    {
+      "youtubeId": "EkDudaCvbTY",
+      "title": "Complete Proof of the Sine Rule & Cosine Rule (All Cases + 2 Methods Each)",
+      "channel": "Simplar Maths",
+      "why": "Watch this for the law of sines and cosines with the obtuse-angle cases and the SSA ambiguity covered explicitly."
+    },
+    {
+      "youtubeId": "vNCe7ciFwVc",
+      "title": "Law Of Cosines I (visual proof)",
+      "channel": "Mathematical Visual Proofs",
+      "why": "A short geometric proof of the law of cosines, good for building intuition before using it on competition problems."
+    }
+  ]
+}

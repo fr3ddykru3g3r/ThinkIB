@@ -27,6 +27,11 @@ export default function WorkedExampleCard({ example, index }: { example: WorkedE
         ))}
       </ol>
 
+      <details style={{ marginTop: '0.9rem' }}>
+        <summary style={{ cursor: 'pointer', fontSize: '0.88rem', color: 'var(--accent)' }}>How do I start?</summary>
+        <div style={{ marginTop: 6, color: 'var(--muted)', lineHeight: 1.65, fontSize: '0.92rem' }}><Tex block>{example.approach}</Tex></div>
+      </details>
+
       {shown > 0 && (
         <ol style={{ margin: '1.1rem 0 0', paddingLeft: 0, listStyle: 'none', display: 'grid', gap: '0.7rem', borderTop: '1px solid var(--border)', paddingTop: '1rem' }}>
           {example.steps.slice(0, shown).map((s, i) => (
@@ -41,6 +46,13 @@ export default function WorkedExampleCard({ example, index }: { example: WorkedE
       {done && (
         <div style={{ marginTop: '1rem', padding: '0.8rem 1rem', borderRadius: 'var(--radius-md)', background: 'var(--success-soft)' }}>
           <strong>Answer ({example.answer}).</strong> <Tex>{example.takeaway}</Tex>
+        </div>
+      )}
+
+      {done && example.alternative && (
+        <div style={{ marginTop: '0.9rem', padding: '0.8rem 1rem', borderRadius: 'var(--radius-md)', background: 'var(--surface-inset)' }}>
+          <div className="tech-label" style={{ fontSize: '0.7rem', color: 'var(--muted)', marginBottom: 4 }}>ANOTHER WAY</div>
+          <Tex block style={{ lineHeight: 1.65, fontSize: '0.95rem' }}>{example.alternative}</Tex>
         </div>
       )}
 

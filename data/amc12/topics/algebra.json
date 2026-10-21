@@ -1,72 +1,243 @@
 {
   "id": "algebra",
-  "title": "Algebra & Polynomials",
-  "summary": "Factoring and identities, Vieta's formulas, Simon's Favourite Factoring Trick, polynomial remainder and factor theorems, systems of equations, and AM-GM inequalities.",
-  "examWeight": "≈3–4 problems per paper",
+  "title": "Algebraic Manipulation",
+  "summary": "Factoring and identities, Simon's Favourite Factoring Trick, symmetric systems, absolute value and piecewise equations, clever substitutions, nested radicals, telescoping sums, radical equations and word problems that reduce to algebra.",
+  "examWeight": "≈4–6 problems per paper",
+  "prerequisites": [],
+  "overview": "On the AMC 12, algebraic manipulation is the quiet backbone of the paper. It is rarely the whole problem. Instead it is the step that turns a messy expression into one you can evaluate, count or solve. Problems escalate from #5, where a difference of squares is read at a glance, to #20–25, where the work is a chain of identities: a Simon's trick followed by a sign analysis, or a substitution that hides a quadratic, or a radical that denests only after squaring the right quantity. Expect roughly four to six algebra-flavoured problems per paper, and expect at least one that is mostly translation.\n\nThe main skill is recognising structure before computing. Look for a difference of squares or cubes, an $xy$ term in a count, a symmetric pair of unknowns, an absolute value that splits into cases, or a radical that denests. Each of these has a standard move, and the move is usually one line once you see it. The concepts below teach the moves in the order you are likely to need them, each with a derivation, so that you can rebuild an identity under time pressure instead of memorising it.\n\nTo study, work the worked examples slowly, cover the solution, and redo each one by a second route where possible. Then work the thirty practice problems in order. The early ones train the identities, the middle ones train the traps (sign checks, extraneous roots, counting only what is admissible), and the last four combine several ideas. Always check a final answer by substituting it back into the original statement, which catches most algebra mistakes at once.",
   "concepts": [
     {
-      "title": "Factoring and algebraic identities",
-      "body": "Factoring means rewriting a sum or difference as a product. It is the most useful habit on AMC 12 algebra problems, because a messy expression often collapses once you spot the pattern. The core identities are $a^2-b^2=(a-b)(a+b)$, $(a\\pm b)^2=a^2\\pm 2ab+b^2$, and $a^3\\pm b^3=(a\\pm b)(a^2\\mp ab+b^2)$. They matter because they replace a big calculation with a small one: $103^2-97^2=(103-97)(103+97)=6\\cdot 200=1200$, with no squaring at all.\n\nWhen no identity jumps out, try factoring by grouping: split the terms into pairs that share a common factor, as in $x^3+x^2+x+1=x^2(x+1)+(x+1)=(x^2+1)(x+1)$. A useful habit is to build the quantity you need from sums and products you already know. Since $a^2+b^2=(a+b)^2-2ab$, knowing $a+b$ and $ab$ is enough to find $a^2+b^2$ without finding $a$ and $b$ themselves.",
+      "title": "Factoring and the standard identities",
+      "body": "Factoring rewrites a sum or difference as a product, and on the AMC it is usually the first move. An expression that looks large often collapses once it is written as a product of small pieces. The basic identities are $a^2-b^2=(a-b)(a+b)$ and $a^3\\pm b^3=(a\\pm b)(a^2\\mp ab+b^2)$. They are valuable because each one turns a long computation into a short one: $103^2-97^2=6\\cdot 200$ is immediate, while squaring both numbers is not.\n\nThe sum-of-cubes and difference-of-cubes identities follow from one multiplication. Expand $(a-b)(a^2+ab+b^2)$: the $a^2b$ and $ab^2$ terms cancel in pairs, leaving $a^3-b^3$. The sum of cubes is the same identity with $b$ replaced by $-b$, which flips the sign of the middle term. The skill is reading the identities in reverse. A term such as $x^6-1$ is $(x^3)^2-1^2$, so it factors twice: $(x^3-1)(x^3+1)=(x-1)(x^2+x+1)(x+1)(x^2-x+1)$.\n\nThe Sophie Germain identity $a^4+4b^4=(a^2+2ab+2b^2)(a^2-2ab+2b^2)$ is the one students rarely see coming. It comes from completing a square: $a^4+4b^4=(a^2+2b^2)^2-4a^2b^2$, which is a difference of squares. Ordinary real factoring cannot split a sum of two terms like this, so the identity is worth memorising. Taking $b=1$ and $a=n$ gives $n^4+4=(n^2+2n+2)(n^2-2n+2)$. The second factor is $(n-1)^2+1$, so for every integer $n\\ge 2$ both factors exceed $1$ and $n^4+4$ is composite.\n\nFactoring by grouping and recognising a hidden square are two more routes. For $x^3+x^2+x+1$, group as $x^2(x+1)+(x+1)=(x^2+1)(x+1)$. For $x^4+x^2+1$, add and subtract $x^2$: it becomes $(x^2+1)^2-x^2=(x^2+x+1)(x^2-x+1)$. The second trick generalises. When a quartic has no visible factorisation, try adding a square to make a difference of squares, and subtract the same square to keep the value unchanged.\n\nA common error is to treat $a^2+b^2$ as if it factored over the reals in the same way as $a^2-b^2$. It does not, and writing $(a+b)^2$ for it is wrong by $2ab$. A second error is expanding $(a-b)^3$ as $a^3-b^3$. The correct expansion is $a^3-3a^2b+3ab^2-b^3$, so cubing a difference is not the same as subtracting cubes. Always check a factorisation by multiplying it back out, at least in a quick numerical case.",
       "keyFacts": [
-        "$a^2-b^2=(a-b)(a+b)$",
-        "$a^3+b^3=(a+b)(a^2-ab+b^2)$",
-        "$a^2+b^2=(a+b)^2-2ab$",
-        "Factor by grouping: pair up terms that share a common factor."
+        "$a^2-b^2=(a-b)(a+b)$ and $a^3\\pm b^3=(a\\pm b)(a^2\\mp ab+b^2)$",
+        "Sophie Germain: $a^4+4b^4=(a^2+2ab+2b^2)(a^2-2ab+2b^2)$",
+        "$x^4+x^2+1=(x^2+x+1)(x^2-x+1)$ by adding and subtracting $x^2$",
+        "Factor by grouping: pair up terms that share a common factor"
       ],
-      "whenToUse": "Use it when a difference of squares or cubes appears, or when you are asked for $a^2+b^2$ or $a^3+b^3$ and only $a+b$ and $ab$ are given."
+      "whenToUse": "Use it when a difference or sum of squares or cubes appears, when a quartic has no obvious factor, or when a large numerical expression is a clean multiple of a smaller one.",
+      "commonMistakes": [
+        "Writing $a^2+b^2=(a+b)^2$, which is off by $2ab$",
+        "Expanding $(a-b)^3$ as $a^3-b^3$ and forgetting the middle terms"
+      ],
+      "example": {
+        "problem": "Evaluate $\\dfrac{3^4+4}{3^2-2\\cdot 3+2}$.",
+        "solution": "Use $n^4+4=(n^2+2n+2)(n^2-2n+2)$ with $n=3$: $3^4+4=85=(9+6+2)(9-6+2)=17\\cdot 5$. The denominator is $9-6+2=5$, so the quotient is $17$.",
+        "answer": "17",
+        "verify": "print((3**4 + 4) // (3**2 - 2 * 3 + 2))\n"
+      }
     },
     {
-      "title": "Vieta's formulas",
-      "body": "Vieta's formulas connect the roots of a polynomial to its coefficients, so you can answer questions about the roots without finding them. If $r$ and $s$ are the roots of $ax^2+bx+c$, then $ax^2+bx+c=a(x-r)(x-s)$. Expanding the right side and comparing coefficients gives $r+s=-\\frac{b}{a}$ and $rs=\\frac{c}{a}$. The same pattern holds for any degree: for a monic cubic $x^3+px^2+qx+t$ with roots $u,v,w$, we get $u+v+w=-p$, $uv+vw+wu=q$ and $uvw=-t$.\n\nThe point is that most quantities a problem asks for are symmetric in the roots: swapping $r$ and $s$ does not change them. Such quantities can be built from the sum $r+s$ and the product $rs$ alone. For example $r^2+s^2=(r+s)^2-2rs$ and $\\frac1r+\\frac1s=\\frac{r+s}{rs}$. If $r$ and $s$ are the roots of $x^2-5x+6=0$, then $r+s=5$ and $rs=6$, so $r^2+s^2=25-12=13$. You can check this against the actual roots, 2 and 3.",
+      "title": "Completing the square",
+      "body": "Completing the square rewrites a quadratic as a squared term plus a constant: $x^2+bx=\\left(x+\\frac b2\\right)^2-\\frac{b^2}{4}$. It is the engine behind the quadratic formula, but on contests its most useful role is in equations in two variables where the expression is required to be zero. A sum of squares equal to zero forces every square to vanish, which pins down the variables exactly.\n\nThe derivation is one line: $\\left(x+\\frac b2\\right)^2=x^2+bx+\\frac{b^2}{4}$, so subtract $\\frac{b^2}{4}$ to correct the constant. In a quadratic in two variables, complete the square in each variable separately. For $x^2-6x+y^2+4y+13$, write $x^2-6x=(x-3)^2-9$ and $y^2+4y=(y+2)^2-4$. The whole expression is then $(x-3)^2+(y+2)^2+13-9-4=(x-3)^2+(y+2)^2$, a sum of two squares with no constant left over.\n\nThe same expression shows how the method is used. If $x^2+y^2-6x+4y+13=0$, the equation says $(x-3)^2+(y+2)^2=0$. Because squares are nonnegative, both must be zero, so $x=3$ and $y=-2$ are the only real solutions. The question then reduces to reading off the answer. The method is most often needed when a problem gives an equation with no visible solution and asks for a single value such as $x+y$ or $xy$.\n\nCompleting the square also explains which quadratics fail to factor over the integers. The expression $x^2+6x+7$ has no integer factorisation, but $(x+3)^2-2$ shows that it is a difference of squares over the reals: $(x+3-\\sqrt2)(x+3+\\sqrt2)$. Recognising this form tells you the roots are irrational, which is a fact worth checking before trying to find them.\n\nThe common mistake is to complete the square on one variable and forget the constant that was added. The resulting sum of squares is then off by that constant, and the equation has no real solutions when it should have one. Always subtract back what you added, or expand your final form to check it against the original expression.",
       "keyFacts": [
-        "For $ax^2+bx+c$ with roots $r,s$: $r+s=-\\frac{b}{a}$ and $rs=\\frac{c}{a}$",
-        "For monic $x^3+px^2+qx+t$ with roots $u,v,w$: $u+v+w=-p$, $uv+vw+wu=q$, $uvw=-t$",
-        "$r^2+s^2=(r+s)^2-2rs$",
-        "$\\frac1r+\\frac1s=\\frac{r+s}{rs}$"
+        "$x^2+bx=\\left(x+\\frac b2\\right)^2-\\frac{b^2}{4}$",
+        "A sum of squares equal to $0$ forces each square to be $0$",
+        "$x^2+y^2-6x+4y+13=(x-3)^2+(y+2)^2$"
       ],
-      "whenToUse": "Use it when a problem asks about the roots through a symmetric quantity (a sum of squares, a sum of reciprocals, a coefficient) and does not give the roots explicitly."
+      "whenToUse": "Use it when an equation in two variables is quadratic in each, when the total is zero or fixed, or when a quadratic must be written in vertex form.",
+      "commonMistakes": [
+        "Forgetting the constant subtracted when completing a square",
+        "Concluding that a sum of squares has many solutions when it equals zero"
+      ],
+      "example": {
+        "problem": "Real numbers $x$ and $y$ satisfy $x^2+y^2-6x+4y+13=0$. What is $x+y$?",
+        "solution": "Complete each square: $x^2-6x=(x-3)^2-9$ and $y^2+4y=(y+2)^2-4$. The equation becomes $(x-3)^2+(y+2)^2=0$, so $x=3$ and $y=-2$, giving $x+y=1$.",
+        "answer": "1",
+        "verify": "for x in range(-20, 21):\n    for y in range(-20, 21):\n        if x * x + y * y - 6 * x + 4 * y + 13 == 0:\n            print(x + y)\n"
+      }
     },
     {
       "title": "Simon's Favourite Factoring Trick",
-      "body": "Many equations in two integers have the form $xy+ax+by=c$. They look as though they should have many solutions, but they are hard to attack directly. Simon's Favourite Factoring Trick turns the left side into a product. Expand $(x+b)(y+a)=xy+ax+by+ab$ and notice that it differs from $xy+ax+by$ only by the constant $ab$. So add $ab$ to both sides: $xy+ax+by+ab=c+ab$, which becomes $(x+b)(y+a)=c+ab$.\n\nNow the equation says that two integers multiply to a fixed number, so you can list the divisor pairs and read off every solution. If the coefficient of $xy$ is not 1, multiply the whole equation by that coefficient first. Example: $xy+2x+3y=30$. Adding $2\\cdot 3=6$ to both sides gives $(x+3)(y+2)=36$. Positive solutions correspond to divisor pairs of 36 with $x+3\\ge 4$ and $y+2\\ge 3$, and you can count them directly.",
+      "body": "Many counting problems on the AMC reduce to an integer equation of the form $xy+ax+by=c$. Such an equation has no visible structure, and a direct search is slow and error-prone. Simon's Favourite Factoring Trick, usually abbreviated SFFT, forces the left side to factor, so that the solutions become divisor pairs of a fixed number. It is named after a contributor to the AoPS forum and is one of the most reliable tools for integer counting.\n\nThe key identity is $(x+b)(y+a)=xy+ax+by+ab$. The left side of the original equation differs from this expansion only by the constant $ab$. So add $ab$ to both sides of $xy+ax+by=c$ to obtain $(x+b)(y+a)=c+ab$. The two equations are equivalent, so no solutions are gained or lost: the trick is a rewriting of the same condition, not an approximation.\n\nIf the coefficient of $xy$ is not $1$, multiply the equation by it first. For $axy-cx-by=d$, multiply by $a$ and add $bc$ to both sides. Then $(ax-b)(ay-c)=ad+bc$. For example, $2xy-5x-3y=45$ becomes $(2x-3)(2y-5)=90+15=105$. The process is always the same: multiply, add the right constant, and factor. The constant to add is whatever makes the left side a product of two linear expressions.\n\nOnce the equation is factored, the rest is bookkeeping, and bookkeeping is where contests are decided. A factor such as $x+2$ must be at least $3$ when $x$ is a positive integer, and a product that is positive forces both factors to share a sign. List the divisor pairs of the constant in both signs, then discard any pair that gives a non-positive $x$ or $y$. Counting without this step is the main source of error.\n\nThe classic mistake is to count divisor pairs of the constant without checking signs and bounds. This produces solutions with $x=0$, or with a negative $y$, that the problem excludes. The opposite mistake is to discard a negative-times-negative pair that the bounds in fact allow. Test each candidate in the original equation before you count it.",
       "keyFacts": [
         "$xy+ax+by=c$ becomes $(x+b)(y+a)=c+ab$",
-        "Add the product of the two constants to both sides to complete the factorisation",
-        "After factoring, apply the sign and size limits on $x$ and $y$ before counting"
+        "For $axy-cx-by=d$: $(ax-b)(ay-c)=ad+bc$",
+        "Apply the sign and size bounds on $x$ and $y$ after factoring, before counting"
       ],
-      "whenToUse": "Use it when an equation in two integer variables has an $xy$ term and linear terms in $x$ and $y$, and you need to count or list its solutions."
+      "whenToUse": "Use it when an equation in two integer variables has an $xy$ term and linear terms in $x$ and $y$, and you need to count, list or sum its solutions.",
+      "commonMistakes": [
+        "Counting divisor pairs without checking that $x$ and $y$ are positive",
+        "Forgetting to multiply by the coefficient of $xy$ before factoring"
+      ],
+      "example": {
+        "problem": "How many ordered pairs of positive integers $(x,y)$ satisfy $xy+x+2y=10$?",
+        "solution": "Add $2$ to both sides: $xy+x+2y+2=12$, i.e. $(x+2)(y+1)=12$. Since $x+2\\ge 3$ and $y+1\\ge 2$, we need divisor pairs $(d,e)$ of $12$ with $d\\ge 3$ and $e\\ge 2$. These are $(3,4)$, $(4,3)$ and $(6,2)$, giving $(x,y)=(1,3),(2,2),(4,1)$. The pair $(12,1)$ gives $y=0$ and is excluded, and $(2,6)$ gives $x=0$, also excluded. There are $3$ solutions.",
+        "answer": "3",
+        "verify": "count = 0\nfor x in range(1, 101):\n    for y in range(1, 101):\n        if x * y + x + 2 * y == 10:\n            count += 1\nprint(count)\n"
+      }
     },
     {
-      "title": "Polynomial remainder and factor theorems",
-      "body": "Dividing a polynomial works like dividing integers: $P(x)=(x-a)Q(x)+R$, where $R$ is a constant. Substitute $x=a$ and the term $(x-a)Q(x)$ vanishes, so $R=P(a)$. This is the remainder theorem: the remainder when $P(x)$ is divided by $x-a$ is $P(a)$. In particular, $x-a$ is a factor of $P(x)$ exactly when $P(a)=0$, which is the factor theorem.\n\nThe idea extends to larger divisors. If you divide by a polynomial of degree $n$, the remainder has degree less than $n$, so it is pinned down by its values at $n$ points. Example: if $P(1)=3$ and $P(2)=1$, the remainder $R(x)=ux+v$ on division by $(x-1)(x-2)$ must satisfy $u+v=3$ and $2u+v=1$, so $u=-2$ and $v=5$. You get the remainder without ever finding $P(x)$.",
+      "title": "Symmetric systems and the sum-product substitution",
+      "body": "A system is symmetric in $x$ and $y$ when swapping the two variables leaves both equations unchanged. Such systems resist elimination but yield to a change of variables: set $s=x+y$ and $p=xy$. Every symmetric polynomial in $x$ and $y$ can be written as a polynomial in $s$ and $p$, so the system becomes a smaller system in $s$ and $p$, usually one that is easy to solve.\n\nThe identities needed most often are $x^2+y^2=s^2-2p$ and $x^3+y^3=s^3-3ps$. The cube identity comes from expanding $(x+y)^3=x^3+y^3+3xy(x+y)$ and rearranging. A quantity like $x^4+y^4$ is also symmetric and reduces to $(s^2-2p)^2-2p^2$, but in practice you substitute whichever identity matches the given quantities and do not memorise every power.\n\nEvery pair $(s,p)$ produced by the substitution must be checked for reality. The numbers $x$ and $y$ are the roots of $t^2-st+p=0$, and those roots are real exactly when $s^2\\ge 4p$. A pair with $s^2<4p$ corresponds to complex numbers, which a problem asking for real values must exclude. Forgetting this check is the most common way to lose a point on a symmetric system, and it is the trap in the harder problems of this topic.\n\nAs an example, let $x+y=4$ and $x^3+y^3=28$. With $s=4$ we get $28=64-12p$, so $p=3$. The discriminant is $s^2-4p=16-12=4>0$, so $x$ and $y$ are real: they are $1$ and $3$, and indeed $1^3+3^3=28$. The reduced equation was linear in $p$, which is typical. When the reduction produces a cubic in $s$, decide which roots are admissible by the reality condition, not by which root looks nicer.\n\nDo not divide by a quantity that could be zero, and do not discard a root of the reduced equation before testing it against the original system. Also remember that one unordered pair $\\{x,y\\}$ produces two ordered pairs, which matters when the question counts solutions.",
       "keyFacts": [
-        "Remainder theorem: the remainder on dividing $P(x)$ by $x-a$ is $P(a)$",
-        "Factor theorem: $x-a$ divides $P(x)$ if and only if $P(a)=0$",
-        "A remainder on division by a degree-$n$ polynomial has degree less than $n$, so $n$ values of $P$ determine it"
-      ],
-      "whenToUse": "Use it when a problem gives the remainder of a polynomial on division, asks whether a linear factor divides a polynomial, or gives the values of a polynomial at a few points."
-    },
-    {
-      "title": "Systems of equations",
-      "body": "A system is usually solved by eliminating a variable, but on contests the faster route is often a change of variables. If the two equations are symmetric in $x$ and $y$ (swapping $x$ and $y$ leaves both equations unchanged), write $s=x+y$ and $p=xy$. Every symmetric expression is a combination of $s$ and $p$, for instance $x^2+y^2=s^2-2p$ and $x^3+y^3=s^3-3ps$. The system then becomes a system in two new unknowns, which is usually easy.\n\nAlways check that the solutions are real. A pair $(s,p)$ comes from real numbers $x,y$ only if $x$ and $y$ are the roots of $t^2-st+p=0$ and those roots are real, which needs $s^2\\ge 4p$. For example, if $x+y=5$ and $xy=6$, then $s^2-4p=25-24=1\\ge 0$, so $x$ and $y$ are real: they are 2 and 3. A pair with $s^2<4p$ gives complex numbers, which a problem asking for real values must exclude.",
-      "keyFacts": [
-        "$x^2+y^2=(x+y)^2-2xy$",
-        "$x^3+y^3=(x+y)^3-3xy(x+y)$",
+        "$x^2+y^2=(x+y)^2-2xy$ and $x^3+y^3=(x+y)^3-3xy(x+y)$",
         "Real $x,y$ with sum $s$ and product $p$ require $s^2\\ge 4p$",
         "Substitute $s=x+y$ and $p=xy$ to reduce a symmetric system to two unknowns"
       ],
-      "whenToUse": "Use it when the equations are symmetric in $x$ and $y$, or contain sums of powers of $x$ and $y$ together with the product $xy$."
+      "whenToUse": "Use it when the equations are symmetric in two unknowns, or contain sums of powers together with a product, and the question asks for values that depend only on $s$ and $p$.",
+      "commonMistakes": [
+        "Accepting an $(s,p)$ pair with $s^2<4p$, which gives non-real $x,y$",
+        "Counting an unordered pair once when the question asks for ordered pairs"
+      ],
+      "example": {
+        "problem": "Real numbers $x$ and $y$ satisfy $x+y=4$ and $xy=3$. What is $x^3+y^3$?",
+        "solution": "Use $x^3+y^3=(x+y)^3-3xy(x+y)=64-3\\cdot 3\\cdot 4=64-36=28$.",
+        "answer": "28",
+        "verify": "vals = set()\nfor x in range(-20, 21):\n    y = 4 - x\n    if x * y == 3:\n        vals.add(x ** 3 + y ** 3)\nprint(vals.pop())\n"
+      }
     },
     {
-      "title": "AM-GM and basic inequalities",
-      "body": "The Arithmetic Mean–Geometric Mean (AM-GM) inequality says that for nonnegative numbers the average is at least the geometric mean: $\\frac{a+b}{2}\\ge\\sqrt{ab}$, with equality exactly when $a=b$. Rearranged, $a+b\\ge 2\\sqrt{ab}$: the sum of two nonnegative numbers is at least twice the square root of their product. Three numbers work the same way: $\\frac{a+b+c}{3}\\ge\\sqrt[3]{abc}$.\n\nTo find a minimum or maximum, look for the split that makes AM-GM tight. Example: if $x,y>0$ and $xy=16$, then $x+4y\\ge 2\\sqrt{4xy}=2\\sqrt{64}=16$. Equality holds when $x=4y$, so $x=8$ and $y=2$, which confirms that 16 is actually reached. Another basic tool is $a^2+b^2\\ge 2ab$, which is just $(a-b)^2\\ge 0$ rearranged.",
+      "title": "Absolute value and piecewise equations",
+      "body": "The absolute value $|t|$ equals $t$ when $t\\ge 0$ and $-t$ when $t<0$. An equation containing absolute values is therefore a piecewise problem. It splits into cases according to the signs of the expressions inside the bars. The method is always the same: find the points where each inner expression changes sign, solve the equation on each interval, and keep only the solutions that lie in the interval you assumed.\n\nTwo basic facts do most of the work. First, $|t|=c$ with $c\\ge 0$ has exactly the solutions $t=c$ and $t=-c$, and it has none when $c<0$. Second, $|t|=|s|$ holds exactly when $t=s$ or $t=-s$. Nested absolute values are solved from the outside in: for $\\left||x-2|-3\\right|=1$, first solve $|x-2|-3=\\pm 1$, which gives $|x-2|=4$ or $|x-2|=2$, and then solve each of those.\n\nAs an example, take $|x-1|+|x+2|=5$. The inner expressions change sign at $x=1$ and $x=-2$, which gives three intervals. For $x\\ge 1$ the equation is $2x+1=5$, so $x=2$. For $-2\\le x<1$ the left side is $3$ for every such $x$, so there are no solutions there. For $x<-2$ it is $-2x-1=5$, so $x=-3$. Both candidates lie in their intervals, so the solutions are $2$ and $-3$.\n\nGeometrically, $|x-a|+|x-b|$ is the total distance from $x$ to two fixed points. Outside the interval between them the sum grows, and between them it is constant. This explains the middle case above: a whole interval either satisfies the equation or none of it does, which is why the case analysis can be done quickly once you see it. The same picture gives the minimum of such sums without calculus.\n\nCheck each candidate against its own case. A root of $-t=c$ is valid only when $t<0$. Also note that $\\sqrt{t^2}=|t|$, so a square root of a square forces a case split that is easy to forget. Students who solve $t=\\pm c$ and stop, without testing both branches against the original expression, often report extra or missing solutions.",
       "keyFacts": [
-        "$\\frac{a+b}{2}\\ge\\sqrt{ab}$ for $a,b\\ge 0$, with equality if and only if $a=b$",
-        "$\\frac{a+b+c}{3}\\ge\\sqrt[3]{abc}$ for $a,b,c\\ge 0$",
-        "$a^2+b^2\\ge 2ab$, because $(a-b)^2\\ge 0$",
-        "Always check the equality case to confirm that the bound is reached"
+        "$|t|=c$ with $c\\ge 0$ gives $t=c$ or $t=-c$; no solutions if $c<0$",
+        "$|t|=|s|$ if and only if $t=s$ or $t=-s$",
+        "$\\sqrt{t^2}=|t|$",
+        "The sign-change points of the inner expressions are the case boundaries"
       ],
-      "whenToUse": "Use it when you need the minimum or maximum of a sum or product of positive quantities whose product or sum is fixed."
+      "whenToUse": "Use it whenever an equation contains absolute values, including nested ones, or a square root of a square, or when a sum of absolute values must be minimised or counted.",
+      "commonMistakes": [
+        "Solving $t=\\pm c$ and forgetting to check each branch against its case assumption",
+        "Dropping the middle interval, where the expression can be constant and equal to the target"
+      ],
+      "example": {
+        "problem": "Real numbers $x$ satisfy $|x-1|+|x+2|=5$. What is the sum of the absolute values of all solutions?",
+        "solution": "For $x\\ge 1$ the equation is $2x+1=5$, giving $x=2$. For $x<-2$ it is $-2x-1=5$, giving $x=-3$. On $-2\\le x<1$ the left side equals $3$, which is not $5$. The solutions are $2$ and $-3$, and $|2|+|-3|=5$.",
+        "answer": "5",
+        "verify": "print(sum(abs(x) for x in range(-20, 21) if abs(x - 1) + abs(x + 2) == 5))\n"
+      }
+    },
+    {
+      "title": "Clever substitutions",
+      "body": "A substitution replaces a messy expression by one letter so that the equation becomes one you already know how to solve. The skill is recognising the inner expression. In $x^4-5x^2+4=0$ the quantity $x^2$ is the only thing that appears, so $u=x^2$ turns the equation into $u^2-5u+4=0$, with roots $u=1$ and $u=4$. Returning to $x$ gives $x=\\pm1$ and $x=\\pm2$, four solutions in all.\n\nReciprocal pairs are the most common hidden structure. If an expression is unchanged when $x$ is replaced by $\\frac1x$, write $u=x+\\frac1x$. Since $\\left(x+\\frac1x\\right)^2=x^2+\\frac1{x^2}+2$, we have $x^2+\\frac1{x^2}=u^2-2$, and applying this again gives $x^4+\\frac1{x^4}=(u^2-2)^2-2$. Given $u=3$, the value of $x^2+\\frac1{x^2}$ is $7$ and that of $x^4+\\frac1{x^4}$ is $47$. Notice that the substitution answered a question about $x^4$ using only $x+\\frac1x$.\n\nShift substitutions handle quantities that appear in two places with a constant difference. If an equation involves $x^2-3x$ in two places, let $u=x^2-3x$ and solve the quadratic in $u$ first. Each root $u_0$ then gives a quadratic in $x$ that must be solved separately. Solutions must be gathered from every branch, and a value that arises from two branches must be counted once if the question asks for distinct solutions.\n\nRatio substitutions work the same way. If $\\frac xy+\\frac yx$ is given, set $t=\\frac xy$. The condition becomes $t+\\frac1t=c$, a quadratic in $t$, and any ordering condition on $x$ and $y$ selects the right root. Once you have $t$, the requested expression is often another rational function of $t$, which is easy to evaluate.\n\nTwo pitfalls are common. First, the substitution must be inverted at the end: students solve for $u$ and report $u$ when the question asks for $x$. Second, respect the domain. For real $x\\ne 0$ the quantity $x+\\frac1x$ satisfies $\\left|x+\\frac1x\\right|\\ge 2$, so any root $u$ with $|u|<2$ is not attainable and must be discarded before you go further.",
+      "keyFacts": [
+        "With $u=x+\\frac1x$: $x^2+\\frac1{x^2}=u^2-2$ and $x^4+\\frac1{x^4}=(u^2-2)^2-2$",
+        "For real $x\\ne 0$: $\\left|x+\\frac1x\\right|\\ge 2$",
+        "Replace a recurring expression such as $x^2$ or $x^2-3x$ by one letter, solve, then return to $x$"
+      ],
+      "whenToUse": "Use it when an expression recurs in two places, when powers of one variable appear with exponents that are multiples of each other, or when the equation is invariant under $x\\mapsto 1/x$.",
+      "commonMistakes": [
+        "Reporting the value of the new letter instead of the value of $x$",
+        "Accepting a value of $u=x+\\frac1x$ with $|u|<2$, which no real $x$ produces"
+      ],
+      "example": {
+        "problem": "Let $x$ be real with $x+\\frac1x=3$. What is $x^4+\\frac1{x^4}$?",
+        "solution": "Squaring gives $x^2+\\frac1{x^2}=3^2-2=7$. Squaring again gives $x^4+\\frac1{x^4}=7^2-2=47$.",
+        "answer": "47",
+        "verify": "import math\nx = (3 + math.sqrt(5)) / 2\nprint(round(x ** 4 + x ** -4))\n"
+      }
+    },
+    {
+      "title": "Nested radicals and rationalising",
+      "body": "A nested radical is a square root inside another square root, such as $\\sqrt{5+2\\sqrt6}$. The goal is to rewrite it without the inner root, a process called denesting. The idea is that a square root of an expression of the form $a+b\\sqrt d$ is sometimes itself of the form $p+q\\sqrt d$ with rational $p,q$, and squaring the guess reveals whether this is so.\n\nSuppose $\\sqrt{a+\\sqrt b}=\\sqrt p+\\sqrt q$ with $p,q>0$. Squaring gives $a+\\sqrt b=p+q+2\\sqrt{pq}$. Matching the parts that do not and do involve the root gives $p+q=a$ and $4pq=b$. So $p$ and $q$ are the roots of $t^2-at+\\frac b4=0$, and they are rational exactly when $a^2-b$ is a perfect square. For $\\sqrt{5+\\sqrt{24}}$ we need $p+q=5$ and $pq=6$, which gives $p=2$, $q=3$, so the value is $\\sqrt2+\\sqrt3$.\n\nThe sign needs care, because squaring cannot tell $\\sqrt p+\\sqrt q$ from $\\sqrt p-\\sqrt q$ in its result. Decide the sign by checking the numerical value of the expression, and remember that $\\sqrt t$ always denotes the nonnegative root. A nested radical that is a difference, such as $\\sqrt{A+B}-\\sqrt{A-B}$, is handled by squaring too, and the cross term then has the opposite sign.\n\nRationalising the denominator uses conjugates: $(\\sqrt a+\\sqrt b)(\\sqrt a-\\sqrt b)=a-b$. So $\\frac1{\\sqrt5-2}=\\frac{\\sqrt5+2}{5-4}=\\sqrt5+2$. The same identity applied to a sum of two adjacent roots gives $\\frac1{\\sqrt k+\\sqrt{k+1}}=\\sqrt{k+1}-\\sqrt k$, which is the start of a telescoping sum.\n\nFor a conjugate pair, squaring the sum simplifies everything: $\\left(\\sqrt{A+B}+\\sqrt{A-B}\\right)^2=2A+2\\sqrt{A^2-B^2}$. This turns a sum of two radicals into a single radical. The usual error is to write $\\sqrt{a+b}=\\sqrt a+\\sqrt b$, which is false: with $a=b=1$ the left side is $\\sqrt2$ and the right side is $2$.",
+      "keyFacts": [
+        "$\\sqrt{a+\\sqrt b}=\\sqrt p+\\sqrt q$ requires $p+q=a$ and $4pq=b$",
+        "$(\\sqrt a+\\sqrt b)(\\sqrt a-\\sqrt b)=a-b$",
+        "$\\left(\\sqrt{A+B}+\\sqrt{A-B}\\right)^2=2A+2\\sqrt{A^2-B^2}$",
+        "In general $\\sqrt{a+b}\\ne\\sqrt a+\\sqrt b$"
+      ],
+      "whenToUse": "Use it when a radical contains another radical, when a denominator is a sum with a square root, or when a conjugate pair of radicals appears in an expression to be simplified.",
+      "commonMistakes": [
+        "Writing $\\sqrt{a+b}=\\sqrt a+\\sqrt b$",
+        "Choosing the wrong sign after squaring, instead of checking the numerical value"
+      ],
+      "example": {
+        "problem": "Simplify $\\sqrt{4+2\\sqrt3}$.",
+        "solution": "Here $\\sqrt{4+\\sqrt{12}}$, so $p+q=4$ and $4pq=12$, giving $pq=3$. Take $p=1$, $q=3$: the value is $1+\\sqrt3$. Check: $(1+\\sqrt3)^2=1+2\\sqrt3+3=4+2\\sqrt3$.",
+        "answer": "1+\\sqrt{3}",
+        "verify": "import math\nv = math.sqrt(4 + 2 * math.sqrt(3))\nassert abs(v - (1 + math.sqrt(3))) < 1e-9\nprint(\"1+\\\\sqrt{3}\")\n"
+      }
+    },
+    {
+      "title": "Telescoping sums",
+      "body": "A telescoping sum is one in which consecutive terms cancel. The engine is a difference identity: if each term can be written as $f(k)-f(k+1)$, then $\\sum_{k=m}^{n}\\bigl(f(k)-f(k+1)\\bigr)=f(m)-f(n+1)$, because every interior value of $f$ appears once with each sign. Finding the function $f$ is the entire problem.\n\nThe classic example is $\\frac1{k(k+1)}=\\frac1k-\\frac1{k+1}$, so $\\sum_{k=1}^{n}\\frac1{k(k+1)}=1-\\frac1{n+1}$. The identity is checked by putting the right side over a common denominator: $\\frac{(k+1)-k}{k(k+1)}=\\frac1{k(k+1)}$. For $n=4$ the sum is $\\frac45$. Notice that the answer depends only on the endpoints, which is why such sums are fast once the identity is spotted.\n\nThe same mechanism handles radicals. Rationalising gives $\\frac1{\\sqrt k+\\sqrt{k+1}}=\\sqrt{k+1}-\\sqrt k$, so a sum of such terms collapses to a difference of square roots at the endpoints: from $k=1$ to $k=99$ the sum is $\\sqrt{100}-\\sqrt1=9$. The gap between the roots matters. Since $\\frac1{\\sqrt k+\\sqrt{k+2}}=\\frac{\\sqrt{k+2}-\\sqrt k}{2}$, a gap of two leaves a factor of $\\frac12$ in front.\n\nProducts telescope as well. In $\\prod_{k=2}^{n}\\frac{k^2-1}{k^2}$, factor each numerator as $(k-1)(k+1)$. The factors $\\frac{k-1}{k}$ and $\\frac{k+1}{k}$ then telescope separately, giving $\\frac{1}{n}\\cdot\\frac{n+1}{2}=\\frac{n+1}{2n}$. Recognising that a product splits into two telescoping products is the key step.\n\nTelescoping can also be hidden inside a factorisation. The Sophie Germain identity gives $\\frac{4k}{k^4+4}=\\frac1{k^2-2k+2}-\\frac1{k^2+2k+2}$, and the two denominators are shifts of one another, so the sum collapses. A common error is forgetting the constant produced by the rationalising or the shift, so check the first term by hand before trusting the telescope.",
+      "keyFacts": [
+        "$\\sum_{k=m}^{n}\\bigl(f(k)-f(k+1)\\bigr)=f(m)-f(n+1)$",
+        "$\\frac1{k(k+1)}=\\frac1k-\\frac1{k+1}$",
+        "$\\frac1{\\sqrt k+\\sqrt{k+1}}=\\sqrt{k+1}-\\sqrt k$ and $\\frac1{\\sqrt k+\\sqrt{k+2}}=\\frac{\\sqrt{k+2}-\\sqrt k}{2}$"
+      ],
+      "whenToUse": "Use it when a sum has denominators that are products of nearby terms, or radical denominators with a sum of roots, or a product whose factors shift by one.",
+      "commonMistakes": [
+        "Writing $\\frac1{\\sqrt k+\\sqrt{k+2}}$ as $\\sqrt{k+2}-\\sqrt k$ and dropping the factor $\\frac12$",
+        "Trusting a telescope without checking that the first term actually matches the claimed difference"
+      ],
+      "example": {
+        "problem": "Compute $\\sum_{k=1}^{4}\\frac{1}{k(k+1)}$.",
+        "solution": "Each term is $\\frac1k-\\frac1{k+1}$, so the sum is $\\left(1-\\frac12\\right)+\\left(\\frac12-\\frac13\\right)+\\left(\\frac13-\\frac14\\right)+\\left(\\frac14-\\frac15\\right)=1-\\frac15=\\frac45$.",
+        "answer": "4/5",
+        "verify": "from fractions import Fraction\nprint(sum(Fraction(1, k * (k + 1)) for k in range(1, 5)))\n"
+      }
+    },
+    {
+      "title": "Radical equations: conjugates and extraneous roots",
+      "body": "Equations with square roots are solved by isolating a root and squaring, but squaring can introduce solutions. Squaring $\\sqrt A=B$ gives $A=B^2$, which holds for both $B$ and $-B$. So every candidate must be substituted back into the original equation. Keep track of the domain as well: $\\sqrt t$ is defined only for $t\\ge 0$, and it is nonnegative, so a candidate that makes the right side negative is rejected at once.\n\nWhen two roots appear, a conjugate trick is often faster. For $\\sqrt{x+7}-\\sqrt{x-1}=2$, multiply the left side by $\\sqrt{x+7}+\\sqrt{x-1}$ and use the difference of squares: $(x+7)-(x-1)=8$. The given equation then implies $\\sqrt{x+7}+\\sqrt{x-1}=4$. Adding this to the original equation and halving gives $\\sqrt{x+7}=3$, so $x=2$, which checks since $\\sqrt9-\\sqrt1=2$.\n\nThe general shape is $\\sqrt{x+a}-\\sqrt{x+b}=c$. The difference of the squares is $a-b$, so the sum of the two roots equals $\\frac{a-b}{c}$, and the two linear relations determine each root. This works whenever the constant $c$ is nonzero, and it explains why such equations usually have a single clean solution.\n\nExtraneous solutions usually come from a sign issue or a domain issue. For $x=\\sqrt{x+2}$, squaring gives $x^2=x+2$, with roots $2$ and $-1$. The root $-1$ is extraneous, because $\\sqrt{x+2}\\ge 0$ can never equal a negative $x$. Test every candidate in the unsquared equation, not in the squared one.\n\nStudents often square a sum of roots term by term and write $(\\sqrt a+\\sqrt b)^2=a+b$. The cross term $2\\sqrt{ab}$ is essential and must be kept. Once it is included, the squared equation is usually a simple linear or quadratic equation in one variable.",
+      "keyFacts": [
+        "$\\sqrt A=B$ squares to $A=B^2$, which also admits $B=-\\sqrt A$; check each candidate",
+        "$\\left(\\sqrt{x+a}-\\sqrt{x+b}\\right)\\left(\\sqrt{x+a}+\\sqrt{x+b}\\right)=a-b$",
+        "$(\\sqrt a+\\sqrt b)^2=a+b+2\\sqrt{ab}$"
+      ],
+      "whenToUse": "Use it when an equation has square roots of expressions that differ by a constant, or when squaring once leaves a root that must be isolated again.",
+      "commonMistakes": [
+        "Squaring a sum of roots without the cross term $2\\sqrt{ab}$",
+        "Reporting a solution from the squared equation without testing it in the original"
+      ],
+      "example": {
+        "problem": "What is the sum of all real solutions of $\\sqrt{2x+1}-\\sqrt{x}=1$?",
+        "solution": "Isolate and square: $\\sqrt{2x+1}=1+\\sqrt x$ gives $2x+1=1+2\\sqrt x+x$, so $x=2\\sqrt x$. Squaring again gives $x^2=4x$, so $x=0$ or $x=4$. Both check: $\\sqrt1-0=1$ and $\\sqrt9-\\sqrt4=1$. The sum is $4$.",
+        "answer": "4",
+        "verify": "import math\nsols = [x for x in range(0, 200) if abs(math.sqrt(2 * x + 1) - math.sqrt(x) - 1) < 1e-9]\nprint(sum(sols))\n"
+      }
+    },
+    {
+      "title": "Word problems that reduce to algebra",
+      "body": "A word problem on the AMC is an algebra problem in disguise, and most of the work happens before any algebra. Name the unknown quantities, write one equation for each relationship the story states, and then solve. The usual errors are choosing variables badly, or writing a relation in the wrong direction, and both are fixed by slowing down at the setup.\n\nFor rates, the relation is distance equals rate times time. Work problems use the same idea with the rate being the fraction of a job done per hour, and rates of cooperating agents add. A tap fills a pool in $6$ hours, a second fills it in $12$ hours, and a drain empties it in $9$ hours. The combined rate is $\\frac16+\\frac1{12}-\\frac19=\\frac5{36}$ of the pool per hour, so it fills the pool in $\\frac{36}5$ hours.\n\nMoving-object problems compare two equal times or two equal distances. For a boat of still-water speed $b$ in a current of speed $c$, the downstream speed is $b+c$ and the upstream speed is $b-c$. If the boat covers $24$ km downstream in the same time it covers $16$ km upstream and $c=2$, then $\\frac{24}{b+2}=\\frac{16}{b-2}$, which gives $b=10$. The equation is the whole problem: the rest is arithmetic.\n\nMixture problems conserve a substance. If $40$ liters of a $30\\%$ solution are diluted with $w$ liters of water to reach $20\\%$, the amount of pure substance does not change: $0.3\\cdot 40=0.2(40+w)$, so $w=20$. The same conservation principle handles money, distance travelled by two parties, and any quantity that is transferred rather than created.\n\nChoose variables so that the relations are as simple as possible. Use one unknown for the quantity asked, or for a quantity that makes the others easy to express. When the story is symmetric in two quantities, the sum-product substitution from the systems concept often solves it in a line. Finally, check the answer against the story: a negative speed or a fractional number of people signals a setup error.",
+      "keyFacts": [
+        "Time equals distance divided by rate, and the rates of cooperating workers add",
+        "Downstream speed is $b+c$ and upstream speed is $b-c$ for still-water speed $b$ and current $c$",
+        "A conserved quantity, such as pure salt or money, gives an equation between two expressions"
+      ],
+      "whenToUse": "Use it for any problem about rates, work, motion with a current, mixtures or transfers, where a quantity is preserved or two times are equal.",
+      "commonMistakes": [
+        "Writing a rate relation in the wrong direction, such as multiplying distance by speed to get time",
+        "Accepting a negative speed or a fractional count without checking the story"
+      ],
+      "example": {
+        "problem": "A car travels $120$ km at a constant speed. Driving $10$ km/h faster would have saved exactly one hour. What was its original speed, in km/h?",
+        "solution": "Let $v$ be the original speed. Then $\\frac{120}{v}-\\frac{120}{v+10}=1$. Multiplying by $v(v+10)$ gives $1200=v^2+10v$, that is $(v-30)(v+40)=0$. The positive root is $v=30$.",
+        "answer": "30",
+        "verify": "from fractions import Fraction\nprint(next(v for v in range(1, 500) if Fraction(120, v) - Fraction(120, v + 10) == 1))\n"
+      }
+    }
+  ],
+  "strategies": [
+    {
+      "name": "Factor before you expand",
+      "description": "When an expression is a difference or sum of squares or cubes, or has a repeated group, write it as a product first. Expanding hides the structure that makes the problem short, and the factored form often contains the answer."
+    },
+    {
+      "name": "Add the constant that completes the product",
+      "description": "For an equation in two integers with an $xy$ term, add the product of the constants so that the left side factors. The problem then becomes one about divisor pairs, and the remaining work is the sign and size bounds."
+    },
+    {
+      "name": "Pass to the symmetric pair",
+      "description": "If swapping two unknowns leaves the problem unchanged, set $s$ for their sum and $p$ for their product. Write each given quantity in $s$ and $p$, solve the reduced system, and check reality ($s^2\\ge 4p$) before accepting a solution."
+    },
+    {
+      "name": "Split on signs, then discard",
+      "description": "For absolute values, find the sign-change points, solve on each interval, and keep only candidates that lie in the interval assumed. Solve nested bars from the outside in, and do not drop an interval where the expression is constant."
+    },
+    {
+      "name": "Find the hidden variable",
+      "description": "When one expression recurs, such as an even power of $x$, a shifted quantity like $x^2-3x$, or a reciprocal pair, replace it by a single letter. Solve for the letter, return to the original variable, and check each branch."
+    },
+    {
+      "name": "Rationalise, then telescope",
+      "description": "Multiply by a conjugate to remove a root from a denominator. When many such terms appear, the rationalised terms usually cancel in consecutive pairs. Check the first term by hand before trusting the telescope, and watch for the factor that a gap of two introduces."
+    },
+    {
+      "name": "Square once, then check every candidate",
+      "description": "Squaring removes roots but can add solutions. Isolate the root first, square, and then substitute each candidate into the original equation, paying attention to where the roots are defined and nonnegative."
     }
   ],
   "workedExamples": [
@@ -79,39 +250,45 @@
         "$1000$",
         "$1200$",
         "$1400$",
-        "1800"
+        "$1800$"
       ],
       "answer": "C",
+      "approach": "The bases $103$ and $97$ differ by $6$ and sum to $200$, so this is a difference of squares and never needs the large squares.",
       "steps": [
-        "Recognise a difference of squares: $103^2-97^2=(103-97)(103+97)$.",
-        "The two factors are $103-97=6$ and $103+97=200$.",
+        "Recognise $a^2-b^2$ with $a=103$ and $b=97$.",
+        "Factor: $103^2-97^2=(103-97)(103+97)$.",
+        "The factors are $6$ and $200$.",
         "Multiply: $6\\cdot 200=1200$."
       ],
-      "takeaway": "When you see $a^2-b^2$, factor it into $(a-b)(a+b)$ before computing anything.",
-      "verify": "print(103**2 - 97**2)"
+      "alternative": "Squaring directly gives $10609-9409=1200$, which agrees but takes far more arithmetic.",
+      "takeaway": "Before computing $a^2-b^2$, factor it into $(a-b)(a+b)$.",
+      "verify": "print(103**2 - 97**2)\n"
     },
     {
-      "title": "Reciprocals of roots",
+      "title": "Cubes from a sum and a product",
       "difficulty": 2,
-      "problem": "Let $r$ and $s$ be the two roots of $x^2-9x+14=0$. What is $\\frac{1}{r}+\\frac{1}{s}$?",
+      "problem": "If $a+b=7$ and $ab=10$, what is $a^3+b^3$?",
       "choices": [
-        "$\\frac{1}{14}$",
-        "$\\frac{2}{7}$",
-        "$\\frac{9}{14}$",
-        "$\\frac{7}{9}$",
-        "$\\frac{9}{2}$"
+        "$119$",
+        "$125$",
+        "$129$",
+        "$133$",
+        "$217$"
       ],
-      "answer": "C",
+      "answer": "D",
+      "approach": "A sum of cubes factors as $(a+b)(a^2-ab+b^2)$, and the second factor is determined by $a+b$ and $ab$.",
       "steps": [
-        "Vieta's formulas give $r+s=9$ and $rs=14$.",
-        "Put the reciprocals over a common denominator: $\\frac1r+\\frac1s=\\frac{r+s}{rs}$.",
-        "Substitute: $\\frac{9}{14}$."
+        "Factor: $a^3+b^3=(a+b)(a^2-ab+b^2)$.",
+        "Compute $a^2+b^2=(a+b)^2-2ab=49-20=29$.",
+        "Then $a^2-ab+b^2=29-10=19$.",
+        "So $a^3+b^3=7\\cdot 19=133$."
       ],
-      "takeaway": "The sum of reciprocals of two roots is the sum of the roots divided by their product.",
-      "verify": "from fractions import Fraction\nroots = [t for t in range(-100, 101) if t * t - 9 * t + 14 == 0]\nprint(sum(Fraction(1, t) for t in roots))\n"
+      "alternative": "",
+      "takeaway": "Any expression symmetric in $a$ and $b$ can be built from $a+b$ and $ab$.",
+      "verify": "vals = {a ** 3 + (7 - a) ** 3 for a in range(-50, 51) if a * (7 - a) == 10}\nprint(vals.pop())\n"
     },
     {
-      "title": "Counting solutions with Simon's trick",
+      "title": "Counting with Simon's trick",
       "difficulty": 3,
       "problem": "How many ordered pairs of positive integers $(x,y)$ satisfy $xy-x-3y=2$?",
       "choices": [
@@ -119,153 +296,382 @@
         "$2$",
         "$3$",
         "$4$",
-        "6"
+        "$6$"
       ],
       "answer": "B",
+      "approach": "The $xy$ term together with linear terms in $x$ and $y$ is the signature of Simon's trick.",
       "steps": [
         "Add $3$ to both sides: $xy-x-3y+3=5$.",
         "The left side factors as $(x-3)(y-1)=5$.",
         "Since $y\\ge 1$, the factor $y-1$ is nonnegative, and it cannot be $0$ because the product is $5$. So $y-1\\ge 1$, and the product is positive, so $x-3$ is positive too.",
-        "The factor pairs of 5 with both factors positive are $(1,5)$ and $(5,1)$, giving $(x,y)=(4,6)$ and $(x,y)=(8,2)$.",
+        "The factor pairs of $5$ with both factors positive are $(1,5)$ and $(5,1)$, giving $(x,y)=(4,6)$ and $(8,2)$.",
         "There are 2 solutions."
       ],
-      "takeaway": "After Simon's trick, use the sign of each factor to rule out divisor pairs before you count them.",
-      "verify": "count = 0\nfor x in range(1, 200):\n    for y in range(1, 200):\n        if x * y - x - 3 * y == 2:\n            count += 1\nprint(count)\n"
+      "alternative": "",
+      "takeaway": "After factoring, use the sign of each factor to rule out divisor pairs before you count them.",
+      "verify": "count = 0\nfor x in range(1, 201):\n    for y in range(1, 201):\n        if x * y - x - 3 * y == 2:\n            count += 1\nprint(count)\n"
+    },
+    {
+      "title": "Simplifying a conjugate pair of nested roots",
+      "difficulty": 4,
+      "problem": "Simplify $\\sqrt{5+2\\sqrt6}+\\sqrt{5-2\\sqrt6}$.",
+      "choices": [
+        "$\\sqrt{2}$",
+        "$\\sqrt{3}$",
+        "$2\\sqrt{2}$",
+        "$2\\sqrt{3}$",
+        "$4$"
+      ],
+      "answer": "D",
+      "approach": "Square the sum rather than each root, so that the cross term collapses to a rational number.",
+      "steps": [
+        "Let $S$ be the sum and square it: $S^2=(5+2\\sqrt6)+(5-2\\sqrt6)+2\\sqrt{(5+2\\sqrt6)(5-2\\sqrt6)}$.",
+        "The product under the root is $25-24=1$.",
+        "So $S^2=10+2\\cdot 1=12$.",
+        "Since $S>0$, $S=\\sqrt{12}=2\\sqrt3$."
+      ],
+      "alternative": "Denest directly: $5+2\\sqrt6=(\\sqrt2+\\sqrt3)^2$ and $5-2\\sqrt6=(\\sqrt3-\\sqrt2)^2$, so the sum is $(\\sqrt2+\\sqrt3)+(\\sqrt3-\\sqrt2)=2\\sqrt3$.",
+      "takeaway": "For a conjugate pair $\\sqrt{A+B}+\\sqrt{A-B}$, squaring gives $2A+2\\sqrt{A^2-B^2}$.",
+      "verify": "import math\ns = math.sqrt(5 + 2 * math.sqrt(6)) + math.sqrt(5 - 2 * math.sqrt(6))\nassert abs(s - 2 * math.sqrt(3)) < 1e-9\nprint(\"2\\\\sqrt{3}\")\n"
+    },
+    {
+      "title": "Sum of solutions with two absolute values",
+      "difficulty": 4,
+      "problem": "Real numbers $x$ satisfy $|x+3|+|x-5|=10$. What is the sum of all such $x$?",
+      "choices": [
+        "$-2$",
+        "$0$",
+        "$2$",
+        "$4$",
+        "$6$"
+      ],
+      "answer": "C",
+      "approach": "Split on the sign of each inner expression, solve each piece, and notice that the middle piece is constant.",
+      "steps": [
+        "For $x\\ge 5$: $(x+3)+(x-5)=10$ gives $2x-2=10$, so $x=6$.",
+        "For $-3<x<5$: the sum is $(x+3)+(5-x)=8$ for every such $x$, which is never $10$.",
+        "For $x\\le -3$: $-(x+3)+(5-x)=10$ gives $-2x+2=10$, so $x=-4$.",
+        "Both candidates lie in their intervals, so the solutions are $6$ and $-4$, with sum $2$."
+      ],
+      "alternative": "",
+      "takeaway": "Where the expression is constant on an interval, that whole interval either satisfies the equation or contributes nothing.",
+      "verify": "print(sum(x for x in range(-20, 21) if abs(x + 3) + abs(x - 5) == 10))\n"
+    },
+    {
+      "title": "Ratio substitution with an ordering condition",
+      "difficulty": 5,
+      "problem": "Real numbers $x>y>0$ satisfy $\\frac xy+\\frac yx=\\frac{10}{3}$. What is $\\frac{x+y}{x-y}$?",
+      "choices": [
+        "$\\frac{1}{2}$",
+        "$1$",
+        "$2$",
+        "$3$",
+        "$6$"
+      ],
+      "answer": "C",
+      "approach": "Let $t=\\frac xy$. The condition becomes a quadratic in $t$, and the ordering $x>y$ selects one root, which then determines the requested ratio.",
+      "steps": [
+        "Set $t=\\frac xy$. Then $t+\\frac1t=\\frac{10}{3}$, so $3t^2-10t+3=0$.",
+        "The roots are $t=3$ and $t=\\frac13$.",
+        "Since $x>y>0$ we have $t>1$, so $t=3$.",
+        "Divide the numerator and denominator of $\\frac{x+y}{x-y}$ by $y$: the expression equals $\\frac{t+1}{t-1}=\\frac{4}{2}=2$."
+      ],
+      "alternative": "",
+      "takeaway": "Ordering conditions decide which root of a reciprocal-pair quadratic is admissible.",
+      "verify": "from fractions import Fraction\nvals = set()\nfor x in range(1, 301):\n    for y in range(1, x):\n        if Fraction(x, y) + Fraction(y, x) == Fraction(10, 3):\n            vals.add(Fraction(x + y, x - y))\nprint(vals.pop())\n"
     }
   ],
   "problems": [
     {
       "id": "alg-01",
       "difficulty": 1,
-      "problem": "If $x$ is a nonzero real number with $x-\\frac{1}{x}=3$, what is $x^2+\\frac{1}{x^2}$?",
+      "problem": "Compute $\\frac{1001^2-999^2}{1002^2-998^2}$.",
       "choices": [
-        "1",
-        "3",
-        "$7$",
-        "$9$",
-        "$11$"
+        "$\\frac{1}{2}$",
+        "$\\frac{2}{3}$",
+        "$1$",
+        "$2$",
+        "$4$"
       ],
-      "answer": "E",
-      "hint": "Square the given equation and compare the result with $x^2+\\frac{1}{x^2}$.",
-      "solution": "Squaring $x-\\frac1x=3$ gives $x^2-2+\\frac{1}{x^2}=9$, because the cross term is $2\\cdot x\\cdot\\frac1x=2$. Therefore $x^2+\\frac{1}{x^2}=11$.",
-      "verify": "def f(x):\n    return x - 1 / x - 3\n\ndef bisect(a, b):\n    for _ in range(200):\n        m = (a + b) / 2\n        if f(a) * f(m) <= 0:\n            b = m\n        else:\n            a = m\n    return (a + b) / 2\n\nvals = set()\nfor a, b in [(-2.0, -0.001), (0.001, 5.0)]:\n    x = bisect(a, b)\n    vals.add(round(x * x + 1 / (x * x)))\nprint(vals.pop())\n"
+      "answer": "A",
+      "hint": "Both the numerator and the denominator are differences of squares.",
+      "solution": "The numerator is $(1001-999)(1001+999)=2\\cdot 2000=4000$. The denominator is $(1002-998)(1002+998)=4\\cdot 2000=8000$. The ratio is $\\frac{4000}{8000}=\\frac12$.",
+      "concepts": [
+        0
+      ],
+      "verify": "from fractions import Fraction\nprint(Fraction(1001**2 - 999**2, 1002**2 - 998**2))\n"
     },
     {
       "id": "alg-02",
       "difficulty": 1,
-      "problem": "What is the value of $\\frac{1}{1\\cdot 2}+\\frac{1}{2\\cdot 3}+\\frac{1}{3\\cdot 4}+\\cdots+\\frac{1}{9\\cdot 10}$?",
+      "problem": "What is $\\frac{2^{32}-1}{2^{16}+1}$?",
       "choices": [
-        "$\\frac{9}{10}$",
-        "$1$",
-        "$\\frac{10}{9}$",
-        "$\\frac{13}{10}$",
-        "$\\frac{17}{10}$"
+        "$32767$",
+        "$65535$",
+        "$65536$",
+        "$131071$",
+        "$262143$"
       ],
-      "answer": "A",
-      "hint": "Write each term $\\frac{1}{k(k+1)}$ as a difference of two simpler fractions.",
-      "solution": "Use $\\frac{1}{k(k+1)}=\\frac{1}{k}-\\frac{1}{k+1}$. In the sum, each term cancels against its neighbour, leaving $1-\\frac{1}{10}=\\frac{9}{10}$.",
-      "verify": "from fractions import Fraction\nprint(sum(Fraction(1, k * (k + 1)) for k in range(1, 10)))\n"
+      "answer": "B",
+      "hint": "Write $2^{32}$ as $(2^{16})^2$.",
+      "solution": "Let $t=2^{16}$. Then $2^{32}-1=t^2-1=(t-1)(t+1)$, and dividing by $t+1=2^{16}+1$ leaves $t-1=2^{16}-1=65535$.",
+      "concepts": [
+        0
+      ],
+      "verify": "t = 2 ** 16\nassert (t * t - 1) % (t + 1) == 0\nprint((t * t - 1) // (t + 1))\n"
     },
     {
       "id": "alg-03",
       "difficulty": 1,
-      "problem": "If $a+b=7$ and $ab=10$, what is $a^3+b^3$?",
+      "problem": "What is $\\frac{20^3+1}{20^2-20+1}$?",
       "choices": [
-        "$119$",
-        "$133$",
-        "$147$",
-        "$175$",
-        "217"
+        "$19$",
+        "$20$",
+        "$21$",
+        "$22$",
+        "$24$"
       ],
-      "answer": "B",
-      "hint": "Factor $a^3+b^3$, then rewrite $a^2+b^2$ in terms of $a+b$ and $ab$.",
-      "solution": "$a^3+b^3=(a+b)(a^2-ab+b^2)$. Also $a^2+b^2=(a+b)^2-2ab=49-20=29$, so $a^2-ab+b^2=29-10=19$. Hence $a^3+b^3=7\\cdot 19=133$.",
-      "verify": "vals = {a ** 3 + (7 - a) ** 3 for a in range(-50, 51) if a * (7 - a) == 10}\nprint(vals.pop())\n"
+      "answer": "C",
+      "hint": "The numerator is a sum of cubes.",
+      "solution": "Since $20^3+1=(20+1)(20^2-20+1)$, the quotient equals $20+1=21$.",
+      "concepts": [
+        0
+      ],
+      "verify": "print((20**3 + 1) // (20**2 - 20 + 1))\n"
     },
     {
       "id": "alg-04",
-      "difficulty": 2,
-      "problem": "Let $r$ and $s$ be the roots of $x^2-6x+4=0$. What is $r^2+s^2$?",
-      "choices": [
-        "$28$",
-        "$32$",
-        "$36$",
-        "44",
-        "48"
-      ],
-      "answer": "A",
-      "hint": "Find $r+s$ and $rs$ first, then use $r^2+s^2=(r+s)^2-2rs$.",
-      "solution": "By Vieta's formulas, $r+s=6$ and $rs=4$. So $r^2+s^2=(r+s)^2-2rs=36-8=28$.",
-      "verify": "import math\nd = math.sqrt(36 - 16)\nr = (6 + d) / 2\ns = (6 - d) / 2\nprint(round(r * r + s * s))\n"
-    },
-    {
-      "id": "alg-05",
-      "difficulty": 2,
-      "problem": "How many ordered pairs of positive integers $(x,y)$ satisfy $xy+2x+3y=30$?",
-      "choices": [
-        "$3$",
-        "$4$",
-        "$5$",
-        "$6$",
-        "8"
-      ],
-      "answer": "B",
-      "hint": "Use Simon's Favourite Factoring Trick: add the right constant to both sides.",
-      "solution": "Adding $2\\cdot 3=6$ to both sides gives $(x+3)(y+2)=36$. Positivity requires $x+3\\ge 4$ and $y+2\\ge 3$, so the divisor $d=x+3$ of 36 must satisfy $4\\le d\\le 12$. The divisors in that range are $4,6,9,12$, giving $(x,y)=(1,7),(3,4),(6,2),(9,1)$: four solutions.",
-      "verify": "count = 0\nfor x in range(1, 41):\n    for y in range(1, 41):\n        if x * y + 2 * x + 3 * y == 30:\n            count += 1\nprint(count)\n"
-    },
-    {
-      "id": "alg-06",
-      "difficulty": 2,
-      "problem": "The polynomial $p(x)=x^3-4x^2+5x+k$ leaves remainder $7$ when divided by $x-1$. What is $p(-1)$?",
-      "choices": [
-        "$-5$",
-        "$-3$",
-        "-1",
-        "$3$",
-        "5"
-      ],
-      "answer": "A",
-      "hint": "The remainder theorem says the remainder on division by $x-1$ equals $p(1)$.",
-      "solution": "By the remainder theorem, $p(1)=7$. Since $p(1)=1-4+5+k=2+k$, we get $k=5$. Then $p(-1)=-1-4-5+5=-5$.",
-      "verify": "sols = [k for k in range(-50, 51) if 1 - 4 + 5 + k == 7]\nk = sols[0]\np = lambda x: x ** 3 - 4 * x ** 2 + 5 * x + k\nprint(p(-1))\n"
-    },
-    {
-      "id": "alg-07",
-      "difficulty": 3,
-      "problem": "Real numbers $x$ and $y$ satisfy $x+y=5$ and $x^3+y^3=65$. What is $x^2+y^2$?",
-      "choices": [
-        "$13$",
-        "$15$",
-        "$17$",
-        "$19$",
-        "$21$"
-      ],
-      "answer": "C",
-      "hint": "Use $x^3+y^3=(x+y)^3-3xy(x+y)$ to find $xy$ first.",
-      "solution": "From $x^3+y^3=(x+y)^3-3xy(x+y)$ we get $65=125-15xy$, so $xy=4$. Then $x^2+y^2=(x+y)^2-2xy=25-8=17$.",
-      "verify": "from fractions import Fraction\nvals = set()\nfor k in range(-800, 801):\n    x = Fraction(k, 16)\n    y = 5 - x\n    if x ** 3 + y ** 3 == 65:\n        vals.add(x * x + y * y)\nprint(vals.pop())\n"
-    },
-    {
-      "id": "alg-08",
-      "difficulty": 3,
-      "problem": "How many ordered pairs of positive integers $(m,n)$ satisfy $m^2-n^2=96$?",
+      "difficulty": 1,
+      "problem": "How many real numbers $x$ satisfy $\\left||x|-3\\right|=2$?",
       "choices": [
         "$1$",
         "$2$",
         "$3$",
         "$4$",
-        "$5$"
+        "$6$"
       ],
       "answer": "D",
-      "hint": "Factor the left side, then list the factor pairs of 96 that can work.",
-      "solution": "Factor: $(m-n)(m+n)=96$. Both factors have the same parity, since their sum $2m$ is even; as $96$ is even, both must be even. The pairs $d\\cdot e=96$ with $d<e$ and both even are $(2,48),(4,24),(6,16),(8,12)$, while $(1,96)$ and $(3,32)$ mix parities. Each pair gives $m=\\frac{d+e}{2}$ and $n=\\frac{e-d}{2}$, which are positive integers, so there are 4 solutions.",
-      "verify": "count = 0\nfor m in range(1, 101):\n    for n in range(1, 101):\n        if m * m - n * n == 96:\n            count += 1\nprint(count)\n"
+      "hint": "Solve the outer absolute value first.",
+      "solution": "The outer equation gives $|x|-3=\\pm 2$, so $|x|=5$ or $|x|=1$. Each positive value of $|x|$ gives two real numbers $x$, namely $x=\\pm5$ and $x=\\pm1$. There are four solutions.",
+      "concepts": [
+        4
+      ],
+      "verify": "count = 0\nfor x in range(-50, 51):\n    if abs(abs(x) - 3) == 2:\n        count += 1\nprint(count)\n"
+    },
+    {
+      "id": "alg-05",
+      "difficulty": 1,
+      "problem": "Real numbers $x$ and $y$ satisfy $x+y=10$ and $x^2+y^2=58$. What is $xy$?",
+      "choices": [
+        "$7$",
+        "$9$",
+        "$12$",
+        "$16$",
+        "$21$"
+      ],
+      "answer": "E",
+      "hint": "Expand $(x+y)^2$.",
+      "solution": "Since $(x+y)^2=x^2+y^2+2xy$, we get $100=58+2xy$, so $xy=21$.",
+      "concepts": [
+        3,
+        0
+      ],
+      "verify": "print(next(x * (10 - x) for x in range(-50, 51) if x * x + (10 - x) ** 2 == 58))\n"
+    },
+    {
+      "id": "alg-06",
+      "difficulty": 1,
+      "problem": "What is the sum of all real solutions of $|2x-1|=5$?",
+      "choices": [
+        "$1$",
+        "$2$",
+        "$3$",
+        "$5$",
+        "$7$"
+      ],
+      "answer": "A",
+      "hint": "A value $|t|=5$ means $t=5$ or $t=-5$.",
+      "solution": "Splitting into cases: $2x-1=5$ gives $x=3$, and $2x-1=-5$ gives $x=-2$. The sum is $3+(-2)=1$.",
+      "concepts": [
+        4
+      ],
+      "verify": "print(sum(x for x in range(-50, 51) if abs(2 * x - 1) == 5))\n"
+    },
+    {
+      "id": "alg-07",
+      "difficulty": 2,
+      "problem": "Positive integers $x$ and $y$ satisfy $xy-2x-y=9$. What is the sum of $x+y$ over all such ordered pairs $(x,y)$?",
+      "choices": [
+        "$15$",
+        "$30$",
+        "$36$",
+        "$45$",
+        "$60$"
+      ],
+      "answer": "B",
+      "hint": "Add a suitable constant to both sides so that the left side factors as $(x-1)(y-2)$.",
+      "solution": "Adding $2$ to both sides gives $xy-2x-y+2=11$, and the left side is $(x-1)(y-2)$. Since $x\\ge 1$, the factor $x-1$ is nonnegative, and it cannot be $0$ because the product is $11$. So both factors are positive, and the positive factor pairs of $11$ are $(1,11)$ and $(11,1)$. These give $(x,y)=(2,13)$ and $(12,3)$. Each pair has $x+y=15$, so the sum is $30$.",
+      "concepts": [
+        2
+      ],
+      "verify": "total = 0\nfor x in range(1, 61):\n    for y in range(1, 61):\n        if x * y - 2 * x - y == 9:\n            total += x + y\nprint(total)\n"
+    },
+    {
+      "id": "alg-08",
+      "difficulty": 2,
+      "problem": "How many ordered pairs of positive integers $(m,n)$ satisfy $mn+m+n=47$?",
+      "choices": [
+        "$4$",
+        "$6$",
+        "$8$",
+        "$10$",
+        "$12$"
+      ],
+      "answer": "C",
+      "hint": "Add $1$ to both sides and factor.",
+      "solution": "Adding $1$ gives $(m+1)(n+1)=48$. Since $m,n\\ge 1$, each factor is at least $2$. The divisors of $48$ are $1,2,3,4,6,8,12,16,24,48$, and each divisor $d$ with $2\\le d\\le 24$ gives one ordered pair $(m+1,n+1)=(d,48/d)$. There are $8$ such divisors. The unordered count, $4$, is not the answer, since the question asks for ordered pairs.",
+      "concepts": [
+        2
+      ],
+      "verify": "count = 0\nfor m in range(1, 60):\n    for n in range(1, 60):\n        if m * n + m + n == 47:\n            count += 1\nprint(count)\n"
     },
     {
       "id": "alg-09",
+      "difficulty": 2,
+      "problem": "How many real numbers $x$ satisfy $|x^2-4|=x+2$?",
+      "choices": [
+        "$0$",
+        "$1$",
+        "$2$",
+        "$3$",
+        "$4$"
+      ],
+      "answer": "D",
+      "hint": "Split on the sign of $x^2-4$, and remember that $x+2$ must be nonnegative.",
+      "solution": "Case $x^2\\ge 4$: $x^2-4=x+2$ gives $x^2-x-6=0$, so $x=3$ or $x=-2$, and both satisfy $x^2\\ge 4$. Case $x^2<4$: $4-x^2=x+2$ gives $x^2+x-2=0$, so $x=1$ or $x=-2$. Only $x=1$ satisfies $x^2<4$, while $x=-2$ was already counted. The solutions are $-2$, $1$ and $3$: three in total.",
+      "concepts": [
+        4
+      ],
+      "verify": "from fractions import Fraction\ncount = sum(1 for k in range(-120, 121) if abs(Fraction(k, 6) ** 2 - 4) == Fraction(k, 6) + 2)\nprint(count)\n"
+    },
+    {
+      "id": "alg-10",
+      "difficulty": 2,
+      "problem": "A jar holds $40$ liters of a $30\\%$ salt solution. How many liters of water must be added so that the solution becomes $20\\%$ salt?",
+      "choices": [
+        "$10$",
+        "$12$",
+        "$15$",
+        "$16$",
+        "$20$"
+      ],
+      "answer": "E",
+      "hint": "Salt is conserved, so compute the amount of salt first.",
+      "solution": "The jar contains $0.3\\cdot 40=12$ liters of salt. If $w$ liters of water are added, the total volume is $40+w$ and the concentration is $\\frac{12}{40+w}=\\frac15$. Hence $40+w=60$ and $w=20$.",
+      "concepts": [
+        9
+      ],
+      "verify": "from fractions import Fraction\nprint(next(w for w in range(0, 200) if Fraction(12, 40 + w) == Fraction(1, 5)))\n"
+    },
+    {
+      "id": "alg-11",
+      "difficulty": 2,
+      "problem": "Real numbers $x$ and $y$ satisfy $x+y=6$ and $xy=5$. What is $|x-y|$?",
+      "choices": [
+        "$4$",
+        "$6$",
+        "$8$",
+        "$10$",
+        "$12$"
+      ],
+      "answer": "A",
+      "hint": "Compute $(x-y)^2$ from $(x+y)^2$ and $xy$.",
+      "solution": "$(x-y)^2=(x+y)^2-4xy=36-20=16$, so $|x-y|=4$. The actual values are $x,y=1,5$, which confirms it.",
+      "concepts": [
+        3
+      ],
+      "verify": "vals = set()\nfor x in range(-20, 21):\n    for y in range(-20, 21):\n        if x + y == 6 and x * y == 5:\n            vals.add(abs(x - y))\nprint(vals.pop())\n"
+    },
+    {
+      "id": "alg-12",
+      "difficulty": 2,
+      "problem": "What is $\\frac{1}{\\sqrt5-2}-\\frac{1}{\\sqrt5+2}$?",
+      "choices": [
+        "$2$",
+        "$4$",
+        "$6$",
+        "$8$",
+        "$10$"
+      ],
+      "answer": "B",
+      "hint": "Rationalise each fraction using its conjugate.",
+      "solution": "Rationalising, $\\frac{1}{\\sqrt5-2}=\\frac{\\sqrt5+2}{5-4}=\\sqrt5+2$ and $\\frac{1}{\\sqrt5+2}=\\sqrt5-2$. The difference is $(\\sqrt5+2)-(\\sqrt5-2)=4$.",
+      "concepts": [
+        6
+      ],
+      "verify": "import math\nval = 1 / (math.sqrt(5) - 2) - 1 / (math.sqrt(5) + 2)\nprint(round(val))\n"
+    },
+    {
+      "id": "alg-13",
       "difficulty": 3,
-      "problem": "Positive integers $x$ and $y$ satisfy $2xy-x-y=6$. What is the sum of $x+y$ over all such ordered pairs $(x,y)$?",
+      "problem": "How many integers $n$ with $1\\le n\\le 100$ make $n^4+4$ composite?",
+      "choices": [
+        "$97$",
+        "$98$",
+        "$99$",
+        "$100$",
+        "$101$"
+      ],
+      "answer": "C",
+      "hint": "Use the Sophie Germain identity, and check $n=1$ separately.",
+      "solution": "By the Sophie Germain identity, $n^4+4=(n^2+2n+2)(n^2-2n+2)$. For $n\\ge 2$ the second factor is $(n-1)^2+1\\ge 2$ and the first factor is at least $10$, so $n^4+4$ is composite. For $n=1$ the value is $5$, which is prime. The composite values are $n=2,\\dots,100$, which is $99$ integers.",
+      "concepts": [
+        0
+      ],
+      "verify": "def is_prime(m):\n    if m < 2:\n        return False\n    d = 2\n    while d * d <= m:\n        if m % d == 0:\n            return False\n        d += 1\n    return True\n\ncount = sum(1 for n in range(1, 101) if not is_prime(n ** 4 + 4))\nprint(count)\n"
+    },
+    {
+      "id": "alg-14",
+      "difficulty": 3,
+      "problem": "Positive integers $a$ and $b$ satisfy $ab-4a-2b=-1$. What is the sum of $a+b$ over all such ordered pairs $(a,b)$?",
+      "choices": [
+        "$14$",
+        "$20$",
+        "$24$",
+        "$28$",
+        "$32$"
+      ],
+      "answer": "D",
+      "hint": "Add $8$ to both sides, then factor.",
+      "solution": "Adding $8$ gives $ab-4a-2b+8=7$, which is $(a-2)(b-4)=7$. The factor pairs of $7$ are $(1,7)$, $(7,1)$, $(-1,-7)$ and $(-7,-1)$. The pair $(-7,-1)$ gives $a=-5$, and $(-1,-7)$ gives $b=-3$, so both are excluded. The pair $(1,7)$ gives $(a,b)=(3,11)$, and $(7,1)$ gives $(9,5)$. Check: $33-12-22=-1$ and $45-36-10=-1$. The sum of $a+b$ is $14+14=28$.",
+      "concepts": [
+        2
+      ],
+      "verify": "total = 0\nfor a in range(1, 101):\n    for b in range(1, 101):\n        if a * b - 4 * a - 2 * b == -1:\n            total += a + b\nprint(total)\n"
+    },
+    {
+      "id": "alg-15",
+      "difficulty": 3,
+      "problem": "Real numbers $x$ and $y$ satisfy $x+y=4$ and $x^3+y^3=28$. What is $x^2+y^2$?",
+      "choices": [
+        "$2$",
+        "$4$",
+        "$6$",
+        "$8$",
+        "$10$"
+      ],
+      "answer": "E",
+      "hint": "Find $xy$ first using $x^3+y^3=(x+y)^3-3xy(x+y)$.",
+      "solution": "From $(x+y)^3=x^3+y^3+3xy(x+y)$ we get $64=28+12xy$, so $xy=3$. Then $x^2+y^2=(x+y)^2-2xy=16-6=10$. The real solutions are $\\{x,y\\}=\\{1,3\\}$, which is consistent with this.",
+      "concepts": [
+        3
+      ],
+      "verify": "vals = set()\nfor x in range(-30, 31):\n    y = 4 - x\n    if x ** 3 + y ** 3 == 28:\n        vals.add(x * x + y * y)\nprint(vals.pop())\n"
+    },
+    {
+      "id": "alg-16",
+      "difficulty": 3,
+      "problem": "What is the sum of all real solutions of $\\left|\\,|x-2|-3\\,\\right|=1$?",
       "choices": [
         "$8$",
         "$10$",
@@ -273,106 +679,305 @@
         "$16$",
         "$20$"
       ],
-      "answer": "D",
-      "hint": "Multiply by 2 first so the $xy$ coefficient becomes $4$, then complete the product $(2x-1)(2y-1)$.",
-      "solution": "Multiplying by 2 gives $4xy-2x-2y=12$. Adding 1 to both sides, $(2x-1)(2y-1)=13$. Since 13 is prime and both factors are positive, $\\{2x-1,2y-1\\}=\\{1,13\\}$, giving $(x,y)=(1,7)$ or $(7,1)$. Each pair has $x+y=8$, so the total is $16$.",
-      "verify": "total = 0\nfor x in range(1, 60):\n    for y in range(1, 60):\n        if 2 * x * y - x - y == 6:\n            total += x + y\nprint(total)\n"
-    },
-    {
-      "id": "alg-10",
-      "difficulty": 3,
-      "problem": "The polynomial $P(x)$ satisfies $P(1)=3$, $P(2)=1$ and $P(3)=7$. What is the value at $x=4$ of the remainder when $P(x)$ is divided by $(x-1)(x-2)(x-3)$?",
-      "choices": [
-        "11",
-        "$15$",
-        "$17$",
-        "$19$",
-        "$21$"
-      ],
-      "answer": "E",
-      "hint": "The remainder has degree at most 2, and it takes the same values as $P$ at $x=1,2,3$.",
-      "solution": "Write $P(x)=(x-1)(x-2)(x-3)Q(x)+R(x)$ with $R(x)=ax^2+bx+c$. Substituting $x=1,2,3$ gives $R(1)=3$, $R(2)=1$, $R(3)=7$. The second difference gives $2a=7-2+3=8$, so $a=4$. Then $R(2)-R(1)=3a+b=-2$ gives $b=-14$, and $c=3-a-b=13$. So $R(x)=4x^2-14x+13$ and $R(4)=64-56+13=21$.",
-      "verify": "sols = set()\nfor a in range(-30, 31):\n    for b in range(-30, 31):\n        for c in range(-30, 31):\n            if a * 1 + b * 1 + c == 3 and a * 4 + b * 2 + c == 1 and a * 9 + b * 3 + c == 7:\n                sols.add(a * 16 + b * 4 + c)\nprint(sols.pop())\n"
-    },
-    {
-      "id": "alg-11",
-      "difficulty": 4,
-      "problem": "$P(x)$ is a monic cubic polynomial with $P(1)=1$, $P(2)=4$ and $P(3)=9$. What is $P(4)$?",
-      "choices": [
-        "$22$",
-        "24",
-        "$25$",
-        "$28$",
-        "34"
-      ],
       "answer": "A",
-      "hint": "Look at $P(x)-x^2$. How many roots does it have, and what is its leading term?",
-      "solution": "The polynomial $P(x)-x^2$ is still monic cubic, because subtracting $x^2$ does not change the $x^3$ term. It vanishes at $x=1,2,3$, so $P(x)-x^2=(x-1)(x-2)(x-3)$. Hence $P(4)=16+(3)(2)(1)=22$.",
-      "verify": "sols = set()\nfor a in range(-30, 31):\n    for b in range(-30, 31):\n        for c in range(-30, 31):\n            P = lambda x: x ** 3 + a * x ** 2 + b * x + c\n            if P(1) == 1 and P(2) == 4 and P(3) == 9:\n                sols.add(P(4))\nprint(sols.pop())\n"
-    },
-    {
-      "id": "alg-12",
-      "difficulty": 4,
-      "problem": "Let $a$, $b$, $c$ be the three real roots of $x^3-3x+1=0$. What is $a^4+b^4+c^4$?",
-      "choices": [
-        "$6$",
-        "$12$",
-        "$15$",
-        "$18$",
-        "$24$"
+      "hint": "Solve from the outside in: first $|x-2|-3=\\pm1$.",
+      "solution": "The outer equation gives $|x-2|-3=1$ or $|x-2|-3=-1$, so $|x-2|=4$ or $|x-2|=2$. From $|x-2|=4$ we get $x=6$ or $x=-2$, and from $|x-2|=2$ we get $x=4$ or $x=0$. The four solutions sum to $6+(-2)+4+0=8$.",
+      "concepts": [
+        4
       ],
-      "answer": "D",
-      "hint": "Each root satisfies $x^3=3x-1$. Multiply by $x$ to express $x^4$ in terms of $x^2$ and $x$.",
-      "solution": "Each root satisfies $x^3=3x-1$, so $x^4=3x^2-x$. Summing over the three roots gives $a^4+b^4+c^4=3(a^2+b^2+c^2)-(a+b+c)$. Vieta's formulas give $a+b+c=0$ and $ab+bc+ca=-3$, so $a^2+b^2+c^2=0-2(-3)=6$. Therefore $a^4+b^4+c^4=3\\cdot 6-0=18$.",
-      "verify": "def f(x):\n    return x ** 3 - 3 * x + 1\n\ndef bisect(a, b):\n    for _ in range(200):\n        m = (a + b) / 2\n        if f(a) * f(m) <= 0:\n            b = m\n        else:\n            a = m\n    return (a + b) / 2\n\nroots = [bisect(-2.0, -1.0), bisect(0.0, 1.0), bisect(1.0, 2.0)]\nprint(round(sum(r ** 4 for r in roots)))\n"
+      "verify": "from fractions import Fraction\nsols = set()\nfor k in range(-80, 81):\n    x = Fraction(k, 2)\n    if abs(abs(x - 2) - 3) == 1:\n        sols.add(x)\nprint(sum(sols))\n"
     },
     {
-      "id": "alg-13",
-      "difficulty": 4,
-      "problem": "Positive real numbers $a,b,c$ satisfy $a+b+c=6$. What is the maximum possible value of $a^2bc$?",
+      "id": "alg-17",
+      "difficulty": 3,
+      "problem": "What is the sum of the distinct real solutions of $(x^2-3x)^2-2(x^2-3x)-8=0$?",
       "choices": [
-        "$16$",
-        "$\\frac{33}{2}$",
-        "$18$",
-        "$\\frac{39}{2}$",
-        "$\\frac{81}{4}$"
-      ],
-      "answer": "E",
-      "hint": "Apply AM-GM to four positive numbers, two of which are $\\frac a2$.",
-      "solution": "Apply AM-GM to the four positive numbers $\\frac a2,\\frac a2,b,c$, whose sum is $a+b+c=6$: $\\frac{6}{4}\\ge\\sqrt[4]{\\frac{a^2bc}{4}}$. Hence $a^2bc\\le 4\\left(\\frac32\\right)^4=\\frac{81}{4}$, with equality when $\\frac a2=b=c=\\frac32$, that is $a=3$ and $b=c=\\frac32$.",
-      "verify": "from fractions import Fraction\nN = 24\nbest = Fraction(0)\nfor i in range(1, 6 * N):\n    for j in range(1, 6 * N - i):\n        a = Fraction(i, N)\n        b = Fraction(j, N)\n        c = 6 - a - b\n        if c > 0:\n            v = a * a * b * c\n            if v > best:\n                best = v\nprint(best)\n"
-    },
-    {
-      "id": "alg-14",
-      "difficulty": 5,
-      "problem": "Real numbers $x$ and $y$ satisfy $x^2+y^2=10$ and $x+y+xy=7$. What is $x^2y+xy^2$?",
-      "choices": [
-        "$-78$",
-        "$6$",
-        "$12$",
-        "$24$",
-        "$36$"
-      ],
-      "answer": "C",
-      "hint": "Let $s=x+y$ and $p=xy$, rewrite both equations in $s$ and $p$, and then check which solutions are real.",
-      "solution": "Let $s=x+y$ and $p=xy$. The equations become $s^2-2p=10$ and $s+p=7$. Eliminating $p$ gives $s^2+2s-24=0$, so $s=4$ or $s=-6$, with $p=3$ or $p=13$ respectively. Real $x,y$ require $s^2\\ge 4p$: this holds for $s=4$ ($16\\ge 12$) but fails for $s=-6$ ($36<52$). So $s=4$, $p=3$, and $x^2y+xy^2=ps=12$.",
-      "verify": "def g(x):\n    y = (7 - x) / (1 + x)\n    return x * x + y * y - 10\n\nvals = set()\nN = 200000\nxs = [-60 + 120 * i / N for i in range(N + 1)]\nfor a, b in zip(xs, xs[1:]):\n    if a == -1 or b == -1:\n        continue\n    ga, gb = g(a), g(b)\n    if ga * gb < 0 and abs(ga) < 1000 and abs(gb) < 1000:\n        lo, hi = a, b\n        for _ in range(100):\n            m = (lo + hi) / 2\n            if g(lo) * g(m) <= 0:\n                hi = m\n            else:\n                lo = m\n        x = (lo + hi) / 2\n        y = (7 - x) / (1 + x)\n        vals.add(round(x * x * y + x * y * y))\nprint(vals.pop())\n"
-    },
-    {
-      "id": "alg-15",
-      "difficulty": 5,
-      "problem": "Let $r$, $s$, $t$ be the three roots of $x^3-2x^2+3x-4=0$. What is $\\frac{1}{r+s}+\\frac{1}{r+t}+\\frac{1}{s+t}$?",
-      "choices": [
-        "$\\frac{5}{2}$",
-        "$\\frac{7}{2}$",
         "$4$",
-        "$\\frac{9}{2}$",
-        "5"
+        "$6$",
+        "$8$",
+        "$10$",
+        "$12$"
       ],
       "answer": "B",
-      "hint": "By Vieta's formulas, $r+s+t$ is known, so each denominator equals $2$ minus one root.",
-      "solution": "Vieta gives $r+s+t=2$, so $r+s=2-t$, and similarly for the other pairs. The required sum is $\\sum\\frac{1}{2-t}$ over the three roots. If $f(x)=\\prod(x-t_i)$, then $\\frac{f'(2)}{f(2)}=\\sum\\frac{1}{2-t_i}$. Here $f(2)=8-8+6-4=2$ and $f'(2)=12-8+3=7$, so the sum is $\\frac{7}{2}$.",
-      "verify": "import cmath\nfrom fractions import Fraction\n\ndef f(z):\n    return z ** 3 - 2 * z ** 2 + 3 * z - 4\n\nroots = [(0.4 + 0.9j) ** k for k in range(3)]\nfor _ in range(500):\n    new = []\n    for i, z in enumerate(roots):\n        denom = 1\n        for j, w in enumerate(roots):\n            if j != i:\n                denom *= (z - w)\n        new.append(z - f(z) / denom)\n    roots = new\nr, s, t = roots\nval = 1 / (r + s) + 1 / (r + t) + 1 / (s + t)\nprint(Fraction(round(val.real * 2), 2))\n"
+      "hint": "Let $u=x^2-3x$.",
+      "solution": "With $u=x^2-3x$, the equation is $u^2-2u-8=(u-4)(u+2)=0$, so $u=4$ or $u=-2$. For $u=4$, $x^2-3x-4=0$ gives $x=4$ or $x=-1$. For $u=-2$, $x^2-3x+2=0$ gives $x=1$ or $x=2$. The four distinct solutions sum to $4-1+1+2=6$.",
+      "concepts": [
+        5
+      ],
+      "verify": "sols = set()\nfor k in range(-60, 61):\n    x = k / 2\n    if abs((x * x - 3 * x) ** 2 - 2 * (x * x - 3 * x) - 8) < 1e-9:\n        sols.add(x)\nprint(round(sum(sols)))\n"
+    },
+    {
+      "id": "alg-18",
+      "difficulty": 3,
+      "problem": "A boat travels $24$ km downstream in the same time it takes to travel $16$ km upstream. The current flows at $2$ km/h. What is the speed of the boat in still water, in km/h?",
+      "choices": [
+        "$6$",
+        "$8$",
+        "$10$",
+        "$12$",
+        "$14$"
+      ],
+      "answer": "C",
+      "hint": "Equate the two times, each written as distance divided by speed.",
+      "solution": "Let $b$ be the still-water speed. The downstream speed is $b+2$ and the upstream speed is $b-2$. Equal times give $\\frac{24}{b+2}=\\frac{16}{b-2}$, so $24(b-2)=16(b+2)$. This simplifies to $8b=80$, so $b=10$.",
+      "concepts": [
+        9
+      ],
+      "verify": "from fractions import Fraction\nprint(next(b for b in range(3, 200) if Fraction(24, b + 2) == Fraction(16, b - 2)))\n"
+    },
+    {
+      "id": "alg-19",
+      "difficulty": 3,
+      "problem": "Compute $\\displaystyle\\sum_{k=1}^{99}\\frac{1}{\\sqrt{k}+\\sqrt{k+1}}$.",
+      "choices": [
+        "$6$",
+        "$7$",
+        "$8$",
+        "$9$",
+        "$10$"
+      ],
+      "answer": "D",
+      "hint": "Rationalise each term.",
+      "solution": "Multiplying numerator and denominator by $\\sqrt{k+1}-\\sqrt k$ gives $\\frac{1}{\\sqrt k+\\sqrt{k+1}}=\\sqrt{k+1}-\\sqrt k$. The sum telescopes to $\\sqrt{100}-\\sqrt1=10-1=9$.",
+      "concepts": [
+        6,
+        7
+      ],
+      "verify": "import math\ntotal = sum(1 / (math.sqrt(k) + math.sqrt(k + 1)) for k in range(1, 100))\nprint(round(total))\n"
+    },
+    {
+      "id": "alg-20",
+      "difficulty": 3,
+      "problem": "Real numbers $a$ and $b$ satisfy $a-b=2$ and $a^2+ab+b^2=28$. What is $ab$?",
+      "choices": [
+        "$2$",
+        "$4$",
+        "$5$",
+        "$6$",
+        "$8$"
+      ],
+      "answer": "E",
+      "hint": "Use $(a-b)^2$ together with $a^2+ab+b^2$.",
+      "solution": "Expanding $(a-b)^2=4$ gives $a^2+b^2=4+2ab$. Substituting into $a^2+ab+b^2=28$: $4+2ab+ab=28$, so $3ab=24$ and $ab=8$. Check: $a=4$, $b=2$ gives $ab=8$ and $16+8+4=28$.",
+      "concepts": [
+        2,
+        0
+      ],
+      "verify": "vals = set()\nfor a in range(-30, 31):\n    for b in range(-30, 31):\n        if a - b == 2 and a * a + a * b + b * b == 28:\n            vals.add(a * b)\nprint(vals.pop())\n"
+    },
+    {
+      "id": "alg-21",
+      "difficulty": 4,
+      "problem": "Compute $\\sqrt{9+4\\sqrt2}-\\sqrt{9-4\\sqrt2}$.",
+      "choices": [
+        "$2$",
+        "$2\\sqrt{2}$",
+        "$4$",
+        "$4\\sqrt{2}$",
+        "$6$"
+      ],
+      "answer": "A",
+      "hint": "Denest each root: look for $p+q\\sqrt2$ whose square is $9+4\\sqrt2$.",
+      "solution": "Seek $\\sqrt{9+4\\sqrt2}=p+q\\sqrt2$, so $p^2+2q^2=9$ and $2pq=4$. Taking $p=1$, $q=2$ works: $1+8=9$ and $2\\cdot 1\\cdot 2=4$. So $\\sqrt{9+4\\sqrt2}=1+2\\sqrt2$. Also $(2\\sqrt2-1)^2=9-4\\sqrt2$ and $2\\sqrt2-1>0$, so $\\sqrt{9-4\\sqrt2}=2\\sqrt2-1$. The difference is $(1+2\\sqrt2)-(2\\sqrt2-1)=2$. Numerically, $3.828-1.828=2$.",
+      "concepts": [
+        6
+      ],
+      "verify": "import math\nval = math.sqrt(9 + 4 * math.sqrt(2)) - math.sqrt(9 - 4 * math.sqrt(2))\nprint(round(val))\n"
+    },
+    {
+      "id": "alg-22",
+      "difficulty": 4,
+      "problem": "Compute $\\displaystyle\\sum_{k=1}^{48}\\frac{1}{\\sqrt{k}+\\sqrt{k+2}}$.",
+      "choices": [
+        "$3+\\sqrt{2}$",
+        "$3+2\\sqrt{2}$",
+        "$2+3\\sqrt{2}$",
+        "$3+3\\sqrt{2}$",
+        "$6+2\\sqrt{2}$"
+      ],
+      "answer": "B",
+      "hint": "Rationalise, but notice that the two roots differ by a gap of $2$.",
+      "solution": "Rationalising gives $\\frac{1}{\\sqrt k+\\sqrt{k+2}}=\\frac{\\sqrt{k+2}-\\sqrt k}{2}$. The sum telescopes to $\\frac12\\left(\\sqrt{49}+\\sqrt{50}-\\sqrt1-\\sqrt2\\right)=\\frac12\\left(7+5\\sqrt2-1-\\sqrt2\\right)=\\frac12(6+4\\sqrt2)=3+2\\sqrt2$. Numerically this is about $5.828$. The factor $\\frac12$ from the gap of $2$ is the step most often dropped.",
+      "concepts": [
+        6,
+        7
+      ],
+      "verify": "import math\ntotal = sum(1 / (math.sqrt(k) + math.sqrt(k + 2)) for k in range(1, 49))\nassert abs(total - (3 + 2 * math.sqrt(2))) < 1e-9\nprint(\"3+2\\\\sqrt{2}\")\n"
+    },
+    {
+      "id": "alg-23",
+      "difficulty": 4,
+      "problem": "How many real numbers $x$ satisfy $|x^2-2x|+|x-1|=1$?",
+      "choices": [
+        "$1$",
+        "$2$",
+        "$3$",
+        "$4$",
+        "$5$"
+      ],
+      "answer": "C",
+      "hint": "Substitute $y=x-1$, so that $x^2-2x=y^2-1$.",
+      "solution": "With $y=x-1$ the equation becomes $|y^2-1|+|y|=1$. If $|y|\\ge 1$, then $y^2-1+|y|=1$ gives $|y|^2+|y|-2=0$, so $|y|=1$, since $|y|=-2$ is impossible. If $|y|<1$, then $1-y^2+|y|=1$ gives $|y|=y^2$, so $y=0$, because $|y|=1$ is excluded. Thus $y\\in\\{-1,0,1\\}$, that is $x\\in\\{0,1,2\\}$, three solutions.",
+      "concepts": [
+        4,
+        5
+      ],
+      "verify": "from fractions import Fraction\ncount = 0\nfor k in range(-200, 201):\n    x = Fraction(k, 20)\n    if abs(x * x - 2 * x) + abs(x - 1) == 1:\n        count += 1\nprint(count)\n"
+    },
+    {
+      "id": "alg-24",
+      "difficulty": 4,
+      "problem": "Real numbers $x$ and $y$ satisfy $x+y+xy=11$ and $x^2+xy+y^2=31$. What is $x^3+y^3$ for every real solution $(x,y)$?",
+      "choices": [
+        "$36$",
+        "$90$",
+        "$100$",
+        "$126$",
+        "$216$"
+      ],
+      "answer": "D",
+      "hint": "Set $s=x+y$ and $p=xy$, then rewrite both equations in $s$ and $p$.",
+      "solution": "With $s$ and $p$: $s+p=11$, and $x^2+xy+y^2=s^2-p=31$. Adding gives $s^2+s=42$, so $s=6$ or $s=-7$. For $s=6$, $p=5$ and $s^2-4p=16\\ge 0$, so $x,y$ are real: $\\{1,5\\}$. For $s=-7$, $p=18$ and $s^2-4p=49-72<0$, so there are no real solutions. For the real solutions, $x^3+y^3=s^3-3ps=216-90=126$, which agrees with $1+125=126$.",
+      "concepts": [
+        3
+      ],
+      "verify": "vals = set()\nfor x in range(-40, 41):\n    for y in range(-40, 41):\n        if x + y + x * y == 11 and x * x + x * y + y * y == 31:\n            vals.add(x ** 3 + y ** 3)\nprint(vals.pop())\n"
+    },
+    {
+      "id": "alg-25",
+      "difficulty": 4,
+      "problem": "Find $x$ if $\\sqrt{x+3}+\\sqrt{x-2}=5$.",
+      "choices": [
+        "$2$",
+        "$3$",
+        "$4$",
+        "$5$",
+        "$6$"
+      ],
+      "answer": "E",
+      "hint": "Multiply the equation by the conjugate $\\sqrt{x+3}-\\sqrt{x-2}$.",
+      "solution": "Let $A=\\sqrt{x+3}$ and $B=\\sqrt{x-2}$. The equation says $A+B=5$. Since $A^2-B^2=(x+3)-(x-2)=5$, the conjugate trick gives $(A-B)(A+B)=5$, so $A-B=1$. This is the key move: the difference of the two radicals is forced by the difference of their squares, so the two linear relations pin down each radical separately. Adding $A+B=5$ and $A-B=1$ gives $A=3$, and subtracting gives $B=2$. Hence $x+3=9$ and $x=6$. Check in the original equation: $\\sqrt9+\\sqrt4=3+2=5$. The left side is strictly increasing in $x$ on its domain $x\\ge 2$, so no other value of $x$ can work, and $x=6$ is the unique solution.",
+      "concepts": [
+        8
+      ],
+      "verify": "import math\nsols = [x for x in range(2, 300) if abs(math.sqrt(x + 3) + math.sqrt(x - 2) - 5) < 1e-9]\nprint(sum(sols))\n"
+    },
+    {
+      "id": "alg-26",
+      "difficulty": 4,
+      "problem": "Cities $A$ and $B$ are joined by a straight road. At the same moment a car leaves $A$ for $B$ and another car leaves $B$ for $A$, each at constant speed. They meet after $3$ hours. The car that left $A$ reaches $B$ exactly $4$ hours after the meeting. How many hours does the car that left $B$ need for the whole trip from $B$ to $A$?",
+      "choices": [
+        "$\\frac{21}{4}$",
+        "$6$",
+        "$\\frac{13}{2}$",
+        "$7$",
+        "$8$"
+      ],
+      "answer": "A",
+      "hint": "Let the speeds be $p$ and $q$, and write the distance $D$ in two ways.",
+      "solution": "Let the car from $A$ have speed $p$ and the car from $B$ have speed $q$. Meeting after $3$ hours gives $D=3(p+q)$. After the meeting, the car from $A$ must still cover the $3q$ kilometres that the other car has travelled, and it takes $4$ hours, so $3q=4p$ and $q=\\frac{4p}{3}$. Then $D=3\\left(p+\\frac{4p}{3}\\right)=7p$, and the car from $B$ needs $\\frac{D}{q}=\\frac{7p}{4p/3}=\\frac{21}{4}$ hours.",
+      "concepts": [
+        9
+      ],
+      "verify": "from fractions import Fraction\nfor k in range(1, 2000):\n    q = Fraction(k, 300)\n    if 3 * q == 4:\n        D = 3 * (1 + q)\n        print(D / q)\n"
+    },
+    {
+      "id": "alg-27",
+      "difficulty": 5,
+      "problem": "Real numbers $x$ and $y$ satisfy $x^2+y^2=13$ and $x^3+y^3=35$. What is the sum of all possible values of $x+y$?",
+      "choices": [
+        "$0$",
+        "$7$",
+        "$9$",
+        "$12$",
+        "$14$"
+      ],
+      "answer": "B",
+      "hint": "Let $s=x+y$ and $p=xy$. Eliminate $p$ to get a cubic in $s$, then check which roots give real $x,y$.",
+      "solution": "Let $s=x+y$ and $p=xy$. Then $s^2-2p=13$, so $p=\\frac{s^2-13}{2}$. The second equation $s^3-3ps=35$ becomes $s^3-\\frac{3s(s^2-13)}{2}=35$, that is $s^3-39s+70=0$, which factors as $(s-2)(s-5)(s+7)=0$. Real $x,y$ require $s^2\\ge 4p=2(s^2-13)$, that is $s^2\\le 26$, which excludes $s=-7$. The admissible values are $s=5$, with $p=6$ and $\\{x,y\\}=\\{2,3\\}$, and $s=2$, with $p=-\\frac92$ and real roots $1\\pm\\sqrt{11/2}$. Their sum is $5+2=7$.",
+      "concepts": [
+        3,
+        4
+      ],
+      "verify": "import math\nsums = set()\nN = 20000\nfor sign in (1, -1):\n    def root(x):\n        return sign * math.sqrt(max(0.0, 13 - x * x))\n    def g(x):\n        return x ** 3 + root(x) ** 3 - 35\n    xs = [-math.sqrt(13) + 2 * math.sqrt(13) * i / N for i in range(N + 1)]\n    for a, b in zip(xs, xs[1:]):\n        if g(a) * g(b) < 0:\n            lo, hi = a, b\n            for _ in range(200):\n                m = (lo + hi) / 2\n                if g(lo) * g(m) <= 0:\n                    hi = m\n                else:\n                    lo = m\n            x = (lo + hi) / 2\n            sums.add(round(x + root(x), 6))\nprint(round(sum(sums)))\n"
+    },
+    {
+      "id": "alg-28",
+      "difficulty": 5,
+      "problem": "What is the sum of all real solutions of $(x+1)(x+2)(x+3)(x+4)=24$?",
+      "choices": [
+        "$-9$",
+        "$-7$",
+        "$-5$",
+        "$-3$",
+        "$-1$"
+      ],
+      "answer": "C",
+      "hint": "Pair the factors as $(x+1)(x+4)$ and $(x+2)(x+3)$, and substitute $w=x^2+5x+5$.",
+      "solution": "Pairing gives $(x^2+5x+4)(x^2+5x+6)=24$. With $w=x^2+5x+5$ this is $(w-1)(w+1)=24$, so $w^2=25$ and $w=\\pm5$. For $w=5$, $x^2+5x=0$, giving $x=0$ or $x=-5$. For $w=-5$, $x^2+5x+10=0$ has discriminant $25-40<0$, so there are no real roots. The real solutions are $0$ and $-5$, with sum $-5$.",
+      "concepts": [
+        5
+      ],
+      "verify": "sols = [x for x in range(-50, 51) if (x + 1) * (x + 2) * (x + 3) * (x + 4) == 24]\nprint(sum(sols))\n"
+    },
+    {
+      "id": "alg-29",
+      "difficulty": 5,
+      "problem": "Let $u=\\sqrt[3]{20+14\\sqrt2}+\\sqrt[3]{20-14\\sqrt2}$. What is $u^3-6u$?",
+      "choices": [
+        "$4$",
+        "$16$",
+        "$24$",
+        "$40$",
+        "$64$"
+      ],
+      "answer": "D",
+      "hint": "Cube $u$, and note that the product of the two cube roots is rational.",
+      "solution": "Let $\\alpha,\\beta$ be the two cube roots. Then $\\alpha^3+\\beta^3=40$ and $\\alpha\\beta=\\sqrt[3]{20^2-(14\\sqrt2)^2}=\\sqrt[3]{400-392}=2$. Hence $u^3=\\alpha^3+\\beta^3+3\\alpha\\beta(\\alpha+\\beta)=40+6u$, so $u^3-6u=40$. In fact $u=4$, since $(2+\\sqrt2)^3=20+14\\sqrt2$ and $(2-\\sqrt2)^3=20-14\\sqrt2$, and $u^3-6u-40=(u-4)(u^2+4u+10)$ has the single real root $4$. The value of $u^3-6u$ can be read off without finding $u$.",
+      "concepts": [
+        5,
+        6
+      ],
+      "verify": "import math\nu = (20 + 14 * math.sqrt(2)) ** (1 / 3) + (20 - 14 * math.sqrt(2)) ** (1 / 3)\nprint(round(u ** 3 - 6 * u))\n"
+    },
+    {
+      "id": "alg-30",
+      "difficulty": 5,
+      "problem": "Positive integers $x$ and $y$ satisfy $2xy-5x-3y=45$. What is the sum of $x+y$ over all such ordered pairs $(x,y)$?",
+      "choices": [
+        "$120$",
+        "$180$",
+        "$200$",
+        "$210$",
+        "$224$"
+      ],
+      "answer": "E",
+      "hint": "Multiply by $2$ and add $15$ so that the left side factors as $(2x-3)(2y-5)$.",
+      "solution": "Multiplying by $2$ and adding $15$ gives $4xy-10x-6y+15=105$, and the left side is $(2x-3)(2y-5)$. So $(2x-3)(2y-5)=105=3\\cdot 5\\cdot 7$. Each positive divisor $A$ of $105$ gives $x=\\frac{A+3}{2}$ and $y=\\frac{105/A+5}{2}$, both positive integers because $A$ and $105/A$ are odd. There are $8$ positive divisors. A negative $A$ is excluded: $A=-1$ forces $y=-50$. Summing $x+y=\\frac{A+105/A+8}{2}$ over the eight divisors, with $\\sum A=\\sum 105/A=192$, gives $\\frac{192+192+64}{2}=224$.",
+      "concepts": [
+        2
+      ],
+      "verify": "total = 0\nfor x in range(1, 201):\n    for y in range(1, 201):\n        if 2 * x * y - 5 * x - 3 * y == 45:\n            total += x + y\nprint(total)\n"
+    }
+  ],
+  "videos": [
+    {
+      "youtubeId": "0nN3H7w2LnI",
+      "title": "Art of Problem Solving: Simon's Favorite Factoring Trick",
+      "channel": "Art of Problem Solving",
+      "why": "Richard Rusczyk walks through how adding the right constant makes a two-variable equation factor; watch it straight after the Simon's trick concept."
+    },
+    {
+      "youtubeId": "ba6w1OhXqOQ",
+      "title": "Algebraic Manipulations, Factorizations, SFFT, Sophie Germain's - AMC 10/12 Fundamentals",
+      "channel": "Sohil Rathi",
+      "why": "Covers the factoring identities, Simon's Favorite Factoring Trick and Sophie Germain from concepts 1 and 3, with AMC-style problems."
+    },
+    {
+      "youtubeId": "uKf1fUKACDk",
+      "title": "Two nice nested radicals.",
+      "channel": "Michael Penn",
+      "why": "Two worked denesting examples that match the nested-radical technique in this topic."
     }
   ]
 }

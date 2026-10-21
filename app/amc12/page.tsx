@@ -69,7 +69,7 @@ export default function AMC12Hub() {
             <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.45rem', fontWeight: 500, lineHeight: 1.15 }}>{t.title}</h3>
             <p style={{ color: 'var(--muted)', fontSize: '0.88rem', flex: 1 }}>{t.summary}</p>
             <span style={{ fontSize: '0.78rem', color: 'var(--muted)' }}>
-              {t.concepts.length} lessons · {t.workedExamples.length} worked examples · {t.examWeight}
+              {t.concepts.length} lessons · {t.workedExamples.length} examples · {t.problems.length} problems{t.videos.length ? ` · ${t.videos.length} videos` : ''}
             </span>
             <TopicProgress ids={t.problems.map((p) => p.id)} />
           </Link>

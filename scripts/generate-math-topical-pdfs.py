@@ -3,7 +3,7 @@
 generate-math-topical-pdfs.py
 ==============================
 End-to-end vector slicing, classification, and compilation pipeline for IB Mathematics.
-Crawls the 'IB PAST PAPERS - YEAR' archive (2016–2025) for:
+Crawls the public/vault/past-papers archive (2016–2025) for:
   - Mathematics: Analysis and Approaches (AA SL/HL)
   - Mathematics: Applications and Interpretation (AI SL/HL)
   - Legacy Mathematics (SL/HL) (2016–2020)
@@ -45,7 +45,7 @@ from math_taxonomy import (
 
 # Configuration & Paths
 REPO_ROOT = os.path.abspath(os.path.join(CURRENT_DIR, "../.."))
-PAST_PAPERS_DIR = os.path.join(REPO_ROOT, "IB PAST PAPERS - YEAR")
+PAST_PAPERS_DIR = os.path.join(REPO_ROOT, "ThinkIB", "public", "vault", "past-papers")
 OUTPUT_VAULT_DIR = os.path.join(CURRENT_DIR, "../public/vault/math-topicals")
 MAP_OUTPUT_PATH = os.path.join(CURRENT_DIR, "../app/past-papers/math_topicals_map.json")
 EXCLUDED_LOG_PATH = os.path.join(CURRENT_DIR, "../app/past-papers/excluded_math_legacy.json")

@@ -1,0 +1,983 @@
+{
+  "id": "inequalities",
+  "title": "Inequalities & Optimisation",
+  "summary": "Completing the square, AM-GM with equality cases and weighted forms, Cauchy–Schwarz in Titu form, the QM–AM–GM–HM chain, the rearrangement inequality, and bounding arguments for counting integer solutions.",
+  "examWeight": "≈2–4 problems per paper, usually #10–#25",
+  "prerequisites": [
+    "algebra",
+    "counting"
+  ],
+  "overview": "On the AMC 12, inequality and optimisation questions ask for a minimum, a maximum or a range, or they ask how many integer solutions an inequality allows. They appear across the paper, from straightforward completing-the-square problems near #5 to multi-step constrained problems in the last few questions. The hardest ones combine two tools, for example a substitution suggested by the constraint followed by a two-step AM-GM argument.\n\nStudy in this order. Completing the square comes first, because every quadratic optimisation reduces to a sum of squares. Then learn AM-GM thoroughly, especially its equality case, since on this exam the equality case tells you whether a bound is achievable and therefore whether it is the answer. Cauchy–Schwarz in Titu form and the chain of means come next, and the rearrangement inequality is a short extra tool. Finish with bounding arguments, which is where inequalities meet counting.\n\nA habit that separates strong solvers: before doing algebra, identify the equality configuration. If you can guess the point where the optimum occurs, usually equal variables or a ratio fixed by equal weights, you can choose the right inequality and confirm that it is tight. Then check the claimed answer numerically at a few test points. This takes seconds and catches sign and arithmetic slips before they cost a question.",
+  "concepts": [
+    {
+      "title": "Completing the square and the trivial inequality",
+      "body": "Every real number squared is nonnegative. For any real $t$, $t^2 \\ge 0$, with equality exactly when $t=0$. This trivial inequality drives most of the optimisation on the AMC 12: a quadratic expression has a smallest or largest value because one of its pieces is a square that cannot go negative. The method is always the same. Rewrite the expression as a sum of squares plus a constant. The extreme value is then read off directly, because it is the constant, reached when every square is zero.\n\nThe tool that makes this rewriting possible is completing the square. For the start of a quadratic $x^2+bx$, add and subtract $\\left(\\frac{b}{2}\\right)^2$ to get $x^2+bx=\\left(x+\\frac{b}{2}\\right)^2-\\frac{b^2}{4}$. Therefore $x^2+bx+c=\\left(x+\\frac{b}{2}\\right)^2+\\left(c-\\frac{b^2}{4}\\right)$. The square is at least $0$, so the smallest value of the whole expression is $c-\\frac{b^2}{4}$, attained when $x=-\\frac{b}{2}$. Completing the square therefore finds both the optimal value and the place where it occurs.\n\nThe same idea works with several variables, where each variable gets its own square. Completing the square in $x$ and in $y$ separately gives $x^2-6x=(x-3)^2-9$ and $y^2+4y=(y+2)^2-4$, so $x^2+y^2-6x+4y+20=(x-3)^2+(y+2)^2+7$. Both squares are nonnegative and vanish at $(x,y)=(3,-2)$, so the minimum is $7$.\n\nA closely related fact is $x^2+y^2\\ge 2xy$, which is just $(x-y)^2\\ge 0$ rearranged. Its equality case $x=y$ is the template for every AM-GM argument later in this topic. The logic of equality matters as much as the inequality itself: a bound of the form expression $\\ge$ constant is only useful once you know exactly when equality holds, since that is where the optimum lives.\n\nPractice problems usually hide the square. You must recognise $t^2+6t+13$ or $4x^2-12x+1$ inside a larger expression, and that takes practice with the pattern $(px+q)^2=p^2x^2+2pqx+q^2$. Multiply out a guess and compare coefficients. Note $4x^2-12x+1=(2x-3)^2-8$, so the minimum is $-8$, not $1$. The constant left over after completing the square is the answer, not the original constant term.\n\nNegative leading coefficients flip the direction of the inequality, which is the most common sign error. For instance $-2x^2+8x+11=19-2(x-2)^2\\le 19$, so this expression has a maximum, not a minimum, and the maximum is $19$ at $x=2$. Before applying the square trick, check the sign of the squared coefficient and decide whether you are bounding from below or from above.",
+      "keyFacts": [
+        "$t^2\\ge 0$, with equality if and only if $t=0$",
+        "$x^2+bx+c=\\left(x+\\frac{b}{2}\\right)^2+c-\\frac{b^2}{4}$",
+        "$x^2+y^2\\ge 2xy$, with equality if and only if $x=y$"
+      ],
+      "whenToUse": "The expression is quadratic in one or more variables and you need its minimum, its maximum, or its range.",
+      "commonMistakes": [
+        "Completing the square with the wrong shift: for $x^2+bx$ the shift is $\\frac{b}{2}$, not $b$.",
+        "Reporting the constant term as the optimum instead of the constant left after completing the square.",
+        "Ignoring the sign of the leading coefficient, so a maximum is reported as a minimum."
+      ],
+      "example": {
+        "problem": "Find the minimum value of $x^2+y^2-6x+4y+20$ over all real numbers $x$ and $y$.",
+        "solution": "Complete each square separately: $x^2-6x=(x-3)^2-9$ and $y^2+4y=(y+2)^2-4$. So the expression equals $(x-3)^2+(y+2)^2+20-9-4=(x-3)^2+(y+2)^2+7$. Both squares are nonnegative, so the value is at least $7$, with equality at $(x,y)=(3,-2)$. The minimum is $7$.",
+        "answer": "7",
+        "verify": "best = min(x*x + y*y - 6*x + 4*y + 20 for x in range(-20, 21) for y in range(-20, 21))\nassert best == 7\nprint(best)\n"
+      }
+    },
+    {
+      "title": "Optimising quadratics and discriminant bounds",
+      "body": "A quadratic $f(x)=ax^2+bx+c$ with $a\\ne 0$ traces a parabola. If $a>0$ it opens upward and has a minimum; if $a<0$ it opens downward and has a maximum. The extreme value sits at the vertex $x=-\\frac{b}{2a}$, and it equals $c-\\frac{b^2}{4a}$. To derive this, factor $a$ out of the first two terms and complete the square: $ax^2+bx+c=a\\left(x+\\frac{b}{2a}\\right)^2+c-\\frac{b^2}{4a}$. Since $a$ multiplies the square, its sign decides whether the square adds to or subtracts from the constant, which is why the type of extremum flips with $a$.\n\nVertex formulas answer \"what is the best value\", but many problems ask a different question: for which parameters does a quadratic stay nonnegative? The discriminant answers it. Suppose $a>0$. Then $ax^2+bx+c\\ge 0$ for every real $x$ exactly when the minimum value $c-\\frac{b^2}{4a}$ is nonnegative, which is the same as $b^2-4ac\\le 0$. Keep this as a two-line check: positive leading coefficient, nonpositive discriminant.\n\nTwo-variable quadratics reduce to this case once a linear constraint is imposed. Suppose you must find the range of $x^2+xy+y^2$ under $x+y=s$. Substituting $y=s-x$ turns the expression into a one-variable quadratic in $x$, whose vertex gives the answer. This reduction is the most reliable technique whenever a problem supplies a linear relation, and it avoids guessing where the optimum lies.\n\nDomains need care. A vertex may lie outside the allowed interval, in which case the optimum sits at an endpoint. For instance the minimum of $x^2-4x$ over $0\\le x\\le 1$ occurs at $x=1$ with value $-3$, not at the vertex $x=2$, which is not allowed. Always compare the vertex with the domain before you report an answer, and check both endpoints when the vertex is excluded.\n\nQuadratics are also hidden inside other expressions. If $u=t^2+k$ for some expression $t$, then optimising $u$ is the same as optimising $t^2$, and the answer is $k$ at the point where $t=0$. Recognising this structure lets you replace a messy expression by a single parabola through a substitution such as $p=x+y$ or $t=x-3$.\n\nTypical traps: computing the vertex and reporting it as the global answer without checking the sign of $a$; applying the discriminant condition to a family in which $a$ can be zero, where the expression is linear rather than quadratic and must be handled separately; and mixing up which coefficient appears in the vertex formula. Check the formula on a known example such as $x^2-2x$, whose vertex is $x=1$.",
+      "keyFacts": [
+        "Vertex of $ax^2+bx+c$ is at $x=-\\frac{b}{2a}$, with extreme value $c-\\frac{b^2}{4a}$",
+        "$ax^2+bx+c\\ge 0$ for all real $x$ if and only if $a>0$ and $b^2-4ac\\le 0$",
+        "The discriminant $\\Delta=b^2-4ac$ decides whether a quadratic has real roots"
+      ],
+      "whenToUse": "A quadratic, or a constrained expression that reduces to one, must be optimised, or a parameter must make a quadratic always nonnegative or always negative.",
+      "commonMistakes": [
+        "Forgetting the sign of $a$: the vertex is a minimum when $a>0$ and a maximum when $a<0$.",
+        "Ignoring the domain, so an excluded vertex is reported as the optimum.",
+        "Applying the discriminant test when $a=0$, where the expression is linear."
+      ],
+      "example": {
+        "problem": "Find the maximum value of $-3t^2+12t-7$ over all real $t$.",
+        "solution": "The leading coefficient is $-3<0$, so there is a maximum at the vertex $t=-\\frac{12}{2(-3)}=2$. The value there is $-3\\cdot 4+12\\cdot 2-7=5$. Completing the square confirms it: $-3t^2+12t-7=-3(t-2)^2+5\\le 5$, with equality at $t=2$.",
+        "answer": "5",
+        "verify": "from fractions import Fraction as F\nbest = max(-3*t*t + 12*t - 7 for t in (F(k, 10) for k in range(-500, 501)))\nassert best == 5\nprint(best)\n"
+      }
+    },
+    {
+      "title": "AM-GM: equality cases and the n-variable form",
+      "body": "The arithmetic mean–geometric mean inequality states that for nonnegative reals $a_1,\\dots,a_n$, $\\frac{a_1+\\cdots+a_n}{n}\\ge\\sqrt[n]{a_1a_2\\cdots a_n}$, with equality if and only if all the $a_i$ are equal. It is the most used inequality in competition mathematics, because it converts a sum into a product or the reverse, and a product of fixed size is easy to control.\n\nProof for two variables. For $a,b\\ge 0$ write $a=(\\sqrt a)^2$ and $b=(\\sqrt b)^2$. Then $a+b-2\\sqrt{ab}=(\\sqrt a-\\sqrt b)^2\\ge 0$, so $\\frac{a+b}{2}\\ge\\sqrt{ab}$. Equality holds exactly when $\\sqrt a=\\sqrt b$, that is, $a=b$. The squared form $(a+b)^2\\ge 4ab$ is often easier to use, because it removes the square roots.\n\nGeneral $n$. Applying the two-variable case twice gives four variables: $\\frac{a+b+c+d}{4}\\ge\\frac{\\sqrt{ab}+\\sqrt{cd}}{2}\\ge\\sqrt[4]{abcd}$. Powers of two are therefore covered, and Cauchy's forward–backward induction covers the rest: prove the statement for $n=2^k$, then descend from $n$ to $n-1$ by appending the mean of the first $n-1$ numbers as an extra term. Contest solvers rarely write this out, but the idea of padding to a convenient count is worth remembering.\n\nEquality cases carry most of the information. For $x>0$, the bound $x+\\frac{16}{x}\\ge 2\\sqrt{16}=8$ is attained only when $x=\\frac{16}{x}$, which gives $x=4$. Because the bound is achieved, $8$ is the true minimum rather than a mere lower bound. Always check that the equality configuration satisfies the constraints of the problem, since an unattainable bound proves nothing about the optimum.\n\nPractical use. To bound a sum below you need the product of its summands to be constant. To bound a product above you need the sum to be constant. When neither holds, rewrite the expression until one does: a sum like $x+\\frac{k}{x}$ is AM-GM ready precisely because its two summands multiply to the constant $k$. Looking for such a pair is the main skill of this topic.\n\nGeometry gives the same fact. Among rectangles of fixed area, the square has the least perimeter, and among rectangles of fixed perimeter the square has the largest area. Both are AM-GM with sides $w,h$: $\\frac{w+h}{2}\\ge\\sqrt{wh}$. This picture is a good sanity check whenever a constrained optimum seems surprising.\n\nCommon mistakes. AM-GM needs nonnegative inputs: $x+y\\ge 2\\sqrt{xy}$ fails for $x=y=-1$. Students also drop the factor $2$ from the bound, writing $\\sqrt{ab}$ when they mean $2\\sqrt{ab}$, and forget that equality must be feasible under the constraints. Finally, AM-GM is a lower bound on a sum; using it as an upper bound on a sum is an error.",
+      "keyFacts": [
+        "$\\frac{a+b}{2}\\ge\\sqrt{ab}$ for $a,b\\ge 0$, with equality if and only if $a=b$",
+        "$\\frac{a_1+\\cdots+a_n}{n}\\ge\\sqrt[n]{a_1\\cdots a_n}$ for nonnegative reals",
+        "$x+\\frac{k}{x}\\ge 2\\sqrt{k}$ for $x>0$, with equality at $x=\\sqrt{k}$",
+        "$(a+b)^2\\ge 4ab$, equivalent to $(a-b)^2\\ge 0$"
+      ],
+      "whenToUse": "A sum whose summands have a fixed product must be bounded below, a product whose factors have a fixed sum must be bounded above, or a positive expression must be shown to be at least a constant.",
+      "commonMistakes": [
+        "Applying AM-GM to negative numbers, where it can fail.",
+        "Dropping the factor $2$ in the bound $2\\sqrt{k}$ for $x+\\frac{k}{x}$.",
+        "Claiming an AM-GM bound is the optimum without checking that equality is attainable under the constraints."
+      ],
+      "example": {
+        "problem": "For $x>0$, find the minimum value of $x+\\frac{16}{x}$.",
+        "solution": "By AM-GM, $x+\\frac{16}{x}\\ge 2\\sqrt{x\\cdot\\frac{16}{x}}=2\\sqrt{16}=8$. Equality holds when $x=\\frac{16}{x}$, that is $x=4$, which is positive. So the minimum is $8$.",
+        "answer": "8",
+        "verify": "from fractions import Fraction as F\nbest = min(x + F(16)/x for x in (F(k, 100) for k in range(1, 2001)))\nassert best == 8\nprint(best)\n"
+      }
+    },
+    {
+      "title": "Weighted AM-GM and making the product constant",
+      "body": "Weighted AM-GM. For positive reals $x,y$ and positive weights $p,q$, $\\frac{px+qy}{p+q}\\ge x^{\\frac{p}{p+q}}y^{\\frac{q}{p+q}}$. The version you will use most is the linear one: minimise $\\alpha x+\\beta y$ when $xy=P$ is fixed, with $\\alpha,\\beta,P>0$. It is worth deriving carefully, because the constants are where students slip.\n\nDerivation. Put $u=\\alpha x$ and $v=\\beta y$. Then $uv=\\alpha\\beta xy=\\alpha\\beta P$ is constant. Plain AM-GM gives $u+v\\ge 2\\sqrt{uv}=2\\sqrt{\\alpha\\beta P}$, with equality if and only if $u=v$, that is $\\alpha x=\\beta y$. So the minimum of $\\alpha x+\\beta y$ under $xy=P$ is exactly $2\\sqrt{\\alpha\\beta P}$, attained at the ratio $\\alpha x=\\beta y$.\n\nExample. Minimise $2x+y$ subject to $xy=8$. Here $\\alpha=2$, $\\beta=1$, $P=8$, so the minimum is $2\\sqrt{16}=8$. Equality needs $2x=y$. Combined with $xy=8$ this gives $2x^2=8$, so $x=2$ and $y=4$, and indeed $2\\cdot 2+4=8$.\n\nThe general weighted form also follows from the unweighted one by repetition. A term with weight $p$ is written as $p$ equal copies, and the unweighted AM-GM is applied to all the copies at once. This is the splitting technique of the next concept, and it is the reason the exponents of a weighted mean end up as multiplicities. Recognising the repetition is often easier than remembering the formula.\n\nThe principle to carry into contests is that AM-GM bounds a sum from below by a product, so you must engineer a constant product. The equality condition then states the ratio the variables must satisfy: each term should equal the others. This ratio is what lets you check whether the bound is attained, and it is the optimal point you will report or verify.\n\nHomogenisation is a related idea. If a constraint such as $xy=P$ is given, an expression that mixes degrees can be rescaled so that every term has the same degree, after which AM-GM applies without any constraint. Many weighted problems are secretly about ratios, and this viewpoint explains why.\n\nCommon mistakes: writing $2\\sqrt{P}$ instead of $2\\sqrt{\\alpha\\beta P}$, which forgets the coefficients; taking $x=y$ as the equality case when the correct rule is $\\alpha x=\\beta y$; and applying the constant-product trick to a product that is not constant. Always confirm the product of your two terms is genuinely fixed before writing the bound.",
+      "keyFacts": [
+        "Weighted AM-GM: $\\frac{px+qy}{p+q}\\ge x^{\\frac{p}{p+q}}y^{\\frac{q}{p+q}}$",
+        "If $xy=P$, then $\\alpha x+\\beta y\\ge 2\\sqrt{\\alpha\\beta P}$",
+        "Equality for $\\alpha x+\\beta y$ holds exactly when $\\alpha x=\\beta y$"
+      ],
+      "whenToUse": "A linear combination of two variables must be minimised under a fixed product, or the exponents of a weighted mean appear in the problem.",
+      "commonMistakes": [
+        "Writing $2\\sqrt{P}$ instead of $2\\sqrt{\\alpha\\beta P}$, which drops the coefficients.",
+        "Taking $x=y$ as the equality case when the correct rule is $\\alpha x=\\beta y$.",
+        "Applying the constant-product trick without checking that the product really is fixed."
+      ],
+      "example": {
+        "problem": "Positive reals $x,y$ satisfy $xy=16$. Find the minimum of $x+4y$.",
+        "solution": "Here $\\alpha=1$, $\\beta=4$, $P=16$. The bound is $x+4y\\ge 2\\sqrt{4\\cdot 16}=16$. Equality needs $x=4y$, and with $xy=16$ this gives $4y^2=16$, so $y=2$ and $x=8$. Check: $8+4\\cdot 2=16$ and $8\\cdot 2=16$.",
+        "answer": "16",
+        "verify": "from fractions import Fraction as F\nbest = min(x + F(64)/x for x in (F(k, 100) for k in range(1, 4001)))\nassert best == 16\nprint(best)\n"
+      }
+    },
+    {
+      "title": "Constrained products: splitting into equal pieces",
+      "body": "Many AM-GM problems ask for the maximum of a product of powers under a linear constraint, such as $x^2y^3z$ with $x+y+z=6$. The product is not a plain AM-GM of the variables, because the exponents differ. The fix is splitting: write each variable as a sum of equal pieces, with the number of pieces matching its exponent, and then apply AM-GM to the pieces. Every piece is positive, the pieces add up to the constraint, and their product is the target product, up to constant factors.\n\nThe general setup. Suppose we maximise $x_1^{a_1}\\cdots x_k^{a_k}$ subject to $x_1+\\cdots+x_k=S$, with positive integer exponents summing to $N$. Split each $x_i$ into $a_i$ equal parts $x_i/a_i$, repeated $a_i$ times. This gives $N$ pieces whose sum is $S$ and whose product is $\\prod_i (x_i/a_i)^{a_i}$. AM-GM on the pieces yields $\\prod_i (x_i/a_i)^{a_i}\\le (S/N)^N$, so $\\prod_i x_i^{a_i}\\le (S/N)^N\\prod_i a_i^{a_i}$. The bound is attained when all pieces are equal, that is $x_i=\\frac{a_iS}{N}$.\n\nExample. Let $x+y=9$ and maximise $xy^2$. Split $y$ into two halves: the pieces are $x$, $\\frac y2$, $\\frac y2$. They sum to $9$, so their average is $3$, and their product $x\\cdot\\frac{y^2}{4}$ is at most $3^3=27$. Hence $xy^2\\le 108$, with equality when $x=\\frac y2=3$, that is $x=3$ and $y=6$. Check: $3\\cdot 36=108$ and $3+6=9$.\n\nWhy the method is trustworthy. The equality condition of AM-GM says all pieces are equal, and that single fact produces the optimal ratio $x_i : x_j = a_i : a_j$ of the variables. This ratio is more valuable than the bound itself, because it tells you which values to substitute when you check the answer, and whether the optimum lies inside the domain at all.\n\nThe same technique handles other shapes of constraint. If the expression contains $x^2y$ and the constraint is on $x+y$, the splitting still works, because only the exponents and the linear constraint matter. For a constraint on a product rather than a sum, take logarithms, or reduce to this case by a substitution.\n\nTraps. Splitting into the wrong number of pieces (treating $x^2$ as a single piece) gives a bound that is not attained, and the bound is then useless. Forgetting to divide by the exponent inside each piece means the pieces no longer multiply to the target. Finally, confirm that the equality configuration has every variable positive and inside the domain before you report it.",
+      "keyFacts": [
+        "With $x_1+\\cdots+x_k=S$ and exponents $a_i$ summing to $N$: $\\prod x_i^{a_i}\\le\\left(\\frac{S}{N}\\right)^N\\prod a_i^{a_i}$",
+        "Equality holds when every piece is equal, that is $x_i=\\frac{a_iS}{N}$",
+        "Splitting a variable with exponent $a$ into $a$ equal parts removes the exponent from the AM-GM step"
+      ],
+      "whenToUse": "A product of powers of positive variables is to be maximised under a linear constraint on their sum.",
+      "commonMistakes": [
+        "Treating $x^2$ as one piece instead of two equal pieces, which gives a bound that is not attained.",
+        "Forgetting to divide each variable by its exponent, so the pieces do not multiply to the target product.",
+        "Reporting the bound without computing the equality point $x_i=\\frac{a_iS}{N}$ and checking that it satisfies the constraint."
+      ],
+      "example": {
+        "problem": "Positive reals $x,y,z$ satisfy $x+y+z=12$. Find the maximum of $xy^2z$.",
+        "solution": "The exponents are $1,2,1$, so $N=4$ and $S=12$. Split $y$ into two equal parts and use the four pieces $x,\\frac y2,\\frac y2,z$, whose sum is $12$. AM-GM gives $x\\cdot\\frac{y^2}{4}\\cdot z\\le 3^4=81$, so $xy^2z\\le 324$. Equality when all four pieces equal $3$: $x=3$, $y=6$, $z=3$, and indeed $3+6+3=12$ with $3\\cdot 36\\cdot 3=324$.",
+        "answer": "324",
+        "verify": "best = max(x*y*y*z for x in range(1, 12) for y in range(1, 12) for z in range(1, 12) if x + y + z == 12)\nassert best == 324\nprint(best)\n"
+      }
+    },
+    {
+      "title": "Cauchy–Schwarz and Titu's lemma",
+      "body": "The Cauchy–Schwarz inequality states that for real numbers $a_1,\\dots,a_n$ and $b_1,\\dots,b_n$, $\\left(\\sum_{i=1}^n a_ib_i\\right)^2\\le\\left(\\sum a_i^2\\right)\\left(\\sum b_i^2\\right)$, with equality if and only if the two sequences are proportional. It is the second great workhorse of this topic, and unlike AM-GM it does not care about signs.\n\nProof by a discriminant. For any real $t$, $Q(t)=\\sum (a_it-b_i)^2\\ge 0$. Expanding gives $Q(t)=\\left(\\sum a_i^2\\right)t^2-2\\left(\\sum a_ib_i\\right)t+\\sum b_i^2$. A quadratic that is nonnegative for all $t$ has discriminant at most zero, so $4\\left(\\sum a_ib_i\\right)^2-4\\left(\\sum a_i^2\\right)\\left(\\sum b_i^2\\right)\\le 0$, which is the inequality. Equality means $Q$ has a double root, so some $t$ makes every $a_it-b_i$ vanish, that is $b_i=ta_i$ for all $i$.\n\nTitu's lemma (Engel form). Apply Cauchy–Schwarz with $a_i=\\frac{x_i}{\\sqrt{y_i}}$ and $b_i=\\sqrt{y_i}$, where $y_i>0$. Then $\\left(\\sum x_i\\right)^2\\le\\left(\\sum\\frac{x_i^2}{y_i}\\right)\\left(\\sum y_i\\right)$, which rearranges to $\\sum\\frac{x_i^2}{y_i}\\ge\\frac{\\left(\\sum x_i\\right)^2}{\\sum y_i}$. Equality holds when $\\frac{x_i}{y_i}$ is constant. Titu is the form you will use most, because many optimisation problems contain numerators that are squares or can be written as squares.\n\nExample. Let $x,y>0$ with $x+y=3$ and minimise $\\frac1x+\\frac4y$. Write the expression as $\\frac{1^2}{x}+\\frac{2^2}{y}$. Titu gives the bound $\\frac{(1+2)^2}{x+y}=\\frac{9}{3}=3$. Equality needs $\\frac{1}{x}=\\frac{2}{y}$, so $y=2x$, which with $x+y=3$ gives $x=1$ and $y=2$. Check: $1+\\frac{4}{2}=3$.\n\nChoosing the numerators. To apply Titu, write each term as a square over a positive denominator. A term $\\frac{4}{y}$ becomes $\\frac{2^2}{y}$, and a term $\\frac{x}{y}$ becomes $\\frac{(\\sqrt x)^2}{y}$ when a square root is harmless. The equality condition $x_i/y_i$ constant then pins down the optimal ratio, which you should verify at the end.\n\nThe weighted version. If the numerators are not squares, use Cauchy–Schwarz in the form $\\left(\\sum a_i\\right)\\left(\\sum \\frac{w_i}{a_i}\\right)\\ge\\left(\\sum\\sqrt{w_i}\\right)^2$ for positive $a_i,w_i$. This is the right tool for constraints on sums of weighted reciprocals, and its equality case $a_i\\propto\\sqrt{w_i}$ is the same proportionality principle in disguise.\n\nCommon mistakes. Applying Titu with a denominator that is not positive. Grouping the terms so that the numerator and denominator sums do not match the lemma's form. And forgetting that equality needs proportionality, which may be impossible if a variable is forced to zero or to infinity. Check the equality point numerically before trusting the bound.",
+      "keyFacts": [
+        "$\\left(\\sum a_ib_i\\right)^2\\le\\left(\\sum a_i^2\\right)\\left(\\sum b_i^2\\right)$",
+        "Titu's lemma: $\\sum\\frac{x_i^2}{y_i}\\ge\\frac{\\left(\\sum x_i\\right)^2}{\\sum y_i}$ for $y_i>0$",
+        "Equality in Cauchy–Schwarz holds if and only if $a_i/b_i$ is constant",
+        "$\\left(\\sum a_i\\right)\\left(\\sum\\frac{w_i}{a_i}\\right)\\ge\\left(\\sum\\sqrt{w_i}\\right)^2$ for positive $a_i,w_i$"
+      ],
+      "whenToUse": "The expression is a sum of squares, a sum of terms whose numerators are squares over positive denominators, or a constraint on a sum of squares.",
+      "commonMistakes": [
+        "Applying Titu with a denominator that is zero or negative.",
+        "Grouping terms so that the numerator and denominator sums do not match the lemma's form.",
+        "Forgetting that equality needs proportionality, and never checking the equality point."
+      ],
+      "example": {
+        "problem": "Positive reals $a,b$ satisfy $a+b=2$. Find the minimum of $\\frac1a+\\frac9b$.",
+        "solution": "Write $\\frac{1^2}{a}+\\frac{3^2}{b}\\ge\\frac{(1+3)^2}{a+b}=\\frac{16}{2}=8$ by Titu. Equality needs $\\frac{1}{a}=\\frac{3}{b}$, so $b=3a$. With $a+b=2$ this gives $a=\\frac12$ and $b=\\frac32$. Check: $2+6=8$.",
+        "answer": "8",
+        "verify": "from fractions import Fraction as F\nbest = min(1/a + 9/(2 - a) for a in (F(k, 100) for k in range(1, 200)))\nassert best == 8\nprint(best)\n"
+      }
+    },
+    {
+      "title": "The QM–AM–GM–HM chain",
+      "body": "For positive reals $x_1,\\dots,x_n$ define the quadratic mean $\\mathrm{QM}=\\sqrt{\\frac{\\sum x_i^2}{n}}$, the arithmetic mean $\\mathrm{AM}=\\frac{\\sum x_i}{n}$, the geometric mean $\\mathrm{GM}=\\sqrt[n]{\\prod x_i}$, and the harmonic mean $\\mathrm{HM}=\\frac{n}{\\sum 1/x_i}$. Then $\\mathrm{QM}\\ge\\mathrm{AM}\\ge\\mathrm{GM}\\ge\\mathrm{HM}$, with equality throughout exactly when all the $x_i$ are equal. Each step is a standard inequality you have already met, so the chain is a summary of tools rather than a new theorem.\n\nWhy each link holds. QM $\\ge$ AM is $\\sum x_i^2\\ge\\frac{(\\sum x_i)^2}{n}$, which is Cauchy–Schwarz with every $b_i=1$; both sides are nonnegative, so squaring is safe. AM $\\ge$ GM is the AM-GM inequality. GM $\\ge$ HM comes from AM-GM applied to the reciprocals: $\\mathrm{GM}(1/x_i)=1/\\mathrm{GM}(x_i)$ and $\\mathrm{AM}(1/x_i)=1/\\mathrm{HM}(x_i)$, so AM-GM on the reciprocals, then taking reciprocals, reverses to give $\\mathrm{GM}\\ge\\mathrm{HM}$.\n\nFor two positive numbers there is a useful identity: $\\mathrm{AM}\\cdot\\mathrm{HM}=\\mathrm{GM}^2$. Indeed $\\frac{a+b}{2}\\cdot\\frac{2ab}{a+b}=ab$. So if you know the GM and the HM, you know the AM at once, and conversely. This is the fastest way to handle two-variable mean problems, and it is worth memorising.\n\nThe chain is used in two directions. To bound a quantity from above, identify which mean it is: a sum of squares is controlled by the QM, and a sum of reciprocals by the HM. To bound from below, use the other end of the chain. For example, given $\\sum x_i^2=20$ with four positive numbers, the QM bound gives $\\sum x_i\\le 4\\sqrt5$, attained when all four numbers equal $\\sqrt5$.\n\nContest pattern. A constraint is stated on one mean and a question concerns another. Convert between them: the AM can be bounded from the QM using the Cauchy–Schwarz step, and the HM can be handled by applying the chain to reciprocals. Writing the four means side by side is a reliable way to see which link you need.\n\nCaution. The chain needs positivity. Geometric and harmonic means are meaningless or misleading for numbers with negative entries, and the inequalities can fail. The inequalities also point one way only: an upper bound on the GM says nothing about the AM from above, and a lower bound on the QM says nothing about the HM.",
+      "keyFacts": [
+        "$\\mathrm{HM}\\le\\mathrm{GM}\\le\\mathrm{AM}\\le\\mathrm{QM}$ for positive reals, with equality throughout exactly when all are equal",
+        "For two positive numbers, $\\mathrm{AM}\\cdot\\mathrm{HM}=\\mathrm{GM}^2$",
+        "$\\sum x_i^2\\ge\\frac{\\left(\\sum x_i\\right)^2}{n}$, which is Cauchy–Schwarz with all $b_i=1$"
+      ],
+      "whenToUse": "A bound is needed on a sum of squares, a sum, a product or a sum of reciprocals, and the given constraint is stated in terms of a different mean.",
+      "commonMistakes": [
+        "Applying the chain to numbers that include zero or negatives, where GM and HM are undefined or the inequalities fail.",
+        "Reversing the direction: AM-GM bounds the AM from below by the GM, so an upper bound on the GM says nothing about the AM.",
+        "Confusing the HM with the average of the reciprocals; the HM is the reciprocal of that average."
+      ],
+      "example": {
+        "problem": "Two positive numbers have geometric mean $6$ and harmonic mean $\\frac92$. What is their arithmetic mean?",
+        "solution": "For two numbers $\\mathrm{AM}\\cdot\\mathrm{HM}=\\mathrm{GM}^2$, so $\\mathrm{AM}=\\frac{36}{9/2}=8$. Check: the numbers $8\\pm 2\\sqrt7$ have sum $16$ and product $64-28=36$, so $\\mathrm{GM}=6$, and $\\mathrm{HM}=\\frac{2\\cdot 36}{16}=\\frac92$.",
+        "answer": "8",
+        "verify": "import math\nGM, HM = 6.0, 4.5\ns = 2*GM*GM/HM                       # a+b, from HM = 2ab/(a+b) and ab = GM^2\np = GM*GM\nd = math.sqrt(s*s - 4*p)\na, b = (s + d)/2, (s - d)/2\nassert abs(math.sqrt(a*b) - GM) < 1e-9 and abs(2*a*b/(a+b) - HM) < 1e-9\nprint(round((a + b)/2, 6))\n"
+      }
+    },
+    {
+      "title": "The rearrangement inequality",
+      "body": "Take two lists of real numbers and pair their entries in some order. The sum of the products depends on the pairing. The rearrangement inequality says that the sum is largest when the two lists are sorted in the same order, pairing the largest with the largest and so on, and smallest when they are sorted in opposite order. In words: big with big maximises the total, and big with small minimises it. No sign assumption is needed, which distinguishes it from AM-GM.\n\nTwo-term proof. Let $a_1\\le a_2$ and $b_1\\le b_2$. Compare $a_1b_1+a_2b_2$ with the mismatched pairing $a_1b_2+a_2b_1$. Their difference is $a_1b_1+a_2b_2-a_1b_2-a_2b_1=(a_1-a_2)(b_1-b_2)\\ge 0$, because both factors are $\\le 0$ or both are $\\ge 0$. So the matched pairing is never worse. Any pairing can be improved by swapping an inverted pair, and each swap does not decrease the sum, so the maximum occurs at the sorted pairing.\n\nApplication. The rearrangement inequality gives a quick bound on any sum of the form $\\sum a_i b_{\\sigma(i)}$ over permutations $\\sigma$, without enumerating them. It is also the engine behind Chebyshev's sum inequality, which compares averages of similarly and oppositely ordered sequences, so it appears in several classical olympiad arguments.\n\nWorked pattern. Let $a=(1,4,6)$ and let $b$ be a permutation of $(2,3,5)$. The largest sum comes from sorted pairing: $1\\cdot 2+4\\cdot 3+6\\cdot 5=44$. The smallest comes from reversing: $1\\cdot 5+4\\cdot 3+6\\cdot 2=29$. Every one of the six permutations gives a value in the interval from $29$ to $44$, and the extremes are attained, so the range is settled without a full enumeration.\n\nPitfalls. The inequality concerns a fixed pair of lists, and the maximum and minimum are the two extremes of the same family of pairings. The usual error is to match the largest of one list with the smallest of the other when the question asks for the maximum. Another is to forget that the inequality applies to any real numbers, so no positivity check is needed, but ordering is essential.",
+      "keyFacts": [
+        "Similarly ordered pairing maximises $\\sum a_ib_{\\sigma(i)}$; oppositely ordered pairing minimises it",
+        "$a_1b_1+a_2b_2-a_1b_2-a_2b_1=(a_1-a_2)(b_1-b_2)$",
+        "The rearrangement inequality holds for arbitrary real numbers, with no sign assumption"
+      ],
+      "whenToUse": "A sum of products of two lists is to be maximised or minimised over all pairings of their entries.",
+      "commonMistakes": [
+        "Pairing the largest with the largest when the question asks for the minimum.",
+        "Forgetting that the inequality is about a fixed pair of lists, so the answer must be checked against the actual permutations.",
+        "Assuming positivity is needed; the rearrangement inequality does not require positive numbers."
+      ],
+      "example": {
+        "problem": "Let $a=(1,2,3)$ and $b=(4,5,6)$. Over all ways of pairing the entries of $a$ with a permutation of $b$, what is the minimum of $\\sum a_i b_{\\sigma(i)}$?",
+        "solution": "The minimum comes from the opposite pairing, $1\\cdot 6+2\\cdot 5+3\\cdot 4=28$. Every other pairing gives a larger sum, as the swap identity shows, and a brute check over the six permutations confirms the value $28$.",
+        "answer": "28",
+        "verify": "from itertools import permutations\na = [1, 2, 3]\nprint(min(sum(x*y for x, y in zip(a, p)) for p in permutations([4, 5, 6])))\n"
+      }
+    },
+    {
+      "title": "Bounding arguments for counting integer solutions",
+      "body": "Counting integer solutions of an equation is hopeless by eye, but inequalities make the solution set finite and small. The strategy has three steps: use an inequality to bound each variable, reduce the search to a short finite list, and check the candidates. The art lies in the first step. Most equations have families of solutions that grow with the variables, and an inequality shows that large variables throw the equation off balance.\n\nReciprocal bounds. Count the positive integer pairs $(x,y)$ with $\\frac1x+\\frac1y=\\frac12$. Since $\\frac1y>0$, we get $\\frac1x<\\frac12$, so $x\\ge 3$, and symmetrically $y\\ge 3$. Assume $x\\le y$, which we will undo at the end. Then $\\frac1y\\le\\frac1x$, so $\\frac12\\le\\frac2x$, giving $x\\le 4$. Thus $x\\in\\{3,4\\}$. For $x=3$, $\\frac1y=\\frac16$ gives $y=6$; for $x=4$, $\\frac1y=\\frac14$ gives $y=4$. Counting orders, the solutions are $(3,6),(4,4),(6,3)$, three in total.\n\nQuadratic bounds. A quadratic inequality traps an integer variable in a finite interval, because its roots are the endpoints. For instance $n^2-3n-40<0$ factors as $(n-8)(n+5)<0$, so $-5<n<8$, and among the positive integers only $1,\\dots,7$ remain. The same principle works for products: if $xy=N$ with positive integers, every divisor of $N$ is a candidate, and there are finitely many.\n\nSymmetry and ordering. When the equation is symmetric in its variables, assume $a\\le b\\le c$, derive a bound on the smallest variable, then bound the rest. At the end, convert each sorted solution into ordered ones: $6$ orderings if all entries are distinct, $3$ if exactly two agree, and $1$ if all three agree. Forgetting this count is the most common reason an otherwise correct solution gives a wrong total.\n\nAM-GM as a bound on a product. If $a,b,c$ are positive, AM-GM gives $a+b+c\\ge 3\\sqrt[3]{abc}$, which limits how large the variables can be at a given product. Combined with a factorisation of the remaining equation, this often reduces a three-variable count to a short case check.\n\nTraps. A bound derived from one variable may be loose. A loose bound is harmless, because you then check a few extra cases, but an overly tight bound silently loses solutions, so always test the boundary values. Remember also that positive integers exclude zero, which changes which bounds are valid, and that repeated entries reduce the number of orderings.",
+      "keyFacts": [
+        "If positive integers satisfy $\\frac1x+\\frac1y=\\frac12$, then $x,y\\in\\{3,4,6\\}$",
+        "Ordered triples: $6$ for distinct entries, $3$ when exactly two entries agree, $1$ when all agree",
+        "A quadratic inequality $(n-p)(n-q)\\le 0$ bounds $n$ to the interval between $p$ and $q$"
+      ],
+      "whenToUse": "A count of integer solutions is requested for an equation whose variables an inequality can bound, typically a reciprocal sum, a product, or a quadratic.",
+      "commonMistakes": [
+        "Forgetting that solutions with repeated entries have fewer orderings than distinct ones.",
+        "Forgetting that positive integers exclude zero, which changes which bounds are valid.",
+        "Stopping the bound too early, so a valid case is missed."
+      ],
+      "example": {
+        "problem": "How many positive integers $n$ satisfy $n^2<3n+40$?",
+        "solution": "Rewrite the condition as $n^2-3n-40<0$, that is $(n-8)(n+5)<0$. Since $n+5>0$, this means $n<8$. The positive integers $1,\\dots,7$ all work, and $n=8$ gives $64<64$, which fails. So there are $7$ solutions.",
+        "answer": "7",
+        "verify": "print(sum(1 for n in range(1, 200) if n*n < 3*n + 40))\n"
+      }
+    }
+  ],
+  "strategies": [
+    {
+      "name": "Complete the square first",
+      "description": "Whenever an expression is quadratic in one or more variables, rewrite it as squares plus a constant before anything else. The minimum or maximum is then immediate, and the point where the squares vanish tells you the optimum."
+    },
+    {
+      "name": "Find the equality case before the inequality",
+      "description": "Guess the optimum by symmetry or by equal weights, meaning every term equal or every ratio fixed. Knowing where equality holds tells you which inequality to use, and a bound is only useful if equality can occur under the constraints."
+    },
+    {
+      "name": "Engineer a constant product or sum",
+      "description": "AM-GM bounds a sum from below only when the product of its terms is fixed. Rewrite the expression, for instance by pairing the summands so that their product is constant, until one of the two quantities is fixed."
+    },
+    {
+      "name": "Split unequal exponents into equal pieces",
+      "description": "For a product $x^a y^b$ under a constraint on $x+y$, split $x$ into $a$ equal parts and $y$ into $b$ equal parts. The pieces then number $a+b$ and AM-GM applies directly, with the equality ratio read off from the pieces."
+    },
+    {
+      "name": "Use Titu when numerators are squares",
+      "description": "Write each term as a square over a positive denominator and apply Titu's lemma. Equality means each ratio of numerator root to denominator is constant, which pins down the optimal point."
+    },
+    {
+      "name": "Bound first, then enumerate",
+      "description": "To count integer solutions, use an inequality to bound the smallest variable, then the others, and list the finite remainder. Finally multiply each unordered solution by its number of orderings."
+    },
+    {
+      "name": "Sort the sequences",
+      "description": "For a sum of products over a permutation, match the largest with the largest to maximise and the largest with the smallest to minimise. The rearrangement inequality justifies both directions."
+    },
+    {
+      "name": "Check the claimed optimum numerically",
+      "description": "After finding an answer, evaluate the expression at the claimed equality point and at a few nearby points. A grid over rational values is a fast check that the bound is achieved and not beaten."
+    }
+  ],
+  "workedExamples": [
+    {
+      "title": "Minimum of a quadratic by completing the square",
+      "difficulty": 1,
+      "problem": "What is the minimum value of $x^2+10x+31$ over all real numbers $x$?",
+      "choices": [
+        "1",
+        "6",
+        "9",
+        "21",
+        "31"
+      ],
+      "answer": "B",
+      "approach": "The expression is quadratic with leading coefficient $1>0$, so it has a minimum. Complete the square.",
+      "steps": [
+        "Write $x^2+10x=(x+5)^2-25$.",
+        "So $x^2+10x+31=(x+5)^2+6$.",
+        "A square is at least $0$, so the expression is at least $6$.",
+        "Equality holds at $x=-5$, so the minimum is $6$."
+      ],
+      "alternative": "Differentiate: $2x+10=0$ gives $x=-5$, and the value there is $25-50+31=6$.",
+      "takeaway": "A quadratic with positive leading coefficient is bounded below by the constant left after completing the square.",
+      "verify": "best = min(x*x + 10*x + 31 for x in range(-50, 51))\nassert best == 6\nprint(best)\n"
+    },
+    {
+      "title": "Rectangle of fixed area with least perimeter",
+      "difficulty": 2,
+      "problem": "A rectangle has area $36$. What is the smallest possible perimeter of such a rectangle, if its side lengths are positive real numbers?",
+      "choices": [
+        "12",
+        "18",
+        "24",
+        "36",
+        "72"
+      ],
+      "answer": "C",
+      "approach": "The perimeter is a sum of two sides whose product is fixed, which is exactly the setting for AM-GM.",
+      "steps": [
+        "Let the sides be $w,h>0$ with $wh=36$.",
+        "The perimeter is $P=2(w+h)$.",
+        "AM-GM gives $w+h\\ge 2\\sqrt{wh}=12$, so $P\\ge 24$.",
+        "Equality holds when $w=h=6$, a square of side $6$, so the bound is attained."
+      ],
+      "alternative": "Substitute $h=\\frac{36}{w}$ and minimise $2\\left(w+\\frac{36}{w}\\right)$ by calculus; the critical point is $w=6$.",
+      "takeaway": "Among rectangles of fixed area, the square has the least perimeter, which is AM-GM with a fixed product.",
+      "verify": "from fractions import Fraction as F\nbest = min(2*(w + F(36)/w) for w in (F(k, 100) for k in range(1, 10001)))\nassert best == 24\nprint(best)\n"
+    },
+    {
+      "title": "Dividing first to expose a reciprocal pair",
+      "difficulty": 3,
+      "problem": "For $x>0$, what is the minimum of $\\frac{x^2+2x+9}{x}$?",
+      "choices": [
+        "6",
+        "8",
+        "10",
+        "11",
+        "14"
+      ],
+      "answer": "B",
+      "approach": "The fraction has a term in $x$ and a term in $\\frac{1}{x}$ once you divide, which is the shape AM-GM needs.",
+      "steps": [
+        "Divide each term by $x$: $\\frac{x^2}{x}=x$, $\\frac{2x}{x}=2$, and $\\frac{9}{x}$ remains.",
+        "The expression becomes $x+\\frac{9}{x}+2$.",
+        "AM-GM gives $x+\\frac{9}{x}\\ge 2\\sqrt{9}=6$.",
+        "Equality holds at $x=\\frac{9}{x}$, i.e. $x=3$, so the minimum is $6+2=8$."
+      ],
+      "alternative": "Calculus: the derivative $1-\\frac{9}{x^2}$ vanishes at $x=3$, where the value is $8$.",
+      "takeaway": "Divide first to expose the sum of a term and its reciprocal, which AM-GM bounds.",
+      "verify": "from fractions import Fraction as F\nbest = min((x*x + 2*x + 9)/x for x in (F(k, 100) for k in range(1, 2001)))\nassert best == 8\nprint(best)\n"
+    },
+    {
+      "title": "Titu's lemma with square numerators",
+      "difficulty": 4,
+      "problem": "Positive reals $a,b$ satisfy $a+b=1$. What is the minimum of $\\frac{4}{a}+\\frac{9}{b}$?",
+      "choices": [
+        "16",
+        "20",
+        "25",
+        "30",
+        "36"
+      ],
+      "answer": "C",
+      "approach": "Numerators $4$ and $9$ are the squares $2^2$ and $3^2$, so Titu's lemma applies directly with denominators $a$ and $b$.",
+      "steps": [
+        "Write $\\frac{4}{a}+\\frac{9}{b}=\\frac{2^2}{a}+\\frac{3^2}{b}$.",
+        "Titu's lemma gives $\\ge\\frac{(2+3)^2}{a+b}=25$.",
+        "Equality holds when $\\frac{2}{a}=\\frac{3}{b}$, i.e. $b=\\frac32 a$.",
+        "With $a+b=1$ this gives $a=\\frac25$, $b=\\frac35$, and indeed $\\frac{4}{2/5}+\\frac{9}{3/5}=10+15=25$."
+      ],
+      "alternative": "Substitute $b=1-a$ and differentiate $\\frac{4}{a}+\\frac{9}{1-a}$; the critical point is $a=\\frac25$.",
+      "takeaway": "When numerators are squares and denominators sum to a constant, Titu gives the bound, and the ratio $x_i/y_i$ gives the optimal point.",
+      "verify": "from fractions import Fraction as F\nbest = min(F(4)/a + F(9)/(1 - a) for a in (F(k, 100) for k in range(1, 100)))\nassert best == 25\nprint(best)\n"
+    },
+    {
+      "title": "Splitting a variable with exponent two",
+      "difficulty": 4,
+      "problem": "Positive reals $x,y$ satisfy $x+y=12$. What is the maximum of $x^2y$?",
+      "choices": [
+        "128",
+        "144",
+        "192",
+        "256",
+        "512"
+      ],
+      "answer": "D",
+      "approach": "The exponent $2$ on $x$ suggests splitting $x$ into two equal halves, so the three pieces $\\frac{x}{2},\\frac{x}{2},y$ have sum $x+y=12$.",
+      "steps": [
+        "The pieces are $\\frac{x}{2}$, $\\frac{x}{2}$, $y$, with sum $x+y=12$.",
+        "AM-GM on three pieces gives $\\left(\\frac{x}{2}\\right)^2y\\le\\left(\\frac{12}{3}\\right)^3=64$.",
+        "So $x^2y\\le 4\\cdot 64=256$.",
+        "Equality holds when $\\frac{x}{2}=y$; with $x+y=12$ this gives $x=8$, $y=4$, and $8^2\\cdot 4=256$."
+      ],
+      "alternative": "Substitute $y=12-x$ and maximise $x^2(12-x)$ by calculus: the derivative $24x-3x^2$ vanishes at $x=8$.",
+      "takeaway": "Splitting a variable with exponent $k$ into $k$ equal parts removes the exponent from the AM-GM step.",
+      "verify": "from fractions import Fraction as F\nbest = max(x*x*(12 - x) for x in (F(k, 10) for k in range(1, 120)))\nassert best == 256\nprint(best)\n"
+    },
+    {
+      "title": "Two-step AM-GM for a symmetric bound",
+      "difficulty": 5,
+      "problem": "Let $u,v$ be positive reals. What is the minimum of $\\frac{(u+1)^2}{v}+\\frac{(v+1)^2}{u}$?",
+      "choices": [
+        "8",
+        "10",
+        "12",
+        "16",
+        "24"
+      ],
+      "answer": "A",
+      "approach": "Clear denominators, then apply AM-GM to the two resulting terms and finish with the inequality $(s+1)^2\\ge 4s$.",
+      "steps": [
+        "Multiply by $uv>0$: the claim is $u(u+1)^2+v(v+1)^2\\ge 8uv$.",
+        "AM-GM on the two terms gives $u(u+1)^2+v(v+1)^2\\ge 2\\sqrt{uv}\\,(u+1)(v+1)$.",
+        "Also $(u+1)(v+1)\\ge uv+2\\sqrt{uv}+1=(\\sqrt{uv}+1)^2\\ge 4\\sqrt{uv}$, using $(s+1)^2\\ge 4s$ with $s=\\sqrt{uv}$.",
+        "So the right side is at least $2\\sqrt{uv}\\cdot 4\\sqrt{uv}=8uv$. Equality needs $u=v$ and $\\sqrt{uv}=1$, so $u=v=1$, where the expression equals $4+4=8$."
+      ],
+      "alternative": "On the diagonal $u=v=t$ the expression is $2\\frac{(t+1)^2}{t}=2\\left(t+2+\\frac1t\\right)\\ge 8$, which points at the answer; the two-step proof shows nothing smaller occurs off the diagonal.",
+      "takeaway": "Two AM-GM steps, together with $(s+1)^2\\ge 4s$, prove a bound that no single application reaches.",
+      "verify": "from fractions import Fraction as F\ngrid = [F(k, 20) for k in range(1, 201)]\nbest = min((u + 1)**2/v + (v + 1)**2/u for u in grid for v in grid)\nassert best == 8\nprint(best)\n"
+    }
+  ],
+  "problems": [
+    {
+      "id": "ineq-01",
+      "difficulty": 1,
+      "problem": "What is the minimum value of $x^2-6x+13$ over all real numbers $x$?",
+      "choices": [
+        "4",
+        "6",
+        "9",
+        "13",
+        "16"
+      ],
+      "answer": "A",
+      "hint": "Complete the square in $x$.",
+      "solution": "Since $x^2-6x=(x-3)^2-9$, we have $x^2-6x+13=(x-3)^2+4\\ge 4$, with equality at $x=3$.",
+      "concepts": [
+        0,
+        1
+      ],
+      "verify": "from fractions import Fraction as F\nbest = min(x*x - 6*x + 13 for x in (F(k, 100) for k in range(-1000, 1001)))\nassert best == 4\nprint(best)\n"
+    },
+    {
+      "id": "ineq-02",
+      "difficulty": 1,
+      "problem": "Positive reals $a,b$ satisfy $a+b=10$. What is the largest possible value of $ab$?",
+      "choices": [
+        "20",
+        "25",
+        "26",
+        "30",
+        "50"
+      ],
+      "answer": "B",
+      "hint": "Among pairs with a fixed sum, which pair has the largest product?",
+      "solution": "AM-GM gives $ab\\le\\left(\\frac{a+b}{2}\\right)^2=25$, with equality at $a=b=5$.",
+      "concepts": [
+        2
+      ],
+      "verify": "from fractions import Fraction as F\nbest = max(a*(10 - a) for a in (F(k, 100) for k in range(1, 1000)))\nassert best == 25\nprint(best)\n"
+    },
+    {
+      "id": "ineq-03",
+      "difficulty": 1,
+      "problem": "For $x>0$, what is the minimum value of $x+\\frac{9}{x}$?",
+      "choices": [
+        "3",
+        "5",
+        "6",
+        "9",
+        "10"
+      ],
+      "answer": "C",
+      "hint": "Apply AM-GM to the two summands.",
+      "solution": "We have $x+\\frac{9}{x}\\ge 2\\sqrt{x\\cdot\\frac{9}{x}}=6$, with equality when $x=3$.",
+      "concepts": [
+        2
+      ],
+      "verify": "from fractions import Fraction as F\nbest = min(x + F(9)/x for x in (F(k, 100) for k in range(1, 1001)))\nassert best == 6\nprint(best)\n"
+    },
+    {
+      "id": "ineq-04",
+      "difficulty": 1,
+      "problem": "Real numbers $x,y$ satisfy $x+y=4$. What is the minimum of $x^2+y^2$?",
+      "choices": [
+        "2",
+        "4",
+        "6",
+        "8",
+        "16"
+      ],
+      "answer": "D",
+      "hint": "Use the identity $x^2+y^2=\\frac{(x+y)^2+(x-y)^2}{2}$.",
+      "solution": "Since $(x-y)^2\\ge 0$, we get $x^2+y^2\\ge\\frac{(x+y)^2}{2}=8$, with equality at $x=y=2$.",
+      "concepts": [
+        0,
+        6
+      ],
+      "verify": "from fractions import Fraction as F\nbest = min(x*x + (4 - x)**2 for x in (F(k, 100) for k in range(-1000, 1001)))\nassert best == 8\nprint(best)\n"
+    },
+    {
+      "id": "ineq-05",
+      "difficulty": 1,
+      "problem": "What is the maximum value of $11+8x-2x^2$ over all real numbers $x$?",
+      "choices": [
+        "11",
+        "14",
+        "16",
+        "17",
+        "19"
+      ],
+      "answer": "E",
+      "hint": "Complete the square, paying attention to the sign of the $x^2$ coefficient.",
+      "solution": "We have $11+8x-2x^2=19-2(x-2)^2$, since $-2(x-2)^2=-2x^2+8x-8$. The maximum is $19$, at $x=2$.",
+      "concepts": [
+        1
+      ],
+      "verify": "from fractions import Fraction as F\nbest = max(11 + 8*x - 2*x*x for x in (F(k, 100) for k in range(-1000, 1001)))\nassert best == 19\nprint(best)\n"
+    },
+    {
+      "id": "ineq-06",
+      "difficulty": 1,
+      "problem": "Positive reals $p,q$ satisfy $pq=16$. What is the minimum of $p+q$?",
+      "choices": [
+        "8",
+        "10",
+        "12",
+        "16",
+        "32"
+      ],
+      "answer": "A",
+      "hint": "The product is fixed, so the sum is bounded below by AM-GM.",
+      "solution": "AM-GM gives $p+q\\ge 2\\sqrt{pq}=8$, with equality at $p=q=4$.",
+      "concepts": [
+        2
+      ],
+      "verify": "from fractions import Fraction as F\nbest = min(p + F(16)/p for p in (F(k, 100) for k in range(1, 4001)))\nassert best == 8\nprint(best)\n"
+    },
+    {
+      "id": "ineq-07",
+      "difficulty": 2,
+      "problem": "Positive reals $x,y$ satisfy $x+2y=6$. What is the maximum of $xy$?",
+      "choices": [
+        "3",
+        "4",
+        "$\\frac{9}{2}$",
+        "5",
+        "6"
+      ],
+      "answer": "C",
+      "hint": "Look at the product $x\\cdot(2y)$, whose two factors have a fixed sum.",
+      "solution": "The factors $x$ and $2y$ have sum $6$, so $x\\cdot 2y\\le 9$ and $xy\\le\\frac92$. Equality holds at $x=2y=3$, so $y=\\frac32$.",
+      "concepts": [
+        3
+      ],
+      "verify": "from fractions import Fraction as F\nbest = max((6 - 2*y)*y for y in (F(j, 1000) for j in range(1, 3000)))\nassert best == F(9, 2)\nprint(best)\n"
+    },
+    {
+      "id": "ineq-08",
+      "difficulty": 2,
+      "problem": "Real numbers $x,y$ satisfy $x^2+4y^2=16$. What is the maximum of $xy$?",
+      "choices": [
+        "4",
+        "6",
+        "8",
+        "12",
+        "16"
+      ],
+      "answer": "A",
+      "hint": "Apply AM-GM to $x^2$ and $4y^2$.",
+      "solution": "AM-GM gives $x^2+4y^2\\ge 2\\cdot x\\cdot 2y=4xy$, so $xy\\le 4$. Equality needs $x^2=4y^2$ together with $x^2+4y^2=16$, giving $x=2\\sqrt2$ and $y=\\sqrt2$, where $xy=4$.",
+      "concepts": [
+        3
+      ],
+      "verify": "import math\nbest = max(math.sqrt(16 - 4*y*y)*y for y in (k/100000 for k in range(0, 200001)))\nopt = 4.0\nassert abs(best - opt) < 1e-6, (best, opt)\nprint(round(opt, 6))\n"
+    },
+    {
+      "id": "ineq-09",
+      "difficulty": 2,
+      "problem": "Positive reals $a,b,c$ satisfy $a+b+c=6$. What is the maximum of $abc$?",
+      "choices": [
+        "4",
+        "6",
+        "8",
+        "9",
+        "12"
+      ],
+      "answer": "C",
+      "hint": "Three-variable AM-GM with a fixed sum.",
+      "solution": "AM-GM gives $abc\\le\\left(\\frac{a+b+c}{3}\\right)^3=8$, with equality at $a=b=c=2$.",
+      "concepts": [
+        2
+      ],
+      "verify": "from fractions import Fraction as F\nbest = 0\nfor i in range(1, 60):\n    for j in range(1, 60):\n        a, b = F(i, 10), F(j, 10)\n        c = 6 - a - b\n        if c > 0:\n            best = max(best, a*b*c)\nassert best == 8\nprint(best)\n"
+    },
+    {
+      "id": "ineq-10",
+      "difficulty": 2,
+      "problem": "Positive reals $x,y$ satisfy $x+y=2$. What is the minimum of $\\frac1x+\\frac1y$?",
+      "choices": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "8"
+      ],
+      "answer": "B",
+      "hint": "Rewrite $\\frac1x+\\frac1y$ using $x+y$ and $xy$.",
+      "solution": "We have $\\frac1x+\\frac1y=\\frac{x+y}{xy}=\\frac{2}{xy}$. Since $xy\\le\\left(\\frac{x+y}{2}\\right)^2=1$, the expression is at least $2$, with equality at $x=y=1$.",
+      "concepts": [
+        2
+      ],
+      "verify": "from fractions import Fraction as F\nbest = min(1/x + 1/(2 - x) for x in (F(k, 100) for k in range(1, 200)))\nassert best == 2\nprint(best)\n"
+    },
+    {
+      "id": "ineq-11",
+      "difficulty": 2,
+      "problem": "Positive reals $x,y$ satisfy $\\frac1x+\\frac1y=1$. What is the minimum of $x+4y$?",
+      "choices": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "answer": "D",
+      "hint": "Multiply $x+4y$ by $\\frac1x+\\frac1y$ and expand.",
+      "solution": "We have $(x+4y)\\left(\\frac1x+\\frac1y\\right)=5+\\frac{x}{y}+\\frac{4y}{x}\\ge 5+2\\sqrt4=9$, since $\\frac xy\\cdot\\frac{4y}{x}=4$. Since $\\frac1x+\\frac1y=1$, this gives $x+4y\\ge 9$. Equality needs $x=2y$, which with $\\frac1x+\\frac1y=1$ gives $y=\\frac32$ and $x=3$.",
+      "concepts": [
+        3,
+        5
+      ],
+      "verify": "from fractions import Fraction as F\nbest = None\nfor k in range(1, 2001):\n    y = 1 + F(k, 200)\n    x = y/(y - 1)\n    v = x + 4*y\n    if best is None or v < best:\n        best = v\nassert best == 9\nprint(best)\n"
+    },
+    {
+      "id": "ineq-12",
+      "difficulty": 2,
+      "problem": "Real numbers $x,y$ satisfy $x+y=5$. What is the minimum of $x^2+2y^2$?",
+      "choices": [
+        "15",
+        "$\\frac{50}{3}$",
+        "17",
+        "20",
+        "25"
+      ],
+      "answer": "B",
+      "hint": "Substitute $y=5-x$ and complete the square in $x$.",
+      "solution": "With $y=5-x$, we get $x^2+2(5-x)^2=3x^2-20x+50=3\\left(x-\\frac{10}{3}\\right)^2+\\frac{50}{3}$. The minimum is $\\frac{50}{3}$, at $x=\\frac{10}{3}$ and $y=\\frac53$.",
+      "concepts": [
+        0,
+        1
+      ],
+      "verify": "from fractions import Fraction as F\nbest = min(x*x + 2*(5 - x)**2 for x in (F(k, 300) for k in range(-3000, 3001)))\nassert best == F(50, 3)\nprint(best)\n"
+    },
+    {
+      "id": "ineq-13",
+      "difficulty": 3,
+      "problem": "Positive reals $x,y$ satisfy $xy=12$. What is the minimum of $3x+y$?",
+      "choices": [
+        "6",
+        "8",
+        "10",
+        "12",
+        "14"
+      ],
+      "answer": "D",
+      "hint": "Which two quantities have a fixed product?",
+      "solution": "The product $(3x)\\cdot y=36$ is constant, so $3x+y\\ge 2\\sqrt{36}=12$. Equality needs $3x=y$, which with $xy=12$ gives $x=2$ and $y=6$, and then $3x+y=12$.",
+      "concepts": [
+        3
+      ],
+      "verify": "from fractions import Fraction as F\nbest = min(3*x + F(12)/x for x in (F(k, 100) for k in range(1, 2001)))\nassert best == 12\nprint(best)\n"
+    },
+    {
+      "id": "ineq-14",
+      "difficulty": 3,
+      "problem": "Positive reals $a,b$ satisfy $a^2b=4$. What is the minimum of $a+b$?",
+      "choices": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "8"
+      ],
+      "answer": "A",
+      "hint": "Split $a$ into two equal halves so that three pieces have a constant product.",
+      "solution": "Write $a+b=\\frac a2+\\frac a2+b\\ge 3\\sqrt[3]{\\frac{a^2b}{4}}=3$, since $a^2b=4$. Equality needs $\\frac a2=b$, so $a=2$ and $b=1$, and indeed $a^2b=4$.",
+      "concepts": [
+        4
+      ],
+      "verify": "from fractions import Fraction as F\nbest = min(a + F(4)/(a*a) for a in (F(k, 100) for k in range(1, 1001)))\nassert best == 3\nprint(best)\n"
+    },
+    {
+      "id": "ineq-15",
+      "difficulty": 3,
+      "problem": "Positive reals $a,b,c$ satisfy $a+b+c=3$. What is the minimum of $\\frac1a+\\frac4b+\\frac9c$?",
+      "choices": [
+        "9",
+        "10",
+        "12",
+        "14",
+        "18"
+      ],
+      "answer": "C",
+      "hint": "Write the numerators as squares.",
+      "solution": "We have $\\frac{1^2}{a}+\\frac{2^2}{b}+\\frac{3^2}{c}\\ge\\frac{(1+2+3)^2}{a+b+c}=\\frac{36}{3}=12$ by Titu. Equality needs $\\frac1a=\\frac2b=\\frac3c$, which with $a+b+c=3$ gives $a=\\frac12$, $b=1$, $c=\\frac32$.",
+      "concepts": [
+        5
+      ],
+      "verify": "from fractions import Fraction as F\nbest = None\nfor i in range(1, 180):\n    for j in range(1, 180):\n        a, b = F(i, 60), F(j, 60)\n        c = 3 - a - b\n        if c > 0:\n            v = 1/a + 4/b + 9/c\n            if best is None or v < best:\n                best = v\nassert best == 12\nprint(best)\n"
+    },
+    {
+      "id": "ineq-16",
+      "difficulty": 3,
+      "problem": "Real numbers $x,y,z$ satisfy $x^2+y^2+z^2=9$. What is the maximum of $2x+2y+z$?",
+      "choices": [
+        "3",
+        "6",
+        "8",
+        "9",
+        "12"
+      ],
+      "answer": "D",
+      "hint": "Cauchy–Schwarz with the vectors $(2,2,1)$ and $(x,y,z)$.",
+      "solution": "By Cauchy–Schwarz, $(2x+2y+z)^2\\le(2^2+2^2+1^2)(x^2+y^2+z^2)=9\\cdot 9=81$, so $2x+2y+z\\le 9$. Equality holds at $(x,y,z)=(2,2,1)$, which satisfies $4+4+1=9$.",
+      "concepts": [
+        5
+      ],
+      "verify": "import math\nopt = 3*math.sqrt(2*2 + 2*2 + 1*1)\nbest = -1e9\nN, M = 300, 600\nfor i in range(N + 1):\n    th = math.pi*i/N\n    for j in range(M):\n        ph = 2*math.pi*j/M\n        x = 3*math.sin(th)*math.cos(ph)\n        y = 3*math.sin(th)*math.sin(ph)\n        z = 3*math.cos(th)\n        best = max(best, 2*x + 2*y + z)\nassert best <= opt + 1e-9 and best > opt - 0.01, (best, opt)\nprint(round(opt, 6))\n"
+    },
+    {
+      "id": "ineq-17",
+      "difficulty": 3,
+      "problem": "For real $x$, what is the minimum value of $\\sqrt{x^2+4}+\\sqrt{(3-x)^2+9}$?",
+      "choices": [
+        "$\\sqrt{26}$",
+        "$\\sqrt{34}$",
+        "6",
+        "$\\sqrt{37}$",
+        "7"
+      ],
+      "answer": "B",
+      "hint": "Write each root as the length of a vector, $(x,2)$ and $(3-x,3)$.",
+      "solution": "The sum of the two vector lengths is at least the length of their sum, $\\sqrt{(x+3-x)^2+(2+3)^2}=\\sqrt{34}$. This is Cauchy–Schwarz in disguise. Equality holds when $(x,2)$ and $(3-x,3)$ are parallel, which needs $3x=2(3-x)$, so $x=\\frac65$.",
+      "concepts": [
+        5
+      ],
+      "verify": "import math\nopt = math.sqrt(34)\nbest = min(math.sqrt(x*x + 4) + math.sqrt((3 - x)**2 + 9) for x in (k/10000 for k in range(-20000, 50001)))\nassert abs(best - opt) < 1e-6, (best, opt)\nprint(r\"\\sqrt{34}\")\n"
+    },
+    {
+      "id": "ineq-18",
+      "difficulty": 3,
+      "problem": "Positive reals $a,b$ satisfy $\\frac1a+\\frac2b=1$. What is the minimum of $a+b$?",
+      "choices": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "$3+2\\sqrt{2}$"
+      ],
+      "answer": "E",
+      "hint": "Multiply $a+b$ by $\\frac1a+\\frac2b$ and expand.",
+      "solution": "We have $(a+b)\\left(\\frac1a+\\frac2b\\right)=3+\\frac{2a}{b}+\\frac{b}{a}\\ge 3+2\\sqrt2$, since $\\frac{2a}{b}\\cdot\\frac{b}{a}=2$. Equality needs $b=\\sqrt2\\,a$, and with $\\frac1a+\\frac2b=1$ this gives $a=1+\\sqrt2$ and $b=2+\\sqrt2$, so $a+b=3+2\\sqrt2$.",
+      "concepts": [
+        5,
+        3
+      ],
+      "verify": "import math\nopt = 3 + 2*math.sqrt(2)\ndef f(a):\n    b = 2*a/(a - 1)\n    return a + b\nbest = min(f(1 + k/10000) for k in range(1, 200000))\nassert abs(best - opt) < 1e-6, (best, opt)\nprint(r\"3+2\\sqrt{2}\")\n"
+    },
+    {
+      "id": "ineq-19",
+      "difficulty": 3,
+      "problem": "How many ordered pairs of positive integers $(x,y)$ satisfy $\\frac1x+\\frac1y=\\frac14$?",
+      "choices": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "answer": "E",
+      "hint": "Clear denominators and factor the result.",
+      "solution": "Since $\\frac1x<\\frac14$, we need $x>4$, and likewise $y>4$. Multiplying by $4xy$ gives $4x+4y=xy$, which rearranges to $(x-4)(y-4)=16$. The positive divisors of $16$ are $1,2,4,8,16$, each giving one ordered pair $(x-4,y-4)$, so there are five solutions.",
+      "concepts": [
+        8
+      ],
+      "verify": "count = sum(1 for x in range(1, 101) for y in range(1, 101) if 4*(x + y) == x*y)\nprint(count)\n"
+    },
+    {
+      "id": "ineq-20",
+      "difficulty": 3,
+      "problem": "Let $(a_1,a_2,a_3)=(1,4,6)$, and let $(b_1,b_2,b_3)$ be an arrangement of $2,3,5$. What is the largest possible value of $a_1b_1+a_2b_2+a_3b_3$?",
+      "choices": [
+        "29",
+        "36",
+        "40",
+        "42",
+        "44"
+      ],
+      "answer": "E",
+      "hint": "Which pairing puts large numbers next to large numbers?",
+      "solution": "By the rearrangement inequality the sum is largest when both sequences are sorted in the same order: $1\\cdot 2+4\\cdot 3+6\\cdot 5=44$. The smallest value, $29$, comes from the opposite pairing. All six arrangements give values between $29$ and $44$.",
+      "concepts": [
+        7
+      ],
+      "verify": "from itertools import permutations\na = [1, 4, 6]\nprint(max(sum(x*y for x, y in zip(a, p)) for p in permutations([2, 3, 5])))\n"
+    },
+    {
+      "id": "ineq-21",
+      "difficulty": 4,
+      "problem": "Four positive reals $x_1,x_2,x_3,x_4$ satisfy $x_1^2+x_2^2+x_3^2+x_4^2=20$. What is the maximum possible value of $x_1+x_2+x_3+x_4$?",
+      "choices": [
+        "6",
+        "8",
+        "$4\\sqrt{5}$",
+        "9",
+        "10"
+      ],
+      "answer": "C",
+      "hint": "Compare the sum with the quadratic mean of the four numbers.",
+      "solution": "By Cauchy–Schwarz, $(x_1+x_2+x_3+x_4)^2\\le 4\\left(x_1^2+x_2^2+x_3^2+x_4^2\\right)=80$, so the sum is at most $\\sqrt{80}=4\\sqrt5\\approx 8.94$. Equality holds when all four numbers equal $\\sqrt5$, and indeed $4\\cdot 5=20$. The choice $9$ is close but strictly larger, so it is a trap for anyone who rounds the bound up.",
+      "concepts": [
+        6
+      ],
+      "verify": "import math, random\nrandom.seed(7)\nopt = 4*math.sqrt(5)\nbest = 0.0\nfor _ in range(200000):\n    v = [random.random() + 1e-9 for _ in range(4)]\n    s = math.sqrt(sum(t*t for t in v))\n    val = sum(v)/s*math.sqrt(20)\n    best = max(best, val)\nassert best <= opt + 1e-9 and best > opt - 0.01, (best, opt)\nprint(r\"4\\sqrt{5}\")\n"
+    },
+    {
+      "id": "ineq-22",
+      "difficulty": 4,
+      "problem": "Positive reals $a,b$ satisfy $a+b=1$. What is the minimum of $\\frac{a^2+1}{a}+\\frac{b^2+1}{b}$?",
+      "choices": [
+        "5",
+        "6",
+        "7",
+        "9",
+        "10"
+      ],
+      "answer": "A",
+      "hint": "Split each fraction into two terms, then express $\\frac1a+\\frac1b$ through $ab$.",
+      "solution": "Since $\\frac{a^2+1}{a}=a+\\frac1a$, the sum is $(a+b)+\\frac1a+\\frac1b=1+\\frac{a+b}{ab}=1+\\frac{1}{ab}$. By AM-GM, $ab\\le\\left(\\frac{a+b}{2}\\right)^2=\\frac14$, so $\\frac{1}{ab}\\ge 4$ and the expression is at least $5$. Equality holds at $a=b=\\frac12$, where each fraction equals $\\frac{5/4}{1/2}=\\frac52$.",
+      "concepts": [
+        2,
+        0
+      ],
+      "verify": "from fractions import Fraction as F\nbest = min((a*a + 1)/a + ((1 - a)**2 + 1)/(1 - a) for a in (F(k, 200) for k in range(1, 200)))\nassert best == 5\nprint(best)\n"
+    },
+    {
+      "id": "ineq-23",
+      "difficulty": 4,
+      "problem": "Positive reals $x,y,z$ satisfy $x+y+z=6$. What is the maximum value of $x^2y^3z$?",
+      "choices": [
+        "36",
+        "72",
+        "96",
+        "108",
+        "144"
+      ],
+      "answer": "D",
+      "hint": "Split $x$ into two halves and $y$ into three thirds, so the pieces number six.",
+      "solution": "The six pieces $\\frac x2,\\frac x2,\\frac y3,\\frac y3,\\frac y3,z$ have sum $x+y+z=6$, so their average is $1$. AM-GM gives $\\left(\\frac x2\\right)^2\\left(\\frac y3\\right)^3z\\le 1$, hence $x^2y^3z\\le 2^2\\cdot 3^3=108$. Equality holds when every piece equals $1$, that is $x=2$, $y=3$, $z=1$.",
+      "concepts": [
+        4
+      ],
+      "verify": "from fractions import Fraction as F\nbest = 0\nfor k in range(1, 60):\n    for j in range(1, 60 - k):\n        x, y = F(k, 10), F(j, 10)\n        z = 6 - x - y\n        if z > 0:\n            best = max(best, x*x*y**3*z)\nassert best == 108\nprint(best)\n"
+    },
+    {
+      "id": "ineq-24",
+      "difficulty": 4,
+      "problem": "How many triples of positive integers $(x,y,z)$ with $x\\le y\\le z$ satisfy $\\frac1x+\\frac1y+\\frac1z=1$?",
+      "choices": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "8"
+      ],
+      "answer": "A",
+      "hint": "Bound the smallest variable first: what is the largest possible value of $x$?",
+      "solution": "Since $x\\le y\\le z$, we have $1=\\frac1x+\\frac1y+\\frac1z\\le\\frac3x$, so $x\\le 3$. Also $x\\ge 2$, since $x=1$ makes the sum exceed $1$. If $x=2$, then $\\frac1y+\\frac1z=\\frac12$ with $2\\le y\\le z$ forces $y\\in\\{3,4\\}$, giving $(2,3,6)$ and $(2,4,4)$. If $x=3$, then $\\frac1y+\\frac1z=\\frac23$ with $y\\ge 3$ forces $y=3$ and $z=3$. That is three triples in total.",
+      "concepts": [
+        8
+      ],
+      "verify": "from fractions import Fraction as F\ncount = 0\nfor x in range(1, 50):\n    for y in range(x, 200):\n        r = 1 - F(1, x) - F(1, y)\n        if r > 0 and r.numerator == 1 and r.denominator >= y:\n            count += 1\nprint(count)\n"
+    },
+    {
+      "id": "ineq-25",
+      "difficulty": 4,
+      "problem": "Real numbers $x,y$ satisfy $x^2+xy+y^2=3$. What is the maximum possible value of $x^2+y^2$?",
+      "choices": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "9"
+      ],
+      "answer": "D",
+      "hint": "Let $S=x^2+y^2$ and $p=xy$, and compare $(x+y)^2$ with zero.",
+      "solution": "Let $S=x^2+y^2$ and $p=xy$. The constraint reads $S+p=3$, so $p=3-S$. Since $(x+y)^2\\ge 0$, we have $S+2p\\ge 0$, so $p\\ge -\\frac S2$. Substituting $p=3-S$ gives $3-S\\ge -\\frac S2$, that is $S\\le 6$. Equality needs $x+y=0$, and then $x^2=3$, so $(x,y)=(\\sqrt3,-\\sqrt3)$ attains the bound: $3-3+3=3$ and $x^2+y^2=6$. The maximum is $6$.",
+      "concepts": [
+        1
+      ],
+      "verify": "import math\nopt = 6.0\nbest = 0.0\nfor k in range(-200000, 200001):\n    x = k/100000\n    d = 12 - 3*x*x\n    if d < 0:\n        continue\n    s = math.sqrt(d)\n    for y in ((-x + s)/2, (-x - s)/2):\n        best = max(best, x*x + y*y)\nassert abs(best - opt) < 1e-4, (best, opt)\nprint(round(opt, 6))\n"
+    },
+    {
+      "id": "ineq-26",
+      "difficulty": 4,
+      "problem": "Positive reals $a,b,c$ satisfy $a+b+c=1$. What is the minimum of $\\frac{a^2}{b+c}+\\frac{b^2}{c+a}+\\frac{c^2}{a+b}$?",
+      "choices": [
+        "$\\frac{1}{4}$",
+        "$\\frac{1}{2}$",
+        "$\\frac{2}{3}$",
+        "1",
+        "$\\frac{3}{2}$"
+      ],
+      "answer": "B",
+      "hint": "Apply Titu's lemma with numerators $a^2$, $b^2$, $c^2$.",
+      "solution": "By Titu, $\\sum\\frac{a^2}{b+c}\\ge\\frac{(a+b+c)^2}{2(a+b+c)}=\\frac{a+b+c}{2}=\\frac12$, since the denominators $b+c$, $c+a$, $a+b$ sum to $2(a+b+c)$. Equality needs $\\frac{a}{b+c}$ constant. Since $b+c=1-a$, this says $\\frac{a}{1-a}$ takes the same value for all three variables, and the map $t\\mapsto\\frac{t}{1-t}$ is one-to-one, so $a=b=c=\\frac13$. Each term then equals $\\frac{1/9}{2/3}=\\frac16$, and the total is $\\frac12$, so the bound is attained.",
+      "concepts": [
+        5
+      ],
+      "verify": "from fractions import Fraction as F\nbest = None\nfor i in range(1, 60):\n    for j in range(1, 60):\n        a, b = F(i, 60), F(j, 60)\n        c = 1 - a - b\n        if c > 0:\n            v = a*a/(b + c) + b*b/(c + a) + c*c/(a + b)\n            if best is None or v < best:\n                best = v\nassert best == F(1, 2)\nprint(best)\n"
+    },
+    {
+      "id": "ineq-27",
+      "difficulty": 5,
+      "problem": "How many ordered triples of positive integers $(a,b,c)$ satisfy $abc=2(a+b+c)$?",
+      "choices": [
+        "9",
+        "12",
+        "15",
+        "18",
+        "21"
+      ],
+      "answer": "C",
+      "hint": "Bound the product $ab$ first, using $c$ on the right-hand side.",
+      "solution": "Order so that $a\\le b\\le c$. Then $abc=2(a+b+c)\\le 6c$, so $ab\\le 6$. If $a=1$, then $bc=2+2b+2c$, i.e. $(b-2)(c-2)=6$, giving $(b,c)=(3,8)$ or $(4,5)$. If $a=2$, then $bc=2+b+c$, i.e. $(b-1)(c-1)=3$, giving $(b,c)=(2,4)$. If $a\\ge 3$ then $ab\\ge 9>6$, which is impossible. The sorted triples $(1,3,8)$, $(1,4,5)$, $(2,2,4)$ give $6+6+3=15$ ordered triples.",
+      "concepts": [
+        8
+      ],
+      "verify": "print(sum(1 for a in range(1, 31) for b in range(1, 31) for c in range(1, 31) if a*b*c == 2*(a + b + c)))\n"
+    },
+    {
+      "id": "ineq-28",
+      "difficulty": 5,
+      "problem": "Positive reals $x,y,z$ satisfy $\\frac1x+\\frac2y+\\frac3z=1$. What is the minimum value of $x+y+z$?",
+      "choices": [
+        "12",
+        "15",
+        "16",
+        "17",
+        "$(1+\\sqrt{2}+\\sqrt{3})^2$"
+      ],
+      "answer": "E",
+      "hint": "Apply Cauchy–Schwarz to the product $(x+y+z)\\left(\\frac1x+\\frac2y+\\frac3z\\right)$, with the vectors $(\\sqrt x,\\sqrt y,\\sqrt z)$ and $\\left(\\frac{1}{\\sqrt x},\\sqrt{\\frac{2}{y}},\\sqrt{\\frac{3}{z}}\\right)$.",
+      "solution": "The inner product of those vectors is $1+\\sqrt2+\\sqrt3$, so $(x+y+z)\\left(\\frac1x+\\frac2y+\\frac3z\\right)\\ge(1+\\sqrt2+\\sqrt3)^2$. The second factor equals $1$, so $x+y+z\\ge(1+\\sqrt2+\\sqrt3)^2=6+2\\sqrt2+2\\sqrt3+2\\sqrt6\\approx 17.19$. Equality holds when $x:y:z=1:\\sqrt2:\\sqrt3$ after scaling to meet the constraint.",
+      "concepts": [
+        5
+      ],
+      "verify": "import math\nopt = (1 + math.sqrt(2) + math.sqrt(3))**2\nbest = float(\"inf\")\nfor i in range(1475):\n    x = 0.5 + 0.02*i\n    for j in range(2975):\n        y = 0.5 + 0.02*j\n        den = 1 - 1/x - 2/y\n        if den > 0:\n            best = min(best, x + y + 3/den)\nassert abs(best - opt) < 0.01, (best, opt)\nprint(r\"(1+\\sqrt{2}+\\sqrt{3})^2\")\n"
+    },
+    {
+      "id": "ineq-29",
+      "difficulty": 5,
+      "problem": "Positive reals $x,y$ satisfy $x+y=1$. What is the minimum of $\\frac{x}{y^2}+\\frac{y}{x^2}$?",
+      "choices": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "8"
+      ],
+      "answer": "B",
+      "hint": "Clear denominators, then write $x^3+y^3$ in terms of $p=xy$.",
+      "solution": "We have $\\frac{x}{y^2}+\\frac{y}{x^2}=\\frac{x^3+y^3}{x^2y^2}$. With $x+y=1$ and $p=xy$, $x^3+y^3=1-3p$, so the expression is $f(p)=\\frac{1-3p}{p^2}$, where $0<p\\le\\frac14$. Its derivative $f'(p)=\\frac{3p-2}{p^3}$ is negative there, so $f$ decreases and the minimum is at $p=\\frac14$: $f=\\frac{1/4}{1/16}=4$, attained at $x=y=\\frac12$.",
+      "concepts": [
+        2,
+        5
+      ],
+      "verify": "from fractions import Fraction as F\nbest = min(x/(1 - x)**2 + (1 - x)/x**2 for x in (F(k, 10000) for k in range(1, 10000)))\nassert best == 4\nprint(best)\n"
+    },
+    {
+      "id": "ineq-30",
+      "difficulty": 5,
+      "problem": "How many ordered triples of positive integers $(x,y,z)$ satisfy $\\frac1x+\\frac1y+\\frac1z=\\frac12$?",
+      "choices": [
+        "12",
+        "20",
+        "30",
+        "40",
+        "46"
+      ],
+      "answer": "E",
+      "hint": "Sort the variables and bound the smallest one; then bound the rest.",
+      "solution": "Let $x\\le y\\le z$. Then $\\frac3x\\ge\\frac12$, so $x\\le 6$, and the other variables are bounded in turn. The sorted solutions are $\\{3,7,42\\}$, $\\{3,8,24\\}$, $\\{3,9,18\\}$, $\\{3,10,15\\}$, $\\{3,12,12\\}$, $\\{4,5,20\\}$, $\\{4,6,12\\}$, $\\{4,8,8\\}$, $\\{5,5,10\\}$ and $\\{6,6,6\\}$. Six orderings for each of the six sets with distinct entries gives $36$; three orderings for each of $\\{3,12,12\\}$, $\\{4,8,8\\}$, $\\{5,5,10\\}$ gives $9$; and $\\{6,6,6\\}$ gives $1$. The total is $46$.",
+      "concepts": [
+        8
+      ],
+      "verify": "count = 0\nfor x in range(1, 301):\n    for y in range(1, 301):\n        d = x*y - 2*x - 2*y\n        if d > 0 and (2*x*y) % d == 0:\n            count += 1\nprint(count)\n"
+    }
+  ],
+  "videos": [
+    {
+      "youtubeId": "xCMTj3iBkio",
+      "title": "Inequalities Tutorial #1 - Intro to AM-GM",
+      "channel": "little fermat",
+      "why": "A first walk through AM-GM and its equality case, a good start before the weighted and splitting techniques."
+    },
+    {
+      "youtubeId": "SmTjsCjW2wM",
+      "title": "Prove the Inequality of Arithmetic and Geometric Means (AM-GM inequality)",
+      "channel": "The Math Sorcerer",
+      "why": "A proof-focused treatment of AM-GM, useful for seeing the standard argument written out in full."
+    },
+    {
+      "youtubeId": "9yFmDab4Oc0",
+      "title": "Proof of Cauchy Schwarz Inequality and Titu's Lemma: Introduction to Inequalities 6/28/20",
+      "channel": "Alphademic Learning",
+      "why": "Derives Cauchy–Schwarz and Titu's lemma, the two tools behind the Titu and reciprocal-sum problems in this topic."
+    },
+    {
+      "youtubeId": "fG_bL6AXHvU",
+      "title": "Inequalities Tutorial #17 -Intro to Rearrangement",
+      "channel": "little fermat",
+      "why": "An introduction to the rearrangement inequality with example problems, to pair with the sorting strategy."
+    }
+  ]
+}

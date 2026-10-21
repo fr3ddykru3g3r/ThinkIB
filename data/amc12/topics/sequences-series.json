@@ -1,372 +1,975 @@
 {
   "id": "sequences-series",
   "title": "Sequences & Series",
-  "summary": "Arithmetic and geometric sequences and series, infinite geometric sums, telescoping sums, recursive sequences with periodicity, and the standard sum formulas for k, k^2 and k^3.",
-  "examWeight": "≈2–3 problems per paper",
+  "summary": "Arithmetic and geometric sums, infinite and arithmetico-geometric series, telescoping sums, linear recurrences, periodic sequences, power sums, and floor sums.",
+  "examWeight": "≈4–5 problems per paper",
+  "prerequisites": [
+    "algebra",
+    "number-theory"
+  ],
+  "overview": "On the AMC 12, sequences and series rarely appear as a standalone topic. They hide inside problems about money, schedules, bouncing balls, digits, and recursive rules. Expect roughly four to five problems per paper. The early ones (#1 to #5) apply the arithmetic and geometric formulas after identifying $a_1$, $d$, or $r$. Problems near #10 combine a formula with a small twist, such as a bounce that must be counted carefully or a telescoping decomposition with a non-unit gap. The hardest ones (#20 to #25) demand that you discover a telescoping function, a characteristic equation, or a block structure for a floor sum on your own.\n\nThe skill ladder is consistent across all levels. First recognize the type of sum or recurrence, then reach for the matching derivation: the pairing trick for arithmetic sums, shift-and-subtract for geometric and arithmetico-geometric sums, partial fractions for telescoping, the characteristic equation for linear recurrences, and block counting for floors. Finally, verify the answer by computing a few small cases by hand. Most lost points come from off-by-one index counts, from applying the infinite formula without checking $|r|<1$, and from misreading the gap in a telescoping product.\n\nFor study, work each derivation until you can reproduce it without notes, because the derivations generalize to forms that no formula sheet covers. Then compute small cases explicitly, such as the first five terms of a recurrence or the sum for $N=3$, before trusting a closed form. The six worked examples in this topic escalate from a direct arithmetic count to a quadratic arithmetico-geometric sum, and each takeaway names the reusable move. The thirty practice problems follow the same escalation, so work them in order and keep a list of the traps you fall into.",
   "concepts": [
     {
       "title": "Arithmetic sequences and series",
-      "body": "An arithmetic sequence adds the same amount $d$ (the common difference) every time: $a_n = a_1 + (n-1)d$. In $2, 5, 8, 11, \\dots$ the difference is $d = 3$, so the 4th term is $2 + 3\\cdot 3 = 11$. The 4th term is reached after only $3$ steps from the 1st, which is why the formula uses $n-1$.\n\nTo add $n$ terms, use a pairing trick. Write the sum forwards, then write it backwards underneath. Each term on top pairs with a term on the bottom, and every pair adds to the same total, $a_1 + a_n$, because the two terms are equally far from the ends. There are $n$ such pairs, but each pair has been counted twice, so $S_n = \\frac{n(a_1 + a_n)}{2}$. In words: the number of terms times the average of the first and last term.\n\nFor $2+5+8+11$ the pairs are $2+11$ and $5+8$, each equal to $13$, so the sum is $\\frac{4\\cdot 13}{2} = 26$.",
+      "body": "An arithmetic sequence adds the same amount $d$, the common difference, at every step. Its general term is $a_n = a_1 + (n-1)d$. The factor $n-1$, not $n$, is the most common source of off-by-one errors: between the first term and the $n$th term there are exactly $n-1$ gaps, each of size $d$. Equivalently, $a_n$ is a linear function of $n$ with slope $d$, which is why arithmetic sequences are exactly the sequences whose consecutive differences are constant. Two terms $a_m$ and $a_n$ therefore determine the whole sequence, since $a_n - a_m = (n-m)d$.\n\nThe sum formula comes from a pairing trick. Write $S = a_1 + a_2 + \\cdots + a_n$ and also write the same sum backwards, $S = a_n + a_{n-1} + \\cdots + a_1$. Adding the two rows term by term, every column has the same total, because $a_k + a_{n+1-k} = a_1 + a_n$ for each $k$. There are $n$ columns, so $2S = n(a_1 + a_n)$, and therefore $S = \\frac{n(a_1+a_n)}{2}$. This is the average of the first and last terms times the number of terms, which is exactly what one expects for evenly spaced numbers. Gauss is said to have found this as a child by pairing $1$ with $100$, $2$ with $99$, and so on; the identity works for any arithmetic sequence, not only consecutive integers.\n\nFor a concrete case, consider $2 + 5 + 8 + \\cdots + 50$. Here $a_1 = 2$, $d = 3$, and the last term gives $50 = 2 + 3(n-1)$, so $n = 17$. The sum is $\\frac{17(2+50)}{2} = 442$. The important point is that the number of terms must be found first, and the solver should be suspicious of any answer that does not come from $n$ explicitly. If the last term is not given, one solves for $n$ from $a_n = a_1 + (n-1)d$ before doing anything else.\n\nSome structural facts recur constantly. Among any odd number of consecutive terms, the middle term equals their average, so the sum of an odd-length block is the middle term times the count. Counting how many terms of an arithmetic sequence lie in an interval is itself a floor problem: the terms $a_1 + kd$ inside an interval correspond to the integers $k$ in an interval of length (end minus start) divided by $d$, so the count is a floor expression. This link to floor functions is developed in the last lesson of this topic.\n\nWhen a problem describes a list by a rule, first identify $a_1$, $d$, and the last term, then decide which formula is needed. Many problems give two terms and ask for a third or for a sum, so the first skill is to solve the two-equation linear system for $a_1$ and $d$. Remember that $d$ may be negative, and the same formulas work for decreasing sequences. Finally, if a problem sums only part of a sequence, subtract the initial block from the full sum instead of adjusting the formula's index, which is safer under time pressure.",
       "keyFacts": [
-        "$a_n = a_1 + (n-1)d$",
-        "$S_n = \\frac{n(a_1 + a_n)}{2} = \\frac{n}{2}\\bigl(2a_1 + (n-1)d\\bigr)$",
-        "The number of terms from $a$ to $b$ in steps of $d$ is $\\frac{b-a}{d} + 1$"
+        "$a_n = a_1 + (n-1)d$, and $a_n - a_m = (n-m)d$",
+        "$S_n = \\frac{n(a_1+a_n)}{2} = \\frac{n\\,(2a_1+(n-1)d)}{2}$",
+        "$1+2+\\cdots+n=\\frac{n(n+1)}{2}$, the Gauss pairing identity"
       ],
-      "whenToUse": "The difference between consecutive terms is constant, or the problem asks for the sum of evenly spaced numbers."
+      "whenToUse": "Consecutive terms differ by a constant, or the problem asks for a total of evenly spaced numbers, or it asks for the count of terms in an arithmetic list.",
+      "commonMistakes": [
+        "Using $a_1 + nd$ for the $n$th term, which is the $(n+1)$st term.",
+        "Forgetting that the number of terms from $a$ to $b$ with step $d$ is $\\frac{b-a}{d}+1$, not $\\frac{b-a}{d}$."
+      ],
+      "example": {
+        "problem": "Find the sum of the first $30$ terms of the arithmetic sequence with first term $4$ and common difference $5$.",
+        "solution": "The last term is $a_{30} = 4 + 29\\cdot 5 = 149$, so the sum is $\\frac{30(4+149)}{2} = 15\\cdot 153 = 2295$.",
+        "answer": "2295",
+        "verify": "print(sum(4 + 5*k for k in range(30)))"
+      }
     },
     {
-      "title": "Geometric sequences and series",
-      "body": "A geometric sequence multiplies by the same ratio $r$ every time: $g_n = a\\,r^{\\,n-1}$. In $3, 6, 12, 24$ the ratio is $r = 2$. Growth by a fixed percentage is geometric too: a balance that rises by $5\\%$ each year has $r = 1.05$.\n\nTo add $n$ terms, let $S = a + ar + ar^2 + \\cdots + ar^{n-1}$. Multiplying the whole sum by $r$ shifts every term one place along, so $rS = ar + ar^2 + \\cdots + ar^{n}$. Almost every term appears in both lists. Subtracting, $S - rS = a - ar^{n}$, so $S = \\frac{a(1 - r^{n})}{1 - r}$ for $r \\ne 1$. The subtraction cancels the matching middle terms and leaves only the first term and one new last term.\n\nExample: $1 + 2 + 4 + 8 = \\frac{1\\cdot(1 - 2^4)}{1 - 2} = 15$.",
+      "title": "Geometric sequences and finite sums",
+      "body": "A geometric sequence multiplies by a fixed ratio $r$ at each step, so $g_n = a\\,r^{\\,n-1}$. Arithmetic sequences grow linearly and geometric ones grow or decay exponentially, and confusing the two is one of the most frequent errors on the exam. A quick test: if consecutive differences are constant the sequence is arithmetic, and if consecutive ratios are constant it is geometric. The sequence $3, 6, 12, 24$ has ratio $2$, and a balance growing by $5\\%$ a year has ratio $1.05$.\n\nTo sum $n$ terms, let $S = a + ar + ar^2 + \\cdots + ar^{n-1}$. Multiplying by $r$ shifts every term one place to the right, so $rS = ar + ar^2 + \\cdots + ar^{n}$. Subtracting, almost everything cancels: $S - rS = a - ar^{n}$. Hence $S = \\frac{a(1-r^n)}{1-r}$ whenever $r \\neq 1$. The idea is that a sum and its scaled copy overlap almost entirely, so subtracting them isolates the two ends. This shift-and-subtract method returns in the arithmetico-geometric and recurrence lessons, and it is worth mastering here.\n\nThe formula has two useful forms. When $|r|>1$, write it as $S = \\frac{a(r^n-1)}{r-1}$ so that all quantities stay positive and sign errors are avoided. When $r=1$ the sum is simply $na$. As an example, the sum of $n$ terms of $2+6+18+\\cdots$ is $\\frac{2(3^n-1)}{3-1} = 3^n - 1$. So the partial sums of this sequence are one less than the powers of three, a clean identity worth remembering because it solves many counting-by-accumulation problems at once.\n\nQuestions of the form 'how many terms until the total exceeds a bound' are solved by evaluating the closed form at small $n$ rather than by logarithms. Since $3^6 - 1 = 728 < 1000 < 2186 = 3^7 - 1$, exactly seven terms are needed to pass $1000$. The exact check is faster and more reliable than an estimate, and it avoids the rounding issues that arise when a logarithm is nearly an integer.\n\nGeometric sums are also the building blocks of many other formulas. The factor $\\frac{1}{1-r}$ that appears in the infinite case is already visible in the finite formula, and the next lesson exploits this by letting $n$ grow without bound. Keep in mind that the finite formula needs $r \\neq 1$; for $r = 1$ the sum is $na$, and a student who divides by $1-r$ without checking this case will obtain a meaningless expression.",
       "keyFacts": [
-        "$g_n = a\\,r^{\\,n-1}$",
-        "$S_n = \\frac{a(1 - r^n)}{1 - r}$ for $r \\ne 1$",
-        "If $r = 1$ every term equals $a$, so $S_n = na$"
+        "$S_n = a\\,\\frac{1-r^n}{1-r}$ for $r \\neq 1$, and $S_n = na$ for $r=1$",
+        "$1 + r + r^2 + \\cdots + r^{n-1} = \\frac{r^n - 1}{r - 1}$",
+        "$2+6+18+\\cdots$ with $n$ terms sums to $3^n-1$"
       ],
-      "whenToUse": "Each term is a fixed multiple of the one before, or the problem talks about doubling, halving, or steady percentage growth or decay."
+      "whenToUse": "Consecutive ratios are constant, or a total accumulates a quantity multiplied by a fixed factor at each stage, such as repeated doubling, rebounds, or compound growth.",
+      "commonMistakes": [
+        "Writing $\\frac{a(1-r^n)}{1-r}$ with $n$ terms in one case and $n+1$ in another; the exponent must equal the number of terms.",
+        "Applying the finite formula with $r=1$, where the denominator vanishes; the answer is $na$ instead."
+      ],
+      "example": {
+        "problem": "Compute $5 + 10 + 20 + \\cdots + 5\\cdot 2^{9}$.",
+        "solution": "This is geometric with $a=5$, $r=2$, and $n=10$ terms. The sum is $5\\cdot\\frac{2^{10}-1}{2-1} = 5\\cdot 1023 = 5115$.",
+        "answer": "5115",
+        "verify": "print(sum(5 * 2**k for k in range(10)))"
+      }
     },
     {
       "title": "Infinite geometric series",
-      "body": "Some infinite lists of numbers still have a finite total. The partial sums of $1 + \\frac12 + \\frac14 + \\frac18 + \\cdots$ are $1,\\ 1.5,\\ 1.75,\\ 1.875, \\dots$, and they get closer and closer to $2$ without passing it. The reason is the formula from the last lesson, $S_n = \\frac{a(1 - r^n)}{1 - r}$. When $|r| < 1$, the powers $r^n$ shrink toward $0$ as $n$ grows, so the piece $ar^n$ disappears in the limit.\n\nThis gives $a + ar + ar^2 + \\cdots = \\frac{a}{1 - r}$ whenever $|r| < 1$. Here $a = 1$ and $r = \\frac12$, so the total is $\\frac{1}{1/2} = 2$, matching the picture above.\n\nIf $|r| \\ge 1$ the powers do not shrink, so the partial sums do not settle and there is no finite total. Always check $|r| < 1$ before using the formula.",
+      "body": "An infinite geometric series $a + ar + ar^2 + \\cdots$ has a finite sum exactly when its partial sums settle down. From $S_n = a\\frac{1-r^n}{1-r}$, the term $r^n$ controls everything. If $|r|<1$ then $r^n \\to 0$ and $S_n \\to \\frac{a}{1-r}$. If $|r|\\geq 1$ the powers $r^n$ do not tend to zero, so the partial sums do not converge. For $r=1$ they grow without bound, and for $r=-1$ they oscillate between $a$ and $0$, so no finite sum exists.\n\nWhy does $|r|<1$ matter so much? Each term is a fixed fraction of the previous one, so the tail after $n$ terms is itself a geometric series with first term $ar^n$. Its total is $\\frac{ar^n}{1-r}$, which is small when $|r|^n$ is small. This gives an error estimate: after $n$ terms one is within $\\frac{|a|\\,|r|^n}{|1-r|}$ of the total. For $1 + \\frac12 + \\frac14 + \\cdots$ the error after ten terms is $\\frac{2}{2^{10}} = \\frac{1}{512}$, which is easy to check by hand.\n\nThe standard use is converting a repeating decimal into a fraction. Consider $0.\\overline{7} = 0.777\\ldots = \\frac{7}{10} + \\frac{7}{100} + \\cdots$. The first term is $\\frac{7}{10}$ and the ratio is $\\frac{1}{10}$, so the sum is $\\frac{7/10}{1-1/10} = \\frac{7}{9}$. A block $B$ of $p$ repeating digits gives $0.\\overline{B} = \\frac{B}{10^p-1}$, which is exactly the formula above with ratio $10^{-p}$. This is the fastest route for any repeating decimal, and it is a favorite source of quick points.\n\nThe most common error is applying $\\frac{a}{1-r}$ without checking the convergence condition. A student who writes $1-2+4-8+\\cdots = \\frac{1}{1-(-2)} = \\frac13$ has used the formula outside its range, because $|r|=2>1$; the series diverges. Always write down $|r|$ before using the formula. A second error concerns the starting index: the formula $\\frac{a}{1-r}$ is correct when the first term is $a$, and if the series starts later, say at $k=2$, the first term is still $a$ and the formula still applies, but a solver who starts the sum at a different place must recompute $a$.\n\nThe infinite case is the limit of the finite formula and gives a clean principle: a geometric series with ratio $r$ has sum $\\frac{a}{1-r}$ exactly when $r$ lies in the open interval $(-1,1)$. Contest problems often hide a convergent geometric series inside a larger expression, such as a sum of $c_k r^k$ where $c_k$ is polynomial in $k$. Those are handled by the arithmetico-geometric method of a later lesson, which reduces the polynomial factor one degree at a time.",
       "keyFacts": [
-        "$a + ar + ar^2 + \\cdots = \\frac{a}{1 - r}$ when $|r| < 1$",
-        "The terms in every other position form a new geometric series with ratio $r^2$, so $ar + ar^3 + ar^5 + \\cdots = \\frac{ar}{1 - r^2}$",
-        "Starting the series at $ar^k$ instead of $a$ gives the total $\\frac{ar^k}{1 - r}$"
+        "$a + ar + ar^2 + \\cdots = \\frac{a}{1-r}$ when $|r|<1$",
+        "The tail after $n$ terms equals $\\frac{a r^n}{1-r}$",
+        "$0.\\overline{B} = \\frac{B}{10^p-1}$ for a block $B$ of $p$ repeating digits"
       ],
-      "whenToUse": "An unending list of terms shrinks by a constant factor and the problem asks for the total."
+      "whenToUse": "The sum runs to infinity with a fixed ratio between consecutive terms, or a repeating decimal must be written as a fraction.",
+      "commonMistakes": [
+        "Using $\\frac{a}{1-r}$ when $|r| \\geq 1$; the series diverges.",
+        "Misreading the first term when the series is written with a sign pattern, such as $1-\\frac12+\\frac14-\\cdots$, whose first term is $1$ and ratio is $-\\frac12$."
+      ],
+      "example": {
+        "problem": "Express the repeating decimal $0.\\overline{7}$ as a fraction in lowest terms.",
+        "solution": "Here $a = \\frac{7}{10}$ and $r = \\frac{1}{10}$, so the sum is $\\frac{7/10}{9/10} = \\frac{7}{9}$.",
+        "answer": "7/9",
+        "verify": "from fractions import Fraction as F\ns = sum(F(7, 10**k) for k in range(1, 81))\nassert F(7, 9) - s == F(7, 9) * F(1, 10**80)\nprint('7/9')"
+      }
     },
     {
       "title": "Telescoping sums",
-      "body": "A telescoping sum is one whose terms can be written as differences, $b_k = f(k) - f(k+1)$. When you add them, each inner term appears once with a plus sign and once with a minus sign. They cancel in pairs, and only the first and last pieces survive, like a telescope collapsing.\n\nExample: $\\frac{1}{k(k+1)} = \\frac{1}{k} - \\frac{1}{k+1}$. You can check this by combining the right side over the common denominator $k(k+1)$. So $\\sum_{k=1}^{4} \\frac{1}{k(k+1)} = \\left(1 - \\frac12\\right) + \\left(\\frac12 - \\frac13\\right) + \\left(\\frac13 - \\frac14\\right) + \\left(\\frac14 - \\frac15\\right) = 1 - \\frac15 = \\frac45$.\n\nThe real skill is spotting the split. Look for a fraction whose denominator is a product of two numbers that differ by a fixed step, and try to write it as a difference. Products also telescope: $(k+1)! - k! = k\\cdot k!$.",
+      "body": "A telescoping sum is one whose terms can be written as differences $b_k = f(k) - f(k+1)$ of consecutive values of some function. When the terms are added, every interior value appears once with a plus sign and once with a minus sign and cancels, leaving only the first and last pieces. The partial sum is $\\sum_{k=1}^{N} b_k = f(1) - f(N+1)$, and this identity is the whole content of the method. The name comes from the collapse of a telescope.\n\nThe main skill is finding $f$. The canonical source is partial fractions. Since $\\frac{1}{k(k+1)} = \\frac{1}{k} - \\frac{1}{k+1}$, the sum $\\sum_{k=1}^{N}\\frac{1}{k(k+1)}$ equals $1 - \\frac{1}{N+1}$. More generally $\\frac{1}{k(k+m)} = \\frac{1}{m}\\left(\\frac{1}{k} - \\frac{1}{k+m}\\right)$, which is checked by combining the right side over a common denominator. The factor $\\frac{1}{m}$ depends on the gap $m$ between the two denominators, and it is a detail that is often lost under time pressure.\n\nTo derive the decomposition, write $\\frac{1}{k(k+m)} = \\frac{A}{k} + \\frac{B}{k+m}$. Multiplying by $k(k+m)$ gives $1 = A(k+m) + Bk$. Setting $k=0$ yields $A = \\frac{1}{m}$, and setting $k=-m$ yields $B = -\\frac{1}{m}$. For a linear factorization two substitutions always suffice, which is why the cover-up method is fast for these problems.\n\nProducts telescope as well. In $\\prod_{k=2}^{N}\\left(1-\\frac{1}{k^2}\\right)$, each factor equals $\\frac{k-1}{k}\\cdot\\frac{k+1}{k}$. The first factors multiply to $\\frac{1}{N}$ and the second to $\\frac{N+1}{2}$, so the product is $\\frac{N+1}{2N}$. The same idea applies whenever a factor is a ratio $\\frac{g(k)}{g(k+1)}$ of consecutive values of some function, since the product then collapses to the first and last values of $g$.\n\nRadicals telescope after rationalizing. Since $(\\sqrt{k+1}+\\sqrt{k})(\\sqrt{k+1}-\\sqrt{k}) = 1$, one has $\\frac{1}{\\sqrt{k}+\\sqrt{k+1}} = \\sqrt{k+1} - \\sqrt{k}$. Summing from $k=1$ to $48$ therefore gives $\\sqrt{49} - \\sqrt{1} = 6$. The recipe is the same as before: multiply by the conjugate, then look for a function whose values at consecutive integers produce the term.\n\nTwo mistakes are common. The first is forgetting the constant $\\frac{1}{m}$ when the gap is $m>1$. The second is stopping at a formula in $N$ and forgetting to take the limit or to evaluate at the given $N$. For a convergent telescoping series the sum is $f(1)$ minus the limit of $f$ at infinity, and that limit must be checked, since a limit that does not vanish changes the answer. Also note the sign: the telescope may collapse with the opposite orientation, so compute the first two partial sums to confirm.",
       "keyFacts": [
-        "$\\frac{1}{k(k+1)} = \\frac{1}{k} - \\frac{1}{k+1}$",
-        "$\\sum_{k=1}^{n} \\frac{1}{k(k+1)} = 1 - \\frac{1}{n+1}$",
-        "$\\sum_{k=1}^{n} k\\cdot k! = (n+1)! - 1$"
+        "$\\sum_{k=1}^{N}\\bigl(f(k)-f(k+1)\\bigr) = f(1) - f(N+1)$",
+        "$\\frac{1}{k(k+m)} = \\frac{1}{m}\\left(\\frac{1}{k} - \\frac{1}{k+m}\\right)$",
+        "$\\frac{1}{\\sqrt{k}+\\sqrt{k+1}} = \\sqrt{k+1} - \\sqrt{k}$",
+        "$\\sum_{k=1}^{\\infty}\\frac{1}{k(k+1)} = 1$"
       ],
-      "whenToUse": "The terms are fractions or products whose denominators differ by a constant step, or the summand has the shape $f(k) - f(k+1)$ after a small rewrite."
+      "whenToUse": "A term is a rational function that factors into linear pieces, a product has factors of the form $1 - \\frac{1}{k^2}$, or a term contains a difference of radicals or a difference of consecutive values of a known function.",
+      "commonMistakes": [
+        "Dropping the factor $\\frac{1}{m}$ in $\\frac{1}{k(k+m)}$.",
+        "Dropping the boundary term $f(N+1)$ in the partial sum; it vanishes in the limit only when $f(N+1)\\to 0$."
+      ],
+      "example": {
+        "problem": "Compute $\\displaystyle\\sum_{k=1}^{\\infty}\\frac{1}{k(k+2)}$.",
+        "solution": "Since $\\frac{1}{k(k+2)} = \\frac12\\left(\\frac1k - \\frac{1}{k+2}\\right)$, the partial sums give $\\frac12\\left(1+\\frac12\\right) = \\frac34$ in the limit.",
+        "answer": "3/4",
+        "verify": "from fractions import Fraction as F\nN = 60\ns = sum(F(1, k*(k+2)) for k in range(1, N+1))\nassert s == F(1, 2) * (F(3, 2) - F(1, N+1) - F(1, N+2))\nprint('3/4')"
+      }
     },
     {
-      "title": "Recursive sequences and periodicity",
-      "body": "A recursive sequence defines each term from earlier ones, such as $a_{n+1} = f(a_n)$. You can often understand it without a closed formula. Compute the first several terms, watch for a repeat, and notice that the sequence then cycles.\n\nIf $a_{n+p} = a_n$ for every $n$, the sequence has period $p$, and each term equals the term in the same place of its cycle. For $a_1 = 2$ and $a_{n+1} = \\frac{1}{1 - a_n}$ the values are $2, -1, \\frac12, 2, -1, \\dots$, repeating every $3$ terms. Since $100 \\equiv 1 \\pmod 3$, we get $a_{100} = a_1 = 2$.\n\nTo add many terms of a periodic sequence, add up one full period, multiply by the number of complete periods, and add the leftover terms. The key habit is to find the period first, because it is almost always small.",
+      "title": "Arithmetico-geometric series",
+      "body": "An arithmetico-geometric series multiplies an arithmetic factor by a geometric one, as in $\\sum k\\,x^k$ or $\\sum (2k+1)\\,x^k$. Neither the arithmetic nor the geometric formula applies alone, but the shift-and-subtract idea from the geometric lesson does. The linear coefficient $k$ grows, and the method works by reducing the degree of the polynomial factor by one at each step.\n\nDerive $\\sum_{k=1}^{n} k x^k$ carefully. Let $S = x + 2x^2 + \\cdots + nx^n$. Then $xS = x^2 + 2x^3 + \\cdots + nx^{n+1}$. Subtracting, $(1-x)S = x + x^2 + \\cdots + x^n - nx^{n+1}$. The middle part is geometric, so $(1-x)S = \\frac{x(1-x^n)}{1-x} - nx^{n+1}$. Solving gives the finite formula, and for $|x|<1$ the term $nx^{n+1}$ tends to zero, so $\\sum_{k\\geq 1} k x^k = \\frac{x}{(1-x)^2}$. Both forms are standard, and the second is the one to memorize.\n\nCheck the infinite formula at $x=\\frac12$: it gives $\\frac{1/2}{(1/2)^2} = 2$, and indeed $\\frac12 + \\frac24 + \\frac38 + \\cdots$ sums to $2$. The formula also has a derivative interpretation: $\\sum x^k = \\frac{x}{1-x}$, and multiplying the derivative by $x$ produces $\\sum k x^k$. This explains the squared denominator $(1-x)^{-2}$, though the shift-and-subtract derivation is the one to use under exam conditions.\n\nFor a combined example, consider $\\sum_{k\\geq1}\\frac{2k+1}{4^k}$. Split the numerator into $2k$ and $1$. With $x=\\frac14$ we have $\\sum k x^k = \\frac{1/4}{(3/4)^2} = \\frac49$ and $\\sum x^k = \\frac{1/4}{3/4} = \\frac13$. Therefore the total is $2\\cdot\\frac49 + \\frac13 = \\frac{11}{9}$. Splitting is always legitimate for convergent series, and it is the first move whenever the coefficient is linear in $k$.\n\nThe next family is $\\sum k^2 x^k = \\frac{x(1+x)}{(1-x)^3}$, which follows by applying the same subtraction twice or by differentiating the previous identity. At $x=\\frac13$ it gives $\\frac{(1/3)(4/3)}{8/27} = \\frac32$, and the first few terms $\\frac13 + \\frac49 + \\frac13 + \\frac{16}{81} + \\cdots$ indeed approach $\\frac32$. Expect this family whenever a sum has polynomial terms multiplied by geometric decay.\n\nThe common error is a wrong starting index. The formula $\\frac{x}{(1-x)^2}$ is for $k$ starting at $1$. If the sum starts at $k=0$, the $k=0$ term of $kx^k$ is $0$, but the plain geometric part gains a constant term $1$, so the total changes. Always rewrite the sum so that the index matches the formula before substituting.",
       "keyFacts": [
-        "If $a_{n+p} = a_n$ for all $n$, the sequence has period $p$",
-        "$a_N$ equals the term at the position of $N$ within one cycle, found from the remainder of $N$ modulo $p$",
-        "Sum of $N$ terms: (complete periods) × (sum of one period) + (leftover terms)"
+        "$\\sum_{k\\geq 1} k x^k = \\frac{x}{(1-x)^2}$ for $|x|<1$",
+        "$\\sum_{k\\geq 1} k^2 x^k = \\frac{x(1+x)}{(1-x)^3}$ for $|x|<1$",
+        "$\\sum_{k=1}^{n} k x^k = \\frac{x\\bigl(1-(n+1)x^n+nx^{n+1}\\bigr)}{(1-x)^2}$"
       ],
-      "whenToUse": "Each term is defined from the previous term(s) by a rule, and the question asks for a far-away term or a large sum."
+      "whenToUse": "The summand is a polynomial in $k$ times $x^k$, or a linear factor multiplies a geometric power such as $k/2^k$.",
+      "commonMistakes": [
+        "Summing the arithmetic and geometric parts separately with the wrong formulas, for example applying an arithmetic formula to $k x^k$.",
+        "Starting the sum at the wrong index, which changes the constant term in the answer."
+      ],
+      "example": {
+        "problem": "Compute $\\displaystyle\\sum_{k=1}^{\\infty}\\frac{k}{2^k}$.",
+        "solution": "With $x=\\frac12$, the formula gives $\\frac{1/2}{(1/2)^2} = 2$.",
+        "answer": "2",
+        "verify": "from fractions import Fraction as F\nN = 80\ns = sum(F(k, 2**k) for k in range(1, N+1))\nassert s == 2 - F(N+2, 2**N)\nprint(2)"
+      }
     },
     {
-      "title": "Sums of powers of integers",
-      "body": "Three formulas come up constantly:\n\n$1 + 2 + \\cdots + n = \\frac{n(n+1)}{2}$, $\\qquad 1^2 + 2^2 + \\cdots + n^2 = \\frac{n(n+1)(2n+1)}{6}$, $\\qquad 1^3 + 2^3 + \\cdots + n^3 = \\left(\\frac{n(n+1)}{2}\\right)^2$.\n\nThe first is the pairing trick from the arithmetic lesson. The cube formula says the sum of cubes is the square of the plain sum $1 + \\cdots + n$, which is a surprising and useful fact. The squares formula can be derived by telescoping: $(k+1)^3 - k^3 = 3k^2 + 3k + 1$. Adding these for $k = 1$ to $n$, the left side collapses to $(n+1)^3 - 1$, and that equation lets you solve for $\\sum k^2$ once you know $\\sum k$.\n\nQuick check with $n = 3$: $1^3 + 2^3 + 3^3 = 36 = 6^2$, and $\\frac{3\\cdot 4}{2} = 6$.",
+      "title": "Linear recurrences and the characteristic equation",
+      "body": "A second-order linear recurrence has the form $a_{n+2} = p\\,a_{n+1} + q\\,a_n$. Such a sequence is determined by $a_1$ and $a_2$, but computing $a_{2025}$ term by term is hopeless, so a closed form is needed. The method is to look for solutions of the form $a_n = \\lambda^n$. Substituting gives $\\lambda^{n+2} = p\\lambda^{n+1} + q\\lambda^n$, and dividing by $\\lambda^n$ yields the characteristic equation $\\lambda^2 = p\\lambda + q$.\n\nIf the characteristic equation has two distinct roots $\\lambda_1 \\neq \\lambda_2$, then every combination $a_n = A\\lambda_1^n + B\\lambda_2^n$ satisfies the recurrence. This holds because the recurrence is linear, so any linear combination of solutions is again a solution. The constants $A$ and $B$ are found from the first two terms by solving a $2\\times2$ linear system. The logic is the same as for a second-order linear differential equation.\n\nVerify the claim directly. Substituting $A\\lambda_1^n + B\\lambda_2^n$ into $a_{n+2} - pa_{n+1} - qa_n$ and grouping by $A$ and by $B$ gives $A\\lambda_1^n(\\lambda_1^2 - p\\lambda_1 - q) + B\\lambda_2^n(\\lambda_2^2 - p\\lambda_2 - q)$. Both brackets vanish because each root satisfies the characteristic equation, so the expression is zero for every $n$.\n\nAs an example, take $a_{n+2} = 3a_{n+1} - 2a_n$. The characteristic equation is $\\lambda^2 - 3\\lambda + 2 = (\\lambda-1)(\\lambda-2) = 0$, so $a_n = A + B\\cdot 2^n$. With $a_0 = 0$ and $a_1 = 1$ we get $A + B = 0$ and $A + 2B = 1$, hence $B = 1$, $A = -1$, and $a_n = 2^n - 1$. Check: the recurrence gives $a_2 = 3\\cdot 1 - 2\\cdot 0 = 3 = 2^2 - 1$. The closed form makes any large index trivial to compute.\n\nA double root $\\lambda$ produces a factor of $n$: the general solution is $(A+Bn)\\lambda^n$. Complex conjugate roots produce oscillation through cosine and sine, which is recognized by a negative discriminant. On the exam the most common case is distinct real roots, and the main skill is to recognize when the characteristic polynomial factors at once. The Fibonacci recurrence $F_{n+2} = F_{n+1} + F_n$ has roots $\\varphi = \\frac{1+\\sqrt5}{2}$ and $\\psi = \\frac{1-\\sqrt5}{2}$, which gives Binet's formula.\n\nTwo warnings. First, put the recurrence into the standard form with the largest index on the left. A recurrence written as $a_n = 3a_{n-1} - 2a_{n-2}$ has the same characteristic equation, but the initial conditions must be matched to the correct indices. Second, a recurrence with a constant term, such as $a_{n+2} = a_{n+1} + a_n + 1$, needs a particular solution added to the homogeneous one, and the constant is found by substituting a constant trial value.",
       "keyFacts": [
-        "$\\sum_{k=1}^{n} k = \\frac{n(n+1)}{2}$",
-        "$\\sum_{k=1}^{n} k^2 = \\frac{n(n+1)(2n+1)}{6}$",
-        "$\\sum_{k=1}^{n} k^3 = \\left(\\frac{n(n+1)}{2}\\right)^2$"
+        "$a_{n+2} = p\\,a_{n+1} + q\\,a_n$ has characteristic equation $\\lambda^2 = p\\lambda + q$",
+        "For distinct roots, $a_n = A\\lambda_1^n + B\\lambda_2^n$",
+        "For a double root $\\lambda$, $a_n = (A + Bn)\\lambda^n$",
+        "Binet's formula: $F_n = \\frac{\\varphi^n - \\psi^n}{\\sqrt5}$"
       ],
-      "whenToUse": "The sum runs over consecutive integers and the summand is a polynomial in $k$, such as $k^2$, $k^3$, or $k^2 + k$."
+      "whenToUse": "A term is defined by a linear combination of the previous two (or more) terms with constant coefficients, and the problem asks for a far-away term, a remainder, or a sum.",
+      "commonMistakes": [
+        "Mismatching the initial conditions with the index shift, so the constants $A$ and $B$ are wrong.",
+        "Forgetting the constant particular solution when the recurrence has an additive constant."
+      ],
+      "example": {
+        "problem": "Let $a_0 = 0$, $a_1 = 1$, and $a_{n+2} = 3a_{n+1} - 2a_n$. Find $a_5$.",
+        "solution": "The roots are $1$ and $2$, so $a_n = A + B2^n$. The initial conditions give $a_n = 2^n - 1$, hence $a_5 = 31$. Direct iteration confirms $a_2=3$, $a_3=7$, $a_4=15$, $a_5=31$.",
+        "answer": "31",
+        "verify": "a = [0, 1]\nfor _ in range(4):\n    a.append(3*a[-1] - 2*a[-2])\nprint(a[5])"
+      }
+    },
+    {
+      "title": "Periodic sequences and cycles",
+      "body": "A sequence is periodic with period $p$ if $a_{n+p} = a_n$ for all $n$. Periodicity is often hidden: a recursive rule does not mention periods, but if the iteration returns to its starting state after $p$ steps the whole sequence repeats from that point on. The practical method is to compute the first several terms, watch for the first repeat of a state, and conclude. For a first-order rule $a_{n+1}=f(a_n)$ the state is one term, and once a value recurs the sequence must cycle from then on.\n\nThe argument is short. If $a_k = a_j$ for some $j<k$, then $a_{k+1} = f(a_k) = f(a_j) = a_{j+1}$, and by induction $a_{k+m} = a_{j+m}$ for every $m\\geq0$. So the sequence from index $j$ onward has period $k-j$, and any transient before index $j$ is not part of the cycle. The same proof works for a rule that uses the last two terms: the pair $(a_n, a_{n+1})$ is the state, and a repeated pair forces a cycle. The sequence $5, 8, 3, 5, 2, 3, 1, 2, 1, 1, 0, 1, 1, 0, \\ldots$ with $a_{n+2}=|a_{n+1}-a_n|$ falls into the block $0,1,1$ only after a transient.\n\nOnce the period $p$ is known, reduce indices. Write $N = qp + r$ with $0 \\le r < p$. Then $a_N = a_r$ when $r \\geq 1$ and $a_N = a_p$ when $r = 0$. For sums, $\\sum_{n=1}^{N} a_n = q\\sum_{n=1}^{p} a_n + \\sum_{n=1}^{r} a_n$. The boundary case $r=0$ means the sum is exactly $q$ full periods, and that is the most common place to make an error.\n\nAs an example, let $a_1 = 3$ and $a_{n+1} = 1 - \\frac{1}{a_n}$. The terms are $3, \\frac23, -\\frac12, 3, \\ldots$, which is a cycle of length $3$ with sum $3 + \\frac23 - \\frac12 = \\frac{19}{6}$. Since $100 = 3\\cdot 33 + 1$, the first $99$ terms are $33$ complete cycles and $a_{100} = a_1 = 3$. The total is $33\\cdot\\frac{19}{6} + 3 = \\frac{215}{2}$. Note that the map $x\\mapsto 1-\\frac1x$ is a Möbius transformation, and its period is governed by a matrix power, a viewpoint that explains why the period is small here.\n\nModular cycles are the most common source of periodicity in contests. The powers $2^n \\bmod 13$ run through $2,4,8,3,6,12,11,9,5,10,7,1$ and then repeat, so the period is $12$. Any sequence defined by multiplication modulo $m$ is eventually periodic, because there are only finitely many residues. The period is the order of the multiplier, which for $2$ modulo $13$ is $12$ because $2$ is a primitive root modulo $13$. Check the actual cycle rather than guessing the period from the modulus.\n\nCommon mistakes include reading the period off the first few terms before the transient has ended, and mixing up whether the first term has index $1$ or $0$, which changes the residue of $N$ by one. Always test your reduction on a small index by listing the terms explicitly, and make sure your formula $a_N = a_r$ agrees with the listed values before you rely on it.",
+      "keyFacts": [
+        "$a_{n+p} = a_n$ for all $n$ means the sequence has period $p$",
+        "$\\sum_{n=1}^{qp+r} a_n = q\\sum_{n=1}^{p} a_n + \\sum_{n=1}^{r} a_n$ for $0 \\le r < p$",
+        "The powers $2^n \\bmod 13$ have period $12$"
+      ],
+      "whenToUse": "A rule of the form $a_{n+1}=f(a_n)$ or a recurrence with a modulus, or a problem asks for a sum over a huge number of terms of an eventually repeating sequence.",
+      "commonMistakes": [
+        "Taking the period from the first few terms when a transient is still present.",
+        "Confusing the period with the number of residues; the period is the order of the multiplier."
+      ],
+      "example": {
+        "problem": "Let $a_1 = 2$ and $a_{n+1} = \\dfrac{1}{1-a_n}$ for $n \\geq 1$. Find $a_{100}$.",
+        "solution": "The terms are $2, -1, \\frac12, 2, \\ldots$, a cycle of length $3$. Since $100 \\equiv 1 \\pmod 3$, we get $a_{100} = a_1 = 2$.",
+        "answer": "2",
+        "verify": "from fractions import Fraction as F\nx = F(2)\nfor _ in range(99):\n    x = 1 / (1 - x)\nprint(x)"
+      }
+    },
+    {
+      "title": "Power-sum formulas with derivations",
+      "body": "Three power sums come up constantly: $\\sum_{k=1}^n k = \\frac{n(n+1)}{2}$, $\\sum_{k=1}^n k^2 = \\frac{n(n+1)(2n+1)}{6}$, and $\\sum_{k=1}^n k^3 = \\left(\\frac{n(n+1)}{2}\\right)^2$. These can be memorized, but deriving them is better, because the derivation is a telescoping argument that generalizes to higher powers and to the floor-sum problems of the next lesson.\n\nThe first formula follows from the pairing argument of the arithmetic lesson, which gives $2S = n(n+1)$. For squares, start from the telescoping identity $(k+1)^3 - k^3 = 3k^2 + 3k + 1$. Summing over $k = 1, \\ldots, n$, the left side telescopes to $(n+1)^3 - 1 = n^3 + 3n^2 + 3n$. The right side is $3\\sum k^2 + 3\\sum k + n$. Substituting $\\sum k = \\frac{n(n+1)}{2}$ gives $3\\sum k^2 = n^3 + \\frac{3n^2 + n}{2} = \\frac{n(n+1)(2n+1)}{2}$, so $\\sum k^2 = \\frac{n(n+1)(2n+1)}{6}$.\n\nThe cube formula can be derived from the same telescoping with $(k+1)^4 - k^4$, but a shortcut is more useful on the exam: the cube sum equals the square of the triangular sum, $\\sum_{k=1}^n k^3 = \\left(\\sum_{k=1}^n k\\right)^2$. A short induction proves it, because if $T_n = \\sum_{k\\le n} k$ then $(T_n + (n+1))^2 - T_n^2 = 2(n+1)T_n + (n+1)^2 = (n+1)^3$. Check $n=2$: $1^3 + 2^3 = 9 = 3^2$.\n\nThe telescoping method extends systematically to any power $\\sum k^p$, producing a polynomial of degree $p+1$ whose leading term is $\\frac{n^{p+1}}{p+1}$. You can recover that leading term by comparing with the integral $\\int_0^n x^p\\,dx$, which is a useful sanity check on any answer. Most AMC problems need only the formulas for $p \\le 3$, but understanding why they are polynomials of the stated degree prevents mistakes when a problem uses a different power.\n\nIn practice, a problem may ask for a combination such as $T - Q$, where $T = \\sum k^3$ and $Q = \\sum k^2$ over the same range. Compute each piece from its formula rather than adding the terms. Watch for sums that start at a different index: a sum from $k=5$ to $n$ equals the sum from $1$ to $n$ minus the sum from $1$ to $4$. This subtraction is safer than trying to shift the formula's index, and it works equally well for any power.\n\nThe most common mistake is confusing the square sum with the cube sum, or using $\\sum k^2$ in place of $\\sum k$ in the derivation. Test every formula on $n=1$ and $n=2$ before using it. For $n=1$ the three formulas give $1$, $1$, and $1$, and for $n=2$ they give $3$, $5$, and $9$, which catches most errors within a few seconds.",
+      "keyFacts": [
+        "$\\sum_{k=1}^n k = \\frac{n(n+1)}{2}$",
+        "$\\sum_{k=1}^n k^2 = \\frac{n(n+1)(2n+1)}{6}$",
+        "$\\sum_{k=1}^n k^3 = \\left(\\sum_{k=1}^n k\\right)^2$",
+        "$(k+1)^3 - k^3 = 3k^2 + 3k + 1$"
+      ],
+      "whenToUse": "A sum of a polynomial in $k$ appears, possibly over a shifted index or as a difference of two such sums.",
+      "commonMistakes": [
+        "Confusing $\\sum k^2$ with $\\left(\\sum k\\right)^2$, which are different numbers.",
+        "Forgetting that a sum starting at $k=m$ must subtract the first $m-1$ terms."
+      ],
+      "example": {
+        "problem": "Compute $1^2 + 2^2 + \\cdots + 10^2$.",
+        "solution": "By the formula, $\\frac{10\\cdot11\\cdot21}{6} = 385$.",
+        "answer": "385",
+        "verify": "print(sum(k*k for k in range(1, 11)))"
+      }
+    },
+    {
+      "title": "Floor and ceiling sums",
+      "body": "The floor $\\lfloor x\\rfloor$ is the largest integer not exceeding $x$, and the ceiling $\\lceil x\\rceil$ is the smallest integer not less than $x$. Inside sums, floors turn a continuous quantity into a step function, so the sum becomes a count of lattice points. The basic identity is that $\\lfloor x\\rfloor = m$ exactly when $m \\le x < m+1$. Thus $\\lfloor\\sqrt{n}\\rfloor = k$ exactly when $k^2 \\le n < (k+1)^2$, a block of $2k+1$ consecutive integers.\n\nCounting is the cleanest method. For $\\sum_{n=1}^{N}\\lfloor\\sqrt{n}\\rfloor$, group the terms by value. The value $k$ appears for exactly $(k+1)^2 - k^2 = 2k+1$ integers $n$, so the sum over a complete range $1 \\le n \\leq (m+1)^2 - 1$ equals $\\sum_{k=1}^{m} k(2k+1)$. Any incomplete final block is handled separately by counting how many integers remain at the last value. This reduces a floor sum to power sums, which is why it follows the power-sum lesson.\n\nFor example, to compute $\\sum_{n=1}^{100}\\lfloor\\sqrt{n}\\rfloor$, note that $n = 1, \\ldots, 99$ form complete blocks for $k=1,\\ldots,9$. The contribution is $\\sum_{k=1}^{9} k(2k+1) = 2\\cdot 285 + 45 = 615$, using $\\sum_{k\\le 9}k^2 = 285$ and $\\sum_{k\\le9}k = 45$. The term $n=100$ contributes $10$, giving $625$. The method is reliable because each block is counted exactly once and each count is a simple formula.\n\nFloors of a linear or rational expression are handled by a different idea. The sum $\\sum_{n=1}^{N}\\lfloor N/n\\rfloor$ counts the pairs $(n,j)$ of positive integers with $nj \\le N$, since $\\lfloor N/n\\rfloor$ is the number of $j$ with $nj\\le N$. Swapping the roles of $n$ and $j$ gives a symmetry: pairs with $n \\le \\sqrt{N}$ and pairs with $j \\le \\sqrt{N}$ overlap in a controlled way. For $N=100$ this yields $2\\sum_{n=1}^{10}\\lfloor 100/n\\rfloor - 100 = 2\\cdot 291 - 100 = 482$.\n\nCeilings relate to floors by $\\lceil x\\rceil = \\lfloor x\\rfloor + 1$ for non-integers and $\\lceil x\\rceil = -\\lfloor -x\\rfloor$ in general. When a problem mixes them, convert everything to floors first, because counting identities for floors are the standard tools. Be careful with negative arguments: $\\lfloor -2.5\\rfloor = -3$, not $-2$, and this slip is easy to make when the expression is written with a minus sign inside the floor.\n\nFloor sums are typically evaluated in three steps: identify where the value of the floor changes, count the integers in each constant block with a formula, and add the leftover partial block. Practice with small $N$, where you can list every term, is the quickest route to reliability. Once the method is clear, the same steps handle $\\lfloor\\sqrt{n}\\rfloor$, $\\lfloor n/k\\rfloor$, and sums of $\\lfloor n\\alpha\\rfloor$ for simple rational $\\alpha$.",
+      "keyFacts": [
+        "$\\lfloor x\\rfloor = m \\iff m \\le x < m+1$",
+        "$\\#\\{n : \\lfloor\\sqrt{n}\\rfloor = k\\} = 2k+1$",
+        "$\\lceil x\\rceil = -\\lfloor -x\\rfloor$"
+      ],
+      "whenToUse": "A sum or count involves a floor or ceiling of a function of the index, especially a square root or a quotient $N/n$.",
+      "commonMistakes": [
+        "Miscounting the length of a block; the number of integers with $\\lfloor\\sqrt n\\rfloor = k$ is $2k+1$, not $2k$.",
+        "Mishandling negative arguments of the floor function."
+      ],
+      "example": {
+        "problem": "Compute $\\displaystyle\\sum_{n=1}^{16}\\lfloor\\sqrt{n}\\rfloor$.",
+        "solution": "The value $1$ occurs for $n=1,2,3$; $2$ for $n=4,\\ldots,8$; $3$ for $n=9,\\ldots,15$; and $4$ for $n=16$. The sum is $3\\cdot1 + 5\\cdot2 + 7\\cdot3 + 1\\cdot4 = 38$.",
+        "answer": "38",
+        "verify": "import math\nprint(sum(math.isqrt(n) for n in range(1, 17)))"
+      }
+    }
+  ],
+  "strategies": [
+    {
+      "name": "Write the sum twice and subtract",
+      "description": "For a geometric or arithmetico-geometric sum, multiply the whole sum by the ratio, shift it one place, and subtract. Almost every term cancels, and what remains is a short geometric or telescoping sum. The method is reliable for any polynomial-times-geometric summand, and it is the first tool to try when the terms share a ratio."
+    },
+    {
+      "name": "Find the telescoping function",
+      "description": "When terms look like $\\frac{1}{k(k+m)}$, a product of consecutive factors, or a radical difference, look for a function $f$ with $b_k = f(k) - f(k+1)$. Partial fractions, rationalizing, and the identity $(k+1)^3 - k^3$ are the usual sources. Write the first few partial sums to confirm the telescope before trusting the limit."
+    },
+    {
+      "name": "Check the convergence condition first",
+      "description": "Before applying $\\frac{a}{1-r}$, write down $|r|$. If $|r| \\geq 1$ the infinite sum has no finite value, and a wrong answer obtained from the formula is one of the most common losses on the exam. A repeating decimal is convergent by construction, so it is the safe case."
+    },
+    {
+      "name": "Compute a few terms before trusting a formula",
+      "description": "For a recurrence, a floor sum, or a product, list the first three to five terms explicitly and compare them with the closed form. This catches off-by-one index errors, sign errors, and wrong starting values in seconds, and it is cheaper than discovering the mistake after a long calculation."
+    },
+    {
+      "name": "Reduce indices modulo the period",
+      "description": "When a sequence is periodic, identify the period from the first few terms after any transient has ended, then reduce the index. For sums over many terms, write $N = qp + r$ and count full periods separately from the leftover block, and be careful with the case $r=0$."
+    },
+    {
+      "name": "Solve the characteristic equation, then fit the initial values",
+      "description": "For a linear recurrence with constant coefficients, find the roots of $\\lambda^2 = p\\lambda + q$, write $a_n$ as a combination of powers of the roots, and solve a two-by-two system from the first two terms. If the characteristic polynomial factors easily, the closed form usually makes large indices and remainders trivial."
+    },
+    {
+      "name": "Count by blocks for floor sums",
+      "description": "For $\\lfloor\\sqrt n\\rfloor$ or $\\lfloor N/n\\rfloor$, identify the intervals on which the floor is constant, count their lengths with a formula, and sum block by block. For quotients, use the symmetry of the lattice points $(n,j)$ with $nj \\leq N$ to halve the work."
     }
   ],
   "workedExamples": [
     {
-      "title": "Summing an arithmetic series",
+      "title": "Multiples of seven in a range",
       "difficulty": 1,
-      "problem": "Find the sum $2 + 5 + 8 + \\cdots + 50$.",
+      "problem": "Find the sum of all multiples of $7$ from $100$ to $300$, inclusive.",
       "choices": [
-        "$425$",
-        "$442$",
-        "$459$",
-        "467",
-        "$476$"
-      ],
-      "answer": "B",
-      "steps": [
-        "The common difference is $d = 3$, so the $k$th term is $2 + 3(k-1)$.",
-        "Solve $50 = 2 + 3(n-1)$ to get $n = 17$ terms.",
-        "Use the average of the first and last terms: $S = \\frac{17(2 + 50)}{2} = 17\\cdot 26 = 442$."
-      ],
-      "takeaway": "An arithmetic sum equals (number of terms) × (average of the first and last term).",
-      "verify": "print(sum(range(2, 51, 3)))"
-    },
-    {
-      "title": "Summing an infinite geometric series",
-      "difficulty": 2,
-      "problem": "What is the sum of the infinite geometric series $1 + \\frac{3}{4} + \\frac{9}{16} + \\frac{27}{64} + \\cdots$?",
-      "choices": [
-        "1",
-        "$3$",
-        "$4$",
-        "$5$",
-        "$6$"
-      ],
-      "answer": "C",
-      "steps": [
-        "The first term is $a = 1$ and the ratio is $r = \\frac{3}{4}$, so $|r| < 1$ and the series converges.",
-        "The total is $\\frac{a}{1 - r} = \\frac{1}{1 - \\frac34} = \\frac{1}{\\frac14}$.",
-        "So the sum is $4$."
-      ],
-      "takeaway": "Before using $\\frac{a}{1-r}$, confirm $|r| < 1$; then the total is a single division.",
-      "verify": "s = sum(0.75 ** n for n in range(400))\nprint(round(s))"
-    },
-    {
-      "title": "A telescoping sum with radicals",
-      "difficulty": 4,
-      "problem": "Compute $\\displaystyle\\sum_{k=1}^{24} \\frac{1}{\\sqrt{k} + \\sqrt{k+1}}$.",
-      "choices": [
-        "$4$",
-        "$5$",
-        "$6$",
-        "8",
-        "9"
+        "$5586$",
+        "$5600$",
+        "$5782$",
+        "$6000$",
+        "$6300$"
       ],
       "answer": "A",
+      "approach": "Recognize an arithmetic sequence with common difference $7$, and locate its first and last terms inside the range.",
       "steps": [
-        "Multiply top and bottom by $\\sqrt{k+1} - \\sqrt{k}$: the denominator becomes $(k+1) - k = 1$, so each term equals $\\sqrt{k+1} - \\sqrt{k}$.",
-        "The sum is $(\\sqrt{2} - \\sqrt{1}) + (\\sqrt{3} - \\sqrt{2}) + \\cdots + (\\sqrt{25} - \\sqrt{24})$, which telescopes.",
-        "Only the first and last pieces survive: $\\sqrt{25} - \\sqrt{1} = 5 - 1 = 4$."
+        "The smallest multiple of $7$ that is at least $100$ is $7\\cdot15=105$, because $7\\cdot14=98$ is too small.",
+        "The largest multiple of $7$ at most $300$ is $7\\cdot42=294$, because $7\\cdot43=301$ is too large.",
+        "The multiples are $7k$ for $k=15,\\dots,42$, which is $28$ terms.",
+        "The sum of an arithmetic sequence is the number of terms times the average of the first and last, so $28\\cdot\\frac{105+294}{2}=28\\cdot199.5=5586$.",
+        "Check by factoring: $7\\sum_{k=15}^{42}k = 7\\left(\\frac{42\\cdot43}{2}-\\frac{14\\cdot15}{2}\\right)=7(903-105)=5586$."
       ],
-      "takeaway": "Rationalising a radical fraction can turn a messy sum into a telescoping difference.",
-      "verify": "import math\ns = sum(1 / (math.sqrt(k) + math.sqrt(k + 1)) for k in range(1, 25))\nprint(round(s))"
+      "alternative": "Factoring out the common factor $7$ turns the sum into an ordinary sum of consecutive integers.",
+      "takeaway": "Turn a multiples-of-m problem into a sum over indices, then apply the arithmetic formula.",
+      "verify": "print(sum(k for k in range(100, 301) if k % 7 == 0))"
+    },
+    {
+      "title": "Alternating geometric series",
+      "difficulty": 2,
+      "problem": "Compute $\\displaystyle\\sum_{n=0}^{\\infty}\\frac{(-1)^n}{3^n}$.",
+      "choices": [
+        "$\\frac{1}{3}$",
+        "$\\frac{3}{4}$",
+        "$\\frac{4}{3}$",
+        "$\\frac{3}{2}$",
+        "$2$"
+      ],
+      "answer": "B",
+      "approach": "Each term is a geometric term with a negative ratio, and the ratio has absolute value less than one.",
+      "steps": [
+        "Write the terms as $\\left(-\\frac13\\right)^n$, so the first term is $a=1$ and the ratio is $r=-\\frac13$.",
+        "Since $|r| = \\frac13 < 1$, the series converges.",
+        "The sum is $\\frac{a}{1-r} = \\frac{1}{1+\\frac13} = \\frac{3}{4}$.",
+        "Check numerically: the partial sums are $1,\\ \\frac23,\\ \\frac79,\\ \\frac{20}{27},\\ \\ldots$, oscillating around and closing in on $0.75$."
+      ],
+      "alternative": "Pair consecutive terms: $\\left(1-\\frac13\\right)+\\left(\\frac19-\\frac1{27}\\right)+\\cdots = \\frac23\\left(1+\\frac19+\\cdots\\right) = \\frac23\\cdot\\frac98 = \\frac34$.",
+      "takeaway": "A negative ratio is still geometric, and the formula $\\frac{a}{1-r}$ applies unchanged.",
+      "verify": "from fractions import Fraction as F\nN = 300\ns = sum(F((-1)**n, 3**n) for n in range(N))\nassert s == F(3, 4) * (1 - F(-1, 3)**N)\nprint('3/4')"
+    },
+    {
+      "title": "Odd-coefficient geometric sum",
+      "difficulty": 3,
+      "problem": "Compute $\\displaystyle\\sum_{k=1}^{\\infty}\\frac{2k-1}{2^k}$.",
+      "choices": [
+        "$2$",
+        "$\\frac{5}{2}$",
+        "$\\frac{11}{4}$",
+        "$3$",
+        "$4$"
+      ],
+      "answer": "D",
+      "approach": "The numerator is linear in $k$, so split it into a $k$-part and a constant part and use the two standard sums.",
+      "steps": [
+        "Write $\\frac{2k-1}{2^k} = \\frac{2k}{2^k} - \\frac{1}{2^k}$, so the sum equals $2\\sum_{k\\geq1}\\frac{k}{2^k} - \\sum_{k\\geq1}\\frac{1}{2^k}$.",
+        "The arithmetico-geometric formula with $x=\\frac12$ gives $\\sum k x^k = \\frac{x}{(1-x)^2} = \\frac{1/2}{1/4} = 2$.",
+        "The geometric sum is $\\sum_{k\\geq1}\\frac{1}{2^k} = 1$.",
+        "Therefore the total is $2\\cdot 2 - 1 = 3$.",
+        "Check the partial sums: $\\frac12,\\ \\frac54,\\ \\frac{15}{8},\\ \\frac{37}{16}$ approach $3$ from below."
+      ],
+      "alternative": "",
+      "takeaway": "Split a linear coefficient into a $k$-term and a constant, then apply the two standard sums.",
+      "verify": "from fractions import Fraction as F\nN = 60\ns = sum(F(2*k - 1, 2**k) for k in range(1, N+1))\nassert s == 3 - F(2*N + 3, 2**N)\nprint(3)"
+    },
+    {
+      "title": "Telescoping over three consecutive integers",
+      "difficulty": 4,
+      "problem": "Compute $\\displaystyle\\sum_{k=1}^{\\infty}\\frac{1}{k(k+1)(k+2)}$.",
+      "choices": [
+        "$\\frac{1}{12}$",
+        "$\\frac{1}{8}$",
+        "$\\frac{1}{6}$",
+        "$\\frac{1}{5}$",
+        "$\\frac{1}{4}$"
+      ],
+      "answer": "E",
+      "approach": "The denominator is a product of three consecutive integers, which suggests decomposing the term into a difference of two-factor products.",
+      "steps": [
+        "Write $\\frac{1}{k(k+1)(k+2)} = \\frac{1}{2}\\left(\\frac{1}{k(k+1)} - \\frac{1}{(k+1)(k+2)}\\right)$.",
+        "Verify the identity: the difference inside the parentheses is $\\frac{(k+2)-k}{k(k+1)(k+2)} = \\frac{2}{k(k+1)(k+2)}$, and the factor $\\frac12$ restores the target term.",
+        "Let $g(k)=\\frac{1}{k(k+1)}$. Then the term is $\\frac12(g(k)-g(k+1))$, which telescopes.",
+        "The partial sum is $S_N = \\frac12\\left(g(1) - g(N+1)\\right) = \\frac14 - \\frac{1}{2(N+1)(N+2)}$.",
+        "Letting $N\\to\\infty$ gives $\\frac14$.",
+        "Check: the first term is $\\frac16\\approx0.167$, and adding the next gives $\\approx0.208$, approaching $0.25$."
+      ],
+      "alternative": "The general identity $\\sum_{k\\geq1}\\frac{1}{k(k+1)\\cdots(k+m)} = \\frac{1}{m\\cdot m!}$ follows from the same telescoping, and $m=2$ recovers $\\frac14$.",
+      "takeaway": "A product of consecutive integers splits into a telescoping difference after one decomposition.",
+      "verify": "from fractions import Fraction as F\nN = 60\ns = sum(F(1, k*(k+1)*(k+2)) for k in range(1, N+1))\nassert s == F(1, 4) - F(1, 2*(N+1)*(N+2))\nprint('1/4')"
+    },
+    {
+      "title": "Closed form of a second-order recurrence",
+      "difficulty": 4,
+      "problem": "Let $a_0 = 1$, $a_1 = 4$, and $a_{n+2} = 5a_{n+1} - 6a_n$ for $n\\geq 0$. Find $a_{10}$.",
+      "choices": [
+        "$117074$",
+        "$118098$",
+        "$119000$",
+        "$121000$",
+        "$125000$"
+      ],
+      "answer": "A",
+      "approach": "The characteristic polynomial $\\lambda^2 - 5\\lambda + 6$ factors immediately, so the closed form is a sum of two exponentials.",
+      "steps": [
+        "Solve $\\lambda^2 - 5\\lambda + 6 = (\\lambda-2)(\\lambda-3) = 0$, giving the roots $2$ and $3$.",
+        "Write $a_n = A\\cdot 2^n + B\\cdot 3^n$.",
+        "From $a_0 = 1$: $A + B = 1$. From $a_1 = 4$: $2A + 3B = 4$.",
+        "Solving gives $B = 2$ and $A = -1$, so $a_n = 2\\cdot 3^n - 2^n$.",
+        "Therefore $a_{10} = 2\\cdot 59049 - 1024 = 117074$.",
+        "Check at $n=2$: the recurrence gives $5\\cdot4 - 6\\cdot1 = 14$, and the formula gives $2\\cdot9 - 4 = 14$."
+      ],
+      "alternative": "Iterating directly gives $1, 4, 14, 46, 146, \\ldots$, which is correct but slow. The closed form saves the most work for large indices.",
+      "takeaway": "Factor the characteristic polynomial first; the closed form then turns index arithmetic into powers.",
+      "verify": "c = [1, 4]\nfor _ in range(9):\n    c.append(5*c[-1] - 6*c[-2])\nprint(c[10])"
+    },
+    {
+      "title": "Quadratic coefficient against a geometric ratio",
+      "difficulty": 5,
+      "problem": "Compute $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{n^2}{3^n}$.",
+      "choices": [
+        "$\\frac{3}{4}$",
+        "$\\frac{3}{2}$",
+        "$2$",
+        "$3$",
+        "$6$"
+      ],
+      "answer": "B",
+      "approach": "A quadratic coefficient times a geometric ratio is evaluated by the closed form for $\\sum n^2 x^n$, which comes from repeated shift-and-subtract.",
+      "steps": [
+        "Set $x = \\frac13$. The sum is $\\sum_{n\\geq1}n^2x^n$.",
+        "Use the closed form $\\sum_{n\\geq1} n^2 x^n = \\frac{x(1+x)}{(1-x)^3}$, which comes from applying shift-and-subtract to $\\sum n x^n$ and then to $\\sum n^2 x^n$, or from differentiating the geometric identity.",
+        "Substitute $x = \\frac13$: the numerator is $\\frac13\\cdot\\frac43 = \\frac49$ and the denominator is $\\left(\\frac23\\right)^3 = \\frac{8}{27}$.",
+        "The ratio is $\\frac49\\cdot\\frac{27}{8} = \\frac32$.",
+        "Check: the partial sums $\\frac13,\\ \\frac79,\\ \\frac{10}{9},\\ \\ldots$ climb toward $1.5$, and the first five terms already total about $1.41$."
+      ],
+      "alternative": "",
+      "takeaway": "Polynomial-times-geometric sums are evaluated by repeated shift-and-subtract, or by differentiating a geometric identity.",
+      "verify": "from fractions import Fraction as F\ns = sum(F(n*n, 3**n) for n in range(1, 200))\nassert abs(s - F(3, 2)) < F(1, 10**60)\nprint('3/2')"
     }
   ],
   "problems": [
     {
       "id": "seq-01",
       "difficulty": 1,
-      "problem": "An arithmetic sequence begins $4, 11, 18, 25, \\dots$. What is its $10$th term?",
+      "problem": "The sequence $5, 9, 13, 17, \\dots$ continues with the same pattern. What is its $25$th term?",
       "choices": [
-        "$59$",
-        "60",
-        "$63$",
-        "64",
-        "$67$"
+        "$101$",
+        "$105$",
+        "$109$",
+        "$113$",
+        "$117$"
       ],
-      "answer": "E",
-      "hint": "Find the common difference first, then count the gaps between the 1st and 10th terms.",
-      "solution": "The common difference is $d = 11 - 4 = 7$. The 10th term is $a_{10} = a_1 + 9d = 4 + 63 = 67$. Between the 1st and 10th terms there are nine gaps, not ten, so $10d$ is the wrong count.",
-      "verify": "a = 4\nfor _ in range(9):\n    a += 7\nprint(a)"
+      "answer": "A",
+      "hint": "The difference is constant, so count the steps from the first term to the one you want.",
+      "solution": "The common difference is $d = 4$, so $a_n = 5 + (n-1)\\cdot 4$. For $n=25$ this gives $a_{25} = 5 + 24\\cdot4 = 101$. The choice $105$ comes from using $a_1 + 25d$, which is actually the $26$th term.",
+      "concepts": [
+        0
+      ],
+      "verify": "seq = [5]\nfor _ in range(24):\n    seq.append(seq[-1] + 4)\nprint(seq[24])"
     },
     {
       "id": "seq-02",
       "difficulty": 1,
-      "problem": "A geometric sequence begins $3, 6, 12, 24, \\dots$. What is the sum of its first six terms?",
+      "problem": "A geometric sequence begins $6, 3, \\frac{3}{2}, \\dots$. What is the sum of its first five terms?",
       "choices": [
-        "$63$",
-        "$93$",
-        "$189$",
-        "$192$",
-        "$381$"
+        "$\\frac{93}{8}$",
+        "$\\frac{47}{4}$",
+        "$12$",
+        "$\\frac{93}{4}$",
+        "$\\frac{99}{4}$"
       ],
-      "answer": "C",
-      "hint": "Identify the ratio, then either add the six terms directly or use $S_n = \\frac{a(r^n - 1)}{r - 1}$.",
-      "solution": "The ratio is $r = 2$ and $a = 3$. The six terms are $3, 6, 12, 24, 48, 96$, and they sum to $189$. Check with the formula: $S_6 = \\frac{3(2^6 - 1)}{2 - 1} = 3\\cdot 63 = 189$. The choice $63 = 2^6 - 1$ forgets the factor $3$, $93$ is the sum of only five terms, and $192$ is the seventh term.",
-      "verify": "terms = [3]\nfor _ in range(5):\n    terms.append(terms[-1] * 2)\nprint(sum(terms))"
+      "answer": "A",
+      "hint": "The ratio is $\\frac12$. Apply the finite formula with $n=5$.",
+      "solution": "With $a=6$ and $r=\\frac12$, the sum is $6\\cdot\\frac{1-(1/2)^5}{1-1/2} = 12\\cdot\\frac{31}{32} = \\frac{93}{8}$. Adding the terms directly, $6+3+\\frac32+\\frac34+\\frac38 = \\frac{93}{8}$, confirms it. The value $12$ is the infinite sum, which mistakes five terms for infinitely many.",
+      "concepts": [
+        1
+      ],
+      "verify": "from fractions import Fraction as F\nt = F(6)\ns = F(0)\nfor _ in range(5):\n    s += t\n    t /= 2\nprint(f'{s.numerator}/{s.denominator}')"
     },
     {
       "id": "seq-03",
       "difficulty": 1,
-      "problem": "What is the sum of all odd positive integers less than $100$? That is, find $1 + 3 + 5 + \\cdots + 99$.",
+      "problem": "What is the sum of all integers from $50$ to $150$, inclusive?",
       "choices": [
-        "50",
-        "$1250$",
-        "$2450$",
-        "$2475$",
-        "$2500$"
+        "$10100$",
+        "$10150$",
+        "$10200$",
+        "$20200$",
+        "$20300$"
       ],
-      "answer": "E",
-      "hint": "How many odd numbers are there from $1$ to $99$? Pair the first and last terms.",
-      "solution": "There are $50$ odd numbers from $1$ to $99$, since the $k$th odd number is $2k - 1$. Their average is $\\frac{1 + 99}{2} = 50$, so the sum is $50 \\cdot 50 = 2500$. The choice $2550$ doubles the sum of $1$ to $50$, and $4950$ is the sum of all integers from $1$ to $99$.",
-      "verify": "print(sum(k for k in range(1, 100) if k % 2 == 1))"
+      "answer": "A",
+      "hint": "Pair the first and last terms, then count the terms.",
+      "solution": "There are $101$ integers from $50$ to $150$, and their average is $100$, so the sum is $101\\cdot100 = 10100$. Pairing $50$ with $150$, $51$ with $149$, and so on gives $50$ pairs of sum $200$ plus the middle term $100$, again $10100$. The value $20200$ comes from forgetting to halve the pairing formula.",
+      "concepts": [
+        0
+      ],
+      "verify": "print(sum(range(50, 151)))"
     },
     {
       "id": "seq-04",
-      "difficulty": 2,
-      "problem": "In an arithmetic sequence, the $3$rd term is $10$ and the $7$th term is $22$. What is the sum of the first term and the tenth term?",
+      "difficulty": 1,
+      "problem": "Compute $\\frac{3}{5}+\\frac{3}{25}+\\frac{3}{125}+\\cdots$.",
       "choices": [
-        "$35$",
-        "$37$",
-        "$39$",
-        "43",
-        "45"
+        "$\\frac{1}{2}$",
+        "$\\frac{3}{5}$",
+        "$\\frac{2}{3}$",
+        "$\\frac{3}{4}$",
+        "$\\frac{6}{5}$"
       ],
-      "answer": "A",
-      "hint": "How many common differences separate the 3rd term from the 7th term?",
-      "solution": "The 3rd and 7th terms are four steps apart and differ by $22 - 10 = 12$, so $d = 3$. Then $a_1 = 10 - 2\\cdot 3 = 4$ and $a_{10} = 4 + 9\\cdot 3 = 31$. Their sum is $4 + 31 = 35$.",
-      "verify": "found = None\nfor a1 in range(-50, 51):\n    for d in range(-50, 51):\n        if a1 + 2 * d == 10 and a1 + 6 * d == 22:\n            found = a1 + (a1 + 9 * d)\nprint(found)"
+      "answer": "D",
+      "hint": "Identify the first term and the ratio, and check that the ratio is smaller than one in absolute value.",
+      "solution": "The first term is $a = \\frac35$ and the ratio is $r = \\frac15$. Since $|r|<1$, the sum is $\\frac{a}{1-r} = \\frac{3/5}{4/5} = \\frac34$. The value $\\frac35$ is the first term alone, and $\\frac65$ comes from dividing by $\\frac12$ instead of $\\frac45$.",
+      "concepts": [
+        2
+      ],
+      "verify": "from fractions import Fraction as F\ns = sum(F(3, 5) * F(1, 5)**k for k in range(300))\nassert abs(s - F(3, 4)) < F(1, 10**100)\nprint('3/4')"
     },
     {
       "id": "seq-05",
-      "difficulty": 2,
-      "problem": "Compute the sum of the first eight terms of the geometric series $1 - \\frac{1}{2} + \\frac{1}{4} - \\frac{1}{8} + \\cdots$, that is, $\\displaystyle\\sum_{k=0}^{7} \\left(-\\frac{1}{2}\\right)^{k}$.",
+      "difficulty": 1,
+      "problem": "Compute $\\displaystyle\\sum_{k=1}^{20}\\frac{1}{k(k+1)}$.",
       "choices": [
+        "$\\frac{1}{21}$",
         "$\\frac{1}{2}$",
-        "$\\frac{85}{128}$",
-        "$\\frac{2}{3}$",
-        "$\\frac{3}{4}$",
-        "$\\frac{255}{256}$"
+        "$\\frac{9}{10}$",
+        "$\\frac{19}{20}$",
+        "$\\frac{20}{21}$"
       ],
-      "answer": "B",
-      "hint": "The series is finite, so use the finite formula with $n = 8$ and $r = -\\frac{1}{2}$.",
-      "solution": "Here $a = 1$, $r = -\\frac12$ and $n = 8$. Then $S_8 = \\frac{1 - r^8}{1 - r} = \\frac{1 - \\frac{1}{256}}{\\frac32} = \\frac{255}{256}\\cdot\\frac23 = \\frac{85}{128}$. The choice $\\frac23$ is the sum of the infinite series, which does not apply because we stop after eight terms. The choice $\\frac{255}{256}$ is $1 - r^8$ without dividing by $1 - r$.",
-      "verify": "from fractions import Fraction\ns = sum(Fraction(-1, 2) ** k for k in range(8))\nprint(s)"
+      "answer": "E",
+      "hint": "Write each term as a difference of two simpler fractions.",
+      "solution": "Since $\\frac{1}{k(k+1)} = \\frac1k - \\frac1{k+1}$, the sum telescopes to $1 - \\frac{1}{21} = \\frac{20}{21}$. The value $\\frac{19}{20}$ results from summing only $19$ terms of the telescope.",
+      "concepts": [
+        3
+      ],
+      "verify": "from fractions import Fraction as F\ns = sum(F(1, k*(k+1)) for k in range(1, 21))\nprint(f'{s.numerator}/{s.denominator}')"
     },
     {
       "id": "seq-06",
-      "difficulty": 2,
-      "problem": "Compute $\\displaystyle\\sum_{k=1}^{99} \\frac{1}{k(k+1)}$.",
+      "difficulty": 1,
+      "problem": "How many terms are in the arithmetic sequence $7, 11, 15, \\dots, 203$?",
       "choices": [
-        "$\\frac{1}{99}$",
-        "$\\frac{9}{10}$",
-        "$\\frac{99}{100}$",
-        "$\\frac{100}{101}$",
-        "$\\frac{197}{100}$"
+        "$46$",
+        "$47$",
+        "$48$",
+        "$49$",
+        "$50$"
       ],
-      "answer": "C",
-      "hint": "Split each fraction into a difference of two simpler fractions, then see which terms survive.",
-      "solution": "Write $\\frac{1}{k(k+1)} = \\frac{1}{k} - \\frac{1}{k+1}$. The sum telescopes: $\\left(1 - \\frac12\\right) + \\left(\\frac12 - \\frac13\\right) + \\cdots + \\left(\\frac{1}{99} - \\frac{1}{100}\\right) = 1 - \\frac{1}{100} = \\frac{99}{100}$.",
-      "verify": "from fractions import Fraction\ns = sum(Fraction(1, k * (k + 1)) for k in range(1, 100))\nprint(s)"
+      "answer": "E",
+      "hint": "Solve the equation $a_n = 203$ for $n$, then remember that the count includes both endpoints.",
+      "solution": "Here $a_1 = 7$ and $d = 4$. Setting $7 + 4(n-1) = 203$ gives $4(n-1) = 196$, so $n - 1 = 49$ and $n = 50$. The value $49$ is what one gets by forgetting to add the first term back in.",
+      "concepts": [
+        0
+      ],
+      "verify": "count = 0\nt = 7\nwhile t <= 203:\n    count += 1\n    t += 4\nprint(count)"
     },
     {
       "id": "seq-07",
-      "difficulty": 3,
-      "problem": "A geometric series has first term $a$ and common ratio $r$, where $|r| < 1$. Its terms are $a, ar, ar^2, \\dots$. The sum of all its terms is $12$, and the sum of the terms in even positions ($ar, ar^3, ar^5, \\dots$) is $4$. What is $r$?",
+      "difficulty": 2,
+      "problem": "In an arithmetic sequence the $4$th term is $14$ and the $11$th term is $35$. What is the sum of the first $20$ terms?",
       "choices": [
-        "$-\\frac{1}{2}$",
-        "$\\frac{1}{4}$",
-        "$\\frac{1}{3}$",
-        "$\\frac{1}{2}$",
-        "$\\frac{2}{3}$"
+        "$610$",
+        "$630$",
+        "$650$",
+        "$670$",
+        "$690$"
       ],
       "answer": "D",
-      "hint": "Divide the two equations. The factor $a$ cancels, and $1 - r^2 = (1 - r)(1 + r)$ also simplifies.",
-      "solution": "The total is $\\frac{a}{1 - r} = 12$. The even-position terms form a series with first term $ar$ and ratio $r^2$, so $\\frac{ar}{1 - r^2} = 4$. Dividing the second equation by the first gives $\\frac{r}{1 + r} = \\frac{4}{12} = \\frac13$, so $3r = 1 + r$ and $r = \\frac12$. Check: $a = 6$, and the even-position sum is $\\frac{3}{3/4} = 4$.",
-      "verify": "from fractions import Fraction\ncands = sorted({Fraction(p, q) for q in range(1, 13) for p in range(-11, 12) if abs(Fraction(p, q)) < 1})\nsols = []\nfor r in cands:\n    total = sum(float(r) ** n for n in range(400))\n    a = 12 / total\n    even = sum(a * float(r) ** n for n in range(1, 400, 2))\n    if abs(even - 4) < 1e-9:\n        sols.append(r)\nprint(sols[0] if len(sols) == 1 else 'ambiguous')"
+      "hint": "Find the common difference from the two given terms first.",
+      "solution": "Since $a_{11} - a_4 = 7d = 21$, we get $d = 3$. Then $a_1 = 14 - 3\\cdot3 = 5$ and $a_{20} = 5 + 19\\cdot3 = 62$. The sum is $\\frac{20(5+62)}{2} = 670$.",
+      "concepts": [
+        0
+      ],
+      "verify": "from fractions import Fraction as F\nd = F(35 - 14, 11 - 4)\na1 = 14 - 3*d\nprint(int(sum(a1 + k*d for k in range(20))))"
     },
     {
       "id": "seq-08",
-      "difficulty": 3,
-      "problem": "Let $a_1 = 3$, $a_2 = 7$, and $a_{n+2} = |a_{n+1} - a_n|$ for $n \\ge 1$. What is $a_1 + a_2 + \\cdots + a_{2025}$?",
+      "difficulty": 2,
+      "problem": "A ball is dropped from a height of $81$ feet. Each time it strikes the ground it rebounds to exactly $\\frac23$ of the height from which it last fell. What is the total distance the ball has travelled from the moment of release until it strikes the ground for the fifth time?",
       "choices": [
-        "$1344$",
-        "$1358$",
-        "$1366$",
-        "$1372$",
-        "$1390$"
+        "$211$",
+        "$309$",
+        "$341$",
+        "$373$",
+        "$601$"
       ],
       "answer": "C",
-      "hint": "Compute the first dozen terms and look for a cycle. Once the sequence is cycling, you only need the sum of one cycle.",
-      "solution": "The first terms are $3, 7, 4, 3, 1, 2, 1, 1, 0, 1, 1, 0, \\dots$. From $a_9$ on, the pattern $0, 1, 1$ repeats with period $3$, so for $n \\ge 9$ we have $a_n = 0$ when $3 \\mid n$ and $a_n = 1$ otherwise. The first eight terms sum to $22$. The terms $a_9$ through $a_{2025}$ number $2017$, which is $672$ full blocks of $(0,1,1)$ covering $a_9$ to $a_{2024}$, plus the leftover $a_{2025} = 0$ since $3 \\mid 2025$. Each block adds $2$, so the total is $22 + 672\\cdot 2 = 1366$.",
-      "verify": "a = [None, 3, 7]\nfor n in range(1, 2024):\n    a.append(abs(a[n + 1] - a[n]))\nprint(sum(a[1:2026]))"
+      "hint": "Write the fall heights as a geometric sequence. Each rebound is travelled twice, once up and once down.",
+      "solution": "The fall heights are $81, 54, 36, 24, 16$, a geometric sequence with ratio $\\frac23$. The ball falls $81$ feet first. After each of the four rebounds it rises and falls back through the same height, so the distance is $81 + 2(54+36+24+16) = 81 + 260 = 341$. The value $211$ counts each height once, $309$ stops one bounce early, and $373$ adds an extra rebound.",
+      "concepts": [
+        1
+      ],
+      "verify": "from fractions import Fraction as F\nh = [F(81) * F(2, 3)**k for k in range(5)]\ntotal = h[0] + 2 * sum(h[1:])\nprint(int(total))"
     },
     {
       "id": "seq-09",
-      "difficulty": 3,
-      "problem": "Compute $1\\cdot 1! + 2\\cdot 2! + 3\\cdot 3! + \\cdots + 9\\cdot 9!$, where $n! = 1\\cdot 2\\cdots n$.",
+      "difficulty": 2,
+      "problem": "The repeating decimal $0.\\overline{123}$ equals $\\frac{m}{n}$, where $m$ and $n$ are coprime positive integers. Find $m+n$.",
       "choices": [
-        "$3628799$",
-        "$3628800$",
-        "6894718",
-        "6894719",
-        "$39916799$"
+        "$333$",
+        "$374$",
+        "$415$",
+        "$1122$",
+        "$1332$"
       ],
-      "answer": "A",
-      "hint": "Find a difference of two factorials that equals $k\\cdot k!$.",
-      "solution": "Since $(k+1)! - k! = k\\cdot k!$, each term is a difference: $k\\cdot k! = (k+1)! - k!$. The sum telescopes to $10! - 1! = 3628800 - 1 = 3628799$. The choice $3628800 = 10!$ forgets the final subtraction of $1$.",
-      "verify": "import math\nprint(sum(k * math.factorial(k) for k in range(1, 10)))"
+      "answer": "B",
+      "hint": "Use the formula for a repeating block of $p$ digits, then reduce the fraction.",
+      "solution": "$0.\\overline{123} = \\frac{123}{999}$. Since $\\gcd(123,999)=3$, the reduced fraction is $\\frac{41}{333}$, so $m+n = 374$. The value $333$ forgets the numerator, and $1122$ adds the unreduced numerator and denominator.",
+      "concepts": [
+        2
+      ],
+      "verify": "from fractions import Fraction as F\nx = F(123, 999)\nprint(x.numerator + x.denominator)"
     },
     {
       "id": "seq-10",
-      "difficulty": 3,
-      "problem": "Let $T = 1^3 + 2^3 + 3^3 + 4^3 + 5^3 + 6^3$ and $Q = 1^2 + 2^2 + 3^2 + 4^2 + 5^2 + 6^2$. What is $T - Q$?",
+      "difficulty": 2,
+      "problem": "Compute $\\displaystyle\\sum_{k=1}^{\\infty}\\frac{1}{k(k+3)}$.",
       "choices": [
-        "$91$",
-        "168",
-        "$340$",
-        "$350$",
-        "$441$"
+        "$\\frac{1}{4}$",
+        "$\\frac{1}{3}$",
+        "$\\frac{3}{8}$",
+        "$\\frac{1}{2}$",
+        "$\\frac{11}{18}$"
       ],
-      "answer": "D",
-      "hint": "Use the formulas for the sums of cubes and of squares, or simply add the numbers.",
-      "solution": "Using $\\sum k^3 = \\left(\\sum k\\right)^2$, we get $T = (1 + 2 + \\cdots + 6)^2 = 21^2 = 441$. Using $\\sum k^2 = \\frac{n(n+1)(2n+1)}{6}$, we get $Q = \\frac{6\\cdot 7\\cdot 13}{6} = 91$. So $T - Q = 350$. The choice $532$ is $T + Q$, $441$ is $T$ alone, and $91$ is $Q$ alone.",
-      "verify": "T = sum(k ** 3 for k in range(1, 7))\nQ = sum(k ** 2 for k in range(1, 7))\nprint(T - Q)"
+      "answer": "E",
+      "hint": "The gap between the denominators is $3$, not $1$, so the decomposition carries a factor.",
+      "solution": "Since $\\frac{1}{k(k+3)} = \\frac13\\left(\\frac1k - \\frac1{k+3}\\right)$, the partial sums telescope to $S_N = \\frac13\\left(1 + \\frac12 + \\frac13 - \\frac{1}{N+1} - \\frac{1}{N+2} - \\frac{1}{N+3}\\right)$. Letting $N\\to\\infty$ gives $\\frac13\\cdot\\frac{11}{6} = \\frac{11}{18}$. A solver who forgets the factor $\\frac13$ obtains $\\frac{11}{6}$, which is not an option.",
+      "concepts": [
+        3
+      ],
+      "verify": "from fractions import Fraction as F\nN = 50\ns = sum(F(1, k*(k+3)) for k in range(1, N+1))\nassert s == F(1, 3) * (F(11, 6) - (F(1, N+1) + F(1, N+2) + F(1, N+3)))\nprint('11/18')"
     },
     {
       "id": "seq-11",
-      "difficulty": 4,
-      "problem": "How many integers $n$ with $1 \\le n \\le 200$ make $1^2 + 2^2 + \\cdots + n^2$ divisible by $5$?",
+      "difficulty": 2,
+      "problem": "What is $1^3 + 2^3 + 3^3 + \\cdots + 10^3$?",
       "choices": [
-        "$100$",
-        "$116$",
-        "$120$",
-        "$124$",
-        "$160$"
+        "$385$",
+        "$2025$",
+        "$2500$",
+        "$3025$",
+        "$3080$"
       ],
-      "answer": "C",
-      "hint": "Let $S_n = \\frac{n(n+1)(2n+1)}{6}$. Work modulo $5$ and see whether the remainders of $S_n$ repeat.",
-      "solution": "Modulo $5$: $S_1 = 1$, $S_2 = 5$, $S_3 = 14$, $S_4 = 30$, $S_5 = 55$, with remainders $1, 0, 4, 0, 0$. Moving from $n$ to $n+5$ adds $\\sum_{j=1}^{5}(n+j)^2$, and five consecutive squares cover every residue class mod $5$, so this sum is $0$ modulo $5$. The pattern therefore has period $5$, and $5 \\mid S_n$ exactly when $n \\equiv 0, 2, 4 \\pmod 5$. Each of these three residues has $40$ values in $1$ to $200$, giving $120$.",
-      "verify": "count = 0\nS = 0\nfor n in range(1, 201):\n    S += n * n\n    if S % 5 == 0:\n        count += 1\nprint(count)"
+      "answer": "D",
+      "hint": "Use the identity that the cube sum is the square of a triangular number.",
+      "solution": "The cube sum is $\\left(\\frac{10\\cdot11}{2}\\right)^2 = 55^2 = 3025$. The value $385$ is $1^2+\\cdots+10^2$, the sum of squares. The value $2025$ is the cube sum only up to $9$.",
+      "concepts": [
+        7
+      ],
+      "verify": "print(sum(k**3 for k in range(1, 11)))"
     },
     {
       "id": "seq-12",
-      "difficulty": 4,
-      "problem": "A geometric sequence of positive real numbers has its first three terms summing to $7$ and its first six terms summing to $63$. What is the first term?",
+      "difficulty": 2,
+      "problem": "The terms $2, 6, 18, 54, \\dots$ are added in order, starting with the first term. How many terms must be added before the running total first exceeds $1000$?",
       "choices": [
-        "$\\frac{1}{7}$",
-        "$1$",
-        "$2$",
-        "$\\frac{7}{3}$",
+        "$3$",
+        "$4$",
+        "$5$",
+        "$6$",
         "$7$"
       ],
-      "answer": "B",
-      "hint": "The first six terms are the first three plus the next three. How does the sum of the next three compare with the sum of the first three?",
-      "solution": "Let $S_3 = a(1 + r + r^2) = 7$. The next three terms are $ar^3, ar^4, ar^5$, whose sum is $r^3 S_3$, so $S_6 = S_3(1 + r^3)$. Thus $63 = 7(1 + r^3)$, giving $r^3 = 8$ and, since $r$ is real and positive, $r = 2$. Then $a(1 + 2 + 4) = 7$ gives $a = 1$. The choice $\\frac73$ divides $7$ by the number of terms instead of by $1 + 2 + 4$, and the choice $7$ is just $S_3$.",
-      "verify": "from fractions import Fraction\nsols = set()\nfor p in range(1, 200):\n    for q in range(1, 30):\n        r = Fraction(p, q)\n        a = Fraction(7) / (1 + r + r * r)\n        if sum(a * r ** k for k in range(6)) == 63:\n            sols.add(a)\nassert len(sols) == 1\nprint(sols.pop())"
+      "answer": "E",
+      "hint": "The sum of the first $n$ terms is one less than a power of three.",
+      "solution": "The sum of the first $n$ terms is $\\frac{2(3^n-1)}{3-1} = 3^n-1$. Since $3^6 - 1 = 728 < 1000$ and $3^7 - 1 = 2186 > 1000$, seven terms are needed. Stopping at six is the natural error, because $728$ is close to $1000$.",
+      "concepts": [
+        1
+      ],
+      "verify": "s = 0\nt = 2\nn = 0\nwhile s <= 1000:\n    s += t\n    t *= 3\n    n += 1\nprint(n)"
     },
     {
       "id": "seq-13",
-      "difficulty": 4,
-      "problem": "A sequence is defined by $a_1 = 2$ and $a_{n+1} = \\dfrac{1}{1 - a_n}$ for $n \\ge 1$. What is $a_1 + a_2 + \\cdots + a_{100}$?",
+      "difficulty": 3,
+      "problem": "A sequence satisfies $a_1 = 1$, $a_2 = 4$, and $a_{n+2} = 4a_{n+1} - 3a_n$ for $n \\geq 1$. What is $a_{10}$?",
       "choices": [
-        "$\\frac{103}{2}$",
-        "52",
-        "$\\frac{105}{2}$",
-        "$\\frac{107}{2}$",
-        "$54$"
+        "$29524$",
+        "$59048$",
+        "$59049$",
+        "$88573$",
+        "$118098$"
       ],
       "answer": "A",
-      "hint": "Compute the first four or five terms. What happens next?",
-      "solution": "We have $a_1 = 2$, $a_2 = -1$, $a_3 = \\frac12$, and $a_4 = 2$ again, so the sequence has period $3$. Each block $2, -1, \\frac12$ sums to $\\frac32$. Terms $a_1$ through $a_{99}$ form $33$ complete blocks and sum to $\\frac{99}{2}$. Since $100 \\equiv 1 \\pmod 3$, $a_{100} = a_1 = 2$. The total is $\\frac{99}{2} + 2 = \\frac{103}{2}$. The choice $\\frac{99}{2}$ forgets the last term.",
-      "verify": "from fractions import Fraction\na = Fraction(2)\ntotal = Fraction(0)\nfor n in range(1, 101):\n    total += a\n    a = 1 / (1 - a)\nprint(total)"
+      "hint": "Find the roots of the characteristic equation $\\lambda^2 = 4\\lambda - 3$.",
+      "solution": "The characteristic equation $\\lambda^2 - 4\\lambda + 3 = (\\lambda-1)(\\lambda-3) = 0$ gives $a_n = A + B\\cdot3^n$ for constants $A,B$. The initial conditions give $A + 3B = 1$ and $A + 9B = 4$, so $B = \\frac12$, $A = -\\frac12$, and $a_n = \\frac{3^n-1}{2}$. Then $a_{10} = \\frac{59049-1}{2} = 29524$. The value $59048$ results from forgetting the division by $2$.",
+      "concepts": [
+        5
+      ],
+      "verify": "a = [1, 4]\nfor _ in range(8):\n    a.append(4*a[-1] - 3*a[-2])\nprint(a[9])"
     },
     {
       "id": "seq-14",
-      "difficulty": 5,
-      "problem": "Let $a_n = 2^n - 1$ for each positive integer $n$. Compute $\\displaystyle\\sum_{n=1}^{\\infty} \\frac{2^n}{a_n\\, a_{n+1}}$.",
+      "difficulty": 3,
+      "problem": "Compute $\\displaystyle\\sum_{k=1}^{6} k\\cdot 2^{k}$.",
       "choices": [
-        "$\\frac{1}{2}$",
-        "$1$",
-        "$\\frac{4}{3}$",
-        "$\\frac{5}{3}$",
-        "$2$"
+        "$384$",
+        "$512$",
+        "$642$",
+        "$1024$",
+        "$1282$"
       ],
-      "answer": "B",
-      "hint": "Notice that $2^n = a_{n+1} - a_n$, then split the fraction over $a_n a_{n+1}$.",
-      "solution": "Since $a_{n+1} - a_n = 2^{n+1} - 2^n = 2^n$, the term equals $\\frac{a_{n+1} - a_n}{a_n a_{n+1}} = \\frac{1}{a_n} - \\frac{1}{a_{n+1}}$. The series telescopes. Its partial sum up to $N$ is $\\frac{1}{a_1} - \\frac{1}{a_{N+1}} = 1 - \\frac{1}{2^{N+1} - 1}$, which tends to $1$.",
-      "verify": "from fractions import Fraction\ntotal = sum(Fraction(2 ** n, (2 ** n - 1) * (2 ** (n + 1) - 1)) for n in range(1, 81))\nprint(total.limit_denominator(10 ** 6))"
+      "answer": "C",
+      "hint": "Subtract a shifted copy of the sum, as in the arithmetico-geometric method.",
+      "solution": "Let $S = \\sum_{k=1}^{6} k2^k$. Then $2S = \\sum_{k=1}^{6} k2^{k+1} = \\sum_{k=2}^{7}(k-1)2^{k}$. Subtracting, $-S = 2 + \\sum_{k=2}^{6}2^k - 6\\cdot2^7 = 2 + 124 - 768$, so $S = 642$. The value $384$ is only the last term $6\\cdot2^6$.",
+      "concepts": [
+        4,
+        1
+      ],
+      "verify": "print(sum(k * 2**k for k in range(1, 7)))"
     },
     {
       "id": "seq-15",
-      "difficulty": 5,
-      "problem": "A sequence satisfies $a_1 = 1$ and $a_{n+1} = a_n + \\lfloor \\sqrt{n} \\rfloor$ for $n \\ge 1$, where $\\lfloor x \\rfloor$ is the greatest integer not exceeding $x$. What is $a_{1000}$?",
+      "difficulty": 3,
+      "problem": "Let $a_1 = 3$ and $a_{n+1} = 1 - \\dfrac{1}{a_n}$ for $n \\geq 1$. What is $a_1 + a_2 + \\cdots + a_{100}$?",
       "choices": [
-        "20470",
-        "20553",
-        "$20584$",
-        "$20585$",
-        "$20616$"
+        "$\\frac{209}{2}$",
+        "$106$",
+        "$\\frac{215}{2}$",
+        "$108$",
+        "$\\frac{219}{2}$"
+      ],
+      "answer": "C",
+      "hint": "Compute the first four terms and look for a repeat.",
+      "solution": "The terms are $3, \\frac23, -\\frac12, 3, \\dots$, so the sequence has period $3$ with cycle sum $3 + \\frac23 - \\frac12 = \\frac{19}{6}$. Since $100 = 3\\cdot33 + 1$, the first $99$ terms are $33$ full cycles and $a_{100} = a_1 = 3$. The total is $33\\cdot\\frac{19}{6} + 3 = \\frac{215}{2}$. Forgetting the last term gives $\\frac{209}{2}$.",
+      "concepts": [
+        6
+      ],
+      "verify": "from fractions import Fraction as F\nterms = [F(3)]\nfor _ in range(99):\n    terms.append(1 - 1 / terms[-1])\ns = sum(terms)\nprint(f'{s.numerator}/{s.denominator}')"
+    },
+    {
+      "id": "seq-16",
+      "difficulty": 3,
+      "problem": "Compute $\\displaystyle\\sum_{n=1}^{100}\\left\\lfloor\\sqrt{n}\\right\\rfloor$.",
+      "choices": [
+        "$615$",
+        "$625$",
+        "$630$",
+        "$640$",
+        "$660$"
+      ],
+      "answer": "B",
+      "hint": "Group the values of $n$ according to the value of $\\lfloor\\sqrt n\\rfloor$.",
+      "solution": "The value $k$ occurs for $2k+1$ integers $n$, namely $k^2 \\le n < (k+1)^2$. For $n = 1,\\dots,99$ the blocks $k=1,\\dots,9$ are complete, contributing $\\sum_{k=1}^{9}k(2k+1) = 2\\cdot285 + 45 = 615$. The term $n=100$ adds $10$, so the total is $625$. The value $615$ forgets $n=100$.",
+      "concepts": [
+        8
+      ],
+      "verify": "import math\nprint(sum(math.isqrt(n) for n in range(1, 101)))"
+    },
+    {
+      "id": "seq-17",
+      "difficulty": 3,
+      "problem": "Compute $\\displaystyle\\sum_{k=1}^{48}\\frac{1}{\\sqrt{k}+\\sqrt{k+1}}$.",
+      "choices": [
+        "$5$",
+        "$6$",
+        "$7$",
+        "$48$",
+        "$49$"
+      ],
+      "answer": "B",
+      "hint": "Rationalize the denominator.",
+      "solution": "Multiplying by $\\frac{\\sqrt{k+1}-\\sqrt{k}}{\\sqrt{k+1}-\\sqrt{k}}$ and using $(\\sqrt{k+1})^2-(\\sqrt k)^2 = 1$ gives $\\sqrt{k+1}-\\sqrt{k}$. The sum telescopes to $\\sqrt{49} - \\sqrt{1} = 7 - 1 = 6$. The value $7$ forgets the subtraction of $\\sqrt1$.",
+      "concepts": [
+        3
+      ],
+      "verify": "import math\ns = sum(1 / (math.sqrt(k) + math.sqrt(k+1)) for k in range(1, 49))\nr = round(s)\nassert abs(s - r) < 1e-9\nprint(r)"
+    },
+    {
+      "id": "seq-18",
+      "difficulty": 3,
+      "problem": "Compute $\\displaystyle\\sum_{n=1}^{100}\\left\\lfloor\\frac{100}{n}\\right\\rfloor$.",
+      "choices": [
+        "$482$",
+        "$500$",
+        "$519$",
+        "$550$",
+        "$600$"
+      ],
+      "answer": "A",
+      "hint": "Count lattice points $(n,j)$ with $nj \\le 100$, and use the symmetry between $n$ and $j$.",
+      "solution": "The term $\\lfloor 100/n\\rfloor$ counts the $j \\geq 1$ with $nj \\le 100$, so the sum counts all pairs $(n,j)$ with $nj\\le100$. If both $n>10$ and $j>10$ then $nj>100$, so every pair has $n\\le10$ or $j\\le10$. By symmetry the total is $2\\sum_{n=1}^{10}\\lfloor100/n\\rfloor - 100 = 2\\cdot291 - 100 = 482$, since the pairs with both coordinates at most $10$ are counted twice and must be subtracted once.",
+      "concepts": [
+        8
+      ],
+      "verify": "print(sum(100 // n for n in range(1, 101)))"
+    },
+    {
+      "id": "seq-19",
+      "difficulty": 3,
+      "problem": "Let $A$ be the sequence $1, 4, 7, 10, \\dots$ and $B$ be the sequence $2, 6, 10, 14, \\dots$. How many integers from $1$ to $1000$, inclusive, appear in both sequences?",
+      "choices": [
+        "$77$",
+        "$83$",
+        "$84$",
+        "$110$",
+        "$333$"
+      ],
+      "answer": "B",
+      "hint": "Translate each sequence into a congruence condition, then combine the two conditions.",
+      "solution": "A number is in $A$ exactly when it is $\\equiv 1 \\pmod 3$, and in $B$ exactly when it is $\\equiv 2 \\pmod 4$. The Chinese remainder theorem gives $n \\equiv 10 \\pmod{12}$, so the common terms are $10, 22, \\dots, 994$. There are $\\frac{994-10}{12}+1 = 83$ of them. The value $84$ is an off-by-one count, and $333$ counts the multiples of $3$.",
+      "concepts": [
+        0
+      ],
+      "verify": "A = set(range(1, 1001, 3))\nB = set(range(2, 1001, 4))\nprint(len(A & B))"
+    },
+    {
+      "id": "seq-20",
+      "difficulty": 3,
+      "problem": "For each positive integer $n$, let $r_n$ be the remainder when $2^n$ is divided by $13$. Compute $r_1 + r_2 + \\cdots + r_{2024}$.",
+      "choices": [
+        "$13104$",
+        "$13159$",
+        "$13200$",
+        "$13256$",
+        "$13312$"
+      ],
+      "answer": "B",
+      "hint": "Find the period of $2^n \\bmod 13$ first.",
+      "solution": "The residues $2^n \\bmod 13$ are $2,4,8,3,6,12,11,9,5,10,7,1$ and then repeat, so the period is $12$ and one period sums to $78$. Since $2024 = 12\\cdot168 + 8$, the sum is $168\\cdot78 + (2+4+8+3+6+12+11+9) = 13104 + 55 = 13159$. The value $13104$ drops the last eight terms.",
+      "concepts": [
+        6
+      ],
+      "verify": "print(sum(pow(2, n, 13) for n in range(1, 2025)))"
+    },
+    {
+      "id": "seq-21",
+      "difficulty": 4,
+      "problem": "Compute $\\displaystyle\\sum_{k=1}^{\\infty}\\frac{2k+1}{4^k}$.",
+      "choices": [
+        "$\\frac{1}{3}$",
+        "$\\frac{4}{9}$",
+        "$\\frac{7}{9}$",
+        "$1$",
+        "$\\frac{11}{9}$"
+      ],
+      "answer": "E",
+      "hint": "Split the numerator into a $k$-part and a constant part, then apply the two standard sums with $x=\\frac14$.",
+      "solution": "Split the sum as $2\\sum_{k\\geq1} k x^k + \\sum_{k\\geq1} x^k$ with $x = \\frac14$. The first sum is $\\frac{x}{(1-x)^2} = \\frac{4}{9}$ and the second is $\\frac{x}{1-x} = \\frac13$. The total is $\\frac89 + \\frac13 = \\frac{11}{9}$. The value $\\frac49$ is the $k$-part alone, and $\\frac13$ is the constant part alone.",
+      "concepts": [
+        4
+      ],
+      "verify": "from fractions import Fraction as F\ns = sum(F(2*k + 1, 4**k) for k in range(1, 400))\nassert abs(s - F(11, 9)) < F(1, 10**100)\nprint('11/9')"
+    },
+    {
+      "id": "seq-22",
+      "difficulty": 4,
+      "problem": "Let $a_0 = 0$, $a_1 = 1$, and $a_{n+2} = 5a_{n+1} - 6a_n$ for $n \\geq 0$. What is the remainder when $a_{2025}$ is divided by $7$?",
+      "choices": [
+        "$1$",
+        "$2$",
+        "$3$",
+        "$5$",
+        "$6$"
       ],
       "answer": "D",
-      "hint": "Group the values of $n$ by the value of $\\lfloor \\sqrt{n} \\rfloor$. All $n$ with $m^2 \\le n \\le (m+1)^2 - 1$ share the value $m$.",
-      "solution": "We have $a_{1000} = 1 + \\sum_{n=1}^{999} \\lfloor \\sqrt{n} \\rfloor$. For $m = 1, \\dots, 30$, the value $m$ occurs for the $2m + 1$ integers $n = m^2, \\dots, (m+1)^2 - 1$, contributing $m(2m+1)$. The integers $n = 961, \\dots, 999$ (39 of them) have $\\lfloor \\sqrt{n} \\rfloor = 31$, contributing $31\\cdot 39 = 1209$. Since $\\sum_{m=1}^{30} (2m^2 + m) = 18910 + 465 = 19375$, the sum is $19375 + 1209 = 20584$, so $a_{1000} = 20585$. The choice $20584$ forgets the initial $1$.",
-      "verify": "import math\na = 1\nfor n in range(1, 1000):\n    a += math.isqrt(n)\nprint(a)"
+      "hint": "Find the closed form, then reduce each exponential modulo $7$ using its order.",
+      "solution": "The characteristic roots are $2$ and $3$, and the initial conditions give $a_n = 3^n - 2^n$. The order of $3$ modulo $7$ is $6$ and the order of $2$ is $3$. Since $2025 \\equiv 3 \\pmod 6$, we have $3^{2025} \\equiv 3^3 = 27 \\equiv 6$. Since $2025 \\equiv 0 \\pmod 3$, we have $2^{2025} \\equiv 1$. So $a_{2025} \\equiv 6 - 1 = 5 \\pmod 7$.",
+      "concepts": [
+        5
+      ],
+      "verify": "r = [0, 1]\nfor n in range(2, 2026):\n    r.append((5*r[-1] - 6*r[-2]) % 7)\nprint(r[2025])"
+    },
+    {
+      "id": "seq-23",
+      "difficulty": 4,
+      "problem": "A sequence satisfies $a_1 = 5$, $a_2 = 8$, and $a_{n+2} = \\lvert a_{n+1} - a_n\\rvert$ for $n \\geq 1$. What is $a_1 + a_2 + \\cdots + a_{2025}$?",
+      "choices": [
+        "$1342$",
+        "$1366$",
+        "$1374$",
+        "$1400$",
+        "$1408$"
+      ],
+      "answer": "C",
+      "hint": "Compute about ten terms and look for the block that repeats.",
+      "solution": "The terms are $5, 8, 3, 5, 2, 3, 1, 2, 1, 1, 0, 1, 1, 0, \\dots$. From $a_{11}$ on, the block $0, 1, 1$ repeats with sum $2$. The first ten terms sum to $31$. The terms $a_{11},\\dots,a_{2025}$ number $2015 = 3\\cdot671 + 2$, so they contain $671$ full blocks (sum $1342$) and two leftover terms $0, 1$ (sum $1$). The total is $31 + 1342 + 1 = 1374$.",
+      "concepts": [
+        6
+      ],
+      "verify": "a = [5, 8]\nwhile len(a) < 2025:\n    a.append(abs(a[-1] - a[-2]))\nprint(sum(a))"
+    },
+    {
+      "id": "seq-24",
+      "difficulty": 4,
+      "problem": "Compute $\\displaystyle\\prod_{k=2}^{50}\\left(1 - \\frac{1}{k^2}\\right)$.",
+      "choices": [
+        "$\\frac{1}{50}$",
+        "$\\frac{49}{100}$",
+        "$\\frac{1}{2}$",
+        "$\\frac{51}{100}$",
+        "$\\frac{50}{51}$"
+      ],
+      "answer": "D",
+      "hint": "Factor each term as a product of two fractions, each of which telescopes.",
+      "solution": "We have $1 - \\frac{1}{k^2} = \\frac{k-1}{k}\\cdot\\frac{k+1}{k}$. The product of $\\frac{k-1}{k}$ over $k = 2,\\dots,N$ is $\\frac{1}{N}$, and the product of $\\frac{k+1}{k}$ is $\\frac{N+1}{2}$. The total is $\\frac{N+1}{2N}$, which equals $\\frac{51}{100}$ at $N=50$. The value $\\frac12$ is the limit as $N\\to\\infty$, not the value at $N=50$.",
+      "concepts": [
+        3
+      ],
+      "verify": "from fractions import Fraction as F\np = F(1)\nfor k in range(2, 51):\n    p *= 1 - F(1, k*k)\nprint(f'{p.numerator}/{p.denominator}')"
+    },
+    {
+      "id": "seq-25",
+      "difficulty": 4,
+      "problem": "Compute $\\displaystyle\\sum_{k=1}^{2024}\\left\\lfloor\\sqrt{k}\\right\\rfloor$.",
+      "choices": [
+        "$59380$",
+        "$59650$",
+        "$59730$",
+        "$59810$",
+        "$60000$"
+      ],
+      "answer": "C",
+      "hint": "Let $m = \\lfloor\\sqrt{2024}\\rfloor$, count the complete blocks below $m^2$, and then add the incomplete last block.",
+      "solution": "Since $44^2 = 1936 \\le 2024 < 2025 = 45^2$, we have $m = 44$. The values $j = 1,\\dots,43$ each occur for $2j+1$ integers $k$ in complete blocks, and the value $44$ occurs for $2024 - 1936 + 1 = 89$ integers. The sum is $\\sum_{j=1}^{43} j(2j+1) + 44\\cdot 89$. By the power-sum formulas, $\\sum_{j=1}^{43}(2j^2 + j) = 2\\cdot27434 + 946 = 55814$, and $44\\cdot89 = 3916$, so the total is $59730$. The other choices are near-miss totals from miscounting a block by one.",
+      "concepts": [
+        8,
+        7
+      ],
+      "verify": "import math\nprint(sum(math.isqrt(k) for k in range(1, 2025)))"
+    },
+    {
+      "id": "seq-26",
+      "difficulty": 4,
+      "problem": "Find the smallest positive integer $n$ for which $1^3 + 2^3 + \\cdots + n^3$ is divisible by $1000$.",
+      "choices": [
+        "$8$",
+        "$12$",
+        "$16$",
+        "$20$",
+        "$24$"
+      ],
+      "answer": "E",
+      "hint": "Write the cube sum as a square of a triangular number, and recall that $1000 = 2^3\\cdot 5^3$.",
+      "solution": "Let $T = \\frac{n(n+1)}{2}$, so the cube sum is $T^2$. Divisibility by $2^3$ requires $4 \\mid T$, and divisibility by $5^3$ requires $25 \\mid T$. Together these say $25 \\mid n(n+1)$ and $8 \\mid n(n+1)$. The congruence $25 \\mid n(n+1)$ forces $n \\equiv 0$ or $n \\equiv -1 \\pmod{25}$, so the smallest candidate is $n=24$, and indeed $24\\cdot25 = 600$ is divisible by $8$. The other choices fail the factor $25$.",
+      "concepts": [
+        7
+      ],
+      "verify": "for n in range(1, 1000):\n    T = n * (n + 1) // 2\n    if (T * T) % 1000 == 0:\n        print(n)\n        break"
+    },
+    {
+      "id": "seq-27",
+      "difficulty": 5,
+      "problem": "Compute $\\displaystyle\\sum_{k=1}^{\\infty}\\frac{k}{(k+1)!}$.",
+      "choices": [
+        "$1$",
+        "$\\frac{3}{2}$",
+        "$2$",
+        "$\\frac{5}{2}$",
+        "$3$"
+      ],
+      "answer": "A",
+      "hint": "Write the numerator as $(k+1)-1$.",
+      "solution": "Since $\\frac{k}{(k+1)!} = \\frac{(k+1)-1}{(k+1)!} = \\frac{1}{k!} - \\frac{1}{(k+1)!}$, the partial sums telescope to $1 - \\frac{1}{(N+1)!}$. Letting $N\\to\\infty$ gives $1$. A solver who tries to recognize an exponential series instead obtains an expression involving $e$, which is not rational.",
+      "concepts": [
+        3
+      ],
+      "verify": "from fractions import Fraction as F\nimport math\nN = 39\ns = sum(F(k, math.factorial(k+1)) for k in range(1, N+1))\nassert F(1) - s == F(1, math.factorial(N+1))\nprint(1)"
+    },
+    {
+      "id": "seq-28",
+      "difficulty": 5,
+      "problem": "Compute $\\displaystyle\\sum_{n=2}^{\\infty}\\frac{3^n}{(3^{n-1}-1)(3^n-1)}$.",
+      "choices": [
+        "$\\frac{1}{3}$",
+        "$\\frac{2}{3}$",
+        "$\\frac{3}{4}$",
+        "$\\frac{5}{6}$",
+        "$1$"
+      ],
+      "answer": "C",
+      "hint": "Set $g(n) = \\frac{1}{3^{n-1}-1}$ and compare $g(n) - g(n+1)$ with the summand.",
+      "solution": "Compute $g(n) - g(n+1) = \\frac{1}{3^{n-1}-1} - \\frac{1}{3^n-1} = \\frac{3^n - 3^{n-1}}{(3^{n-1}-1)(3^n-1)} = \\frac{2\\cdot3^{n-1}}{(3^{n-1}-1)(3^n-1)}$. Since $3^n = \\frac32\\cdot2\\cdot3^{n-1}$, the summand equals $\\frac32\\bigl(g(n)-g(n+1)\\bigr)$. The sum telescopes to $\\frac32\\bigl(g(2) - \\lim g\\bigr) = \\frac32\\cdot\\frac12 = \\frac34$.",
+      "concepts": [
+        3
+      ],
+      "verify": "from fractions import Fraction as F\ns = sum(F(3**n, (3**(n-1) - 1) * (3**n - 1)) for n in range(2, 60))\nassert F(3, 4) - s == F(3, 2) / (3**59 - 1)\nprint('3/4')"
+    },
+    {
+      "id": "seq-29",
+      "difficulty": 5,
+      "problem": "Let $F_1 = F_2 = 1$ and $F_{n+2} = F_{n+1} + F_n$. Compute $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{F_n}{10^n}$.",
+      "choices": [
+        "$\\frac{1}{10}$",
+        "$\\frac{10}{99}$",
+        "$\\frac{9}{89}$",
+        "$\\frac{10}{89}$",
+        "$\\frac{1}{8}$"
+      ],
+      "answer": "D",
+      "hint": "Let $S$ be the sum and multiply the recurrence through by $x^n$ to get a linear equation for $S$.",
+      "solution": "Let $x = \\frac{1}{10}$ and $S = \\sum_{n\\geq1}F_n x^n$. Using $F_{n} = F_{n-1} + F_{n-2}$ for $n \\geq 3$, we get $S = x + x^2 + \\sum_{n\\geq3}F_{n-1}x^n + \\sum_{n\\geq3}F_{n-2}x^n = x + x^2 + (xS - x^2) + x^2S$. Hence $S(1 - x - x^2) = x$, so $S = \\frac{x}{1-x-x^2}$. At $x = \\frac1{10}$ this is $\\frac{1/10}{89/100} = \\frac{10}{89}$. The value $\\frac{1}{8}$ is what one gets from a rough truncation.",
+      "concepts": [
+        5,
+        2
+      ],
+      "verify": "from fractions import Fraction as F\nfib = [0, 1]\nfor i in range(2, 400):\n    fib.append(fib[-1] + fib[-2])\ns = sum(F(fib[n], 10**n) for n in range(1, 400))\nassert abs(s - F(10, 89)) < F(1, 10**100)\nprint('10/89')"
+    },
+    {
+      "id": "seq-30",
+      "difficulty": 5,
+      "problem": "Let $a_1 = 3$ and $a_{n+1} = a_n^2 - a_n + 1$ for $n \\geq 1$. Compute $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{a_n}$.",
+      "choices": [
+        "$\\frac{1}{3}$",
+        "$\\frac{1}{2}$",
+        "$\\frac{2}{3}$",
+        "$\\frac{5}{6}$",
+        "$1$"
+      ],
+      "answer": "B",
+      "hint": "Show that $\\frac{1}{a_n} = \\frac{1}{a_n - 1} - \\frac{1}{a_{n+1} - 1}$, using the recurrence.",
+      "solution": "The recurrence gives $a_{n+1} - 1 = a_n(a_n - 1)$. Therefore $\\frac{1}{a_n-1} - \\frac{1}{a_{n+1}-1} = \\frac{1}{a_n-1} - \\frac{1}{a_n(a_n-1)} = \\frac{a_n-1}{a_n(a_n-1)} = \\frac{1}{a_n}$. The partial sums telescope to $\\frac{1}{a_1-1} - \\frac{1}{a_{N+1}-1}$. Since $a_n$ grows doubly exponentially, the tail vanishes and the sum is $\\frac12$. Numerically $\\frac13 + \\frac17 + \\frac1{43} + \\frac1{1807} \\approx 0.5000$. The value $\\frac13$ is only the first term.",
+      "concepts": [
+        3,
+        5
+      ],
+      "verify": "from fractions import Fraction as F\nb = [F(3)]\nfor _ in range(6):\n    b.append(b[-1]**2 - b[-1] + 1)\ns = sum(1 / b[i] for i in range(6))\nassert F(1, 2) - s == 1 / (b[6] - 1)\nprint('1/2')"
+    }
+  ],
+  "videos": [
+    {
+      "youtubeId": "b-7kCymoUpg",
+      "title": "Sum of an infinite geometric series | Sequences, series and induction | Precalculus | Khan Academy",
+      "channel": "Khan Academy",
+      "why": "A short, clear walk through the convergence condition and the formula a/(1-r), good for checking the basic infinite case."
+    },
+    {
+      "youtubeId": "IYZQXV3SA0I",
+      "title": "A Telescoping Sum with Partial Fraction Decomposition",
+      "channel": "Existsforall Academy",
+      "why": "Shows the partial fraction decomposition and the collapse of a telescoping sum step by step, matching the telescoping lesson."
+    },
+    {
+      "youtubeId": "kfU1fQ-efis",
+      "title": "Sum of the infinite Geometric series; Formula derivation",
+      "channel": "S Dot Academy",
+      "why": "Derives the finite and infinite geometric sum formulas from the shift-and-subtract argument, useful for the derivation step."
+    },
+    {
+      "youtubeId": "1116q780goA",
+      "title": "The Generating Function of Fibonacci Numbers",
+      "channel": "BiBenBap",
+      "why": "Connects the Fibonacci recurrence to its generating function, the same linear-equation method used for problem seq-29."
     }
   ]
 }

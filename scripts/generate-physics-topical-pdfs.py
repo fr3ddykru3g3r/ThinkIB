@@ -3,7 +3,7 @@
 generate-physics-topical-pdfs.py
 ================================
 End-to-end PDF slicing, classification, and compilation pipeline for IB Physics.
-Crawls the 'IB PAST PAPERS - YEAR' archive (2010–2025), extracts every IB Physics
+Crawls the public/vault/past-papers archive (2010–2025), extracts every IB Physics
 question and markscheme block as crisp vector crops using PyMuPDF (fitz), classifies
 them into the 2025 IB Physics Syllabus (Themes A–E and Sub-topics A.1–E.5), filters
 out retired syllabus content, and compiles:
@@ -40,7 +40,7 @@ from physics_taxonomy import (
 
 # Configuration & Paths
 REPO_ROOT = os.path.abspath(os.path.join(CURRENT_DIR, "../.."))
-PAST_PAPERS_DIR = os.path.join(REPO_ROOT, "IB PAST PAPERS - YEAR")
+PAST_PAPERS_DIR = os.path.join(REPO_ROOT, "ThinkIB", "public", "vault", "past-papers")
 OUTPUT_VAULT_DIR = os.path.join(CURRENT_DIR, "../public/vault/physics-topicals")
 MAP_OUTPUT_PATH = os.path.join(CURRENT_DIR, "../app/past-papers/physics_topicals_map.json")
 EXCLUDED_LOG_PATH = os.path.join(CURRENT_DIR, "../app/past-papers/excluded_legacy.json")

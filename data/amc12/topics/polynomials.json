@@ -1,0 +1,982 @@
+{
+  "id": "polynomials",
+  "title": "Polynomials",
+  "summary": "Vieta's formulas and power sums, the remainder and factor theorems, rational roots, interpolation, transformed roots, and complex or unity roots.",
+  "examWeight": "≈3–4 problems per paper",
+  "prerequisites": [
+    "algebra"
+  ],
+  "overview": "Polynomial problems are the bridge between algebra and number theory on the AMC 12. Early in the paper they look like routine substitution: plug in a value, expand a product, read off a coefficient. Later they become problems about structure, where the question asks for a symmetric quantity of the roots, a value at a point you never compute, or a property that holds for every polynomial with a given shape. The skill that separates the two is the habit of working with the roots and coefficients together, using Vieta's formulas, instead of trying to solve for the roots directly.\n\nProblems escalate roughly as follows. Around #5 to #10 you use the remainder theorem and Vieta for a single quadratic. Around #11 to #15 you combine several relations: power sums, interpolation through given values, and divisibility of $P(a)-P(b)$. Around #16 to #20 the problems hide a polynomial inside a functional condition, a transformed root set, or a counting question about integer roots. The hardest items, #21 to #25, usually force a construction: you build a polynomial with prescribed values or prescribed roots, then extract the one quantity asked for, often through finite differences, a change of variable, or a clever use of roots of unity.\n\nTo study this topic, first make the identities automatic: remainder and factor theorems, the sign pattern of Vieta, and the recursion for power sums. Then practise recognising when a problem is really about one of three objects, the roots, the values, or the coefficients, and move between them deliberately. Finish by working through interpolation and roots of unity, which reward careful bookkeeping more than cleverness.",
+  "concepts": [
+    {
+      "title": "Division, the remainder theorem and the factor theorem",
+      "body": "Every polynomial $P(x)$ with real coefficients can be divided by a linear polynomial $x-a$. The division algorithm says $P(x)=(x-a)Q(x)+R$, where $Q$ is a polynomial of degree one less than $P$ and $R$ is a constant, because the remainder must have degree less than $1$. This single identity is the source of the two most useful facts about polynomials in contest problems.\n\nSubstitute $x=a$ into the identity. The term $(x-a)Q(x)$ vanishes, so $P(a)=R$. This is the remainder theorem: the remainder on division by $x-a$ equals the value $P(a)$. It means you can read a remainder without performing any long division at all. The factor theorem is the special case $R=0$: the linear factor $x-a$ divides $P(x)$ exactly if and only if $P(a)=0$, that is, if and only if $a$ is a root.\n\nThe same reasoning works for any divisor. If $D(x)$ has degree $d$, then $P(x)=D(x)Q(x)+R(x)$ with $\\deg R<d$. For $D(x)=(x-a)(x-b)$ with $a\\ne b$, the remainder is a line $R(x)=px+q$, and substituting $x=a$ and $x=b$ gives the two equations $P(a)=pa+q$ and $P(b)=pb+q$. Solving them is usually quicker than dividing. This is the first appearance of an idea we will return to in the interpolation concept: a low-degree polynomial is determined by enough values.\n\nTwo practical consequences matter on the test. First, if $P$ has integer coefficients and $a$ is an integer, then $P(a)$ is the remainder, so a divisibility condition such as $(x-a)\\mid P(x)$ becomes the single equation $P(a)=0$. Second, a nonzero polynomial of degree $n$ has at most $n$ roots, which is proved by repeatedly applying the factor theorem: each root peels off one linear factor, and the degree drops by one each time. This counting argument is the reason that two polynomials of degree at most $n$ agreeing at $n+1$ points must be equal, a fact used heavily in interpolation.",
+      "keyFacts": [
+        "$P(x)=(x-a)Q(x)+P(a)$ for every polynomial $P$",
+        "$(x-a)\\mid P(x)$ if and only if $P(a)=0$",
+        "Remainder on division by $(x-a)(x-b)$ is $px+q$ with $pa+q=P(a)$, $pb+q=P(b)$",
+        "A nonzero polynomial of degree $n$ has at most $n$ roots"
+      ],
+      "whenToUse": "The problem gives a value of a polynomial at a point, asks for a remainder, or says a linear or quadratic factor divides a polynomial.",
+      "commonMistakes": [
+        "Taking the remainder of a quadratic divisor to be a constant; it is a linear polynomial $px+q$ and needs two conditions.",
+        "Substituting the root into $P$ and forgetting that the answer is the remainder, not the quotient."
+      ],
+      "example": {
+        "problem": "Find the remainder when $x^{2024}+x+1$ is divided by $x^2-1$.",
+        "solution": "Write the remainder as $px+q$. Since $x^2-1=(x-1)(x+1)$, the remainder satisfies $P(1)=p+q$ and $P(-1)=-p+q$. Here $P(1)=1+1+1=3$, and since $2024$ is even, $P(-1)=1-1+1=1$. Solving $p+q=3$ and $-p+q=1$ gives $q=2$ and $p=1$. The remainder is $x+2$.",
+        "answer": "x+2",
+        "verify": "\n# Reduce each term of x^2024 + x + 1 modulo x^2 - 1 (where x^2 = 1).\n# x^n reduces to 1 when n is even and to x when n is odd.\nconst, lin = 0, 0\nfor power, coeff in [(2024, 1), (1, 1), (0, 1)]:\n    if power % 2 == 0:\n        const += coeff\n    else:\n        lin += coeff\nprint((\"x\" if lin == 1 else f\"{lin}x\") + f\"+{const}\")\n"
+      }
+    },
+    {
+      "title": "Vieta's formulas for every degree",
+      "body": "Vieta's formulas translate between the roots of a polynomial and its coefficients. Suppose $P(x)=x^n+c_{n-1}x^{n-1}+\\cdots+c_1x+c_0$ is monic, and let its roots be $r_1,\\dots,r_n$, counted with multiplicity. Then $P(x)=(x-r_1)(x-r_2)\\cdots(x-r_n)$. Expanding the product, the coefficient of $x^{n-k}$ is $(-1)^k e_k$, where $e_k$ is the $k$-th elementary symmetric polynomial of the roots, that is, the sum of all products of $k$ distinct roots. So $e_1=r_1+\\cdots+r_n$, $e_2=\\sum_{i<j}r_ir_j$, and in general $e_n=r_1r_2\\cdots r_n$.\n\nThe proof is just expansion. Choosing one of the $n$ factors to contribute $x$ and the others to contribute $-r_i$ produces the term $(-1)^k e_k x^{n-k}$, because each product of $k$ roots appears exactly once. You do not need to memorise the sign pattern: it alternates, and the constant term is $(-1)^n$ times the product of all roots.\n\nFor a quadratic $ax^2+bx+c$ with roots $r,s$, dividing by $a$ gives $r+s=-b/a$ and $rs=c/a$. For a cubic $x^3+px^2+qx+t$ with roots $u,v,w$, we get $u+v+w=-p$, $uv+vw+wu=q$, and $uvw=-t$. Notice the signs: the sum flips sign, the pairwise sum does not, and the product flips again. Students often write $uvw=t$, which is the most common sign error on this topic.\n\nVieta is valuable because most questions about roots are questions about symmetric functions of roots. Any expression symmetric in the roots can be written in terms of the $e_k$. For example $\\sum r_i^2=e_1^2-2e_2$, since $(\\sum r_i)^2$ counts each square once and each cross term $2r_ir_j$ once. Once you see that a quantity is symmetric, you can compute it from coefficients alone, which is the whole point of the formulas. When the leading coefficient is not $1$, divide the whole polynomial by it first.",
+      "keyFacts": [
+        "For monic $P$ of degree $n$: $\\sum r_i=-c_{n-1}$, $\\sum_{i<j} r_ir_j=c_{n-2}$, $\\prod r_i=(-1)^n c_0$",
+        "For $ax^n+\\cdots$ divide by $a$ first: $e_1=-\\frac{b}{a}$, $e_2=\\frac{c}{a}$ in a quadratic $ax^2+bx+c$",
+        "Expanding $\\sum r_i^2=e_1^2-2e_2$ shows how symmetric sums reduce to coefficients"
+      ],
+      "whenToUse": "The problem asks for a symmetric expression in the roots (sum, pairwise sum, product, sum of squares, reciprocals) and gives the polynomial rather than its roots.",
+      "commonMistakes": [
+        "Forgetting the sign: for a cubic, $uvw=-t$ and $u+v+w=-p$ when the polynomial is $x^3+px^2+qx+t$.",
+        "Applying Vieta to a non-monic polynomial without dividing by the leading coefficient first."
+      ],
+      "example": {
+        "problem": "The roots $r,s,t$ of $x^3-6x^2+11x-6=0$ satisfy $r+s+t=6$ and $rs+st+tr=11$. What is $r^2+s^2+t^2$?",
+        "solution": "Use $r^2+s^2+t^2=(r+s+t)^2-2(rs+st+tr)$. This gives $6^2-2\\cdot 11=36-22=14$. As a check, the roots are $1,2,3$, and $1+4+9=14$.",
+        "answer": "14",
+        "verify": "\n# brute-force the roots of x^3-6x^2+11x-6 among integers, then sum squares\nroots = [x for x in range(-10, 11) if x**3 - 6*x**2 + 11*x - 6 == 0]\nprint(sum(x*x for x in roots))\n"
+      }
+    },
+    {
+      "title": "Power sums and Newton's identities",
+      "body": "A power sum is $p_k=r_1^k+r_2^k+\\cdots+r_n^k$. Vieta gives $p_1=e_1$ directly, but higher power sums are not elementary symmetric functions, so they need a recursion. Newton's identities provide it. For $1\\le k\\le n$ they read $p_k-e_1p_{k-1}+e_2p_{k-2}-\\cdots+(-1)^{k-1}e_{k-1}p_1+(-1)^k k e_k=0$, and for $k>n$ they simplify to $p_k=e_1p_{k-1}-e_2p_{k-2}+\\cdots+(-1)^{n-1}e_np_{k-n}$.\n\nThe derivation is short. Each root $r_i$ satisfies $P(r_i)=0$, so $r_i^n=-(c_{n-1}r_i^{n-1}+\\cdots+c_0)$. Multiply by $r_i^{k-n}$ for $k\\ge n$ and sum over $i$. The left side gives $p_k$, and the right side gives a linear combination of earlier power sums with the coefficients of $P$. Since the coefficients are $\\pm e_j$ by Vieta, the recursion has exactly the form above. For small $k$ the boundary terms with $ke_k$ come from the fact that $p_k$ is not yet determined by the recursion alone.\n\nA quadratic is the cleanest example. With roots $r,s$, $e_1=r+s$ and $e_2=rs$, so $p_1=e_1$, $p_2=e_1^2-2e_2$, and for $k\\ge 3$ the recursion is $p_k=e_1p_{k-1}-e_2p_{k-2}$. For $x^2-5x+3$ we have $p_1=5$, $p_2=25-6=19$, and $p_3=5\\cdot 19-3\\cdot 5=80$. You can confirm the last value by expanding $(r+s)^3-3rs(r+s)=125-45=80$.\n\nNewton's identities are useful whenever a problem asks for $\\sum r_i^k$ with $k$ larger than $2$. Computing the roots is usually impossible on an exam, but the recursion lets you build $p_k$ one step at a time from the coefficients. A common pattern is a problem with a polynomial of degree $3$ or $4$ and a request for $p_{10}$ or a combination such as $\\sum r_i^{5}-\\sum r_i^{4}$. Write the recursion once, tabulate $p_1,\\dots,p_k$, and be careful with the signs, which alternate.",
+      "keyFacts": [
+        "$p_1=e_1$, $p_2=e_1^2-2e_2$, $p_3=e_1^3-3e_1e_2+3e_3$",
+        "For $k>n$: $p_k=e_1p_{k-1}-e_2p_{k-2}+\\cdots+(-1)^{n-1}e_np_{k-n}$",
+        "For a quadratic with roots $r,s$: $r^k+s^k=e_1(r^{k-1}+s^{k-1})-e_2(r^{k-2}+s^{k-2})$"
+      ],
+      "whenToUse": "The problem asks for a sum of powers of roots, $\\sum r_i^k$, with a polynomial whose roots you are not asked to find.",
+      "commonMistakes": [
+        "Using $p_k=e_1p_{k-1}-e_2p_{k-2}$ for $k=2$, which needs the separate formula $p_2=e_1^2-2e_2$.",
+        "Mixing up the sign of $e_2$ in the recursion: the minus sign is between terms, not on $e_2$ itself."
+      ],
+      "example": {
+        "problem": "Let $r$ and $s$ be the roots of $x^2-5x+3=0$. Find $r^3+s^3$.",
+        "solution": "Here $e_1=r+s=5$ and $e_2=rs=3$. Newton's identity gives $p_3=e_1p_2-e_2p_1$. First $p_1=5$ and $p_2=e_1^2-2e_2=25-6=19$. Therefore $p_3=5\\cdot 19-3\\cdot 5=95-15=80$.",
+        "answer": "80",
+        "verify": "\nimport cmath\nd = cmath.sqrt(5*5 - 4*3)\nr = (5 + d) / 2\ns = (5 - d) / 2\nval = r**3 + s**3\nprint(round(val.real))\n"
+      }
+    },
+    {
+      "title": "The rational root theorem",
+      "body": "Suppose a polynomial $a_nx^n+\\cdots+a_1x+a_0$ has integer coefficients, and suppose $x=p/q$ is a root written in lowest terms. Substitute and multiply through by $q^n$. Every term except $a_0q^n$ contains a factor of $p$, so $p\\mid a_0q^n$. Since $\\gcd(p,q)=1$, we get $p\\mid a_0$. Symmetrically, multiplying the other way shows $q\\mid a_n$. This is the rational root theorem: every rational root has numerator dividing the constant term and denominator dividing the leading coefficient.\n\nThe theorem does not find roots; it produces a finite list of candidates $\\pm p/q$ with $p\\mid a_0$ and $q\\mid a_n$. You then test each candidate. For a monic polynomial the denominator must be $1$, so the rational roots are integers dividing $a_0$. That is why monic integer polynomials are so pleasant: the candidate list is just the divisors of the constant term, and a rational root is automatically an integer.\n\nThe theorem is most useful when combined with Vieta. Suppose you know one rational root $r$ from testing candidates. Then the factor theorem gives $P(x)=(x-r)Q(x)$, and Vieta applied to $Q$ reveals the remaining roots' sum and product. In the example below, testing candidates finds three rational roots, and their sum is read off from the coefficient of $x^2$ divided by the leading coefficient, without solving anything further.\n\nDo not forget the converse direction, which is false. A polynomial may have irrational or complex roots, and the theorem says nothing about them. Also, a root being rational does not force it to be an integer unless the polynomial is monic. Students often test candidates $\\pm p/q$ without restricting to divisors of $a_0$ and $a_n$, which gives a much longer and error-prone list. Write the candidates explicitly before testing, and cross them off using the factor theorem.",
+      "keyFacts": [
+        "If $p/q$ (lowest terms) is a root of $a_nx^n+\\cdots+a_0$, then $p\\mid a_0$ and $q\\mid a_n$",
+        "A rational root of a monic integer polynomial is an integer dividing the constant term",
+        "After finding a rational root $r$, divide out $(x-r)$ and apply Vieta to the quotient"
+      ],
+      "whenToUse": "The polynomial has integer coefficients and the problem asks for its rational roots, or a symmetric property of them after you test candidates.",
+      "commonMistakes": [
+        "Listing candidates $\\pm p/q$ without requiring $p\\mid a_0$ and $q\\mid a_n$ first, which makes the list far too long.",
+        "Assuming all roots are rational because one is, and forgetting the remaining quotient may have irrational roots."
+      ],
+      "example": {
+        "problem": "The polynomial $2x^3-3x^2-11x+6$ has three rational roots. What is their sum?",
+        "solution": "Candidates are $\\pm p/q$ with $p\\mid 6$ and $q\\mid 2$. Testing shows $x=3$ is a root, since $54-27-33+6=0$. Dividing gives $2x^3-3x^2-11x+6=(x-3)(2x^2+3x-2)=(x-3)(2x-1)(x+2)$. The roots are $3$, $\\tfrac12$ and $-2$. Their sum is $3+\\tfrac12-2=\\tfrac32$, which agrees with Vieta: $-(-3)/2=3/2$.",
+        "answer": "\\frac{3}{2}",
+        "verify": "\nfrom fractions import Fraction\nfrom itertools import product\ndef P(x):\n    return 2*x**3 - 3*x**2 - 11*x + 6\np_divs = [1, 2, 3, 6]\nq_divs = [1, 2]\nroots = set()\nfor p, q in product(p_divs, q_divs):\n    for sgn in (1, -1):\n        c = Fraction(sgn * p, q)\n        if P(c) == 0:\n            roots.add(c)\nprint(sum(roots))\n"
+      }
+    },
+    {
+      "title": "Integer-coefficient tricks: $a-b$ divides $P(a)-P(b)$",
+      "body": "Let $P$ have integer coefficients. For any integers $a$ and $b$, the difference $P(a)-P(b)$ is divisible by $a-b$. The reason is that each power satisfies $a^k-b^k=(a-b)(a^{k-1}+a^{k-2}b+\\cdots+b^{k-1})$, and the second factor is an integer because $a$ and $b$ are integers. Multiplying by the integer coefficients and summing gives $P(a)-P(b)=(a-b)\\cdot N$ for some integer $N$. This is the basic divisibility principle for integer polynomials.\n\nThe consequence is a strong restriction on values. If $P(3)=7$, then $P(8)-P(3)$ must be divisible by $8-3=5$, so $P(8)\\equiv 7\\equiv 2 \\pmod 5$. Likewise $P(n)\\equiv P(m)\\pmod{n-m}$ for every pair of integers. This gives a quick way to rule out a candidate value without knowing the polynomial, and it also gives a way to construct polynomials: the linear polynomial $P(x)=7+m(x-3)$ with integer slope $m$ gives $P(8)=7+5m$, so every value in the right residue class mod $5$ is achieved by some integer-coefficient polynomial.\n\nThe same idea gives a divisibility test for roots. If $P(a)=0$ and $P(b)=0$ then $a-b\\mid 0$ is automatic, so the principle is only useful when at least one value is nonzero. Its most common use is a contradiction: if $P(a)$ and $P(b)$ are given and $a-b$ does not divide their difference, then no integer-coefficient polynomial can take those values. Problems of this type ask whether a set of values is possible, and the answer is usually a single divisibility check.\n\nFor a polynomial with integer coefficients, also remember the parity trick: $P(x)\\equiv P(x+2)\\pmod 2$ and more generally $P(a)\\equiv P(a\\bmod m)\\pmod m$ for any modulus $m$. When $x$ ranges over residues, $P(x)$ takes only the values allowed by its residue mod $m$. Combining the difference rule and the residue rule usually settles the question, so check both before doing heavy algebra.",
+      "keyFacts": [
+        "For integer-coefficient $P$ and integers $a,b$: $(a-b)\\mid P(a)-P(b)$",
+        "Equivalently $P(a)\\equiv P(b)\\pmod{a-b}$, so the residue of $P(a)$ mod $a-b$ is fixed",
+        "For integer $P$ and modulus $m$, $P(a)\\bmod m$ depends only on $a\\bmod m$"
+      ],
+      "whenToUse": "The problem gives values of an integer-coefficient polynomial at two integers and asks whether a value is possible, or for the least such value.",
+      "commonMistakes": [
+        "Claiming $P(a)-P(b)$ is divisible by $a+b$ or by $a^2-b^2$ instead of $a-b$.",
+        "Using the principle with rational coefficients, where $(a-b)\\mid P(a)-P(b)$ can fail."
+      ],
+      "example": {
+        "problem": "A polynomial $P(x)$ has integer coefficients and $P(3)=7$. What is the smallest positive integer that $P(8)$ can equal?",
+        "solution": "Since $8-3=5$, we need $5\\mid P(8)-P(3)=P(8)-7$, so $P(8)\\equiv 2\\pmod 5$. The smallest positive integer with this residue is $2$. It is achieved by $P(x)=10-x$, which satisfies $P(3)=7$ and $P(8)=2$.",
+        "answer": "2",
+        "verify": "\n# P(8) must be congruent to P(3) = 7 modulo 8 - 3 = 5.\n# Find the smallest positive integer v with (v - 7) divisible by 5.\ncandidates = [v for v in range(1, 50) if (v - 7) % 5 == 0]\nprint(min(candidates))\n"
+      }
+    },
+    {
+      "title": "Finite differences and the degree of a polynomial",
+      "body": "Given values of a polynomial at equally spaced points $x=0,1,2,\\dots$, the finite differences organise the information. Let $\\Delta P(x)=P(x+1)-P(x)$, and write $\\Delta^k$ for $k$ iterations. The key fact is that if $P$ has degree $d$, then $\\Delta P$ has degree $d-1$, because the leading term $cx^d$ contributes $c\\,d\\,x^{d-1}$ to the difference and lower terms contribute less. Iterating, $\\Delta^d P$ is a constant, and $\\Delta^{d+1}P=0$. So a polynomial of degree $d$ is detected by the first difference column that becomes constant.\n\nThe leading coefficient is also read off. Since $\\Delta^d(x^d)=d!$, a polynomial of degree $d$ with leading coefficient $c$ has constant $d$-th difference $c\\cdot d!$. The lower difference columns give the polynomial itself, through Newton's forward-difference formula $P(x)=\\sum_{k=0}^{d}\\binom{x}{k}\\Delta^kP(0)$. This formula is the discrete analogue of a Taylor expansion, and it lets you extrapolate: to find $P(n)$ you simply compute the next entries of each difference column.\n\nHere is a practical method for a contest. Write the values in a row, subtract adjacent entries to get the first difference row, and repeat. When a row becomes constant, you know the degree and the constant. To extend the sequence, add the constant back up through the rows. This works without ever writing down the polynomial, which is valuable when the coefficients are messy but the values are clean.\n\nA caution: finite differences characterise polynomials only on a lattice of equally spaced integers. If the points are not equally spaced, use Lagrange interpolation instead. Also, a sequence whose $d$-th difference is constant is a polynomial of degree $d$ in $n$ on the integers, but its values may not be polynomial at non-integers, so keep track of the domain in the problem.",
+      "keyFacts": [
+        "$\\Delta^k$ of a degree-$d$ polynomial is a polynomial of degree $d-k$, so $\\Delta^dP$ is constant",
+        "$\\Delta^d(x^d)=d!$, so a leading coefficient $c$ gives constant $d$-th difference $c\\cdot d!$",
+        "Newton's forward formula: $P(x)=\\sum_{k=0}^{d}\\binom{x}{k}\\Delta^kP(0)$"
+      ],
+      "whenToUse": "Values of a polynomial are given at consecutive integers and you need a later value, the degree, or the leading coefficient.",
+      "commonMistakes": [
+        "Stopping at a nonconstant difference row, or concluding the degree from one row only.",
+        "Forgetting the factor $d!$ when reading the leading coefficient from the constant $d$-th difference."
+      ],
+      "example": {
+        "problem": "A cubic polynomial $P$ satisfies $P(0)=1$, $P(1)=2$, $P(2)=7$ and $P(3)=20$. Find $P(4)$.",
+        "solution": "Build the difference table. The values are $1,2,7,20$, so $\\Delta P(0)=1$, $\\Delta P(1)=5$, $\\Delta P(2)=13$. The second differences are $4,8$, and the third difference is $4$, constant as expected for a cubic. Extend each column: the next second difference is $8+4=12$, the next first difference is $13+12=25$, and so $P(4)=20+25=45$. Check with Newton's formula: $1+\\binom41\\cdot 1+\\binom42\\cdot 4+\\binom43\\cdot 4=1+4+24+16=45$.",
+        "answer": "45",
+        "verify": "\nvals = [1, 2, 7, 20]\nrow = vals[:]\n# extend using the constant third difference\nrows = [row]\nwhile len(rows[-1]) > 1:\n    prev = rows[-1]\n    rows.append([prev[i + 1] - prev[i] for i in range(len(prev) - 1)])\n# the last row (third difference) is constant; extend each row from the right\nlast = rows[-1][-1]\nrows[-1].append(last)\nfor lvl in range(len(rows) - 2, -1, -1):\n    rows[lvl].append(rows[lvl][-1] + rows[lvl + 1][-1])\nprint(rows[0][-1])\n"
+      }
+    },
+    {
+      "title": "Lagrange interpolation and uniqueness",
+      "body": "Suppose you know the values of a polynomial at $n+1$ distinct points $x_0,\\dots,x_n$. Then there is exactly one polynomial of degree at most $n$ taking those values. Existence follows from Lagrange's formula, and uniqueness follows from the factor theorem: if two such polynomials agreed at $n+1$ points, their difference would have degree at most $n$ and at least $n+1$ roots, so it would be zero. This is the sharpest use of the root-counting idea from the first concept.\n\nThe Lagrange basis polynomials make the existence explicit. Define $\\ell_i(x)=\\prod_{j\\ne i}\\frac{x-x_j}{x_i-x_j}$. Each $\\ell_i$ has degree $n$, equals $1$ at $x_i$, and equals $0$ at every other node, because the product contains the factor $x-x_j$ for each $j\\ne i$. The interpolating polynomial is then $P(x)=\\sum_i y_i\\,\\ell_i(x)$, where $y_i=P(x_i)$. Evaluating at a node picks out exactly one term, which is why the formula reproduces the given data.\n\nFor contest work you rarely need the full expansion. Usually you need one value, $P(c)$, at a new point. Plugging $c$ into the formula gives $P(c)=\\sum_i y_i\\prod_{j\\ne i}\\frac{c-x_j}{x_i-x_j}$, a finite sum of fractions. Choose nodes that make most basis polynomials vanish, for example $x=0,1,2$ or a set containing your target point's neighbours, to keep the arithmetic small.\n\nA powerful method uses uniqueness directly. If $P$ has degree at most $n$ and you know $n+1$ values, compare $P$ with a simpler polynomial $R$ that matches the same values, for instance a polynomial of the form $x^2$ or a product of linear factors. Their difference vanishes at all nodes, so it is a multiple of $\\prod(x-x_j)$. Once you see that structure, the unknown part of $P$ has a single free multiplier, which a leading-coefficient condition pins down. The example below uses exactly this, and it avoids expanding any Lagrange sum.\n\nLagrange interpolation also explains why values determine polynomials so tightly. A polynomial of degree at most $5$ is fixed by six values, so a problem that supplies six values and asks for a seventh is really asking for the next value of a unique object, which the formula computes directly.",
+      "keyFacts": [
+        "A polynomial of degree at most $n$ is determined by its values at $n+1$ distinct points",
+        "Lagrange basis: $\\ell_i(x)=\\prod_{j\\ne i}\\frac{x-x_j}{x_i-x_j}$, with $\\ell_i(x_k)=\\delta_{ik}$",
+        "If $P$ and $R$ agree at $n+1$ points and both have degree $\\le n$, then $P=R$"
+      ],
+      "whenToUse": "The problem gives several values of a polynomial and a condition on its leading coefficient or degree, then asks for a value at another point.",
+      "commonMistakes": [
+        "Forgetting that the interpolant must have degree at most $n$, so the extra freedom is only the multiple $\\prod(x-x_j)$.",
+        "Mixing up node values and coefficients: the formula uses the values $y_i=P(x_i)$, not the coefficients of $P$."
+      ],
+      "example": {
+        "problem": "A monic cubic polynomial $P(x)$ satisfies $P(1)=1$, $P(2)=4$ and $P(3)=9$. Find $P(4)$.",
+        "solution": "The values match $x^2$ at $x=1,2,3$. Let $D(x)=P(x)-x^2$. Then $D$ is cubic with leading coefficient $1$, and $D(1)=D(2)=D(3)=0$. So $D(x)=(x-1)(x-2)(x-3)$, and $P(x)=x^2+(x-1)(x-2)(x-3)$. At $x=4$ this gives $P(4)=16+3\\cdot 2\\cdot 1=22$.",
+        "answer": "22",
+        "verify": "\nfrom fractions import Fraction\nnodes = [1, 2, 3]\nvals = [1, 4, 9]\ndef lagrange(x):\n    total = Fraction(0)\n    for i, xi in enumerate(nodes):\n        term = Fraction(vals[i])\n        for j, xj in enumerate(nodes):\n            if j != i:\n                term *= Fraction(x - xj, xi - xj)\n        total += term\n    return total\n# quadratic interpolant of the three data points is x^2 itself\nquad4 = lagrange(4)\n# monic cubic = quadratic interpolant + (x-1)(x-2)(x-3)\nval = quad4 + (4 - 1) * (4 - 2) * (4 - 3)\nprint(val)\n"
+      }
+    },
+    {
+      "title": "Transforming roots by substitution",
+      "body": "Often a problem gives a polynomial whose roots are $r_1,\\dots,r_n$ and asks about a transformed set, such as $r_i^2$, $1/r_i$, or $r_i+c$. You can answer the question with Vieta alone, but it is cleaner to build a new polynomial whose roots are the transformed values, then read off the answer. The general principle is this: if $P(r)=0$ and $y=f(r)$, then the polynomial $Q(y)$ with roots $f(r_i)$ is the one obtained by eliminating $r$ from the system $y=f(r)$ and $P(r)=0$.\n\nThree transformations are routine. For a shift $y=r+c$, substitute $r=y-c$ into $P$, so $Q(y)=P(y-c)$. For reciprocals $y=1/r$, the polynomial with roots $1/r_i$ is the reversal of the coefficients, $y^nP(1/y)$, up to scaling by the constant term. For squares, use the identity $P(x)P(-x)$, which is an even polynomial in $x$. Its roots are $\\pm r_i$, so writing it as $Q(x^2)$ gives a polynomial whose roots are $r_i^2$. The sign is fixed by matching the leading coefficient.\n\nThe squares method is the one students find surprising, so here is the reason. The roots of $P(x)P(-x)$ are the $r_i$ together with the $-r_i$. Every such root has $x^2=r_i^2$, so $P(x)P(-x)=\\pm Q(x^2)$, where $Q$ has roots $r_i^2$. The even polynomial $P(x)P(-x)$ is the device that removes the sign ambiguity: its odd part cancels.\n\nOnce the new polynomial $Q$ is known, its coefficients give symmetric sums of the new roots through Vieta. For example, if $P(x)=x^3-2x+5$, then $P(x)P(-x)=25-(x^3-2x)^2$, which equals $-(x^6-4x^4+4x^2-25)$. So the squared roots satisfy $y^3-4y^2+4y-25=0$, and their sum is $4$. This is a faster route than computing $\\sum r_i^2=e_1^2-2e_2$ by hand, although both must agree, and checking them against each other is a useful habit.",
+      "keyFacts": [
+        "Shift: if $y=r+c$, the polynomial with roots $y_i$ is $P(y-c)$",
+        "Reciprocal: the polynomial with roots $1/r_i$ is $y^nP(1/y)$ up to a constant multiple",
+        "Squares: if $P(x)P(-x)=\\pm Q(x^2)$, then $Q$ has roots $r_i^2$"
+      ],
+      "whenToUse": "A problem asks for a symmetric function of $f(r_i)$, such as $\\sum r_i^2$ or $\\sum 1/r_i$, and it is easier to build a polynomial whose roots are the transformed values.",
+      "commonMistakes": [
+        "Taking the reciprocal polynomial without reversing the coefficients, which gives the wrong roots.",
+        "Dropping the sign when squaring roots, so the constant term of $Q$ is wrong."
+      ],
+      "example": {
+        "problem": "The roots of $x^3-2x+5=0$ are $r_1,r_2,r_3$. What is $r_1^2+r_2^2+r_3^2$?",
+        "solution": "Compute $P(x)P(-x)=(x^3-2x+5)(-x^3+2x+5)=25-(x^3-2x)^2=-(x^6-4x^4+4x^2-25)$. Writing this as $\\pm Q(x^2)$ gives $Q(y)=y^3-4y^2+4y-25$, whose roots are $r_1^2,r_2^2,r_3^2$. By Vieta, their sum is $4$. As a check, $e_1=0$ and $e_2=-2$ for the original cubic, and $\\sum r_i^2=e_1^2-2e_2=0+4=4$.",
+        "answer": "4",
+        "verify": "\nimport cmath\n# Durand-Kerner iteration for the roots of x^3 - 2x + 5\ncoeffs = [1, 0, -2, 5]\ndef P(z):\n    v = 0\n    for c in coeffs:\n        v = v * z + c\n    return v\nz = [complex(0.4, 0.9) ** k for k in range(3)]\nfor _ in range(500):\n    new = []\n    for i in range(3):\n        denom = 1\n        for j in range(3):\n            if j != i:\n                denom *= (z[i] - z[j])\n        new.append(z[i] - P(z[i]) / denom)\n    z = new\ntotal = sum(r * r for r in z)\nprint(round(total.real))\n"
+      }
+    },
+    {
+      "title": "Complex and conjugate roots",
+      "body": "A polynomial with real coefficients may have complex roots, but they arrive in pairs. If $P$ has real coefficients and $P(a+bi)=0$, then taking complex conjugates gives $P(a-bi)=0$, because conjugation commutes with addition and multiplication and fixes real numbers. So non-real roots come in conjugate pairs $a\\pm bi$. Each such pair contributes a real quadratic factor $(x-a)^2+b^2=x^2-2ax+(a^2+b^2)$ with real coefficients.\n\nThe consequence for counting is decisive. A real polynomial of odd degree has at least one real root, because non-real roots pair up and cannot account for an odd number of roots. A real cubic therefore has either three real roots or one real root together with a conjugate pair. A real quartic can have $0$, $2$ or $4$ real roots, but never exactly one or three. These parity facts often rule out a configuration before any computation.\n\nFor a quadratic with roots $a\\pm bi$, the sum and product are real: the sum is $2a$ and the product is $a^2+b^2$. This is why Vieta can be applied to a real polynomial whose roots include a complex pair without any imaginary arithmetic. If you know one complex root $z$ of a real polynomial, then $\\bar z$ is also a root, and the quadratic $(x-z)(x-\\bar z)$ is a factor with real coefficients, which you can divide out.\n\nThe example below uses this structure in a cubic. Given one complex root, the conjugate root and the real root follow, and Vieta then determines the coefficients. Keep track of signs and remember that the product of the three roots of a monic cubic equals minus the constant term.",
+      "keyFacts": [
+        "For real $P$: $P(z)=0$ implies $P(\\bar z)=0$, so non-real roots come in pairs $a\\pm bi$",
+        "$(x-(a+bi))(x-(a-bi))=x^2-2ax+(a^2+b^2)$ is a real quadratic factor",
+        "A real polynomial of odd degree has at least one real root"
+      ],
+      "whenToUse": "The coefficients are real and the problem gives a complex root, asks how many real roots there are, or asks for a coefficient given one non-real root.",
+      "commonMistakes": [
+        "Assuming a real cubic with one complex root has its other roots arbitrary; the conjugate is forced.",
+        "Taking the conjugate of a root but not the sign of the imaginary part in the quadratic factor."
+      ],
+      "example": {
+        "problem": "The polynomial $x^3+ax+b$ has real coefficients and $1+i$ as a root. Find $a+b$.",
+        "solution": "The conjugate $1-i$ is also a root. Let the third root be $r$, which must be real. The sum of the roots is $0$, so $r+2=0$ and $r=-2$. The pairwise sum gives $a=(1+i)(1-i)+r\\cdot 2=2-4=-2$. The product of the roots is $-b$, so $-b=(2)(-2)=-4$, giving $b=4$. Thus $a+b=2$. Check: $(1+i)^3=-2+2i$, and $-2+2i+(-2)(1+i)+4=0$.",
+        "answer": "2",
+        "verify": "\n# (1+i)^3 + a(1+i) + b = 0 must hold exactly for integers a, b.\nfound = []\nfor a in range(-10, 11):\n    for b in range(-10, 11):\n        z = 1 + 1j\n        if z**3 + a * z + b == 0:\n            found.append((a, b))\nprint(found[0][0] + found[0][1])\n"
+      }
+    },
+    {
+      "title": "Roots of unity (introductory)",
+      "body": "A root of unity is a complex number $\\omega$ with $\\omega^n=1$. There are exactly $n$ of them, namely $\\omega_k=e^{2\\pi ik/n}$ for $k=0,1,\\dots,n-1$, and they are the vertices of a regular $n$-gon inscribed in the unit circle. Because $x^n-1$ has degree $n$ and these $n$ roots are distinct, the factor theorem gives $x^n-1=\\prod_{k=0}^{n-1}(x-\\omega_k)$. This factorisation is the basic identity behind the whole subject.\n\nFrom the factorisation you get several facts at once. Setting $x=0$ gives $\\prod(-\\omega_k)=-1$ for odd $n$, and comparing coefficients gives Vieta for the roots of unity. Taking the coefficient of $x^{n-1}$ shows that the sum of all $n$-th roots of unity is $0$ whenever $n\\ge 2$. Also $1+\\omega+\\omega^2+\\cdots+\\omega^{n-1}=0$ for $\\omega\\ne 1$, which follows from the geometric series formula $\\frac{\\omega^n-1}{\\omega-1}=0$.\n\nA standard technique is to differentiate the factorisation. Taking the logarithmic derivative gives $\\sum_k \\frac{1}{x-\\omega_k}=\\frac{nx^{n-1}}{x^n-1}$. Evaluating at a convenient $x$ turns a sum over roots of unity into a closed form. This is the key idea for problems asking for $\\sum 1/(2-\\omega_k)$ or similar sums.\n\nA second standard fact is that the powers of $\\omega$ cycle. If $\\omega^n=1$, then $\\omega^k$ depends only on $k\\bmod n$, so a sum $\\sum_{k=0}^{N-1}\\omega^{k}$ is a sum over complete cycles plus a partial cycle, and complete cycles contribute $0$. For a cube root $\\omega=e^{2\\pi i/3}$ the identity $1+\\omega+\\omega^2=0$ is the most common building block.\n\nRoots of unity appear in problems about integer polynomials with symmetry, and about counting with filters. At this level the goal is to recognise the factorisation $x^n-1=\\prod(x-\\omega_k)$ and the vanishing of sums of roots of unity. Harder uses, such as cyclotomic polynomials, belong to a later stage.",
+      "keyFacts": [
+        "$x^n-1=\\prod_{k=0}^{n-1}(x-\\omega_k)$ with $\\omega_k=e^{2\\pi ik/n}$",
+        "For $n\\ge 2$: $\\sum_{k=0}^{n-1}\\omega_k=0$, and $1+\\omega+\\omega^2=0$ for $\\omega=e^{2\\pi i/3}$",
+        "$\\sum_{k=0}^{n-1}\\frac{1}{x-\\omega_k}=\\frac{nx^{n-1}}{x^n-1}$"
+      ],
+      "whenToUse": "A problem involves $x^n-1$, a sum over $n$-th roots, a symmetric sum with $n$ terms, or a periodic power pattern.",
+      "commonMistakes": [
+        "Forgetting that the $n$ roots of unity are distinct, which breaks the factorisation $x^n-1=\\prod(x-\\omega_k)$ if you list them twice.",
+        "Writing $\\omega^k$ for $k\\ge n$ without reducing modulo $n$."
+      ],
+      "example": {
+        "problem": "Let $\\omega_0,\\omega_1,\\omega_2$ be the three cube roots of unity. Find $\\sum_{k=0}^{2}\\frac{1}{2-\\omega_k}$.",
+        "solution": "Set $P(x)=x^3-1=\\prod_k(x-\\omega_k)$. Then $\\sum_k\\frac{1}{x-\\omega_k}=\\frac{P'(x)}{P(x)}=\\frac{3x^2}{x^3-1}$. At $x=2$ this is $\\frac{12}{8-1}=\\frac{12}{7}$.",
+        "answer": "\\frac{12}{7}",
+        "verify": "\nimport cmath\nfrom fractions import Fraction\nw = [cmath.exp(2j * cmath.pi * k / 3) for k in range(3)]\nval = sum(1 / (2 - wk) for wk in w).real\nprint(Fraction(val).limit_denominator(100))\n"
+      }
+    }
+  ],
+  "strategies": [
+    {
+      "name": "Translate between roots and coefficients first",
+      "description": "When a problem gives a polynomial and asks about its roots, write Vieta's relations before anything else. Symmetric expressions in the roots reduce to coefficients immediately, and only the non-symmetric parts need further work."
+    },
+    {
+      "name": "Divide out a known root",
+      "description": "After finding one root by the rational root theorem or by inspection, divide the polynomial by the corresponding linear factor. The quotient has smaller degree, so Vieta and the remaining structure become easier to read."
+    },
+    {
+      "name": "Use two points to pin down a remainder",
+      "description": "For a divisor $(x-a)(x-b)$, the remainder is linear, so two values $P(a)$ and $P(b)$ determine it. Do not perform long division when the values are cheap to compute."
+    },
+    {
+      "name": "Check divisibility before solving",
+      "description": "For integer-coefficient polynomials, test $a-b\\mid P(a)-P(b)$ and residues modulo small numbers. These checks often rule out an answer choice instantly."
+    },
+    {
+      "name": "Build the difference table",
+      "description": "When values at consecutive integers are given, compute successive differences until a row is constant. The row that is constant gives the degree and the leading coefficient, and the table extends to the next value without finding the polynomial."
+    },
+    {
+      "name": "Count roots to force the polynomial",
+      "description": "A degree-$n$ polynomial with $n+1$ known roots or values is determined, and a difference of two candidate polynomials with too many roots must be zero. Use this uniqueness to replace guesswork with a single identity."
+    }
+  ],
+  "workedExamples": [
+    {
+      "title": "Squares of roots of a quadratic",
+      "difficulty": 1,
+      "problem": "The roots $r$ and $s$ of $x^2-7x+k=0$ satisfy $r^2+s^2=25$. What is $k$?",
+      "choices": [
+        "6",
+        "10",
+        "12",
+        "14",
+        "24"
+      ],
+      "answer": "C",
+      "approach": "Turn $r^2+s^2$ into a combination of $r+s$ and $rs$ with Vieta.",
+      "steps": [
+        "By Vieta, $r+s=7$ and $rs=k$.",
+        "Use $r^2+s^2=(r+s)^2-2rs$, so $25=49-2k$.",
+        "Solve $2k=24$ to get $k=12$.",
+        "Check: with $k=12$, the roots are $3$ and $4$, and $9+16=25$."
+      ],
+      "alternative": "",
+      "takeaway": "Any sum of squares of roots is $e_1^2-2e_2$, so you can solve for the constant term without finding the roots.",
+      "verify": "\nimport cmath\nfound = []\nfor k in range(-50, 51):\n    d = cmath.sqrt(49 - 4 * k)\n    r = (7 + d) / 2\n    s = (7 - d) / 2\n    if abs(r * r + s * s - 25) < 1e-9:\n        found.append(k)\nprint(found[0])\n"
+    },
+    {
+      "title": "Reciprocals of roots",
+      "difficulty": 2,
+      "problem": "The roots of $x^3-6x^2+11x-6=0$ are $r,s,t$. What is $\\frac{1}{r}+\\frac{1}{s}+\\frac{1}{t}$?",
+      "choices": [
+        "1",
+        "\\frac{11}{6}",
+        "2",
+        "\\frac{7}{3}",
+        "3"
+      ],
+      "answer": "B",
+      "approach": "Sum of reciprocals is a ratio of two elementary symmetric functions.",
+      "steps": [
+        "Write $\\frac{1}{r}+\\frac{1}{s}+\\frac{1}{t}=\\frac{rs+st+tr}{rst}$.",
+        "By Vieta for this monic cubic, $rs+st+tr=11$ and $rst=6$.",
+        "Therefore the sum is $\\frac{11}{6}$.",
+        "Check: the roots are $1,2,3$, and $1+\\frac12+\\frac13=\\frac{11}{6}$."
+      ],
+      "alternative": "",
+      "takeaway": "The reciprocal sum is $e_2/e_3$, so it can be read from the constant term and the linear coefficient.",
+      "verify": "\nfrom fractions import Fraction\nroots = [x for x in range(-10, 11) if x**3 - 6*x**2 + 11*x - 6 == 0]\nprint(sum(Fraction(1, x) for x in roots))\n"
+    },
+    {
+      "title": "Remainder by a product of three linear factors",
+      "difficulty": 3,
+      "problem": "A polynomial $P(x)$ leaves remainder $2$ when divided by $x-1$, remainder $3$ when divided by $x-2$, and remainder $6$ when divided by $x-3$. What is the remainder when $P(x)$ is divided by $(x-1)(x-2)(x-3)$, evaluated at $x=4$?",
+      "choices": [
+        "9",
+        "10",
+        "11",
+        "12",
+        "13"
+      ],
+      "answer": "C",
+      "approach": "The remainder on division by a cubic has degree at most $2$, and three values determine it.",
+      "steps": [
+        "Write the remainder as $R(x)=ax^2+bx+c$, since its degree is less than $3$.",
+        "The three conditions are $R(1)=2$, $R(2)=3$ and $R(3)=6$.",
+        "These give $a+b+c=2$, $4a+2b+c=3$ and $9a+3b+c=6$.",
+        "Subtracting pairs gives $3a+b=1$ and $5a+b=3$, so $a=1$, $b=-2$, $c=3$.",
+        "Thus $R(x)=x^2-2x+3$, and $R(4)=16-8+3=11$."
+      ],
+      "alternative": "Use Lagrange interpolation on the three nodes to write $R$ directly, which gives the same quadratic.",
+      "takeaway": "A remainder modulo a degree-$n$ divisor is a polynomial of degree below $n$, and enough values at the roots of the divisor determine it.",
+      "verify": "\nfrom fractions import Fraction\n# solve a + b + c = 2, 4a + 2b + c = 3, 9a + 3b + c = 6 by elimination\nA = [[Fraction(1), Fraction(1), Fraction(1), Fraction(2)],\n     [Fraction(4), Fraction(2), Fraction(1), Fraction(3)],\n     [Fraction(9), Fraction(3), Fraction(1), Fraction(6)]]\nn = 3\nfor col in range(n):\n    piv = next(r for r in range(col, n) if A[r][col] != 0)\n    A[col], A[piv] = A[piv], A[col]\n    for r in range(n):\n        if r != col and A[r][col] != 0:\n            f = A[r][col] / A[col][col]\n            A[r] = [A[r][k] - f * A[col][k] for k in range(n + 1)]\na, b, c = [A[i][n] / A[i][i] for i in range(n)]\nprint(a * 16 + b * 4 + c)\n"
+    },
+    {
+      "title": "Shifted roots and a sum of reciprocals",
+      "difficulty": 4,
+      "problem": "Let $r,s,t$ be the roots of $x^3+2x-5=0$. What is $\\frac{1}{r+1}+\\frac{1}{s+1}+\\frac{1}{t+1}$?",
+      "choices": [
+        "\\frac{1}{8}",
+        "\\frac{3}{8}",
+        "\\frac{5}{8}",
+        "\\frac{7}{8}",
+        "\\frac{9}{8}"
+      ],
+      "answer": "C",
+      "approach": "Shift the variable so the new roots are $r+1$, then read the sum of reciprocals from the new polynomial.",
+      "steps": [
+        "Let $y=r+1$, so $r=y-1$. The polynomial with roots $y_i$ is $Q(y)=P(y-1)$.",
+        "Expand $Q(y)=(y-1)^3+2(y-1)-5=y^3-3y^2+5y-8$.",
+        "The sum of reciprocals of the roots of $Q$ is $\\frac{e_2}{e_3}$ for the monic cubic.",
+        "Here $e_2=5$ and $e_3=8$, since the constant term is $-8$.",
+        "Therefore the sum of reciprocals is $\\frac{5}{8}$."
+      ],
+      "alternative": "Clear denominators in the sum $\\sum\\frac{1}{r+1}=\\frac{\\sum(s+1)(t+1)}{\\prod(r+1)}$ and apply Vieta to the original cubic. This is longer but avoids the shift.",
+      "takeaway": "A shift changes the polynomial by substitution, and the sum of reciprocals of roots is always a ratio of the second and third symmetric functions.",
+      "verify": "\nimport cmath\nfrom fractions import Fraction\ncoeffs = [1, 0, 2, -5]\ndef P(z):\n    v = 0\n    for c in coeffs:\n        v = v * z + c\n    return v\nz = [complex(0.4, 0.9) ** k for k in range(3)]\nfor _ in range(500):\n    new = []\n    for i in range(3):\n        denom = 1\n        for j in range(3):\n            if j != i:\n                denom *= (z[i] - z[j])\n        new.append(z[i] - P(z[i]) / denom)\n    z = new\nval = sum(1 / (r + 1) for r in z).real\nprint(Fraction(val).limit_denominator(100))\n"
+    },
+    {
+      "title": "A monic quartic from four values",
+      "difficulty": 4,
+      "problem": "$P(x)$ is a monic quartic polynomial with $P(1)=3$, $P(2)=5$, $P(3)=7$ and $P(4)=9$. What is $P(5)$?",
+      "choices": [
+        "29",
+        "31",
+        "33",
+        "35",
+        "37"
+      ],
+      "answer": "D",
+      "approach": "The values lie on the line $2x+1$, so the difference $P(x)-(2x+1)$ has known roots.",
+      "steps": [
+        "Let $D(x)=P(x)-(2x+1)$. Then $D(1)=D(2)=D(3)=D(4)=0$.",
+        "$D$ is a monic quartic minus a linear polynomial, so it is still monic of degree $4$.",
+        "Hence $D(x)=(x-1)(x-2)(x-3)(x-4)$.",
+        "Therefore $P(x)=2x+1+(x-1)(x-2)(x-3)(x-4)$.",
+        "At $x=5$: $P(5)=11+4\\cdot 3\\cdot 2\\cdot 1=11+24=35$."
+      ],
+      "alternative": "",
+      "takeaway": "Subtracting the simplest polynomial that matches the data reduces interpolation with a leading-coefficient condition to counting roots.",
+      "verify": "\ndef P(x):\n    return 2 * x + 1 + (x - 1) * (x - 2) * (x - 3) * (x - 4)\n# verify the four given values and monic leading term numerically\nassert [P(x) for x in (1, 2, 3, 4)] == [3, 5, 7, 9]\nprint(P(5))\n"
+    },
+    {
+      "title": "Sum over nontrivial seventh roots of unity",
+      "difficulty": 5,
+      "problem": "Let $\\omega=e^{2\\pi i/7}$. What is $\\sum_{k=1}^{6}\\frac{1}{1-\\omega^k}$?",
+      "choices": [
+        "2",
+        "\\frac{5}{2}",
+        "3",
+        "\\frac{7}{2}",
+        "4"
+      ],
+      "answer": "C",
+      "approach": "The sum over roots of unity of a rational function of $x$ comes from the logarithmic derivative of $x^7-1$.",
+      "steps": [
+        "The roots $\\omega^1,\\dots,\\omega^6$ are all non-real and come in conjugate pairs $\\omega^k$ and $\\omega^{7-k}=\\overline{\\omega^k}$, pairing $k=1,2,3$ with $k=6,5,4$.",
+        "Let $z=\\omega^k$ with $|z|=1$, so $\\bar z=1/z$. Then $\\frac{1}{1-z}+\\frac{1}{1-\\bar z}=\\frac{(1-\\bar z)+(1-z)}{(1-z)(1-\\bar z)}=\\frac{2-z-\\bar z}{2-z-\\bar z}=1$, because $(1-z)(1-\\bar z)=2-z-\\bar z$ when $|z|=1$.",
+        "Each of the three pairs therefore contributes exactly $1$.",
+        "The total is $1+1+1=3$.",
+        "Check numerically: $\\frac{1}{1-\\omega}$ has real part $\\frac12$, and the three pairs together give $3$."
+      ],
+      "alternative": "Use the logarithmic derivative of $x^7-1$ and let $x\\to 1$, which gives the same total $3$ but needs more algebra.",
+      "takeaway": "Pairing conjugate roots of unity turns a sum of reciprocals into a constant.",
+      "verify": "\nimport cmath\nfrom fractions import Fraction\nw = [cmath.exp(2j * cmath.pi * k / 7) for k in range(1, 7)]\nval = sum(1 / (1 - wk) for wk in w).real\nprint(Fraction(val).limit_denominator(100))\n"
+    }
+  ],
+  "problems": [
+    {
+      "id": "poly-01",
+      "difficulty": 1,
+      "problem": "The roots of $x^2-9x+14=0$ are $a$ and $b$. What is $a+b$?",
+      "choices": [
+        "4",
+        "5",
+        "7",
+        "9",
+        "14"
+      ],
+      "answer": "D",
+      "hint": "Read the sum of the roots from the coefficient of $x$.",
+      "solution": "By Vieta for the monic quadratic $x^2-9x+14$, the sum of the roots is $-(-9)=9$. The roots are $2$ and $7$, and indeed $2+7=9$.",
+      "concepts": [
+        1
+      ],
+      "verify": "\nroots = [x for x in range(-20, 21) if x * x - 9 * x + 14 == 0]\nprint(sum(roots))\n"
+    },
+    {
+      "id": "poly-02",
+      "difficulty": 1,
+      "problem": "What is the remainder when $x^3-2x^2+5x-7$ is divided by $x-2$?",
+      "choices": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "answer": "C",
+      "hint": "The remainder theorem says the remainder is the value at the root of the divisor.",
+      "solution": "By the remainder theorem, the remainder on division by $x-2$ equals $P(2)$. We have $P(2)=8-8+10-7=3$.",
+      "concepts": [
+        0
+      ],
+      "verify": "\ncoeffs = [1, -2, 5, -7]\nv = 0\nfor c in coeffs:\n    v = v * 2 + c\nprint(v)\n"
+    },
+    {
+      "id": "poly-03",
+      "difficulty": 1,
+      "problem": "How many distinct real roots does $(x^2-5x+6)(x^2-4)$ have?",
+      "choices": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "answer": "B",
+      "hint": "Factor each quadratic and collect the distinct values.",
+      "solution": "We have $x^2-5x+6=(x-2)(x-3)$ and $x^2-4=(x-2)(x+2)$. The distinct roots are $2$, $3$ and $-2$, so there are $3$ distinct roots, even though $2$ appears twice.",
+      "concepts": [
+        0
+      ],
+      "verify": "\nroots = {x for x in range(-10, 11) if (x * x - 5 * x + 6) * (x * x - 4) == 0}\nprint(len(roots))\n"
+    },
+    {
+      "id": "poly-04",
+      "difficulty": 1,
+      "problem": "The numbers $a$ and $b$ satisfy $a+b=4$ and $ab=-5$. What is $a^2+b^2$?",
+      "choices": [
+        "10",
+        "14",
+        "20",
+        "24",
+        "26"
+      ],
+      "answer": "E",
+      "hint": "Write $a^2+b^2=(a+b)^2-2ab$.",
+      "solution": "Using $a^2+b^2=(a+b)^2-2ab$, we get $a^2+b^2=16-2(-5)=16+10=26$. The numbers are $5$ and $-1$, with squares $25+1=26$.",
+      "concepts": [
+        1
+      ],
+      "verify": "\nroots = [x for x in range(-20, 21) if x * x - 4 * x - 5 == 0]\nprint(sum(r * r for r in roots))\n"
+    },
+    {
+      "id": "poly-05",
+      "difficulty": 1,
+      "problem": "The monic quadratic $x^2+bx+c$ has roots $1$ and $-3$. What is $b+c$?",
+      "choices": [
+        "-3",
+        "-1",
+        "0",
+        "1",
+        "3"
+      ],
+      "answer": "B",
+      "hint": "Vieta gives $b$ and $c$ directly from the two roots.",
+      "solution": "The sum of the roots is $1+(-3)=-2=-b$, so $b=2$. The product is $1\\cdot(-3)=-3=c$. Hence $b+c=2-3=-1$.",
+      "concepts": [
+        1
+      ],
+      "verify": "\nsols = [(b, c) for b in range(-10, 11) for c in range(-10, 11)\n        if 1 + b + c == 0 and 9 - 3 * b + c == 0]\nprint(sols[0][0] + sols[0][1])\n"
+    },
+    {
+      "id": "poly-06",
+      "difficulty": 1,
+      "problem": "The polynomial $P(x)=x^3-x+k$ satisfies $P(2)=10$. What is $P(-2)$?",
+      "choices": [
+        "-6",
+        "-4",
+        "-2",
+        "0",
+        "2"
+      ],
+      "answer": "C",
+      "hint": "Find $k$ first, then evaluate at $-2$.",
+      "solution": "From $P(2)=8-2+k=10$ we get $k=4$. Then $P(-2)=-8+2+4=-2$.",
+      "concepts": [
+        0
+      ],
+      "verify": "\nk = [t for t in range(-20, 21) if 8 - 2 + t == 10][0]\nprint(-8 + 2 + k)\n"
+    },
+    {
+      "id": "poly-07",
+      "difficulty": 2,
+      "problem": "Let $r$ and $s$ be the roots of $x^2-4x+1=0$. What is $r^2+s^2$?",
+      "choices": [
+        "8",
+        "10",
+        "12",
+        "14",
+        "16"
+      ],
+      "answer": "D",
+      "hint": "Use Newton's identity for the sum of squares of two roots.",
+      "solution": "We have $r+s=4$ and $rs=1$. Then $r^2+s^2=(r+s)^2-2rs=16-2=14$.",
+      "concepts": [
+        2
+      ],
+      "verify": "\nimport cmath\nd = cmath.sqrt(16 - 4)\nr = (4 + d) / 2\ns = (4 - d) / 2\nprint(round((r * r + s * s).real))\n"
+    },
+    {
+      "id": "poly-08",
+      "difficulty": 2,
+      "problem": "The polynomial $P(x)=x^4-3x^2+5x+c$ leaves remainder $4$ when divided by $x-1$. What is $c$?",
+      "choices": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "answer": "B",
+      "hint": "The remainder is $P(1)$.",
+      "solution": "By the remainder theorem, $P(1)=1-3+5+c=3+c$. Setting this equal to $4$ gives $c=1$.",
+      "concepts": [
+        0
+      ],
+      "verify": "\nc = [t for t in range(-10, 11) if 1 - 3 + 5 + t == 4][0]\nprint(c)\n"
+    },
+    {
+      "id": "poly-09",
+      "difficulty": 2,
+      "problem": "How many rational numbers are roots of $3x^3+x^2-12x-4=0$?",
+      "choices": [
+        "1",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "answer": "B",
+      "hint": "Try grouping the four terms into pairs.",
+      "solution": "Grouping gives $x^2(3x+1)-4(3x+1)=(x^2-4)(3x+1)$. The roots are $2$, $-2$ and $-\\frac13$, all rational. So there are $3$ rational roots.",
+      "concepts": [
+        3
+      ],
+      "verify": "\nfrom fractions import Fraction\nfrom itertools import product\ndef P(x):\n    return 3 * x**3 + x**2 - 12 * x - 4\ncands = set()\nfor p, q, s in product([1, 2, 4], [1, 3], [1, -1]):\n    cands.add(Fraction(s * p, q))\nprint(len([c for c in cands if P(c) == 0]))\n"
+    },
+    {
+      "id": "poly-10",
+      "difficulty": 2,
+      "problem": "What is the product of the roots of $x^3-2x^2-5x+6=0$?",
+      "choices": [
+        "-6",
+        "-2",
+        "2",
+        "5",
+        "6"
+      ],
+      "answer": "A",
+      "hint": "For a monic cubic, the product of the roots is minus the constant term.",
+      "solution": "By Vieta, for $x^3+px^2+qx+t$ the product of the roots is $-t$. Here $t=6$, so the product is $-6$. The roots are $1$, $3$ and $-2$, and $1\\cdot 3\\cdot(-2)=-6$.",
+      "concepts": [
+        1
+      ],
+      "verify": "\nroots = [x for x in range(-10, 11) if x**3 - 2 * x**2 - 5 * x + 6 == 0]\np = 1\nfor r in roots:\n    p *= r\nprint(p)\n"
+    },
+    {
+      "id": "poly-11",
+      "difficulty": 2,
+      "problem": "Let $\\alpha$ and $\\beta$ be the roots of $x^2+x-1=0$. What is $\\alpha^2+\\beta^2$?",
+      "choices": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "answer": "C",
+      "hint": "Compute the sum and product of the roots first.",
+      "solution": "We have $\\alpha+\\beta=-1$ and $\\alpha\\beta=-1$. Then $\\alpha^2+\\beta^2=(\\alpha+\\beta)^2-2\\alpha\\beta=1+2=3$.",
+      "concepts": [
+        1
+      ],
+      "verify": "\nimport cmath\nd = cmath.sqrt(1 + 4)\na = (-1 + d) / 2\nb = (-1 - d) / 2\nprint(round((a * a + b * b).real))\n"
+    },
+    {
+      "id": "poly-12",
+      "difficulty": 2,
+      "problem": "A polynomial $P(x)$ has integer coefficients and $P(0)=3$. Which of the following cannot be the value of $P(6)$?",
+      "choices": [
+        "9",
+        "15",
+        "21",
+        "22",
+        "27"
+      ],
+      "answer": "D",
+      "hint": "Use that $6$ divides $P(6)-P(0)$.",
+      "solution": "Since $6-0=6$ divides $P(6)-P(0)=P(6)-3$, the value $P(6)$ must be congruent to $3$ modulo $6$. The candidates $9$, $15$, $21$ and $27$ are all $\\equiv 3\\pmod 6$, but $22-3=19$ is not divisible by $6$, so $22$ is impossible.",
+      "concepts": [
+        4
+      ],
+      "verify": "\nbad = [v for v in [9, 15, 21, 22, 27] if (v - 3) % 6 != 0]\nprint(bad[0])\n"
+    },
+    {
+      "id": "poly-13",
+      "difficulty": 3,
+      "problem": "Let $r$ and $s$ be the roots of $x^2-3x+2=0$. What is $r^3+s^3$?",
+      "choices": [
+        "5",
+        "7",
+        "9",
+        "11",
+        "13"
+      ],
+      "answer": "C",
+      "hint": "Newton's identity: $p_3=e_1p_2-e_2p_1$.",
+      "solution": "Here $e_1=3$ and $e_2=2$. First $p_1=3$ and $p_2=e_1^2-2e_2=9-4=5$. Then $p_3=e_1p_2-e_2p_1=15-6=9$. The roots are $1$ and $2$, and $1+8=9$.",
+      "concepts": [
+        2
+      ],
+      "verify": "\nroots = [x for x in range(-5, 6) if x * x - 3 * x + 2 == 0]\nprint(sum(v**3 for v in roots))\n"
+    },
+    {
+      "id": "poly-14",
+      "difficulty": 3,
+      "problem": "A cubic polynomial $P(x)$ satisfies $P(0)=2$, $P(1)=3$, $P(2)=8$ and $P(3)=23$. What is $P(4)$?",
+      "choices": [
+        "46",
+        "50",
+        "54",
+        "58",
+        "62"
+      ],
+      "answer": "C",
+      "hint": "Build the difference table of the four values.",
+      "solution": "The first differences are $1,5,15$, the second differences are $4,10$, and the third difference is $6$. Extending the third difference is constant, so the second differences become $16$, the first differences become $31$, and $P(4)=23+31=54$. As a check, $P(x)=x^3-x^2+x+2$ gives $P(4)=64-16+4+2=54$.",
+      "concepts": [
+        5
+      ],
+      "verify": "\nfrom fractions import Fraction\nnodes = [0, 1, 2, 3]\nvals = [2, 3, 8, 23]\ndef lagrange(x):\n    total = Fraction(0)\n    for i, xi in enumerate(nodes):\n        term = Fraction(vals[i])\n        for j, xj in enumerate(nodes):\n            if j != i:\n                term *= Fraction(x - xj, xi - xj)\n        total += term\n    return total\nprint(lagrange(4))\n"
+    },
+    {
+      "id": "poly-15",
+      "difficulty": 3,
+      "problem": "A monic cubic polynomial $P(x)$ satisfies $P(1)=5$, $P(2)=10$ and $P(3)=15$. What is $P(0)$?",
+      "choices": [
+        "-8",
+        "-6",
+        "-4",
+        "-2",
+        "0"
+      ],
+      "answer": "B",
+      "hint": "Subtract the linear polynomial $5x$ that matches the three values.",
+      "solution": "Let $D(x)=P(x)-5x$. Then $D$ is monic cubic with $D(1)=D(2)=D(3)=0$, so $D(x)=(x-1)(x-2)(x-3)$. Hence $P(x)=5x+(x-1)(x-2)(x-3)$, and $P(0)=0+(-1)(-2)(-3)=-6$.",
+      "concepts": [
+        6
+      ],
+      "verify": "\nfrom fractions import Fraction\nnodes = [1, 2, 3]\nvals = [5, 10, 15]\ndef lagrange(x):\n    total = Fraction(0)\n    for i, xi in enumerate(nodes):\n        term = Fraction(vals[i])\n        for j, xj in enumerate(nodes):\n            if j != i:\n                term *= Fraction(x - xj, xi - xj)\n        total += term\n    return total\n# monic cubic = (quadratic interpolant of the data) + (x-1)(x-2)(x-3)\nprint(lagrange(0) + (0 - 1) * (0 - 2) * (0 - 3))\n"
+    },
+    {
+      "id": "poly-16",
+      "difficulty": 3,
+      "problem": "Let $r,s,t$ be the roots of $x^3+x-2=0$. What is $\\frac{1}{r^2}+\\frac{1}{s^2}+\\frac{1}{t^2}$?",
+      "choices": [
+        "\\frac{1}{4}",
+        "\\frac{1}{2}",
+        "1",
+        "2",
+        "4"
+      ],
+      "answer": "A",
+      "hint": "Sum the reciprocals squared through $e_1,e_2,e_3$ of the reciprocals.",
+      "solution": "Here $e_1=0$, $e_2=1$ and $e_3=2$. The sum of $1/r^2$ equals $\\frac{(\\sum rs)^2-2\\,(\\prod r)(\\sum r)}{(\\prod r)^2}$, because the squares of reciprocals are the reciprocals of $r^2$. This gives $\\frac{1^2-2\\cdot 2\\cdot 0}{2^2}=\\frac14$.",
+      "concepts": [
+        7
+      ],
+      "verify": "\nimport cmath\nfrom fractions import Fraction\ncoeffs = [1, 0, 1, -2]\ndef P(z):\n    v = 0\n    for c in coeffs:\n        v = v * z + c\n    return v\nz = [complex(0.4, 0.9) ** k for k in range(3)]\nfor _ in range(500):\n    new = []\n    for i in range(3):\n        denom = 1\n        for j in range(3):\n            if j != i:\n                denom *= (z[i] - z[j])\n        new.append(z[i] - P(z[i]) / denom)\n    z = new\nval = sum(1 / (r * r) for r in z).real\nprint(Fraction(val).limit_denominator(100))\n"
+    },
+    {
+      "id": "poly-17",
+      "difficulty": 3,
+      "problem": "The polynomial $x^4+ax^2+b$ has real coefficients and $1+i$ as a root. What is $a+b$?",
+      "choices": [
+        "0",
+        "2",
+        "4",
+        "6",
+        "8"
+      ],
+      "answer": "C",
+      "hint": "Find all four roots using conjugates and the symmetry $x\\mapsto -x$.",
+      "solution": "Since the polynomial is even and has real coefficients, the roots are closed under $z\\mapsto -z$ and $z\\mapsto\\bar z$. So the roots are $\\pm(1+i)$ and $\\pm(1-i)$. The factorisation is $(x^2-2x+2)(x^2+2x+2)=(x^2+2)^2-4x^2=x^4+4$. Thus $a=0$ and $b=4$, and $a+b=4$.",
+      "concepts": [
+        8
+      ],
+      "verify": "\nfound = []\nz = complex(1, 1)\nz2 = z * z\nz4 = z2 * z2\nfor a in range(-10, 11):\n    for b in range(-10, 11):\n        if z4 + a * z2 + b == 0:\n            found.append((a, b))\nprint(found[0][0] + found[0][1])\n"
+    },
+    {
+      "id": "poly-18",
+      "difficulty": 3,
+      "problem": "Let $\\omega_0,\\omega_1,\\omega_2,\\omega_3$ be the four fourth roots of unity. What is $\\sum_{k=0}^{3}\\frac{1}{2-\\omega_k}$?",
+      "choices": [
+        "\\frac{8}{15}",
+        "\\frac{2}{3}",
+        "\\frac{4}{5}",
+        "\\frac{16}{15}",
+        "\\frac{32}{15}"
+      ],
+      "answer": "E",
+      "hint": "Differentiate $x^4-1=\\prod(x-\\omega_k)$ logarithmically.",
+      "solution": "Since $x^4-1=\\prod_k(x-\\omega_k)$, we have $\\sum_k\\frac{1}{x-\\omega_k}=\\frac{P'(x)}{P(x)}=\\frac{4x^3}{x^4-1}$. At $x=2$ this is $\\frac{32}{15}$.",
+      "concepts": [
+        9
+      ],
+      "verify": "\nimport cmath\nfrom fractions import Fraction\nw = [cmath.exp(2j * cmath.pi * k / 4) for k in range(4)]\nval = sum(1 / (2 - wk) for wk in w).real\nprint(Fraction(val).limit_denominator(100))\n"
+    },
+    {
+      "id": "poly-19",
+      "difficulty": 3,
+      "problem": "The polynomial $6x^3-7x^2+1$ has three rational roots. What is their product?",
+      "choices": [
+        "-\\frac{1}{2}",
+        "-\\frac{1}{6}",
+        "\\frac{1}{6}",
+        "\\frac{1}{2}",
+        "1"
+      ],
+      "answer": "B",
+      "hint": "Test candidates $\\pm p/q$ with $p\\mid 1$ and $q\\mid 6$, then use Vieta.",
+      "solution": "The rational root theorem gives candidates $\\pm\\frac1q$ with $q\\in\\{1,2,3,6\\}$. Testing shows $1$, $\\frac12$ and $-\\frac13$ are roots, since $6-7+1=0$, $\\frac34-\\frac74+1=0$ and $-\\frac29-\\frac79+1=0$. Their product is $1\\cdot\\frac12\\cdot\\left(-\\frac13\\right)=-\\frac16$, which agrees with Vieta: $-\\frac{1}{6}$.",
+      "concepts": [
+        3
+      ],
+      "verify": "\nfrom fractions import Fraction\nfrom itertools import product\ndef P(x):\n    return 6 * x**3 - 7 * x**2 + 1\ncands = set()\nfor s, q in product([1, -1], [1, 2, 3, 6]):\n    cands.add(Fraction(s, q))\nroots = [c for c in cands if P(c) == 0]\np = Fraction(1)\nfor r in roots:\n    p *= r\nprint(p)\n"
+    },
+    {
+      "id": "poly-20",
+      "difficulty": 3,
+      "problem": "A cubic polynomial $P(x)$ satisfies $P(1)=1$, $P(2)=8$, $P(3)=27$ and $P(4)=60$. What is $P(0)$?",
+      "choices": [
+        "-2",
+        "0",
+        "2",
+        "4",
+        "6"
+      ],
+      "answer": "D",
+      "hint": "Extend the difference table backwards to $x=0$.",
+      "solution": "The values $1,8,27,60$ have first differences $7,19,33$, second differences $12,14$ and third difference $2$. Extending backwards: the second difference at $0$ is $12-2=10$, the first difference at $0$ is $7-10=-3$, so $P(0)=1-(-3)=4$. Check: the cubic is $P(x)=x^3-\\frac23(x-1)(x-2)(x-3)$, which gives $P(4)=64-\\frac23\\cdot 6=60$ and $P(0)=4$.",
+      "concepts": [
+        6
+      ],
+      "verify": "\nfrom fractions import Fraction\nnodes = [1, 2, 3, 4]\nvals = [1, 8, 27, 60]\ndef lagrange(x):\n    total = Fraction(0)\n    for i, xi in enumerate(nodes):\n        term = Fraction(vals[i])\n        for j, xj in enumerate(nodes):\n            if j != i:\n                term *= Fraction(x - xj, xi - xj)\n        total += term\n    return total\nprint(lagrange(0))\n"
+    },
+    {
+      "id": "poly-21",
+      "difficulty": 4,
+      "problem": "Let $r_1,r_2,r_3$ be the roots of $x^3-4x+1=0$. What is $r_1^4+r_2^4+r_3^4$?",
+      "choices": [
+        "16",
+        "20",
+        "24",
+        "28",
+        "32"
+      ],
+      "answer": "E",
+      "hint": "Newton's identities with $e_1=0$ simplify the recursion a lot.",
+      "solution": "Write the polynomial as $x^3-e_1x^2+e_2x-e_3$. Then $e_1=0$, $e_2=-4$ and $e_3=-1$. Newton's identities give $p_1=e_1=0$, $p_2=e_1p_1-2e_2=8$ and $p_3=e_1p_2-e_2p_1+3e_3=-3$. For the fourth power sum, $p_4=e_1p_3-e_2p_2+e_3p_1=0+32+0=32$. Since $e_1=0$, the earlier terms drop out, which is why this recursion is so clean.",
+      "concepts": [
+        2
+      ],
+      "verify": "\nimport cmath\ncoeffs = [1, 0, -4, 1]\ndef P(z):\n    v = 0\n    for c in coeffs:\n        v = v * z + c\n    return v\nz = [complex(0.4, 0.9) ** k for k in range(3)]\nfor _ in range(500):\n    new = []\n    for i in range(3):\n        denom = 1\n        for j in range(3):\n            if j != i:\n                denom *= (z[i] - z[j])\n        new.append(z[i] - P(z[i]) / denom)\n    z = new\nprint(round(sum(r**4 for r in z).real))\n"
+    },
+    {
+      "id": "poly-22",
+      "difficulty": 4,
+      "problem": "Let $r_1,r_2,r_3$ be the roots of $x^3-3x+1=0$. What is $r_1^5+r_2^5+r_3^5$?",
+      "choices": [
+        "-21",
+        "-15",
+        "-9",
+        "9",
+        "15"
+      ],
+      "answer": "B",
+      "hint": "Compute $p_1,\\dots,p_5$ in order, carrying the signs of $e_2$ and $e_3$ through.",
+      "solution": "Here $e_1=0$, $e_2=-3$ and $e_3=-1$. The power sums are $p_1=0$, $p_2=-2e_2=6$ and $p_3=3e_3=-3$. For $k>3$ Newton's recursion is $p_k=e_1p_{k-1}-e_2p_{k-2}+e_3p_{k-3}$. So $p_4=0+3\\cdot 6+0=18$ and $p_5=0-(-3)(-3)+(-1)(6)=-9-6=-15$. The roots are real, and a numerical check confirms $-15$.",
+      "concepts": [
+        2
+      ],
+      "verify": "\nimport cmath\ncoeffs = [1, 0, -3, 1]\ndef P(z):\n    v = 0\n    for c in coeffs:\n        v = v * z + c\n    return v\nz = [complex(0.4, 0.9) ** k for k in range(3)]\nfor _ in range(500):\n    new = []\n    for i in range(3):\n        denom = 1\n        for j in range(3):\n            if j != i:\n                denom *= (z[i] - z[j])\n        new.append(z[i] - P(z[i]) / denom)\n    z = new\nprint(round(sum(r**5 for r in z).real))\n"
+    },
+    {
+      "id": "poly-23",
+      "difficulty": 4,
+      "problem": "The polynomial $f(x)=2x^3+ax^2+bx+6$ has $1$ and $-2$ as roots. What is $|a|+|b|$?",
+      "choices": [
+        "4",
+        "6",
+        "8",
+        "10",
+        "12"
+      ],
+      "answer": "C",
+      "hint": "Each root gives one linear equation in $a$ and $b$.",
+      "solution": "From $f(1)=2+a+b+6=0$ we get $a+b=-8$. From $f(-2)=-16+4a-2b+6=0$ we get $4a-2b=10$, that is $2a-b=5$. Adding the two equations gives $3a=-3$, so $a=-1$ and $b=-7$. Then $|a|+|b|=1+7=8$. As a check, $f(x)=2x^3-x^2-7x+6=(x-1)(x+2)(2x-3)$, and the third root $\\frac32$ is rational as the rational root theorem allows.",
+      "concepts": [
+        0,
+        3
+      ],
+      "verify": "\nfound = []\nfor a in range(-20, 21):\n    for b in range(-20, 21):\n        def f(x):\n            return 2 * x**3 + a * x**2 + b * x + 6\n        if f(1) == 0 and f(-2) == 0:\n            found.append((a, b))\nprint(abs(found[0][0]) + abs(found[0][1]))\n"
+    },
+    {
+      "id": "poly-24",
+      "difficulty": 4,
+      "problem": "$P(x)$ is a monic quartic polynomial with $P(1)=1$, $P(2)=4$, $P(3)=9$ and $P(4)=16$. What is $P(5)$?",
+      "choices": [
+        "36",
+        "42",
+        "44",
+        "47",
+        "49"
+      ],
+      "answer": "E",
+      "hint": "Compare $P(x)$ with $x^2$, which matches all four values.",
+      "solution": "Let $D(x)=P(x)-x^2$. Then $D$ is a monic quartic, because subtracting $x^2$ does not change the leading term, and $D(1)=D(2)=D(3)=D(4)=0$. Therefore $D(x)=(x-1)(x-2)(x-3)(x-4)$, so $P(x)=x^2+(x-1)(x-2)(x-3)(x-4)$. At $x=5$ we get $P(5)=25+4\\cdot 3\\cdot 2\\cdot 1=25+24=49$. Compare with the cubic case: the extra leading degree is exactly what produces the factor of four linear terms.",
+      "concepts": [
+        6
+      ],
+      "verify": "\nfrom fractions import Fraction\nnodes = [1, 2, 3, 4]\nvals = [1, 4, 9, 16]\ndef lagrange(x):\n    total = Fraction(0)\n    for i, xi in enumerate(nodes):\n        term = Fraction(vals[i])\n        for j, xj in enumerate(nodes):\n            if j != i:\n                term *= Fraction(x - xj, xi - xj)\n        total += term\n    return total\n# the cubic interpolant through the four values is x^2, and the quartic adds (x-1)(x-2)(x-3)(x-4)\nprint(lagrange(5) + (5 - 1) * (5 - 2) * (5 - 3) * (5 - 4))\n"
+    },
+    {
+      "id": "poly-25",
+      "difficulty": 4,
+      "problem": "Let $\\omega_0,\\dots,\\omega_5$ be the six sixth roots of unity. What is $\\sum_{k=0}^{5}\\frac{1}{2-\\omega_k}$?",
+      "choices": [
+        "2",
+        "\\frac{16}{7}",
+        "3",
+        "\\frac{64}{21}",
+        "4"
+      ],
+      "answer": "D",
+      "hint": "Use $x^6-1=\\prod(x-\\omega_k)$ and differentiate logarithmically.",
+      "solution": "Let $P(x)=x^6-1=\\prod_k(x-\\omega_k)$. Then $\\sum_k\\frac{1}{x-\\omega_k}=\\frac{P'(x)}{P(x)}=\\frac{6x^5}{x^6-1}$. Setting $x=2$ gives $\\frac{6\\cdot 32}{64-1}=\\frac{192}{63}=\\frac{64}{21}$. The value is about $3.05$, which sits between $3$ and $4$, the two nearest choices, and only $\\frac{64}{21}$ is exact.",
+      "concepts": [
+        9
+      ],
+      "verify": "\nimport cmath\nfrom fractions import Fraction\nw = [cmath.exp(2j * cmath.pi * k / 6) for k in range(6)]\nval = sum(1 / (2 - wk) for wk in w).real\nprint(Fraction(val).limit_denominator(100))\n"
+    },
+    {
+      "id": "poly-26",
+      "difficulty": 4,
+      "problem": "A polynomial $P(x)$ has integer coefficients, $P(1)=2$ and $P(3)=10$. Which of the following could be $P(6)$?",
+      "choices": [
+        "12",
+        "17",
+        "22",
+        "27",
+        "32"
+      ],
+      "answer": "C",
+      "hint": "Apply $a-b\\mid P(a)-P(b)$ with $(a,b)=(6,1)$ and $(6,3)$.",
+      "solution": "Since $6-1=5$ divides $P(6)-2$, the value $P(6)$ is $\\equiv 2\\pmod 5$. Since $6-3=3$ divides $P(6)-10$, the value $P(6)$ is $\\equiv 1\\pmod 3$. Together these say $P(6)\\equiv 7\\pmod{15}$. Checking the choices: $12$ and $27$ are $0\\pmod 3$, $17$ and $32$ are $2\\pmod 3$, so each fails. Only $22$ satisfies both conditions. It is achieved by $P(x)=4x-2$, which gives $P(1)=2$, $P(3)=10$ and $P(6)=22$.",
+      "concepts": [
+        4
+      ],
+      "verify": "\nvalid = [v for v in [12, 17, 22, 27, 32] if (v - 2) % 5 == 0 and (v - 10) % 3 == 0]\nprint(valid[0])\n"
+    },
+    {
+      "id": "poly-27",
+      "difficulty": 5,
+      "problem": "Let $r_1,r_2,r_3$ be the roots of $x^3-3x-1=0$. What is $r_1^6+r_2^6+r_3^6$?",
+      "choices": [
+        "33",
+        "45",
+        "51",
+        "57",
+        "63"
+      ],
+      "answer": "D",
+      "hint": "Build the power sums $p_1,\\dots,p_6$ one at a time with Newton's identities.",
+      "solution": "Here $e_1=0$, $e_2=-3$ and $e_3=1$, since the polynomial is $x^3-e_1x^2+e_2x-e_3$ with constant term $-1$. Then $p_1=0$, $p_2=-2e_2=6$, $p_3=3e_3=3$. For $k>3$, $p_k=e_1p_{k-1}-e_2p_{k-2}+e_3p_{k-3}=3p_{k-2}+p_{k-3}$. So $p_4=3\\cdot 6+0=18$, $p_5=3\\cdot 3+6=15$, and $p_6=3\\cdot 18+3=57$. This is a tidy example of how the recursion reduces a sixth-power problem to four small steps.",
+      "concepts": [
+        2
+      ],
+      "verify": "\nimport cmath\ncoeffs = [1, 0, -3, -1]\ndef P(z):\n    v = 0\n    for c in coeffs:\n        v = v * z + c\n    return v\nz = [complex(0.4, 0.9) ** k for k in range(3)]\nfor _ in range(500):\n    new = []\n    for i in range(3):\n        denom = 1\n        for j in range(3):\n            if j != i:\n                denom *= (z[i] - z[j])\n        new.append(z[i] - P(z[i]) / denom)\n    z = new\nprint(round(sum(r**6 for r in z).real))\n"
+    },
+    {
+      "id": "poly-28",
+      "difficulty": 5,
+      "problem": "A polynomial $P(x)$ of degree at most $5$ satisfies $P(k)=2^k$ for $k=0,1,2,3,4,5$. What is $P(6)$?",
+      "choices": [
+        "63",
+        "64",
+        "65",
+        "66",
+        "67"
+      ],
+      "answer": "A",
+      "hint": "Compare $P$ with $2^x$: their difference has a known $6$th finite difference at $0$.",
+      "solution": "Let $f(x)=2^x$ and let $\\Delta$ be the forward difference. The degree-$5$ interpolant $P$ satisfies $\\Delta^6P(0)=0$, so Newton's forward formula gives $P(6)=\\sum_{k=0}^{5}\\binom{6}{k}\\Delta^kf(0)=f(6)-\\Delta^6f(0)$. Since $\\Delta^6f(0)=\\sum_{j=0}^{6}\\binom6j(-1)^{6-j}2^j=(2-1)^6=1$, we get $P(6)=64-1=63$.",
+      "concepts": [
+        5
+      ],
+      "verify": "\nfrom fractions import Fraction\nnodes = [0, 1, 2, 3, 4, 5]\nvals = [2**k for k in nodes]\ndef lagrange(x):\n    total = Fraction(0)\n    for i, xi in enumerate(nodes):\n        term = Fraction(vals[i])\n        for j, xj in enumerate(nodes):\n            if j != i:\n                term *= Fraction(x - xj, xi - xj)\n        total += term\n    return total\nprint(lagrange(6))\n"
+    },
+    {
+      "id": "poly-29",
+      "difficulty": 5,
+      "problem": "Let $r_1,r_2,r_3,r_4$ be the roots of $x^4-2x^3+3x^2-4x+5=0$. What is $r_1^5+r_2^5+r_3^5+r_4^5$?",
+      "choices": [
+        "-40",
+        "-28",
+        "-16",
+        "16",
+        "28"
+      ],
+      "answer": "B",
+      "hint": "For a quartic the recursion has an extra term $-4e_4$ at $k=4$ and $-e_4p_{k-4}$ afterwards.",
+      "solution": "Writing the polynomial as $x^4-e_1x^3+e_2x^2-e_3x+e_4$ gives $e_1=2$, $e_2=3$, $e_3=4$ and $e_4=5$. Then $p_1=2$, $p_2=e_1p_1-2e_2=-2$, and $p_3=e_1p_2-e_2p_1+3e_3=2$. For $k=4$, $p_4=e_1p_3-e_2p_2+e_3p_1-4e_4=-2$. For $k=5$, $p_5=e_1p_4-e_2p_3+e_3p_2-e_4p_1=-4-6-8-10=-28$. Each step uses the previous three power sums, and the constant term enters only through $e_4p_1$.",
+      "concepts": [
+        2
+      ],
+      "verify": "\nimport cmath\ncoeffs = [1, -2, 3, -4, 5]\ndef P(z):\n    v = 0\n    for c in coeffs:\n        v = v * z + c\n    return v\nz = [complex(0.4, 0.9) ** k for k in range(4)]\nfor _ in range(800):\n    new = []\n    for i in range(4):\n        denom = 1\n        for j in range(4):\n            if j != i:\n                denom *= (z[i] - z[j])\n        new.append(z[i] - P(z[i]) / denom)\n    z = new\nprint(round(sum(r**5 for r in z).real))\n"
+    },
+    {
+      "id": "poly-30",
+      "difficulty": 5,
+      "problem": "Let $\\omega=e^{2\\pi i/5}$. What is $\\prod_{k=1}^{4}(2-\\omega^k)$?",
+      "choices": [
+        "15",
+        "21",
+        "31",
+        "41",
+        "62"
+      ],
+      "answer": "C",
+      "hint": "The four nontrivial fifth roots of unity are the roots of $x^4+x^3+x^2+x+1$.",
+      "solution": "Since $x^5-1=(x-1)\\prod_{k=1}^{4}(x-\\omega^k)$, dividing gives $\\prod_{k=1}^{4}(x-\\omega^k)=x^4+x^3+x^2+x+1$. Setting $x=2$ yields $16+8+4+2+1=31$. Note that this product is an integer even though each factor is complex, because the factors come in conjugate pairs whose products are real.",
+      "concepts": [
+        9
+      ],
+      "verify": "\nimport cmath\nw = cmath.exp(2j * cmath.pi / 5)\nprod = 1\nfor k in range(1, 5):\n    prod *= (2 - w**k)\nprint(round(prod.real))\n"
+    }
+  ],
+  "videos": [
+    {
+      "youtubeId": "ssnPaJjNX-E",
+      "title": "General Vieta's Formulas for Polynomials",
+      "channel": "Existsforall Academy",
+      "why": "Derives Vieta's relations for polynomials of any degree; watch it after the first concept to see the sign pattern in general."
+    },
+    {
+      "youtubeId": "1Pd4HgI1bOQ",
+      "title": "Newton’s Sums - Finding the Sum of the Nth powers of the Roots of a Polynomial",
+      "channel": "Polynomial Maths",
+      "why": "Walks through computing power sums of roots from the coefficients alone, the method behind the Newton's identities concept."
+    },
+    {
+      "youtubeId": "n_04eJJQsp0",
+      "title": "Lagrange Polynomial Interpolation (Step-by-Step Example)",
+      "channel": "Zach's Math Zone",
+      "why": "A concrete step-by-step Lagrange interpolation example, useful for checking the basis-polynomial arithmetic before tackling contest problems."
+    },
+    {
+      "youtubeId": "IXNK3sfLMmg",
+      "title": "Roots of Unity 01 Introduction",
+      "channel": "Anatomy of Algebra",
+      "why": "A first introduction to roots of unity and why complex numbers are needed to describe them, a good start before the last concept."
+    }
+  ]
+}

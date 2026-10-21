@@ -7,11 +7,31 @@
 export type Letter = 'A' | 'B' | 'C' | 'D' | 'E';
 export const LETTERS: Letter[] = ['A', 'B', 'C', 'D', 'E'];
 
+export interface ConceptExample {
+  problem: string;
+  solution: string;
+  answer: string;
+}
+
 export interface Concept {
   title: string;
   body: string;
   keyFacts: string[];
   whenToUse: string;
+  commonMistakes: string[];
+  example: ConceptExample;
+}
+
+export interface Strategy {
+  name: string;
+  description: string;
+}
+
+export interface Video {
+  youtubeId: string;
+  title: string;
+  channel: string;
+  why: string;
 }
 
 export interface WorkedExample {
@@ -20,7 +40,9 @@ export interface WorkedExample {
   problem: string;
   choices: string[];
   answer: Letter;
+  approach: string;
   steps: string[];
+  alternative?: string;
   takeaway: string;
 }
 
@@ -33,6 +55,7 @@ export interface Problem {
   answer: Letter;
   hint: string;
   solution: string;
+  concepts: number[];
 }
 
 export interface Topic {
@@ -40,9 +63,13 @@ export interface Topic {
   title: string;
   summary: string;
   examWeight: string;
+  prerequisites: string[];
+  overview: string;
   concepts: Concept[];
+  strategies: Strategy[];
   workedExamples: WorkedExample[];
   problems: Problem[];
+  videos: Video[];
 }
 
 export const DIFFICULTY_LABELS: Record<number, string> = {

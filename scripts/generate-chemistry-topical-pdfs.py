@@ -3,7 +3,7 @@
 generate-chemistry-topical-pdfs.py
 ==================================
 End-to-end PDF slicing, classification, and compilation pipeline for IB Chemistry.
-Crawls the 'IB PAST PAPERS - YEAR' archive (2016–2025), extracts every IB Chemistry
+Crawls the public/vault/past-papers archive (2016–2025), extracts every IB Chemistry
 question and markscheme block as crisp vector crops using PyMuPDF (fitz), classifies
 them into the 2025 IB Chemistry Syllabus (Themes S1–S3, R1–R3 and Sub-topics S1.1–R3.4),
 filters out retired syllabus content, and compiles:
@@ -40,7 +40,7 @@ from chemistry_taxonomy import (
 
 # Configuration & Paths
 REPO_ROOT = os.path.abspath(os.path.join(CURRENT_DIR, "../.."))
-PAST_PAPERS_DIR = os.path.join(REPO_ROOT, "IB PAST PAPERS - YEAR")
+PAST_PAPERS_DIR = os.path.join(REPO_ROOT, "ThinkIB", "public", "vault", "past-papers")
 OUTPUT_VAULT_DIR = os.path.join(CURRENT_DIR, "../public/vault/chemistry-topicals")
 MAP_OUTPUT_PATH = os.path.join(CURRENT_DIR, "../app/past-papers/chemistry_topicals_map.json")
 EXCLUDED_LOG_PATH = os.path.join(CURRENT_DIR, "../app/past-papers/excluded_chemistry_legacy.json")

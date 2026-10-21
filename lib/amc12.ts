@@ -6,34 +6,44 @@
  */
 
 import algebra from '@/data/amc12/topics/algebra.json';
+import polynomials from '@/data/amc12/topics/polynomials.json';
+import inequalities from '@/data/amc12/topics/inequalities.json';
 import functionsLogs from '@/data/amc12/topics/functions-logs.json';
 import sequencesSeries from '@/data/amc12/topics/sequences-series.json';
 import numberTheory from '@/data/amc12/topics/number-theory.json';
 import counting from '@/data/amc12/topics/counting.json';
 import probability from '@/data/amc12/topics/probability.json';
 import geometry from '@/data/amc12/topics/geometry.json';
-import trigComplex from '@/data/amc12/topics/trig-complex.json';
+import coordinate3d from '@/data/amc12/topics/coordinate-3d.json';
+import trigonometry from '@/data/amc12/topics/trigonometry.json';
+import complexNumbers from '@/data/amc12/topics/complex-numbers.json';
 
 import type { Topic, WorkedExample, Problem } from './amc12-core';
 export * from './amc12-core';
 
-type RawTopic = Omit<Topic, 'problems' | 'workedExamples'> & {
+type RawTopic = Omit<Topic, 'problems' | 'workedExamples' | 'concepts'> & {
+  concepts: (Omit<Topic['concepts'][number], 'example'> & { example: Topic['concepts'][number]['example'] & { verify?: string } })[];
   workedExamples: (WorkedExample & { verify?: string })[];
   problems: (Omit<Problem, 'topicId'> & { verify?: string })[];
 };
 
+/** Drops the server-only `verify` snippets so they never reach the browser. */
 function clean(raw: RawTopic): Topic {
   return {
     ...raw,
+    concepts: raw.concepts.map((c) => {
+      const { verify, ...example } = c.example;
+      return { ...c, example };
+    }),
     workedExamples: raw.workedExamples.map(({ verify, ...ex }) => ex),
     problems: raw.problems.map(({ verify, ...p }) => ({ ...p, topicId: raw.id })),
   };
 }
 
 export const TOPICS: Topic[] = [
-  algebra, functionsLogs, sequencesSeries, numberTheory,
-  counting, probability, geometry, trigComplex,
-].map((t) => clean(t as RawTopic));
+  algebra, polynomials, inequalities, functionsLogs, sequencesSeries, numberTheory,
+  counting, probability, geometry, coordinate3d, trigonometry, complexNumbers,
+].map((t) => clean(t as unknown as RawTopic));
 
 export function getTopic(id: string): Topic | undefined {
   return TOPICS.find((t) => t.id === id);
@@ -61,7 +71,7 @@ function shuffled<T>(items: T[], rand: () => number): T[] {
   return a;
 }
 
-export const MOCK_COUNT = 4;
+export const MOCK_COUNT = 8;
 
 /**
  * Mock paper N: 25 problems, five from each difficulty band, ordered easy → hard

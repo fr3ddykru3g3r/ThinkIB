@@ -1,382 +1,999 @@
 {
   "id": "number-theory",
   "title": "Number Theory",
-  "summary": "Divisibility, primes and factorisation, gcd and lcm with the Euclidean algorithm, counting divisors, modular arithmetic and last digits, and number bases.",
+  "summary": "Divisibility and digit problems, primes and factorisation, gcd and lcm with the Euclidean algorithm, divisor counting and sums, modular arithmetic with inverses, Fermat, Euler and the Chinese Remainder Theorem, last digits and cycles, number bases, and Diophantine equations.",
   "examWeight": "≈4–5 problems per paper",
+  "prerequisites": [
+    "algebra"
+  ],
+  "overview": "Number theory is the most reliable source of AMC 12 points for a student who has learned the right tools, because nearly every problem reduces to a small, exact computation once the correct idea is applied. The early problems (#1–#10) test divisibility, factorisation and counting with exponents. These are routine once the prime factorisation is written down, and mistakes come from careless counting rather than missing ideas.\n\nFrom about #11 onwards the problems combine ideas. A typical middle-level question asks for a remainder of a huge power, a count of divisors with a constraint, or a base conversion that must be solved for an unknown. The solution is a chain: factor, reduce modulo the right number, apply Fermat or Euler to shrink an exponent, and then count. The hard problems (#20–#25) use the same tools but demand a better choice of modulus or a factorisation that is not obvious, such as splitting a modulus with CRT or rearranging a Diophantine equation into a product.\n\nTo study the topic, learn the concepts in order, and for each one do a few problems by hand before checking with a computer. Keep a notebook of factorisations of numbers you meet often (for example $360$, $2025$, $1000$), because fast recognition of their prime structure saves minutes on every test. Then practise problems mixing several concepts, since real contest questions rarely announce which tool is needed.",
   "concepts": [
     {
-      "title": "Divisibility",
-      "body": "We say $b$ divides $a$, written $b \\mid a$, when $a = bk$ for some whole number $k$. Equivalently, dividing $a$ by $b$ leaves remainder $0$. For example $4 \\mid 28$ because $28 = 4 \\cdot 7$, but $4 \\nmid 30$ because $30 = 4 \\cdot 7 + 2$.\n\nDivisibility survives addition and subtraction. If $d \\mid a$ and $d \\mid b$, then $a = dx$ and $b = dy$ for whole numbers $x$ and $y$, so $a + b = d(x+y)$ and $a - b = d(x-y)$ are also multiples of $d$. For example, $4 \\mid 28$ and $4 \\mid 12$ force $4 \\mid 40$ and $4 \\mid 16$.\n\nDigit tests come from the same idea. Because $10 = 9 + 1$, every power of $10$ is one more than a multiple of $9$. So $\\overline{abc} = 100a + 10b + c$ leaves the same remainder on division by $9$ as its digit sum $a + b + c$. For example $385 = 9 \\cdot 42 + 7$, and its digit sum is $16 = 9 + 7$. A number is divisible by $9$ exactly when its digit sum is.",
+      "title": "Divisibility and digit sums",
+      "body": "We write $b \\mid a$ when $a = bk$ for some integer $k$. Divisibility is preserved by sums and differences. If $a = dx$ and $b = dy$, then $a + b = d(x+y)$ and $a - b = d(x-y)$, so $d \\mid a$ and $d \\mid b$ force $d \\mid (a+b)$ and $d \\mid (a-b)$. This closure is what makes divisibility tests work: you only need the remainders of the pieces of a number, not the number itself.\n\nThe test for $9$ comes from one observation, $10 = 9 + 1$, so $10 \\equiv 1 \\pmod 9$. Writing $N = \\sum_i d_i 10^i$ and reducing each power of $10$ gives $N \\equiv \\sum_i d_i \\pmod 9$. So $N$ and its digit sum leave the same remainder on division by $9$. For example $385 = 9 \\cdot 42 + 7$, and $3 + 8 + 5 = 16 \\equiv 7 \\pmod 9$. The same argument with $10 \\equiv 1 \\pmod 3$ gives the test for $3$.\n\nThe test for $11$ uses $10 \\equiv -1 \\pmod{11}$. Each digit in an odd position gets weight $+1$ and each digit in an even position gets weight $-1$, so $N$ and its alternating digit sum agree mod $11$. For $385 = 11 \\cdot 35$, the alternating sum is $5 - 8 + 3 = 0$, as it must be.\n\nTests for $4$ and $8$ depend only on the last few digits, because $100 = 4 \\cdot 25$ and $1000 = 8 \\cdot 125$. More generally, $10^k$ is a multiple of $2^k$ and $5^k$, so the last $k$ digits decide divisibility by $2^k$ and $5^k$ alone.\n\nDigit problems are counting problems about strings of digits. Write the number as $d_1 d_2 \\cdots d_k$, translate each condition into a statement about neighbouring digits, and count with the multiplication principle. A condition such as “the digits are strictly increasing” is really a choice of a set: a strictly increasing string is determined by the set of digits it uses, so $k$-digit strings from $\\{0, \\ldots, 9\\}$ with this property correspond to $\\binom{10}{k}$ subsets. Leading zeros must be handled separately, since a string starting with $0$ is not a $k$-digit number.",
       "keyFacts": [
-        "$b \\mid a$ means $a = bk$ for some whole number $k$",
-        "If $d \\mid a$ and $d \\mid b$, then $d \\mid (a+b)$ and $d \\mid (a-b)$",
-        "A number is divisible by $9$ (or by $3$) exactly when its digit sum is divisible by $9$ (or by $3$)",
-        "Every whole number $n > 1$ has $1$ and $n$ as divisors; a prime has no others"
+        "$b \\mid a$ means $a = bk$ for some integer $k$; if $d \\mid a$ and $d \\mid b$ then $d \\mid (a \\pm b)$",
+        "$N \\equiv (\\text{digit sum of } N) \\pmod 9$, so $9 \\mid N$ exactly when $9$ divides the digit sum",
+        "$N \\equiv (\\text{alternating digit sum of } N) \\pmod{11}$",
+        "Divisibility by $2^k$ or $5^k$ depends only on the last $k$ digits"
       ],
-      "whenToUse": "The problem asks whether one number is a multiple of another, or which numbers in a range are multiples of a given number."
+      "whenToUse": "The problem asks whether a number is a multiple of something, asks for the remainder of a very long number, or counts digit strings that satisfy a digit condition.",
+      "commonMistakes": [
+        "Treating the digit sum as the remainder itself; it is only congruent to $N$ modulo $9$, and can be much larger than $9$",
+        "Checking only the last digit for divisibility by $4$ or $8$, which needs the last two or three digits",
+        "Counting a digit string with a leading zero as if it were a number with that many digits"
+      ],
+      "example": {
+        "problem": "Find the remainder when the $100$-digit number consisting of $100$ sevens is divided by $9$.",
+        "solution": "The digit sum is $100 \\cdot 7 = 700$. Since $N \\equiv (\\text{digit sum}) \\pmod 9$, we need $700 \\bmod 9$. Because $9 \\cdot 77 = 693$, the remainder is $7$.",
+        "answer": "7",
+        "verify": "print(int('7' * 100) % 9)"
+      }
     },
     {
       "title": "Primes and factorisation",
-      "body": "A prime is a whole number greater than $1$ whose only positive divisors are $1$ and itself, such as $2, 3, 5, 7, 11$. The number $1$ is not prime. The Fundamental Theorem of Arithmetic says every whole number $n > 1$ can be written as a product of primes, $n = p_1^{a_1} p_2^{a_2} \\cdots p_k^{a_k}$, in exactly one way apart from the order of the factors. The list of exponents works like a fingerprint for $n$.\n\nWhy is this useful? The fingerprint determines all the divisors. A number $m$ divides $n$ exactly when each prime appears in $m$ to a power no larger than its power in $n$. To factor a number, divide by $2$ as often as possible, then by $3$, $5$, $7$ and so on. You can stop once the square of the next prime is larger than what remains, because the leftover is then prime (or $1$); this works since a composite number always has a prime factor no bigger than its square root. For example, $360 = 2 \\cdot 180 = 2^2 \\cdot 90 = 2^3 \\cdot 45 = 2^3 \\cdot 3^2 \\cdot 5$.",
+      "body": "A prime is an integer greater than $1$ whose only positive divisors are $1$ and itself. The first primes are $2, 3, 5, 7, 11, 13, \\ldots$. The number $1$ is neither prime nor composite. The Fundamental Theorem of Arithmetic says every integer $n > 1$ can be written as a product of primes, $n = p_1^{a_1} p_2^{a_2} \\cdots p_k^{a_k}$, and this representation is unique apart from the order of the factors. The exponents form a fingerprint for $n$: they determine every divisor, every square factor and every gcd.\n\nWhy does the representation exist? If $n > 1$ is not prime, it has a divisor $d$ with $1 < d < n$, and we can split $n = d \\cdot (n/d)$ and repeat with both pieces. Since each step makes the pieces smaller, the process stops, and it stops only at primes. Uniqueness is slightly harder, but it follows from Euclid's lemma: if a prime $p$ divides $ab$, then $p \\mid a$ or $p \\mid b$.\n\nTo factor a number by hand, divide by $2$ as often as possible, then by $3$, $5$, $7$ and so on. You can stop once the square of the current prime exceeds what remains, because a composite number always has a prime factor no larger than its square root; the leftover is then prime or $1$. For example $360 = 2 \\cdot 180 = 2^2 \\cdot 90 = 2^3 \\cdot 45 = 2^3 \\cdot 3^2 \\cdot 5$.\n\nPrimes are also the building blocks of divisibility questions. A number $m$ divides $n$ exactly when every prime in $m$ appears in $n$ with at least the same exponent. Problems that ask “how many divisors”, “what is the largest square dividing $N$” or “what is the least common multiple” are all answered by reading exponents off the factorisation.\n\nA useful habit is to factor large expressions such as $3^8 - 1$ using difference-of-squares and sum-of-powers identities. For instance $3^8 - 1 = (3^4 - 1)(3^4 + 1)$, and each factor splits again, which exposes the prime divisors without a calculator.",
       "keyFacts": [
         "Fundamental Theorem: $n = p_1^{a_1}\\cdots p_k^{a_k}$ is unique up to the order of the factors",
         "$1$ is neither prime nor composite",
-        "A composite number $n$ always has a prime factor $p \\le \\sqrt{n}$",
-        "The primes up to $20$ are $2, 3, 5, 7, 11, 13, 17, 19$"
+        "A composite $n$ always has a prime factor $p \\le \\sqrt{n}$",
+        "$a^2 - b^2 = (a-b)(a+b)$ and $a^n - 1$ factors through $a^d - 1$ for each divisor $d$ of $n$"
       ],
-      "whenToUse": "The problem involves a product, a perfect square or cube, the prime factors of a number, or a count that depends on how many times each prime appears."
+      "whenToUse": "The problem involves a product, a perfect power, the prime divisors of a large number, or any count that depends on how many times each prime appears.",
+      "commonMistakes": [
+        "Stopping trial division at the number itself rather than at its square root",
+        "Forgetting that $1$ is not prime, which changes sums of primes and counts of prime divisors",
+        "Assuming a number is prime because it has no small prime factor up to $\\sqrt[3]{n}$ rather than $\\sqrt{n}$"
+      ],
+      "example": {
+        "problem": "What is the largest prime factor of $3^8 - 1$?",
+        "solution": "Factor $3^8 - 1 = (3^4 - 1)(3^4 + 1) = 80 \\cdot 82 = 6560$. Since $80 = 2^4 \\cdot 5$ and $82 = 2 \\cdot 41$, we get $6560 = 2^5 \\cdot 5 \\cdot 41$, so the largest prime factor is $41$.",
+        "answer": "41",
+        "verify": "print(max(p for p in range(2, 6561) if 6560 % p == 0 and all(p % q for q in range(2, int(p ** 0.5) + 1))))"
+      }
     },
     {
       "title": "GCD, LCM and the Euclidean algorithm",
-      "body": "The greatest common divisor $\\gcd(a,b)$ is the largest whole number dividing both $a$ and $b$. The least common multiple $\\operatorname{lcm}(a,b)$ is the smallest positive whole number that both $a$ and $b$ divide. With prime factorisations these are easy to read off: for each prime, the gcd takes the smaller exponent and the lcm takes the larger. For example $12 = 2^2 \\cdot 3$ and $18 = 2 \\cdot 3^2$ give $\\gcd(12,18) = 6$ and $\\operatorname{lcm}(12,18) = 36$.\n\nFactoring large numbers can be slow, but the Euclidean algorithm finds the gcd quickly. It rests on one fact: $\\gcd(a,b) = \\gcd(b,\\, a \\bmod b)$. Any number dividing both $a$ and $b$ also divides $a - qb$, and any number dividing $b$ and $a - qb$ divides $a$, so the two pairs have exactly the same common divisors. Keep replacing $(a,b)$ by $(b, a \\bmod b)$; the process ends when the remainder is $0$, and the last nonzero number is the gcd. For example, $252 = 2 \\cdot 105 + 42$, $105 = 2 \\cdot 42 + 21$ and $42 = 2 \\cdot 21$, so $\\gcd(252,105) = 21$.\n\nFinally, $\\gcd(a,b)\\cdot\\operatorname{lcm}(a,b) = ab$. For each prime, the smaller and larger exponents add up to the sum of the two original exponents, which is why this identity holds.",
+      "body": "The greatest common divisor $\\gcd(a,b)$ is the largest integer dividing both $a$ and $b$. The least common multiple $\\operatorname{lcm}(a,b)$ is the smallest positive integer that both $a$ and $b$ divide. With prime factorisations both are read off prime by prime: the gcd takes the smaller exponent and the lcm takes the larger. For $12 = 2^2 \\cdot 3$ and $18 = 2 \\cdot 3^2$ we get $\\gcd = 2 \\cdot 3 = 6$ and $\\operatorname{lcm} = 2^2 \\cdot 3^2 = 36$.\n\nFactoring large numbers is slow, but the Euclidean algorithm finds the gcd quickly, and it rests on one lemma: $\\gcd(a,b) = \\gcd(b, a \\bmod b)$. To see why, write $a = qb + r$ with $r = a \\bmod b$. Any common divisor of $a$ and $b$ divides $r = a - qb$, and any common divisor of $b$ and $r$ divides $a = qb + r$. So the two pairs $(a,b)$ and $(b,r)$ have exactly the same common divisors, and therefore the same greatest one.\n\nIterating the lemma gives the algorithm: replace $(a,b)$ by $(b, a \\bmod b)$ until the remainder is $0$; the last nonzero number is the gcd. For $252$ and $105$: $252 = 2 \\cdot 105 + 42$, $105 = 2 \\cdot 42 + 21$, $42 = 2 \\cdot 21$, so $\\gcd(252,105) = 21$. The same chain of equations can be run backwards to write the gcd as an integer combination $21 = 105 - 2 \\cdot 42 = \\ldots$, which is the extended Euclidean algorithm and is the source of modular inverses.\n\nThe two functions are linked by $\\gcd(a,b) \\cdot \\operatorname{lcm}(a,b) = ab$. For each prime, the smaller and the larger exponent add up to the sum of the two original exponents, so the identity holds prime by prime.\n\nOn the contest, gcd and lcm arise whenever two things repeat with different periods, when a rectangle is tiled by the largest possible squares, or when a condition holds for two different reasons at once. In each case, reduce the problem to a gcd or lcm and then compute it by factoring or by Euclid.",
       "keyFacts": [
-        "$\\gcd(a,b)\\cdot \\operatorname{lcm}(a,b) = ab$ for positive integers $a$ and $b$",
+        "$\\gcd(a,b) \\cdot \\operatorname{lcm}(a,b) = ab$ for positive integers $a$ and $b$",
         "$\\gcd(a,b) = \\gcd(b, a \\bmod b)$, and $\\gcd(a,0) = a$",
-        "If $\\gcd(a,b)=1$, then $a$ and $b$ are relatively prime",
-        "Two repeating cycles of lengths $a$ and $b$ line up again after $\\operatorname{lcm}(a,b)$ steps"
+        "If $\\gcd(a,b) = 1$ then $a$ and $b$ are relatively prime and $\\gcd(a, bc) = \\gcd(a,c)$ for every $c$",
+        "Two repeating cycles of lengths $a$ and $b$ coincide again after $\\operatorname{lcm}(a,b)$ steps"
       ],
-      "whenToUse": "The problem asks for a largest common divisor, a shared multiple, the largest equal piece that fits exactly into two lengths, or when two repeating cycles coincide."
+      "whenToUse": "The problem asks for a largest common divisor, a shared multiple, the largest equal piece that fits exactly into two lengths, or the moment two periodic events line up.",
+      "commonMistakes": [
+        "Taking the gcd of the numbers' sum or difference instead of the numbers themselves",
+        "Multiplying the lcm of three numbers pairwise without checking that the common factors are not double-counted",
+        "Confusing $\\gcd(a,b)=1$ with $a$ and $b$ being prime"
+      ],
+      "example": {
+        "problem": "Find $\\gcd(1071, 462)$ using the Euclidean algorithm.",
+        "solution": "Divide repeatedly: $1071 = 2 \\cdot 462 + 147$, then $462 = 3 \\cdot 147 + 21$, then $147 = 7 \\cdot 21$. The last nonzero remainder is $21$, so $\\gcd(1071, 462) = 21$.",
+        "answer": "21",
+        "verify": "import math\nprint(math.gcd(1071, 462))"
+      }
     },
     {
-      "title": "Counting divisors",
-      "body": "Suppose $n = p_1^{a_1}p_2^{a_2}\\cdots p_k^{a_k}$. Every divisor of $n$ is built by choosing, separately for each prime, an exponent $e_i$ with $0 \\le e_i \\le a_i$. Each prime has exactly $a_i + 1$ options ($p_i^0, p_i^1, \\ldots, p_i^{a_i}$), and the choices for different primes do not interfere. By the multiplication principle, the number of divisors is $(a_1+1)(a_2+1)\\cdots(a_k+1)$.\n\nFor example, $360 = 2^3 \\cdot 3^2 \\cdot 5$ has $(3+1)(2+1)(1+1) = 24$ divisors. A divisor is made by picking $0$ to $3$ twos, $0$ to $2$ threes and $0$ or $1$ fives, which gives $4 \\cdot 3 \\cdot 2 = 24$ different divisors, because the factorisation is unique.\n\nThe same method handles restricted counts. A divisor is a perfect square exactly when every exponent in it is even, so you only count the even choices for each prime. Also, $n$ has an odd number of divisors exactly when every $a_i + 1$ is odd, which happens exactly when $n$ is a perfect square.",
+      "title": "Divisor counting and divisor sums",
+      "body": "Suppose $n = p_1^{a_1} p_2^{a_2} \\cdots p_k^{a_k}$. Every divisor of $n$ has the form $p_1^{e_1} \\cdots p_k^{e_k}$ with $0 \\le e_i \\le a_i$, and distinct exponent tuples give distinct divisors because the factorisation is unique. For each prime there are $a_i + 1$ choices, and the choices for different primes are independent, so the number of divisors is\n$$d(n) = (a_1+1)(a_2+1)\\cdots(a_k+1).$$\nFor example $360 = 2^3 \\cdot 3^2 \\cdot 5$ has $4 \\cdot 3 \\cdot 2 = 24$ divisors.\n\nThe sum of divisors works the same way, with the choices weighted by their values. For a single prime power, $1 + p + \\cdots + p^a = \\frac{p^{a+1}-1}{p-1}$. Because the choices for different primes multiply, the divisor sum factors too:\n$$\\sigma(n) = \\prod_{i=1}^{k} \\left(1 + p_i + p_i^2 + \\cdots + p_i^{a_i}\\right).$$\nSo $\\sigma(360) = (1+2+4+8)(1+3+9)(1+5) = 15 \\cdot 13 \\cdot 6 = 1170$. The reason multiplication works is that the map $(e_1,\\ldots,e_k) \\mapsto p_1^{e_1}\\cdots p_k^{e_k}$ is a bijection between tuples and divisors, and the weight of a product is the product of the weights.\n\nRestricted counts follow the same pattern. A divisor is a perfect square exactly when every exponent is even, so you count even choices for each prime. The sum of odd divisors of $360$ uses only the odd part $45 = 3^2 \\cdot 5$, giving $\\sigma(45) = 13 \\cdot 6 = 78$. A number has an odd number of divisors exactly when it is a perfect square, because the divisors pair off as $d$ and $n/d$ unless $d = n/d$.\n\nCounting divisors of a factorial uses the exponent formula of Legendre. The exponent of $p$ in $m!$ is $\\lfloor m/p \\rfloor + \\lfloor m/p^2 \\rfloor + \\cdots$, since each multiple of $p^j$ contributes one more factor of $p$. Once these exponents are known, the divisor count of $m!$ is a product as above.",
       "keyFacts": [
-        "$d(n) = (a_1+1)(a_2+1)\\cdots(a_k+1)$ when $n = p_1^{a_1}\\cdots p_k^{a_k}$",
-        "The divisors of $n$ are exactly the numbers $p_1^{e_1}\\cdots p_k^{e_k}$ with $0 \\le e_i \\le a_i$",
+        "$d(n) = (a_1+1)\\cdots(a_k+1)$ when $n = p_1^{a_1}\\cdots p_k^{a_k}$",
+        "$\\sigma(n) = \\prod_i (1 + p_i + \\cdots + p_i^{a_i})$, a product over the prime powers",
         "$n$ has an odd number of divisors exactly when $n$ is a perfect square",
-        "A number with exactly $3$ divisors is $p^2$ for a prime $p$"
+        "The exponent of $p$ in $m!$ is $\\sum_{j \\ge 1} \\lfloor m/p^j \\rfloor$"
       ],
-      "whenToUse": "The problem asks how many divisors a number has, how many divisors satisfy an extra condition such as being a square, or which numbers have a given number of divisors."
+      "whenToUse": "The problem asks how many divisors a number has, how many divisors satisfy an extra condition, the sum of the divisors, or which numbers have a prescribed number of divisors.",
+      "commonMistakes": [
+        "Adding exponents instead of adding $1$ to each exponent before multiplying",
+        "Counting pairs $(d, n/d)$ and forgetting that a square root of $n$ is counted once",
+        "Using $\\sigma(n)$ for a sum over prime divisors only, which ignores the higher powers"
+      ],
+      "example": {
+        "problem": "What is the sum of all positive divisors of $60$?",
+        "solution": "Factor $60 = 2^2 \\cdot 3 \\cdot 5$. Then $\\sigma(60) = (1+2+4)(1+3)(1+5) = 7 \\cdot 4 \\cdot 6 = 168$.",
+        "answer": "168",
+        "verify": "print(sum(d for d in range(1, 61) if 60 % d == 0))"
+      }
     },
     {
-      "title": "Modular arithmetic and last digits",
-      "body": "We write $a \\equiv b \\pmod m$ (read “a is congruent to b mod m”) when $m \\mid (a-b)$. This means $a$ and $b$ leave the same remainder on division by $m$. For instance $29 \\equiv 5 \\pmod{12}$, because $29 - 5 = 24$ is a multiple of $12$.\n\nCongruences respect addition and multiplication. If $a \\equiv b$ and $c \\equiv d \\pmod m$, then $a+c \\equiv b+d$ and $ac \\equiv bd \\pmod m$. So you may replace any number by its remainder before adding or multiplying, which keeps the numbers small. The last digit of a number is its remainder on division by $10$, so to find the last digit of a large product or power, reduce mod $10$ at every step. For example $7^4 = 7^2 \\cdot 7^2 \\equiv 9 \\cdot 9 = 81 \\equiv 1 \\pmod{10}$, so $7^4 = 2401$ ends in $1$.\n\nPowers also repeat. The remainders of $a^k$ on division by $m$ eventually cycle, so a huge exponent can be shrunk. For example $7^4 \\equiv 1 \\pmod{10}$, so $7^{2025} = 7^{4 \\cdot 506 + 1} = (7^4)^{506} \\cdot 7 \\equiv 7 \\pmod{10}$. The method is always the same: find the cycle length, then reduce the exponent modulo it.",
+      "title": "Modular arithmetic and inverses",
+      "body": "We write $a \\equiv b \\pmod m$ when $m \\mid (a - b)$, equivalently when $a$ and $b$ leave the same remainder on division by $m$. For example $29 \\equiv 5 \\pmod{12}$ because $29 - 5 = 24$. Congruence is an equivalence relation, and it respects arithmetic: if $a \\equiv b$ and $c \\equiv d \\pmod m$, then $a + c \\equiv b + d$, $a - c \\equiv b - d$ and $ac \\equiv bd \\pmod m$. The proof is one line: $(a+c) - (b+d) = (a-b) + (c-d)$ is a sum of multiples of $m$.\n\nThis means you may replace any number in a computation by its remainder at any step. To compute $7^4 \\bmod 10$, note $7^2 = 49 \\equiv 9$, so $7^4 \\equiv 9^2 = 81 \\equiv 1 \\pmod{10}$. Reducing early keeps the numbers small and is the main technique behind almost every modular problem.\n\nDivision is different. Cancelling a common factor is allowed only when that factor is coprime to the modulus: if $ac \\equiv bc \\pmod m$ and $\\gcd(c,m) = 1$, then $a \\equiv b \\pmod m$. The reason is that $m \\mid c(a-b)$ and $\\gcd(c,m) = 1$ force $m \\mid (a-b)$.\n\nAn inverse of $a$ modulo $m$ is a number $x$ with $ax \\equiv 1 \\pmod m$. It exists exactly when $\\gcd(a,m) = 1$. The Euclidean algorithm produces it: running the algorithm on $a$ and $m$ gives $1 = ax + my$ for integers $x, y$, and reducing mod $m$ shows $x$ is the inverse. For example $3 \\cdot 5 = 15 \\equiv 1 \\pmod 7$, so $3^{-1} \\equiv 5 \\pmod 7$. Inverses let you solve linear congruences $ax \\equiv b \\pmod m$ by multiplying both sides by $a^{-1}$.\n\nBeware of the nonexistent: $2x \\equiv 4 \\pmod 6$ has solutions $x \\equiv 2 \\pmod 3$ rather than a single residue, because $\\gcd(2,6) = 2$ does not divide into the modulus. Always check the gcd before cancelling.",
       "keyFacts": [
-        "$a \\equiv b \\pmod m$ means $m \\mid (a-b)$",
-        "If $a \\equiv b$ and $c \\equiv d \\pmod m$, then $a+c \\equiv b+d$ and $ac \\equiv bd \\pmod m$",
-        "The last digit of $n$ is $n \\bmod 10$",
-        "Last digits of powers of $2$, $3$, $7$ and $8$ repeat with period $4$"
+        "$a \\equiv b \\pmod m$ means $m \\mid (a-b)$, and congruences can be added and multiplied",
+        "$ac \\equiv bc \\pmod m$ with $\\gcd(c,m)=1$ implies $a \\equiv b \\pmod m$",
+        "$a$ has an inverse modulo $m$ exactly when $\\gcd(a,m) = 1$",
+        "$ax \\equiv b \\pmod m$ has $\\gcd(a,m)$ solutions modulo $m$ when $\\gcd(a,m)$ divides $b$"
       ],
-      "whenToUse": "The problem asks for a last digit, a remainder after division, or the last few digits of a huge power or product."
+      "whenToUse": "The problem asks for a remainder of a large product or power, a remainder of a sum of huge terms, or any question that can be rephrased as solving a linear congruence.",
+      "commonMistakes": [
+        "Cancelling a common factor $c$ from $ac \\equiv bc$ when $\\gcd(c,m) \\ne 1$",
+        "Reducing a subtraction to a negative remainder and forgetting to add the modulus back",
+        "Assuming a linear congruence has a unique solution when the gcd of the coefficient and the modulus is larger than $1$"
+      ],
+      "example": {
+        "problem": "Find the remainder when $17^{2025}$ is divided by $5$.",
+        "solution": "Since $17 \\equiv 2 \\pmod 5$, we need $2^{2025} \\bmod 5$. The powers of $2$ mod $5$ are $2, 4, 3, 1$, so they repeat with period $4$. Since $2025 \\equiv 1 \\pmod 4$, the remainder is $2$.",
+        "answer": "2",
+        "verify": "print(pow(17, 2025, 5))"
+      }
+    },
+    {
+      "title": "Fermat, Euler and multiplicative orders",
+      "body": "Fermat's Little Theorem says that if $p$ is prime and $p \\nmid a$, then $a^{p-1} \\equiv 1 \\pmod p$. A short proof: the numbers $a, 2a, \\ldots, (p-1)a$ are all nonzero mod $p$ and pairwise distinct, because $ia \\equiv ja$ would force $i \\equiv j$ after cancelling $a$. So they are a rearrangement of $1, 2, \\ldots, p-1$. Multiplying both sets together gives $(p-1)! \\cdot a^{p-1} \\equiv (p-1)!$, and cancelling $(p-1)!$ (which is coprime to $p$) yields the theorem.\n\nEuler's theorem generalises this. Let $\\varphi(m)$ count the integers in $\\{1, \\ldots, m\\}$ that are coprime to $m$. If $\\gcd(a,m) = 1$ then $a^{\\varphi(m)} \\equiv 1 \\pmod m$. The same permutation argument works, since multiplication by $a$ permutes the reduced residues. For $m = p^k$ we have $\\varphi(m) = p^{k-1}(p-1)$, and for $m = p_1^{a_1}\\cdots p_r^{a_r}$ the function is multiplicative: $\\varphi(m) = \\prod p_i^{a_i - 1}(p_i - 1)$.\n\nThe practical use is exponent reduction. If $\\gcd(a,m)=1$, then $a^N \\bmod m$ depends only on $N \\bmod \\varphi(m)$. For example $3^{100} \\bmod 11$: since $\\varphi(11) = 10$ and $100 \\equiv 0 \\pmod{10}$, we get $3^{100} \\equiv 1$. Fermat is the case $m = p$.\n\nThe multiplicative order of $a$ modulo $m$ is the least $t > 0$ with $a^t \\equiv 1 \\pmod m$. The order always divides $\\varphi(m)$, and $a^N \\equiv 1$ holds exactly when the order divides $N$. Finding the order by testing divisors of $\\varphi(m)$ is often faster than running through all powers.\n\nBe careful with composite moduli: the relevant exponent is $\\varphi(m)$, not $m-1$, and Fermat's theorem does not apply unless the modulus is prime. A common trap is using $p-1$ for $p^2$ instead of $p(p-1)$.",
+      "keyFacts": [
+        "Fermat: $a^{p-1} \\equiv 1 \\pmod p$ when $p$ is prime and $p \\nmid a$",
+        "Euler: $a^{\\varphi(m)} \\equiv 1 \\pmod m$ when $\\gcd(a,m) = 1$",
+        "$\\varphi(p^k) = p^{k-1}(p-1)$, and $\\varphi$ is multiplicative",
+        "The multiplicative order of $a$ modulo $m$ divides $\\varphi(m)$"
+      ],
+      "whenToUse": "The problem involves a huge exponent modulo a prime or a small composite number, or asks for a remainder that repeats with some period.",
+      "commonMistakes": [
+        "Applying Fermat's theorem to a composite modulus, where the exponent should be $\\varphi(m)$",
+        "Reducing the exponent modulo $p$ rather than modulo $p-1$",
+        "Forgetting the hypothesis $\\gcd(a,m) = 1$, which fails when $a$ shares a factor with $m$"
+      ],
+      "example": {
+        "problem": "Find the remainder when $3^{100}$ is divided by $11$.",
+        "solution": "Since $11$ is prime and $3 \\not\\equiv 0 \\pmod{11}$, Fermat gives $3^{10} \\equiv 1$. Because $100 = 10 \\cdot 10$, we get $3^{100} = (3^{10})^{10} \\equiv 1 \\pmod{11}$.",
+        "answer": "1",
+        "verify": "print(pow(3, 100, 11))"
+      }
+    },
+    {
+      "title": "The Chinese Remainder Theorem",
+      "body": "Suppose $m$ and $k$ are coprime and we want an integer $n$ with $n \\equiv a \\pmod m$ and $n \\equiv b \\pmod k$. The Chinese Remainder Theorem says such an $n$ exists, and is unique modulo $mk$. The existence proof is a clean counting argument. Consider the $mk$ integers $0, 1, \\ldots, mk - 1$. If two of them, $x$ and $y$, had the same residues modulo $m$ and modulo $k$, then $m \\mid (x - y)$ and $k \\mid (x - y)$. Since $\\gcd(m,k) = 1$, this forces $mk \\mid (x - y)$, which is impossible for distinct numbers in the range. So the pairs of residues are all attained, and each pair occurs exactly once.\n\nTo solve a specific system, write $n = a + m t$ and substitute into the second congruence: $a + mt \\equiv b \\pmod k$, which is a linear congruence in $t$. Because $\\gcd(m,k) = 1$, $m$ has an inverse mod $k$, and $t$ is found by multiplying by $m^{-1}$. This is the practical method and is fast for small moduli.\n\nAs an example, solve $n \\equiv 1 \\pmod 4$ and $n \\equiv 2 \\pmod 5$. Write $n = 1 + 4t$. Then $1 + 4t \\equiv 2 \\pmod 5$, so $4t \\equiv 1$. Since $4 \\cdot 4 = 16 \\equiv 1 \\pmod 5$, the inverse of $4$ is $4$, giving $t \\equiv 4$ and $n = 17$. The solutions are $n \\equiv 17 \\pmod{20}$.\n\nThe theorem extends to any number of pairwise coprime moduli, and it is the reason modular problems with a composite modulus can be split into prime-power pieces. For example $n \\equiv 2^{100} \\pmod{45}$ can be handled by finding the value mod $9$ and mod $5$ separately and combining. The same trick handles moduli like $1000 = 8 \\cdot 125$.\n\nWatch the coprimality hypothesis: $n \\equiv 1 \\pmod 4$ and $n \\equiv 2 \\pmod 6$ are incompatible, because the two conditions disagree mod $2$, so the theorem's conclusion is not automatic when the moduli share a factor.",
+      "keyFacts": [
+        "If $\\gcd(m,k) = 1$, the system $n \\equiv a \\pmod m$, $n \\equiv b \\pmod k$ has a unique solution mod $mk$",
+        "The solution is found by writing $n = a + mt$ and solving $mt \\equiv b - a \\pmod k$",
+        "CRT splits a modulus into prime powers, which are then handled one at a time"
+      ],
+      "whenToUse": "The problem gives several remainders at once, asks for a number with prescribed remainders, or asks for a remainder modulo a composite number whose factors are coprime.",
+      "commonMistakes": [
+        "Applying the method to moduli that share a factor, where the system can have no solution",
+        "Solving one congruence and forgetting to check the others",
+        "Quoting the solution as one residue when it is only unique modulo the product of the moduli"
+      ],
+      "example": {
+        "problem": "Find the smallest positive integer $n$ with $n \\equiv 1 \\pmod 4$ and $n \\equiv 2 \\pmod 5$.",
+        "solution": "Write $n = 1 + 4t$. Then $1 + 4t \\equiv 2 \\pmod 5$, so $4t \\equiv 1 \\pmod 5$. Since $4 \\cdot 4 \\equiv 1$, we get $t \\equiv 4 \\pmod 5$. The smallest choice is $t = 4$, giving $n = 17$.",
+        "answer": "17",
+        "verify": "print(next(n for n in range(1, 100) if n % 4 == 1 and n % 5 == 2))"
+      }
+    },
+    {
+      "title": "Last digits and cycles",
+      "body": "The last digit of $N$ is $N \\bmod 10$, and the last two digits are $N \\bmod 100$. Both are modular questions, and the strategy is to reduce every factor and every exponent as you go. Since $10 = 2 \\cdot 5$, the last digit is determined by the residues mod $2$ and mod $5$, and the last two digits by the residues mod $4$ and mod $25$, which is the Chinese Remainder Theorem in action.\n\nPowers of a fixed base repeat. Take $a = 3$ mod $10$: the powers $3, 9, 7, 1$ repeat with period $4$, so the last digit of $3^N$ depends only on $N \\bmod 4$. This period is the multiplicative order of $3$ modulo $10$. The same reasoning gives the period of $a^N$ modulo $m$ as the order of $a$ modulo $m$, and the order divides $\\varphi(m)$ whenever $\\gcd(a,m) = 1$.\n\nFor huge exponents, the procedure is always the same. Find the modulus $m$, compute the order $t$ of the base (or any multiple of it, such as $\\varphi(m)$), reduce the exponent mod $t$, and evaluate. For example, the last two digits of $3^{2025}$: the order of $3$ mod $100$ divides $20$, and $2025 \\equiv 5 \\pmod{20}$. So $3^{2025} \\equiv 3^5 = 243 \\equiv 43 \\pmod{100}$.\n\nSums of powers can be handled term by term, and cancellation in the cycle does a lot of work. If all terms beyond a certain index are divisible by the modulus, they vanish. For instance $1! + 2! + \\cdots + 100!$ is congruent mod $10$ to $1 + 2 + 6 + 24 = 33$, since every factorial from $5!$ on is divisible by $10$. So the last digit is $3$.\n\nA nested exponent such as $7^{7^7}$ needs the top exponent first. Compute the order of $7$ mod $100$, which is $4$, then reduce $7^7$ modulo $4$. Since $7 \\equiv -1 \\pmod 4$, we have $7^7 \\equiv -1 \\equiv 3 \\pmod 4$, so $7^{7^7} \\equiv 7^3 = 343 \\equiv 43 \\pmod{100}$.",
+      "keyFacts": [
+        "The last $k$ digits of $N$ are $N \\bmod 10^k$",
+        "The powers $a^N \\bmod m$ are periodic in $N$, with period dividing $\\varphi(m)$ when $\\gcd(a,m)=1$",
+        "$n! \\equiv 0 \\pmod{10}$ for every $n \\ge 5$"
+      ],
+      "whenToUse": "The problem asks for the last digit or last two digits of a large power, product or sum, or the exponent is itself a large expression.",
+      "commonMistakes": [
+        "Reducing the base mod $10$ but reducing the exponent mod $10$ instead of the cycle length",
+        "Stopping at the cycle of the last digit, when the question asks for the last two digits and the cycle is longer",
+        "Forgetting that a factor divisible by the modulus kills all later terms of a sum"
+      ],
+      "example": {
+        "problem": "Find the last two digits of $3^{2025}$.",
+        "solution": "Compute the powers of $3$ mod $100$: $3^5 = 243 \\equiv 43$ and $3^{10} \\equiv 43^2 = 1849 \\equiv 49$, $3^{20} \\equiv 49^2 = 2401 \\equiv 1$. So the order divides $20$. Since $2025 = 20 \\cdot 101 + 5$, we get $3^{2025} \\equiv 3^5 \\equiv 43 \\pmod{100}$.",
+        "answer": "43",
+        "verify": "print(pow(3, 2025, 100))"
+      }
     },
     {
       "title": "Number bases",
-      "body": "In base $b$, a numeral $d_k d_{k-1} \\cdots d_1 d_0$ stands for $d_k b^k + \\cdots + d_1 b + d_0$, where every digit satisfies $0 \\le d_i \\le b-1$. Ordinary decimal is base $10$: $3206 = 3\\cdot 10^3 + 2\\cdot 10^2 + 0\\cdot 10 + 6$. The subscript tells you the base, so $(1011)_2 = 8 + 0 + 2 + 1 = 11$, while the decimal numeral $1011$ is a different number.\n\nWhy does this work? Each place is worth $b$ times the place to its right, because a base-$b$ numeral groups items into bundles of $b$, bundles of bundles, and so on. To convert a number $N$ into base $b$, divide by $b$ repeatedly and record the remainders. For example $13 = 2 \\cdot 6 + 1$, $6 = 2 \\cdot 3 + 0$, $3 = 2 \\cdot 1 + 1$ and $1 = 2 \\cdot 0 + 1$, so reading the remainders from the last one back to the first gives $13 = (1101)_2$.\n\nThe last digit in base $b$ is the remainder on division by $b$, so base questions are often modular arithmetic in disguise. A numeral with $n$ digits in base $b$ lies between $b^{n-1}$ and $b^n - 1$, which is a quick way to bound a number.",
+      "body": "In base $b$, a numeral $d_k d_{k-1} \\cdots d_1 d_0$ with $0 \\le d_i \\le b-1$ stands for $\\sum_{i} d_i b^i$. Each place is worth $b$ times the place to its right because a base-$b$ numeral groups items into bundles of $b$, bundles of bundles, and so on. The subscript tells you the base: $(1101)_2 = 8 + 4 + 0 + 1 = 13$, while the decimal numeral $1101$ is a different number entirely.\n\nThe conversion from decimal to base $b$ is an algorithm built on the division algorithm. Divide $N$ by $b$ to get a quotient $q$ and remainder $r_0$, so $N = bq + r_0$ with $0 \\le r_0 \\le b-1$. Then $r_0$ is the last digit, and the other digits are the base-$b$ expansion of $q$. Repeating and reading the remainders from the last to the first gives the answer. For $13$ in base $2$: $13 = 2 \\cdot 6 + 1$, $6 = 2 \\cdot 3 + 0$, $3 = 2 \\cdot 1 + 1$, $1 = 2 \\cdot 0 + 1$, so $13 = (1101)_2$.\n\nThe last digit of $N$ in base $b$ is $N \\bmod b$, so base questions are modular arithmetic in disguise. A numeral with $n$ digits in base $b$ satisfies $b^{n-1} \\le N \\le b^n - 1$, which is the fastest way to estimate how many digits a number has.\n\nDigit counts and digit sums also change with base. Each digit of $N$ in base $b$ is found by repeated division, so the sum of the digits of $N$ in base $b$ is congruent to $N$ modulo $b - 1$, exactly as the decimal digit sum is congruent mod $9$. This gives a quick divisibility test in any base.\n\nProblems often ask how a numeral looks in several bases at once, or when a numeral in one base is a number in another. Translate both sides into polynomials in the bases and compare. For example, $(\\overline{ab})_{7}$ and $(\\overline{ba})_{9}$ are equal when $7a + b = 9b + a$, which simplifies to $6a = 8b$, a linear equation with only a few solutions.",
       "keyFacts": [
-        "$(d_k \\cdots d_1 d_0)_b = d_k b^k + \\cdots + d_1 b + d_0$, where $0 \\le d_i \\le b-1$",
+        "$(d_k \\cdots d_1 d_0)_b = \\sum_i d_i b^i$ with $0 \\le d_i \\le b-1$",
         "The last digit of $N$ in base $b$ is $N \\bmod b$",
-        "A base-$b$ numeral with $n$ digits lies between $b^{n-1}$ and $b^n - 1$",
-        "Digits must be smaller than the base: base $5$ uses only the digits $0$ to $4$"
+        "A numeral with $n$ digits in base $b$ lies between $b^{n-1}$ and $b^n - 1$",
+        "The digit sum of $N$ in base $b$ is congruent to $N$ modulo $b-1$"
       ],
-      "whenToUse": "The problem writes a numeral with a small base subscript, asks for the digits of a number in another base, or asks how many digits a number has in some base."
+      "whenToUse": "The problem writes a numeral with a small base subscript, asks for digits in another base, or asks how many digits a number has in some base.",
+      "commonMistakes": [
+        "Reading a numeral in base $b$ with the decimal place values",
+        "Using a digit equal to the base, which is never allowed in base $b$",
+        "Forgetting that the subscript base itself must be larger than every digit that appears"
+      ],
+      "example": {
+        "problem": "Write $(1234)_5$ in base $10$.",
+        "solution": "Each digit is multiplied by a power of $5$: $1 \\cdot 5^3 + 2 \\cdot 5^2 + 3 \\cdot 5 + 4 = 125 + 50 + 15 + 4 = 194$.",
+        "answer": "194",
+        "verify": "print(int('1234', 5))"
+      }
+    },
+    {
+      "title": "Diophantine equations",
+      "body": "A Diophantine equation asks for integer or positive-integer solutions. On the AMC these are almost always polynomial equations that factor after a small rearrangement, and the solution is a finite list that you count. The first move is to look for a factorisation. Expressions such as $xy - 3x - 3y$ become $(x-3)(y-3) - 9$ after adding $9$ to both sides, and $x^2 - y^2 = (x-y)(x+y)$ is a product that can be enumerated.\n\nThe method known as Simon's Favourite Factoring Trick applies to any equation of the form $xy + ax + by = c$. Add $ab$ to both sides to get $(x+b)(y+a) = c + ab$. Then the integer solutions correspond to factor pairs of $c + ab$, and you check each pair for the sign and size constraints. The same idea works for the reciprocal equation $\\frac{1}{x} + \\frac{1}{y} = \\frac{1}{n}$, which becomes $(x-n)(y-n) = n^2$ after clearing denominators.\n\nSign and size constraints matter. If $x, y$ are positive, then $x - n$ and $y - n$ can both be negative only when $x$ and $y$ are both less than $n$, and this is often impossible because the product of two integers in a short range is too small. So you usually only need the positive factor pairs, and you count those.\n\nA difference of squares forces parity. The equation $x^2 - y^2 = N$ requires $x - y$ and $x + y$ to have the same parity, so $N$ must be odd or a multiple of $4$. Once the parity works, each factor pair $(d,e)$ with $de = N$ and $d < e$ gives exactly one positive solution, since $x = (d+e)/2$ and $y = (e-d)/2$.\n\nModular arguments can rule out whole families. A sum of two squares is never congruent to $3 \\pmod 4$, and in general one checks the equation modulo a small number to reduce the search. Combine this with the factorisation and bounding steps, and the solution count follows.",
+      "keyFacts": [
+        "$x^2 - y^2 = (x-y)(x+y)$, and the two factors must have the same parity",
+        "$xy + ax + by = c$ becomes $(x+b)(y+a) = c + ab$ after adding $ab$ to both sides",
+        "$\\frac{1}{x} + \\frac{1}{y} = \\frac{1}{n}$ becomes $(x-n)(y-n) = n^2$",
+        "A sum of two squares is never congruent to $3 \\pmod 4$"
+      ],
+      "whenToUse": "The problem asks for the number of integer or positive-integer solutions of a polynomial equation, especially one with a product term or a reciprocal sum.",
+      "commonMistakes": [
+        "Forgetting that a factor pair with both factors negative can give solutions with negative variables, which the problem may exclude",
+        "Counting ordered pairs when the problem asks for unordered ones, or the reverse",
+        "Missing the case where a factor pair has $d = e$, which gives a single solution rather than two"
+      ],
+      "example": {
+        "problem": "Find the number of ordered pairs of positive integers $(x, y)$ with $xy - 3x - 3y = 0$.",
+        "solution": "Add $9$ to both sides: $(x-3)(y-3) = 9$. Positive solutions need $x, y > 3$, so $x - 3$ and $y - 3$ are positive divisors of $9$ with product $9$. The pairs are $(1,9)$, $(3,3)$, $(9,1)$, giving $(4,12)$, $(6,6)$, $(12,4)$. That is $3$ solutions.",
+        "answer": "3",
+        "verify": "print(sum(1 for x in range(1, 100) for y in range(1, 100) if x * y - 3 * x - 3 * y == 0))"
+      }
+    }
+  ],
+  "strategies": [
+    {
+      "name": "Factor first, then count exponents",
+      "description": "Before any casework, write the relevant numbers as products of prime powers. Divisor counts, gcds, lcms and square-divisor questions all become tables of exponents, and multiplication principle does the rest."
+    },
+    {
+      "name": "Reduce modulo small numbers early",
+      "description": "When a huge number appears, reduce each factor modulo the small moduli that matter (usually $4$, $9$, $10$, $11$ or the prime in question) before multiplying. This keeps the arithmetic to a few digits and exposes periodic patterns."
+    },
+    {
+      "name": "Find the cycle, then shrink the exponent",
+      "description": "For a power $a^N$ modulo $m$, compute the first few powers until the residues repeat, or use $\\varphi(m)$. Reduce $N$ modulo that period and evaluate. For nested exponents, reduce the top exponent first."
+    },
+    {
+      "name": "Split the modulus with CRT",
+      "description": "If a modulus factors into coprime pieces such as $8 \\cdot 125$ or $9 \\cdot 5$, solve for the remainder modulo each piece and recombine. Each piece is a small problem, and the recombination is a short search."
+    },
+    {
+      "name": "Factor the equation and bound the factors",
+      "description": "For a Diophantine equation, rearrange until it becomes a product equal to a constant, then enumerate the factor pairs. Use sign and size bounds to discard pairs that give negative or impossible values."
+    },
+    {
+      "name": "Check parity and residues before solving",
+      "description": "Many equations have no solutions for a simple reason, such as a parity mismatch or a square that cannot be $3$ modulo $4$. A quick check modulo $2$, $4$ or $7$ can eliminate whole families before any algebra."
     }
   ],
   "workedExamples": [
     {
-      "title": "Multiples of 4 or 6",
-      "difficulty": 2,
-      "problem": "How many positive integers less than $60$ are multiples of $4$ or of $6$?",
+      "title": "Neither two nor five",
+      "difficulty": 1,
+      "problem": "How many of the integers $1, 2, \\ldots, 100$ are divisible by neither $2$ nor $5$?",
       "choices": [
-        "15",
-        "16",
-        "19",
-        "21",
-        "23"
-      ],
-      "answer": "C",
-      "steps": [
-        "Multiples of $4$ below $60$ are $4, 8, \\ldots, 56$. Dividing each by $4$ gives $1$ through $14$, so there are $14$ of them.",
-        "Multiples of $6$ below $60$ are $6, 12, \\ldots, 54$, which is $9$ numbers.",
-        "A number is a multiple of both $4$ and $6$ exactly when it is a multiple of $\\operatorname{lcm}(4,6) = 12$. These are $12, 24, 36, 48$, so there are $4$.",
-        "Add the two lists and remove the overlap once: $14 + 9 - 4 = 19$."
-      ],
-      "takeaway": "To count numbers divisible by $a$ or by $b$, add the two counts and subtract the count divisible by $\\operatorname{lcm}(a,b)$.",
-      "verify": "print(sum(1 for n in range(1, 60) if n % 4 == 0 or n % 6 == 0))"
-    },
-    {
-      "title": "Square divisors",
-      "difficulty": 3,
-      "problem": "How many positive divisors of $N = 2^6 \\cdot 3^5 \\cdot 5^2$ are perfect squares?",
-      "choices": [
-        "12",
-        "18",
-        "24",
         "30",
-        "36"
+        "40",
+        "50",
+        "60",
+        "70"
       ],
-      "answer": "C",
+      "answer": "B",
+      "approach": "Count the complement: numbers divisible by $2$ or $5$, then subtract from $100$.",
       "steps": [
-        "A divisor has the form $2^a 3^b 5^c$ with $0 \\le a \\le 6$, $0 \\le b \\le 5$ and $0 \\le c \\le 2$.",
-        "A whole number is a perfect square exactly when every prime appears to an even power, so the divisor is a square exactly when $a$, $b$ and $c$ are all even.",
-        "For $a$ the even values are $0, 2, 4, 6$, which gives $4$ choices.",
-        "For $b$ the even values are $0, 2, 4$, which gives $3$ choices. For $c$ the even values are $0, 2$, which gives $2$ choices.",
-        "The total is $4 \\cdot 3 \\cdot 2 = 24$."
+        "There are $50$ even numbers and $20$ multiples of $5$ among $1, \\ldots, 100$.",
+        "Multiples of $10$ are counted in both lists, and there are $10$ of them.",
+        "By inclusion-exclusion, the numbers divisible by $2$ or $5$ number $50 + 20 - 10 = 60$.",
+        "The numbers divisible by neither are $100 - 60 = 40$."
       ],
-      "takeaway": "When a condition says every prime power must be even, restrict each exponent to its even values and multiply the counts.",
-      "verify": "import math\nN = 2**6 * 3**5 * 5**2\ncount = 0\nfor d in range(1, N + 1):\n    if N % d == 0 and math.isqrt(d) ** 2 == d:\n        count += 1\nprint(count)"
+      "alternative": "Count directly: in each block of $10$ consecutive integers, the numbers coprime to $10$ are $1, 3, 7, 9$, which is $4$ per block, giving $4 \\cdot 10 = 40$.",
+      "takeaway": "To count numbers avoiding several divisibility conditions, count the union by inclusion-exclusion and subtract from the total.",
+      "verify": "print(sum(1 for n in range(1, 101) if n % 2 and n % 5))"
     },
     {
-      "title": "Coprime numbers up to 300",
-      "difficulty": 4,
-      "problem": "How many positive integers $n \\le 300$ are relatively prime to $180$, that is, satisfy $\\gcd(n,180) = 1$?",
+      "title": "Squares plus one",
+      "difficulty": 2,
+      "problem": "For how many integers $n$ with $1 \\le n \\le 100$ is $n^2 + 1$ divisible by $5$?",
       "choices": [
+        "20",
+        "40",
+        "50",
         "60",
-        "72",
-        "80",
-        "90",
-        "96"
+        "80"
+      ],
+      "answer": "B",
+      "approach": "Reduce the condition to a statement about $n$ modulo $5$, then count residues.",
+      "steps": [
+        "The condition $5 \\mid n^2 + 1$ is equivalent to $n^2 \\equiv -1 \\equiv 4 \\pmod 5$.",
+        "Check the residues: $0^2 = 0$, $1^2 = 1$, $2^2 = 4$, $3^2 = 4$, $4^2 = 1$.",
+        "So $n^2 \\equiv 4$ exactly when $n \\equiv 2$ or $3 \\pmod 5$.",
+        "Each residue class contains $20$ integers from $1$ to $100$, so the answer is $2 \\cdot 20 = 40$."
+      ],
+      "alternative": "Equivalently, look at the integers in blocks of five: in each block exactly the two numbers congruent to $2$ and $3$ mod $5$ work, giving $2$ per block and $40$ overall.",
+      "takeaway": "A condition $p \\mid f(n)$ depends only on $n$ modulo $p$, so tabulate the residues and count each class.",
+      "verify": "print(sum(1 for n in range(1, 101) if (n * n + 1) % 5 == 0))"
+    },
+    {
+      "title": "Cubes among divisors",
+      "difficulty": 3,
+      "problem": "How many positive divisors of $6^6$ are perfect cubes?",
+      "choices": [
+        "4",
+        "6",
+        "9",
+        "12",
+        "16"
       ],
       "answer": "C",
+      "approach": "Write $6^6 = 2^6 \\cdot 3^6$ and treat the divisors as exponent pairs.",
       "steps": [
-        "Factor $180 = 2^2 \\cdot 3^2 \\cdot 5$. Then $\\gcd(n,180) = 1$ exactly when $n$ is divisible by none of $2$, $3$ and $5$.",
-        "Whether $n$ is divisible by $2$, $3$ or $5$ depends only on $n \\bmod 30$, so the pattern repeats every $30$ integers.",
-        "In the block $1, \\ldots, 30$ the numbers that avoid $2$, $3$ and $5$ are $1, 7, 11, 13, 17, 19, 23, 29$, which is $8$ numbers. As a check, $30 \\cdot \\frac{1}{2} \\cdot \\frac{2}{3} \\cdot \\frac{4}{5} = 8$.",
-        "Since $300 = 10 \\cdot 30$, there are $10$ full blocks, giving $10 \\cdot 8 = 80$."
+        "Every divisor has the form $2^a \\cdot 3^b$ with $0 \\le a \\le 6$ and $0 \\le b \\le 6$.",
+        "A number is a perfect cube exactly when each prime exponent is a multiple of $3$.",
+        "The allowed values of $a$ are $0, 3, 6$, which gives $3$ choices, and likewise $3$ choices for $b$.",
+        "The count is $3 \\cdot 3 = 9$."
       ],
-      "takeaway": "Coprimality depends only on residues modulo the primes of the number, so count one full period and multiply by the number of periods.",
-      "verify": "import math\nprint(sum(1 for n in range(1, 301) if math.gcd(n, 180) == 1))"
+      "alternative": "",
+      "takeaway": "A perfect $k$-th power divisor is found by restricting each exponent to multiples of $k$ and multiplying the counts.",
+      "verify": "print(sum(1 for d in range(1, 46657) if 46656 % d == 0 and any(c ** 3 == d for c in range(1, 60))))"
+    },
+    {
+      "title": "Thousand-fold remainder",
+      "difficulty": 4,
+      "problem": "What is the remainder when $2^{1000}$ is divided by $1000$?",
+      "choices": [
+        "126",
+        "250",
+        "376",
+        "500",
+        "624"
+      ],
+      "answer": "C",
+      "approach": "Split $1000 = 8 \\cdot 125$, handle the two pieces separately, then recombine.",
+      "steps": [
+        "Modulo $8$: since $2^3 = 8$, every power $2^k$ with $k \\ge 3$ is $0 \\pmod 8$, so $2^{1000} \\equiv 0 \\pmod 8$.",
+        "Modulo $125$: $\\varphi(125) = 100$, and $\\gcd(2,125) = 1$, so $2^{100} \\equiv 1 \\pmod{125}$.",
+        "Since $1000 = 100 \\cdot 10$, we get $2^{1000} \\equiv 1 \\pmod{125}$.",
+        "Solve $n \\equiv 0 \\pmod 8$ and $n \\equiv 1 \\pmod{125}$. The candidates $1, 126, 251, 376, \\ldots$ satisfy the second condition, and $376 = 8 \\cdot 47$ is the first divisible by $8$."
+      ],
+      "alternative": "Note $2^{1000} \\equiv 0 \\pmod 8$ and the remainder is the unique residue mod $1000$ with those two properties, so one can also test the numbers $1 + 125t$ directly.",
+      "takeaway": "For a modulus with coprime factors, handle each prime power with Euler's theorem and recombine with CRT.",
+      "verify": "print(pow(2, 1000, 1000))"
+    },
+    {
+      "title": "Difference of squares",
+      "difficulty": 4,
+      "problem": "How many ordered pairs of positive integers $(a, b)$ satisfy $a^2 - b^2 = 2025$?",
+      "choices": [
+        "6",
+        "7",
+        "8",
+        "15",
+        "21"
+      ],
+      "answer": "B",
+      "approach": "Factor the difference of squares and enumerate the factor pairs with the right parity.",
+      "steps": [
+        "Write $a^2 - b^2 = (a-b)(a+b) = 2025$.",
+        "Since $2025$ is odd, both factors must be odd, so the parity condition holds automatically.",
+        "Because $a + b > a - b > 0$ for positive $b$, the pairs $(d, e)$ with $de = 2025$ and $d < e$ correspond to solutions, with $a = (d+e)/2$ and $b = (e-d)/2$.",
+        "$2025 = 3^4 \\cdot 5^2$ has $15$ divisors. The divisor $45$ pairs with itself, so the pairs with $d < e$ number $(15 - 1)/2 = 7$."
+      ],
+      "alternative": "",
+      "takeaway": "Each factor pair $(d,e)$ with $d < e$ and the same parity yields one positive solution of $x^2 - y^2 = N$, so count factor pairs.",
+      "verify": "print(sum(1 for a in range(1, 2026) for b in range(1, a) if a * a - b * b == 2025))"
+    },
+    {
+      "title": "Divisor sum summed",
+      "difficulty": 5,
+      "problem": "Find $\\displaystyle\\sum_{k=1}^{100} \\left\\lfloor \\frac{100}{k} \\right\\rfloor$.",
+      "choices": [
+        "400",
+        "441",
+        "482",
+        "500",
+        "520"
+      ],
+      "answer": "C",
+      "approach": "Recognise the sum as the number of pairs $(k, m)$ with $km \\le 100$, then count with the hyperbola symmetry.",
+      "steps": [
+        "The term $\\lfloor 100/k \\rfloor$ counts the multiples $m$ with $1 \\le m \\le 100/k$, that is, the pairs $(k, m)$ with $km \\le 100$.",
+        "So the sum equals the number of pairs $(k,m)$ of positive integers with $km \\le 100$.",
+        "Split the pairs by whether $k \\le 10$ or $m \\le 10$. Pairs with $k \\le 10$ number $\\sum_{k=1}^{10} \\lfloor 100/k \\rfloor = 100+50+33+25+20+16+14+12+11+10 = 291$, and by symmetry the pairs with $m \\le 10$ also number $291$.",
+        "Every pair with both $k \\le 10$ and $m \\le 10$ satisfies $km \\le 100$, so there are $100$ such pairs. Inclusion-exclusion gives $291 + 291 - 100 = 482$."
+      ],
+      "alternative": "Evaluate $\\sum_{k=1}^{100} \\lfloor 100/k \\rfloor$ term by term, grouping the $k$ with equal quotient; the $19$ blocks give the same $482$.",
+      "takeaway": "A sum of floors $\\sum \\lfloor N/k \\rfloor$ counts lattice points under a hyperbola, and symmetry halves the work.",
+      "verify": "print(sum(100 // k for k in range(1, 101)))"
     }
   ],
   "problems": [
     {
       "id": "nt-01",
       "difficulty": 1,
-      "problem": "How many positive two-digit integers are multiples of $7$?",
+      "problem": "How many positive three-digit integers are divisible by $7$ but not by $5$?",
       "choices": [
-        "9",
-        "10",
-        "11",
-        "12",
-        "13"
+        "102",
+        "116",
+        "128",
+        "142",
+        "160"
       ],
-      "answer": "E",
-      "hint": "Find the smallest and largest two-digit multiples of $7$, then count the multiples between them.",
-      "solution": "The smallest two-digit multiple of $7$ is $14 = 7 \\cdot 2$ and the largest is $98 = 7 \\cdot 14$. The multipliers $2, 3, \\ldots, 14$ give $14 - 2 + 1 = 13$ multiples.",
-      "verify": "print(sum(1 for n in range(10, 100) if n % 7 == 0))"
+      "answer": "A",
+      "hint": "Count the three-digit multiples of $7$, then remove the ones that are also multiples of $35$.",
+      "solution": "The three-digit multiples of $7$ run from $7 \\cdot 15 = 105$ to $7 \\cdot 142 = 994$, which is $142 - 15 + 1 = 128$ numbers. The multiples of $\\operatorname{lcm}(7,5) = 35$ among them run from $35 \\cdot 3 = 105$ to $35 \\cdot 28 = 980$, giving $28 - 3 + 1 = 26$. Subtracting, $128 - 26 = 102$.",
+      "concepts": [
+        0
+      ],
+      "verify": "print(sum(1 for n in range(100, 1000) if n % 7 == 0 and n % 5 != 0))"
     },
     {
       "id": "nt-02",
       "difficulty": 1,
-      "problem": "What is the sum of all prime numbers strictly between $10$ and $30$?",
+      "problem": "What is the sum of all prime numbers strictly between $30$ and $60$?",
       "choices": [
-        "83",
-        "101",
-        "106",
-        "112",
-        "124"
+        "252",
+        "280",
+        "300",
+        "305",
+        "311"
       ],
-      "answer": "D",
-      "hint": "List the primes between $10$ and $30$ one at a time, checking each for divisors up to its square root.",
-      "solution": "The primes strictly between $10$ and $30$ are $11, 13, 17, 19, 23, 29$. Their sum is $11 + 13 + 17 + 19 + 23 + 29 = 112$.",
-      "verify": "def is_prime(n):\n    if n < 2:\n        return False\n    return all(n % d != 0 for d in range(2, int(n ** 0.5) + 1))\nprint(sum(n for n in range(11, 30) if is_prime(n)))"
+      "answer": "E",
+      "hint": "There are seven such primes. Check each odd number in the range for divisors up to its square root.",
+      "solution": "The primes strictly between $30$ and $60$ are $31, 37, 41, 43, 47, 53, 59$. Their sum is $31 + 37 + 41 + 43 + 47 + 53 + 59 = 311$.",
+      "concepts": [
+        1
+      ],
+      "verify": "def is_prime(n):\n    return n > 1 and all(n % d for d in range(2, int(n ** 0.5) + 1))\nprint(sum(n for n in range(31, 60) if is_prime(n)))"
     },
     {
       "id": "nt-03",
       "difficulty": 1,
-      "problem": "What is the greatest common divisor of $252$ and $198$?",
+      "problem": "What is the least common multiple of $36$, $48$ and $60$?",
       "choices": [
-        "6",
-        "9",
-        "18",
-        "36",
-        "54"
+        "144",
+        "360",
+        "600",
+        "720",
+        "1440"
       ],
-      "answer": "C",
-      "hint": "Factor both numbers into primes and keep only the prime powers they share.",
-      "solution": "$252 = 2^2 \\cdot 3^2 \\cdot 7$ and $198 = 2 \\cdot 3^2 \\cdot 11$. The shared prime powers are $2^1$ and $3^2$, so the gcd is $2 \\cdot 9 = 18$.",
-      "verify": "print(max(d for d in range(1, 253) if 252 % d == 0 and 198 % d == 0))"
+      "answer": "D",
+      "hint": "Factor each number and take the largest power of each prime.",
+      "solution": "We have $36 = 2^2 \\cdot 3^2$, $48 = 2^4 \\cdot 3$ and $60 = 2^2 \\cdot 3 \\cdot 5$. The least common multiple takes the largest exponent of each prime, giving $2^4 \\cdot 3^2 \\cdot 5 = 720$.",
+      "concepts": [
+        2
+      ],
+      "verify": "import math\nprint(math.lcm(36, 48, 60))"
     },
     {
       "id": "nt-04",
-      "difficulty": 2,
-      "problem": "How many positive divisors of $2^4 \\cdot 3^3$ are multiples of $6$?",
+      "difficulty": 1,
+      "problem": "A three-digit number $\\overline{4a7}$, with hundreds digit $4$, tens digit $a$ and units digit $7$, is divisible by $9$. What is the digit $a$?",
       "choices": [
-        "9",
-        "12",
-        "15",
-        "18",
-        "24"
+        "2",
+        "5",
+        "6",
+        "7",
+        "8"
       ],
-      "answer": "B",
-      "hint": "A multiple of $6$ must contain at least one factor of $2$ and at least one factor of $3$.",
-      "solution": "Write a divisor as $2^a 3^b$ with $0 \\le a \\le 4$ and $0 \\le b \\le 3$. Being a multiple of $6 = 2 \\cdot 3$ requires $a \\ge 1$ and $b \\ge 1$. That leaves $4$ choices for $a$ and $3$ choices for $b$, so there are $4 \\cdot 3 = 12$ such divisors.",
-      "verify": "N = 2**4 * 3**3\nprint(sum(1 for d in range(1, N + 1) if N % d == 0 and d % 6 == 0))"
+      "answer": "D",
+      "hint": "A number is divisible by $9$ exactly when its digit sum is.",
+      "solution": "The digit sum is $4 + a + 7 = 11 + a$. For this to be divisible by $9$ with $0 \\le a \\le 9$, the sum must be $18$, so $a = 7$.",
+      "concepts": [
+        0
+      ],
+      "verify": "print([a for a in range(10) if (400 + 10 * a + 7) % 9 == 0][0])"
     },
     {
       "id": "nt-05",
-      "difficulty": 2,
-      "problem": "What is the units digit of $2^{2025} + 3^{2025}$?",
+      "difficulty": 1,
+      "problem": "What is the sum of the distinct prime factors of $2310$?",
       "choices": [
-        "2",
+        "17",
+        "28",
+        "35",
+        "41",
+        "50"
+      ],
+      "answer": "B",
+      "hint": "Divide $2310$ by the small primes in turn until nothing is left.",
+      "solution": "Since $2310 = 2 \\cdot 3 \\cdot 5 \\cdot 7 \\cdot 11$, the distinct prime factors are $2, 3, 5, 7, 11$, whose sum is $28$.",
+      "concepts": [
+        1
+      ],
+      "verify": "def is_prime(n):\n    return n > 1 and all(n % d for d in range(2, int(n ** 0.5) + 1))\nprint(sum(p for p in range(2, 2311) if 2310 % p == 0 and is_prime(p)))"
+    },
+    {
+      "id": "nt-06",
+      "difficulty": 1,
+      "problem": "What is the remainder when $1 + 2 + 3 + \\cdots + 100$ is divided by $7$?",
+      "choices": [
+        "0",
         "3",
         "4",
         "5",
         "6"
       ],
-      "answer": "D",
-      "hint": "The units digits of $2^n$ and of $3^n$ each repeat with period $4$ as $n$ grows.",
-      "solution": "The units digits of powers of $2$ cycle $2, 4, 8, 6$, and those of powers of $3$ cycle $3, 9, 7, 1$, both with period $4$. Since $2025 \\equiv 1 \\pmod 4$, the units digits are $2$ and $3$. Their sum $5$ has units digit $5$.",
-      "verify": "a = 1\nfor _ in range(2025):\n    a = a * 2 % 10\nb = 1\nfor _ in range(2025):\n    b = b * 3 % 10\nprint((a + b) % 10)"
-    },
-    {
-      "id": "nt-06",
-      "difficulty": 2,
-      "problem": "How many ordered pairs $(a,b)$ of positive integers satisfy $ab = 360$ and $a < b$?",
-      "choices": [
-        "11",
-        "12",
-        "23",
-        "24",
-        "36"
-      ],
       "answer": "B",
-      "hint": "Each divisor $a$ of $360$ gives exactly one partner $b = 360/a$. Ask whether $a = b$ can ever happen.",
-      "solution": "Each divisor $a$ of $360$ determines $b = 360/a$, so there are $d(360) = 24$ ordered pairs with $ab = 360$. Since $360 = 2^3 \\cdot 3^2 \\cdot 5$ is not a perfect square, no pair has $a = b$, so the pairs split evenly between $a < b$ and $a > b$. The answer is $24/2 = 12$.",
-      "verify": "N = 360\npairs = [(a, N // a) for a in range(1, N + 1) if N % a == 0]\nprint(sum(1 for a, b in pairs if a < b))"
+      "hint": "The sum is $\\frac{100 \\cdot 101}{2}$. Reduce it modulo $7$ rather than computing it fully.",
+      "solution": "The sum is $5050$. Since $7 \\cdot 721 = 5047$, the remainder is $3$. Equivalently, $5050 = 50 \\cdot 101$ and $50 \\equiv 1$, $101 \\equiv 3 \\pmod 7$.",
+      "concepts": [
+        4
+      ],
+      "verify": "print(sum(range(1, 101)) % 7)"
     },
     {
       "id": "nt-07",
-      "difficulty": 3,
-      "problem": "A rectangular garden measures $180$ m by $252$ m. It is covered exactly by identical square plots whose side length is a whole number of metres and is as large as possible. How many plots are used?",
+      "difficulty": 2,
+      "problem": "How many two-digit positive integers have a units digit strictly greater than their tens digit?",
       "choices": [
-        "12",
-        "35",
+        "28",
         "36",
-        "63",
-        "65"
+        "40",
+        "45",
+        "55"
       ],
       "answer": "B",
-      "hint": "The side of each square must divide both $180$ and $252$ exactly. Which such number is largest?",
-      "solution": "The side length must divide both $180$ and $252$, and the largest such number is $\\gcd(180, 252) = 36$. Along the $180$ m side there are $180/36 = 5$ plots, and along the $252$ m side there are $252/36 = 7$. The total is $5 \\cdot 7 = 35$.",
-      "verify": "best = max(s for s in range(1, 181) if 180 % s == 0 and 252 % s == 0)\nprint((180 // best) * (252 // best))"
+      "hint": "Fix the tens digit $t$ and count the units digits $u$ with $t < u \\le 9$.",
+      "solution": "For tens digit $t$ there are $9 - t$ choices of units digit. Summing over $t = 1, \\ldots, 8$ gives $8 + 7 + \\cdots + 1 = 36$.",
+      "concepts": [
+        0
+      ],
+      "verify": "print(sum(1 for n in range(10, 100) if n % 10 > n // 10))"
     },
     {
       "id": "nt-08",
-      "difficulty": 3,
-      "problem": "How many positive divisors does $10!$ have?",
+      "difficulty": 2,
+      "problem": "What is the smallest positive integer with exactly $10$ positive divisors?",
       "choices": [
-        "270",
-        "288",
-        "300",
-        "324",
-        "342"
+        "24",
+        "36",
+        "40",
+        "44",
+        "48"
       ],
-      "answer": "A",
-      "hint": "Find the exponent of each prime in $10! = 1 \\cdot 2 \\cdots 10$ first, counting multiples of $2$, $4$, $8$, and so on.",
-      "solution": "$10! = 2^8 \\cdot 3^4 \\cdot 5^2 \\cdot 7$. The exponent of $2$ is $5 + 2 + 1 = 8$, of $3$ is $3 + 1 = 4$, of $5$ is $2$, and of $7$ is $1$. So the number of divisors is $(8+1)(4+1)(2+1)(1+1) = 9 \\cdot 5 \\cdot 3 \\cdot 2 = 270$.",
-      "verify": "import math\nN = 1\nfor i in range(1, 11):\n    N *= i\ncnt = 0\nfor d in range(1, math.isqrt(N) + 1):\n    if N % d == 0:\n        cnt += 1 if d * d == N else 2\nprint(cnt)"
+      "answer": "E",
+      "hint": "If $n = p^a q^b \\cdots$, the divisor count is $(a+1)(b+1)\\cdots$. Which exponent patterns give $10$?",
+      "solution": "Since $10 = 10$ or $5 \\cdot 2$, the exponent patterns are $(9)$ or $(4,1)$. The candidates are $2^9 = 512$, $2^4 \\cdot 3 = 48$, and $2 \\cdot 3^4 = 162$, so the smallest is $48$. The other choices $24, 36, 40, 44$ have $8, 9, 8, 6$ divisors, so none of them has exactly $10$.",
+      "concepts": [
+        3
+      ],
+      "verify": "print(next(n for n in range(1, 1000) if sum(1 for d in range(1, n + 1) if n % d == 0) == 10))"
     },
     {
       "id": "nt-09",
-      "difficulty": 3,
-      "problem": "How many positive integers $n \\le 500$ have exactly three positive divisors?",
+      "difficulty": 2,
+      "problem": "How many integers $n$ with $1 \\le n \\le 100$ are relatively prime to $30$?",
       "choices": [
-        "8",
-        "9",
-        "10",
-        "12",
-        "13"
+        "26",
+        "30",
+        "36",
+        "40",
+        "48"
       ],
       "answer": "A",
-      "hint": "If $n$ has exactly three divisors, one of them is $1$ and one is $n$. Which structure forces exactly one more?",
-      "solution": "A number with exactly three divisors has the form $p^2$ with $p$ prime, because $(a+1) = 3$ forces a single prime with exponent $2$. The condition $p^2 \\le 500$ means $p \\le 22$, so $p \\in \\{2, 3, 5, 7, 11, 13, 17, 19\\}$. That gives $8$ numbers.",
-      "verify": "def ndiv(n):\n    return sum(1 for k in range(1, n + 1) if n % k == 0)\nprint(sum(1 for n in range(1, 501) if ndiv(n) == 3))"
+      "hint": "The pattern repeats every $30$ integers. Count one full period and the leftover block.",
+      "solution": "In each block of $30$ consecutive integers there are $\\varphi(30) = 8$ numbers coprime to $30$. The first $90$ integers contain $3$ full blocks, giving $24$. In $91, \\ldots, 100$ only $91$ and $97$ are coprime to $30$, so the total is $26$.",
+      "concepts": [
+        2
+      ],
+      "verify": "import math\nprint(sum(1 for n in range(1, 101) if math.gcd(n, 30) == 1))"
     },
     {
       "id": "nt-10",
-      "difficulty": 3,
-      "problem": "For how many integers $b$ with $2 \\le b \\le 100$ is the base-$b$ numeral $110_b$ divisible by $7$? (Here $110_b$ is the number whose base-$b$ digits are $1, 1, 0$, and divisibility is judged in ordinary arithmetic.)",
+      "difficulty": 2,
+      "problem": "How many integers $n$ with $1 \\le n \\le 200$ are divisible by exactly one of $4$ and $6$?",
       "choices": [
-        "28",
-        "29",
-        "42",
-        "56",
-        "57"
+        "17",
+        "34",
+        "51",
+        "67",
+        "133"
       ],
-      "answer": "A",
-      "hint": "Write $110_b$ as $b^2 + b$. Since $7$ is prime, it divides a product only if it divides one of the factors.",
-      "solution": "$110_b = b^2 + b = b(b+1)$. Since $7$ is prime, $7 \\mid b(b+1)$ exactly when $7 \\mid b$ or $7 \\mid (b+1)$. In $2 \\le b \\le 100$ there are $14$ multiples of $7$ (namely $7, \\ldots, 98$), and $14$ values of $b$ with $b+1$ a multiple of $7$ (namely $6, 13, \\ldots, 97$). Both cannot happen at once, so the total is $28$.",
-      "verify": "count = 0\nfor b in range(2, 101):\n    v = 0\n    for digit in (1, 1, 0):\n        v = v * b + digit\n    if v % 7 == 0:\n        count += 1\nprint(count)"
+      "answer": "C",
+      "hint": "Count multiples of $4$ and of $6$ separately, then remove the multiples of $12$ from both lists.",
+      "solution": "There are $50$ multiples of $4$, $33$ multiples of $6$, and $16$ multiples of $12 = \\operatorname{lcm}(4,6)$ up to $200$. Divisible by exactly one means $(50 - 16) + (33 - 16) = 34 + 17 = 51$.",
+      "concepts": [
+        0
+      ],
+      "verify": "print(sum(1 for n in range(1, 201) if (n % 4 == 0) != (n % 6 == 0)))"
     },
     {
       "id": "nt-11",
-      "difficulty": 4,
-      "problem": "What is the remainder when $7^{2025} + 3^{2025}$ is divided by $100$?",
+      "difficulty": 2,
+      "problem": "How many ordered pairs of positive integers $(x, y)$ satisfy $2x + 3y = 60$?",
       "choices": [
-        "7",
-        "25",
-        "43",
-        "50",
-        "93"
+        "9",
+        "10",
+        "12",
+        "15",
+        "18"
       ],
-      "answer": "D",
-      "hint": "Compute the powers of $7$ and of $3$ modulo $100$ one step at a time, and watch for the remainders to repeat.",
-      "solution": "Modulo $100$: $7^2 \\equiv 49$, $7^3 \\equiv 43$, $7^4 \\equiv 1$. Since $2025 \\equiv 1 \\pmod 4$, $7^{2025} \\equiv 7$. For $3$: $3^5 \\equiv 43$, $3^{10} \\equiv 43^2 \\equiv 49$, $3^{20} \\equiv 49^2 \\equiv 1$. Since $2025 \\equiv 5 \\pmod{20}$, $3^{2025} \\equiv 3^5 \\equiv 43$. Adding, $7 + 43 = 50$.",
-      "verify": "a = 1\nfor _ in range(2025):\n    a = a * 7 % 100\nb = 1\nfor _ in range(2025):\n    b = b * 3 % 100\nprint((a + b) % 100)"
+      "answer": "A",
+      "hint": "Since $2x = 60 - 3y$, $y$ must be even. Find the range of allowed even $y$.",
+      "solution": "We need $y$ even and $3y < 60$, so $y \\in \\{2, 4, \\ldots, 18\\}$. Each value gives a positive integer $x = (60 - 3y)/2$, and $y = 20$ would give $x = 0$, which is excluded. That is $9$ solutions.",
+      "concepts": [
+        9
+      ],
+      "verify": "print(sum(1 for x in range(1, 61) for y in range(1, 61) if 2 * x + 3 * y == 60))"
     },
     {
       "id": "nt-12",
-      "difficulty": 4,
-      "problem": "How many ordered pairs $(a,b)$ of positive integers satisfy $\\gcd(a,b) = 12$ and $\\operatorname{lcm}(a,b) = 360$?",
+      "difficulty": 2,
+      "problem": "What is the units digit of $3^{2025} \\cdot 7^{2024}$?",
       "choices": [
+        "3",
+        "5",
+        "7",
         "8",
-        "12",
-        "16",
-        "24",
-        "32"
+        "9"
       ],
       "answer": "A",
-      "hint": "Work one prime at a time: for each prime, the gcd takes the smaller exponent and the lcm takes the larger.",
-      "solution": "$12 = 2^2 \\cdot 3$ and $360 = 2^3 \\cdot 3^2 \\cdot 5$. For the prime $2$ the two exponents have minimum $2$ and maximum $3$, so they are $(2,3)$ or $(3,2)$: $2$ ways. For $3$ the minimum is $1$ and the maximum is $2$: $2$ ways. For $5$ the minimum is $0$ and the maximum is $1$: $2$ ways. Total $2 \\cdot 2 \\cdot 2 = 8$.",
-      "verify": "N = 360\ndivs = [d for d in range(1, N + 1) if N % d == 0]\ndef gcd_brute(x, y):\n    return max(d for d in range(1, min(x, y) + 1) if x % d == 0 and y % d == 0)\ndef lcm_brute(x, y):\n    return min(m for m in range(1, N + 1) if m % x == 0 and m % y == 0)\ncount = 0\nfor a in divs:\n    for b in divs:\n        if gcd_brute(a, b) == 12 and lcm_brute(a, b) == N:\n            count += 1\nprint(count)"
+      "hint": "Powers of $3$ and $7$ repeat last digits with period $4$.",
+      "solution": "Powers of $3$ mod $10$ cycle $3, 9, 7, 1$, and $2025 \\equiv 1 \\pmod 4$, so $3^{2025} \\equiv 3$. Powers of $7$ cycle $7, 9, 3, 1$, and $2024 \\equiv 0 \\pmod 4$, so $7^{2024} \\equiv 1$. The product has units digit $3$.",
+      "concepts": [
+        7
+      ],
+      "verify": "print(pow(3, 2025, 10) * pow(7, 2024, 10) % 10)"
     },
     {
       "id": "nt-13",
-      "difficulty": 4,
-      "problem": "How many integers $n$ with $1 \\le n \\le 1000$ have exactly four digits equal to $1$ when written in base $2$?",
+      "difficulty": 3,
+      "problem": "What is the smallest positive integer $n$ with $n \\equiv 2 \\pmod 5$, $n \\equiv 3 \\pmod 7$ and $n \\equiv 4 \\pmod 9$?",
       "choices": [
-        "90",
-        "120",
-        "126",
-        "168",
-        "210"
+        "62",
+        "97",
+        "127",
+        "142",
+        "157"
       ],
       "answer": "E",
-      "hint": "Every number below $1024 = 2^{10}$ is a ten-digit binary string, with leading zeros allowed. Which of these strings can be as large as $1000$?",
-      "solution": "Every $n < 1024$ is a ten-digit binary string with leading zeros allowed. Choosing which $4$ of the $10$ positions hold a $1$ gives $\\binom{10}{4} = 210$ strings. The numbers from $992 = 1111100000_2$ to $1023$ all start with five $1$s, so none of them has exactly four $1$s. Hence all $210$ strings are at most $991$, and all of them are counted.",
-      "verify": "print(sum(1 for n in range(1, 1001) if bin(n).count(\"1\") == 4))"
+      "hint": "Solve the first two congruences by listing numbers, then use the third to pick the right one. Since $5, 7, 9$ are pairwise coprime, a solution exists and is unique modulo $315$.",
+      "solution": "Modulo $35$ the first two congruences give $n \\equiv 17 \\pmod{35}$, since $17 \\equiv 2 \\pmod 5$ and $17 \\equiv 3 \\pmod 7$. Write $n = 17 + 35t$ and require $17 + 35t \\equiv 4 \\pmod 9$. Since $17 \\equiv 8$ and $35 \\equiv 8 \\pmod 9$, this is $8 + 8t \\equiv 4$, so $8t \\equiv 5$, and $8 \\equiv -1$ gives $t \\equiv 4 \\pmod 9$. Then $n = 17 + 140 = 157$.",
+      "concepts": [
+        6
+      ],
+      "verify": "print(next(n for n in range(1, 10000) if n % 5 == 2 and n % 7 == 3 and n % 9 == 4))"
     },
     {
       "id": "nt-14",
-      "difficulty": 5,
-      "problem": "How many positive integers $n \\le 1000$ have exactly six positive divisors?",
+      "difficulty": 3,
+      "problem": "How many positive divisors of $10^{10}$ are not divisors of $10^{9}$?",
       "choices": [
-        "108",
-        "110",
-        "120",
-        "128",
-        "138"
+        "9",
+        "11",
+        "19",
+        "21",
+        "100"
       ],
-      "answer": "B",
-      "hint": "Use the divisor-count formula: which ways can $(a_1+1)(a_2+1)\\cdots$ equal $6$?",
-      "solution": "The formula requires $(a_1+1)\\cdots(a_k+1) = 6$, which happens only for $n = p^5$ (from $6$) or $n = p^2 q$ with distinct primes $p, q$ (from $3 \\cdot 2$). For $p^5 \\le 1000$: $2^5 = 32$ and $3^5 = 243$, giving $2$. For $p^2 q \\le 1000$, go through $p$: $p=2$ gives $52$ primes $q \\le 250$ other than $2$; $p=3$ gives $28$ primes $q \\le 111$ other than $3$; $p=5$ gives $11$ primes $q \\le 40$ other than $5$; $p=7$ gives $7$ primes $q \\le 20$ other than $7$; $p=11$ gives $4$; $p=13$ gives $3$; $p=17$ gives $2$; $p=19$ gives $1$. Total: $2+52+28+11+7+4+3+2+1 = 110$.",
-      "verify": "def ndiv(n):\n    return sum(1 for k in range(1, n + 1) if n % k == 0)\nprint(sum(1 for n in range(1, 1001) if ndiv(n) == 6))"
+      "answer": "D",
+      "hint": "Write $10^{10} = 2^{10} \\cdot 5^{10}$. A divisor fails to divide $10^9$ exactly when one of its exponents is $10$.",
+      "solution": "Divisors of $10^{10}$ are $2^a 5^b$ with $0 \\le a, b \\le 10$, so there are $121$. Those dividing $10^9$ have $a, b \\le 9$, which gives $100$. The difference is $21$, which is also the count of pairs with $\\max(a, b) = 10$.",
+      "concepts": [
+        1,
+        3
+      ],
+      "verify": "print(sum(1 for a in range(11) for b in range(11) if max(a, b) == 10))"
     },
     {
       "id": "nt-15",
-      "difficulty": 5,
-      "problem": "How many positive integers $n \\le 2025$ are relatively prime to $2025$ and also satisfy $n \\equiv 1 \\pmod 4$?",
+      "difficulty": 3,
+      "problem": "How many positive integers less than $1000$ have strictly increasing digits?",
       "choices": [
-        "270",
-        "276",
-        "288",
-        "300",
-        "306"
+        "84",
+        "120",
+        "129",
+        "165",
+        "210"
+      ],
+      "answer": "C",
+      "hint": "Single digits count. For $k$ digits, a strictly increasing string is determined by the set of digits it uses, but a leading zero is not allowed.",
+      "solution": "One-digit numbers: $9$. Two-digit: the digits form a $2$-subset of $\\{1, \\ldots, 9\\}$ read in increasing order, so $\\binom{9}{2} = 36$. Three-digit: $\\binom{9}{3} = 84$, choosing three distinct nonzero digits. Note that zero cannot be the first digit of an increasing string, and it can appear only as the smallest digit, which would make it a leading zero. Total $9 + 36 + 84 = 129$.",
+      "concepts": [
+        0
+      ],
+      "verify": "print(sum(1 for n in range(1, 1000) for s in [str(n)] if all(s[i] < s[i + 1] for i in range(len(s) - 1))))"
+    },
+    {
+      "id": "nt-16",
+      "difficulty": 3,
+      "problem": "What is the remainder when $2^{100}$ is divided by $45$?",
+      "choices": [
+        "1",
+        "7",
+        "9",
+        "12",
+        "16"
+      ],
+      "answer": "E",
+      "hint": "Split $45 = 9 \\cdot 5$ and use Euler's theorem on each piece.",
+      "solution": "Modulo $9$: $\\varphi(9) = 6$ and $100 \\equiv 4 \\pmod 6$, so $2^{100} \\equiv 2^4 = 16 \\equiv 7 \\pmod 9$. Modulo $5$: $2^4 \\equiv 1$ and $4 \\mid 100$, so $2^{100} \\equiv 1 \\pmod 5$. The number congruent to $7$ mod $9$ and $1$ mod $5$ is $16$.",
+      "concepts": [
+        5
+      ],
+      "verify": "print(pow(2, 100, 45))"
+    },
+    {
+      "id": "nt-17",
+      "difficulty": 3,
+      "problem": "What is the sum of all positive divisors of $360$ that are odd?",
+      "choices": [
+        "45",
+        "60",
+        "78",
+        "117",
+        "1170"
+      ],
+      "answer": "C",
+      "hint": "Odd divisors of $360$ are exactly the divisors of its odd part $45$.",
+      "solution": "The odd part of $360 = 2^3 \\cdot 3^2 \\cdot 5$ is $45 = 3^2 \\cdot 5$. Then $\\sigma(45) = (1+3+9)(1+5) = 13 \\cdot 6 = 78$. The choice $1170$ is the sum of all divisors of $360$, which includes the even ones.",
+      "concepts": [
+        3
+      ],
+      "verify": "print(sum(d for d in range(1, 361) if 360 % d == 0 and d % 2 == 1))"
+    },
+    {
+      "id": "nt-18",
+      "difficulty": 3,
+      "problem": "How many zeros are at the end of $2025!$ when written in base $10$?",
+      "choices": [
+        "405",
+        "480",
+        "505",
+        "506",
+        "600"
+      ],
+      "answer": "C",
+      "hint": "The number of trailing zeros is the exponent of $10$, which is the smaller of the exponents of $2$ and $5$. Here the exponent of $5$ is smaller.",
+      "solution": "The exponent of $5$ in $2025!$ is $\\lfloor 2025/5 \\rfloor + \\lfloor 2025/25 \\rfloor + \\lfloor 2025/125 \\rfloor + \\lfloor 2025/625 \\rfloor = 405 + 81 + 16 + 3 = 505$. The exponent of $2$ is larger, so there are $505$ trailing zeros.",
+      "concepts": [
+        1
+      ],
+      "verify": "print(sum(2025 // 5 ** k for k in range(1, 6)))"
+    },
+    {
+      "id": "nt-19",
+      "difficulty": 3,
+      "problem": "How many ordered pairs of positive integers $(x, y)$ satisfy $x^2 - y^2 = 175$?",
+      "choices": [
+        "2",
+        "3",
+        "4",
+        "6",
+        "8"
+      ],
+      "answer": "B",
+      "hint": "Factor $175 = 5^2 \\cdot 7$ as $(x-y)(x+y)$ and check that each factor pair gives positive integers.",
+      "solution": "Factor pairs $(d, e)$ with $de = 175$ and $d < e$ are $(1, 175)$, $(5, 35)$, $(7, 25)$. Since $175$ is odd, all factor pairs have matching parity. Each gives positive $x = (d+e)/2$ and $y = (e-d)/2$, namely $(88, 87)$, $(20, 15)$, $(16, 9)$.",
+      "concepts": [
+        9
+      ],
+      "verify": "print(sum(1 for x in range(1, 200) for y in range(1, x) if x * x - y * y == 175))"
+    },
+    {
+      "id": "nt-20",
+      "difficulty": 3,
+      "problem": "For how many integers $b$ with $5 \\le b \\le 100$ is the base-$b$ numeral $130_b$ divisible by $7$? (Here $130_b$ denotes the number $b^2 + 3b$.)",
+      "choices": [
+        "13",
+        "14",
+        "26",
+        "27",
+        "28"
+      ],
+      "answer": "D",
+      "hint": "Factor $b^2 + 3b = b(b+3)$. Since $7$ is prime, $7$ divides the product exactly when it divides one factor.",
+      "solution": "$b(b+3)$ is divisible by $7$ when $b \\equiv 0$ or $b \\equiv 4 \\pmod 7$. In $5 \\le b \\le 100$ there are $14$ multiples of $7$ (namely $7, \\ldots, 98$), and the values $b \\equiv 4 \\pmod 7$ run from $11$ to $95$, giving $13$ values. The two cases are disjoint, so the total is $27$.",
+      "concepts": [
+        8
+      ],
+      "verify": "print(sum(1 for b in range(5, 101) if (b * b + 3 * b) % 7 == 0))"
+    },
+    {
+      "id": "nt-21",
+      "difficulty": 4,
+      "problem": "What is the remainder when $2^{2025}$ is divided by $101$?",
+      "choices": [
+        "1",
+        "4",
+        "10",
+        "22",
+        "37"
+      ],
+      "answer": "C",
+      "hint": "Since $101$ is prime, Fermat reduces the exponent modulo $100$.",
+      "solution": "Since $101$ is prime and $2$ is not divisible by it, Fermat gives $2^{100} \\equiv 1 \\pmod{101}$. As $2025 = 100 \\cdot 20 + 25$, we get $2^{2025} \\equiv 2^{25}$. Now $2^{10} = 1024 \\equiv 14$, so $2^{20} \\equiv 14^2 = 196 \\equiv -6$, and $2^{25} = 2^{20} \\cdot 2^5 \\equiv -6 \\cdot 32 = -192 \\equiv 10 \\pmod{101}$. The key insight is that only the exponent modulo $100$ matters, and the intermediate powers are small enough to compute by hand.",
+      "concepts": [
+        5
+      ],
+      "verify": "print(pow(2, 2025, 101))"
+    },
+    {
+      "id": "nt-22",
+      "difficulty": 4,
+      "problem": "How many ordered pairs of positive integers $(a, b)$ satisfy $\\operatorname{lcm}(a, b) = 1800$?",
+      "choices": [
+        "25",
+        "75",
+        "125",
+        "150",
+        "175"
+      ],
+      "answer": "E",
+      "hint": "Work one prime at a time. For each prime, the lcm exponent is the maximum of the two exponents.",
+      "solution": "Factor $1800 = 2^3 \\cdot 3^2 \\cdot 5^2$. Each divisor pair must have, for each prime $p$ with exponent $e$ in $1800$, exponents $x, y \\le e$ with $\\max(x, y) = e$. The number of such pairs is $(e+1)^2 - e^2 = 2e + 1$. This gives $7$ for $2$, $5$ for $3$ and $5$ for $5$. Because the primes are independent, the total is $7 \\cdot 5 \\cdot 5 = 175$.",
+      "concepts": [
+        1,
+        3
+      ],
+      "verify": "import math\nprint(sum(1 for a in range(1, 1801) if 1800 % a == 0 for b in range(1, 1801) if 1800 % b == 0 and math.lcm(a, b) == 1800))"
+    },
+    {
+      "id": "nt-23",
+      "difficulty": 4,
+      "problem": "How many four-digit positive integers have digit sum $10$ and are divisible by $11$?",
+      "choices": [
+        "30",
+        "36",
+        "45",
+        "54",
+        "60"
       ],
       "answer": "A",
-      "hint": "Note $2025 = 3^4 \\cdot 5^2$, and $60 = \\operatorname{lcm}(3,4,5)$. Look at the residues modulo $60$.",
-      "solution": "$n$ is relatively prime to $2025 = 3^4 \\cdot 5^2$ exactly when $3 \\nmid n$ and $5 \\nmid n$. The conditions $n \\equiv 1 \\pmod 4$, $3 \\nmid n$ and $5 \\nmid n$ repeat with period $60$, and in each period the good residues are $1, 13, 17, 29, 37, 41, 49, 53$, which is $8$. Since $2025 = 60 \\cdot 33 + 45$, there are $33$ full periods, giving $264$. The leftover numbers $1981, \\ldots, 2025$ correspond to residues $1, \\ldots, 45$, and the good ones among them are $1, 13, 17, 29, 37, 41$, adding $6$. The total is $264 + 6 = 270$.",
-      "verify": "import math\nprint(sum(1 for n in range(1, 2026) if math.gcd(n, 2025) == 1 and n % 4 == 1))"
+      "hint": "Divisibility by $11$ means the alternating digit sum is a multiple of $11$. Compare the sums of the odd-position and even-position digits.",
+      "solution": "Write the number as $\\overline{abcd}$ with $a \\ge 1$. Let $S_1 = a + c$ and $S_2 = b + d$, so $S_1 + S_2 = 10$. Divisibility by $11$ means $S_1 - S_2 = 10 - 2S_2$ is a multiple of $11$. This quantity lies in $[-10, 10]$ and is even, so it must be $0$. Hence $S_1 = S_2 = 5$. The pairs $(a,c)$ with $a \\ge 1$ and $a + c = 5$ number $5$, and the pairs $(b,d)$ with $b + d = 5$ number $6$. The total is $30$.",
+      "concepts": [
+        0
+      ],
+      "verify": "print(sum(1 for n in range(1000, 10000) if sum(map(int, str(n))) == 10 and n % 11 == 0))"
+    },
+    {
+      "id": "nt-24",
+      "difficulty": 4,
+      "problem": "What are the last two digits of $7^{7^7}$?",
+      "choices": [
+        "7",
+        "43",
+        "49",
+        "93",
+        "99"
+      ],
+      "answer": "B",
+      "hint": "First find the order of $7$ modulo $100$, then reduce the top exponent modulo that order.",
+      "solution": "Since $7^4 = 2401 \\equiv 1 \\pmod{100}$, the last two digits of $7^N$ depend only on $N \\bmod 4$. Now $N = 7^7$ and $7 \\equiv -1 \\pmod 4$, so $N \\equiv (-1)^7 = -1 \\equiv 3 \\pmod 4$. Therefore $7^{7^7} \\equiv 7^3 = 343 \\equiv 43 \\pmod{100}$. The key insight is to peel off one layer of exponent at a time, from the top down.",
+      "concepts": [
+        7
+      ],
+      "verify": "print(pow(7, 7 ** 7, 100))"
+    },
+    {
+      "id": "nt-25",
+      "difficulty": 4,
+      "problem": "How many ordered pairs of positive integers $(a, b)$ with $a < b$ satisfy $\\gcd(a, b) = 5$ and $a + b = 2025$?",
+      "choices": [
+        "54",
+        "81",
+        "96",
+        "100",
+        "108"
+      ],
+      "answer": "E",
+      "hint": "Divide both numbers by $5$. What coprimality condition remains?",
+      "solution": "Write $a = 5x$ and $b = 5y$, so $x + y = 405$ and $\\gcd(x, y) = 1$. Since $\\gcd(x, y) = \\gcd(x, x + y) = \\gcd(x, 405)$, the condition is $\\gcd(x, 405) = 1$ with $405 = 3^4 \\cdot 5$. Then $\\varphi(405) = 54 \\cdot 4 = 216$ values of $x$ in $\\{1, \\ldots, 405\\}$ qualify. The map $x \\mapsto 405 - x$ pairs them up with no fixed point because $405$ is odd, so exactly half have $x < 202.5$, which is $a < b$. That gives $108$.",
+      "concepts": [
+        2,
+        4
+      ],
+      "verify": "import math\nprint(sum(1 for a in range(1, 2025) if a < 2025 - a and math.gcd(a, 2025 - a) == 5))"
+    },
+    {
+      "id": "nt-26",
+      "difficulty": 4,
+      "problem": "How many integers $n$ with $1 \\le n \\le 2025$ satisfy $n^2 \\equiv 1 \\pmod{2025}$?",
+      "choices": [
+        "2",
+        "4",
+        "6",
+        "8",
+        "9"
+      ],
+      "answer": "B",
+      "hint": "Split $2025 = 81 \\cdot 25$ and solve $n^2 \\equiv 1$ modulo each prime power separately.",
+      "solution": "Since $2025 = 3^4 \\cdot 5^2$, by CRT the condition is equivalent to $n^2 \\equiv 1 \\pmod{81}$ and $n^2 \\equiv 1 \\pmod{25}$. For an odd prime power $p^k$, $p^k \\mid (n-1)(n+1)$, and $\\gcd(n-1, n+1) \\mid 2$, so all of $p^k$ divides one factor. Thus $n \\equiv \\pm 1 \\pmod{p^k}$. That gives $2$ residues mod $81$ and $2$ mod $25$, so $4$ residues mod $2025$, each occurring once in $1 \\ldots 2025$.",
+      "concepts": [
+        4,
+        6
+      ],
+      "verify": "print(sum(1 for n in range(1, 2026) if (n * n - 1) % 2025 == 0))"
+    },
+    {
+      "id": "nt-27",
+      "difficulty": 5,
+      "problem": "How many ordered triples $(a, b, c)$ of positive divisors of $360$ satisfy $\\operatorname{lcm}(a, b, c) = 360$?",
+      "choices": [
+        "1331",
+        "3375",
+        "4000",
+        "4921",
+        "6912"
+      ],
+      "answer": "D",
+      "hint": "Handle each prime separately: for each prime, the largest of the three exponents must equal its exponent in $360$.",
+      "solution": "Write $360 = 2^3 \\cdot 3^2 \\cdot 5$. A triple of divisors has lcm $360$ exactly when, for each prime, the maximum of the three exponents equals the exponent in $360$. For a prime with exponent $e$, the triples of exponents in $\\{0, \\ldots, e\\}$ with maximum exactly $e$ number $(e+1)^3 - e^3$. This gives $4^3 - 3^3 = 37$ for $2$, $3^3 - 2^3 = 19$ for $3$, and $2^3 - 1^3 = 7$ for $5$. The primes are independent, so the total is $37 \\cdot 19 \\cdot 7 = 4921$. The choice $13824 = 24^3$ counts triples whose lcm divides $360$, not triples whose lcm equals $360$.",
+      "concepts": [
+        1,
+        3
+      ],
+      "verify": "import math\nD = [d for d in range(1, 361) if 360 % d == 0]\nprint(sum(1 for a in D for b in D for c in D if math.lcm(a, b, c) == 360))"
+    },
+    {
+      "id": "nt-28",
+      "difficulty": 5,
+      "problem": "How many ordered pairs of positive integers $(x, y)$ with $x < y$ satisfy $\\frac{1}{x} + \\frac{1}{y} = \\frac{1}{2025}$?",
+      "choices": [
+        "11",
+        "22",
+        "44",
+        "45",
+        "2025"
+      ],
+      "answer": "B",
+      "hint": "Clear denominators and add $2025^2$ to both sides to factor.",
+      "solution": "Clearing denominators gives $2025(x + y) = xy$, so $(x - 2025)(y - 2025) = 2025^2$. If both $x, y < 2025$, the two factors would be negative with product of absolute values at most $2024^2 < 2025^2$, which is impossible; so $x, y > 2025$. Set $d = x - 2025$ and $e = y - 2025$, positive with $de = 2025^2 = 3^8 \\cdot 5^4$. This has $9 \\cdot 5 = 45$ divisors. Since $x < y$ means $d < e$, and the divisor $2025$ pairs with itself, the count is $(45 - 1)/2 = 22$.",
+      "concepts": [
+        9
+      ],
+      "verify": "print(sum(1 for x in range(2026, 4050) if (2025 * x) % (x - 2025) == 0))"
+    },
+    {
+      "id": "nt-29",
+      "difficulty": 5,
+      "problem": "How many integers $n$ with $1 \\le n \\le 2025$ satisfy $n \\mid 2^n - 2$?",
+      "choices": [
+        "306",
+        "313",
+        "314",
+        "321",
+        "330"
+      ],
+      "answer": "C",
+      "hint": "Every prime $p$ satisfies $p \\mid 2^p - 2$ by Fermat. Are there composite $n$ that also satisfy it, and is $n = 1$ included?",
+      "solution": "Every prime $p$ satisfies $p \\mid 2^p - 2$ by Fermat, and there are $306$ primes up to $2025$. The number $n = 1$ divides everything, so it counts. The composite $n \\le 2025$ with $n \\mid 2^n - 2$ are the base-$2$ Fermat pseudoprimes $341, 561, 645, 1105, 1387, 1729, 1905$, which are seven in number. Total $1 + 306 + 7 = 314$. The insight is that Fermat's test certifies primes, and only a short list of composite numbers passes it.",
+      "concepts": [
+        5
+      ],
+      "verify": "print(sum(1 for n in range(1, 2026) if (pow(2, n, n) - 2) % n == 0))"
+    },
+    {
+      "id": "nt-30",
+      "difficulty": 5,
+      "problem": "How many ordered pairs $(a, b)$ of integers with $1 \\le a, b \\le 2025$ satisfy $7 \\mid a^2 + b^2$?",
+      "choices": [
+        "83521",
+        "585225",
+        "585803",
+        "1640250",
+        "4100625"
+      ],
+      "answer": "A",
+      "hint": "Which residues mod $7$ can be squares, and is $-1$ one of the nonzero squares?",
+      "solution": "The nonzero squares mod $7$ are $1, 2, 4$, and $-1 \\equiv 6$ is not among them. If $a \\not\\equiv 0 \\pmod 7$, then $b^2 \\equiv -a^2$ would make $-1$ a square times a nonzero square, which is a non-residue, so no such $b$ exists. Hence $a \\equiv 0$, and then $b^2 \\equiv 0$, so $b \\equiv 0$. Both $a$ and $b$ must be multiples of $7$. There are $\\lfloor 2025/7 \\rfloor = 289$ of each, giving $289^2 = 83521$.",
+      "concepts": [
+        4
+      ],
+      "verify": "print(sum(1 for a in range(1, 2026) for b in range(1, 2026) if (a * a + b * b) % 7 == 0))"
+    }
+  ],
+  "videos": [
+    {
+      "youtubeId": "OkQJGql8os8",
+      "title": "Number Theory | Fermat's Little Theorem",
+      "channel": "Michael Penn",
+      "why": "A clean statement and proof of Fermat's Little Theorem, the starting point for every exponent-reduction problem in this topic."
+    },
+    {
+      "youtubeId": "r30VZPzdvB8",
+      "title": "Number Theory | Corollaries to Fermat's Little Theorem",
+      "channel": "Michael Penn",
+      "why": "Watch after the proof to see how Fermat's Little Theorem yields quick remainder computations and inverse facts."
+    },
+    {
+      "youtubeId": "zJWg6yYrTk0",
+      "title": "Find the last two digits.",
+      "channel": "Michael Penn",
+      "why": "A worked last-two-digits problem that uses Euler's generalisation of Fermat, useful for the cycles and exponent-reduction concept."
+    },
+    {
+      "youtubeId": "kE1uEGNXbdc",
+      "title": "The Chinese Remainder Theorem (Number Theory 101)",
+      "channel": "CJ Nadance",
+      "why": "A step-by-step solution of systems of congruences, the method used in the Chinese Remainder Theorem concept and its problems."
     }
   ]
 }
