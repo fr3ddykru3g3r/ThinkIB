@@ -1,7 +1,313 @@
 {
-  "total_excluded": 494,
-  "generated_at": "2026-10-15 20:04:21",
+  "total_excluded": 996,
+  "generated_at": "2026-10-21 00:29:50",
   "excluded_questions": [
+    {
+      "id": "2025_May_SL_P1_Q7",
+      "source": "May 2025 TZ2 SL Paper 1A Q7",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "7.\t Which molecule is polar? A.\t CH4 B.\t C6H6 C.\t SO2 D.\t CO2"
+    },
+    {
+      "id": "2025_May_SL_P1_Q9",
+      "source": "May 2025 TZ2 SL Paper 1A Q9",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "9.\t Which metal has the strongest bonding? A.\t Mg B.\t Ca C.\t Sr D.\t Ba"
+    },
+    {
+      "id": "2025_May_SL_P1_Q14",
+      "source": "May 2025 TZ2 SL Paper 1A Q14",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "14.\t Which compound is an isomer of propanone? C H H H C O C H H H A. C C H H H O C H C H H H H B. C C H H H H C H H H O"
+    },
+    {
+      "id": "2025_May_SL_P1_Q15",
+      "source": "May 2025 TZ2 SL Paper 1A Q15",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "15.\t What is the correct interpretation of this energy profile? Potential energy Products Reactants Reaction coordinate "
+    },
+    {
+      "id": "2025_May_SL_P1_Q17",
+      "source": "May 2025 TZ2 SL Paper 1A Q17",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "17.  What is the coefficient of oxygen when the equation for the complete combustion of ethanol  is balanced using the s"
+    },
+    {
+      "id": "2025_May_SL_P1_Q25",
+      "source": "May 2025 TZ2 SL Paper 1A Q25",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "25.\t Which solution has a pH of 9.0? A.\t 10-9\u2009mol\u2009dm-3\u00a0NH3\u2009(aq) B.\t 10-9\u2009mol\u2009dm-3\u00a0NaOH\u2009(aq) C.\t 10-5\u2009mol\u2009dm-3\u00a0NH3\u2009(aq) D"
+    },
+    {
+      "id": "2025_May_SL_P2_Q5",
+      "source": "May 2025 TZ3 SL Paper 2 Q5",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "5.\t Ethyne, C2H2, is hydrogenated to form ethane. C2H2\u2009(g)\u00a0+\u00a02H2\u2009(g)\u00a0\u2192\u00a0C2H6\u2009(g) (a)\t 140.0\u2009cm3 of ethyne is reacted with"
+    },
+    {
+      "id": "2025_May_SL_P1_Q3",
+      "source": "May 2025 TZ3 SL Paper 1A Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t Which volume of butane gas, in cm3, will produce 40\u2009cm3 of carbon dioxide gas when it is  completely combusted in ox"
+    },
+    {
+      "id": "2025_May_SL_P1_Q6",
+      "source": "May 2025 TZ3 SL Paper 1A Q6",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "6.\t What is the formula of the compound formed by aluminium\u00a0ions and sulfate(VI) ions? A.\t AlSO3 B.\t Al2(SO3)3 C.\t AlSO4"
+    },
+    {
+      "id": "2025_May_SL_P1_Q13",
+      "source": "May 2025 TZ3 SL Paper 1A Q13",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "13.\t Which pair of elements would react with each other the least vigorously? A.\t Lithium and fluorine B.\t Lithium and i"
+    },
+    {
+      "id": "2025_May_SL_P1_Q22",
+      "source": "May 2025 TZ3 SL Paper 1A Q22",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "22.\t Which molecule has the shortest carbon to oxygen bond? A.\t CH3OH B.\t H2CO C.\t CO D.\t CO2"
+    },
+    {
+      "id": "2025_May_SL_P1_Q24",
+      "source": "May 2025 TZ3 SL Paper 1A Q24",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "24.\t What is the pH of 0.0010\u2009mol\u2009dm-3\u00a0HCl\u2009(aq)? A.\t 2.0 B.\t 2.5 C.\t 3.0 D.\t 3.5"
+    },
+    {
+      "id": "2025_May_SL_P1_Q25",
+      "source": "May 2025 TZ3 SL Paper 1A Q25",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "25.\t Which solution is acidic at 25\u2009\u00b0C? A.\t [H+\u2009]\u00a0=\u00a01.0\u00a0\u00d7\u00a010-9\u2009mol\u2009dm-3 B.\t [OH-\u2009]\u00a0=\u00a01.0\u00a0\u00d7\u00a010-13\u2009mol\u2009dm-3 C.\t [OH-\u2009]\u00a0=\u00a01"
+    },
+    {
+      "id": "2025_May_SL_P1_Q26",
+      "source": "May 2025 TZ3 SL Paper 1A Q26",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "26.\t Which equation correctly describes a chemical reaction? A.\t 2HCl\u00a0+\u00a0Na2CO3\u00a0\u2192\u00a02NaCl\u00a0+\u00a0CO2\u00a0+\u00a0H2O B.\t Cu\u00a0+\u00a02HCl\u00a0\u2192\u00a0CuCl2"
+    },
+    {
+      "id": "2025_May_SL_P1_Q27",
+      "source": "May 2025 TZ3 SL Paper 1A Q27",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "27.\t The following occurs when tin is added to separate solutions of lead(II)\u00a0nitrate, Pb(NO3)2,  and\u00a0manganese(II)\u00a0nitr"
+    },
+    {
+      "id": "2025_May_SL_P1_Q5",
+      "source": "May 2025 TZ1 SL Paper 1A Q5",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "5.\t Which row correctly shows the shape of s and p atomic orbitals? A. s p B. s p C. s p D. s p"
+    },
+    {
+      "id": "2025_May_SL_P1_Q16",
+      "source": "May 2025 TZ1 SL Paper 1A Q16",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "16.\t Which elements would react with each other most vigorously? A.\t K(s) and Br2(g) B.\t K(s) and Cl2(g) C.\t Na(s) and B"
+    },
+    {
+      "id": "2025_May_SL_P1_Q18",
+      "source": "May 2025 TZ1 SL Paper 1A Q18",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "18.\t Consider a reaction mixture that is in thermal equilibrium with the surroundings. When a reaction  takes place, the"
+    },
+    {
+      "id": "2025_May_SL_P1_Q21",
+      "source": "May 2025 TZ1 SL Paper 1A Q21",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "21.\t 75\u2009cm3 of propane was completely combusted in 400\u2009cm3 of oxygen according to the   following equation. CH3CH2CH3(g)"
+    },
+    {
+      "id": "2025_May_SL_P1_Q23",
+      "source": "May 2025 TZ1 SL Paper 1A Q23",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "23.\t The volume of gas produced in a kinetics experiment is plotted against time. Volume of gas / cm3 Time / s 100 80 60"
+    },
+    {
+      "id": "2025_May_SL_P1_Q25",
+      "source": "May 2025 TZ1 SL Paper 1A Q25",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "25.\t Which two species can be both Br\u00f8nsted\u2013Lowry acids and Br\u00f8nsted\u2013Lowry bases? A.\t H3PO4 and PO4 3- B.\t HPO4 2- and H"
+    },
+    {
+      "id": "2025_May_SL_P1_Q26",
+      "source": "May 2025 TZ1 SL Paper 1A Q26",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "26.\t A solution has a pH of 3.0. What is the hydrogen ion concentration in the solution in mol dm-3? A.\t 3.0 \u00d7 10-3 B.\t "
+    },
+    {
+      "id": "2025_May_HL_P1_Q3",
+      "source": "May 2025 TZ3 HL Paper 1A Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t Which volume of butane gas, in cm3, will produce 40\u2009cm3 of carbon dioxide gas when it is  completely combusted in ox"
+    },
+    {
+      "id": "2025_May_HL_P1_Q6",
+      "source": "May 2025 TZ3 HL Paper 1A Q6",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "6.\t What is the formula of the compound formed by aluminium\u00a0ions and sulfate(VI)\u00a0ions? A.\t AlSO3 B.\t Al2(SO3)3 C.\t AlSO4"
+    },
+    {
+      "id": "2025_May_HL_P1_Q14",
+      "source": "May 2025 TZ3 HL Paper 1A Q14",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "14.\t Which pair of elements would react with each other the least vigorously? A.\t Lithium and fluorine B.\t Lithium and i"
+    },
+    {
+      "id": "2025_May_HL_P1_Q31",
+      "source": "May 2025 TZ3 HL Paper 1A Q31",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "31.\t What is the pH of 0.0010\u2009mol\u2009dm-3\u2009HCl\u2009(aq)? A.\t 2.0 B.\t 2.5 C.\t 3.0 D.\t 3.5"
+    },
+    {
+      "id": "2025_May_HL_P1_Q32",
+      "source": "May 2025 TZ3 HL Paper 1A Q32",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "32.\t Which solution is acidic at 25\u2009\u00b0C? A.\t [H+\u2009]\u00a0=\u00a01.0\u00a0\u00d7\u00a010-9\u2009mol\u2009dm-3 B.\t [OH-\u2009]\u00a0=\u00a01.0\u00a0\u00d7\u00a010-13\u2009mol\u2009dm-3 C.\t [OH-\u2009]\u00a0=\u00a01"
+    },
+    {
+      "id": "2025_May_HL_P1_Q33",
+      "source": "May 2025 TZ3 HL Paper 1A Q33",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "33.\t Which equation correctly describes a chemical reaction? A.\t 2HCl\u00a0+\u00a0Na2CO3\u00a0\u2192\u00a02NaCl\u00a0+\u00a0CO2\u00a0+\u00a0H2O B.\t Cu\u00a0+\u00a02HCl\u00a0\u2192\u00a0CuCl2"
+    },
+    {
+      "id": "2025_May_HL_P1_Q36",
+      "source": "May 2025 TZ3 HL Paper 1A Q36",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "36.\t The following occurs when tin is added to separate solutions of lead(II)\u00a0nitrate, Pb(NO3)2,  and\u00a0manganese(II)\u00a0nitr"
+    },
+    {
+      "id": "2025_May_HL_P1_Q40",
+      "source": "May 2025 TZ3 HL Paper 1A Q40",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "40.\t Which of these ions would be a suitable species to react with benzene in a substitution reaction? A.\t NO2 - B.\t NH4"
+    },
+    {
+      "id": "2025_May_HL_P1_Q4",
+      "source": "May 2025 TZ3 HL Paper 1A Q4",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "4.\t With permission from Jim Clark. www.chemguide.co.uk/analysis/masspec/elements.html. All other texts, graphics and il"
+    },
+    {
+      "id": "2025_May_HL_P1_Q6",
+      "source": "May 2025 TZ1 HL Paper 1A Q6",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "6.\t Which of the following correctly shows the shape of s and p orbitals? A. s p B. s p C. s p D. s p"
+    },
+    {
+      "id": "2025_May_HL_P1_Q10",
+      "source": "May 2025 TZ1 HL Paper 1A Q10",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "10.\t Nitrogen(I) oxide, N2O, can be represented by two Lewis formulas. N N O N N O Structure Y Structure X Which row cor"
+    },
+    {
+      "id": "2025_May_HL_P1_Q13",
+      "source": "May 2025 TZ1 HL Paper 1A Q13",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "13.\t Kekul\u00e9 suggested a structure of benzene with alternating single and double bonds.  Which piece of evidence disprove"
+    },
+    {
+      "id": "2025_May_HL_P1_Q16",
+      "source": "May 2025 TZ1 HL Paper 1A Q16",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "16.\t Which elements would react with each other most vigorously? A.\t K(s) and Br2(g). B.\t K(s) and Cl2(g). C.\t Na(s) and"
+    },
+    {
+      "id": "2025_May_HL_P1_Q20",
+      "source": "May 2025 TZ1 HL Paper 1A Q20",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "20.\t Consider this molecule, deca-3,5,7-triene-2,9-dione. O O How many stereoisomers are possible for deca-3,5,7-triene-"
+    },
+    {
+      "id": "2025_May_HL_P1_Q22",
+      "source": "May 2025 TZ1 HL Paper 1A Q22",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "22.\t Which equation correctly shows both enthalpy of formation, \u2206H\u00d6 f, of a compound and enthalpy of  combustion, \u2206H\u200a\u00d6 c"
+    },
+    {
+      "id": "2025_May_HL_P1_Q24",
+      "source": "May 2025 TZ1 HL Paper 1A Q24",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "24.\t The table shows enthalpy of combustion data for several substances. Substance \u2206H\u00d6 c (kJ mol-1) C2H6 -1561 C2H4 -141"
+    },
+    {
+      "id": "2025_May_HL_P1_Q27",
+      "source": "May 2025 TZ1 HL Paper 1A Q27",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "27.\t 75\u2009cm3 of propane was completely combusted in 400\u2009cm3 of oxygen according to the   following equation. CH3CH2CH3(g)"
+    },
+    {
+      "id": "2025_May_HL_P1_Q29",
+      "source": "May 2025 TZ1 HL Paper 1A Q29",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "29.\t Consider the following system at equilibrium: N2(g) + 3H2(g) \uf083 2NH3(g)\t \u2206Hr \u00d6 = -46\u2009kJ mol\u22121 Which row correctly de"
+    },
+    {
+      "id": "2025_May_HL_P1_Q32",
+      "source": "May 2025 TZ1 HL Paper 1A Q32",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "32.\t Which two species can be both Br\u00d8nsted-Lowry acids and Br\u00d8nsted-Lowry bases? A.\t H3PO4 and PO4 3-. B.\t HPO4 2- and "
+    },
+    {
+      "id": "2025_May_HL_P1_Q33",
+      "source": "May 2025 TZ1 HL Paper 1A Q33",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "33.\t A solution has a pH of 3.0. What is the hydroxide ion concentration, [OH-], in the solution? A.\t 11 B.\t 10-3 C.\t 10"
+    },
+    {
+      "id": "2025_May_HL_P1_Q37",
+      "source": "May 2025 TZ1 HL Paper 1A Q37",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "37.\t Which correctly shows heterolytic bond fission? A.\t B.\t C.\t D.\t Br Br Br \uf02b Br \uf02d \uf02b Br Br 2Br Br Br Br \uf02b Br \uf02d \uf02b Br Br"
+    },
+    {
+      "id": "2025_May_HL_P1_Q40",
+      "source": "May 2025 TZ1 HL Paper 1A Q40",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "40.\t Which species would take part in a substitution reaction with benzene? A.\t Cl2 B.\t Cl\u2022 C.\t Cl+ D.\t Cl-"
+    },
+    {
+      "id": "2025_May_HL_P1_Q10",
+      "source": "May 2025 TZ1 HL Paper 1A Q10",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "10. \uc601\uc6d0\ud30c\ub780, 2017. N2O \ub8e8\uc774\uc2a4 \uad6c\uc870 \uadf8\ub9ac\uae30. [online] Available at: http://ywpop.tistory.com/7363 [Accessed 7 May 2024]. Source adapt"
+    },
+    {
+      "id": "2025_May_HL_P1B_Q3",
+      "source": "May 2025 TZ3 HL Paper 1B Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\u2009(a)(ii)\t With permission from the Royal Society of Chemistry. All other texts, graphics and illustrations \u00a9 Internati"
+    },
+    {
+      "id": "2025_May_HL_P1_Q7",
+      "source": "May 2025 TZ2 HL Paper 1A Q7",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "7.\t Which molecule is polar? A.\t CH4 B.\t C6H6 C.\t SO2 D.\t CO2"
+    },
+    {
+      "id": "2025_May_HL_P1_Q18",
+      "source": "May 2025 TZ2 HL Paper 1A Q18",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "18.\t What is the correct interpretation of this energy profile? Potential energy Products Reactants Reaction coordinate "
+    },
+    {
+      "id": "2025_May_HL_P1_Q20",
+      "source": "May 2025 TZ2 HL Paper 1A Q20",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "20.  What is the coefficient of oxygen when the equation for the complete combustion of ethanol  is balanced using the s"
+    },
+    {
+      "id": "2025_May_HL_P1_Q32",
+      "source": "May 2025 TZ2 HL Paper 1A Q32",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "32.\t Which solution has a pH of 9.0? A.\t 10-9\u2009mol\u2009dm-3\u00a0NH3\u2009(aq) B.\t 10-9\u2009mol\u2009dm-3\u00a0NaOH\u2009(aq) C.\t 10-5\u2009mol\u2009dm-3\u00a0NH3\u2009(aq) D"
+    },
+    {
+      "id": "2025_May_HL_P1_Q34",
+      "source": "May 2025 TZ2 HL Paper 1A Q34",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "34.\t Which salt is basic? A.\t HCOONa B.\t HCOONH4 C.\t NaNO3 D.\t NH4Cl"
+    },
     {
       "id": "2024_Nov_SL_P3_Q5",
       "source": "Nov 2024 TZ1 SL Paper 3 Opt A Q5",
@@ -55,6 +361,132 @@
       "source": "Nov 2024 TZ1 SL Paper 3 Opt D Q11",
       "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
       "preview": "11.\t Robert A. Rohde. Solar spectrum en.svg. https://commons.wikimedia.org/wiki/File:Solar_spectrum_en.svg. Under  Creat"
+    },
+    {
+      "id": "2024_Nov_SL_P1_Q2",
+      "source": "Nov 2024 TZ1 SL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t What is the sum of the coefficients for the balanced equation of the combustion of iron(II) sulphide  using the smal"
+    },
+    {
+      "id": "2024_Nov_SL_P1_Q6",
+      "source": "Nov 2024 TZ1 SL Paper 1 Q6",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "6.\t What is correct for the wavelength and energy of the radiation of the ultraviolet and visible regions  of the electr"
+    },
+    {
+      "id": "2024_Nov_SL_P1_Q10",
+      "source": "Nov 2024 TZ1 SL Paper 1 Q10",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "10.\t Which types of intermolecular force exist between CH4, CH3OH and CH3Cl molecules? CH4 CH3OH CH3Cl A. London dispers"
+    },
+    {
+      "id": "2024_Nov_SL_P1_Q13",
+      "source": "Nov 2024 TZ1 SL Paper 1 Q13",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "13.\t Which of the following reactions represents enthalpy of formation, \u2206Hf\u00c0? A.\t C2H4 (g) + HBr\u2009(g) \u2192 C2H5Br\u2009(g) B.\t Al"
+    },
+    {
+      "id": "2024_Nov_SL_P1_Q14",
+      "source": "Nov 2024 TZ1 SL Paper 1 Q14",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "14.\t Consider the following equations: H2\u2009(g) + F2\u2009(g) \u2192 2HF\u2009(g) \u2206H\u2009\u00c0\u2009= - x\u2009kJ C\u2009(s) + 2F2\u2009(g) \u2192 CF4\u2009(g) \u2206H\u2009\u00c0\u2009= - y\u2009kJ 2"
+    },
+    {
+      "id": "2024_Nov_SL_P1_Q15",
+      "source": "Nov 2024 TZ1 SL Paper 1 Q15",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "15.\t Which of the diagrams represents the Maxwell\u2013Boltzmann distribution of kinetic energy of   molecules of the same sa"
+    },
+    {
+      "id": "2024_Nov_SL_P1_Q18",
+      "source": "Nov 2024 TZ1 SL Paper 1 Q18",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "18.\t Carbon dioxide dissolves in water as shown in the equation below. What will happen if the  temperature of the aqueo"
+    },
+    {
+      "id": "2024_Nov_SL_P1_Q19",
+      "source": "Nov 2024 TZ1 SL Paper 1 Q19",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "19.\t The pH of an aqueous solution Z is 5 and the pH of an aqueous solution X is 10. What is the ratio  of their H3O+ co"
+    },
+    {
+      "id": "2024_Nov_SL_P1_Q23",
+      "source": "Nov 2024 TZ1 SL Paper 1 Q23",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "23.\t What happens when chlorine gas, Cl2\u2009(g), is bubbled through an aqueous solution of sodium  iodide, NaI? A.\t Chlorin"
+    },
+    {
+      "id": "2024_Nov_SL_P1_Q24",
+      "source": "Nov 2024 TZ1 SL Paper 1 Q24",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "24.\t Which products are formed when but-2-ene reacts separately with aqueous hydrogen bromide,  HBr, and with bromine wa"
+    },
+    {
+      "id": "2024_Nov_HL_P1_Q2",
+      "source": "Nov 2024 TZ1 HL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t What is the sum of the coefficients for the balanced equation of the combustion of iron(II) sulphide  using the smal"
+    },
+    {
+      "id": "2024_Nov_HL_P1_Q3",
+      "source": "Nov 2024 TZ1 HL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t What is the yield of sodium chloride, in grams, when 4.60\u2009g of sodium reacts with 1.14\u2009dm3 of  chlorine gas at STP? "
+    },
+    {
+      "id": "2024_Nov_HL_P1_Q6",
+      "source": "Nov 2024 TZ1 HL Paper 1 Q6",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "6.\t What is correct for the wavelength and energy of the radiation of the ultraviolet and visible regions  of the electr"
+    },
+    {
+      "id": "2024_Nov_HL_P1_Q11",
+      "source": "Nov 2024 TZ1 HL Paper 1 Q11",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "11.\t Which types of intermolecular force exist between CH4, CH3OH and CH3Cl molecules? CH4 CH3OH CH3Cl A. London dispers"
+    },
+    {
+      "id": "2024_Nov_HL_P1_Q13",
+      "source": "Nov 2024 TZ1 HL Paper 1 Q13",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "13.\t How many sigma (\u03c3) and pi (\u03c0) bonds are present in the molecule below? (NC)2CC(CN)2 \u03c3  \u03c0 A. 7 5 B. 9 5 C. 9 9 D. 13"
+    },
+    {
+      "id": "2024_Nov_HL_P1_Q16",
+      "source": "Nov 2024 TZ1 HL Paper 1 Q16",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "16.\t Consider the following equations: H2\u2009(g) + F2\u2009(g) \u2192 2HF\u2009(g) \u2206H\u2009\u00c0\u2009= - x\u2009kJ C\u2009(s) + 2F2\u2009(g) \u2192 CF4\u2009(g) \u2206H\u2009\u00c0\u2009= - y\u2009kJ 2"
+    },
+    {
+      "id": "2024_Nov_HL_P1_Q17",
+      "source": "Nov 2024 TZ1 HL Paper 1 Q17",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "17.\t Which of the diagrams represents the Maxwell\u2013Boltzmann distribution of kinetic energy of   molecules of the same sa"
+    },
+    {
+      "id": "2024_Nov_HL_P1_Q19",
+      "source": "Nov 2024 TZ1 HL Paper 1 Q19",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "19.\t The non-catalysed decomposition of H2O2 was monitored giving the dotted line in the  following\u00a0graph. Which curve r"
+    },
+    {
+      "id": "2024_Nov_HL_P1_Q22",
+      "source": "Nov 2024 TZ1 HL Paper 1 Q22",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "22.\t Carbon dioxide dissolves in water as shown in the equation below. What will happen if the  temperature of the aqueo"
+    },
+    {
+      "id": "2024_Nov_HL_P1_Q24",
+      "source": "Nov 2024 TZ1 HL Paper 1 Q24",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "24.\t The pH of an aqueous solution Z is 5 and the pH of an aqueous solution X is 10. What is the ratio  of their H3O+ co"
+    },
+    {
+      "id": "2024_Nov_HL_P1_Q39",
+      "source": "Nov 2024 TZ1 HL Paper 1 Q39",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "39.\t SDBS, National Institute of Advanced Industrial Science and Technology. All other texts, graphics and illustrations"
     },
     {
       "id": "2024_Nov_HL_P3_Q5",
@@ -201,6 +633,48 @@
       "preview": "6.\t U.S. Department of Agriculture (USDA). FoodData Central - Oil, corn, industrial and retail, all purpose salad or  co"
     },
     {
+      "id": "2024_May_SL_P1_Q1",
+      "source": "May 2024 TZ2 SL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t Which compound has the highest percentage of carbon by mass? A.\t CH4 B.\t C2H6 C.\t CO D.\t CO2"
+    },
+    {
+      "id": "2024_May_SL_P1_Q7",
+      "source": "May 2024 TZ2 SL Paper 1 Q7",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "7.\t Which set of ions shows increasing ionic radii? A.\t P3\u2212\u2009< Cl\u2212\u2009< K+\u2009< Ca2+  B.\t Cl\u2212\u2009< P3\u2212\u2009< Ca2+\u2009< K+  C.\t K+\u2009< Ca2+\u2009"
+    },
+    {
+      "id": "2024_May_SL_P1_Q12",
+      "source": "May 2024 TZ2 SL Paper 1 Q12",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "12.\t Which two liquids are immiscible? A.\t H2O and CH3CH2CH2CH2CH2CH2OH B.\t H2O and CH3COOH C.\t CH3CH2OH and CH3COOH D.\t"
+    },
+    {
+      "id": "2024_May_SL_P1_Q21",
+      "source": "May 2024 TZ2 SL Paper 1 Q21",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "21.\t What is the pH of a 0.010\u2009mol\u2009dm\u22123 aqueous solution of HCl? A.\t 1.0 \u00d7 10\u22122 B.\t 1.0 \u00d7 10\u22121 C.\t 1.00 D.\t 2.00"
+    },
+    {
+      "id": "2024_May_SL_P1_Q25",
+      "source": "May 2024 TZ2 SL Paper 1 Q25",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "25.\t What is the major product formed when Cl2 is added to propene? A.\t 2,2-dichloropropane B.\t 1,2-dichloropropane C.\t "
+    },
+    {
+      "id": "2024_May_SL_P1_Q27",
+      "source": "May 2024 TZ2 SL Paper 1 Q27",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "27.\t Which of the following pairs are structural isomers? I.\t CH3CHCHCH2Br and CH3CHBrCH2CH3 II.\t (CH3)2CHCH2CH3 and CH3"
+    },
+    {
+      "id": "2024_May_SL_P1_Q30",
+      "source": "May 2024 TZ2 SL Paper 1 Q30",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "30.\t The following measurements were made during an experiment. Initial temperature = 17 \u00b1 1\u2009\uf06fC Final temperature = 43 \u00b1"
+    },
+    {
       "id": "2024_May_SL_P3_Q4",
       "source": "May 2024 TZ2 SL Paper 3 Opt A Q4",
       "reason": "Retired syllabus topic (matched: liquid crystal)",
@@ -253,6 +727,144 @@
       "source": "May 2024 TZ2 SL Paper 3 Opt D Q15",
       "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
       "preview": "15.\t Many medical procedures involve the use of radioisotopes. (a)\t Justify why protective clothing and instruments used"
+    },
+    {
+      "id": "2024_May_SL_P1_Q1",
+      "source": "May 2024 TZ1 SL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.  Which descriptions of a chemical compound are correct? I.  Contains atoms of more than one element. II.  Atoms retai"
+    },
+    {
+      "id": "2024_May_SL_P1_Q3",
+      "source": "May 2024 TZ1 SL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t What is the sum of the coefficients when the equation is balanced with the smallest whole  numbers? __Al(OH)3\u2009(s)\u00a0+\u00a0"
+    },
+    {
+      "id": "2024_May_SL_P1_Q4",
+      "source": "May 2024 TZ1 SL Paper 1 Q4",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "4.\t Which species are present after 15\u2009dm3 of buta-1,3-diene has reacted with 18\u2009dm3 of hydrogen to  produce butane? CH2"
+    },
+    {
+      "id": "2024_May_SL_P1_Q8",
+      "source": "May 2024 TZ1 SL Paper 1 Q8",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "8.\t Which oxide produces an aqueous solution with the highest pH? A.\t Na2O B.\t P4O10 C.\t NO2 D.\t CO2"
+    },
+    {
+      "id": "2024_May_SL_P1_Q9",
+      "source": "May 2024 TZ1 SL Paper 1 Q9",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "9.\t What is the correct formula for ammonium phosphate? A.\t NH4PO4 B.\t (NH4)2PO4 C.\t (NH4)3PO4 D.\t (NH3)3PO4"
+    },
+    {
+      "id": "2024_May_SL_P1_Q10",
+      "source": "May 2024 TZ1 SL Paper 1 Q10",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "10.\t Which bond is the most polar? A.\t C\u2013H B.\t N\u2013H C.\t O\u2013H D.\t F\u2013H"
+    },
+    {
+      "id": "2024_May_SL_P1_Q17",
+      "source": "May 2024 TZ1 SL Paper 1 Q17",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "17.\t Which methods could be used to determine the rate of this reaction? C4H9Br\u2009(l)\u00a0+\u00a0H2O\u2009(l)\u00a0\uf0ae\u00a0C4H9OH\u2009(aq)\u00a0+\u00a0H+\u2009(aq)\u00a0+\u00a0"
+    },
+    {
+      "id": "2024_May_SL_P1_Q20",
+      "source": "May 2024 TZ1 SL Paper 1 Q20",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "20.\t What is the pH change when 0.100\u2009mol\u2009dm\u22123 HCl\u2009(aq) is diluted to 0.00100\u2009mol\u2009dm\u22123\u2009? A.\t increases by 2 B.\t increase"
+    },
+    {
+      "id": "2024_May_SL_P1_Q21",
+      "source": "May 2024 TZ1 SL Paper 1 Q21",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "21.\t The following equations represent reactions that occur spontaneously. Fe(NO3)2\u2009(aq)\u00a0+\u00a0Zn\u2009(s)\u00a0\uf0ae\u00a0Zn(NO3)2\u2009(aq)\u00a0+\u00a0Fe\u2009("
+    },
+    {
+      "id": "2024_May_SL_P1_Q25",
+      "source": "May 2024 TZ1 SL Paper 1 Q25",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "25.\t What is the name of this compound? CH3CHCH2Cl CH2CH2CH3 A.\t 1-chloro-2-propylpropane B.\t 1-chloro-2-methylpentane C"
+    },
+    {
+      "id": "2024_May_SL_P1_Q26",
+      "source": "May 2024 TZ1 SL Paper 1 Q26",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "26.\t What is the organic product when (CH3)2CH(OH) and acidified potassium manganate\u2009(VII),  H+/KMnO4\u2009(aq), are heated t"
+    },
+    {
+      "id": "2024_May_SL_P1_Q28",
+      "source": "May 2024 TZ1 SL Paper 1 Q28",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "28.\t 50.0\u2009cm3 samples of water measured using a graduated cylinder were found to weigh 48.88, 48.89  and 48.86 grams. Wa"
+    },
+    {
+      "id": "2024_May_SL_P1_Q29",
+      "source": "May 2024 TZ1 SL Paper 1 Q29",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "29.\t A 50.0\u2009cm3 sample of sodium hydroxide solution, NaOH\u2009(aq), weighed 53.894\u2009g at 25\u2009\u00b0C. What is  the density of the s"
+    },
+    {
+      "id": "2024_May_SL_P1_Q2",
+      "source": "May 2024 TZ1 SL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t Used with permission. \u00a9 United States of America as represented by the Secretary of Commerce. All other texts, graph"
+    },
+    {
+      "id": "2024_May_HL_P1_Q1",
+      "source": "May 2024 TZ1 HL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.  What happens as ice melts at 0 \u00b0C? I.  Molecules gain kinetic energy and temperature increases. II.  Added energy ov"
+    },
+    {
+      "id": "2024_May_HL_P1_Q3",
+      "source": "May 2024 TZ1 HL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t Which species are present after 15\u2009dm3 of buta-1,3-diene has reacted with 18\u2009dm3 of hydrogen to  produce butane? CH2"
+    },
+    {
+      "id": "2024_May_HL_P1_Q7",
+      "source": "May 2024 TZ1 HL Paper 1 Q7",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "7.\t Which oxide produces an aqueous solution with the highest pH? A.\t Na2O B.\t P4O10 C.\t NO2 D.\t CO2"
+    },
+    {
+      "id": "2024_May_HL_P1_Q13",
+      "source": "May 2024 TZ1 HL Paper 1 Q13",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "13.\t Which gas contributes to ozone depletion? A.\t NOx B.\t SO2 C.\t CO2 D.\t CH4"
+    },
+    {
+      "id": "2024_May_HL_P1_Q18",
+      "source": "May 2024 TZ1 HL Paper 1 Q18",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "18.\t Which methods could be used to determine the rate of this reaction? C4H9Br\u2009(l)\u00a0+\u00a0H2O\u2009(l)\u00a0\uf0ae\u00a0C4H9OH\u2009(aq)\u00a0+\u00a0H+\u2009(aq)\u00a0+\u00a0"
+    },
+    {
+      "id": "2024_May_HL_P1_Q33",
+      "source": "May 2024 TZ1 HL Paper 1 Q33",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "33.\t What is the name of this compound? CH3CHCH2Cl CH2CH2CH3 A.\t 1-chloro-2-propylpropane B.\t 1-chloro-2-methylpentane C"
+    },
+    {
+      "id": "2024_May_HL_P1_Q35",
+      "source": "May 2024 TZ1 HL Paper 1 Q35",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "35.\t Which reaction would be the fastest under the same conditions? A.\t (CH3)3CI\u00a0+\u00a0OH\u2212 B.\t (CH3)3CBr\u00a0+\u00a0OH\u2212 C.\t CH3CH2CH("
+    },
+    {
+      "id": "2024_May_HL_P1_Q38",
+      "source": "May 2024 TZ1 HL Paper 1 Q38",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "38.\t A 50.0\u2009cm3 sample of sodium hydroxide solution, NaOH\u2009(aq), weighed 53.894\u2009g at 25\u2009\u00b0C. What is  the density of the s"
+    },
+    {
+      "id": "2024_May_HL_P1_Q2",
+      "source": "May 2024 TZ1 HL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t Used with permission. \u00a9 United States of America as represented by the Secretary of Commerce. All other texts, graph"
     },
     {
       "id": "2024_May_HL_P3_Q4",
@@ -337,6 +949,48 @@
       "source": "May 2024 TZ2 HL Paper 3 Opt D Q20",
       "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
       "preview": "20.\t A redox breathalyser involves oxidizing ethanol in the breath to ethanal or ethanoic acid. (a)\t Identify one absorp"
+    },
+    {
+      "id": "2024_May_HL_P1_Q1",
+      "source": "May 2024 TZ2 HL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t Which of the following are homogeneous mixtures? I.\t  An aqueous solution of sodium chloride  II.\t  A mixture of pen"
+    },
+    {
+      "id": "2024_May_HL_P1_Q2",
+      "source": "May 2024 TZ2 HL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t Which compound has the highest percentage of carbon by mass? A.\t CH4 B.\t C2H6 C.\t CO D.\t CO2"
+    },
+    {
+      "id": "2024_May_HL_P1_Q7",
+      "source": "May 2024 TZ2 HL Paper 1 Q7",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "7.  Which set of ions shows increasing ionic radii? A.  P3\u2212< Cl\u2212< K+< Ca2+ B.  Cl\u2212< P3\u2212< Ca2+< K+ C.  K+< Ca2+< P3\u2212< Cl\u2212"
+    },
+    {
+      "id": "2024_May_HL_P1_Q14",
+      "source": "May 2024 TZ2 HL Paper 1 Q14",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "14.\t What are the numbers of sigma and pi bonds in propanenitrile, CH3CH2CN? Sigma Pi A. 6 2 B. 7 3 C. 8 2 D. 9 1"
+    },
+    {
+      "id": "2024_May_HL_P1_Q15",
+      "source": "May 2024 TZ2 HL Paper 1 Q15",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "15.\t Which molecule is non-polar? A.\t XeF2 B.\t IF5 C.\t SF2 D.\t PF3"
+    },
+    {
+      "id": "2024_May_HL_P1_Q36",
+      "source": "May 2024 TZ2 HL Paper 1 Q36",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "36.\t What is the major product formed when Cl2 is added to propene? A.\t 2,2-dichloropropane B.\t 1,2-dichloropropane C.\t "
+    },
+    {
+      "id": "2024_May_HL_P1_Q38",
+      "source": "May 2024 TZ2 HL Paper 1 Q38",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "38.\t Benzene, C6H6, can be converted to phenylamine, C6H5NH2, in a three-stage process. The organic  compounds involved "
     },
     {
       "id": "2024_May_HL_P3_Q4",
@@ -513,6 +1167,66 @@
       "preview": "1.\t \t Oul\u00e9, M., Dickman, M., Arul, J., 2013. Properties of Orange Juice with Supercritical Carbon Dioxide Treatment.  [g"
     },
     {
+      "id": "2023_Nov_SL_P1_Q2",
+      "source": "Nov 2023 TZ2 SL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t Metal M reacts with 16.0\u2009g of sulfur to produce 26.0\u2009g of the compound MS2. What is the relative  atomic mass of M? "
+    },
+    {
+      "id": "2023_Nov_SL_P1_Q3",
+      "source": "Nov 2023 TZ2 SL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t 64\u2009g of methane and 96\u2009g of oxygen are reacted according to the equation. CH4(g)\u00a0+\u00a02O2(g)\u00a0\uf0ae\u00a0CO2(g)\u00a0+\u00a02H2O(l) What wo"
+    },
+    {
+      "id": "2023_Nov_SL_P1_Q4",
+      "source": "Nov 2023 TZ2 SL Paper 1 Q4",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "4.\t Ammonia reacts with oxygen to produce nitrogen\u2009(II) oxide and water. ___\u00a0NH3(g)\u00a0+\u00a0___\u00a0O2(g)\u00a0\uf0ae\u00a0___\u00a0NO(g)\u00a0+\u00a0___\u00a0H2O(l)"
+    },
+    {
+      "id": "2023_Nov_SL_P1_Q7",
+      "source": "Nov 2023 TZ2 SL Paper 1 Q7",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "7.\t A beam containing two different kinds of particles is passed through oppositely charged plates with  the results sho"
+    },
+    {
+      "id": "2023_Nov_SL_P1_Q10",
+      "source": "Nov 2023 TZ2 SL Paper 1 Q10",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "10.\t The formula for praseodymium phosphate is PrPO4. What is the formula for praseodymium oxide? A.\t Pr2O B.\t PrO C.\t P"
+    },
+    {
+      "id": "2023_Nov_SL_P1_Q16",
+      "source": "Nov 2023 TZ2 SL Paper 1 Q16",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "16.\t Which expression represents the calculation of \uf044H? I II III Enthalpy A.\t I\uf02dII B.\t II\uf02dI C.\t I\uf02dIII D.\t II\uf02dIII"
+    },
+    {
+      "id": "2023_Nov_SL_P1_Q18",
+      "source": "Nov 2023 TZ2 SL Paper 1 Q18",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "18.\t Which of the following equilibria would shift left with an increase in pressure? A.\t H2(g)\u00a0+\u00a0Br2(g)\u00a0\uf083\u00a02HBr(g) B.\t C"
+    },
+    {
+      "id": "2023_Nov_SL_P1_Q24",
+      "source": "Nov 2023 TZ2 SL Paper 1 Q24",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "24.\t Which species will most readily react with propane? A.\t Br atom B.\t Br2 molecule C.\t Br- ion D.\t Br+ ion"
+    },
+    {
+      "id": "2023_Nov_SL_P1_Q25",
+      "source": "Nov 2023 TZ2 SL Paper 1 Q25",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "25.\t Which pair of compounds are structural isomers? 1st compound 2nd compound A. NH2CH2COOH NH2CH2OCH3 B. CH3CH2OH CH3C"
+    },
+    {
+      "id": "2023_Nov_SL_P1_Q28",
+      "source": "Nov 2023 TZ2 SL Paper 1 Q28",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "28.\t Which procedure is most likely to produce a systematic error in determining the original  concentration of NaOH\u2009(aq"
+    },
+    {
       "id": "2023_Nov_SL_P3_Q1",
       "source": "Nov 2023 TZ2 SL Paper 3 Opt A Q1",
       "reason": "Legacy Paper 3 Option B (Biochemistry) removed from 2025 syllabus (matched: starch, vitamin c)",
@@ -571,6 +1285,150 @@
       "source": "Nov 2023 TZ2 SL Paper 3 Opt D Q1",
       "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
       "preview": "1.\t \t Oul\u00e9, M., Dickman, M., Arul, J., 2013. Properties of Orange Juice with Supercritical Carbon Dioxide Treatment.  [g"
+    },
+    {
+      "id": "2023_Nov_SL_P1_Q2",
+      "source": "Nov 2023 TZ1 SL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t Metal M reacts with 16.0\u2009g of sulfur to produce 26.0\u2009g of the compound MS2. What is the relative  atomic mass of M? "
+    },
+    {
+      "id": "2023_Nov_SL_P1_Q3",
+      "source": "Nov 2023 TZ1 SL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t 64\u2009g of methane and 96\u2009g of oxygen are reacted according to the equation. CH4(g)\u00a0+\u00a02O2(g)\u00a0\uf0ae\u00a0CO2(g)\u00a0+\u00a02H2O(l) What wo"
+    },
+    {
+      "id": "2023_Nov_SL_P1_Q4",
+      "source": "Nov 2023 TZ1 SL Paper 1 Q4",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "4.\t Ammonia reacts with oxygen to produce nitrogen\u2009(II) oxide and water. ___\u00a0NH3(g)\u00a0+\u00a0___\u00a0O2(g)\u00a0\uf0ae\u00a0___\u00a0NO(g)\u00a0+\u00a0___\u00a0H2O(l)"
+    },
+    {
+      "id": "2023_Nov_SL_P1_Q7",
+      "source": "Nov 2023 TZ1 SL Paper 1 Q7",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "7.\t A beam containing two different kinds of particles is passed through oppositely charged plates with  the results sho"
+    },
+    {
+      "id": "2023_Nov_SL_P1_Q10",
+      "source": "Nov 2023 TZ1 SL Paper 1 Q10",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "10.\t The formula for praseodymium phosphate is PrPO4. What is the formula for praseodymium oxide? A.\t Pr2O B.\t PrO C.\t P"
+    },
+    {
+      "id": "2023_Nov_SL_P1_Q16",
+      "source": "Nov 2023 TZ1 SL Paper 1 Q16",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "16.\t Which expression represents the calculation of \uf044H? I II III Enthalpy A.\t I\uf02dII B.\t II\uf02dI C.\t I\uf02dIII D.\t II\uf02dIII"
+    },
+    {
+      "id": "2023_Nov_SL_P1_Q18",
+      "source": "Nov 2023 TZ1 SL Paper 1 Q18",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "18.\t Which of the following equilibria would shift left with an increase in pressure? A.\t H2(g)\u00a0+\u00a0Br2(g)\u00a0\uf083\u00a02HBr(g) B.\t C"
+    },
+    {
+      "id": "2023_Nov_SL_P1_Q24",
+      "source": "Nov 2023 TZ1 SL Paper 1 Q24",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "24.\t Which species will most readily react with propane? A.\t Br atom B.\t Br2 molecule C.\t Br- ion D.\t Br+ ion"
+    },
+    {
+      "id": "2023_Nov_SL_P1_Q25",
+      "source": "Nov 2023 TZ1 SL Paper 1 Q25",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "25.\t Which pair of compounds are structural isomers? 1st compound 2nd compound A. NH2CH2COOH NH2CH2OCH3 B. CH3CH2OH CH3C"
+    },
+    {
+      "id": "2023_Nov_SL_P1_Q28",
+      "source": "Nov 2023 TZ1 SL Paper 1 Q28",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "28.\t Which procedure is most likely to produce a systematic error in determining the original  concentration of NaOH\u2009(aq"
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q1",
+      "source": "Nov 2023 TZ1 HL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t Ammonia reacts with oxygen to produce nitrogen (II) oxide and water. ___\u00a0NH3\u2009(g)\u00a0+\u00a0___\u00a0O2\u2009(g)\u00a0\uf0ae\u00a0___\u00a0NO\u2009(g)\u00a0+\u00a0___\u00a0H2O"
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q2",
+      "source": "Nov 2023 TZ1 HL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t Metal M reacts with 16.0\u2009g of sulfur to produce 26.0\u2009g of the compound MS2. What is the relative  atomic mass of M? "
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q3",
+      "source": "Nov 2023 TZ1 HL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t 64\u2009g of methane and 96\u2009g of oxygen are reacted according to the equation. CH4\u2009(g)\u00a0+\u00a02O2\u2009(g)\u00a0\uf0ae\u00a0CO2\u2009(g)\u00a0+\u00a02H2O\u2009(l) Wha"
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q6",
+      "source": "Nov 2023 TZ1 HL Paper 1 Q6",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "6.\t Which one of the following observations provides evidence that matter is composed of atoms? A.\t The line emission sp"
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q8",
+      "source": "Nov 2023 TZ1 HL Paper 1 Q8",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "8.\t Which aqueous solutions would have a different wavelength of maximum absorbance from  0.10\u2009mol\u2009dm-3\u00a0FeSO4? I.\t 0.01\u2009"
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q11",
+      "source": "Nov 2023 TZ1 HL Paper 1 Q11",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "11.\t Which substance exhibits only London (dispersion) forces between molecules? A.\t PF5 B.\t SF4 C.\t SO2 D.\t XeO2"
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q16",
+      "source": "Nov 2023 TZ1 HL Paper 1 Q16",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "16.\t Which expression represents the calculation of \uf044H? I II III Enthalpy A.\t I\uf02dII B.\t II\uf02dI C.\t I\uf02dIII D.\t II\uf02dIII"
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q18",
+      "source": "Nov 2023 TZ1 HL Paper 1 Q18",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "18.\t Which combination of values of \uf044H and \uf044S belongs to a reaction which is spontaneous at low  temperatures but not sp"
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q20",
+      "source": "Nov 2023 TZ1 HL Paper 1 Q20",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "20.\t The rate of the reaction 2N2O5\u2009(g)\u00a0\uf0ae\u00a04NO2\u2009(g)\u00a0+\u00a0O2\u2009(g) can be expressed as rate of change of  concentration of oxyg"
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q21",
+      "source": "Nov 2023 TZ1 HL Paper 1 Q21",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "21.\t A proposed mechanism for the decomposition of N2O5 is N2O5\u2009(g)\u00a0\uf0ae\u00a0NO2(g)\u00a0+\u00a0NO3(g) slow NO3\u2009(g)\u00a0\uf0ae\u00a0O2(g)\u00a0+\u00a0NO(g) fast "
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q31",
+      "source": "Nov 2023 TZ1 HL Paper 1 Q31",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "31.\t Which combination of atomic mass and charge on ion will result in the largest mass of a metal M  being electroplate"
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q34",
+      "source": "Nov 2023 TZ1 HL Paper 1 Q34",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "34.\t Which compounds react with HBr to produce 2-bromobutane? I.\t CH2\u2009=\u2009CH\u2009-\u2009CH2\u2009-\u2009CH3 II.\t CH3\u2009-\u2009CH\u2009=\u2009CH\u2009-\u2009CH3 III.\t H\u2009"
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q37",
+      "source": "Nov 2023 TZ1 HL Paper 1 Q37",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "37.\t Which procedure is most likely to produce a systematic error in determining the original  concentration of NaOH\u2009(aq"
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q40",
+      "source": "Nov 2023 TZ1 HL Paper 1 Q40",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "40. \t The University of Sydney, n.d. [Interactive NMR spectrum.] [online] Available at: https://scilearn.sydney.edu.au/ "
     },
     {
       "id": "2023_Nov_HL_P3_Q1",
@@ -661,6 +1519,90 @@
       "source": "Nov 2023 TZ2 HL Paper 3 Opt D Q1",
       "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
       "preview": "1.\t \t Oul\u00e9, M., Dickman, M., Arul, J., 2013. Properties of Orange Juice with Supercritical Carbon Dioxide Treatment.  [g"
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q1",
+      "source": "Nov 2023 TZ2 HL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t Ammonia reacts with oxygen to produce nitrogen (II) oxide and water. ___\u00a0NH3\u2009(g)\u00a0+\u00a0___\u00a0O2\u2009(g)\u00a0\uf0ae\u00a0___\u00a0NO\u2009(g)\u00a0+\u00a0___\u00a0H2O"
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q2",
+      "source": "Nov 2023 TZ2 HL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t Metal M reacts with 16.0\u2009g of sulfur to produce 26.0\u2009g of the compound MS2. What is the relative  atomic mass of M? "
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q3",
+      "source": "Nov 2023 TZ2 HL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t 64\u2009g of methane and 96\u2009g of oxygen are reacted according to the equation. CH4\u2009(g)\u00a0+\u00a02O2\u2009(g)\u00a0\uf0ae\u00a0CO2\u2009(g)\u00a0+\u00a02H2O\u2009(l) Wha"
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q6",
+      "source": "Nov 2023 TZ2 HL Paper 1 Q6",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "6.\t Which one of the following observations provides evidence that matter is composed of atoms? A.\t The line emission sp"
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q8",
+      "source": "Nov 2023 TZ2 HL Paper 1 Q8",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "8.\t Which aqueous solutions would have a different wavelength of maximum absorbance from  0.10\u2009mol\u2009dm-3\u00a0FeSO4? I.\t 0.01\u2009"
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q11",
+      "source": "Nov 2023 TZ2 HL Paper 1 Q11",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "11.\t Which substance exhibits only London (dispersion) forces between molecules? A.\t PF5 B.\t SF4 C.\t SO2 D.\t XeO2"
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q16",
+      "source": "Nov 2023 TZ2 HL Paper 1 Q16",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "16.\t Which expression represents the calculation of \uf044H? I II III Enthalpy A.\t I\uf02dII B.\t II\uf02dI C.\t I\uf02dIII D.\t II\uf02dIII"
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q18",
+      "source": "Nov 2023 TZ2 HL Paper 1 Q18",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "18.\t Which combination of values of \uf044H and \uf044S belongs to a reaction which is spontaneous at low  temperatures but not sp"
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q20",
+      "source": "Nov 2023 TZ2 HL Paper 1 Q20",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "20.\t The rate of the reaction 2N2O5\u2009(g)\u00a0\uf0ae\u00a04NO2\u2009(g)\u00a0+\u00a0O2\u2009(g) can be expressed as rate of change of  concentration of oxyg"
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q21",
+      "source": "Nov 2023 TZ2 HL Paper 1 Q21",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "21.\t A proposed mechanism for the decomposition of N2O5 is N2O5\u2009(g)\u00a0\uf0ae\u00a0NO2(g)\u00a0+\u00a0NO3(g) slow NO3\u2009(g)\u00a0\uf0ae\u00a0O2(g)\u00a0+\u00a0NO(g) fast "
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q31",
+      "source": "Nov 2023 TZ2 HL Paper 1 Q31",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "31.\t Which combination of atomic mass and charge on ion will result in the largest mass of a metal M  being electroplate"
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q34",
+      "source": "Nov 2023 TZ2 HL Paper 1 Q34",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "34.\t Which compounds react with HBr to produce 2-bromobutane? I.\t CH2\u2009=\u2009CH\u2009-\u2009CH2\u2009-\u2009CH3 II.\t CH3\u2009-\u2009CH\u2009=\u2009CH\u2009-\u2009CH3 III.\t H\u2009"
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q37",
+      "source": "Nov 2023 TZ2 HL Paper 1 Q37",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "37.\t Which procedure is most likely to produce a systematic error in determining the original  concentration of NaOH\u2009(aq"
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q40",
+      "source": "Nov 2023 TZ2 HL Paper 1 Q40",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "40. \t The University of Sydney, n.d. [Interactive NMR spectrum.] [online] Available at: https://scilearn.sydney.edu.au/ "
     },
     {
       "id": "2023_Nov_HL_P3_Q1",
@@ -825,6 +1767,66 @@
       "preview": "7.\t \t BioTopics. n.d. Chromatography of amino acids. [online] Available at:   https://www.biotopics.co.uk/as/amino_acid_"
     },
     {
+      "id": "2023_May_SL_P1_Q6",
+      "source": "May 2023 TZ2 SL Paper 1 Q6",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "6.\t The following diagram shows a light passing through a cold gas cloud, and light from a hot  gas cloud. A light sourc"
+    },
+    {
+      "id": "2023_May_SL_P1_Q9",
+      "source": "May 2023 TZ2 SL Paper 1 Q9",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "9.\t Which compound is both volatile and soluble in water? A.\t NaCl B.\t CH3CH2CH3 C.\t CH3OH D.\t C12H22O11"
+    },
+    {
+      "id": "2023_May_SL_P1_Q12",
+      "source": "May 2023 TZ2 SL Paper 1 Q12",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "12.\t What is the correct comparison of H\\N\\H bond angles in NH2 -, NH3, and NH4 +? A. NH2 - < NH3 < NH4 + B. NH4 + < NH3"
+    },
+    {
+      "id": "2023_May_SL_P1_Q13",
+      "source": "May 2023 TZ2 SL Paper 1 Q13",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "13.\t The enthalpy of formation of ammonia gas is -46\u2009kJ\u00a0mol-1. N2\u2009(g)\u00a0+\u00a03H2\u2009(g)\u00a0\u2192\u00a02NH3\u2009(g) What is the energy released, "
+    },
+    {
+      "id": "2023_May_SL_P1_Q14",
+      "source": "May 2023 TZ2 SL Paper 1 Q14",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "14.\t What is\u00a0\u0394H, in\u00a0kJ, for the reaction N2H4\u2009(l)\u00a0+\u00a0H2\u2009(g)\u00a0\u2192\u00a02NH3\u2009(g)? Reaction \u0394H N2H4\u2009(l)\u00a0+\u00a0CH3OH\u2009(l)\u00a0\u2192\u00a0CH2O\u2009(g)\u00a0+\u00a0N2\u2009"
+    },
+    {
+      "id": "2023_May_SL_P1_Q18",
+      "source": "May 2023 TZ2 SL Paper 1 Q18",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "18.\t Which condition will cause the given equilibrium to shift to the right? Ag+\u2009(aq)\u00a0+\u00a0Cl-\u2009(aq)\u00a0\uf083\u00a0AgCl\u2009(s) A.\t One half"
+    },
+    {
+      "id": "2023_May_SL_P1_Q20",
+      "source": "May 2023 TZ2 SL Paper 1 Q20",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "20.\t What is the hydroxide ion concentration in a solution of pH\u00a0=\u00a04 at 298\u2009K? A.\t 4 B.\t 10 C.\t 10-4 D.\t 10-10"
+    },
+    {
+      "id": "2023_May_SL_P1_Q23",
+      "source": "May 2023 TZ2 SL Paper 1 Q23",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "23.\t Which species could be reduced to form SO2? A.\t S B.\t H2SO3 C.\t H2SO4 D.\t (CH3)2S"
+    },
+    {
+      "id": "2023_May_SL_P1_Q27",
+      "source": "May 2023 TZ2 SL Paper 1 Q27",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "27.\t What are the most likely reactions ethene and benzene will undergo? Ethene Benzene A. Addition Substitution B. Addi"
+    },
+    {
+      "id": "2023_May_SL_P1_Q6",
+      "source": "May 2023 TZ2 SL Paper 1 Q6",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "6.\t Image with permission from The Pennsylvania State University. All other texts, graphics and illustrations \u00a9 Internat"
+    },
+    {
       "id": "2023_May_SL_P3_Q4",
       "source": "May 2023 TZ2 SL Paper 3 Opt A Q4",
       "reason": "Retired syllabus topic (matched: liquid crystal)",
@@ -913,6 +1915,102 @@
       "source": "May 2023 TZ2 SL Paper 3 Opt D Q21",
       "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
       "preview": "21.\t The production of many pharmaceutical drugs involves the use of solvents. (a)\t State one problem associated with ch"
+    },
+    {
+      "id": "2023_May_SL_P1_Q13",
+      "source": "May 2023 TZ1 SL Paper 1 Q13",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "13.\t Which allotrope, oxygen or ozone, has the stronger bond between O atoms, and which absorbs  higher frequency UV rad"
+    },
+    {
+      "id": "2023_May_SL_P1_Q17",
+      "source": "May 2023 TZ1 SL Paper 1 Q17",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "17.\t What happens to the average kinetic energy, KE, of the particles in a gas when the absolute  temperature is doubled"
+    },
+    {
+      "id": "2023_May_SL_P1_Q22",
+      "source": "May 2023 TZ1 SL Paper 1 Q22",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "22.\t What is the formula of copper\u2009(I) sulfide? A.\t CuS B.\t Cu2S C.\t CuSO3 D.\t Cu2SO3"
+    },
+    {
+      "id": "2023_May_SL_P1_Q28",
+      "source": "May 2023 TZ1 SL Paper 1 Q28",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "28.\t What is the percentage error if the enthalpy of combustion of a substance is determined  experimentally to be -2100"
+    },
+    {
+      "id": "2023_May_SL_P1_Q29",
+      "source": "May 2023 TZ1 SL Paper 1 Q29",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "29.\t In which case would repetition produce an improvement in accuracy? A.\t A thermometer always gives low readings. B.\t"
+    },
+    {
+      "id": "2023_May_HL_P1_Q7",
+      "source": "May 2023 TZ1 HL Paper 1 Q7",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "7.\t In the following unbalanced equation, X represents an element. Which oxide reacts with water as shown? ____\u00a0+\u00a0H2O\u00a0\u2192\u00a0"
+    },
+    {
+      "id": "2023_May_HL_P1_Q12",
+      "source": "May 2023 TZ1 HL Paper 1 Q12",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "12.\t What are the formal charges on the atoms in this molecular ion? S C N S C N A. -1 0 0 B. 0 0 -1 C. -1 +1 0 D. 0 +1 "
+    },
+    {
+      "id": "2023_May_HL_P1_Q15",
+      "source": "May 2023 TZ1 HL Paper 1 Q15",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "15.\t Which allotrope, oxygen or ozone, has the stronger bond between O atoms, and which absorbs  higher frequency UV rad"
+    },
+    {
+      "id": "2023_May_HL_P1_Q18",
+      "source": "May 2023 TZ1 HL Paper 1 Q18",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "18.\t What happens to the average kinetic energy, KE, of the particles in a gas when the absolute  temperature is doubled"
+    },
+    {
+      "id": "2023_May_HL_P1_Q19",
+      "source": "May 2023 TZ1 HL Paper 1 Q19",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "19.\t Which calculation determines the initial rate of this reaction? Time (s) 0 0 0.10 0.20 0.30 0.40 0.50 20 40 60 80 1"
+    },
+    {
+      "id": "2023_May_HL_P1_Q34",
+      "source": "May 2023 TZ1 HL Paper 1 Q34",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "34.\t What is the product of the reaction of but-2-ene with bromine? A.\t 1,2-dibromobutane B.\t 2,2-dibromobutane C.\t 2,3-"
+    },
+    {
+      "id": "2023_May_HL_P1_Q35",
+      "source": "May 2023 TZ1 HL Paper 1 Q35",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "35.\t Which molecule is optically active? A.\t 2,2-dichloropropane B.\t 1,2-dichloropropane C.\t 1,3-dichloropropane D.\t 1,2"
+    },
+    {
+      "id": "2023_May_HL_P1_Q36",
+      "source": "May 2023 TZ1 HL Paper 1 Q36",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "36.\t Which pairs of reactants could produce the following intermediate? I. II. III. A.\t I and II\u00a0only B.\t I and III\u00a0only"
+    },
+    {
+      "id": "2023_May_HL_P1_Q38",
+      "source": "May 2023 TZ1 HL Paper 1 Q38",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "38.\t What is the percentage error if the enthalpy of combustion of a substance is determined  experimentally to be -2100"
+    },
+    {
+      "id": "2023_May_HL_P1_Q40",
+      "source": "May 2023 TZ1 HL Paper 1 Q40",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "40.\t What is the index of hydrogen deficiency of adenine? Adenine (C5H5N5) A.\t 3 B.\t 4 C.\t 5 D.\t 6 \b"
+    },
+    {
+      "id": "2023_May_HL_P1_Q39",
+      "source": "May 2023 TZ1 HL Paper 1 Q39",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "39.\t SDBS, National Institute of Advanced Industrial Science and Technology. All other texts, graphics and illustrations"
     },
     {
       "id": "2023_May_HL_P3_Q4",
@@ -1041,6 +2139,54 @@
       "preview": "References: \u00a9 International Baccalaureate Organization 2023 28.\t The production of many pharmaceutical drugs involves th"
     },
     {
+      "id": "2023_May_HL_P1_Q6",
+      "source": "May 2023 TZ2 HL Paper 1 Q6",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "6.\t Which sequence has the oxides arranged in order of increasing acidity? A. Na2O < Al2O3 < SO3 B. Al2O3 < SO3 < Na2O C"
+    },
+    {
+      "id": "2023_May_HL_P1_Q11",
+      "source": "May 2023 TZ2 HL Paper 1 Q11",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "11.\t What is the correct comparison of H\\N\\H bond angles in NH2 -, NH3, and NH4 +? A. NH2 - < NH3 < NH4 + B. NH4 + < NH3"
+    },
+    {
+      "id": "2023_May_HL_P1_Q13",
+      "source": "May 2023 TZ2 HL Paper 1 Q13",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "13.\t Which wavelength and energy of light will break bonds in ozone rather than oxygen molecules? A.\t Shorter wavelength"
+    },
+    {
+      "id": "2023_May_HL_P1_Q14",
+      "source": "May 2023 TZ2 HL Paper 1 Q14",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "14.\t The enthalpy of formation of ammonia gas is -46\u2009kJ\u00a0mol-1. N2\u2009(g)\u00a0+\u00a03H2\u2009(g)\u00a0\u2192\u00a02NH3\u2009(g) What is the energy released, "
+    },
+    {
+      "id": "2023_May_HL_P1_Q17",
+      "source": "May 2023 TZ2 HL Paper 1 Q17",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "17.\t Which is correct when \u2206H\u00a0-\u00a0T\u2206S\u00a0=\u00a00? A.\t Forward reaction is favoured. B.\t Reverse reaction is favoured. C.\t Reactio"
+    },
+    {
+      "id": "2023_May_HL_P1_Q19",
+      "source": "May 2023 TZ2 HL Paper 1 Q19",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "19.\t Which two colliding species have the highest probability of having the proper orientation for a  reaction to occur?"
+    },
+    {
+      "id": "2023_May_HL_P1_Q22",
+      "source": "May 2023 TZ2 HL Paper 1 Q22",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "22.\t Which condition will cause the given equilibrium to shift to the right? Ag+\u2009(aq)\u00a0+\u00a0Cl-\u2009(aq)\u00a0\uf083\u00a0AgCl\u2009(s) A.\t One half"
+    },
+    {
+      "id": "2023_May_HL_P1_Q36",
+      "source": "May 2023 TZ2 HL Paper 1 Q36",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "36.\t The observed specific optical rotation, [\u2009\u03b1\u2009], of a compound is +7.00\u00b0. What is the specific optical  rotation of a"
+    },
+    {
       "id": "2023_May_HL_P3_Q3",
       "source": "May 2023 TZ1 HL Paper 3 Opt A Q3",
       "reason": "Retired syllabus topic (matched: liquid crystal)",
@@ -1143,6 +2289,738 @@
       "preview": "15.\t \t Dr. Rashmi. S. B, et al. 2020. Design of a Solar Charger Circuit for Recharging Batteries of Communication  Devic"
     },
     {
+      "id": "2022_Nov_SL_P1_Q7",
+      "source": "Nov 2022 TZ1 SL Paper 1 Q7",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "7.\t Which elements are considered to be metalloids? I.\t Gallium II.\t Germanium III.\t Arsenic A.\t I and II only B.\t I and"
+    },
+    {
+      "id": "2022_Nov_SL_P1_Q10",
+      "source": "Nov 2022 TZ1 SL Paper 1 Q10",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "10.\t Which molecule is polar? A.\t BeH2 B.\t AlH3 C.\t PH3 D.\t SiH4"
+    },
+    {
+      "id": "2022_Nov_SL_P1_Q11",
+      "source": "Nov 2022 TZ1 SL Paper 1 Q11",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "11.\t Which structure of CF2Cl2 is shown with correct bond and molecular dipoles? A. Cl Cl F F \u03b4- \u03b4+ \u03b4- \u03b4- \u03b4- B. Cl Cl F "
+    },
+    {
+      "id": "2022_Nov_SL_P1_Q14",
+      "source": "Nov 2022 TZ1 SL Paper 1 Q14",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "14.\t What is the value for enthalpy of formation of methane from the given enthalpies of combustion? C\u2009(s) + O2\u2009(g) \u2192 CO"
+    },
+    {
+      "id": "2022_Nov_SL_P1_Q15",
+      "source": "Nov 2022 TZ1 SL Paper 1 Q15",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "15.\t Which statement best describes heat? A.\t A quantity of potential energy of particles B.\t A quantity of average kine"
+    },
+    {
+      "id": "2022_Nov_SL_P1_Q24",
+      "source": "Nov 2022 TZ1 SL Paper 1 Q24",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "24.\t Which are isomers of C5H12? I.\t II.\t III.\t A.\t I and II only B.\t I and III only C.\t II and III only D.\t I, II and I"
+    },
+    {
+      "id": "2022_Nov_SL_P1_Q28",
+      "source": "Nov 2022 TZ1 SL Paper 1 Q28",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "28.\t What combination is the most effective for reducing random and systematic errors? Reduce random error Reduce system"
+    },
+    {
+      "id": "2022_Nov_SL_P1_Q29",
+      "source": "Nov 2022 TZ1 SL Paper 1 Q29",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "29.\t A well tested scientific idea which has been used to make predictions cannot explain a  particular event. Which sta"
+    },
+    {
+      "id": "2022_Nov_HL_P1_Q7",
+      "source": "Nov 2022 TZ1 HL Paper 1 Q7",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "7.\t Which elements are considered to be metalloids? I.\t Gallium II.\t Germanium III.\t Arsenic A.\t I and II only B.\t I and"
+    },
+    {
+      "id": "2022_Nov_HL_P1_Q10",
+      "source": "Nov 2022 TZ1 HL Paper 1 Q10",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "10.\t Which elements are capable of forming expanded octets? I.\t Nitrogen II.\t Phosphorus III.\t Arsenic A.\t I and II only"
+    },
+    {
+      "id": "2022_Nov_HL_P1_Q14",
+      "source": "Nov 2022 TZ1 HL Paper 1 Q14",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "14.\t What is the value for enthalpy of formation of methane from the given enthalpies of combustion? C\u2009(s) + O2\u2009(g) \u2192 CO"
+    },
+    {
+      "id": "2022_Nov_HL_P1_Q17",
+      "source": "Nov 2022 TZ1 HL Paper 1 Q17",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "17.\t At which temperature could \u2206H, \u2206S, and \u2206G all be positive? A.\t High temperatures B.\t Low temperatures C.\t Any tempe"
+    },
+    {
+      "id": "2022_Nov_HL_P1_Q23",
+      "source": "Nov 2022 TZ1 HL Paper 1 Q23",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "23.\t Which of these changes would shift the equilibrium to the right? [Co(H2O)6]2+\u2009(aq) + 4Cl\u2212\u2009(aq) \uf083 [CoCl4]2\u2212\u2009(aq) + 6"
+    },
+    {
+      "id": "2022_Nov_HL_P1_Q26",
+      "source": "Nov 2022 TZ1 HL Paper 1 Q26",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "26.\t Which solutions will form a buffer when mixed? A.\t 50\u2009cm3 of 1.0\u2009mol dm\u22123 HCl and 50\u2009cm3 of 1.0\u2009mol dm\u22123 NaOH B.\t 5"
+    },
+    {
+      "id": "2022_Nov_HL_P1_Q29",
+      "source": "Nov 2022 TZ1 HL Paper 1 Q29",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "29.\t What is the coefficient for H+ when the equation below is balanced? __Pb\u2009(s) + __NO3 -\u2009(aq) + __H+\u2009(aq) \u2192 __Pb2+\u2009(a"
+    },
+    {
+      "id": "2022_Nov_HL_P1_Q32",
+      "source": "Nov 2022 TZ1 HL Paper 1 Q32",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "32.\t Which are isomers of C5H12? I.\t II.\t III.\t A.\t I and II only B.\t I and III only C.\t II and III only D.\t I, II and I"
+    },
+    {
+      "id": "2022_Nov_HL_P1_Q35",
+      "source": "Nov 2022 TZ1 HL Paper 1 Q35",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "35.\t Which statement best describes retrosynthesis? A.\t The reaction conditions needed to convert the product of a react"
+    },
+    {
+      "id": "2022_Nov_HL_P1_Q36",
+      "source": "Nov 2022 TZ1 HL Paper 1 Q36",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "36.\t What combination of reactants will convert nitrobenzene to phenylamine in two steps? Initial reactant(s) Second rea"
+    },
+    {
+      "id": "2022_Nov_HL_P1_Q37",
+      "source": "Nov 2022 TZ1 HL Paper 1 Q37",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "37.\t A well tested scientific idea which has been used to make predictions cannot explain a  particular event. Which sta"
+    },
+    {
+      "id": "2022_Nov_HL_P1_Q40",
+      "source": "Nov 2022 TZ1 HL Paper 1 Q40",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "40.\t Spectral Database for Organic Compounds, SDBS, n.d. [online] Available at: https://sdbs.db.aist.go.jp/sdbs/cgi- bin"
+    },
+    {
+      "id": "2022_May_SL_P1_Q1",
+      "source": "May 2022 TZ2 SL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t What is the concentration of chloride ions, in mol\u2009dm\u22123, in a solution formed by mixing 200\u2009cm3  of 1\u2009mol\u2009dm\u22123 HCl w"
+    },
+    {
+      "id": "2022_May_SL_P1_Q11",
+      "source": "May 2022 TZ2 SL Paper 1 Q11",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "11.\t What is the name of the compound with formula Ti3(PO4)2? A.\t Titanium phosphate B.\t Titanium(II) phosphate C.\t Tita"
+    },
+    {
+      "id": "2022_May_SL_P1_Q14",
+      "source": "May 2022 TZ2 SL Paper 1 Q14",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "14.\t Which combination of \u0394H1, \u0394H2, and \u0394H3 would give the enthalpy of the reaction? CS2\u2009(l) + 3O2\u2009(g) \u2192 CO2\u2009(g) + 2SO2\u2009"
+    },
+    {
+      "id": "2022_May_SL_P1_Q19",
+      "source": "May 2022 TZ2 SL Paper 1 Q19",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "19.\t Which of the 0.001\u2009mol\u2009dm\u22123 solutions is most likely to have a pH of 11.3? A.\t Ca(OH)2\u2009(aq) B.\t H3PO4\u2009(aq) C.\t NaOH"
+    },
+    {
+      "id": "2022_May_SL_P1_Q21",
+      "source": "May 2022 TZ2 SL Paper 1 Q21",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "21.\t Which species could be reduced to form NO2? A.\t N2 B.\t NO3 \u2212 C.\t HNO2 D.\t NO"
+    },
+    {
+      "id": "2022_May_SL_P1_Q24",
+      "source": "May 2022 TZ2 SL Paper 1 Q24",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "24.\t How many dichlorinated butane isomers can be formed by the halogenation of  CH3CH2CH2CH3 with excess Cl2 in the pre"
+    },
+    {
+      "id": "2022_May_SL_P1_Q29",
+      "source": "May 2022 TZ2 SL Paper 1 Q29",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "29.\t What is the uncertainty, in cm3, of this measurement? 50 60 A.\t \u00b10.01 B.\t \u00b10.1 C.\t \u00b10.15 D.\t \u00b11"
+    },
+    {
+      "id": "2022_May_SL_P1_Q7",
+      "source": "May 2022 TZ1 SL Paper 1 Q7",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "7. Which gases are acidic? I. nitrogen dioxide II. carbon dioxide III. sulfur dioxide A. I and II only B. I and III only"
+    },
+    {
+      "id": "2022_May_SL_P1_Q9",
+      "source": "May 2022 TZ1 SL Paper 1 Q9",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "9. A compound consists of the ions Ca2+ and PO4 3-. What are the name and formula of the compound? Name Formula A. calci"
+    },
+    {
+      "id": "2022_May_SL_P1_Q11",
+      "source": "May 2022 TZ1 SL Paper 1 Q11",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "11. Which molecule is most polar? A. CF4 B. CCl4 C. CHF3 D. CClF3"
+    },
+    {
+      "id": "2022_May_SL_P1_Q17",
+      "source": "May 2022 TZ1 SL Paper 1 Q17",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "17. A student was investigating rates of reaction. In which of the following cases would a colorimeter show a change in "
+    },
+    {
+      "id": "2022_May_SL_P1_Q19",
+      "source": "May 2022 TZ1 SL Paper 1 Q19",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "19. Which species are acids in the equilibrium below? CH3NH2\u00a0+\u00a0H2O\u00a0\uf083\u00a0CH3NH3 +\u00a0+\u00a0OH- A. CH3NH2 and H2O B. H2O and CH3NH3 "
+    },
+    {
+      "id": "2022_May_SL_P1_Q20",
+      "source": "May 2022 TZ1 SL Paper 1 Q20",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "20. Which 0.01\u2009mol\u00a0dm-3 aqueous solution has the highest pH? A. HCl B. H2SO4 C. NaOH D. NH3"
+    },
+    {
+      "id": "2022_May_SL_P1_Q21",
+      "source": "May 2022 TZ1 SL Paper 1 Q21",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "21. In which of the following species would sulfur be reduced if converted to SCl2? A. S2O3 2- B. H2S C. S D. SO2"
+    },
+    {
+      "id": "2022_May_SL_P1_Q30",
+      "source": "May 2022 TZ1 SL Paper 1 Q30",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "30. What is the index of hydrogen deficiency (IHD) of this molecule? Paracetamol (acetaminophen) A. 3 B. 4 C. 5 D. 6"
+    },
+    {
+      "id": "2022_May_SL_P1_Q29",
+      "source": "May 2022 TZ1 SL Paper 1 Q29",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "29. Spectral Database for Organic Compounds, SDBS. SDBS Compounds and Spectral Search. [graph] Available at: https://sdb"
+    },
+    {
+      "id": "2022_May_HL_P1_Q1",
+      "source": "May 2022 TZ1 HL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1. 2.67 g of lead\u2009(II) carbonate is decomposed by heating until constant mass. PbCO3\u2009(s)\u00a0\uf0ae\u00a0PbO\u2009(s)\u00a0+\u00a0CO2\u2009(g) What is the"
+    },
+    {
+      "id": "2022_May_HL_P1_Q6",
+      "source": "May 2022 TZ1 HL Paper 1 Q6",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "6.\t Which gases are acidic? I.\t nitrogen dioxide II.\t carbon dioxide III.\t sulfur dioxide A.\t I and II only B.\t I and II"
+    },
+    {
+      "id": "2022_May_HL_P1_Q9",
+      "source": "May 2022 TZ1 HL Paper 1 Q9",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "9.\t A compound consists of the ions Ca2+ and PO4 3-. What are the name and formula of  the compound? Name Formula A. cal"
+    },
+    {
+      "id": "2022_May_HL_P1_Q19",
+      "source": "May 2022 TZ1 HL Paper 1 Q19",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "19.\t A student was investigating rates of reaction. In which of the following cases would a colorimeter  show a change i"
+    },
+    {
+      "id": "2022_May_HL_P1_Q24",
+      "source": "May 2022 TZ1 HL Paper 1 Q24",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "24.\t Which species are acids in the equilibrium below? CH3NH2\u00a0+\u00a0H2O\u00a0\uf083\u00a0CH3NH3 +\u00a0+\u00a0OH- A.\t CH3NH2 and H2O B.\t H2O and CH3N"
+    },
+    {
+      "id": "2022_May_HL_P1_Q25",
+      "source": "May 2022 TZ1 HL Paper 1 Q25",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "25.\t Which 0.01\u2009mol\u00a0dm-3 aqueous solution has the highest pH? A.\t HCl B.\t H2SO4 C.\t NaOH D.\t NH3"
+    },
+    {
+      "id": "2022_May_HL_P1_Q27",
+      "source": "May 2022 TZ1 HL Paper 1 Q27",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "27.\t In which set are the salts arranged in order of increasing pH? A.\t HCOONH4\u00a0<\u00a0KBr\u00a0<\u00a0NH4Br\u00a0<\u00a0HCOOK B.\t KBr\u00a0<\u00a0NH4Br\u00a0<\u00a0"
+    },
+    {
+      "id": "2022_May_HL_P1_Q28",
+      "source": "May 2022 TZ1 HL Paper 1 Q28",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "28.\t In which of the following species would sulfur be reduced if converted to SCl2? A.\t S2O3 2- B.\t H2S C.\t S D.\t SO2"
+    },
+    {
+      "id": "2022_May_HL_P1_Q36",
+      "source": "May 2022 TZ1 HL Paper 1 Q36",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "36. What is molecule\u00a0Z that is formed in step\u00a01 of this synthetic route? Z NaOH Sn conc. HCl Step 1 Step 2 A. B. C. D."
+    },
+    {
+      "id": "2022_May_HL_P1_Q39",
+      "source": "May 2022 TZ1 HL Paper 1 Q39",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "39. What is the index of hydrogen deficiency (IHD) of this molecule? Paracetamol (acetaminophen) A. 3 B. 4 C. 5 D. 6"
+    },
+    {
+      "id": "2022_May_HL_P1_Q38",
+      "source": "May 2022 TZ1 HL Paper 1 Q38",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "38. Spectral Database for Organic Compounds, SDBS. SDBS Compounds and Spectral Search. [graph] Available at: https://sdb"
+    },
+    {
+      "id": "2022_May_HL_P1_Q40",
+      "source": "May 2022 TZ1 HL Paper 1 Q40",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "40. Spectral Database for Organic Compounds, SDBS. SDBS Compounds and Spectral Search. [graph] Available at: https://sdb"
+    },
+    {
+      "id": "2022_May_HL_P2_Q3",
+      "source": "May 2022 TZ1 HL Paper 2 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3. The Haber Bosch Process [graph] Available at: https://commons.wikimedia.org/wiki/File:Ammonia_yield.png [Accessed: 16"
+    },
+    {
+      "id": "2022_May_HL_P1_Q1",
+      "source": "May 2022 TZ2 HL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t What is the concentration of chloride ions, in mol\u2009dm\u22123, in a solution formed by mixing 200\u2009cm3  of 1\u2009mol\u2009dm\u22123 HCl w"
+    },
+    {
+      "id": "2022_May_HL_P1_Q7",
+      "source": "May 2022 TZ2 HL Paper 1 Q7",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "7.\t Which of these ions are likely to be paramagnetic? I.\t Ti3+ II.\t Cr3+ III.\t Fe3+ A.\t I and II only B.\t I and III onl"
+    },
+    {
+      "id": "2022_May_HL_P1_Q14",
+      "source": "May 2022 TZ2 HL Paper 1 Q14",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "14.\t Which equation represents hydration enthalpy? A.\t Na+\u2009(g) \u2192 Na+\u2009(aq) B.\t Na+\u2009(aq) \u2192 Na+\u2009(g) C.\t NaCl\u2009(s) \u2192 NaCl\u2009(aq"
+    },
+    {
+      "id": "2022_May_HL_P1_Q24",
+      "source": "May 2022 TZ2 HL Paper 1 Q24",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "24.\t What happens to the amount of hydroxide ions and hydroxide ion concentration when water  is added to a solution of "
+    },
+    {
+      "id": "2022_May_HL_P1_Q27",
+      "source": "May 2022 TZ2 HL Paper 1 Q27",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "27.\t Which species are both Lewis and Br\u00f8nsted\u2013Lowry bases? I.\t CN\u2212 II.\t OH\u2212 III.\t NH3 A.\t I and II only B.\t I and III o"
+    },
+    {
+      "id": "2022_May_HL_P1_Q30",
+      "source": "May 2022 TZ2 HL Paper 1 Q30",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "30.\t Which E\u00d6 value, in V, for the reaction Mn\u2009(s) + Zn2+\u2009(aq) \u2192 Mn2+\u2009(aq) + Zn\u2009(s) can be deduced  from the following e"
+    },
+    {
+      "id": "2022_May_HL_P1_Q32",
+      "source": "May 2022 TZ2 HL Paper 1 Q32",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "32.\t Which sequence of reagents converts propene to propanone? First reagent added 2nd reagent added to product 3rd reag"
+    },
+    {
+      "id": "2022_May_HL_P1_Q33",
+      "source": "May 2022 TZ2 HL Paper 1 Q33",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "33.\t How many dichlorinated butane isomers can be formed by the halogenation of  CH3CH2CH2CH3 with excess Cl2 in the pre"
+    },
+    {
+      "id": "2021_Nov_SL_P2_Q4",
+      "source": "Nov 2021 TZ1 SL Paper 2 Q4",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "4.\t 1-chloropentane reacts with aqueous sodium hydroxide. (a)\t (i)\t Identify the type of reaction.\b [1] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2021_Nov_SL_P2_Q8",
+      "source": "Nov 2021 TZ1 SL Paper 2 Q8",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "8.\t Figure from PPLATO / FLAP (Flexible Learning Approach To Physics), http://www.met.reading.ac.uk/pplato2/h-flap/ phys"
+    },
+    {
+      "id": "2021_Nov_SL_P1_Q2",
+      "source": "Nov 2021 TZ1 SL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t Which statement describes all homogeneous mixtures? A.\t Any sample has the same ratio of the components. B.\t The com"
+    },
+    {
+      "id": "2021_Nov_SL_P1_Q4",
+      "source": "Nov 2021 TZ1 SL Paper 1 Q4",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "4.\t The two containers shown are connected by a valve. What is the total pressure after the  valve is opened and the two"
+    },
+    {
+      "id": "2021_Nov_SL_P1_Q6",
+      "source": "Nov 2021 TZ1 SL Paper 1 Q6",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "6.\t How many p-orbitals are occupied in a phosphorus atom? A.\t 2 B.\t 3 C.\t 5 D.\t 6"
+    },
+    {
+      "id": "2021_Nov_SL_P1_Q7",
+      "source": "Nov 2021 TZ1 SL Paper 1 Q7",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "7.\t Which element has the highest metallic character in Group 14? A.\t C B.\t Si C.\t Ge D.\t Sn"
+    },
+    {
+      "id": "2021_Nov_SL_P1_Q9",
+      "source": "Nov 2021 TZ1 SL Paper 1 Q9",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "9.\t Which molecule has the weakest nitrogen to nitrogen bond? A.\t N2 B.\t N2H2 C.\t N2H4 D.\t N N"
+    },
+    {
+      "id": "2021_Nov_SL_P1_Q11",
+      "source": "Nov 2021 TZ1 SL Paper 1 Q11",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "11.\t Which compound contains both ionic and covalent bonds? A.\t CH3COONa B.\t CH3COOH C.\t K2O D.\t CaCl2"
+    },
+    {
+      "id": "2021_Nov_SL_P1_Q20",
+      "source": "Nov 2021 TZ1 SL Paper 1 Q20",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "20.\t Which ions are present in an aqueous solution of Na2CO3? I.\t HCO3 \u2212 II.\t OH\u2212 III.\t CO3 2\u2212 A.\t I and II only B.\t I a"
+    },
+    {
+      "id": "2021_Nov_SL_P1_Q27",
+      "source": "Nov 2021 TZ1 SL Paper 1 Q27",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "27.\t What is the general formula of alkynes? A.\t CnH2n + 2 B.\t CnH2n C.\t CnH2n \u2212 2 D.\t CnHn"
+    },
+    {
+      "id": "2021_Nov_SL_P1_Q28",
+      "source": "Nov 2021 TZ1 SL Paper 1 Q28",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "28.\t What is the slope of the graph? 0.00 0.05 0.10 0.15 0.20 Time / s 0 20.0 40.0 60.0 Reactant concentration / mol dm\u2212"
+    },
+    {
+      "id": "2021_Nov_SL_P1_Q14",
+      "source": "Nov 2021 TZ1 SL Paper 1 Q14",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "14.   Chemistry: Atoms First 2e, https://openstax.org/books/chemistry-atoms-first-2e/pages/9-4-strengths-of-ionic-and- c"
+    },
+    {
+      "id": "2021_Nov_HL_P1_Q2",
+      "source": "Nov 2021 TZ1 HL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t 3.00\u2009mol of C3H8 is mixed with 20.00\u2009mol of O2. Which quantity is present at the end of the\u00a0reaction? C3H8\u2009(g) + 5O2"
+    },
+    {
+      "id": "2021_Nov_HL_P1_Q3",
+      "source": "Nov 2021 TZ1 HL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t The two containers shown are connected by a valve. What is the total pressure after the  valve is opened and the two"
+    },
+    {
+      "id": "2021_Nov_HL_P1_Q6",
+      "source": "Nov 2021 TZ1 HL Paper 1 Q6",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "6.\t Which ion has the largest radius? A.\t Na+ B.\t Mg2+ C.\t P3\u2212 D.\t S2\u2212"
+    },
+    {
+      "id": "2021_Nov_HL_P1_Q10",
+      "source": "Nov 2021 TZ1 HL Paper 1 Q10",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "10.\t Which compound contains both ionic and covalent bonds? A.\t CH3COONa B.\t CH3COOH C.\t K2O D.\t CaCl2"
+    },
+    {
+      "id": "2021_Nov_HL_P1_Q12",
+      "source": "Nov 2021 TZ1 HL Paper 1 Q12",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "12.\t Which molecules contain two pi (\u03c0) bonds? I.\t HCN II.\t H2CO3 III.\t H2C2O4 A.\t I and II only B.\t I and III only C.\t "
+    },
+    {
+      "id": "2021_Nov_HL_P1_Q24",
+      "source": "Nov 2021 TZ1 HL Paper 1 Q24",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "24.\t Which ions are present in an aqueous solution of Na2CO3? I.\t HCO3 \u2212 II.\t OH\u2212 III.\t CO3 2\u2212 A.\t I and II only B.\t I a"
+    },
+    {
+      "id": "2021_Nov_HL_P1_Q25",
+      "source": "Nov 2021 TZ1 HL Paper 1 Q25",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "25.\t What is the pH of 0.01\u2009mol\u2009dm\u22123 KOH\u2009(aq)? A.\t 1.0 B.\t 2.0 C.\t 12.0 D.\t 13.0"
+    },
+    {
+      "id": "2021_Nov_HL_P1_Q27",
+      "source": "Nov 2021 TZ1 HL Paper 1 Q27",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "27.\t What is correct for pure hot water? pH [H+] and [OH\u2212] A. exactly 7 [H+] = [OH\u2212] B. below 7 [H+] = [OH\u2212] C. below 7 "
+    },
+    {
+      "id": "2021_Nov_HL_P1_Q34",
+      "source": "Nov 2021 TZ1 HL Paper 1 Q34",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "34.\t What is the general formula of alkynes? A.\t CnH2n + 2 B.\t CnH2n C.\t CnH2n \u2212 2 D.\t CnHn"
+    },
+    {
+      "id": "2021_Nov_HL_P1_Q35",
+      "source": "Nov 2021 TZ1 HL Paper 1 Q35",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "35.\t Which statement is correct about configurational isomers? A.\t Configurational isomers can only be interconverted by"
+    },
+    {
+      "id": "2021_Nov_HL_P1_Q38",
+      "source": "Nov 2021 TZ1 HL Paper 1 Q38",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "38.\t What is the slope of the graph? 0.00 0.05 0.10 0.15 0.20 Time / s 0 20.0 40.0 60.0 Reactant concentration / mol dm\u2212"
+    },
+    {
+      "id": "2021_Nov_HL_P1_Q14",
+      "source": "Nov 2021 TZ1 HL Paper 1 Q14",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "14.   Chemistry: Atoms First 2e, https://openstax.org/books/chemistry-atoms-first-2e/pages/9-4-strengths-of-ionic-and- c"
+    },
+    {
+      "id": "2021_Nov_HL_P1_Q40",
+      "source": "Nov 2021 TZ1 HL Paper 1 Q40",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "40. \t SDBS, National Institute of Advanced Science and Technology. All other texts, graphics and illustrations \u00a9 Interna"
+    },
+    {
+      "id": "2021_Nov_HL_P2_Q4",
+      "source": "Nov 2021 TZ1 HL Paper 2 Q4",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "4.\t 1-chloropentane reacts with aqueous sodium hydroxide. (a)\t (i)\t Identify the type of reaction.\b [1] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2021_Nov_HL_P2_Q3",
+      "source": "Nov 2021 TZ1 HL Paper 2 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3. (c) (ii)\t Chemistry 2e, Chpt. 21 Nuclear Chemistry, Appendix G: Standard Thermodynamic Properties for Selected  Subst"
+    },
+    {
+      "id": "2021_Nov_HL_P2_Q9",
+      "source": "Nov 2021 TZ1 HL Paper 2 Q9",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "9.\t Figure from PPLATO / FLAP (Flexible Learning Approach To Physics), http://www.met.reading.ac.uk/pplato2/h-flap/ phys"
+    },
+    {
+      "id": "2021_May_SL_P1_Q2",
+      "source": "May 2021 TZ2 SL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t Which amount, in mol, of sodium chloride is needed to make 250\u2009cm3 of 0.10\u2009mol\u2009dm\u22123 solution? A.\t 4.0 \u00d7 10\u22124 B.\t 0.0"
+    },
+    {
+      "id": "2021_May_SL_P1_Q4",
+      "source": "May 2021 TZ2 SL Paper 1 Q4",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "4.\t What is the sum of the coefficients when the equation is balanced with whole numbers? __Sn(OH)4\u2009(aq) + __NaOH\u2009(aq) \u2192"
+    },
+    {
+      "id": "2021_May_SL_P1_Q10",
+      "source": "May 2021 TZ2 SL Paper 1 Q10",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "10.\t Which compound has the shortest C to N bond? A.\t HCN B.\t CH3CH2NH2 C.\t CH3CHNH D.\t (CH3)2NH"
+    },
+    {
+      "id": "2021_May_SL_P1_Q11",
+      "source": "May 2021 TZ2 SL Paper 1 Q11",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "11.\t What is the formula of the compound formed from Ca2+ and PO4 3\u2212? A.\t CaPO4 B.\t Ca3(PO4)2 C.\t Ca2(PO4)3 D.\t Ca(PO4)2"
+    },
+    {
+      "id": "2021_May_SL_P1_Q12",
+      "source": "May 2021 TZ2 SL Paper 1 Q12",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "12.\t Which is the correct order based on increasing strength? A.\t covalent bonds < hydrogen bonds < dipole\u2013dipole forces"
+    },
+    {
+      "id": "2021_May_SL_P1_Q17",
+      "source": "May 2021 TZ2 SL Paper 1 Q17",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "17.\t The graph shows the Maxwell\u2013Boltzmann energy distribution curve for a given gas at a  certain temperature. M Kineti"
+    },
+    {
+      "id": "2021_May_SL_P1_Q29",
+      "source": "May 2021 TZ2 SL Paper 1 Q29",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "29.\t How should the difference between 27.0 \u00b1 0.3 and 9.0 \u00b1 0.2 be shown? A.\t 18.0 \u00b1 0.1 B.\t 18.0 \u00b1 0.3 C.\t 18.0 \u00b1 0.5 D"
+    },
+    {
+      "id": "2021_May_SL_P1_Q30",
+      "source": "May 2021 TZ2 SL Paper 1 Q30",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "30.\t A liquid was added to a graduated cylinder. What can be deduced from the graph? 0 0 Mass / g Volume of liquid / cm3"
+    },
+    {
+      "id": "2021_May_SL_P1_Q1",
+      "source": "May 2021 TZ1 SL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t Which contains the most atoms of oxygen? A.\t 64\u2009g of O2 B.\t 1.2\u00a0\u00d7\u00a01024 molecules of O2 C.\t 64\u2009g of C3H5O3 D.\t 1.2\u00a0\u00d7\u00a0"
+    },
+    {
+      "id": "2021_May_SL_P1_Q3",
+      "source": "May 2021 TZ1 SL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t What volume of oxygen, in dm3 at STP, is needed when 5.8\u2009g of butane undergoes  complete combustion? 2C4H10\u2009(g)\u00a0+\u00a013"
+    },
+    {
+      "id": "2021_May_SL_P1_Q4",
+      "source": "May 2021 TZ1 SL Paper 1 Q4",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "4.\t What is the coefficient of HCl\u2009(aq) when the equation is balanced using the smallest possible  whole numbers? __CuO\u2009"
+    },
+    {
+      "id": "2021_May_SL_P1_Q10",
+      "source": "May 2021 TZ1 SL Paper 1 Q10",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "10.\t Which compound contains both ionic and covalent bonds? A.\t MgO B.\t CH2Cl2 C.\t CH3COOH D.\t NaOH"
+    },
+    {
+      "id": "2021_May_SL_P1_Q18",
+      "source": "May 2021 TZ1 SL Paper 1 Q18",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "18.\t Which changes produce the greatest increase in the percentage conversion of methane? CH4\u2009(g)\u00a0+\u00a0H2O\u2009(g)\u00a0\uf083\u00a0CO\u2009(g)\u00a0+\u00a03"
+    },
+    {
+      "id": "2021_May_SL_P1_Q20",
+      "source": "May 2021 TZ1 SL Paper 1 Q20",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "20.\t Which solution has a pH of 9? A.\t 1.0\u00a0\u00d7\u00a010\u22129\u2009mol\u2009dm\u22123\u00a0HCl\u2009(aq) B.\t 1.0\u00a0\u00d7\u00a010\u22125\u2009mol\u2009dm\u22123\u00a0KOH\u2009(aq) C.\t 1.0\u00a0\u00d7\u00a010\u22129\u2009mol\u2009"
+    },
+    {
+      "id": "2021_May_SL_P1_Q21",
+      "source": "May 2021 TZ1 SL Paper 1 Q21",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "21.\t A student performed displacement reactions using metals W and X and solutions of salts of  metals W, X, Y and Z. Th"
+    },
+    {
+      "id": "2021_May_SL_P1_Q29",
+      "source": "May 2021 TZ1 SL Paper 1 Q29",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "29.\t Burette readings for a titration are shown. Burette readings / cm3\u00a0\u00b1\u00a00.05\u2009cm3 Trial\u00a01 Trial\u00a02 Trial\u00a03 Final 11.35 2"
+    },
+    {
+      "id": "2021_May_SL_P1_Q30",
+      "source": "May 2021 TZ1 SL Paper 1 Q30",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "30.\t Determine the index of hydrogen deficiency (IHD) of paracetamol. A.\t 3 B.\t 4 C.\t 5 D.\t 6 \b"
+    },
+    {
+      "id": "2021_May_HL_P1_Q1",
+      "source": "May 2021 TZ1 HL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t Which contains the most atoms of oxygen? A.\t 64\u2009g of O2 B.\t 1.2\u00a0\uf0b4\u00a01024 molecules of O2 C.\t 64\u2009g of C3H5O3 D.\t 1.2\u00a0\uf0b4\u00a0"
+    },
+    {
+      "id": "2021_May_HL_P1_Q3",
+      "source": "May 2021 TZ1 HL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t What volume of oxygen, in dm3 at STP, is needed when 5.8\u2009g of butane undergoes  complete combustion? 2C4H10\u2009(g)\u00a0+\u00a013"
+    },
+    {
+      "id": "2021_May_HL_P1_Q9",
+      "source": "May 2021 TZ1 HL Paper 1 Q9",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "9.\t What is the overall charge, x, of the chromium\u2009(III) complex? [Cr(H2O)4Cl2]x A.\t 0 B.\t 1+ C.\t 2- D.\t 3+"
+    },
+    {
+      "id": "2021_May_HL_P1_Q10",
+      "source": "May 2021 TZ1 HL Paper 1 Q10",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "10.\t Which compound contains both ionic and covalent bonds? A.\t MgO B.\t CH2Cl2 C.\t CH3COOH D.\t NaOH"
+    },
+    {
+      "id": "2021_May_HL_P1_Q22",
+      "source": "May 2021 TZ1 HL Paper 1 Q22",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "22.\t Which changes produce the greatest increase in the percentage conversion of methane? CH4\u2009(g)\u00a0+\u00a0H2O\u2009(g)\u00a0\uf083\u00a0CO\u2009(g)\u00a0+\u00a03"
+    },
+    {
+      "id": "2021_May_HL_P1_Q25",
+      "source": "May 2021 TZ1 HL Paper 1 Q25",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "25.\t Which solution has a pH of 9? A.\t 1.0\u00a0\uf0b4\u00a010-9\u2009mol\u2009dm-3\u00a0HCl\u2009(aq) B.\t 1.0\u00a0\uf0b4\u00a010-5\u2009mol\u2009dm-3\u00a0KOH\u2009(aq) C.\t 1.0\u00a0\uf0b4\u00a010-9\u2009mol\u2009"
+    },
+    {
+      "id": "2021_May_HL_P1_Q27",
+      "source": "May 2021 TZ1 HL Paper 1 Q27",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "27.\t Which combination will produce an alkaline buffer in water? A.\t 0.10\u2009mol\u00a0NH3 and 0.05\u2009mol\u00a0H2SO4 B.\t 0.50\u2009mol\u00a0NH3 an"
+    },
+    {
+      "id": "2021_May_HL_P1_Q28",
+      "source": "May 2021 TZ1 HL Paper 1 Q28",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "28.\t A student performed displacement reactions using metals W and X and solutions of salts of  metals W, X, Y and Z. Th"
+    },
+    {
+      "id": "2021_May_HL_P1_Q36",
+      "source": "May 2021 TZ1 HL Paper 1 Q36",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "36.\t What is the product of the reaction of benzene with a mixture of concentrated nitric and  sulfuric acids? A. C. B. "
+    },
+    {
+      "id": "2021_May_HL_P1_Q39",
+      "source": "May 2021 TZ1 HL Paper 1 Q39",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "39.\t Burette readings for a titration are shown. Burette readings / cm3\u00a0\u00b1\u00a00.05\u2009cm3 Trial\u00a01 Trial\u00a02 Trial\u00a03 Final 11.35 2"
+    },
+    {
+      "id": "2021_May_HL_P1_Q40",
+      "source": "May 2021 TZ1 HL Paper 1 Q40",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "40.\t SDBS, National Institute of Advanced Industrial Science and Technology (AIST). All other texts, graphics and illust"
+    },
+    {
+      "id": "2021_May_HL_P1_Q2",
+      "source": "May 2021 TZ2 HL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t Which amount, in mol, of sodium chloride is needed to make 250\u2009cm3 of 0.10\u2009mol\u2009dm\u22123 solution? A.\t 4.0 \u00d7 10\u22124 B.\t 0.0"
+    },
+    {
+      "id": "2021_May_HL_P1_Q3",
+      "source": "May 2021 TZ2 HL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t What is the sum of the coefficients when the equation is balanced with whole numbers? __Sn(OH)4\u2009(aq) + __NaOH\u2009(aq) \u2192"
+    },
+    {
+      "id": "2021_May_HL_P1_Q10",
+      "source": "May 2021 TZ2 HL Paper 1 Q10",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "10.\t Which compound has the shortest C to N bond? A.\t HCN B.\t CH3CH2NH2 C.\t CH3CHNH D.\t (CH3)2NH"
+    },
+    {
+      "id": "2021_May_HL_P1_Q11",
+      "source": "May 2021 TZ2 HL Paper 1 Q11",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "11.\t Which is the correct order based on increasing strength? A.\t covalent bonds < hydrogen bonds < dipole\u2013dipole forces"
+    },
+    {
+      "id": "2021_May_HL_P1_Q12",
+      "source": "May 2021 TZ2 HL Paper 1 Q12",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "12.\t Which atom has an expanded octet? A.\t C in CO2 B.\t S in SCl4 C.\t O in H2O2 D.\t P in PCl3"
+    },
+    {
+      "id": "2021_May_HL_P1_Q17",
+      "source": "May 2021 TZ2 HL Paper 1 Q17",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "17.\t Which change results in the largest negative value of \u2206S? A.\t C2H5OH\u2009(l) + SOCl2\u2009(l) \u2192 C2H5Cl\u2009(l) + SO2\u2009(g) + HCl\u2009("
+    },
+    {
+      "id": "2021_May_HL_P1_Q27",
+      "source": "May 2021 TZ2 HL Paper 1 Q27",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "27.\t Which compound is acidic in aqueous solution? A.\t KBr B.\t CH3COONa C.\t NH4Cl D.\t Na2CO3"
+    },
+    {
+      "id": "2021_May_HL_P1_Q39",
+      "source": "May 2021 TZ2 HL Paper 1 Q39",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "39.\t How should the difference between 27.0 \u00b1 0.3 and 9.0 \u00b1 0.2 be shown? A.\t 18.0 \u00b1 0.1 B.\t 18.0 \u00b1 0.3 C.\t 18.0 \u00b1 0.5 D"
+    },
+    {
+      "id": "2021_May_HL_P1_Q5",
+      "source": "May 2021 TZ2 HL Paper 1 Q5",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "5.\t Copyright Prof Mark Winter. All other texts, graphics and illustrations \u00a9 International Baccalaureate Organization 2"
+    },
+    {
       "id": "2020_Nov_SL_P3_Q4",
       "source": "Nov 2020 TZ1 SL Paper 3 Opt A Q4",
       "reason": "Retired syllabus topic (matched: liquid crystal)",
@@ -1209,10 +3087,142 @@
       "preview": "8.\t Franklin, J., 2015. How reliable are field-derived biomagnification factors and trophic magnification factors as  in"
     },
     {
-      "id": "2020_Nov_SL_P3_Q9",
-      "source": "Nov 2020 TZ1 SL Paper 3 Opt D Q9",
-      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
-      "preview": "Please do not write on this page. Answers written on this page   will not be marked.  Please do not write on this page. "
+      "id": "2020_Nov_SL_P1_Q3",
+      "source": "Nov 2020 TZ1 SL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t Which of these molecular formulae are also empirical formulae? I.\t C2H6O II.\t C2H4O2 III.\t C5H12 A.\t I and II only B"
+    },
+    {
+      "id": "2020_Nov_SL_P1_Q4",
+      "source": "Nov 2020 TZ1 SL Paper 1 Q4",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "4.\t Which volume of ethane gas, in cm3, will produce 40\u2009cm3 of carbon dioxide gas when mixed  with 140\u2009cm3 of oxygen gas"
+    },
+    {
+      "id": "2020_Nov_SL_P1_Q9",
+      "source": "Nov 2020 TZ1 SL Paper 1 Q9",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "9.\t Which formula is correct? A.\t NH4PO4 B.\t (NH4)2PO4 C.\t (NH4)3PO4 D.\t (NH4)3(PO4)2"
+    },
+    {
+      "id": "2020_Nov_SL_P1_Q10",
+      "source": "Nov 2020 TZ1 SL Paper 1 Q10",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "10.\t Which molecule is most polar? A.\t CHF3 B.\t CF4 C.\t CClF3 D.\t CCl4"
+    },
+    {
+      "id": "2020_Nov_SL_P1_Q13",
+      "source": "Nov 2020 TZ1 SL Paper 1 Q13",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "13.\t Which equation shows the enthalpy of formation, \u2206Hf, of ethanol? A.\t 2C\u2009(s) + 3H2\u2009(g) + 1 2 O2\u2009(g) \u2192 C2H5OH\u2009(g) B.\t"
+    },
+    {
+      "id": "2020_Nov_SL_P1_Q25",
+      "source": "Nov 2020 TZ1 SL Paper 1 Q25",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "25.\t Which molecule will decolorize bromine water in the dark? A.\t cyclohexane B.\t hexane C.\t hex-1-ene D.\t hexan-1-ol"
+    },
+    {
+      "id": "2020_Nov_SL_P1_Q28",
+      "source": "Nov 2020 TZ1 SL Paper 1 Q28",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "28.\t A student obtained the following data to calculate q, using q = mc\u2206T. m = 20.0\u2009g \u00b1 0.2\u2009g \u2206T = 10\u2009\uf06fC \u00b1 1\u2009\uf06fC c = 4.18"
+    },
+    {
+      "id": "2020_Nov_SL_P1_Q29",
+      "source": "Nov 2020 TZ1 SL Paper 1 Q29",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "29.\t What is the index of hydrogen deficiency (IHD) in cyclohexanol? OH A.\t 0 B.\t 1 C.\t 2 D.\t 3"
+    },
+    {
+      "id": "2020_Nov_SL_P1_Q30",
+      "source": "Nov 2020 TZ1 SL Paper 1 Q30",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "30.\t Which region of the electromagnetic spectrum is used to identify hydrogen environments in a  molecule? energy \uf067\uf020ray"
+    },
+    {
+      "id": "2020_Nov_HL_P1_Q2",
+      "source": "Nov 2020 TZ1 HL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t Which of these molecular formulae are also empirical formulae? I.\t C2H6O II.\t C2H4O2 III.\t C5H12 A.\t I and II only B"
+    },
+    {
+      "id": "2020_Nov_HL_P1_Q3",
+      "source": "Nov 2020 TZ1 HL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t Which volume of ethane gas, in cm3, will produce 40\u2009cm3 of carbon dioxide gas when mixed  with 140\u2009cm3 of oxygen gas"
+    },
+    {
+      "id": "2020_Nov_HL_P1_Q10",
+      "source": "Nov 2020 TZ1 HL Paper 1 Q10",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "10.\t Which molecule is most polar? A.\t CHF3 B.\t CF4 C.\t CClF3 D.\t CCl4"
+    },
+    {
+      "id": "2020_Nov_HL_P1_Q13",
+      "source": "Nov 2020 TZ1 HL Paper 1 Q13",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "13.\t Which statement is correct? A.\t O3 bond dissociation occurs at a longer wavelength of light than O2 bond dissociati"
+    },
+    {
+      "id": "2020_Nov_HL_P1_Q14",
+      "source": "Nov 2020 TZ1 HL Paper 1 Q14",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "14.\t Which equation shows the enthalpy of formation, \u2206Hf, of ethanol? A.\t 2C\u2009(s) + 3H2\u2009(g) + 1 2 O2\u2009(g) \u2192 C2H5OH\u2009(g) B.\t"
+    },
+    {
+      "id": "2020_Nov_HL_P1_Q16",
+      "source": "Nov 2020 TZ1 HL Paper 1 Q16",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "16.\t Which combination gives the standard hydration enthalpy of Na+\u2009(g)? kJ mol\u20131 \u2206H\u200a\u00d6 lattice NaCl\u2009(s) +790 \u2206H\u200a\u00d6 soluti"
+    },
+    {
+      "id": "2020_Nov_HL_P1_Q17",
+      "source": "Nov 2020 TZ1 HL Paper 1 Q17",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "17.\t Which reaction becomes more spontaneous as temperature increases? A.\t CaCO3\u2009(s) \u2192 CaO\u2009(s) + CO2\u2009(g) B.\t N2\u2009(g) + 3H"
+    },
+    {
+      "id": "2020_Nov_HL_P1_Q19",
+      "source": "Nov 2020 TZ1 HL Paper 1 Q19",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "19.\t Which change does not increase the rate of this reaction? CuCO3\u2009(s) + H2SO4\u2009(aq) \u2192 CuSO4\u2009(aq) + H2O\u2009(l) + CO2\u2009(g) A"
+    },
+    {
+      "id": "2020_Nov_HL_P1_Q27",
+      "source": "Nov 2020 TZ1 HL Paper 1 Q27",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "27.\t What is the pH of an ammonia solution that has [OH\u2212\u200a] = 1 \u00d7 10\u22124\u2009mol\u2009dm\u22123? A.\t 4.0 B.\t 8.0 C.\t 10.0 D.\t 12.0"
+    },
+    {
+      "id": "2020_Nov_HL_P1_Q33",
+      "source": "Nov 2020 TZ1 HL Paper 1 Q33",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "33.\t Which molecule will decolorize bromine water in the dark? A.\t cyclohexane B.\t hexane C.\t hex-1-ene D.\t hexan-1-ol"
+    },
+    {
+      "id": "2020_Nov_HL_P1_Q36",
+      "source": "Nov 2020 TZ1 HL Paper 1 Q36",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "36.\t What will be the major product in the reaction between but-1-ene and HBr? A.\t 2-bromobut-1-ene B.\t 1-bromobut-1-ene"
+    },
+    {
+      "id": "2020_Nov_HL_P1_Q38",
+      "source": "Nov 2020 TZ1 HL Paper 1 Q38",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "38.\t A student obtained the following data to calculate q, using q = mc\u2206T. m = 20.0\u2009g \u00b1 0.2\u2009g \u2206T = 10\u2009\uf06fC \u00b1 1\u2009\uf06fC c = 4.18"
+    },
+    {
+      "id": "2020_Nov_HL_P1_Q39",
+      "source": "Nov 2020 TZ1 HL Paper 1 Q39",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "39.\t What is the index of hydrogen deficiency (IHD) in cyclohexanol? OH A.\t \t0 B.\t 1 C.\t 2 D.\t 3"
+    },
+    {
+      "id": "2020_Nov_HL_P1_Q40",
+      "source": "Nov 2020 TZ1 HL Paper 1 Q40",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "40.\t From: libretexts.org. Courtesy of Chris Schaller, Professor (Chemistry) at College of Saint Benedict/Saint John\u2019s  "
     },
     {
       "id": "2020_Nov_HL_P3_Q4",
@@ -1293,12 +3303,6 @@
       "preview": "9.\t Franklin, J., 2015. How reliable are field-derived biomagnification factors and trophic magnification factors as  in"
     },
     {
-      "id": "2020_Nov_HL_P3_Q11",
-      "source": "Nov 2020 TZ1 HL Paper 3 Opt D Q11",
-      "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
-      "preview": "Please do not write on this page. Answers written on this page   will not be marked.  Please do not write on this page. "
-    },
-    {
       "id": "2019_Nov_SL_P3_Q6",
       "source": "Nov 2019 TZ1 SL Paper 3 Opt A Q6",
       "reason": "Retired syllabus topic (matched: liquid crystal)",
@@ -1357,6 +3361,72 @@
       "source": "Nov 2019 TZ1 SL Paper 3 Opt D Q19",
       "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
       "preview": "19.\t Disposal of chemical waste is a growing problem in industry. (a)\t Outline the impact of antibiotic waste on the env"
+    },
+    {
+      "id": "2019_Nov_SL_P1_Q2",
+      "source": "Nov 2019 TZ1 SL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t What is the sum of the coefficients when the equation is balanced with whole numbers? __MnO2\u2009(s) + __HCl\u2009(aq) \u2192 __Mn"
+    },
+    {
+      "id": "2019_Nov_SL_P1_Q3",
+      "source": "Nov 2019 TZ1 SL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t Which is correct? A.\t Mixtures are either homogeneous or heterogeneous and their chemical properties are  an average"
+    },
+    {
+      "id": "2019_Nov_SL_P1_Q10",
+      "source": "Nov 2019 TZ1 SL Paper 1 Q10",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "10.\t Which compound has the shortest C to O bond? A.\t CH3CHO B.\t CO C.\t CO2 D.\t C2H5OC2H5"
+    },
+    {
+      "id": "2019_Nov_SL_P1_Q18",
+      "source": "Nov 2019 TZ1 SL Paper 1 Q18",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "18.\t The graph shows the Maxwell\u2013Boltzmann energy distribution curve for a given gas at a  certain temperature. Kinetic "
+    },
+    {
+      "id": "2019_Nov_SL_P1_Q23",
+      "source": "Nov 2019 TZ1 SL Paper 1 Q23",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "23.\t The following occurs when metal X is added to Y sulfate solution and Z sulfate solution.  (X, Y and Z represent met"
+    },
+    {
+      "id": "2019_Nov_HL_P1_Q2",
+      "source": "Nov 2019 TZ1 HL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t What is the sum of the coefficients when the equation is balanced with whole numbers? __MnO2\u2009(s) + __HCl\u2009(aq) \u2192 __Mn"
+    },
+    {
+      "id": "2019_Nov_HL_P1_Q9",
+      "source": "Nov 2019 TZ1 HL Paper 1 Q9",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "9.\t Which compound has the shortest C to O bond? A.\t CH3CHO B.\t CO C.\t CO2 D.\t C2H5OC2H5"
+    },
+    {
+      "id": "2019_Nov_HL_P1_Q20",
+      "source": "Nov 2019 TZ1 HL Paper 1 Q20",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "20.\t The graph shows the Maxwell\u2013Boltzmann energy distribution curve for a given gas at a  certain temperature. Kinetic "
+    },
+    {
+      "id": "2019_Nov_HL_P1_Q30",
+      "source": "Nov 2019 TZ1 HL Paper 1 Q30",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "30.\t The following occurs when metal X is added to Y sulfate solution and Z sulfate solution.   (X, Y and Z represent me"
+    },
+    {
+      "id": "2019_Nov_HL_P1_Q36",
+      "source": "Nov 2019 TZ1 HL Paper 1 Q36",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "36.\t In which compound is the halogen substituted the most rapidly by aqueous hydroxide ions? A.\t (CH3)3CCl B.\t (CH3)3CI"
+    },
+    {
+      "id": "2019_Nov_HL_P1_Q38",
+      "source": "Nov 2019 TZ1 HL Paper 1 Q38",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "38.\t Which can show optical activity? A.\t CHBrCHCl B.\t CH3CH2CHBrCH2CH3 C.\t (CH3)2CBrCl D.\t CH3CH2CH(CH3)Br"
     },
     {
       "id": "2019_Nov_HL_P3_Q4",
@@ -1521,6 +3591,60 @@
       "preview": "19.\t Most of the nuclear waste generated in a hospital is low-level waste (LLW).\t (a)\t Outline what is meant by low-leve"
     },
     {
+      "id": "2019_May_SL_P1_Q2",
+      "source": "May 2019 TZ2 SL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t What is the sum of the integer coefficients when propene undergoes complete  combustion?\t \t __C3H6\u2009(g) + __O2\u2009(g) \u2192 "
+    },
+    {
+      "id": "2019_May_SL_P1_Q3",
+      "source": "May 2019 TZ2 SL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t What is the volume of gas when the pressure on 100\u2009cm3 of gas is changed from 400\u2009kPa to  200\u2009kPa at constant temper"
+    },
+    {
+      "id": "2019_May_SL_P1_Q6",
+      "source": "May 2019 TZ2 SL Paper 1 Q6",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "6.\t Which transition in the hydrogen atom emits visible light?\t \t A.\t n = 1 to n = 2 B.\t n = 2 to n = 3 C.\t n = 2 to n ="
+    },
+    {
+      "id": "2019_May_SL_P1_Q12",
+      "source": "May 2019 TZ2 SL Paper 1 Q12",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "12.\t Which compound has hydrogen bonds between its molecules?\t \t A.\t CH4 B.\t CH4O C.\t CH3Cl D.\t CH2O"
+    },
+    {
+      "id": "2019_May_SL_P1_Q19",
+      "source": "May 2019 TZ2 SL Paper 1 Q19",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "19.\t What is the pH of 0.001\u2009mol\u2009dm\u22123 NaOH\u2009(aq)?\t \t A.\t 1 B.\t 3 C.\t 11 D.\t 13"
+    },
+    {
+      "id": "2019_May_SL_P1_Q20",
+      "source": "May 2019 TZ2 SL Paper 1 Q20",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "20.\t What is the major reason why the pH of unpolluted rain is less than 7?\t \t A.\t methane  B.\t carbon dioxide C.\t nitro"
+    },
+    {
+      "id": "2019_May_SL_P1_Q25",
+      "source": "May 2019 TZ2 SL Paper 1 Q25",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "25.\t Which of the following can be both formed from bromoethane and converted directly into\u00a0ethanal? CH3CH2Br \u2192 X  X \u2192 C"
+    },
+    {
+      "id": "2019_May_SL_P1_Q28",
+      "source": "May 2019 TZ2 SL Paper 1 Q28",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "28.\t The following data were recorded for determining the density of three samples of silicon, Si. Mass / g \u00b10.01\u2009g Volu"
+    },
+    {
+      "id": "2019_May_SL_P1_Q29",
+      "source": "May 2019 TZ2 SL Paper 1 Q29",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "29.\t Data collected from a larger number of silicon samples could also be plotted to determine the  density using the fo"
+    },
+    {
       "id": "2019_May_SL_P3_Q3",
       "source": "May 2019 TZ2 SL Paper 3 Opt A Q3",
       "reason": "Retired syllabus topic (matched: liquid crystal)",
@@ -1567,6 +3691,84 @@
       "source": "May 2019 TZ2 SL Paper 3 Opt D Q17",
       "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
       "preview": "17.\t Antiviral medications have recently been developed for some viral infections. (a)\t Outline one way in which antivir"
+    },
+    {
+      "id": "2019_May_SL_P1_Q2",
+      "source": "May 2019 TZ1 SL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t What is the sum of the coefficients when the equation is balanced with the smallest whole  numbers? __BaCl2\u2009(aq) + _"
+    },
+    {
+      "id": "2019_May_SL_P1_Q16",
+      "source": "May 2019 TZ1 SL Paper 1 Q16",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "16.\t Which properties can be monitored to determine the rate of the reaction? Fe\u2009(s) + CuSO4\u2009(aq) \u2192 Cu\u2009(s) + FeSO4\u2009(aq) "
+    },
+    {
+      "id": "2019_May_SL_P1_Q20",
+      "source": "May 2019 TZ1 SL Paper 1 Q20",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "20.\t Which is not a source of oxides of sulfur and nitrogen?\t \t A.\t burning coal B.\t internal combustion engines C.\t bur"
+    },
+    {
+      "id": "2019_May_SL_P1_Q28",
+      "source": "May 2019 TZ1 SL Paper 1 Q28",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "28.\t How should a measurement of 5.00\u2009g from a balance be recorded? A.\t 5.00 \u00b1 0.1\u2009g B.\t 5.00 \u00b1 0.01\u2009g C.\t 5.00 \u00b1 1\u2009g D."
+    },
+    {
+      "id": "2019_May_SL_P1_Q29",
+      "source": "May 2019 TZ1 SL Paper 1 Q29",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "29.\t The dotted line represents the formation of oxygen, O2\u2009(g), from the uncatalysed complete  decomposition of hydroge"
+    },
+    {
+      "id": "2019_May_SL_P1_Q30",
+      "source": "May 2019 TZ1 SL Paper 1 Q30",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "30.\t What is the degree of unsaturation (index of hydrogen deficiency) for the molecule? A.\t 1 B.\t 2 C.\t 4 D.\t \t5"
+    },
+    {
+      "id": "2019_May_HL_P1_Q2",
+      "source": "May 2019 TZ1 HL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t What volume of carbon dioxide, CO2\u2009(g), can be obtained by reacting 1\u2009dm3 of methane,  CH4\u2009(g), with 1\u2009dm3 of oxygen"
+    },
+    {
+      "id": "2019_May_HL_P1_Q18",
+      "source": "May 2019 TZ1 HL Paper 1 Q18",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "18.\t Which properties can be monitored to determine the rate of the reaction? Fe\u2009(s) + CuSO4\u2009(aq) \u2192 Cu\u2009(s) + FeSO4\u2009(aq) "
+    },
+    {
+      "id": "2019_May_HL_P1_Q25",
+      "source": "May 2019 TZ1 HL Paper 1 Q25",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "25.\t With which do most acids react? I.\t sodium hydrogen carbonate II.\t magnesium III.\t calcium sulfate A.\t I and II onl"
+    },
+    {
+      "id": "2019_May_HL_P1_Q35",
+      "source": "May 2019 TZ1 HL Paper 1 Q35",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "35.\t Which solvent is aprotic? A.\t H2O B.\t C6H5CH3 C.\t CH3OH D.\t CH3NH2"
+    },
+    {
+      "id": "2019_May_HL_P1_Q37",
+      "source": "May 2019 TZ1 HL Paper 1 Q37",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "37.\t \tWhich compound can exist as cis- and trans-isomers?\t \t A.\t CH2=CHCH2CH3 B.\t CBr2=CF2 C.\t CH3 CH3 D."
+    },
+    {
+      "id": "2019_May_HL_P1_Q38",
+      "source": "May 2019 TZ1 HL Paper 1 Q38",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "38.\t How should a measurement of 5.00\u2009g from a balance be recorded? A.\t 5.00 \u00b1 0.1\u2009g B.\t 5.00 \u00b1 0.01\u2009g C.\t 5.00 \u00b1 1\u2009g D."
+    },
+    {
+      "id": "2019_May_HL_P1_Q39",
+      "source": "May 2019 TZ1 HL Paper 1 Q39",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "39.\t The dotted line represents the formation of oxygen, O2\u2009(g), from the uncatalysed complete  decomposition of hydroge"
     },
     {
       "id": "2019_May_HL_P3_Q3",
@@ -1657,6 +3859,72 @@
       "source": "May 2019 TZ2 HL Paper 3 Opt D Q27",
       "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
       "preview": "27.\t \tThe presence of alcohol in the breath can be detected using a breathalyser.\t (a)\t Describe how a fuel cell breatha"
+    },
+    {
+      "id": "2019_May_HL_P1_Q2",
+      "source": "May 2019 TZ2 HL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t What is the sum of the integer coefficients when propene undergoes complete  combustion?\t \t __C3H6\u2009(g) + __O2\u2009(g) \u2192 "
+    },
+    {
+      "id": "2019_May_HL_P1_Q3",
+      "source": "May 2019 TZ2 HL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t What is the volume of gas when the pressure on 100\u2009cm3 of gas is changed from 400\u2009kPa to  200\u2009kPa at constant temper"
+    },
+    {
+      "id": "2019_May_HL_P1_Q5",
+      "source": "May 2019 TZ2 HL Paper 1 Q5",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "5.\t Which of the following transitions in the hydrogen atom emits the least energy?\t \t A.\t n = 2 to n = 1 B.\t n = 3 to n"
+    },
+    {
+      "id": "2019_May_HL_P1_Q12",
+      "source": "May 2019 TZ2 HL Paper 1 Q12",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "12.\t How many sigma (\u03c3) and pi (\u03c0) bonds are present in hydrogen cyanide, HCN? Sigma (\u03c3) Pi (\u03c0) A. 1 1 B. 2 2 C. 2 1 D. "
+    },
+    {
+      "id": "2019_May_HL_P1_Q21",
+      "source": "May 2019 TZ2 HL Paper 1 Q21",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "21.\t What is the order with respect to each reactant? 2NO\u2009(g) + Cl2\u2009(g) \u2192 2NOCl\u2009(g) Initial [NO] / mol\u2009dm\u20133 Initial [Cl2"
+    },
+    {
+      "id": "2019_May_HL_P1_Q22",
+      "source": "May 2019 TZ2 HL Paper 1 Q22",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "22.\t Consider the following equilibrium reaction. 2N2O\u2009(g) + O2\u2009(g) \uf083 4NO\u2009(g)         \u2206H = +16\u2009kJ Which change will move"
+    },
+    {
+      "id": "2019_May_HL_P1_Q24",
+      "source": "May 2019 TZ2 HL Paper 1 Q24",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "24.\t What is the pH of 0.001\u2009mol\u2009dm\u22123 NaOH\u2009(aq)?\t \t A.\t 1 B.\t 3 C.\t 11 D.\t 13"
+    },
+    {
+      "id": "2019_May_HL_P1_Q25",
+      "source": "May 2019 TZ2 HL Paper 1 Q25",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "25.\t What is the major reason why the pH of unpolluted rain is less than 7?\t \t A.\t methane  B.\t carbon dioxide C.\t nitro"
+    },
+    {
+      "id": "2019_May_HL_P1_Q27",
+      "source": "May 2019 TZ2 HL Paper 1 Q27",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "27.\t The following equation represents the dissociation of water at 25\u2009\uf06fC. 2H2O\u2009(l) \uf083 H3O+\u2009(aq) + OH\u2212\u2009(aq)         \u2206H = "
+    },
+    {
+      "id": "2019_May_HL_P1_Q36",
+      "source": "May 2019 TZ2 HL Paper 1 Q36",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "36.\t Which compound exists as two configurational isomers? A.\t CBr2=CH2 B.\t CH2=CHBr C.\t CHBr2CH2Br D.\t CHBr=CHBr"
+    },
+    {
+      "id": "2019_May_HL_P1_Q38",
+      "source": "May 2019 TZ2 HL Paper 1 Q38",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "38.\t The following data were recorded for determining the density of three samples of silicon, Si. Mass / g \u00b10.01\u2009g Volu"
     },
     {
       "id": "2019_May_HL_P3_Q8",
@@ -1821,6 +4089,114 @@
       "preview": "16.\t Suggest two reasons why chlorinated solvents should neither be released into the  atmosphere nor incinerated (burnt"
     },
     {
+      "id": "2018_Nov_SL_P1_Q2",
+      "source": "Nov 2018 TZ1 SL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t The volume of a sample of gas measured at 27\u2009\uf06fC is 10.0\u2009dm3.  What is the temperature  when the volume is reduced to"
+    },
+    {
+      "id": "2018_Nov_SL_P1_Q12",
+      "source": "Nov 2018 TZ1 SL Paper 1 Q12",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "12.\t Which molecule is polar? A.\t BeCl2 B.\t BCl3 C.\t NCl3 D.\t CCl4"
+    },
+    {
+      "id": "2018_Nov_SL_P1_Q13",
+      "source": "Nov 2018 TZ1 SL Paper 1 Q13",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "13.\t Consider the following reactions: \t Fe2O3\u2009(s) + CO\u2009(g) \u2192 2FeO\u2009(s) + CO2\u2009(g)\t \u2206H\u200a\u00d6 = \u22123\u2009kJ  \t Fe\u2009(s) + CO2\u2009(g) \u2192 FeO"
+    },
+    {
+      "id": "2018_Nov_SL_P1_Q14",
+      "source": "Nov 2018 TZ1 SL Paper 1 Q14",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "14.\t Which is correct when Ba(OH)2 reacts with NH4Cl?  Ba(OH)2\u2009(s) + 2NH4Cl\u2009(s) \u2192 BaCl2\u2009(aq) + 2NH3\u2009(g) + 2H2O\u2009(l)      "
+    },
+    {
+      "id": "2018_Nov_SL_P1_Q19",
+      "source": "Nov 2018 TZ1 SL Paper 1 Q19",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "19.\t Which two species act as Br\u00f8nsted\u2013Lowry acids in the reaction?  H2PO4 \u2212\u2009(aq) + OH\u2212\u2009(aq) \uf083 HPO4 2\u2212\u2009(aq) + H2O\u2009(l) A."
+    },
+    {
+      "id": "2018_Nov_SL_P1_Q20",
+      "source": "Nov 2018 TZ1 SL Paper 1 Q20",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "20.\t What is the order of increasing pH for the following solutions of the same concentration?  A.\t HCl\u2009(aq) < NH3\u2009(aq) "
+    },
+    {
+      "id": "2018_Nov_SL_P1_Q24",
+      "source": "Nov 2018 TZ1 SL Paper 1 Q24",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "24.\t Which compounds cause the colour of acidified potassium manganate(VII) solution to  change from purple to colourles"
+    },
+    {
+      "id": "2018_Nov_SL_P1_Q30",
+      "source": "Nov 2018 TZ1 SL Paper 1 Q30",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "30.\t What are the absolute and percentage uncertainties for the change in mass? Initial mass: 22.35 \u00b10.05\u2009g Final mass: "
+    },
+    {
+      "id": "2018_Nov_HL_P1_Q2",
+      "source": "Nov 2018 TZ1 HL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t The volume of a sample of gas measured at 27\u2009\uf06fC is 10.0\u2009dm3.  What is the temperature  when the volume is reduced to"
+    },
+    {
+      "id": "2018_Nov_HL_P1_Q12",
+      "source": "Nov 2018 TZ1 HL Paper 1 Q12",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "12.\t What is the number of sigma (\u03c3) and pi (\u03c0) bonds in the molecule (NC)2C=C(CN)2? \u03c3 \u03c0 A. 9 9 B. 5 9 C. 13 5 D. 9 5"
+    },
+    {
+      "id": "2018_Nov_HL_P1_Q14",
+      "source": "Nov 2018 TZ1 HL Paper 1 Q14",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "14.\t Consider the following reactions: \t Fe2O3\u2009(s) + CO\u2009(g) \u2192 2FeO\u2009(s) + CO2\u2009(g)  \u2206H\u200a\u00d6 = \u22123\u2009kJ  \t Fe\u2009(s) + CO2\u2009(g) \u2192 FeO"
+    },
+    {
+      "id": "2018_Nov_HL_P1_Q15",
+      "source": "Nov 2018 TZ1 HL Paper 1 Q15",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "15.\t Which is correct when Ba(OH)2 reacts with NH4Cl?  Ba(OH)2\u2009(s) + 2NH4Cl\u2009(s) \u2192 BaCl2\u2009(aq) + 2NH3\u2009(g) + 2H2O\u2009(l)      "
+    },
+    {
+      "id": "2018_Nov_HL_P1_Q20",
+      "source": "Nov 2018 TZ1 HL Paper 1 Q20",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "20.\t Compounds X and Y were mixed and the time taken for a colour to appear was recorded at  various reactant concentrat"
+    },
+    {
+      "id": "2018_Nov_HL_P1_Q24",
+      "source": "Nov 2018 TZ1 HL Paper 1 Q24",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "24.\t Which two species act as Br\u00f8nsted\u2013Lowry acids in the reaction?  H2PO4 \u2212\u2009(aq) + OH\u2212\u2009(aq) \uf083 HPO4 2\u2212\u2009(aq) + H2O\u2009(l) A."
+    },
+    {
+      "id": "2018_Nov_HL_P1_Q25",
+      "source": "Nov 2018 TZ1 HL Paper 1 Q25",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "25.\t What is the order of increasing pH for the following solutions of the same concentration? A.\t NaCl < NH4Cl < Na2CO3"
+    },
+    {
+      "id": "2018_Nov_HL_P1_Q32",
+      "source": "Nov 2018 TZ1 HL Paper 1 Q32",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "32.  Which compounds cause the colour of acidified potassium manganate(VII) solution to  change from purple to colourles"
+    },
+    {
+      "id": "2018_Nov_HL_P1_Q36",
+      "source": "Nov 2018 TZ1 HL Paper 1 Q36",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "36.\t What is the major product of the reaction of HBr with but-1-ene? A.\t 1-bromobutane B.\t 2-bromobutane C.\t 1,2-dibrom"
+    },
+    {
+      "id": "2018_Nov_HL_P1_Q39",
+      "source": "Nov 2018 TZ1 HL Paper 1 Q39",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "39.\t What are the absolute and percentage uncertainties for the change in mass? Initial mass: 22.35 \u00b10.05\u2009g Final mass: "
+    },
+    {
       "id": "2018_Nov_HL_P3_Q2",
       "source": "Nov 2018 TZ1 HL Paper 3 Opt A Q2",
       "reason": "Legacy Option A/C specialized topics (superconductors, liquid crystals, DSSC, zeolites) removed from 2025 syllabus (matched: zeolite, zeolites)",
@@ -1965,6 +4341,36 @@
       "preview": "15.\t Antiviral drugs are a major research focus.\t (a)\t Oseltamivir (Tamiflu) and zanamivir (Relenza) are used against fl"
     },
     {
+      "id": "2018_May_SL_P1_Q1",
+      "source": "May 2018 TZ2 SL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.  What is the sum of the coefficients when the equation is balanced with the lowest whole  number ratio? __Na2S2O3 (aq"
+    },
+    {
+      "id": "2018_May_SL_P1_Q9",
+      "source": "May 2018 TZ2 SL Paper 1 Q9",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "9.  What is the formula of magnesium nitride? \t A.\t MgN \t B.\t Mg2N3 \t C.\t Mg3N \t D.\t Mg3N2"
+    },
+    {
+      "id": "2018_May_SL_P1_Q27",
+      "source": "May 2018 TZ2 SL Paper 1 Q27",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "27.\t Which are structural isomers? I.\t CH3CH2OH and CH3OCH3 II.\t HOCH2CH3 and CH3CH2OH III.\t CH3COOH and HCOOCH3   A.  I"
+    },
+    {
+      "id": "2018_May_SL_P1_Q29",
+      "source": "May 2018 TZ2 SL Paper 1 Q29",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "29.\t How are the uncertainties of two quantities combined when the quantities are multiplied together?   A.  Uncertainti"
+    },
+    {
+      "id": "2018_May_SL_P1_Q30",
+      "source": "May 2018 TZ2 SL Paper 1 Q30",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "30.\t The rate of a reaction is studied at different temperatures. Which is the best way to plot the data? x-axis Type of"
+    },
+    {
       "id": "2018_May_SL_P3_Q5",
       "source": "May 2018 TZ2 SL Paper 3 Opt A Q5",
       "reason": "Retired syllabus topic (matched: liquid crystal)",
@@ -2029,6 +4435,84 @@
       "source": "May 2018 TZ2 SL Paper 3 Opt D Q20",
       "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
       "preview": "20.\t Drug synthesis often involves solvents.      Identify a common hazardous solvent and a Green solvent that could rep"
+    },
+    {
+      "id": "2018_May_SL_P1_Q9",
+      "source": "May 2018 TZ1 SL Paper 1 Q9",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "9.\t What is the formula of ammonium phosphate? \t A.\t (NH3)3PO4 \t B.\t (NH4)3PO4 \t C.\t (NH4)2PO4 \t D.\t (NH3)2PO3"
+    },
+    {
+      "id": "2018_May_SL_P1_Q14",
+      "source": "May 2018 TZ1 SL Paper 1 Q14",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "14.\t What is the enthalpy of combustion of butane in kJ mol\u22121? 2C4H10  (g) + 13O2  (g) \u2192 8CO2  (g) + 10H2O (l) C (s) + O"
+    },
+    {
+      "id": "2018_May_SL_P1_Q25",
+      "source": "May 2018 TZ1 SL Paper 1 Q25",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "25.\t What is the product of the reaction between hex-3-ene and steam? \t A.\t Hexan-1-ol \t B.\t Hexan-2-ol \t C.\t Hexan-3-ol"
+    },
+    {
+      "id": "2018_May_SL_P1_Q27",
+      "source": "May 2018 TZ1 SL Paper 1 Q27",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "27.\t Which compound could be formed when CH3CH2CH2OH is heated with acidified potassium  dichromate(VI)? I.\t CH3CH2CHO  "
+    },
+    {
+      "id": "2018_May_SL_P1_Q29",
+      "source": "May 2018 TZ1 SL Paper 1 Q29",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "29.\t What is the index of hydrogen deficiency, IHD, of 3-methylcyclohexene? CH3 \t A.\t 0 \t B.\t 1 \t C.\t 2 \t D.\t 3"
+    },
+    {
+      "id": "2018_May_HL_P1_Q14",
+      "source": "May 2018 TZ1 HL Paper 1 Q14",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "14.\t What is the enthalpy of combustion of butane in kJ\u2009mol\u22121? 2C4H10  (g) + 13O2  (g) \u2192 8CO2  (g) + 10H2O (l) C (s) + O"
+    },
+    {
+      "id": "2018_May_HL_P1_Q17",
+      "source": "May 2018 TZ1 HL Paper 1 Q17",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "17.\t Which statement is correct? \t A.\t If \u2206H < 0, reaction is always spontaneous. \t B.\t If \u2206H > 0, reaction is never spo"
+    },
+    {
+      "id": "2018_May_HL_P1_Q19",
+      "source": "May 2018 TZ1 HL Paper 1 Q19",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "19.\t What are correct labels for the Maxwell\u2212Boltzmann energy distribution curves?\t \t \t x-axis y-axis A. progress of rea"
+    },
+    {
+      "id": "2018_May_HL_P1_Q22",
+      "source": "May 2018 TZ1 HL Paper 1 Q22",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "22.\t What is the effect of increasing the temperature in this reaction? CO2  (g) + H2O (l) \uf083 H+ (aq) + HCO3 \u2212 (aq)      "
+    },
+    {
+      "id": "2018_May_HL_P1_Q23",
+      "source": "May 2018 TZ1 HL Paper 1 Q23",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "23.\t 1.0\u2009mol of N2 (g), 1.0\u2009mol of H2 (g) and 1.0\u2009mol of NH3 (g) are placed in a 1.0\u2009dm3 sealed flask and left  to reach"
+    },
+    {
+      "id": "2018_May_HL_P1_Q30",
+      "source": "May 2018 TZ1 HL Paper 1 Q30",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "30.\t Which combination would electroplate an object with copper? + \u2212 X Y Z X Z Y A. object CuSO4  (aq) copper B. copper "
+    },
+    {
+      "id": "2018_May_HL_P1_Q32",
+      "source": "May 2018 TZ1 HL Paper 1 Q32",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "32.\t What is the product of the reaction between hex-3-ene and steam? \t A.\t Hexan-1-ol \t B.\t Hexan-2-ol \t C.\t Hexan-3-ol"
+    },
+    {
+      "id": "2018_May_HL_P1_Q38",
+      "source": "May 2018 TZ1 HL Paper 1 Q38",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "38.\t What is the IHD, index of hydrogen deficiency, of 3-methylcyclohexene? CH3 \t A.\t 0 \t B.\t 1 \t C.\t 2 \t D.\t 3"
     },
     {
       "id": "2018_May_HL_P3_Q6",
@@ -2131,6 +4615,48 @@
       "source": "May 2018 TZ2 HL Paper 3 Opt D Q27",
       "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
       "preview": "27.\t Ethanol can be detected by a variety of instruments.  (a)\t Fuel cells use an electrochemical process to determine t"
+    },
+    {
+      "id": "2018_May_HL_P1_Q9",
+      "source": "May 2018 TZ2 HL Paper 1 Q9",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "9.\t What is the formula of magnesium nitride? \t A.\t MgN \t B.\t Mg2N3 \t C.\t Mg3N \t D.\t Mg3N2"
+    },
+    {
+      "id": "2018_May_HL_P1_Q12",
+      "source": "May 2018 TZ2 HL Paper 1 Q12",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "12.\t Which molecule has an expanded octet? \t A.\t CO  \t B.\t CO2 \t C.\t SF2 \t D.\t SF4"
+    },
+    {
+      "id": "2018_May_HL_P1_Q13",
+      "source": "May 2018 TZ2 HL Paper 1 Q13",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "13.\t Which overlap of atomic orbitals leads to the formation of only a sigma (\u03c3) bond? I.\t s \u2212 p II.\t p \u2212 p III.\t s \u2212 s "
+    },
+    {
+      "id": "2018_May_HL_P1_Q34",
+      "source": "May 2018 TZ2 HL Paper 1 Q34",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "34.\t Which are structural isomers? I.\t CH3CH2OH and CH3OCH3 II.\t HOCH2CH3 and CH3CH2OH III.\t CH3COOH and HCOOCH3 \t A.\t I"
+    },
+    {
+      "id": "2018_May_HL_P1_Q36",
+      "source": "May 2018 TZ2 HL Paper 1 Q36",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "36.\t Propene is reacted first with hydrogen chloride to produce X which is then reacted with aqueous  sodium hydroxide t"
+    },
+    {
+      "id": "2018_May_HL_P1_Q38",
+      "source": "May 2018 TZ2 HL Paper 1 Q38",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "38.\t How are the uncertainties of two quantities combined when the quantities are multiplied together? \t A.\t Uncertainti"
+    },
+    {
+      "id": "2018_May_HL_P1_Q39",
+      "source": "May 2018 TZ2 HL Paper 1 Q39",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "39.\t The rate of a reaction is studied at different temperatures. Which is the best way to plot the data? x-axis Type of"
     },
     {
       "id": "2018_May_HL_P3_Q3",
@@ -2271,6 +4797,126 @@
       "preview": "21.\t Molecules of antibiotics often contain a beta-lactam ring.  Explain the importance of the beta- lactam ring in the "
     },
     {
+      "id": "2017_Nov_SL_P1_Q4",
+      "source": "Nov 2017 TZ1 SL Paper 1 Q4",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "4.  What is the sum of the coefficients when the following equation is balanced using the smallest  whole numbers? __C6H"
+    },
+    {
+      "id": "2017_Nov_SL_P1_Q8",
+      "source": "Nov 2017 TZ1 SL Paper 1 Q8",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "8.  Which oxide dissolves in water to give a solution with a pH below 7? \t A.\t MgO \t B.\t Li2O \t C.\t CaO \t D.\t P4O10"
+    },
+    {
+      "id": "2017_Nov_SL_P1_Q9",
+      "source": "Nov 2017 TZ1 SL Paper 1 Q9",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "9.\t The electronegativity values of four elements are given. C N O F 2.6 3.0 3.4 4.0 What is the order of increasing pol"
+    },
+    {
+      "id": "2017_Nov_SL_P1_Q10",
+      "source": "Nov 2017 TZ1 SL Paper 1 Q10",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "10.  Which compound has the shortest C\u2013N bond? \t A.\t CH3NH2 \t B.\t (CH3)3CNH2 \t C.\t CH3CN \t D.\t CH3CHNH"
+    },
+    {
+      "id": "2017_Nov_SL_P1_Q18",
+      "source": "Nov 2017 TZ1 SL Paper 1 Q18",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "18.  What will happen if the pressure is increased in the following reaction mixture at equilibrium?         CO2\u2009(g) + H"
+    },
+    {
+      "id": "2017_Nov_SL_P1_Q19",
+      "source": "Nov 2017 TZ1 SL Paper 1 Q19",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "19.\t 10.0\u2009cm3 of an aqueous solution of sodium hydroxide of pH = 10 is mixed with 990.0\u2009cm3 of distilled  water.  What i"
+    },
+    {
+      "id": "2017_Nov_SL_P1_Q20",
+      "source": "Nov 2017 TZ1 SL Paper 1 Q20",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "20.\t Which statement is incorrect for a 0.10\u2009mol\u2009dm-3 HCOOH solution? \t A.\t pH = 1 \t B.\t [H+\u2009] << 0.10\u2009mol\u2009dm-3 \t C.\t [H"
+    },
+    {
+      "id": "2017_Nov_SL_P1_Q24",
+      "source": "Nov 2017 TZ1 SL Paper 1 Q24",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "24.\t What is the major product of the reaction between HCl and but-2-ene?   A.  1,2-dichlorobutane   B.  2,3-dichlorobut"
+    },
+    {
+      "id": "2017_Nov_SL_P1_Q25",
+      "source": "Nov 2017 TZ1 SL Paper 1 Q25",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "25.\t Which compound can be oxidized when heated with an acidified solution of potassium  dichromate(VI)? \t A.\t CH3C(O)CH"
+    },
+    {
+      "id": "2017_Nov_SL_P1_Q28",
+      "source": "Nov 2017 TZ1 SL Paper 1 Q28",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "28.\t How many structural isomers of C6H14 exist? \t A.\t 4 \t B.\t 5 \t C.\t 6 \t D.\t 7"
+    },
+    {
+      "id": "2017_Nov_HL_P1_Q2",
+      "source": "Nov 2017 TZ1 HL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t Which solution neutralizes 50.0\u2009cm3 of 0.120\u2009mol\u2009dm-3 NaOH\u2009(aq)? \t A.\t 12.5\u2009cm3 of 0.080\u2009mol\u2009dm-3 H3PO4 \t B.\t 25.0\u2009c"
+    },
+    {
+      "id": "2017_Nov_HL_P1_Q9",
+      "source": "Nov 2017 TZ1 HL Paper 1 Q9",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "9.\t Which oxide dissolves in water to give a solution with a pH below 7?   A.  MgO \t B.\t Li2O \t C.\t CaO \t D.\t P4O10"
+    },
+    {
+      "id": "2017_Nov_HL_P1_Q12",
+      "source": "Nov 2017 TZ1 HL Paper 1 Q12",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "12.\t The electronegativity values of four elements are given. C N O F 2.6 3.0 3.4 4.0 What is the order of increasing po"
+    },
+    {
+      "id": "2017_Nov_HL_P1_Q14",
+      "source": "Nov 2017 TZ1 HL Paper 1 Q14",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "14.\t How many sigma (\u03c3) and pi (\u03c0) bonds are present in this molecule? CN COOH  \u03c3 \u03c0 A. 12 6 B. 14 5 C. 16 6 D. 17 5"
+    },
+    {
+      "id": "2017_Nov_HL_P1_Q24",
+      "source": "Nov 2017 TZ1 HL Paper 1 Q24",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "24.\t What will happen if the pressure is increased in the following reaction mixture at equilibrium? CO2\u2009(g) + H2O\u2009(l) \u048a"
+    },
+    {
+      "id": "2017_Nov_HL_P1_Q25",
+      "source": "Nov 2017 TZ1 HL Paper 1 Q25",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "25.\t 10.0\u2009cm3 of an aqueous solution of sodium hydroxide of pH = 10 is mixed with 990.0\u2009cm3 of distilled  water.  What i"
+    },
+    {
+      "id": "2017_Nov_HL_P1_Q28",
+      "source": "Nov 2017 TZ1 HL Paper 1 Q28",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "28.\t Which statement is incorrect for a 0.10\u2009mol\u2009dm-3 HCOOH solution? \t A.\t pH = 1 \t B.\t [H+\u2009] << 0.10\u2009mol\u2009dm-3 \t C.\t [H"
+    },
+    {
+      "id": "2017_Nov_HL_P1_Q33",
+      "source": "Nov 2017 TZ1 HL Paper 1 Q33",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "33.\t Propene reacts separately with H2O/H+ and H2/Ni to give products X and Z respectively. X H2O/H+  CH3\u2013CH\u2550CH2 H2/Ni Z"
+    },
+    {
+      "id": "2017_Nov_HL_P1_Q36",
+      "source": "Nov 2017 TZ1 HL Paper 1 Q36",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "36.  Which compound can be oxidized when heated with an acidified solution of potassium  dichromate(VI)? \t A.\t CH3C(O)CH"
+    },
+    {
+      "id": "2017_Nov_HL_P1_Q37",
+      "source": "Nov 2017 TZ1 HL Paper 1 Q37",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "37.\t What is the number of optical isomers of isoleucine? O HO NH2 H3C CH3 \t A.\t 0 \t B.\t 2 \t C.\t 4 \t D.\t 8"
+    },
+    {
       "id": "2017_Nov_HL_P3_Q2",
       "source": "Nov 2017 TZ1 HL Paper 3 Opt A Q2",
       "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) removed from 2025 syllabus (matched: antacid, antacids)",
@@ -2409,6 +5055,36 @@
       "preview": "21.\t Antiviral drugs are designed to take different approaches to fighting viruses. \t (a)\t Outline how oseltamivir (Tami"
     },
     {
+      "id": "2017_May_SL_P1_Q1",
+      "source": "May 2017 TZ2 SL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.  What is the sum of the coefficients when the equation is balanced with whole numbers? \u2014C8H18\u2009(g) + \u2014O2\u2009(g) \u2192 \u2014CO\u2009(g)"
+    },
+    {
+      "id": "2017_May_SL_P1_Q8",
+      "source": "May 2017 TZ2 SL Paper 1 Q8",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "8.  Which element is a lanthanide? \t A.\t Hf   B.  Tb \t C.\t U \t D.\t Y"
+    },
+    {
+      "id": "2017_May_SL_P1_Q17",
+      "source": "May 2017 TZ2 SL Paper 1 Q17",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "17.  Which methods can be used to monitor the progress of this reaction? I.  Change in colour of this reaction mixture I"
+    },
+    {
+      "id": "2017_May_SL_P1_Q21",
+      "source": "May 2017 TZ2 SL Paper 1 Q21",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "21.\t Which element is reduced in the following decomposition? (NH4)2Cr2O7\u2009(s) \u2192 N2\u2009(g) + Cr2O3\u2009(s) + 4H2O\u2009(g) \t A.\t N \t "
+    },
+    {
+      "id": "2017_May_SL_P1_Q27",
+      "source": "May 2017 TZ2 SL Paper 1 Q27",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "27.\t Which compound contains a secondary carbon atom? \t A.\t CH3CH(Cl)CH(CH3)2 \t B.\t (CH3)2CHCH2Cl \t C.\t (CH3)3CCl \t D.\t "
+    },
+    {
       "id": "2017_May_SL_P3_Q6",
       "source": "May 2017 TZ2 SL Paper 3 Opt A Q6",
       "reason": "Retired syllabus topic (matched: liquid crystal)",
@@ -2475,16 +5151,112 @@
       "preview": "19.\t The production of many pharmaceutical drugs involves the use of solvents. \t (a)\t Suggest one problem associated wit"
     },
     {
+      "id": "2017_May_SL_P2_Q6",
+      "source": "May 2017 TZ1 SL Paper 2 Q6",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "6.\t Benzene is an aromatic hydrocarbon. \t (a)\t Discuss the physical evidence for the structure of benzene. [2] \t . . . ."
+    },
+    {
+      "id": "2017_May_SL_P1_Q2",
+      "source": "May 2017 TZ1 SL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t Which statements about mixtures are correct? I.\t The components may be elements or compounds. II.\t All components mu"
+    },
+    {
+      "id": "2017_May_SL_P1_Q8",
+      "source": "May 2017 TZ1 SL Paper 1 Q8",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "8.\t Which oxide, when added to water, produces the solution with the highest pH? \t A.\t Na2O \t B.\t SO3 \t C.\t MgO \t D.\t CO"
+    },
+    {
+      "id": "2017_May_SL_P1_Q10",
+      "source": "May 2017 TZ1 SL Paper 1 Q10",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "10. Which two atoms form the most polar bond? A. C and F B. C and Cl C. Si and F D. Si and Cl"
+    },
+    {
+      "id": "2017_May_SL_P1_Q17",
+      "source": "May 2017 TZ1 SL Paper 1 Q17",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "17.\t 100\u2009cm3 of 10\u2009% hydrogen peroxide solution decomposes at 298\u2009K to form water and oxygen. H2O2\u2009(aq) \u2192 H2O\u2009(l) + 1 2O"
+    },
+    {
       "id": "2017_May_SL_P1_Q25",
       "source": "May 2017 TZ1 SL Paper 1 Q25",
       "reason": "Retired syllabus topic (matched: aspirin)",
       "preview": "25.\t What are the functional groups in the aspirin molecule? C O O O O C C C C C C C C H H H H H H H H I.\t Ether II.\t Ca"
     },
     {
+      "id": "2017_May_SL_P1_Q27",
+      "source": "May 2017 TZ1 SL Paper 1 Q27",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "27.\t Which molecule has a tertiary nitrogen? \t A.\t (CH3)2NH \t B.\t (C2H5)4N+I\u2212 \t C.\t C3H7N(CH3)2 \t D.\t C6H5NH2"
+    },
+    {
+      "id": "2017_May_SL_P1_Q29",
+      "source": "May 2017 TZ1 SL Paper 1 Q29",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "29.\t What is the density, in g\u2009cm\u22123, of a 34.79\u2009g sample with a volume of 12.5\u2009cm3? \t A.\t 0.359 \t B.\t 0.36 \t C.\t 2.783 \t"
+    },
+    {
+      "id": "2017_May_SL_P1_Q30",
+      "source": "May 2017 TZ1 SL Paper 1 Q30",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "30.\t What is the Index of Hydrogen Deficiency (IHD) for 1,3,5-hexatriene (C6H8)? \t A.\t 1 \t B.\t 3 \t C.\t 5 \t D.\t 6"
+    },
+    {
+      "id": "2017_May_HL_P1_Q2",
+      "source": "May 2017 TZ1 HL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t Which statements about mixtures are correct? I.\t The components may be elements or compounds. II.\t All components mu"
+    },
+    {
+      "id": "2017_May_HL_P1_Q7",
+      "source": "May 2017 TZ1 HL Paper 1 Q7",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "7.\t Which oxide, when added to water, produces the solution with the highest pH? \t A.\t Na2O \t B.\t SO3 \t C.\t MgO \t D.\t CO"
+    },
+    {
+      "id": "2017_May_HL_P1_Q10",
+      "source": "May 2017 TZ1 HL Paper 1 Q10",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "10.\t Which two atoms form the most polar bond? \t A.\t C and F \t B.\t C and Cl \t C.\t Si and F \t D.\t Si and Cl"
+    },
+    {
+      "id": "2017_May_HL_P1_Q19",
+      "source": "May 2017 TZ1 HL Paper 1 Q19",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "19.\t 100\u2009cm3 of 10\u2009% hydrogen peroxide solution decomposes at 298\u2009K to form water and oxygen. H2O2\u2009(aq) \u2192 H2O\u2009(l) + 1 2O"
+    },
+    {
       "id": "2017_May_HL_P1_Q32",
       "source": "May 2017 TZ1 HL Paper 1 Q32",
       "reason": "Retired syllabus topic (matched: aspirin)",
       "preview": "32.\t What are the functional groups in the aspirin molecule? C O O O O C C C C C C C C H H H H H H H H I.  Ether II.\t Ca"
+    },
+    {
+      "id": "2017_May_HL_P1_Q33",
+      "source": "May 2017 TZ1 HL Paper 1 Q33",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "33.\t Which molecule has a tertiary nitrogen? \t A.\t (CH3)2NH \t B.\t (C2H5)4N+I\u2212 \t C.\t C3H7N(CH3)2 \t D.\t C6H5NH2"
+    },
+    {
+      "id": "2017_May_HL_P1_Q35",
+      "source": "May 2017 TZ1 HL Paper 1 Q35",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "35.\t What is the major product of the reaction between 2-methylbut-2-ene and hydrogen bromide? \t A.\t 3-bromo-2-methylbut"
+    },
+    {
+      "id": "2017_May_HL_P1_Q39",
+      "source": "May 2017 TZ1 HL Paper 1 Q39",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "39.\t What is the density, in g\u2009cm\u22123, of a 34.79\u2009g sample with a volume of 12.5\u2009cm3? \t A.\t 0.359 \t B.\t 0.36 \t C.\t 2.783 \t"
+    },
+    {
+      "id": "2017_May_HL_P2_Q8",
+      "source": "May 2017 TZ1 HL Paper 2 Q8",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "8.  There is concern about damage done to the ozone layer in the stratosphere by jet-propelled  aircraft. \t (a)\t Formula"
     },
     {
       "id": "2017_May_HL_P3_Q5",
@@ -2593,6 +5365,60 @@
       "source": "May 2017 TZ2 HL Paper 3 Opt D Q26",
       "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
       "preview": "26.\t (a)\t Targeted Alpha Therapy (TAT) is a technique that involves using alpha-radiation to treat  leukemia and other d"
+    },
+    {
+      "id": "2017_May_HL_P1_Q1",
+      "source": "May 2017 TZ2 HL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.  What is the sum of the coefficients when the equation is balanced with whole numbers? \u2014C8H18\u2009(g) + \u2014O2\u2009(g) \u2192 \u2014CO\u2009(g)"
+    },
+    {
+      "id": "2017_May_HL_P1_Q7",
+      "source": "May 2017 TZ2 HL Paper 1 Q7",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "7.  Which element is a lanthanide? \t A.\t Hf   B.  Tb \t C.\t U   D.  Y"
+    },
+    {
+      "id": "2017_May_HL_P1_Q12",
+      "source": "May 2017 TZ2 HL Paper 1 Q12",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "12.  Which is the first step in the CFC-catalysed destruction of ozone in UV light? \t A.\t CCl2F2 \u2192 CClF2 + + Cl- \t B.\t C"
+    },
+    {
+      "id": "2017_May_HL_P1_Q13",
+      "source": "May 2017 TZ2 HL Paper 1 Q13",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "13.  Which statement is correct?   A.  Sigma bonds are formed only by the combination of s atomic orbitals.   B.  Pi bon"
+    },
+    {
+      "id": "2017_May_HL_P1_Q19",
+      "source": "May 2017 TZ2 HL Paper 1 Q19",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "19.  Which methods can be used to monitor the progress of this reaction? I.  Change in colour of this reaction mixture I"
+    },
+    {
+      "id": "2017_May_HL_P1_Q28",
+      "source": "May 2017 TZ2 HL Paper 1 Q28",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "28.  Which element is reduced in the following decomposition? (NH4)2Cr2O7\u2009(s) \u2192 N2\u2009(g) + Cr2O3\u2009(s) + 4H2O\u2009(g)   A.  N \t "
+    },
+    {
+      "id": "2017_May_HL_P1_Q34",
+      "source": "May 2017 TZ2 HL Paper 1 Q34",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "34.\t Which compound contains a secondary carbon atom? \t A.\t CH3CH(Cl)CH(CH3)2 \t B.\t (CH3)2CHCH2Cl \t C.\t (CH3)3CCl \t D.\t "
+    },
+    {
+      "id": "2017_May_HL_P1_Q36",
+      "source": "May 2017 TZ2 HL Paper 1 Q36",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "36.  Which compounds can be reduced? I.\t C2H4 II.\t CH3COOH III.\t CH3CHO   A.  I and II only   B.  I and III only   C.  I"
+    },
+    {
+      "id": "2017_May_HL_P1_Q37",
+      "source": "May 2017 TZ2 HL Paper 1 Q37",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "37.  In which order should the reagents be used to convert benzene into phenylamine (aniline)? 1st reagent 2nd reagent 3"
     },
     {
       "id": "2017_May_HL_P3_Q8",
@@ -2737,6 +5563,96 @@
       "source": "Nov 2016 TZ1 SL Paper 3 Opt D Q20",
       "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
       "preview": "20.\t Methadone, a synthetic opioid, binds to opioid receptors in the brain. CH2 O CH2 H3C CH H3C N H3C CH3 Methadone \t ("
+    },
+    {
+      "id": "2016_Nov_SL_P1_Q2",
+      "source": "Nov 2016 TZ1 SL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t Which volume, in cm3, of 0.20\u2009mol\u2009dm-3 NaOH\u2009(aq) is needed to neutralize 0.050\u2009mol of H2S\u2009(g)? H2S\u2009(g) + 2NaOH\u2009(aq) "
+    },
+    {
+      "id": "2016_Nov_SL_P1_Q8",
+      "source": "Nov 2016 TZ1 SL Paper 1 Q8",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "8.\t Which solution forms when phosphorus(V) oxide, P4O10, reacts with water? Product pH of solution A. H3PO3 < 7 B. H3PO"
+    },
+    {
+      "id": "2016_Nov_SL_P1_Q9",
+      "source": "Nov 2016 TZ1 SL Paper 1 Q9",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "9.\t Which pair of molecules has the same bond angles? \t A.\t PCl3 and BCl3 \t B.\t SO2 and CO2 \t C.\t H2O and NH3 \t D.\t CCl4"
+    },
+    {
+      "id": "2016_Nov_SL_P1_Q14",
+      "source": "Nov 2016 TZ1 SL Paper 1 Q14",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "14.\t In which reaction do the reactants have a lower potential energy than the products? \t A.\t CH4\u2009(g) + 2O2\u2009(g) \u2192 CO2\u2009("
+    },
+    {
+      "id": "2016_Nov_SL_P1_Q17",
+      "source": "Nov 2016 TZ1 SL Paper 1 Q17",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "17.\t Which experimental methods could be used to observe the progress of the following reaction? Cr2O7 2-\u2009(aq) + 6I-\u2009(aq"
+    },
+    {
+      "id": "2016_Nov_SL_P1_Q19",
+      "source": "Nov 2016 TZ1 SL Paper 1 Q19",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "19.\t Which species behave as Br\u00f8nsted\u2013Lowry bases in the following reaction? H2SO4 + HNO3 \uf083 H2NO3 + + HSO4 - \t A.\t HNO3 "
+    },
+    {
+      "id": "2016_Nov_SL_P1_Q24",
+      "source": "Nov 2016 TZ1 SL Paper 1 Q24",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "24.  Which alcohols are oxidized by acidified potassium dichromate(VI) solution when heated? \t \t I.\t H3C CH CH2 OH CH3 \t"
+    },
+    {
+      "id": "2016_Nov_SL_P1_Q28",
+      "source": "Nov 2016 TZ1 SL Paper 1 Q28",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "28.  What is the index of hydrogen deficiency (IHD) for this molecule? CH3 H H O \t A.\t 3 \t B.\t 4 \t C.\t 5 \t D.\t 6"
+    },
+    {
+      "id": "2016_Nov_SL_P1_Q30",
+      "source": "Nov 2016 TZ1 SL Paper 1 Q30",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "30.\t A student measured the change in mass on heating a sample of calcium carbonate, CaCO3\u2009(s).   What is the mass loss?"
+    },
+    {
+      "id": "2016_Nov_HL_P1_Q1",
+      "source": "Nov 2016 TZ1 HL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t Which volume, in cm3, of 0.20\u2009mol\u2009dm-3 NaOH\u2009(aq) is needed to neutralize 0.050\u2009mol of H2S\u2009(g)? H2S\u2009(g) + 2NaOH\u2009(aq) "
+    },
+    {
+      "id": "2016_Nov_HL_P1_Q14",
+      "source": "Nov 2016 TZ1 HL Paper 1 Q14",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "14.\t Which species has bond angles of 90\u00b0? \t A.\t AlCl4 - \t B.\t ICl4 - \t C.\t NH4 + \t D.\t SiCl4"
+    },
+    {
+      "id": "2016_Nov_HL_P1_Q20",
+      "source": "Nov 2016 TZ1 HL Paper 1 Q20",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "20.\t Which experimental methods could be used to observe the progress of the following reaction? Cr2O7 2-\u2009(aq) + 6I-\u2009(aq"
+    },
+    {
+      "id": "2016_Nov_HL_P1_Q21",
+      "source": "Nov 2016 TZ1 HL Paper 1 Q21",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "21.\t Which statement describes the characteristics of a transition state relative to the potential energy  of the reacta"
+    },
+    {
+      "id": "2016_Nov_HL_P1_Q26",
+      "source": "Nov 2016 TZ1 HL Paper 1 Q26",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "26.\t Which species behave as Br\u00f8nsted\u2013Lowry bases in the following reaction? H2SO4 + HNO3 \uf083 H2NO3 + + HSO4 - \t A.\t HNO3 "
+    },
+    {
+      "id": "2016_Nov_HL_P1_Q29",
+      "source": "Nov 2016 TZ1 HL Paper 1 Q29",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "29.\t Which salt solution has the highest pH? \t A.\t NH4Cl \t B.\t Ca\u2009(NO3)2 \t C.\t Na2CO3 \t D.\t K2SO4"
     },
     {
       "id": "2016_Nov_HL_P3_Q7",
@@ -2887,6 +5803,102 @@
       "source": "May 2016 TZ1 SL Paper 3 Opt D Q19",
       "reason": "Legacy Paper 3 Option D (Medicinal Chemistry) is retired in 2025",
       "preview": "19.\t Radioactive isotopes are used in a variety of medical procedures including medical imaging  and radiotherapy. \t (a)"
+    },
+    {
+      "id": "2016_May_SL_P1_Q7",
+      "source": "May 2016 TZ1 SL Paper 1 Q7",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "7.\t Which element is a metalloid? \t A.\t Co \t B.\t As \t C.\t Cs \t D.\t Es"
+    },
+    {
+      "id": "2016_May_SL_P1_Q9",
+      "source": "May 2016 TZ1 SL Paper 1 Q9",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "9.\t Which molecule is non-polar? \t A.\t OF2 \t B.\t NH3 \t C.\t BF3 \t D.\t SO2"
+    },
+    {
+      "id": "2016_May_SL_P1_Q10",
+      "source": "May 2016 TZ1 SL Paper 1 Q10",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "10.\t Which compound contains both ionic and covalent bonds? \t A.\t SiH4 \t B.\t NaNO3 \t C.\t H2CO \t D.\t Na2S"
+    },
+    {
+      "id": "2016_May_SL_P1_Q13",
+      "source": "May 2016 TZ1 SL Paper 1 Q13",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "13.\t When 25.0\u2009cm3 0.100\u2009mol\u2009dm\u22123 NaOH\u2009(aq) is mixed with 25.0\u2009cm3 0.100\u2009mol\u2009dm\u22123 HCl\u2009(aq) at the  same temperature, a t"
+    },
+    {
+      "id": "2016_May_SL_P1_Q16",
+      "source": "May 2016 TZ1 SL Paper 1 Q16",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "16.  Which conditions must be met for a reaction to take place?     I.  Reactants collide with sufficient energy. \t \t II"
+    },
+    {
+      "id": "2016_May_SL_P1_Q23",
+      "source": "May 2016 TZ1 SL Paper 1 Q23",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "23.\t How many alcohols have the general formula C4H10O? \t A.\t 3 \t B.\t 4 \t C.\t 5 \t D.\t 6"
+    },
+    {
+      "id": "2016_May_SL_P1_Q25",
+      "source": "May 2016 TZ1 SL Paper 1 Q25",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "25.\t Which compound can both be esterified and turn acidified potassium dichromate(VI)   solution green? \t A.\t (CH3)3COH"
+    },
+    {
+      "id": "2016_May_SL_P1_Q27",
+      "source": "May 2016 TZ1 SL Paper 1 Q27",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "27.\t A measuring cylinder was used to obtain a known volume of a liquid.  The volume was read from  the top of the menis"
+    },
+    {
+      "id": "2016_May_SL_P1_Q28",
+      "source": "May 2016 TZ1 SL Paper 1 Q28",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "28.\t What is the relationship between the two variables sketched on the graph? y x \t A.\t y is proportional to x \t B.\t y "
+    },
+    {
+      "id": "2016_May_SL_P1_Q30",
+      "source": "May 2016 TZ1 SL Paper 1 Q30",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "30.\t Which molecule has an index of hydrogen deficiency (IHD) = 1? \t A.\t C6H6 \t B.\t C2Cl2 \t C.\t C4H9N \t D.\t C2H6O"
+    },
+    {
+      "id": "2016_May_HL_P1_Q7",
+      "source": "May 2016 TZ1 HL Paper 1 Q7",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "7.\t Which element is a metalloid? \t A.\t Co \t B.\t As \t C.\t Cs \t D.\t Es"
+    },
+    {
+      "id": "2016_May_HL_P1_Q12",
+      "source": "May 2016 TZ1 HL Paper 1 Q12",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "12.\t Which compound contains both ionic and covalent bonds? \t A.\t SiH4 \t B.\t NaNO3 \t C.\t H2CO \t D.\t Na2S"
+    },
+    {
+      "id": "2016_May_HL_P1_Q32",
+      "source": "May 2016 TZ1 HL Paper 1 Q32",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "32.\t Which compound forms both hydrogen and oxygen at the electrodes when a concentrated  aqueous solution is electrolyz"
+    },
+    {
+      "id": "2016_May_HL_P1_Q38",
+      "source": "May 2016 TZ1 HL Paper 1 Q38",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "38.\t A measuring cylinder was used to obtain a known volume of a liquid.  The volume was read from  the top of the menis"
+    },
+    {
+      "id": "2016_May_HL_P1_Q39",
+      "source": "May 2016 TZ1 HL Paper 1 Q39",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "39.  Which molecule has an index of hydrogen deficiency (IHD) = 1? \t A.\t C6H6 \t B.\t C2Cl2 \t C.\t C4H9N \t D.\t C2H6O"
+    },
+    {
+      "id": "2016_May_HL_P1_Q40",
+      "source": "May 2016 TZ1 HL Paper 1 Q40",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "40.\t Which analytical technique is used to measure bond lengths in solid compounds? \t A.\t IR spectroscopy \t B.\t Mass spe"
     },
     {
       "id": "2016_May_HL_P3_Q6",

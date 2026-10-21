@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, CheckCircle2, Sparkles, Send, ShieldAlert } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, Send } from 'lucide-react';
 
 export default function ResourceSubmitPage() {
   const router = useRouter();
@@ -74,10 +74,10 @@ export default function ResourceSubmitPage() {
         <ArrowLeft size={14} /> Back to Community Forum
       </Link>
 
-      <span className="section-label">COMMUNITY REPOSITORY SUBMISSION</span>
+      <span className="section-label">SUBMIT A RESOURCE</span>
       <h1 style={{ fontSize: '2.5rem', marginBottom: '0.6rem' }}>Submit a Resource to the Vault</h1>
       <p style={{ color: 'var(--muted)', fontSize: '1.05rem', marginBottom: '2.5rem', lineHeight: '1.6' }}>
-        Found a high-yield formula guide, video breakdown, or textbook mirror? Submit it below. Our weekly automated AI curation engine checks for live links, curriculum alignment, and standardizes the title for inclusion in The Academic Archive.
+        Found a high-yield formula guide, video breakdown, or textbook mirror? Submit it below. Submissions are screened for spam and reviewed before they appear in the archive.
       </p>
 
       {success ? (
@@ -85,7 +85,7 @@ export default function ResourceSubmitPage() {
           <CheckCircle2 size={44} style={{ color: '#059669', margin: '0 auto 1rem' }} />
           <h2 style={{ fontSize: '1.8rem', marginBottom: '0.5rem' }}>Resource Submitted for Review</h2>
           <p style={{ color: 'var(--ink)', opacity: 0.9, maxWidth: '50ch', margin: '0 auto 1.5rem' }}>
-            Your resource has been logged into the curation queue with status <strong>⏳ Pending Review</strong>. The automated curation pipeline will inspect it in the next weekly cycle.
+            Your resource has been logged into the curation queue with status <strong>⏳ Pending Review</strong>. It will appear in the archive once it has been reviewed.
           </p>
           <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
             <Link

@@ -23,7 +23,7 @@ export default function SATPracticeHubPage() {
         <ArrowLeft size={14} /> Back to SAT Portal
       </Link>
 
-      <span className="section-label">DIAGNOSTIC & DRILL ENGINE</span>
+      <span className="section-label">PRACTICE</span>
       <h1 style={{ fontSize: '2.8rem', marginBottom: '0.6rem' }}>Select Practice Mode</h1>
       <p style={{ color: 'var(--muted)', fontSize: '1.1rem', marginBottom: '3rem' }}>
         Choose between a full-length timed diagnostic exam or targeted domain and skill drills.
@@ -47,11 +47,11 @@ export default function SATPracticeHubPage() {
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
                 <span className="section-label" style={{ color: 'var(--rust)', margin: 0 }}>
-                  TIMED SIMULATION
+                  TIMED
                 </span>
                 <Clock size={20} style={{ color: 'var(--rust)' }} />
               </div>
-              <h2 style={{ fontSize: '1.8rem', marginBottom: '0.8rem' }}>Full-Length Test Simulator</h2>
+              <h2 style={{ fontSize: '1.8rem', marginBottom: '0.8rem' }}>Full-length practice test</h2>
               <p style={{ color: 'var(--card-desc, #52525b)', fontSize: '0.95rem', lineHeight: '1.6' }}>
                 Complete 4 modules (2 Reading/Writing + 2 Math) under strict exam timing with Desmos, formula sheets, question review, and standard 400–1600 scaled scoring.
               </p>

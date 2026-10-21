@@ -2,10 +2,7 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
-import {
-  ArrowLeft, Search, CheckCircle2, Circle, Clock, ExternalLink,
-  BookOpen, HelpCircle, Sparkles, RotateCcw, Filter, ChevronDown, ChevronRight
-} from 'lucide-react';
+import { ArrowLeft, Search, CheckCircle2, Circle, Clock, ExternalLink, BookOpen, Sparkles } from 'lucide-react';
 import IBBookletViewerModal from '@/app/components/IBBookletViewerModal';
 import IBCommandTermsModal from '@/app/components/IBCommandTermsModal';
 import MathView from '@/app/components/MathView';
@@ -348,24 +345,32 @@ export default function SyllabusTrackerPage() {
   const [showBookletModal, setShowBookletModal] = useState(false);
   const [showCommandTermsModal, setShowCommandTermsModal] = useState(false);
   const [progressMap, setProgressMap] = useState<Record<string, ProgressState>>({});
-  const [isLoaded, setIsLoaded] = useState(false);
 
   // Load progress from localStorage on mount
   useEffect(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
-        setProgressMap(JSON.parse(saved));
+        const raw: Record<string, ProgressState> = JSON.parse(saved);
+        // Old saves keyed by bare code (A.1), which collided between Physics and
+        // Biology; copy each into every subject that has that code.
+        const migrated: Record<string, ProgressState> = {};
+        for (const [k, v] of Object.entries(raw)) {
+          if (k.includes(':')) { migrated[k] = v; continue; }
+          for (const [subId, sub] of Object.entries(SYLLABUS_DATA)) {
+            if (sub.topics.some(t => t.subtopics.some(st => st.code === k))) migrated[`${subId}:${k}`] ??= v;
+          }
+        }
+        setProgressMap(migrated);
       }
     } catch (e) {
       console.error('Failed to load syllabus progress', e);
     }
-    setIsLoaded(true);
   }, []);
 
   // Save progress to localStorage whenever it changes
   const updateProgress = (code: string, nextState: ProgressState) => {
-    const updated = { ...progressMap, [code]: nextState };
+    const updated = { ...progressMap, [`${activeSubject}:${code}`]: nextState };
     setProgressMap(updated);
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
@@ -375,7 +380,7 @@ export default function SyllabusTrackerPage() {
   };
 
   const cycleProgress = (code: string) => {
-    const current = progressMap[code] || 'not_started';
+    const current = progressMap[`${activeSubject}:${code}`] || 'not_started';
     let next: ProgressState = 'in_progress';
     if (current === 'not_started') next = 'in_progress';
     else if (current === 'in_progress') next = 'mastered';
@@ -395,7 +400,7 @@ export default function SyllabusTrackerPage() {
     currentSubjectData.topics.forEach(t => {
       t.subtopics.forEach(st => {
         total++;
-        const state = progressMap[st.code] || 'not_started';
+        const state = progressMap[`${activeSubject}:${st.code}`] || 'not_started';
         if (state === 'mastered') mastered++;
         else if (state === 'in_progress') inProgress++;
       });
@@ -404,7 +409,7 @@ export default function SyllabusTrackerPage() {
     const notStarted = total - mastered - inProgress;
     const percent = total > 0 ? Math.round((mastered / total) * 100) : 0;
     return { total, mastered, inProgress, notStarted, percent };
-  }, [currentSubjectData, progressMap]);
+  }, [currentSubjectData, progressMap, activeSubject]);
 
   // Filter topics
   const filteredTopics = useMemo(() => {
@@ -416,7 +421,7 @@ export default function SyllabusTrackerPage() {
           if (filterLevel === 'HL' && st.level === 'SL') return false;
         }
 
-        const state = progressMap[st.code] || 'not_started';
+        const state = progressMap[`${activeSubject}:${st.code}`] || 'not_started';
         if (filterStatus !== 'ALL' && state !== filterStatus) return false;
 
         const q = search.toLowerCase().trim();
@@ -435,7 +440,7 @@ export default function SyllabusTrackerPage() {
         subtopics: filteredSubtopics
       };
     }).filter(topic => topic.subtopics.length > 0);
-  }, [currentSubjectData, filterLevel, filterStatus, search, progressMap]);
+  }, [currentSubjectData, filterLevel, filterStatus, search, progressMap, activeSubject]);
 
   return (
     <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '1rem 1.5rem 3rem' }}>
@@ -672,7 +677,7 @@ export default function SyllabusTrackerPage() {
               {/* Subtopic Items */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                 {topic.subtopics.map(st => {
-                  const state = progressMap[st.code] || 'not_started';
+                  const state = progressMap[`${activeSubject}:${st.code}`] || 'not_started';
                   const isMastered = state === 'mastered';
                   const isInProgress = state === 'in_progress';
 

@@ -17,7 +17,7 @@ export default function DesmosVisualPreview({ id }: DesmosVisualPreviewProps) {
               <span style={{ ...circle, background: '#eab308' }} />
               <span style={{ ...circle, background: '#22c55e' }} />
             </div>
-            <span style={titleStyle}>DESMOS GRAPHING SIMULATION • TWO-LINE INTERSECTION</span>
+            <span style={titleStyle}>DESMOS • TWO-LINE INTERSECTION</span>
           </div>
           <div style={bodyStyle}>
             {/* Left: Desmos Expression list */}
@@ -79,7 +79,7 @@ export default function DesmosVisualPreview({ id }: DesmosVisualPreviewProps) {
               <span style={{ ...circle, background: '#eab308' }} />
               <span style={{ ...circle, background: '#22c55e' }} />
             </div>
-            <span style={titleStyle}>DESMOS REGRESSION SIMULATION • TABLE TO EQUATION</span>
+            <span style={titleStyle}>DESMOS • TABLE TO EQUATION</span>
           </div>
           <div style={bodyStyle}>
             <div style={sidebarStyle}>
@@ -260,7 +260,7 @@ export default function DesmosVisualPreview({ id }: DesmosVisualPreviewProps) {
               <span style={{ ...circle, background: '#eab308' }} />
               <span style={{ ...circle, background: '#22c55e' }} />
             </div>
-            <span style={titleStyle}>DESMOS GRAPHING ENGINE • VISUAL VERIFICATION</span>
+            <span style={titleStyle}>DESMOS • CHECK BY GRAPHING</span>
           </div>
           <div style={bodyStyle}>
             <div style={sidebarStyle}>

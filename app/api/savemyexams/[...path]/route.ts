@@ -19,7 +19,11 @@ export async function GET(
   const cleanPath = rawPath.replace(/^(vault\/)?savemyexams\//, '');
 
   // 1. Check if local static copy exists in public/vault/savemyexams/
-  const localFilePath = path.join(process.cwd(), 'public', 'vault', 'savemyexams', cleanPath);
+  const baseDir = path.join(process.cwd(), 'public', 'vault', 'savemyexams');
+  const localFilePath = path.resolve(baseDir, cleanPath);
+  if (!localFilePath.startsWith(baseDir + path.sep)) {
+    return NextResponse.json({ error: 'Asset not found' }, { status: 404 });
+  }
 
   if (fs.existsSync(localFilePath) && fs.statSync(localFilePath).isFile()) {
     const encodedRedirect = cleanPath.split('/').map(encodeURIComponent).join('/');
@@ -32,17 +36,16 @@ export async function GET(
   const filename = parts[parts.length - 1] || '';
   const cleanFn = filename.replace('.pdf', '').replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
 
+  // Prefer an asset whose own filename part matches exactly (assets are named
+  // "<folders>__<file>.pdf"); fall back to the first substring match.
   let matchedAsset: string | null = null;
-  if (subjectTag) {
-    for (const asset of assetList as string[]) {
-      if (asset.includes(subjectTag)) {
-        const cleanAsset = asset.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
-        if (cleanAsset.includes(cleanFn)) {
-          matchedAsset = asset;
-          break;
-        }
-      }
-    }
+  if (subjectTag && cleanFn && filename.toLowerCase().endsWith('.pdf')) {
+    const candidates = (assetList as string[]).filter((a) => a.includes(subjectTag));
+    const norm = (s: string) => s.replace('.pdf', '').replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+    matchedAsset =
+      candidates.find((a) => norm(a.split('__').pop() || '') === cleanFn) ??
+      candidates.find((a) => norm(a).includes(cleanFn)) ??
+      null;
   }
 
   if (!matchedAsset) {

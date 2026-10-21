@@ -1,19 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import {
-  X,
-  FileText,
-  Search,
-  ExternalLink,
-  BookOpen,
-  Atom,
-  FlaskConical,
-  Calculator,
-  Download,
-  Maximize2,
-  Minimize2,
-} from 'lucide-react';
+import { X, FileText, Search, BookOpen, Atom, FlaskConical, Calculator, Download, Maximize2, Minimize2 } from 'lucide-react';
 import MathView from './MathView';
 
 type BookletSubject = 'math-aa' | 'math-ai' | 'physics' | 'chemistry';
@@ -91,7 +79,7 @@ export default function IBBookletViewerModal({
         inset: 0,
         background: 'rgba(0, 0, 0, 0.65)',
         backdropFilter: 'blur(5px)',
-        zIndex: 10001,
+        zIndex: 99995, // above IBPDFViewerModal (99990), which opens it
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',

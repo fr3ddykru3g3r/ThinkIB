@@ -94,8 +94,8 @@ export default function MathMocksBrowser() {
       {/* Header */}
       <div className="panel" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '2rem' }}>
         <div>
-          <span className="section-label" style={{ marginBottom: '0.5rem' }}>INTHINKING MOCK SIMULATOR</span>
-          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: '2.4rem', margin: '0.2rem 0' }}>Mathematics Mock Simulator</h1>
+          <span className="section-label" style={{ marginBottom: '0.5rem' }}>INTHINKING MOCKS</span>
+          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: '2.4rem', margin: '0.2rem 0' }}>Maths AA Mock Papers</h1>
           <p style={{ color: 'var(--muted)', fontSize: '0.95rem', margin: 0 }}>
             61 genuine InThinking mock papers (Papers 1, 2 & 3), step-by-step worked solutions, and formula handbooks for AA SL & HL.
           </p>
@@ -225,7 +225,7 @@ export default function MathMocksBrowser() {
           ) : (
             <div className="viewer-placeholder">
               <Eye size={44} style={{ color: 'var(--rust)', marginBottom: '1rem', opacity: 0.5 }} />
-              <h3 style={{ fontFamily: 'var(--display)', fontSize: '1.4rem' }}>No Mock Paper Selected</h3>
+              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.4rem' }}>No Mock Paper Selected</h3>
               <p style={{ maxWidth: '320px', marginTop: '0.5rem', fontSize: '0.9rem', color: 'var(--muted)' }}>
                 Select an InThinking mock examination paper or worked solution from the catalog on the left to study inline.
               </p>

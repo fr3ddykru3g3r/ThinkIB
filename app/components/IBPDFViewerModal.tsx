@@ -1,19 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import {
-  X,
-  ExternalLink,
-  Download,
-  BookOpen,
-  FileText,
-  Columns,
-  Maximize2,
-  Minimize2,
-  CheckCircle2,
-  Layers,
-  Sparkles
-} from 'lucide-react';
+import { X, ExternalLink, Download, BookOpen, FileText, Columns, Maximize2, Minimize2, Layers, Sparkles } from 'lucide-react';
 import IBBookletViewerModal from './IBBookletViewerModal';
 
 export interface PDFDocument {
@@ -119,7 +107,7 @@ export default function IBPDFViewerModal({
         subtitle: customDoc.subtitle,
         url: customDoc.url,
         msUrl: customDoc.msUrl,
-        size: customDoc.size || 'Vector PDF',
+        size: customDoc.size || 'PDF',
         category: customDoc.category || 'topical',
         badge: customDoc.badge
       }

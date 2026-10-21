@@ -2,10 +2,11 @@ import './globals.css';
 import 'katex/dist/katex.min.css';
 import React from 'react';
 import HeaderNav from './components/HeaderNav';
+import CustomCursor from './components/CustomCursor';
 
 export const metadata = {
-  title: 'The Archive — Editorial Academic Studio & Exam Workspace',
-  description: 'An editorial academic repository and high-precision simulation engine for IB Diploma archives, Digital SAT 2.0, and AoPS competition mathematics.',
+  title: 'The Archive — IB, SAT & AMC study resources',
+  description: 'IB past papers by topic, Digital SAT practice tests and AMC 12 lessons, free.',
 };
 
 export default function RootLayout({
@@ -14,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="shortcut icon" href="/favicon.svg" />
@@ -38,6 +39,7 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <CustomCursor />
         <HeaderNav />
         <main className="container">
           {children}

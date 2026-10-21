@@ -1,19 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import {
-  X,
-  Copy,
-  Check,
-  Calculator,
-  ExternalLink,
-  Sparkles,
-  Search,
-  BookOpen,
-  Sliders,
-  Maximize2,
-} from 'lucide-react';
-import MathView from './MathView';
+import { X, Copy, Check, Calculator, ExternalLink, Sparkles, Search } from 'lucide-react';
 import DesmosVisualPreview from './DesmosVisualPreview';
 
 interface DesmosShortcut {

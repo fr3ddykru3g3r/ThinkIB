@@ -1,0 +1,372 @@
+{
+  "id": "sequences-series",
+  "title": "Sequences & Series",
+  "summary": "Arithmetic and geometric sequences and series, infinite geometric sums, telescoping sums, recursive sequences with periodicity, and the standard sum formulas for k, k^2 and k^3.",
+  "examWeight": "≈2–3 problems per paper",
+  "concepts": [
+    {
+      "title": "Arithmetic sequences and series",
+      "body": "An arithmetic sequence adds the same amount $d$ (the common difference) every time: $a_n = a_1 + (n-1)d$. In $2, 5, 8, 11, \\dots$ the difference is $d = 3$, so the 4th term is $2 + 3\\cdot 3 = 11$. The 4th term is reached after only $3$ steps from the 1st, which is why the formula uses $n-1$.\n\nTo add $n$ terms, use a pairing trick. Write the sum forwards, then write it backwards underneath. Each term on top pairs with a term on the bottom, and every pair adds to the same total, $a_1 + a_n$, because the two terms are equally far from the ends. There are $n$ such pairs, but each pair has been counted twice, so $S_n = \\frac{n(a_1 + a_n)}{2}$. In words: the number of terms times the average of the first and last term.\n\nFor $2+5+8+11$ the pairs are $2+11$ and $5+8$, each equal to $13$, so the sum is $\\frac{4\\cdot 13}{2} = 26$.",
+      "keyFacts": [
+        "$a_n = a_1 + (n-1)d$",
+        "$S_n = \\frac{n(a_1 + a_n)}{2} = \\frac{n}{2}\\bigl(2a_1 + (n-1)d\\bigr)$",
+        "The number of terms from $a$ to $b$ in steps of $d$ is $\\frac{b-a}{d} + 1$"
+      ],
+      "whenToUse": "The difference between consecutive terms is constant, or the problem asks for the sum of evenly spaced numbers."
+    },
+    {
+      "title": "Geometric sequences and series",
+      "body": "A geometric sequence multiplies by the same ratio $r$ every time: $g_n = a\\,r^{\\,n-1}$. In $3, 6, 12, 24$ the ratio is $r = 2$. Growth by a fixed percentage is geometric too: a balance that rises by $5\\%$ each year has $r = 1.05$.\n\nTo add $n$ terms, let $S = a + ar + ar^2 + \\cdots + ar^{n-1}$. Multiplying the whole sum by $r$ shifts every term one place along, so $rS = ar + ar^2 + \\cdots + ar^{n}$. Almost every term appears in both lists. Subtracting, $S - rS = a - ar^{n}$, so $S = \\frac{a(1 - r^{n})}{1 - r}$ for $r \\ne 1$. The subtraction cancels the matching middle terms and leaves only the first term and one new last term.\n\nExample: $1 + 2 + 4 + 8 = \\frac{1\\cdot(1 - 2^4)}{1 - 2} = 15$.",
+      "keyFacts": [
+        "$g_n = a\\,r^{\\,n-1}$",
+        "$S_n = \\frac{a(1 - r^n)}{1 - r}$ for $r \\ne 1$",
+        "If $r = 1$ every term equals $a$, so $S_n = na$"
+      ],
+      "whenToUse": "Each term is a fixed multiple of the one before, or the problem talks about doubling, halving, or steady percentage growth or decay."
+    },
+    {
+      "title": "Infinite geometric series",
+      "body": "Some infinite lists of numbers still have a finite total. The partial sums of $1 + \\frac12 + \\frac14 + \\frac18 + \\cdots$ are $1,\\ 1.5,\\ 1.75,\\ 1.875, \\dots$, and they get closer and closer to $2$ without passing it. The reason is the formula from the last lesson, $S_n = \\frac{a(1 - r^n)}{1 - r}$. When $|r| < 1$, the powers $r^n$ shrink toward $0$ as $n$ grows, so the piece $ar^n$ disappears in the limit.\n\nThis gives $a + ar + ar^2 + \\cdots = \\frac{a}{1 - r}$ whenever $|r| < 1$. Here $a = 1$ and $r = \\frac12$, so the total is $\\frac{1}{1/2} = 2$, matching the picture above.\n\nIf $|r| \\ge 1$ the powers do not shrink, so the partial sums do not settle and there is no finite total. Always check $|r| < 1$ before using the formula.",
+      "keyFacts": [
+        "$a + ar + ar^2 + \\cdots = \\frac{a}{1 - r}$ when $|r| < 1$",
+        "The terms in every other position form a new geometric series with ratio $r^2$, so $ar + ar^3 + ar^5 + \\cdots = \\frac{ar}{1 - r^2}$",
+        "Starting the series at $ar^k$ instead of $a$ gives the total $\\frac{ar^k}{1 - r}$"
+      ],
+      "whenToUse": "An unending list of terms shrinks by a constant factor and the problem asks for the total."
+    },
+    {
+      "title": "Telescoping sums",
+      "body": "A telescoping sum is one whose terms can be written as differences, $b_k = f(k) - f(k+1)$. When you add them, each inner term appears once with a plus sign and once with a minus sign. They cancel in pairs, and only the first and last pieces survive, like a telescope collapsing.\n\nExample: $\\frac{1}{k(k+1)} = \\frac{1}{k} - \\frac{1}{k+1}$. You can check this by combining the right side over the common denominator $k(k+1)$. So $\\sum_{k=1}^{4} \\frac{1}{k(k+1)} = \\left(1 - \\frac12\\right) + \\left(\\frac12 - \\frac13\\right) + \\left(\\frac13 - \\frac14\\right) + \\left(\\frac14 - \\frac15\\right) = 1 - \\frac15 = \\frac45$.\n\nThe real skill is spotting the split. Look for a fraction whose denominator is a product of two numbers that differ by a fixed step, and try to write it as a difference. Products also telescope: $(k+1)! - k! = k\\cdot k!$.",
+      "keyFacts": [
+        "$\\frac{1}{k(k+1)} = \\frac{1}{k} - \\frac{1}{k+1}$",
+        "$\\sum_{k=1}^{n} \\frac{1}{k(k+1)} = 1 - \\frac{1}{n+1}$",
+        "$\\sum_{k=1}^{n} k\\cdot k! = (n+1)! - 1$"
+      ],
+      "whenToUse": "The terms are fractions or products whose denominators differ by a constant step, or the summand has the shape $f(k) - f(k+1)$ after a small rewrite."
+    },
+    {
+      "title": "Recursive sequences and periodicity",
+      "body": "A recursive sequence defines each term from earlier ones, such as $a_{n+1} = f(a_n)$. You can often understand it without a closed formula. Compute the first several terms, watch for a repeat, and notice that the sequence then cycles.\n\nIf $a_{n+p} = a_n$ for every $n$, the sequence has period $p$, and each term equals the term in the same place of its cycle. For $a_1 = 2$ and $a_{n+1} = \\frac{1}{1 - a_n}$ the values are $2, -1, \\frac12, 2, -1, \\dots$, repeating every $3$ terms. Since $100 \\equiv 1 \\pmod 3$, we get $a_{100} = a_1 = 2$.\n\nTo add many terms of a periodic sequence, add up one full period, multiply by the number of complete periods, and add the leftover terms. The key habit is to find the period first, because it is almost always small.",
+      "keyFacts": [
+        "If $a_{n+p} = a_n$ for all $n$, the sequence has period $p$",
+        "$a_N$ equals the term at the position of $N$ within one cycle, found from the remainder of $N$ modulo $p$",
+        "Sum of $N$ terms: (complete periods) × (sum of one period) + (leftover terms)"
+      ],
+      "whenToUse": "Each term is defined from the previous term(s) by a rule, and the question asks for a far-away term or a large sum."
+    },
+    {
+      "title": "Sums of powers of integers",
+      "body": "Three formulas come up constantly:\n\n$1 + 2 + \\cdots + n = \\frac{n(n+1)}{2}$, $\\qquad 1^2 + 2^2 + \\cdots + n^2 = \\frac{n(n+1)(2n+1)}{6}$, $\\qquad 1^3 + 2^3 + \\cdots + n^3 = \\left(\\frac{n(n+1)}{2}\\right)^2$.\n\nThe first is the pairing trick from the arithmetic lesson. The cube formula says the sum of cubes is the square of the plain sum $1 + \\cdots + n$, which is a surprising and useful fact. The squares formula can be derived by telescoping: $(k+1)^3 - k^3 = 3k^2 + 3k + 1$. Adding these for $k = 1$ to $n$, the left side collapses to $(n+1)^3 - 1$, and that equation lets you solve for $\\sum k^2$ once you know $\\sum k$.\n\nQuick check with $n = 3$: $1^3 + 2^3 + 3^3 = 36 = 6^2$, and $\\frac{3\\cdot 4}{2} = 6$.",
+      "keyFacts": [
+        "$\\sum_{k=1}^{n} k = \\frac{n(n+1)}{2}$",
+        "$\\sum_{k=1}^{n} k^2 = \\frac{n(n+1)(2n+1)}{6}$",
+        "$\\sum_{k=1}^{n} k^3 = \\left(\\frac{n(n+1)}{2}\\right)^2$"
+      ],
+      "whenToUse": "The sum runs over consecutive integers and the summand is a polynomial in $k$, such as $k^2$, $k^3$, or $k^2 + k$."
+    }
+  ],
+  "workedExamples": [
+    {
+      "title": "Summing an arithmetic series",
+      "difficulty": 1,
+      "problem": "Find the sum $2 + 5 + 8 + \\cdots + 50$.",
+      "choices": [
+        "$425$",
+        "$442$",
+        "$459$",
+        "467",
+        "$476$"
+      ],
+      "answer": "B",
+      "steps": [
+        "The common difference is $d = 3$, so the $k$th term is $2 + 3(k-1)$.",
+        "Solve $50 = 2 + 3(n-1)$ to get $n = 17$ terms.",
+        "Use the average of the first and last terms: $S = \\frac{17(2 + 50)}{2} = 17\\cdot 26 = 442$."
+      ],
+      "takeaway": "An arithmetic sum equals (number of terms) × (average of the first and last term).",
+      "verify": "print(sum(range(2, 51, 3)))"
+    },
+    {
+      "title": "Summing an infinite geometric series",
+      "difficulty": 2,
+      "problem": "What is the sum of the infinite geometric series $1 + \\frac{3}{4} + \\frac{9}{16} + \\frac{27}{64} + \\cdots$?",
+      "choices": [
+        "1",
+        "$3$",
+        "$4$",
+        "$5$",
+        "$6$"
+      ],
+      "answer": "C",
+      "steps": [
+        "The first term is $a = 1$ and the ratio is $r = \\frac{3}{4}$, so $|r| < 1$ and the series converges.",
+        "The total is $\\frac{a}{1 - r} = \\frac{1}{1 - \\frac34} = \\frac{1}{\\frac14}$.",
+        "So the sum is $4$."
+      ],
+      "takeaway": "Before using $\\frac{a}{1-r}$, confirm $|r| < 1$; then the total is a single division.",
+      "verify": "s = sum(0.75 ** n for n in range(400))\nprint(round(s))"
+    },
+    {
+      "title": "A telescoping sum with radicals",
+      "difficulty": 4,
+      "problem": "Compute $\\displaystyle\\sum_{k=1}^{24} \\frac{1}{\\sqrt{k} + \\sqrt{k+1}}$.",
+      "choices": [
+        "$4$",
+        "$5$",
+        "$6$",
+        "8",
+        "9"
+      ],
+      "answer": "A",
+      "steps": [
+        "Multiply top and bottom by $\\sqrt{k+1} - \\sqrt{k}$: the denominator becomes $(k+1) - k = 1$, so each term equals $\\sqrt{k+1} - \\sqrt{k}$.",
+        "The sum is $(\\sqrt{2} - \\sqrt{1}) + (\\sqrt{3} - \\sqrt{2}) + \\cdots + (\\sqrt{25} - \\sqrt{24})$, which telescopes.",
+        "Only the first and last pieces survive: $\\sqrt{25} - \\sqrt{1} = 5 - 1 = 4$."
+      ],
+      "takeaway": "Rationalising a radical fraction can turn a messy sum into a telescoping difference.",
+      "verify": "import math\ns = sum(1 / (math.sqrt(k) + math.sqrt(k + 1)) for k in range(1, 25))\nprint(round(s))"
+    }
+  ],
+  "problems": [
+    {
+      "id": "seq-01",
+      "difficulty": 1,
+      "problem": "An arithmetic sequence begins $4, 11, 18, 25, \\dots$. What is its $10$th term?",
+      "choices": [
+        "$59$",
+        "60",
+        "$63$",
+        "64",
+        "$67$"
+      ],
+      "answer": "E",
+      "hint": "Find the common difference first, then count the gaps between the 1st and 10th terms.",
+      "solution": "The common difference is $d = 11 - 4 = 7$. The 10th term is $a_{10} = a_1 + 9d = 4 + 63 = 67$. Between the 1st and 10th terms there are nine gaps, not ten, so $10d$ is the wrong count.",
+      "verify": "a = 4\nfor _ in range(9):\n    a += 7\nprint(a)"
+    },
+    {
+      "id": "seq-02",
+      "difficulty": 1,
+      "problem": "A geometric sequence begins $3, 6, 12, 24, \\dots$. What is the sum of its first six terms?",
+      "choices": [
+        "$63$",
+        "$93$",
+        "$189$",
+        "$192$",
+        "$381$"
+      ],
+      "answer": "C",
+      "hint": "Identify the ratio, then either add the six terms directly or use $S_n = \\frac{a(r^n - 1)}{r - 1}$.",
+      "solution": "The ratio is $r = 2$ and $a = 3$. The six terms are $3, 6, 12, 24, 48, 96$, and they sum to $189$. Check with the formula: $S_6 = \\frac{3(2^6 - 1)}{2 - 1} = 3\\cdot 63 = 189$. The choice $63 = 2^6 - 1$ forgets the factor $3$, $93$ is the sum of only five terms, and $192$ is the seventh term.",
+      "verify": "terms = [3]\nfor _ in range(5):\n    terms.append(terms[-1] * 2)\nprint(sum(terms))"
+    },
+    {
+      "id": "seq-03",
+      "difficulty": 1,
+      "problem": "What is the sum of all odd positive integers less than $100$? That is, find $1 + 3 + 5 + \\cdots + 99$.",
+      "choices": [
+        "50",
+        "$1250$",
+        "$2450$",
+        "$2475$",
+        "$2500$"
+      ],
+      "answer": "E",
+      "hint": "How many odd numbers are there from $1$ to $99$? Pair the first and last terms.",
+      "solution": "There are $50$ odd numbers from $1$ to $99$, since the $k$th odd number is $2k - 1$. Their average is $\\frac{1 + 99}{2} = 50$, so the sum is $50 \\cdot 50 = 2500$. The choice $2550$ doubles the sum of $1$ to $50$, and $4950$ is the sum of all integers from $1$ to $99$.",
+      "verify": "print(sum(k for k in range(1, 100) if k % 2 == 1))"
+    },
+    {
+      "id": "seq-04",
+      "difficulty": 2,
+      "problem": "In an arithmetic sequence, the $3$rd term is $10$ and the $7$th term is $22$. What is the sum of the first term and the tenth term?",
+      "choices": [
+        "$35$",
+        "$37$",
+        "$39$",
+        "43",
+        "45"
+      ],
+      "answer": "A",
+      "hint": "How many common differences separate the 3rd term from the 7th term?",
+      "solution": "The 3rd and 7th terms are four steps apart and differ by $22 - 10 = 12$, so $d = 3$. Then $a_1 = 10 - 2\\cdot 3 = 4$ and $a_{10} = 4 + 9\\cdot 3 = 31$. Their sum is $4 + 31 = 35$.",
+      "verify": "found = None\nfor a1 in range(-50, 51):\n    for d in range(-50, 51):\n        if a1 + 2 * d == 10 and a1 + 6 * d == 22:\n            found = a1 + (a1 + 9 * d)\nprint(found)"
+    },
+    {
+      "id": "seq-05",
+      "difficulty": 2,
+      "problem": "Compute the sum of the first eight terms of the geometric series $1 - \\frac{1}{2} + \\frac{1}{4} - \\frac{1}{8} + \\cdots$, that is, $\\displaystyle\\sum_{k=0}^{7} \\left(-\\frac{1}{2}\\right)^{k}$.",
+      "choices": [
+        "$\\frac{1}{2}$",
+        "$\\frac{85}{128}$",
+        "$\\frac{2}{3}$",
+        "$\\frac{3}{4}$",
+        "$\\frac{255}{256}$"
+      ],
+      "answer": "B",
+      "hint": "The series is finite, so use the finite formula with $n = 8$ and $r = -\\frac{1}{2}$.",
+      "solution": "Here $a = 1$, $r = -\\frac12$ and $n = 8$. Then $S_8 = \\frac{1 - r^8}{1 - r} = \\frac{1 - \\frac{1}{256}}{\\frac32} = \\frac{255}{256}\\cdot\\frac23 = \\frac{85}{128}$. The choice $\\frac23$ is the sum of the infinite series, which does not apply because we stop after eight terms. The choice $\\frac{255}{256}$ is $1 - r^8$ without dividing by $1 - r$.",
+      "verify": "from fractions import Fraction\ns = sum(Fraction(-1, 2) ** k for k in range(8))\nprint(s)"
+    },
+    {
+      "id": "seq-06",
+      "difficulty": 2,
+      "problem": "Compute $\\displaystyle\\sum_{k=1}^{99} \\frac{1}{k(k+1)}$.",
+      "choices": [
+        "$\\frac{1}{99}$",
+        "$\\frac{9}{10}$",
+        "$\\frac{99}{100}$",
+        "$\\frac{100}{101}$",
+        "$\\frac{197}{100}$"
+      ],
+      "answer": "C",
+      "hint": "Split each fraction into a difference of two simpler fractions, then see which terms survive.",
+      "solution": "Write $\\frac{1}{k(k+1)} = \\frac{1}{k} - \\frac{1}{k+1}$. The sum telescopes: $\\left(1 - \\frac12\\right) + \\left(\\frac12 - \\frac13\\right) + \\cdots + \\left(\\frac{1}{99} - \\frac{1}{100}\\right) = 1 - \\frac{1}{100} = \\frac{99}{100}$.",
+      "verify": "from fractions import Fraction\ns = sum(Fraction(1, k * (k + 1)) for k in range(1, 100))\nprint(s)"
+    },
+    {
+      "id": "seq-07",
+      "difficulty": 3,
+      "problem": "A geometric series has first term $a$ and common ratio $r$, where $|r| < 1$. Its terms are $a, ar, ar^2, \\dots$. The sum of all its terms is $12$, and the sum of the terms in even positions ($ar, ar^3, ar^5, \\dots$) is $4$. What is $r$?",
+      "choices": [
+        "$-\\frac{1}{2}$",
+        "$\\frac{1}{4}$",
+        "$\\frac{1}{3}$",
+        "$\\frac{1}{2}$",
+        "$\\frac{2}{3}$"
+      ],
+      "answer": "D",
+      "hint": "Divide the two equations. The factor $a$ cancels, and $1 - r^2 = (1 - r)(1 + r)$ also simplifies.",
+      "solution": "The total is $\\frac{a}{1 - r} = 12$. The even-position terms form a series with first term $ar$ and ratio $r^2$, so $\\frac{ar}{1 - r^2} = 4$. Dividing the second equation by the first gives $\\frac{r}{1 + r} = \\frac{4}{12} = \\frac13$, so $3r = 1 + r$ and $r = \\frac12$. Check: $a = 6$, and the even-position sum is $\\frac{3}{3/4} = 4$.",
+      "verify": "from fractions import Fraction\ncands = sorted({Fraction(p, q) for q in range(1, 13) for p in range(-11, 12) if abs(Fraction(p, q)) < 1})\nsols = []\nfor r in cands:\n    total = sum(float(r) ** n for n in range(400))\n    a = 12 / total\n    even = sum(a * float(r) ** n for n in range(1, 400, 2))\n    if abs(even - 4) < 1e-9:\n        sols.append(r)\nprint(sols[0] if len(sols) == 1 else 'ambiguous')"
+    },
+    {
+      "id": "seq-08",
+      "difficulty": 3,
+      "problem": "Let $a_1 = 3$, $a_2 = 7$, and $a_{n+2} = |a_{n+1} - a_n|$ for $n \\ge 1$. What is $a_1 + a_2 + \\cdots + a_{2025}$?",
+      "choices": [
+        "$1344$",
+        "$1358$",
+        "$1366$",
+        "$1372$",
+        "$1390$"
+      ],
+      "answer": "C",
+      "hint": "Compute the first dozen terms and look for a cycle. Once the sequence is cycling, you only need the sum of one cycle.",
+      "solution": "The first terms are $3, 7, 4, 3, 1, 2, 1, 1, 0, 1, 1, 0, \\dots$. From $a_9$ on, the pattern $0, 1, 1$ repeats with period $3$, so for $n \\ge 9$ we have $a_n = 0$ when $3 \\mid n$ and $a_n = 1$ otherwise. The first eight terms sum to $22$. The terms $a_9$ through $a_{2025}$ number $2017$, which is $672$ full blocks of $(0,1,1)$ covering $a_9$ to $a_{2024}$, plus the leftover $a_{2025} = 0$ since $3 \\mid 2025$. Each block adds $2$, so the total is $22 + 672\\cdot 2 = 1366$.",
+      "verify": "a = [None, 3, 7]\nfor n in range(1, 2024):\n    a.append(abs(a[n + 1] - a[n]))\nprint(sum(a[1:2026]))"
+    },
+    {
+      "id": "seq-09",
+      "difficulty": 3,
+      "problem": "Compute $1\\cdot 1! + 2\\cdot 2! + 3\\cdot 3! + \\cdots + 9\\cdot 9!$, where $n! = 1\\cdot 2\\cdots n$.",
+      "choices": [
+        "$3628799$",
+        "$3628800$",
+        "6894718",
+        "6894719",
+        "$39916799$"
+      ],
+      "answer": "A",
+      "hint": "Find a difference of two factorials that equals $k\\cdot k!$.",
+      "solution": "Since $(k+1)! - k! = k\\cdot k!$, each term is a difference: $k\\cdot k! = (k+1)! - k!$. The sum telescopes to $10! - 1! = 3628800 - 1 = 3628799$. The choice $3628800 = 10!$ forgets the final subtraction of $1$.",
+      "verify": "import math\nprint(sum(k * math.factorial(k) for k in range(1, 10)))"
+    },
+    {
+      "id": "seq-10",
+      "difficulty": 3,
+      "problem": "Let $T = 1^3 + 2^3 + 3^3 + 4^3 + 5^3 + 6^3$ and $Q = 1^2 + 2^2 + 3^2 + 4^2 + 5^2 + 6^2$. What is $T - Q$?",
+      "choices": [
+        "$91$",
+        "168",
+        "$340$",
+        "$350$",
+        "$441$"
+      ],
+      "answer": "D",
+      "hint": "Use the formulas for the sums of cubes and of squares, or simply add the numbers.",
+      "solution": "Using $\\sum k^3 = \\left(\\sum k\\right)^2$, we get $T = (1 + 2 + \\cdots + 6)^2 = 21^2 = 441$. Using $\\sum k^2 = \\frac{n(n+1)(2n+1)}{6}$, we get $Q = \\frac{6\\cdot 7\\cdot 13}{6} = 91$. So $T - Q = 350$. The choice $532$ is $T + Q$, $441$ is $T$ alone, and $91$ is $Q$ alone.",
+      "verify": "T = sum(k ** 3 for k in range(1, 7))\nQ = sum(k ** 2 for k in range(1, 7))\nprint(T - Q)"
+    },
+    {
+      "id": "seq-11",
+      "difficulty": 4,
+      "problem": "How many integers $n$ with $1 \\le n \\le 200$ make $1^2 + 2^2 + \\cdots + n^2$ divisible by $5$?",
+      "choices": [
+        "$100$",
+        "$116$",
+        "$120$",
+        "$124$",
+        "$160$"
+      ],
+      "answer": "C",
+      "hint": "Let $S_n = \\frac{n(n+1)(2n+1)}{6}$. Work modulo $5$ and see whether the remainders of $S_n$ repeat.",
+      "solution": "Modulo $5$: $S_1 = 1$, $S_2 = 5$, $S_3 = 14$, $S_4 = 30$, $S_5 = 55$, with remainders $1, 0, 4, 0, 0$. Moving from $n$ to $n+5$ adds $\\sum_{j=1}^{5}(n+j)^2$, and five consecutive squares cover every residue class mod $5$, so this sum is $0$ modulo $5$. The pattern therefore has period $5$, and $5 \\mid S_n$ exactly when $n \\equiv 0, 2, 4 \\pmod 5$. Each of these three residues has $40$ values in $1$ to $200$, giving $120$.",
+      "verify": "count = 0\nS = 0\nfor n in range(1, 201):\n    S += n * n\n    if S % 5 == 0:\n        count += 1\nprint(count)"
+    },
+    {
+      "id": "seq-12",
+      "difficulty": 4,
+      "problem": "A geometric sequence of positive real numbers has its first three terms summing to $7$ and its first six terms summing to $63$. What is the first term?",
+      "choices": [
+        "$\\frac{1}{7}$",
+        "$1$",
+        "$2$",
+        "$\\frac{7}{3}$",
+        "$7$"
+      ],
+      "answer": "B",
+      "hint": "The first six terms are the first three plus the next three. How does the sum of the next three compare with the sum of the first three?",
+      "solution": "Let $S_3 = a(1 + r + r^2) = 7$. The next three terms are $ar^3, ar^4, ar^5$, whose sum is $r^3 S_3$, so $S_6 = S_3(1 + r^3)$. Thus $63 = 7(1 + r^3)$, giving $r^3 = 8$ and, since $r$ is real and positive, $r = 2$. Then $a(1 + 2 + 4) = 7$ gives $a = 1$. The choice $\\frac73$ divides $7$ by the number of terms instead of by $1 + 2 + 4$, and the choice $7$ is just $S_3$.",
+      "verify": "from fractions import Fraction\nsols = set()\nfor p in range(1, 200):\n    for q in range(1, 30):\n        r = Fraction(p, q)\n        a = Fraction(7) / (1 + r + r * r)\n        if sum(a * r ** k for k in range(6)) == 63:\n            sols.add(a)\nassert len(sols) == 1\nprint(sols.pop())"
+    },
+    {
+      "id": "seq-13",
+      "difficulty": 4,
+      "problem": "A sequence is defined by $a_1 = 2$ and $a_{n+1} = \\dfrac{1}{1 - a_n}$ for $n \\ge 1$. What is $a_1 + a_2 + \\cdots + a_{100}$?",
+      "choices": [
+        "$\\frac{103}{2}$",
+        "52",
+        "$\\frac{105}{2}$",
+        "$\\frac{107}{2}$",
+        "$54$"
+      ],
+      "answer": "A",
+      "hint": "Compute the first four or five terms. What happens next?",
+      "solution": "We have $a_1 = 2$, $a_2 = -1$, $a_3 = \\frac12$, and $a_4 = 2$ again, so the sequence has period $3$. Each block $2, -1, \\frac12$ sums to $\\frac32$. Terms $a_1$ through $a_{99}$ form $33$ complete blocks and sum to $\\frac{99}{2}$. Since $100 \\equiv 1 \\pmod 3$, $a_{100} = a_1 = 2$. The total is $\\frac{99}{2} + 2 = \\frac{103}{2}$. The choice $\\frac{99}{2}$ forgets the last term.",
+      "verify": "from fractions import Fraction\na = Fraction(2)\ntotal = Fraction(0)\nfor n in range(1, 101):\n    total += a\n    a = 1 / (1 - a)\nprint(total)"
+    },
+    {
+      "id": "seq-14",
+      "difficulty": 5,
+      "problem": "Let $a_n = 2^n - 1$ for each positive integer $n$. Compute $\\displaystyle\\sum_{n=1}^{\\infty} \\frac{2^n}{a_n\\, a_{n+1}}$.",
+      "choices": [
+        "$\\frac{1}{2}$",
+        "$1$",
+        "$\\frac{4}{3}$",
+        "$\\frac{5}{3}$",
+        "$2$"
+      ],
+      "answer": "B",
+      "hint": "Notice that $2^n = a_{n+1} - a_n$, then split the fraction over $a_n a_{n+1}$.",
+      "solution": "Since $a_{n+1} - a_n = 2^{n+1} - 2^n = 2^n$, the term equals $\\frac{a_{n+1} - a_n}{a_n a_{n+1}} = \\frac{1}{a_n} - \\frac{1}{a_{n+1}}$. The series telescopes. Its partial sum up to $N$ is $\\frac{1}{a_1} - \\frac{1}{a_{N+1}} = 1 - \\frac{1}{2^{N+1} - 1}$, which tends to $1$.",
+      "verify": "from fractions import Fraction\ntotal = sum(Fraction(2 ** n, (2 ** n - 1) * (2 ** (n + 1) - 1)) for n in range(1, 81))\nprint(total.limit_denominator(10 ** 6))"
+    },
+    {
+      "id": "seq-15",
+      "difficulty": 5,
+      "problem": "A sequence satisfies $a_1 = 1$ and $a_{n+1} = a_n + \\lfloor \\sqrt{n} \\rfloor$ for $n \\ge 1$, where $\\lfloor x \\rfloor$ is the greatest integer not exceeding $x$. What is $a_{1000}$?",
+      "choices": [
+        "20470",
+        "20553",
+        "$20584$",
+        "$20585$",
+        "$20616$"
+      ],
+      "answer": "D",
+      "hint": "Group the values of $n$ by the value of $\\lfloor \\sqrt{n} \\rfloor$. All $n$ with $m^2 \\le n \\le (m+1)^2 - 1$ share the value $m$.",
+      "solution": "We have $a_{1000} = 1 + \\sum_{n=1}^{999} \\lfloor \\sqrt{n} \\rfloor$. For $m = 1, \\dots, 30$, the value $m$ occurs for the $2m + 1$ integers $n = m^2, \\dots, (m+1)^2 - 1$, contributing $m(2m+1)$. The integers $n = 961, \\dots, 999$ (39 of them) have $\\lfloor \\sqrt{n} \\rfloor = 31$, contributing $31\\cdot 39 = 1209$. Since $\\sum_{m=1}^{30} (2m^2 + m) = 18910 + 465 = 19375$, the sum is $19375 + 1209 = 20584$, so $a_{1000} = 20585$. The choice $20584$ forgets the initial $1$.",
+      "verify": "import math\na = 1\nfor n in range(1, 1000):\n    a += math.isqrt(n)\nprint(a)"
+    }
+  ]
+}

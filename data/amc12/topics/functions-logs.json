@@ -1,0 +1,383 @@
+{
+  "id": "functions-logs",
+  "title": "Functions, Exponents & Logarithms",
+  "summary": "Composition and inverses, functional equations, exponent and logarithm laws, solving exponential and logarithmic equations, and floor and absolute value functions.",
+  "examWeight": "≈2–4 problems per paper",
+  "concepts": [
+    {
+      "title": "Composition and inverses",
+      "body": "A function is a machine: you feed in an input and get exactly one output. The composition $f\\circ g$ (read \"$f$ after $g$\") means feed $x$ into $g$ first, then feed the result into $f$, so $(f\\circ g)(x)=f(g(x))$. Always work from the inside out. Order matters: with $f(x)=2x+1$ and $g(x)=x^2$, we get $f(g(3))=f(9)=19$, but $g(f(3))=g(7)=49$.\n\nAn inverse $f^{-1}$ runs the machine backwards. It is defined by $f^{-1}(y)=x$ exactly when $f(x)=y$. So to find $f^{-1}(c)$ you usually do not need a formula for the inverse: solve $f(x)=c$ for $x$, then check by substituting back. Because $f^{-1}$ undoes $f$, we always have $f^{-1}(f(x))=x$.\n\nInverses reverse the order of composition: $(f\\circ g)^{-1}=g^{-1}\\circ f^{-1}$. This is like getting dressed: you put on socks and then shoes, so to undo it you take off the shoes first.",
+      "keyFacts": [
+        "$(f\\circ g)(x)=f(g(x))$: the inner function $g$ is applied first",
+        "$f^{-1}(c)=x \\iff f(x)=c$",
+        "$f^{-1}(f(x))=x$ for every $x$ in the domain of $f$",
+        "$(f\\circ g)^{-1}=g^{-1}\\circ f^{-1}$",
+        "Composition is usually not commutative: $f\\circ g\\neq g\\circ f$"
+      ],
+      "whenToUse": "The problem nests one function inside another, or asks for the input that produces a given output."
+    },
+    {
+      "title": "Exponent laws",
+      "body": "An exponent counts repeated multiplication: $a^n$ means $n$ copies of $a$ multiplied together. The laws follow from that meaning. Multiplying powers of the same base adds exponents, because $a^m\\cdot a^n$ is $m+n$ copies of $a$. Raising a power to a power multiplies exponents, because $(a^m)^n$ is $n$ groups of $m$ copies of $a$.\n\nThe definitions for zero and negative exponents are chosen so the laws keep working. For example, $a^m/a^m=1$ must also equal $a^{m-m}=a^0$, so $a^0=1$; similarly $a^{-n}=1/a^n$. A fractional exponent is a root: $a^{1/2}=\\sqrt{a}$.\n\nThe most useful habit is to rewrite everything with one common base, usually primes. For instance $\\dfrac{4^5}{2^7}=\\dfrac{(2^2)^5}{2^7}=\\dfrac{2^{10}}{2^7}=2^{3}=8$. Once the bases match, you can compare exponents directly, since $a^x=a^y$ with $a>0$ and $a\\neq 1$ forces $x=y$.",
+      "keyFacts": [
+        "$a^m a^n=a^{m+n}$ and $\\dfrac{a^m}{a^n}=a^{m-n}$",
+        "$(a^m)^n=a^{mn}$ and $(ab)^n=a^n b^n$",
+        "$a^0=1$ and $a^{-n}=\\dfrac{1}{a^n}$",
+        "If $a^x=a^y$ with $a>0$ and $a\\neq 1$, then $x=y$"
+      ],
+      "whenToUse": "Numbers are written as powers, or the problem asks you to simplify, compare or solve an expression with exponents."
+    },
+    {
+      "title": "Logarithms and change of base",
+      "body": "A logarithm answers the question \"what exponent?\" The statement $\\log_b x=y$ means exactly $b^y=x$. For example $\\log_2 8=3$ because $2^3=8$. Logs turn products into sums, $\\log_b(xy)=\\log_b x+\\log_b y$, and powers into products, $\\log_b(x^k)=k\\log_b x$. These come from the exponent laws: if $x=b^u$ and $y=b^v$, then $xy=b^{u+v}$, so the exponent of $xy$ is $u+v$.\n\nChange of base lets you compare logarithms written in different bases: $\\log_b x=\\dfrac{\\log_c x}{\\log_c b}$ for any positive base $c\\neq 1$. The reason is that both sides measure the same exponent once you express $x$ and $b$ in base $c$. A useful special case is $\\log_b a\\cdot\\log_a b=1$. Example: $\\log_4 32=\\dfrac{\\log_2 32}{\\log_2 4}=\\dfrac{5}{2}$, which checks out because $4^{5/2}=2^5=32$.\n\nLogarithms only accept positive inputs. Before you finish a log problem, confirm that every argument is positive, because a candidate that makes an argument zero or negative does not count.",
+      "keyFacts": [
+        "$\\log_b x=y \\iff b^y=x$",
+        "$\\log_b(xy)=\\log_b x+\\log_b y$ and $\\log_b(x^k)=k\\log_b x$",
+        "$\\log_b x=\\dfrac{\\log_c x}{\\log_c b}$ for any valid base $c$",
+        "$\\log_b a\\cdot \\log_a b=1$",
+        "$b^{\\log_b x}=x$ for $x>0$"
+      ],
+      "whenToUse": "The problem mixes logarithms with different bases, or has a sum or product of logs that you want to combine into one."
+    },
+    {
+      "title": "Solving exponential and logarithmic equations",
+      "body": "If both sides of an exponential equation can be written as powers of the same base, equate the exponents: $2^{x+1}=8=2^3$ gives $x+1=3$, so $x=2$. If the equation mixes powers such as $4^x$ and $2^x$, rewrite $4^x=(2^x)^2$ and substitute $y=2^x$. This turns the equation into an ordinary polynomial in $y$. Solve for $y$, then convert back with $x=\\log_2 y$ for each positive $y$.\n\nFor logarithmic equations, first combine the logs into one using the product and power rules, then rewrite the equation as an exponential. Example: $\\log_2 x+\\log_2(x-2)=3$ becomes $\\log_2\\big(x(x-2)\\big)=3$, so $x(x-2)=2^3=8$. Then $x^2-2x-8=0$ gives $x=4$ or $x=-2$.\n\nThe domain check is the step most often skipped. The original equation needs $x>0$ and $x-2>0$, so $x=-2$ is rejected even though it satisfies the combined equation. A root that breaks the domain is called extraneous.",
+      "keyFacts": [
+        "If $b^u=b^v$ with $b>0$ and $b\\neq 1$, then $u=v$",
+        "Substitute $y=b^x$, so that $b^{2x}=y^2$",
+        "Combine logs first, then convert the equation to a power",
+        "Every argument of a logarithm must be positive"
+      ],
+      "whenToUse": "The unknown sits in an exponent or inside a logarithm, possibly in several places at once."
+    },
+    {
+      "title": "Floor and absolute value functions",
+      "body": "The floor $\\lfloor x\\rfloor$ is the largest integer that is at most $x$. It always rounds down, so $\\lfloor 3.7\\rfloor=3$ but $\\lfloor -3.7\\rfloor=-4$. To use it, write $\\lfloor x\\rfloor=n$ as the inequality $n\\le x<n+1$. Since $k$ is an integer, $\\lfloor x+k\\rfloor=\\lfloor x\\rfloor+k$ for every integer $k$.\n\nThe absolute value $|x|$ is the distance from $x$ to $0$, and $|a-b|$ is the distance between $a$ and $b$. Because $|x|$ is defined in two pieces ($|x|=x$ if $x\\ge 0$, and $|x|=-x$ if $x<0$), an equation with several absolute values is solved by splitting the number line at the breakpoints, the points where an expression inside a bar equals zero. Example: $|x-1|+|x+2|=5$ has breakpoints $x=-2$ and $x=1$. For $x\\ge 1$ it reads $2x+1=5$, so $x=2$. For $x\\le -2$ it reads $-2x-1=5$, so $x=-3$. For $-2<x<1$ the left side always equals $3$, so there are no solutions there.\n\nFloor problems are often counting problems. To count the $n$ with $\\lfloor n/k\\rfloor=j$, find the block of integers with $jk\\le n<(j+1)k$ instead of checking one value at a time.",
+      "keyFacts": [
+        "$\\lfloor x\\rfloor=n \\iff n\\le x<n+1$ for an integer $n$",
+        "$\\lfloor x+k\\rfloor=\\lfloor x\\rfloor+k$ for an integer $k$",
+        "$|a|=b$ with $b\\ge 0$ gives $a=b$ or $a=-b$",
+        "Breakpoints are where the expression inside each absolute value equals $0$"
+      ],
+      "whenToUse": "A floor appears in a sum or a count, or an equation contains absolute values and you need all of its solutions."
+    },
+    {
+      "title": "Functional equations",
+      "body": "A functional equation is a rule that must hold for every allowed input, and the unknown is the function itself. The method is to substitute carefully chosen inputs, such as $x$, $-x$, $1/x$ or $1-x$, so that the same unknown values appear again. Each substitution gives one equation about values such as $f(4)$ and $f\\left(\\tfrac14\\right)$.\n\nTwo or three substitutions usually produce a small linear system, which you solve like any other system. For example, suppose $f(x)+2f(-x)=3x$ for all real $x$. Replacing $x$ by $-x$ gives $f(-x)+2f(x)=-3x$. Writing $A=f(x)$ and $B=f(-x)$, we have $A+2B=3x$ and $2A+B=-3x$. Doubling the second equation and subtracting the first gives $3A=-9x$, so $f(x)=-3x$.\n\nAlways check your candidate in the original rule. If it does not satisfy the equation for every allowed input, it is not a solution.",
+      "keyFacts": [
+        "Substitute special inputs such as $-x$, $1/x$ or $1-x$",
+        "Each substitution gives one equation linking the unknown values",
+        "Treat the unknown values as variables and solve the system",
+        "Check the result in the original equation"
+      ],
+      "whenToUse": "The problem states an equation that $f$ must satisfy for all inputs and asks for a value of $f$."
+    }
+  ],
+  "workedExamples": [
+    {
+      "title": "Composition is not commutative",
+      "difficulty": 1,
+      "problem": "Let $f(x)=2x+1$ and $g(x)=x^2$. What is $g(f(3))-f(g(3))$?",
+      "choices": [
+        "8",
+        "13",
+        "19",
+        "30",
+        "49"
+      ],
+      "answer": "D",
+      "steps": [
+        "Compute the inner value $f(3)=2\\cdot 3+1=7$, then apply $g$: $g(7)=49$.",
+        "Compute $g(3)=9$, then apply $f$: $f(9)=2\\cdot 9+1=19$.",
+        "Subtract: $49-19=30$.",
+        "The two composites differ, which shows that composition is not commutative."
+      ],
+      "takeaway": "Apply the inner function first, and never assume $f(g(x))$ equals $g(f(x))$.",
+      "verify": "f = lambda x: 2 * x + 1\ng = lambda x: x * x\nprint(g(f(3)) - f(g(3)))\n"
+    },
+    {
+      "title": "Sum of solutions to an exponential quadratic",
+      "difficulty": 2,
+      "problem": "Find the sum of all real solutions of $4^{x}-9\\cdot 2^{x}+8=0$.",
+      "choices": [
+        "2",
+        "3",
+        "4",
+        "8",
+        "9"
+      ],
+      "answer": "B",
+      "steps": [
+        "Rewrite $4^x=(2^x)^2$, so with $y=2^x$ the equation becomes $y^2-9y+8=0$.",
+        "Factor: $(y-1)(y-8)=0$, so $y=1$ or $y=8$.",
+        "Convert back: $2^x=1$ gives $x=0$, and $2^x=8$ gives $x=3$.",
+        "The sum of the solutions is $0+3=3$. The product $0$ is a common wrong answer."
+      ],
+      "takeaway": "When an exponential equation has $b^{2x}$ and $b^x$ terms, substitute $y=b^x$, then convert back to $x$.",
+      "verify": "from fractions import Fraction\n\ndef h(x):\n    return 4 ** x - 9 * 2 ** x + 8\n\nN = 20000\nxs = [-10 + 20 * i / N for i in range(N + 1)]\nroots = []\nfor a, b in zip(xs, xs[1:]):\n    if h(a) == 0:\n        roots.append(a)\n    elif h(a) * h(b) < 0:\n        lo, hi = a, b\n        for _ in range(100):\n            mid = (lo + hi) / 2\n            if h(lo) * h(mid) <= 0:\n                hi = mid\n            else:\n                lo = mid\n        roots.append((lo + hi) / 2)\nprint(Fraction(round(sum(roots), 6)).limit_denominator(100))\n"
+    },
+    {
+      "title": "Solving a nested absolute value equation",
+      "difficulty": 3,
+      "problem": "Let $f(x)=|x|-2$. How many real numbers $x$ satisfy $f(f(x))=0$?",
+      "choices": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "answer": "C",
+      "steps": [
+        "Let $u=f(x)$. The equation $f(u)=0$ means $|u|-2=0$, so $|u|=2$ and $u=2$ or $u=-2$.",
+        "Case $u=2$: $|x|-2=2$, so $|x|=4$ and $x=\\pm 4$.",
+        "Case $u=-2$: $|x|-2=-2$, so $|x|=0$ and $x=0$.",
+        "Three real numbers work: $-4$, $0$ and $4$."
+      ],
+      "takeaway": "For a nested function, solve from the outside in: find the inner values that work, then solve for $x$ in each case.",
+      "verify": "from fractions import Fraction\n\ndef f(x):\n    return abs(x) - 2\n\ncount = 0\nfor n in range(-80, 81):\n    x = Fraction(n, 8)\n    if f(f(x)) == 0:\n        count += 1\nprint(count)\n"
+    }
+  ],
+  "problems": [
+    {
+      "id": "fn-01",
+      "difficulty": 1,
+      "problem": "Let $f(x)=3x-4$ and $g(x)=x^2+1$. What is $f(g(2))$?",
+      "choices": [
+        "5",
+        "11",
+        "14",
+        "20",
+        "26"
+      ],
+      "answer": "B",
+      "hint": "Work from the inside out: first find $g(2)$.",
+      "solution": "$g(2)=2^2+1=5$. Then $f(5)=3\\cdot 5-4=11$. The choice $5$ is only $g(2)$, and $26$ is $g(g(2))$, a different composition.",
+      "verify": "f = lambda x: 3 * x - 4\ng = lambda x: x * x + 1\nprint(f(g(2)))\n"
+    },
+    {
+      "id": "fn-02",
+      "difficulty": 1,
+      "problem": "Let $f(x)=\\dfrac{3x-2}{5}$. What is $f^{-1}(4)$?",
+      "choices": [
+        "$\\frac{22}{3}$",
+        "8",
+        "$\\frac{26}{3}$",
+        "$\\frac{154}{15}$",
+        "$\\frac{32}{3}$"
+      ],
+      "answer": "A",
+      "hint": "$f^{-1}(4)$ is the input $x$ for which $f(x)=4$. Solve that equation.",
+      "solution": "We need $\\dfrac{3x-2}{5}=4$, so $3x-2=20$ and $x=\\dfrac{22}{3}$. Check: $\\dfrac{3\\cdot\\frac{22}{3}-2}{5}=\\dfrac{20}{5}=4$.",
+      "verify": "from fractions import Fraction\n\nfound = None\nfor d in range(1, 40):\n    for n in range(-400, 401):\n        x = Fraction(n, d)\n        if (3 * x - 2) / 5 == 4:\n            found = x\n            break\n    if found is not None:\n        break\nprint(found)\n"
+    },
+    {
+      "id": "fn-03",
+      "difficulty": 1,
+      "problem": "What is $\\dfrac{6^{4}}{2^{3}\\cdot 3^{2}}$?",
+      "choices": [
+        "18",
+        "36",
+        "72",
+        "108",
+        "216"
+      ],
+      "answer": "A",
+      "hint": "Write $6=2\\cdot 3$ and collect the powers of $2$ and of $3$ separately.",
+      "solution": "$6^4=2^4\\cdot 3^4$, so the fraction equals $\\dfrac{2^4\\cdot 3^4}{2^3\\cdot 3^2}=2^{1}\\cdot 3^{2}=2\\cdot 9=18$.",
+      "verify": "from fractions import Fraction\nprint(Fraction(6 ** 4, 2 ** 3 * 3 ** 2))\n"
+    },
+    {
+      "id": "fn-04",
+      "difficulty": 2,
+      "problem": "Suppose $f(x)+3f\\left(\\dfrac{1}{x}\\right)=2x$ for every nonzero real number $x$. What is $f(4)$?",
+      "choices": [
+        "$-\\frac{13}{16}$",
+        "$\\frac{3}{8}$",
+        "$\\frac{13}{16}$",
+        "$\\frac{47}{16}$",
+        "8"
+      ],
+      "answer": "A",
+      "hint": "Substitute $x=4$, then substitute $x=\\frac14$. The second substitution brings $f(4)$ back in.",
+      "solution": "Let $a=f(4)$ and $b=f\\left(\\tfrac14\\right)$. Substituting $x=4$ gives $a+3b=8$. Substituting $x=\\tfrac14$ gives $b+3a=\\tfrac12$. From the second, $b=\\tfrac12-3a$. Put this into the first: $a+\\tfrac32-9a=8$, so $-8a=\\tfrac{13}{2}$ and $a=-\\tfrac{13}{16}$. Check: $b=\\tfrac{47}{16}$, and $-\\tfrac{13}{16}+3\\cdot\\tfrac{47}{16}=8$.",
+      "verify": "from fractions import Fraction\n\n# Unknowns: a = f(4) and b = f(1/4). Search pairs on a grid of 1/16.\nsols = []\nfor i in range(-64, 65):\n    for j in range(-64, 65):\n        a = Fraction(i, 16)\n        b = Fraction(j, 16)\n        if a + 3 * b == 8 and b + 3 * a == Fraction(1, 2):\n            sols.append(a)\nassert len(sols) == 1\nprint(sols[0])\n"
+    },
+    {
+      "id": "fn-05",
+      "difficulty": 2,
+      "problem": "What is $\\displaystyle\\sum_{k=1}^{20}\\left\\lfloor \\frac{k}{3}\\right\\rfloor$?",
+      "choices": [
+        "60",
+        "63",
+        "69",
+        "72",
+        "78"
+      ],
+      "answer": "B",
+      "hint": "Group the terms into blocks on which $\\lfloor k/3\\rfloor$ stays the same.",
+      "solution": "For $k=3j,\\,3j+1,\\,3j+2$ the floor is $j$. The values $k=1,2$ give floor $0$, and the blocks $\\{3,4,5\\},\\{6,7,8\\},\\dots,\\{18,19,20\\}$ give floors $1,2,\\dots,6$. The sum is $0+3(1+2+3+4+5+6)=3\\cdot 21=63$.",
+      "verify": "import math\nprint(sum(math.floor(k / 3) for k in range(1, 21)))\n"
+    },
+    {
+      "id": "fn-06",
+      "difficulty": 2,
+      "problem": "Let $S$ be the sum of all real solutions of $|x-1|+|x+2|=5$. What is $S$?",
+      "choices": [
+        "-7",
+        "-5",
+        "-3",
+        "-1",
+        "1"
+      ],
+      "answer": "D",
+      "hint": "The expressions inside the absolute values change sign at $x=1$ and $x=-2$. Split into three cases.",
+      "solution": "For $x\\ge 1$ the equation is $2x+1=5$, giving $x=2$, which is valid. For $x\\le -2$ it is $-2x-1=5$, giving $x=-3$, which is valid. For $-2<x<1$ the left side equals $3$, never $5$. So the solutions are $2$ and $-3$, and their sum is $-1$.",
+      "verify": "from fractions import Fraction\n\nsols = [Fraction(n, 4) for n in range(-40, 41)\n        if abs(Fraction(n, 4) - 1) + abs(Fraction(n, 4) + 2) == 5]\nprint(sum(sols))\n"
+    },
+    {
+      "id": "fn-07",
+      "difficulty": 3,
+      "problem": "What is $\\log_{8}9\\cdot\\log_{27}4$?",
+      "choices": [
+        "$\\frac{1}{4}$",
+        "$\\frac{4}{9}$",
+        "$\\frac{2}{3}$",
+        "$\\frac{3}{2}$",
+        "$\\frac{9}{4}$"
+      ],
+      "answer": "B",
+      "hint": "Change both logarithms to a common base, such as $2$ or $3$.",
+      "solution": "Write $\\log_8 9=\\dfrac{\\log 9}{\\log 8}=\\dfrac{2\\log 3}{3\\log 2}$ and $\\log_{27} 4=\\dfrac{\\log 4}{\\log 27}=\\dfrac{2\\log 2}{3\\log 3}$. Multiplying, the $\\log 2$ and $\\log 3$ factors cancel, leaving $\\dfrac{4}{9}$.",
+      "verify": "import math\nfrom fractions import Fraction\n\nvalue = (math.log(9) / math.log(8)) * (math.log(4) / math.log(27))\nprint(Fraction(value).limit_denominator(1000))\n"
+    },
+    {
+      "id": "fn-08",
+      "difficulty": 3,
+      "problem": "Find the sum of all real solutions of $2^{2x+1}-9\\cdot 2^{x}+4=0$.",
+      "choices": [
+        "-5",
+        "-2",
+        "-1",
+        "0",
+        "1"
+      ],
+      "answer": "E",
+      "hint": "Note that $2^{2x+1}=2\\cdot(2^x)^2$. Substitute $y=2^x$.",
+      "solution": "Let $y=2^x>0$. The equation becomes $2y^2-9y+4=0$, which factors as $(2y-1)(y-4)=0$. So $y=\\tfrac12$ or $y=4$, giving $x=-1$ or $x=2$. The sum is $-1+2=1$. The value $-2$ is the product of the solutions, a common slip.",
+      "verify": "from fractions import Fraction\n\ndef h(x):\n    return 2 ** (2 * x + 1) - 9 * 2 ** x + 4\n\nN = 20000\nxs = [-10 + 20 * i / N for i in range(N + 1)]\nroots = []\nfor a, b in zip(xs, xs[1:]):\n    if h(a) == 0:\n        roots.append(a)\n    elif h(a) * h(b) < 0:\n        lo, hi = a, b\n        for _ in range(100):\n            mid = (lo + hi) / 2\n            if h(lo) * h(mid) <= 0:\n                hi = mid\n            else:\n                lo = mid\n        roots.append((lo + hi) / 2)\nprint(Fraction(round(sum(roots), 6)).limit_denominator(100))\n"
+    },
+    {
+      "id": "fn-09",
+      "difficulty": 3,
+      "problem": "Find the only real number $x$ satisfying $\\log_2 x+\\log_2(x-2)=3$.",
+      "choices": [
+        "-2",
+        "0",
+        "2",
+        "3",
+        "4"
+      ],
+      "answer": "E",
+      "hint": "Combine the two logarithms, then check the domain before accepting any root.",
+      "solution": "By the product rule the equation becomes $\\log_2\\big(x(x-2)\\big)=3$, so $x(x-2)=8$, i.e. $x^2-2x-8=0$, which factors as $(x-4)(x+2)=0$. The roots are $x=4$ and $x=-2$. Since $\\log_2 x$ needs $x>0$, the root $x=-2$ is rejected. Check: $\\log_2 4+\\log_2 2=2+1=3$.",
+      "verify": "import math\n\nsols = []\nfor n in range(-100, 101):\n    x = n / 10\n    if x > 2 and abs(math.log2(x) + math.log2(x - 2) - 3) < 1e-9:\n        sols.append(x)\nassert len(sols) == 1\nprint(round(sols[0]))\n"
+    },
+    {
+      "id": "fn-10",
+      "difficulty": 3,
+      "problem": "How many integers $n$ with $1\\le n\\le 200$ have $\\lfloor\\sqrt{n}\\rfloor$ even?",
+      "choices": [
+        "90",
+        "95",
+        "100",
+        "105",
+        "110"
+      ],
+      "answer": "B",
+      "hint": "If $\\lfloor\\sqrt{n}\\rfloor=k$, then $k^2\\le n<(k+1)^2$. Count the integers in each such block.",
+      "solution": "When $\\lfloor\\sqrt n\\rfloor=k$, the integers $n$ run from $k^2$ to $(k+1)^2-1$, which is $2k+1$ numbers. The even values of $k$ give blocks of sizes $5,9,13,17,21,25$ for $k=2,4,6,8,10,12$. The block for $k=14$ is cut off by the bound $200$: it contains only $196,\\dots,200$, which is $5$ numbers. Total: $5+9+13+17+21+25+5=95$.",
+      "verify": "import math\nprint(sum(1 for n in range(1, 201) if math.isqrt(n) % 2 == 0))\n"
+    },
+    {
+      "id": "fn-11",
+      "difficulty": 4,
+      "problem": "Suppose $f(x)+f\\left(\\dfrac{1}{1-x}\\right)=x$ for every real $x$ except $0$ and $1$. What is $f(2)$?",
+      "choices": [
+        "$\\frac{7}{4}$",
+        "2",
+        "$\\frac{9}{4}$",
+        "$\\frac{5}{2}$",
+        "$\\frac{11}{4}$"
+      ],
+      "answer": "A",
+      "hint": "Apply the rule to $x=2$, then to $\\frac{1}{1-2}$, then to the next value. Three substitutions close the loop.",
+      "solution": "The map $x\\mapsto \\dfrac{1}{1-x}$ sends $2\\to -1\\to \\tfrac12\\to 2$. Let $a=f(2)$, $b=f(-1)$ and $c=f(\\tfrac12)$. Then $a+b=2$ (from $x=2$), $b+c=-1$ (from $x=-1$) and $c+a=\\tfrac12$ (from $x=\\tfrac12$). Adding gives $a+b+c=\\tfrac34$, so $a=\\tfrac34-(b+c)=\\tfrac74$. Check: $b=\\tfrac14$ and $c=-\\tfrac54$, and all three equations hold.",
+      "verify": "from fractions import Fraction as F\n\nsols = []\nR = range(-16, 17)\nfor i in R:\n    for j in R:\n        for k in R:\n            a, b, c = F(i, 4), F(j, 4), F(k, 4)\n            if a + b == 2 and b + c == -1 and c + a == F(1, 2):\n                sols.append(a)\nassert len(sols) == 1\nprint(sols[0])\n"
+    },
+    {
+      "id": "fn-12",
+      "difficulty": 4,
+      "problem": "How many ordered pairs $(m,n)$ of positive integers with $m\\le 100$ and $n\\le 100$ make $2^{m}+2^{n}$ a perfect square?",
+      "choices": [
+        "50",
+        "96",
+        "120",
+        "144",
+        "146"
+      ],
+      "answer": "E",
+      "hint": "Factor out the smaller power of $2$, and treat the cases $m=n$ and $m\\neq n$ separately.",
+      "solution": "If $m=n$, the sum is $2^{m+1}$, a perfect square exactly when $m+1$ is even, so $m$ is odd: there are $50$ such pairs. If $m<n$, write $2^m+2^n=2^m(1+2^{k})$ with $k=n-m$. The factor $1+2^k$ is odd, so $m$ must be even and $1+2^k$ must itself be a perfect square $s^2$. Then $(s-1)(s+1)=2^k$; the only two powers of $2$ that differ by $2$ are $2$ and $4$, so $s=3$ and $k=3$. Thus $n=m+3$ with $m$ even and $m+3\\le 100$, giving $m=2,4,\\dots,96$: $48$ pairs. The pairs with $m>n$ give another $48$. Total: $50+48+48=146$.",
+      "verify": "import math\n\ndef is_square(v):\n    r = math.isqrt(v)\n    return r * r == v\n\ncount = 0\nfor m in range(1, 101):\n    for n in range(1, 101):\n        if is_square(2 ** m + 2 ** n):\n            count += 1\nprint(count)\n"
+    },
+    {
+      "id": "fn-13",
+      "difficulty": 4,
+      "problem": "Positive real numbers $x$ and $y$ satisfy $\\log_2 x+\\log_4 y=4$ and $\\log_4 x+\\log_2 y=5$. What is $xy$?",
+      "choices": [
+        "32",
+        "48",
+        "64",
+        "112",
+        "128"
+      ],
+      "answer": "C",
+      "hint": "Let $p=\\log_2 x$ and $q=\\log_2 y$. Rewrite $\\log_4 y$ as $\\frac{q}{2}$, and find $xy$ from $p+q$.",
+      "solution": "Let $p=\\log_2 x$ and $q=\\log_2 y$. Since $\\log_4 y=\\dfrac{q}{2}$ and $\\log_4 x=\\dfrac{p}{2}$, the equations become $p+\\dfrac{q}{2}=4$ and $\\dfrac{p}{2}+q=5$. Solving gives $p=2$ and $q=4$, so $x=4$ and $y=16$. Then $\\log_2(xy)=p+q=6$, and $xy=2^6=64$.",
+      "verify": "from fractions import Fraction as F\n\nsols = []\nfor i in range(-40, 41):\n    for j in range(-40, 41):\n        p, q = F(i, 4), F(j, 4)\n        if p + q / 2 == 4 and p / 2 + q == 5:\n            sols.append((p, q))\nassert len(sols) == 1\np, q = sols[0]\nprint(2 ** int(p + q))\n"
+    },
+    {
+      "id": "fn-14",
+      "difficulty": 5,
+      "problem": "A function $f$ from the positive integers to the positive integers is strictly increasing and satisfies $f(f(n))=3n$ for every positive integer $n$. What is $f(2025)$?",
+      "choices": [
+        "3888",
+        "4050",
+        "5589",
+        "5751",
+        "6075"
+      ],
+      "answer": "A",
+      "hint": "Note that $f(3n)=3f(n)$. Compute the first few values, then look for a pattern on the blocks $[3^k,\\,2\\cdot 3^k]$ and $[2\\cdot 3^k,\\,3^{k+1}]$.",
+      "solution": "Small values are forced: $f(1)=2$, $f(2)=3$, $f(3)=6$, $f(6)=9$, $f(9)=18$. The pattern is that for $3^k\\le n\\le 2\\cdot 3^k$ we have $f(n)=n+3^k$, and for $2\\cdot 3^k\\le n\\le 3^{k+1}$ we have $f(n)=3n-3^{k+1}$. Since $2\\cdot 3^6=1458\\le 2025\\le 3^7=2187$, the second rule with $k=6$ applies: $f(2025)=3\\cdot 2025-2187=3888$. Check: $f(3888)=3888+2187=6075=3\\cdot 2025$.",
+      "verify": "def f(n):\n    k = 0\n    while 3 ** (k + 1) <= n:\n        k += 1\n    # now 3^k <= n < 3^(k+1)\n    if n <= 2 * 3 ** k:\n        return n + 3 ** k\n    return 3 * n - 3 ** (k + 1)\n\nassert all(f(f(n)) == 3 * n for n in range(1, 3001))\nassert all(f(n) < f(n + 1) for n in range(1, 3000))\nprint(f(2025))\n"
+    },
+    {
+      "id": "fn-15",
+      "difficulty": 5,
+      "problem": "How many integers $n$ with $1\\le n\\le 1000$ satisfy $\\lfloor\\log_2 n\\rfloor=\\lfloor\\log_3 n\\rfloor+1$?",
+      "choices": [
+        "12",
+        "16",
+        "17",
+        "18",
+        "22"
+      ],
+      "answer": "C",
+      "hint": "Let $j=\\lfloor\\log_3 n\\rfloor$. The condition says $2^{j+1}\\le n<2^{j+2}$. Intersect this with $3^j\\le n<3^{j+1}$.",
+      "solution": "Let $j=\\lfloor\\log_3 n\\rfloor$, so $3^j\\le n<3^{j+1}$. The condition $\\lfloor\\log_2 n\\rfloor=j+1$ means $2^{j+1}\\le n<2^{j+2}$. Intersect the two intervals: $j=0$ gives $n=2$ (1 value); $j=1$ gives $4\\le n\\le 7$ (4 values); $j=2$ gives $9\\le n\\le 15$ (7 values); $j=3$ gives $27\\le n\\le 31$ (5 values). For $j\\ge 4$ the intervals are disjoint, because $3^j\\ge 2^{j+2}$. Total: $1+4+7+5=17$.",
+      "verify": "def floor_log(base, n):\n    j = 0\n    while base ** (j + 1) <= n:\n        j += 1\n    return j\n\ncount = 0\nfor n in range(1, 1001):\n    if floor_log(2, n) == floor_log(3, n) + 1:\n        count += 1\nprint(count)\n"
+    }
+  ]
+}

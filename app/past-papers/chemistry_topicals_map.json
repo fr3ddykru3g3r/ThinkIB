@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-15 20:05:22",
-  "total_questions_harvested": 2688,
-  "total_excluded_legacy": 494,
+  "generated_at": "2026-10-21 00:30:57",
+  "total_questions_harvested": 2184,
+  "total_excluded_legacy": 996,
   "themes": {
     "S1": {
       "theme": "S1",
@@ -9,8 +9,8 @@
       "description": "Particulate nature of matter, nuclear atom, electron configurations, the mole, and ideal gases.",
       "color": "#0969da",
       "accent": "rgba(9, 105, 218, 0.12)",
-      "total_questions": 1078,
-      "pure_count": 818,
+      "total_questions": 574,
+      "pure_count": 314,
       "intra_mixed_count": 30,
       "cross_synthesis_count": 230,
       "subtopics": [
@@ -124,12 +124,12 @@
       "theme_title": "Models of the Particulate Nature of Matter",
       "hl_only": false,
       "description": "Kinetic molecular theory, states of matter, phase changes, heating/cooling curves, mixtures, filtration, distillation, and chromatography.",
-      "total_questions": 556,
-      "mcq_count": 545,
-      "frq_count": 11,
-      "sl_count": 259,
-      "hl_count": 297,
-      "pure_count": 556,
+      "total_questions": 52,
+      "mcq_count": 50,
+      "frq_count": 2,
+      "sl_count": 29,
+      "hl_count": 23,
+      "pure_count": 52,
       "mixed_count": 0,
       "qp_path": "/vault/chemistry-topicals/S1.1_Introduction_to_the_Particulate_Nature_of_Matter.pdf",
       "ms_path": "/vault/chemistry-topicals/S1.1_Introduction_to_the_Particulate_Nature_of_Matter_MS.pdf"
@@ -386,8 +386,8 @@
       "hl_count": 8,
       "pure_count": 16,
       "mixed_count": 0,
-      "qp_path": "/vault/chemistry-topicals/R2.1_How_Much?_The_Amount_of_Chemical_Change.pdf",
-      "ms_path": "/vault/chemistry-topicals/R2.1_How_Much?_The_Amount_of_Chemical_Change_MS.pdf"
+      "qp_path": "/vault/chemistry-topicals/R2.1_How_Much_The_Amount_of_Chemical_Change.pdf",
+      "ms_path": "/vault/chemistry-topicals/R2.1_How_Much_The_Amount_of_Chemical_Change_MS.pdf"
     },
     "R2.2": {
       "code": "R2.2",
@@ -403,8 +403,8 @@
       "hl_count": 76,
       "pure_count": 100,
       "mixed_count": 0,
-      "qp_path": "/vault/chemistry-topicals/R2.2_How_Fast?_The_Rate_of_Chemical_Change.pdf",
-      "ms_path": "/vault/chemistry-topicals/R2.2_How_Fast?_The_Rate_of_Chemical_Change_MS.pdf"
+      "qp_path": "/vault/chemistry-topicals/R2.2_How_Fast_The_Rate_of_Chemical_Change.pdf",
+      "ms_path": "/vault/chemistry-topicals/R2.2_How_Fast_The_Rate_of_Chemical_Change_MS.pdf"
     },
     "R2.3": {
       "code": "R2.3",
@@ -420,8 +420,8 @@
       "hl_count": 35,
       "pure_count": 65,
       "mixed_count": 0,
-      "qp_path": "/vault/chemistry-topicals/R2.3_How_Far?_The_Extent_of_Chemical_Change.pdf",
-      "ms_path": "/vault/chemistry-topicals/R2.3_How_Far?_The_Extent_of_Chemical_Change_MS.pdf"
+      "qp_path": "/vault/chemistry-topicals/R2.3_How_Far_The_Extent_of_Chemical_Change.pdf",
+      "ms_path": "/vault/chemistry-topicals/R2.3_How_Far_The_Extent_of_Chemical_Change_MS.pdf"
     },
     "R3.1": {
       "code": "R3.1",

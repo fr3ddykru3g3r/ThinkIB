@@ -667,11 +667,21 @@ def classify_math_question(
     sorted_scores = sorted(scores.items(), key=lambda x: x[1], reverse=True)
     top_code, top_score = sorted_scores[0]
 
-    # If top score is essentially zero, assign T2.1 as general function baseline default
-    if top_score <= 0.5:
-        top_code = "T2.1"
-        top_score = 1.0
-        scores["T2.1"] = 1.0
+    # No clear syllabus signal: leave it out rather than dumping it into a default topic
+    if top_score < 1.5:
+        return ClassificationResult(
+            is_excluded=True,
+            exclusion_reason="Unclassified: no clear syllabus keyword match",
+            primary_subtopics=[],
+            scores=scores,
+            is_pure=False,
+            is_mixed=False,
+            is_intra_theme=False,
+            is_cross_theme=False,
+            badge="[UNCLASSIFIED]",
+            target_themes=[],
+            target_subtopics=[]
+        )
 
     candidates = [top_code]
 

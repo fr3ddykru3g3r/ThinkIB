@@ -253,7 +253,8 @@ function SATExamInner() {
 
   // ---- finish & score
   const finish = (finalExam: FullSATExam) => {
-    localStorage.removeItem(STORAGE_KEY);
+    try { localStorage.removeItem(STORAGE_KEY); } catch {}
+    setSaved(null);
     const rw: ScoredItem[] = [];
     const math: ScoredItem[] = [];
     const out: ReviewRow[] = [];
@@ -355,7 +356,7 @@ function SATExamInner() {
       if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA')) return;
       if (e.key === 'ArrowRight' && qIdx < mod.questions.length - 1) goTo(qIdx + 1);
       else if (e.key === 'ArrowLeft' && qIdx > 0) goTo(qIdx - 1);
-      else if (!isSPR(question) && /^[a-d]$/i.test(e.key)) setAnswers((p) => ({ ...p, [curKey]: e.key.toUpperCase() }));
+      else if (!isSPR(question) && !e.metaKey && !e.ctrlKey && !e.altKey && /^[a-d]$/i.test(e.key)) setAnswers((p) => ({ ...p, [curKey]: e.key.toUpperCase() }));
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
@@ -440,7 +441,7 @@ function SATExamInner() {
             <div style={{ display: 'flex', gap: 6, marginTop: '0.5rem' }}>
               {([
                 ['standard', 'Standard Time'],
-                ['accelerated_0.8x', '⚡ 0.8x Accelerated'],
+                ['accelerated_0.8x', '0.8× time'],
                 ['untimed', 'Untimed'],
               ] as const).map(([t, label]) => (
                 <button
@@ -827,7 +828,7 @@ function SATExamInner() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                 <span style={{ fontSize: '1.25rem' }}>⏱️</span>
                 <span className="section-label" style={{ margin: 0, color: '#dc2626' }}>
-                  TIME-TRAP TELEMETRY &amp; OPPORTUNITY COST ANALYSIS
+                  TIME SPENT PER QUESTION
                 </span>
               </div>
               <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', background: '#dc2626', color: '#fff', padding: '2px 8px', borderRadius: 4, fontWeight: 700 }}>

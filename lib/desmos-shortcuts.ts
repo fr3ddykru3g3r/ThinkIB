@@ -97,10 +97,10 @@ export function getDesmosShortcutForQuestion(q: SATQuestion): DesmosShortcutTip 
     return {
       id: 'equivalent-expressions',
       category: 'equivalent_expressions',
-      title: '⚡ Universal Equivalence Hack (Multi-Point Vector Test)',
+      title: 'Checking equivalence with a list of test values',
       timeSavedSeconds: 75,
       triggerPatternExplanation:
-        'Factoring complex polynomials or rational expressions by hand is error-prone. Evaluating an 8-point vector eliminates algebraic slips with 100% mathematical certainty.',
+        'Factoring complex polynomials or rational expressions by hand is error-prone. Evaluating an 8-point vector catches algebra slips reliably.',
       generalFormula: 'L = [-7, -5, -3, -2, 2, 3, 5, 7] \\implies f(L) == g(L)',
       questionSpecificSteps: steps,
       whatToLookFor: 'Look for the choice whose 8 output values in Desmos match f(L) entry-for-entry.',

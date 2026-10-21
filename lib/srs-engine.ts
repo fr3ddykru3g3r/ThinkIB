@@ -227,26 +227,23 @@ export function syncFromSATVault(): number {
 }
 
 /**
- * Synchronize questions from AMC / AIME error tags
+ * Queue AMC 12 problems the student last answered wrongly (from app/amc12 progress)
  */
 export function syncFromAMCVault(): number {
   if (typeof window === 'undefined') return 0;
   try {
-    const raw = localStorage.getItem('thinkib:amc-error-tags');
-    if (!raw) return 0;
-    const tags = JSON.parse(raw);
+    const progress: Record<string, 'correct' | 'wrong'> = JSON.parse(localStorage.getItem('thinkib:amc12-progress') || '{}');
     let addedCount = 0;
-
-    for (const [probId, tag] of Object.entries(tags)) {
-      const id = `amc_${probId}`;
+    for (const [probId, result] of Object.entries(progress)) {
+      if (result !== 'wrong') continue;
       enqueueItem({
-        id,
+        id: `amc_${probId}`,
         source: 'amc',
         refId: probId,
-        title: `Contest Problem ${probId}`,
-        prompt: `Review contest problem ${probId}`,
-        answer: 'Verified contest solution',
-        errorTag: tag as SRSErrorTag,
+        title: `AMC 12 problem ${probId}`,
+        prompt: `Redo AMC 12 problem ${probId}`,
+        answer: 'See the worked solution in AMC 12 practice',
+        errorTag: 'concept_gap',
       });
       addedCount++;
     }
@@ -272,16 +269,14 @@ export function getSRSStats() {
 
   // Retention estimate based on retrievabilities
   let totalRetrievability = 0;
-  queue.forEach((item) => {
-    if (item.lastReviewedAt > 0) {
-      const elapsedDays = (now - item.lastReviewedAt) / (86400 * 1000);
-      totalRetrievability += calculateRetrievability(elapsedDays, item.stability);
-    } else {
-      totalRetrievability += 0.5;
-    }
+  // Only cards that have actually been reviewed say anything about retention
+  const reviewed = queue.filter((item) => item.lastReviewedAt > 0);
+  reviewed.forEach((item) => {
+    const elapsedDays = (now - item.lastReviewedAt) / (86400 * 1000);
+    totalRetrievability += calculateRetrievability(elapsedDays, item.stability);
   });
 
-  const avgRetention = queue.length > 0 ? (totalRetrievability / queue.length) * 100 : 92.5;
+  const avgRetention = reviewed.length > 0 ? (totalRetrievability / reviewed.length) * 100 : 0;
 
   return {
     totalCount: queue.length,

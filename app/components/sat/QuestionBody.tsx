@@ -6,7 +6,7 @@ import { isSPR, validateSPR } from '@/lib/sat-grading';
 import { getDesmosShortcutForQuestion, DesmosShortcutTip } from '@/lib/desmos-shortcuts';
 import { dispatchDesmosLoad } from './DesmosPanel';
 import { QuestionStem, ChoiceContent, splitPassage } from './SATContent';
-import { Zap, Clock } from 'lucide-react';
+import { Zap } from 'lucide-react';
 
 interface Props {
   q: SATQuestion;
@@ -142,7 +142,7 @@ export default function QuestionBody({ q, answer, onAnswer, reveal, struck, onSt
             gap: 5,
           }}
         >
-          <Zap size={13} /> ⚡ Load Template into Desmos
+          <Zap size={13} /> Load in Desmos
         </button>
       </div>
     </div>

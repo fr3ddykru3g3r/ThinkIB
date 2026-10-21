@@ -33,6 +33,8 @@ CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 if CURRENT_DIR not in sys.path:
     sys.path.insert(0, CURRENT_DIR)
 
+from pdf_utils import is_blank_slice, tighten_clip, dedupe_questions
+
 from math_taxonomy import (
     THEMES,
     SUBTOPICS,
@@ -461,6 +463,8 @@ def extract_math_paper_questions(
                     continue
 
                 clip_rect = [35.0, clip_top, min(565.0, page.rect.width - 30.0), clip_bot]
+                if is_blank_slice(page, clip_rect):
+                    continue
                 q_slices.append(QuestionSlice(
                     src_pdf=pdf_path,
                     page_num=p_num,
@@ -632,7 +636,7 @@ def draw_cover_page(
         page.insert_text(fitz.Point(65, 425 + idx * 13), line, fontsize=8.2, fontname="helv", color=(0.25, 0.3, 0.35))
 
     # Footer note
-    page.insert_text(fitz.Point(50, 810), "ThinkIB Official Mathematics Examination Archive • Generated with PyMuPDF", fontsize=8, fontname="helv", color=(0.55, 0.6, 0.65))
+    page.insert_text(fitz.Point(50, 810), "ThinkIB Official Mathematics Examination Archive", fontsize=8, fontname="helv", color=(0.55, 0.6, 0.65))
 
 
 def hex_to_rgb(hex_str: str) -> Tuple[float, float, float]:
@@ -660,6 +664,11 @@ def assemble_topical_pdf(
         all_qs = [q for _, q_list in sections for q in q_list]
     else:
         all_qs = questions or []
+
+    all_qs = dedupe_questions(all_qs)
+    if sections:
+        keep = {id(q) for q in all_qs}
+        sections = [(name, [q for q in qs if id(q) in keep]) for name, qs in sections]
 
     p1_count = sum(1 for q in all_qs if q.paper_code == "P1")
     p2_count = sum(1 for q in all_qs if q.paper_code == "P2")
@@ -740,6 +749,7 @@ def assemble_topical_pdf(
                     if not s_doc or q_slice.page_num >= len(s_doc):
                         continue
 
+                    q_slice.clip_rect = list(tighten_clip(s_doc[q_slice.page_num], q_slice.clip_rect))
                     clip_w = q_slice.clip_rect[2] - q_slice.clip_rect[0]
                     clip_h = q_slice.clip_rect[3] - q_slice.clip_rect[1]
                     if clip_h <= 10 or clip_w <= 10:
@@ -772,6 +782,7 @@ def assemble_topical_pdf(
                         if not ms_doc or ms_slice.page_num >= len(ms_doc):
                             continue
 
+                        ms_slice.clip_rect = list(tighten_clip(ms_doc[ms_slice.page_num], ms_slice.clip_rect))
                         clip_w = ms_slice.clip_rect[2] - ms_slice.clip_rect[0]
                         clip_h = ms_slice.clip_rect[3] - ms_slice.clip_rect[1]
                         if clip_h <= 10 or clip_w <= 10:

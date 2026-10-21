@@ -92,14 +92,15 @@ function getValidBluebookRepresentations(targetVal: number): Set<string> {
     }
   }
 
-  // Generate 3-decimal and 4-decimal truncated & rounded forms that fill the grid
+  // Terminating values are matched exactly in evaluateSPR; only non-terminating
+  // ones get the grid-filling truncated & rounded forms.
+  if (isTerminating) return reps;
+
   if (!isNeg) {
     const t3 = (Math.floor(abs * 1000) / 1000).toFixed(3); // e.g. "0.666"
     const r3 = (Math.round(abs * 1000) / 1000).toFixed(3); // e.g. "0.667"
     reps.add(t3);                   // "0.666" (5 chars)
     reps.add(r3);                   // "0.667" (5 chars)
-    reps.add(t3.replace(/^0/, '')); // ".666"  (4 chars)
-    reps.add(r3.replace(/^0/, '')); // ".667"  (4 chars)
 
     const t4 = (Math.floor(abs * 10000) / 10000).toFixed(4); // e.g. "0.6666"
     const r4 = (Math.round(abs * 10000) / 10000).toFixed(4); // e.g. "0.6667"
@@ -111,8 +112,6 @@ function getValidBluebookRepresentations(targetVal: number): Set<string> {
     const r3 = (Math.round(abs * 1000) / 1000).toFixed(3);
     reps.add(`-${t3}`);             // "-0.333" (6 chars)
     reps.add(`-${r3}`);             // "-0.334" (6 chars)
-    reps.add(`-.${t3.slice(2)}`);   // "-.333"  (5 chars)
-    reps.add(`-.${r3.slice(2)}`);   // "-.334"  (5 chars)
 
     const t4 = (Math.floor(abs * 10000) / 10000).toFixed(4);
     const r4 = (Math.round(abs * 10000) / 10000).toFixed(4);
@@ -158,8 +157,8 @@ export function evaluateSPR(userInput: string, correctAnswers: string[]): boolea
       if (input.kind === 'fraction') {
         return true;
       }
-      // If user provided an integer, exact match is accepted
-      if (input.kind === 'integer') {
+      // Integers and exact decimals (e.g. "1.0", "0.50" for 1/2) are accepted
+      if (input.kind === 'integer' || input.kind === 'decimal') {
         return true;
       }
     }

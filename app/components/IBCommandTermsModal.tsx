@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import { X, Search, BookOpen, AlertTriangle, CheckCircle2, HelpCircle, Layers, Lightbulb } from 'lucide-react';
+import { X, Search, AlertTriangle, CheckCircle2, HelpCircle, Layers, Lightbulb } from 'lucide-react';
 
 interface CommandTerm {
   term: string;

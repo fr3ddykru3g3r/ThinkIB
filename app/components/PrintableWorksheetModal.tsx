@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { X, Printer, CheckCircle, FileText } from 'lucide-react';
+import { X, Printer, FileText } from 'lucide-react';
 import type { SATQuestion } from '@/lib/sat-types';
 import { isSPR, formatCorrectAnswer } from '@/lib/sat-grading';
 import { QuestionStem, ChoiceContent, Rationale } from './sat/SATContent';

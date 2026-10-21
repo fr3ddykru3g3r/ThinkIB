@@ -28,6 +28,8 @@ CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 if CURRENT_DIR not in sys.path:
     sys.path.insert(0, CURRENT_DIR)
 
+from pdf_utils import is_blank_slice, tighten_clip, dedupe_questions
+
 from physics_taxonomy import (
     THEMES,
     SUBTOPICS,
@@ -476,6 +478,8 @@ def extract_paper_2_3_questions(
                     continue
 
                 clip_rect = [35.0, clip_top, min(565.0, page.rect.width - 30.0), clip_bot]
+                if is_blank_slice(page, clip_rect):
+                    continue
                 q_slices.append(QuestionSlice(
                     src_pdf=pdf_path,
                     page_num=p_num,
@@ -636,14 +640,13 @@ def draw_cover_page(
     notes = [
         "• All questions classified strictly under the 2025 IB Physics Guide (Themes A–E).",
         "• Retired syllabus items (old Topic 7.3 quarks, Topic 11.2 capacitors, polarization) have been filtered out.",
-        "• Vector extraction via PyMuPDF ensures crisp rendering with zero image compression loss.",
         "• Paired markscheme solutions available via the split-screen viewer in ThinkIB."
     ]
     for idx, line in enumerate(notes):
         page.insert_text(fitz.Point(65, 425 + idx * 14), line, fontsize=8.5, fontname="helv", color=(0.25, 0.3, 0.35))
 
     # Footer note
-    page.insert_text(fitz.Point(50, 810), "ThinkIB Official Topical Examination Archive • Generated with PyMuPDF", fontsize=8, fontname="helv", color=(0.55, 0.6, 0.65))
+    page.insert_text(fitz.Point(50, 810), "ThinkIB Official Topical Examination Archive", fontsize=8, fontname="helv", color=(0.55, 0.6, 0.65))
 
 def assemble_topical_pdf(
     questions: Optional[List[ExtractedQuestion]],
@@ -664,6 +667,11 @@ def assemble_topical_pdf(
         all_qs = [q for _, q_list in sections for q in q_list]
     else:
         all_qs = questions or []
+
+    all_qs = dedupe_questions(all_qs)
+    if sections:
+        keep = {id(q) for q in all_qs}
+        sections = [(name, [q for q in qs if id(q) in keep]) for name, qs in sections]
 
     mcq_count = sum(1 for q in all_qs if "Paper 1" in q.paper_type or q.paper_code == "P1")
     frq_count = len(all_qs) - mcq_count
@@ -742,6 +750,7 @@ def assemble_topical_pdf(
                     if not s_doc or q_slice.page_num >= len(s_doc):
                         continue
 
+                    q_slice.clip_rect = list(tighten_clip(s_doc[q_slice.page_num], q_slice.clip_rect))
                     clip_w = q_slice.clip_rect[2] - q_slice.clip_rect[0]
                     clip_h = q_slice.clip_rect[3] - q_slice.clip_rect[1]
                     if clip_h <= 10 or clip_w <= 10:
@@ -769,32 +778,13 @@ def assemble_topical_pdf(
                     ans_letter = q.ms_slices[0].mcq_answer if q.ms_slices else "?"
                     prompt_snip = q.ms_slices[0].prompt_snippet if q.ms_slices else ""
 
-                    entry_h = 58.0
+                    entry_h = 24.0
                     if current_page is None or (current_y + entry_h > BOTTOM_MARGIN):
                         current_page = out_doc.new_page(width=A4_WIDTH, height=A4_HEIGHT)
                         current_y = TOP_MARGIN
 
-                    draw_header_banner(current_page, current_y, label_text, badge_text, is_ms=True)
-                    current_y += 24.0
-
-                    card_rect = fitz.Rect(MARGIN_LEFT, current_y, MARGIN_RIGHT, current_y + 28.0)
-                    current_page.draw_rect(card_rect, fill=(0.97, 0.98, 0.99), color=(0.85, 0.88, 0.92), width=0.75)
-                    current_page.insert_text(
-                        fitz.Point(MARGIN_LEFT + 12.0, current_y + 18.0),
-                        f"CORRECT ANSWER:  [ {ans_letter} ]",
-                        fontname="helv",
-                        fontsize=10.5,
-                        color=(0.1, 0.45, 0.2)
-                    )
-                    if prompt_snip:
-                        current_page.insert_text(
-                            fitz.Point(MARGIN_LEFT + 180.0, current_y + 17.5),
-                            f"Prompt: {prompt_snip[:65]}...",
-                            fontname="helv",
-                            fontsize=7.5,
-                            color=(0.45, 0.5, 0.55)
-                        )
-                    current_y += 38.0
+                    draw_header_banner(current_page, current_y, label_text, f"Answer: {ans_letter or '?'}", is_ms=True)
+                    current_y += entry_h
                 else:
                     if q.ms_slices:
                         for slice_idx, ms_slice in enumerate(q.ms_slices):
@@ -802,6 +792,7 @@ def assemble_topical_pdf(
                             if not ms_doc or ms_slice.page_num >= len(ms_doc):
                                 continue
 
+                            ms_slice.clip_rect = list(tighten_clip(ms_doc[ms_slice.page_num], ms_slice.clip_rect))
                             clip_w = ms_slice.clip_rect[2] - ms_slice.clip_rect[0]
                             clip_h = ms_slice.clip_rect[3] - ms_slice.clip_rect[1]
                             if clip_h <= 10 or clip_w <= 10:
@@ -968,6 +959,8 @@ def run_physics_topical_pipeline(
 
     for code, data in SUBTOPICS.items():
         title_sanitized = data["title"].replace(" ", "_").replace(",", "").replace("-", "_")
+        # URL-safe: '?' or '#' in a filename breaks the viewer's request path
+        title_sanitized = re.sub(r'_+', '_', re.sub(r'[^A-Za-z0-9_.]', '', title_sanitized)).strip('_')
         qp_filename = f"{code}_{title_sanitized}.pdf"
         ms_filename = f"{code}_{title_sanitized}_MS.pdf"
         qp_out = os.path.join(OUTPUT_VAULT_DIR, qp_filename)

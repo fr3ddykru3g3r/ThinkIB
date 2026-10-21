@@ -1,0 +1,378 @@
+{
+  "id": "algebra",
+  "title": "Algebra & Polynomials",
+  "summary": "Factoring and identities, Vieta's formulas, Simon's Favourite Factoring Trick, polynomial remainder and factor theorems, systems of equations, and AM-GM inequalities.",
+  "examWeight": "≈3–4 problems per paper",
+  "concepts": [
+    {
+      "title": "Factoring and algebraic identities",
+      "body": "Factoring means rewriting a sum or difference as a product. It is the most useful habit on AMC 12 algebra problems, because a messy expression often collapses once you spot the pattern. The core identities are $a^2-b^2=(a-b)(a+b)$, $(a\\pm b)^2=a^2\\pm 2ab+b^2$, and $a^3\\pm b^3=(a\\pm b)(a^2\\mp ab+b^2)$. They matter because they replace a big calculation with a small one: $103^2-97^2=(103-97)(103+97)=6\\cdot 200=1200$, with no squaring at all.\n\nWhen no identity jumps out, try factoring by grouping: split the terms into pairs that share a common factor, as in $x^3+x^2+x+1=x^2(x+1)+(x+1)=(x^2+1)(x+1)$. A useful habit is to build the quantity you need from sums and products you already know. Since $a^2+b^2=(a+b)^2-2ab$, knowing $a+b$ and $ab$ is enough to find $a^2+b^2$ without finding $a$ and $b$ themselves.",
+      "keyFacts": [
+        "$a^2-b^2=(a-b)(a+b)$",
+        "$a^3+b^3=(a+b)(a^2-ab+b^2)$",
+        "$a^2+b^2=(a+b)^2-2ab$",
+        "Factor by grouping: pair up terms that share a common factor."
+      ],
+      "whenToUse": "Use it when a difference of squares or cubes appears, or when you are asked for $a^2+b^2$ or $a^3+b^3$ and only $a+b$ and $ab$ are given."
+    },
+    {
+      "title": "Vieta's formulas",
+      "body": "Vieta's formulas connect the roots of a polynomial to its coefficients, so you can answer questions about the roots without finding them. If $r$ and $s$ are the roots of $ax^2+bx+c$, then $ax^2+bx+c=a(x-r)(x-s)$. Expanding the right side and comparing coefficients gives $r+s=-\\frac{b}{a}$ and $rs=\\frac{c}{a}$. The same pattern holds for any degree: for a monic cubic $x^3+px^2+qx+t$ with roots $u,v,w$, we get $u+v+w=-p$, $uv+vw+wu=q$ and $uvw=-t$.\n\nThe point is that most quantities a problem asks for are symmetric in the roots: swapping $r$ and $s$ does not change them. Such quantities can be built from the sum $r+s$ and the product $rs$ alone. For example $r^2+s^2=(r+s)^2-2rs$ and $\\frac1r+\\frac1s=\\frac{r+s}{rs}$. If $r$ and $s$ are the roots of $x^2-5x+6=0$, then $r+s=5$ and $rs=6$, so $r^2+s^2=25-12=13$. You can check this against the actual roots, 2 and 3.",
+      "keyFacts": [
+        "For $ax^2+bx+c$ with roots $r,s$: $r+s=-\\frac{b}{a}$ and $rs=\\frac{c}{a}$",
+        "For monic $x^3+px^2+qx+t$ with roots $u,v,w$: $u+v+w=-p$, $uv+vw+wu=q$, $uvw=-t$",
+        "$r^2+s^2=(r+s)^2-2rs$",
+        "$\\frac1r+\\frac1s=\\frac{r+s}{rs}$"
+      ],
+      "whenToUse": "Use it when a problem asks about the roots through a symmetric quantity (a sum of squares, a sum of reciprocals, a coefficient) and does not give the roots explicitly."
+    },
+    {
+      "title": "Simon's Favourite Factoring Trick",
+      "body": "Many equations in two integers have the form $xy+ax+by=c$. They look as though they should have many solutions, but they are hard to attack directly. Simon's Favourite Factoring Trick turns the left side into a product. Expand $(x+b)(y+a)=xy+ax+by+ab$ and notice that it differs from $xy+ax+by$ only by the constant $ab$. So add $ab$ to both sides: $xy+ax+by+ab=c+ab$, which becomes $(x+b)(y+a)=c+ab$.\n\nNow the equation says that two integers multiply to a fixed number, so you can list the divisor pairs and read off every solution. If the coefficient of $xy$ is not 1, multiply the whole equation by that coefficient first. Example: $xy+2x+3y=30$. Adding $2\\cdot 3=6$ to both sides gives $(x+3)(y+2)=36$. Positive solutions correspond to divisor pairs of 36 with $x+3\\ge 4$ and $y+2\\ge 3$, and you can count them directly.",
+      "keyFacts": [
+        "$xy+ax+by=c$ becomes $(x+b)(y+a)=c+ab$",
+        "Add the product of the two constants to both sides to complete the factorisation",
+        "After factoring, apply the sign and size limits on $x$ and $y$ before counting"
+      ],
+      "whenToUse": "Use it when an equation in two integer variables has an $xy$ term and linear terms in $x$ and $y$, and you need to count or list its solutions."
+    },
+    {
+      "title": "Polynomial remainder and factor theorems",
+      "body": "Dividing a polynomial works like dividing integers: $P(x)=(x-a)Q(x)+R$, where $R$ is a constant. Substitute $x=a$ and the term $(x-a)Q(x)$ vanishes, so $R=P(a)$. This is the remainder theorem: the remainder when $P(x)$ is divided by $x-a$ is $P(a)$. In particular, $x-a$ is a factor of $P(x)$ exactly when $P(a)=0$, which is the factor theorem.\n\nThe idea extends to larger divisors. If you divide by a polynomial of degree $n$, the remainder has degree less than $n$, so it is pinned down by its values at $n$ points. Example: if $P(1)=3$ and $P(2)=1$, the remainder $R(x)=ux+v$ on division by $(x-1)(x-2)$ must satisfy $u+v=3$ and $2u+v=1$, so $u=-2$ and $v=5$. You get the remainder without ever finding $P(x)$.",
+      "keyFacts": [
+        "Remainder theorem: the remainder on dividing $P(x)$ by $x-a$ is $P(a)$",
+        "Factor theorem: $x-a$ divides $P(x)$ if and only if $P(a)=0$",
+        "A remainder on division by a degree-$n$ polynomial has degree less than $n$, so $n$ values of $P$ determine it"
+      ],
+      "whenToUse": "Use it when a problem gives the remainder of a polynomial on division, asks whether a linear factor divides a polynomial, or gives the values of a polynomial at a few points."
+    },
+    {
+      "title": "Systems of equations",
+      "body": "A system is usually solved by eliminating a variable, but on contests the faster route is often a change of variables. If the two equations are symmetric in $x$ and $y$ (swapping $x$ and $y$ leaves both equations unchanged), write $s=x+y$ and $p=xy$. Every symmetric expression is a combination of $s$ and $p$, for instance $x^2+y^2=s^2-2p$ and $x^3+y^3=s^3-3ps$. The system then becomes a system in two new unknowns, which is usually easy.\n\nAlways check that the solutions are real. A pair $(s,p)$ comes from real numbers $x,y$ only if $x$ and $y$ are the roots of $t^2-st+p=0$ and those roots are real, which needs $s^2\\ge 4p$. For example, if $x+y=5$ and $xy=6$, then $s^2-4p=25-24=1\\ge 0$, so $x$ and $y$ are real: they are 2 and 3. A pair with $s^2<4p$ gives complex numbers, which a problem asking for real values must exclude.",
+      "keyFacts": [
+        "$x^2+y^2=(x+y)^2-2xy$",
+        "$x^3+y^3=(x+y)^3-3xy(x+y)$",
+        "Real $x,y$ with sum $s$ and product $p$ require $s^2\\ge 4p$",
+        "Substitute $s=x+y$ and $p=xy$ to reduce a symmetric system to two unknowns"
+      ],
+      "whenToUse": "Use it when the equations are symmetric in $x$ and $y$, or contain sums of powers of $x$ and $y$ together with the product $xy$."
+    },
+    {
+      "title": "AM-GM and basic inequalities",
+      "body": "The Arithmetic Mean–Geometric Mean (AM-GM) inequality says that for nonnegative numbers the average is at least the geometric mean: $\\frac{a+b}{2}\\ge\\sqrt{ab}$, with equality exactly when $a=b$. Rearranged, $a+b\\ge 2\\sqrt{ab}$: the sum of two nonnegative numbers is at least twice the square root of their product. Three numbers work the same way: $\\frac{a+b+c}{3}\\ge\\sqrt[3]{abc}$.\n\nTo find a minimum or maximum, look for the split that makes AM-GM tight. Example: if $x,y>0$ and $xy=16$, then $x+4y\\ge 2\\sqrt{4xy}=2\\sqrt{64}=16$. Equality holds when $x=4y$, so $x=8$ and $y=2$, which confirms that 16 is actually reached. Another basic tool is $a^2+b^2\\ge 2ab$, which is just $(a-b)^2\\ge 0$ rearranged.",
+      "keyFacts": [
+        "$\\frac{a+b}{2}\\ge\\sqrt{ab}$ for $a,b\\ge 0$, with equality if and only if $a=b$",
+        "$\\frac{a+b+c}{3}\\ge\\sqrt[3]{abc}$ for $a,b,c\\ge 0$",
+        "$a^2+b^2\\ge 2ab$, because $(a-b)^2\\ge 0$",
+        "Always check the equality case to confirm that the bound is reached"
+      ],
+      "whenToUse": "Use it when you need the minimum or maximum of a sum or product of positive quantities whose product or sum is fixed."
+    }
+  ],
+  "workedExamples": [
+    {
+      "title": "Difference of squares",
+      "difficulty": 1,
+      "problem": "Compute $103^2-97^2$.",
+      "choices": [
+        "$800$",
+        "$1000$",
+        "$1200$",
+        "$1400$",
+        "1800"
+      ],
+      "answer": "C",
+      "steps": [
+        "Recognise a difference of squares: $103^2-97^2=(103-97)(103+97)$.",
+        "The two factors are $103-97=6$ and $103+97=200$.",
+        "Multiply: $6\\cdot 200=1200$."
+      ],
+      "takeaway": "When you see $a^2-b^2$, factor it into $(a-b)(a+b)$ before computing anything.",
+      "verify": "print(103**2 - 97**2)"
+    },
+    {
+      "title": "Reciprocals of roots",
+      "difficulty": 2,
+      "problem": "Let $r$ and $s$ be the two roots of $x^2-9x+14=0$. What is $\\frac{1}{r}+\\frac{1}{s}$?",
+      "choices": [
+        "$\\frac{1}{14}$",
+        "$\\frac{2}{7}$",
+        "$\\frac{9}{14}$",
+        "$\\frac{7}{9}$",
+        "$\\frac{9}{2}$"
+      ],
+      "answer": "C",
+      "steps": [
+        "Vieta's formulas give $r+s=9$ and $rs=14$.",
+        "Put the reciprocals over a common denominator: $\\frac1r+\\frac1s=\\frac{r+s}{rs}$.",
+        "Substitute: $\\frac{9}{14}$."
+      ],
+      "takeaway": "The sum of reciprocals of two roots is the sum of the roots divided by their product.",
+      "verify": "from fractions import Fraction\nroots = [t for t in range(-100, 101) if t * t - 9 * t + 14 == 0]\nprint(sum(Fraction(1, t) for t in roots))\n"
+    },
+    {
+      "title": "Counting solutions with Simon's trick",
+      "difficulty": 3,
+      "problem": "How many ordered pairs of positive integers $(x,y)$ satisfy $xy-x-3y=2$?",
+      "choices": [
+        "$1$",
+        "$2$",
+        "$3$",
+        "$4$",
+        "6"
+      ],
+      "answer": "B",
+      "steps": [
+        "Add $3$ to both sides: $xy-x-3y+3=5$.",
+        "The left side factors as $(x-3)(y-1)=5$.",
+        "Since $y\\ge 1$, the factor $y-1$ is nonnegative, and it cannot be $0$ because the product is $5$. So $y-1\\ge 1$, and the product is positive, so $x-3$ is positive too.",
+        "The factor pairs of 5 with both factors positive are $(1,5)$ and $(5,1)$, giving $(x,y)=(4,6)$ and $(x,y)=(8,2)$.",
+        "There are 2 solutions."
+      ],
+      "takeaway": "After Simon's trick, use the sign of each factor to rule out divisor pairs before you count them.",
+      "verify": "count = 0\nfor x in range(1, 200):\n    for y in range(1, 200):\n        if x * y - x - 3 * y == 2:\n            count += 1\nprint(count)\n"
+    }
+  ],
+  "problems": [
+    {
+      "id": "alg-01",
+      "difficulty": 1,
+      "problem": "If $x$ is a nonzero real number with $x-\\frac{1}{x}=3$, what is $x^2+\\frac{1}{x^2}$?",
+      "choices": [
+        "1",
+        "3",
+        "$7$",
+        "$9$",
+        "$11$"
+      ],
+      "answer": "E",
+      "hint": "Square the given equation and compare the result with $x^2+\\frac{1}{x^2}$.",
+      "solution": "Squaring $x-\\frac1x=3$ gives $x^2-2+\\frac{1}{x^2}=9$, because the cross term is $2\\cdot x\\cdot\\frac1x=2$. Therefore $x^2+\\frac{1}{x^2}=11$.",
+      "verify": "def f(x):\n    return x - 1 / x - 3\n\ndef bisect(a, b):\n    for _ in range(200):\n        m = (a + b) / 2\n        if f(a) * f(m) <= 0:\n            b = m\n        else:\n            a = m\n    return (a + b) / 2\n\nvals = set()\nfor a, b in [(-2.0, -0.001), (0.001, 5.0)]:\n    x = bisect(a, b)\n    vals.add(round(x * x + 1 / (x * x)))\nprint(vals.pop())\n"
+    },
+    {
+      "id": "alg-02",
+      "difficulty": 1,
+      "problem": "What is the value of $\\frac{1}{1\\cdot 2}+\\frac{1}{2\\cdot 3}+\\frac{1}{3\\cdot 4}+\\cdots+\\frac{1}{9\\cdot 10}$?",
+      "choices": [
+        "$\\frac{9}{10}$",
+        "$1$",
+        "$\\frac{10}{9}$",
+        "$\\frac{13}{10}$",
+        "$\\frac{17}{10}$"
+      ],
+      "answer": "A",
+      "hint": "Write each term $\\frac{1}{k(k+1)}$ as a difference of two simpler fractions.",
+      "solution": "Use $\\frac{1}{k(k+1)}=\\frac{1}{k}-\\frac{1}{k+1}$. In the sum, each term cancels against its neighbour, leaving $1-\\frac{1}{10}=\\frac{9}{10}$.",
+      "verify": "from fractions import Fraction\nprint(sum(Fraction(1, k * (k + 1)) for k in range(1, 10)))\n"
+    },
+    {
+      "id": "alg-03",
+      "difficulty": 1,
+      "problem": "If $a+b=7$ and $ab=10$, what is $a^3+b^3$?",
+      "choices": [
+        "$119$",
+        "$133$",
+        "$147$",
+        "$175$",
+        "217"
+      ],
+      "answer": "B",
+      "hint": "Factor $a^3+b^3$, then rewrite $a^2+b^2$ in terms of $a+b$ and $ab$.",
+      "solution": "$a^3+b^3=(a+b)(a^2-ab+b^2)$. Also $a^2+b^2=(a+b)^2-2ab=49-20=29$, so $a^2-ab+b^2=29-10=19$. Hence $a^3+b^3=7\\cdot 19=133$.",
+      "verify": "vals = {a ** 3 + (7 - a) ** 3 for a in range(-50, 51) if a * (7 - a) == 10}\nprint(vals.pop())\n"
+    },
+    {
+      "id": "alg-04",
+      "difficulty": 2,
+      "problem": "Let $r$ and $s$ be the roots of $x^2-6x+4=0$. What is $r^2+s^2$?",
+      "choices": [
+        "$28$",
+        "$32$",
+        "$36$",
+        "44",
+        "48"
+      ],
+      "answer": "A",
+      "hint": "Find $r+s$ and $rs$ first, then use $r^2+s^2=(r+s)^2-2rs$.",
+      "solution": "By Vieta's formulas, $r+s=6$ and $rs=4$. So $r^2+s^2=(r+s)^2-2rs=36-8=28$.",
+      "verify": "import math\nd = math.sqrt(36 - 16)\nr = (6 + d) / 2\ns = (6 - d) / 2\nprint(round(r * r + s * s))\n"
+    },
+    {
+      "id": "alg-05",
+      "difficulty": 2,
+      "problem": "How many ordered pairs of positive integers $(x,y)$ satisfy $xy+2x+3y=30$?",
+      "choices": [
+        "$3$",
+        "$4$",
+        "$5$",
+        "$6$",
+        "8"
+      ],
+      "answer": "B",
+      "hint": "Use Simon's Favourite Factoring Trick: add the right constant to both sides.",
+      "solution": "Adding $2\\cdot 3=6$ to both sides gives $(x+3)(y+2)=36$. Positivity requires $x+3\\ge 4$ and $y+2\\ge 3$, so the divisor $d=x+3$ of 36 must satisfy $4\\le d\\le 12$. The divisors in that range are $4,6,9,12$, giving $(x,y)=(1,7),(3,4),(6,2),(9,1)$: four solutions.",
+      "verify": "count = 0\nfor x in range(1, 41):\n    for y in range(1, 41):\n        if x * y + 2 * x + 3 * y == 30:\n            count += 1\nprint(count)\n"
+    },
+    {
+      "id": "alg-06",
+      "difficulty": 2,
+      "problem": "The polynomial $p(x)=x^3-4x^2+5x+k$ leaves remainder $7$ when divided by $x-1$. What is $p(-1)$?",
+      "choices": [
+        "$-5$",
+        "$-3$",
+        "-1",
+        "$3$",
+        "5"
+      ],
+      "answer": "A",
+      "hint": "The remainder theorem says the remainder on division by $x-1$ equals $p(1)$.",
+      "solution": "By the remainder theorem, $p(1)=7$. Since $p(1)=1-4+5+k=2+k$, we get $k=5$. Then $p(-1)=-1-4-5+5=-5$.",
+      "verify": "sols = [k for k in range(-50, 51) if 1 - 4 + 5 + k == 7]\nk = sols[0]\np = lambda x: x ** 3 - 4 * x ** 2 + 5 * x + k\nprint(p(-1))\n"
+    },
+    {
+      "id": "alg-07",
+      "difficulty": 3,
+      "problem": "Real numbers $x$ and $y$ satisfy $x+y=5$ and $x^3+y^3=65$. What is $x^2+y^2$?",
+      "choices": [
+        "$13$",
+        "$15$",
+        "$17$",
+        "$19$",
+        "$21$"
+      ],
+      "answer": "C",
+      "hint": "Use $x^3+y^3=(x+y)^3-3xy(x+y)$ to find $xy$ first.",
+      "solution": "From $x^3+y^3=(x+y)^3-3xy(x+y)$ we get $65=125-15xy$, so $xy=4$. Then $x^2+y^2=(x+y)^2-2xy=25-8=17$.",
+      "verify": "from fractions import Fraction\nvals = set()\nfor k in range(-800, 801):\n    x = Fraction(k, 16)\n    y = 5 - x\n    if x ** 3 + y ** 3 == 65:\n        vals.add(x * x + y * y)\nprint(vals.pop())\n"
+    },
+    {
+      "id": "alg-08",
+      "difficulty": 3,
+      "problem": "How many ordered pairs of positive integers $(m,n)$ satisfy $m^2-n^2=96$?",
+      "choices": [
+        "$1$",
+        "$2$",
+        "$3$",
+        "$4$",
+        "$5$"
+      ],
+      "answer": "D",
+      "hint": "Factor the left side, then list the factor pairs of 96 that can work.",
+      "solution": "Factor: $(m-n)(m+n)=96$. Both factors have the same parity, since their sum $2m$ is even; as $96$ is even, both must be even. The pairs $d\\cdot e=96$ with $d<e$ and both even are $(2,48),(4,24),(6,16),(8,12)$, while $(1,96)$ and $(3,32)$ mix parities. Each pair gives $m=\\frac{d+e}{2}$ and $n=\\frac{e-d}{2}$, which are positive integers, so there are 4 solutions.",
+      "verify": "count = 0\nfor m in range(1, 101):\n    for n in range(1, 101):\n        if m * m - n * n == 96:\n            count += 1\nprint(count)\n"
+    },
+    {
+      "id": "alg-09",
+      "difficulty": 3,
+      "problem": "Positive integers $x$ and $y$ satisfy $2xy-x-y=6$. What is the sum of $x+y$ over all such ordered pairs $(x,y)$?",
+      "choices": [
+        "$8$",
+        "$10$",
+        "$12$",
+        "$16$",
+        "$20$"
+      ],
+      "answer": "D",
+      "hint": "Multiply by 2 first so the $xy$ coefficient becomes $4$, then complete the product $(2x-1)(2y-1)$.",
+      "solution": "Multiplying by 2 gives $4xy-2x-2y=12$. Adding 1 to both sides, $(2x-1)(2y-1)=13$. Since 13 is prime and both factors are positive, $\\{2x-1,2y-1\\}=\\{1,13\\}$, giving $(x,y)=(1,7)$ or $(7,1)$. Each pair has $x+y=8$, so the total is $16$.",
+      "verify": "total = 0\nfor x in range(1, 60):\n    for y in range(1, 60):\n        if 2 * x * y - x - y == 6:\n            total += x + y\nprint(total)\n"
+    },
+    {
+      "id": "alg-10",
+      "difficulty": 3,
+      "problem": "The polynomial $P(x)$ satisfies $P(1)=3$, $P(2)=1$ and $P(3)=7$. What is the value at $x=4$ of the remainder when $P(x)$ is divided by $(x-1)(x-2)(x-3)$?",
+      "choices": [
+        "11",
+        "$15$",
+        "$17$",
+        "$19$",
+        "$21$"
+      ],
+      "answer": "E",
+      "hint": "The remainder has degree at most 2, and it takes the same values as $P$ at $x=1,2,3$.",
+      "solution": "Write $P(x)=(x-1)(x-2)(x-3)Q(x)+R(x)$ with $R(x)=ax^2+bx+c$. Substituting $x=1,2,3$ gives $R(1)=3$, $R(2)=1$, $R(3)=7$. The second difference gives $2a=7-2+3=8$, so $a=4$. Then $R(2)-R(1)=3a+b=-2$ gives $b=-14$, and $c=3-a-b=13$. So $R(x)=4x^2-14x+13$ and $R(4)=64-56+13=21$.",
+      "verify": "sols = set()\nfor a in range(-30, 31):\n    for b in range(-30, 31):\n        for c in range(-30, 31):\n            if a * 1 + b * 1 + c == 3 and a * 4 + b * 2 + c == 1 and a * 9 + b * 3 + c == 7:\n                sols.add(a * 16 + b * 4 + c)\nprint(sols.pop())\n"
+    },
+    {
+      "id": "alg-11",
+      "difficulty": 4,
+      "problem": "$P(x)$ is a monic cubic polynomial with $P(1)=1$, $P(2)=4$ and $P(3)=9$. What is $P(4)$?",
+      "choices": [
+        "$22$",
+        "24",
+        "$25$",
+        "$28$",
+        "34"
+      ],
+      "answer": "A",
+      "hint": "Look at $P(x)-x^2$. How many roots does it have, and what is its leading term?",
+      "solution": "The polynomial $P(x)-x^2$ is still monic cubic, because subtracting $x^2$ does not change the $x^3$ term. It vanishes at $x=1,2,3$, so $P(x)-x^2=(x-1)(x-2)(x-3)$. Hence $P(4)=16+(3)(2)(1)=22$.",
+      "verify": "sols = set()\nfor a in range(-30, 31):\n    for b in range(-30, 31):\n        for c in range(-30, 31):\n            P = lambda x: x ** 3 + a * x ** 2 + b * x + c\n            if P(1) == 1 and P(2) == 4 and P(3) == 9:\n                sols.add(P(4))\nprint(sols.pop())\n"
+    },
+    {
+      "id": "alg-12",
+      "difficulty": 4,
+      "problem": "Let $a$, $b$, $c$ be the three real roots of $x^3-3x+1=0$. What is $a^4+b^4+c^4$?",
+      "choices": [
+        "$6$",
+        "$12$",
+        "$15$",
+        "$18$",
+        "$24$"
+      ],
+      "answer": "D",
+      "hint": "Each root satisfies $x^3=3x-1$. Multiply by $x$ to express $x^4$ in terms of $x^2$ and $x$.",
+      "solution": "Each root satisfies $x^3=3x-1$, so $x^4=3x^2-x$. Summing over the three roots gives $a^4+b^4+c^4=3(a^2+b^2+c^2)-(a+b+c)$. Vieta's formulas give $a+b+c=0$ and $ab+bc+ca=-3$, so $a^2+b^2+c^2=0-2(-3)=6$. Therefore $a^4+b^4+c^4=3\\cdot 6-0=18$.",
+      "verify": "def f(x):\n    return x ** 3 - 3 * x + 1\n\ndef bisect(a, b):\n    for _ in range(200):\n        m = (a + b) / 2\n        if f(a) * f(m) <= 0:\n            b = m\n        else:\n            a = m\n    return (a + b) / 2\n\nroots = [bisect(-2.0, -1.0), bisect(0.0, 1.0), bisect(1.0, 2.0)]\nprint(round(sum(r ** 4 for r in roots)))\n"
+    },
+    {
+      "id": "alg-13",
+      "difficulty": 4,
+      "problem": "Positive real numbers $a,b,c$ satisfy $a+b+c=6$. What is the maximum possible value of $a^2bc$?",
+      "choices": [
+        "$16$",
+        "$\\frac{33}{2}$",
+        "$18$",
+        "$\\frac{39}{2}$",
+        "$\\frac{81}{4}$"
+      ],
+      "answer": "E",
+      "hint": "Apply AM-GM to four positive numbers, two of which are $\\frac a2$.",
+      "solution": "Apply AM-GM to the four positive numbers $\\frac a2,\\frac a2,b,c$, whose sum is $a+b+c=6$: $\\frac{6}{4}\\ge\\sqrt[4]{\\frac{a^2bc}{4}}$. Hence $a^2bc\\le 4\\left(\\frac32\\right)^4=\\frac{81}{4}$, with equality when $\\frac a2=b=c=\\frac32$, that is $a=3$ and $b=c=\\frac32$.",
+      "verify": "from fractions import Fraction\nN = 24\nbest = Fraction(0)\nfor i in range(1, 6 * N):\n    for j in range(1, 6 * N - i):\n        a = Fraction(i, N)\n        b = Fraction(j, N)\n        c = 6 - a - b\n        if c > 0:\n            v = a * a * b * c\n            if v > best:\n                best = v\nprint(best)\n"
+    },
+    {
+      "id": "alg-14",
+      "difficulty": 5,
+      "problem": "Real numbers $x$ and $y$ satisfy $x^2+y^2=10$ and $x+y+xy=7$. What is $x^2y+xy^2$?",
+      "choices": [
+        "$-78$",
+        "$6$",
+        "$12$",
+        "$24$",
+        "$36$"
+      ],
+      "answer": "C",
+      "hint": "Let $s=x+y$ and $p=xy$, rewrite both equations in $s$ and $p$, and then check which solutions are real.",
+      "solution": "Let $s=x+y$ and $p=xy$. The equations become $s^2-2p=10$ and $s+p=7$. Eliminating $p$ gives $s^2+2s-24=0$, so $s=4$ or $s=-6$, with $p=3$ or $p=13$ respectively. Real $x,y$ require $s^2\\ge 4p$: this holds for $s=4$ ($16\\ge 12$) but fails for $s=-6$ ($36<52$). So $s=4$, $p=3$, and $x^2y+xy^2=ps=12$.",
+      "verify": "def g(x):\n    y = (7 - x) / (1 + x)\n    return x * x + y * y - 10\n\nvals = set()\nN = 200000\nxs = [-60 + 120 * i / N for i in range(N + 1)]\nfor a, b in zip(xs, xs[1:]):\n    if a == -1 or b == -1:\n        continue\n    ga, gb = g(a), g(b)\n    if ga * gb < 0 and abs(ga) < 1000 and abs(gb) < 1000:\n        lo, hi = a, b\n        for _ in range(100):\n            m = (lo + hi) / 2\n            if g(lo) * g(m) <= 0:\n                hi = m\n            else:\n                lo = m\n        x = (lo + hi) / 2\n        y = (7 - x) / (1 + x)\n        vals.add(round(x * x * y + x * y * y))\nprint(vals.pop())\n"
+    },
+    {
+      "id": "alg-15",
+      "difficulty": 5,
+      "problem": "Let $r$, $s$, $t$ be the three roots of $x^3-2x^2+3x-4=0$. What is $\\frac{1}{r+s}+\\frac{1}{r+t}+\\frac{1}{s+t}$?",
+      "choices": [
+        "$\\frac{5}{2}$",
+        "$\\frac{7}{2}$",
+        "$4$",
+        "$\\frac{9}{2}$",
+        "5"
+      ],
+      "answer": "B",
+      "hint": "By Vieta's formulas, $r+s+t$ is known, so each denominator equals $2$ minus one root.",
+      "solution": "Vieta gives $r+s+t=2$, so $r+s=2-t$, and similarly for the other pairs. The required sum is $\\sum\\frac{1}{2-t}$ over the three roots. If $f(x)=\\prod(x-t_i)$, then $\\frac{f'(2)}{f(2)}=\\sum\\frac{1}{2-t_i}$. Here $f(2)=8-8+6-4=2$ and $f'(2)=12-8+3=7$, so the sum is $\\frac{7}{2}$.",
+      "verify": "import cmath\nfrom fractions import Fraction\n\ndef f(z):\n    return z ** 3 - 2 * z ** 2 + 3 * z - 4\n\nroots = [(0.4 + 0.9j) ** k for k in range(3)]\nfor _ in range(500):\n    new = []\n    for i, z in enumerate(roots):\n        denom = 1\n        for j, w in enumerate(roots):\n            if j != i:\n                denom *= (z - w)\n        new.append(z - f(z) / denom)\n    roots = new\nr, s, t = roots\nval = 1 / (r + s) + 1 / (r + t) + 1 / (s + t)\nprint(Fraction(round(val.real * 2), 2))\n"
+    }
+  ]
+}

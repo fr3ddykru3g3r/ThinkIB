@@ -3,29 +3,7 @@
 import React, { useState, useMemo, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import {
-  ChevronRight,
-  FileText,
-  Search,
-  Download,
-  ExternalLink,
-  SlidersHorizontal,
-  Eye,
-  ArrowLeft,
-  BookOpen,
-  HelpCircle,
-  Layers,
-  Sparkles,
-  Columns,
-  CheckCircle2,
-  Atom,
-  FlaskConical,
-  Calculator,
-  Clock,
-  Zap,
-  Info,
-  ChevronDown
-} from 'lucide-react';
+import { ChevronRight, FileText, Search, Download, ExternalLink, Eye, ArrowLeft, BookOpen, HelpCircle, Sparkles, Columns, Atom, FlaskConical, Calculator, Zap } from 'lucide-react';
 import rawMap from './map.json';
 import rawPhysicsMap from './physics_topicals_map.json';
 import rawChemistryMap from './chemistry_topicals_map.json';
@@ -432,10 +410,10 @@ function PastPapersBrowserContent() {
       {/* Header Panel */}
       <div className="panel" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.5rem' }}>
         <div>
-          <span className="section-label" style={{ marginBottom: '0.4rem' }}>OFFICIAL EXAMINATION ARCHIVE & TOPICAL HUB</span>
-          <h1 style={{ fontFamily: 'var(--display)', fontSize: '2.4rem', margin: '0.2rem 0' }}>Past Examinations Vault</h1>
+          <span className="section-label" style={{ marginBottom: '0.4rem' }}>PAST PAPERS</span>
+          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: '2.4rem', margin: '0.2rem 0' }}>Past Papers</h1>
           <p style={{ color: 'var(--ink-soft)', fontSize: '0.95rem', margin: 0 }}>
-            Official examination papers across 16 sessions (2010–2025) and Topical Booklets for Physics, Chemistry, and Mathematics (AA & AI).
+            Every IB session from 2010 to 2025, plus Physics, Chemistry and Maths questions grouped by syllabus topic with markschemes.
           </p>
         </div>
         <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
@@ -463,7 +441,7 @@ function PastPapersBrowserContent() {
       </div>
 
       {/* Primary Tab Navigation */}
-      <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.5rem', borderBottom: '1px solid var(--hairline)', paddingBottom: '0.75rem' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '1.5rem', borderBottom: '1px solid var(--hairline)', paddingBottom: '0.75rem' }}>
         <button
           onClick={() => setActiveTab('topical')}
           style={{
@@ -482,7 +460,7 @@ function PastPapersBrowserContent() {
             transition: 'all 0.15s ease'
           }}
         >
-          <Zap size={16} /> Topical Past Paper Hub (Physics • Chemistry • Math)
+          <Zap size={16} /> By topic
           <span
             style={{
               fontSize: '0.7rem',
@@ -493,7 +471,7 @@ function PastPapersBrowserContent() {
               borderRadius: '10px'
             }}
           >
-            3 Subjects • 71 Topics
+            Physics · Chemistry · Math
           </span>
         </button>
 
@@ -514,7 +492,7 @@ function PastPapersBrowserContent() {
             transition: 'all 0.15s ease'
           }}
         >
-          <FileText size={16} /> Chronological Exam Vault (2010–2025)
+          <FileText size={16} /> By year (2010–2025)
         </button>
       </div>
 
@@ -687,7 +665,7 @@ function PastPapersBrowserContent() {
                 >
                   <Sparkles size={12} /> {currentConfig.tagline}
                 </span>
-                <h2 style={{ fontFamily: 'var(--display)', fontSize: '1.85rem', margin: '0.2rem 0' }}>
+                <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.85rem', margin: '0.2rem 0' }}>
                   {currentConfig.title}
                 </h2>
                 <p style={{ color: 'var(--ink-soft)', fontSize: '0.92rem', maxWidth: '820px', lineHeight: 1.5, margin: 0 }}>
@@ -1003,7 +981,7 @@ function PastPapersBrowserContent() {
                       SUB-TOPICS IN {currentConfig.unitPrefix.toUpperCase()} {theme.theme} ({theme.filteredSubtopics.length} AVAILABLE)
                     </span>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '0.9rem' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 320px), 1fr))', gap: '0.9rem' }}>
                       {theme.filteredSubtopics.map((st: any) => {
                         return (
                           <div
@@ -1247,7 +1225,7 @@ function PastPapersBrowserContent() {
                 <Search size={18} style={{ position: 'absolute', left: '1rem', color: 'var(--ink-faint)', pointerEvents: 'none' }} />
                 <input
                   type="text"
-                  placeholder="Search 4,400+ past papers... (e.g. Chemistry HL TZ1)"
+                  placeholder="Search 3,786 past papers... (e.g. Chemistry HL TZ1)"
                   className="search-input"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
@@ -1501,7 +1479,7 @@ function PastPapersBrowserContent() {
               ) : (
                 <div className="viewer-placeholder">
                   <Eye size={44} style={{ color: 'var(--earth)', marginBottom: '1rem', opacity: 0.5 }} />
-                  <h3 style={{ fontFamily: 'var(--display)', fontSize: '1.4rem' }}>No Examination Paper Selected</h3>
+                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.4rem' }}>No Examination Paper Selected</h3>
                   <p style={{ maxWidth: '320px', marginTop: '0.5rem', fontSize: '0.9rem', color: 'var(--ink-soft)' }}>
                     Select a past examination paper or markscheme from the directory on the left to preview and study the document inline.
                   </p>

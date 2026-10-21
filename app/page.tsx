@@ -2,43 +2,11 @@
 
 import React, { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
-import {
-  Search,
-  ArrowRight,
-  HardDrive,
-  Sparkles,
-  Zap,
-  BookOpen,
-  Calculator,
-  GraduationCap,
-  CheckCircle2,
-  FileText,
-  Award,
-  Layers,
-  Clock,
-  Compass,
-  TrendingUp,
-  ExternalLink,
-  ChevronRight,
-  Filter,
-  X
-} from 'lucide-react';
+import { Search, ArrowRight, Sparkles, X } from 'lucide-react';
 import { resourcesData } from './resources/data';
 import { getSRSStats, syncFromSATVault, syncFromAMCVault } from '@/lib/srs-engine';
 
-const subjects = [
-  { name: 'Chemistry', path: '/api/v2/thinkib/chem/chemistry.html', badge: 'SL/HL' },
-  { name: 'Biology', path: '/api/v2/thinkib/bio_psych/biology.html', badge: 'SL/HL' },
-  { name: 'Psychology', path: '/api/v2/thinkib/bio_psych/psychology.html', badge: 'SL/HL' },
-  { name: 'Business Management', path: '/api/v2/thinkib/bm_econ/businessmanagement.html', badge: 'SL/HL' },
-  { name: 'Economics', path: '/api/v2/thinkib/bm_econ/economics.html', badge: 'SL/HL' },
-  { name: 'History', path: '/api/v2/thinkib/history/index.html', badge: 'HL' },
-  { name: 'English A', path: '/api/v2/thinkib/englisha/englishalanglit.html', badge: 'Lang/Lit' },
-  { name: 'Mathematics Analysis & Approaches', path: '/api/v2/thinkib/mathanalysis/index.html', badge: 'AA' }
-];
-
 export default function PortalHome() {
-  const [view, setView] = useState<'home' | 'thinkib'>('home');
   const [search, setSearch] = useState('');
   const [categoryFilter, setCategoryFilter] = useState<'all' | 'local_vault' | 'youtube' | 'quizlet' | 'portal'>('all');
 
@@ -71,37 +39,9 @@ export default function PortalHome() {
   return (
     <div style={{ maxWidth: '1240px', margin: '0 auto', paddingBottom: '4rem' }}>
       {/* =========================================================================
-          HERO SECTION: EDITORIAL MASTHEAD & LIVE PLATFORM TELEMETRY PILLS
+          HERO
           ========================================================================= */}
       <div style={{ marginBottom: '3rem' }}>
-        {/* Kicker & System Status Pill */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '1rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-            <span className="section-label" style={{ margin: 0 }}>THE ARCHIVE · VOL. 2025/2026</span>
-            <span
-              style={{
-                fontSize: '0.72rem',
-                fontFamily: 'var(--font-mono)',
-                fontWeight: 600,
-                padding: '0.15rem 0.55rem',
-                borderRadius: '9999px',
-                background: 'rgba(21, 128, 61, 0.08)',
-                color: 'var(--success)',
-                border: '1px solid rgba(21, 128, 61, 0.25)',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.35rem',
-              }}
-            >
-              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--success)', display: 'inline-block' }} />
-              IB DIPLOMA &amp; DIGITAL SAT PREP
-            </span>
-          </div>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: 'var(--muted)' }}>
-            2025/2026 EXAMINATION SYLLABUS
-          </div>
-        </div>
-
         {/* Masthead Main Title */}
         <h1 
           style={{ 
@@ -128,7 +68,7 @@ export default function PortalHome() {
             marginBottom: '1.75rem'
           }}
         >
-          A comprehensive collection of 3,786 official IB past papers, 174 topical question packs, and adaptive Digital SAT practice.
+          3,786 IB past papers, 174 topic-by-topic question packs, adaptive Digital SAT practice and AMC 12 lessons.
         </p>
 
         {/* Platform Stat Pills */}
@@ -175,19 +115,6 @@ export default function PortalHome() {
               color: 'var(--ink)',
             }}
           >
-            <span style={{ color: '#0969da', fontWeight: 700 }}>2025</span>
-            <span style={{ color: 'var(--muted)' }}>Topical Vaults</span>
-          </div>
-
-          <div
-            className="glass-nav-pill"
-            style={{
-              padding: '0.35rem 0.75rem',
-              fontSize: '0.78rem',
-              fontFamily: 'var(--font-mono)',
-              color: 'var(--ink)',
-            }}
-          >
             <span style={{ color: 'var(--accent)', fontWeight: 700 }}>174</span>
             <span style={{ color: 'var(--muted)' }}>Topical Packs</span>
           </div>
@@ -215,7 +142,7 @@ export default function PortalHome() {
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search 3,786 papers, SAT drills, notes, mocks..."
+                placeholder="Filter handbooks, portals and study links"
                 style={{
                   width: '100%',
                   border: 'none',
@@ -248,7 +175,7 @@ export default function PortalHome() {
             <button
               type="button"
               onClick={openCommandPalette}
-              className="kbd-badge"
+              className="kbd-badge hide-sm"
               style={{
                 cursor: 'pointer',
                 display: 'inline-flex',
@@ -256,7 +183,7 @@ export default function PortalHome() {
                 gap: '0.3rem',
                 padding: '0.25rem 0.55rem',
               }}
-              title="Open Global Command Palette (⌘K)"
+              title="Open command palette (⌘K)"
             >
               <span>Command Palette</span>
               <span>⌘K</span>
@@ -283,10 +210,14 @@ export default function PortalHome() {
                 <Sparkles size={17} style={{ color: 'var(--accent)', flexShrink: 0 }} />
                 <div>
                   <div style={{ fontWeight: 700, fontSize: '0.86rem', color: 'var(--ink)' }}>
-                    <span className="tabular-nums">{srsStats.dueTodayCount}</span> Questions Due for Active Recall (FSRS Spaced Repetition)
+                    <span className="tabular-nums">{srsStats.dueTodayCount}</span> {srsStats.dueTodayCount === 1 ? 'question' : 'questions'} to review today
                   </div>
                   <div style={{ fontSize: '0.74rem', color: 'var(--muted)' }}>
-                    Estimated retention: <span className="tabular-nums" style={{ fontWeight: 600, color: 'var(--accent)' }}>{srsStats.retentionRate}%</span> across Digital SAT &amp; Competition Vaults
+                    {srsStats.retentionRate > 0 ? (
+                      <>Estimated retention: <span className="tabular-nums" style={{ fontWeight: 600, color: 'var(--accent)' }}>{srsStats.retentionRate}%</span> across Digital SAT &amp; AMC 12</>
+                    ) : (
+                      <>Missed SAT and AMC 12 questions are queued here for review</>
+                    )}
                   </div>
                 </div>
               </div>
@@ -306,15 +237,14 @@ export default function PortalHome() {
                   border: '1px solid var(--border)',
                 }}
               >
-                Review Due Queue <ArrowRight size={13} />
+                Review now <ArrowRight size={13} />
               </Link>
             </div>
           )}
         </div>
       </div>
 
-      {view === 'home' ? (
-        <div>
+      <div>
           {/* =========================================================================
               TIER 1: INTERACTIVE PRACTICE & SIMULATION ENGINES (LARGE BENTO CARDS)
               ========================================================================= */}
@@ -331,7 +261,7 @@ export default function PortalHome() {
               </div>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '1.5rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 340px), 1fr))', gap: '1.5rem' }}>
               {/* 1. Digital SAT Practice */}
               <div 
                 className="editorial-bento-card"
@@ -497,7 +427,7 @@ export default function PortalHome() {
               </div>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.5rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))', gap: '1.5rem' }}>
               {/* Vault 1: Past Papers 2010–2025 */}
               <Link href="/past-papers" style={{ textDecoration: 'none', color: 'inherit' }}>
                 <div className="editorial-bento-card" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
@@ -578,6 +508,26 @@ export default function PortalHome() {
                 </div>
               </Link>
 
+              {/* Vault: AMC 12 */}
+              <Link href="/amc12" style={{ textDecoration: 'none', color: 'inherit' }}>
+                <div className="editorial-bento-card" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                  <div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.65rem' }}>
+                      <span className="badge" style={{ fontSize: '0.72rem', fontWeight: 600, padding: '0.2rem 0.5rem', borderRadius: '4px', background: 'var(--surface-inset)', border: '1px solid var(--border)', color: 'var(--ink)' }}>
+                        8 Topics
+                      </span>
+                    </div>
+                    <h3 style={{ fontSize: '1.25rem', marginBottom: '0.45rem' }}>AMC 12</h3>
+                    <p style={{ fontSize: '0.88rem', color: 'var(--card-desc, #57534E)', lineHeight: 1.5, margin: 0 }}>
+                      Concept lessons, step-by-step worked examples, topic drills and timed 25-question mock papers.
+                    </p>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontWeight: 600, fontSize: '0.84rem', marginTop: '1.25rem', color: 'var(--ink)' }}>
+                    Start AMC 12 <ArrowRight size={13} />
+                  </div>
+                </div>
+              </Link>
+
               {/* Vault 5: IA & EE Exemplars */}
               <Link href="/exemplars" style={{ textDecoration: 'none', color: 'inherit' }}>
                 <div className="editorial-bento-card" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
@@ -624,7 +574,7 @@ export default function PortalHome() {
               STUDENT RESOURCES & VERIFIED EXTERNAL PORTALS CATALOG
               ========================================================================= */}
           <div className="editorial-section">
-            <span className="section-label">STUDENT RESOURCES &amp; REFERENCE VAULT</span>
+            <span className="section-label">HANDBOOKS &amp; STUDY LINKS</span>
             <h2>Revision Handbooks &amp; External Portals</h2>
             <p style={{ color: 'var(--muted)', fontSize: '0.95rem', marginBottom: '1.5rem' }}>
               Hand-curated reference documents, study decks, and channels matching <span style={{ fontWeight: 600, color: 'var(--ink)' }}>{filteredResources.length}</span> items.
@@ -673,11 +623,6 @@ export default function PortalHome() {
                     <div className="resource-card-header">
                       <span className="resource-subject">{item.subject}</span>
                       <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                        {item.rating && (
-                          <span style={{ fontSize: '0.72rem', padding: '0.15rem 0.45rem', background: 'var(--accent)', color: '#fff', borderRadius: '3px', fontWeight: 600 }}>
-                            {item.rating}
-                          </span>
-                        )}
                         <span className="resource-badge">
                           {item.category.replace('_', ' ').toUpperCase()}
                         </span>
@@ -702,33 +647,6 @@ export default function PortalHome() {
             </div>
           </div>
         </div>
-      ) : (
-        /* ThinkIB Browser Panel */
-        <div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', borderBottom: '1px solid var(--border)', paddingBottom: '1rem', marginBottom: '2rem' }}>
-            <div>
-              <span className="section-label">INTHINKING CURRICULUM MIRROR</span>
-              <h2>Subject Syllabus Guides</h2>
-            </div>
-            <button className="filter-btn active" onClick={() => setView('home')}>Back to Home</button>
-          </div>
-
-          <div className="portal-grid">
-            {subjects.map((subj, idx) => (
-              <a key={idx} href={subj.path} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit' }}>
-                <div className="editorial-bento-card">
-                  <span className="resource-subject">{subj.badge}</span>
-                  <h3 style={{ marginTop: '0.5rem', marginBottom: '0.5rem' }}>{subj.name}</h3>
-                  <p style={{ fontSize: '0.9rem', color: 'var(--muted)' }}>Open full InThinking syllabus traversal dashboard on this subject guide.</p>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontWeight: 600, fontSize: '0.84rem', marginTop: '1rem', color: 'var(--accent)' }}>
-                    Open Guide <ArrowRight size={13} />
-                  </div>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      )}
     </div>
   );
 }

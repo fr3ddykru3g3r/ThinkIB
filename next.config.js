@@ -17,6 +17,9 @@ const nextConfig = {
       ],
     },
   },
+  async redirects() {
+    return [{ source: '/amc-aime/:path*', destination: '/amc12', permanent: true }];
+  },
   async rewrites() {
     return [
       {

@@ -1,0 +1,375 @@
+{
+  "id": "probability",
+  "title": "Probability & Expected Value",
+  "summary": "Equally likely outcomes and counting, conditional and independent events, geometric probability, and expected value with linearity, including recursive states for repeated games.",
+  "examWeight": "≈2–3 problems per paper",
+  "concepts": [
+    {
+      "title": "Equally likely outcomes and counting",
+      "body": "When every outcome in a sample space is equally likely, the probability of an event is the number of favourable outcomes divided by the total number of outcomes: $P(E)=\\frac{|E|}{|S|}$. The real work is counting. List the sample space in an organised way (a table for two dice, a tree for several coin flips), and make sure each listed outcome really is equally likely before you divide.\n\nSums of two dice show why this care is needed. There are 11 possible sums from 2 to 12, but they are not equally likely: a sum of 7 occurs in 6 of the 36 ordered pairs, while a sum of 2 occurs in only 1. So you count the 36 ordered pairs, not the 11 sums.\n\nWhen a question asks for 'at least one' of something, it is often easier to count the complement, the event that none of the listed things happens. The event and its complement together cover everything, so $P(E)=1-P(\\text{not }E)$. For example, the chance of at least one head in three fair flips is $1-\\frac{1}{8}=\\frac{7}{8}$, because only TTT has no heads. Listing the seven outcomes with a head would take far longer.",
+      "keyFacts": [
+        "$P(E)=\\frac{|E|}{|S|}$ when all outcomes are equally likely",
+        "$P(\\text{not }E)=1-P(E)$",
+        "Count ordered outcomes so that each outcome is counted exactly once"
+      ],
+      "whenToUse": "The problem describes fair or random choices with a finite list of outcomes and asks for the chance of an event that is easy to count or easy to complement."
+    },
+    {
+      "title": "Conditional probability",
+      "body": "Conditional probability answers the question 'how likely is $A$, now that I know $B$ happened?' We write $P(A\\mid B)$. Learning that $B$ happened shrinks the universe: every outcome where $B$ failed is thrown away, and we ask what fraction of the remaining outcomes make $A$ true. That gives $P(A\\mid B)=\\frac{P(A\\text{ and }B)}{P(B)}$.\n\nExample: roll a fair die. Before anything is revealed, $P(\\text{roll is }6)=\\frac16$. Now suppose you are told the roll is even. Only 2, 4 and 6 remain, and each is still equally likely, so $P(\\text{roll is }6\\mid\\text{even})=\\frac13$. The extra information doubled the chance, because a 6 is one of only three possibilities left.\n\nTree diagrams use the same formula in reverse: multiply the probabilities along a branch to get $P(A\\text{ and }B)=P(B)\\,P(A\\mid B)$, then add up the branches that lead to the event you want. Whenever a problem says 'given that', 'knowing that' or 'if we know', first restrict your attention to the outcomes that satisfy the given information.",
+      "keyFacts": [
+        "$P(A\\mid B)=\\frac{P(A\\cap B)}{P(B)}$",
+        "$P(A\\cap B)=P(B)\\,P(A\\mid B)$, which is multiplication along a tree branch",
+        "Given information means you work inside the smaller universe of outcomes where that information holds"
+      ],
+      "whenToUse": "The problem gives extra information ('given that', 'knowing that') and asks for a probability under that information."
+    },
+    {
+      "title": "Independence",
+      "body": "Two events are independent when learning that one happened tells you nothing about the other: $P(A\\mid B)=P(A)$. Equivalently, $P(A\\cap B)=P(A)\\,P(B)$. Different fair coin flips and rolls of different dice are independent. Draws without replacement from the same bag are not, because the first draw changes what is left.\n\nA common mistake is to confuse independence with being mutually exclusive ('they cannot both happen'). Mutually exclusive events are strongly dependent: if $A$ happens, then $B$ certainly did not, so $P(B\\mid A)=0$. Independence needs the product rule $P(A\\cap B)=P(A)P(B)$, and for mutually exclusive events with positive probabilities that rule always fails.\n\nWhen a problem describes separate trials that do not influence each other, multiply. Two fair flips both showing heads have probability $\\frac12\\cdot\\frac12=\\frac14$. For 'at least one success' among independent trials, use the complement: if each of three independent players fails with probability $\\frac23$, all three fail with probability $\\left(\\frac23\\right)^3=\\frac{8}{27}$, so at least one succeeds with probability $\\frac{19}{27}$.",
+      "keyFacts": [
+        "$A$ and $B$ are independent exactly when $P(A\\cap B)=P(A)\\,P(B)$",
+        "$P(\\text{at least one of independent events }E_i\\text{ occurs})=1-\\prod_i\\bigl(1-P(E_i)\\bigr)$",
+        "Mutually exclusive events with positive probability are never independent"
+      ],
+      "whenToUse": "The problem describes separate trials or players that do not affect one another, so probabilities multiply, and 'at least one' questions often use the complement."
+    },
+    {
+      "title": "Geometric probability",
+      "body": "Geometric probability replaces counting with area or length. If a point is chosen uniformly at random from a region, every part of the region is equally likely to contain it. The probability that the point lands in a smaller region is then $\\frac{\\text{area of the favourable region}}{\\text{area of the whole region}}$. On a segment, the same idea works with lengths.\n\nExample: a point is chosen uniformly from the square with corners $(0,0)$, $(2,0)$, $(2,2)$, $(0,2)$, which has area 4. The triangle with corners $(0,0)$, $(2,0)$ and $(0,2)$ is the part where $x+y\\le 2$. It has area 2, so it covers exactly half the square, and the probability is $\\frac{2}{4}=\\frac12$.\n\nFor conditions such as $x+y<s$ or $|x-y|<d$, draw the boundary lines, find the corners of the favourable region, and compute its area with a triangle or trapezoid formula. It is often easiest to subtract corner triangles from the whole square. Always check that your answer lies between 0 and 1.",
+      "keyFacts": [
+        "$P=\\frac{\\text{area of favourable region}}{\\text{area of whole region}}$ for a uniformly chosen point",
+        "On a segment, use lengths in the same way",
+        "Subtract corner triangles from the whole region when the complement is simpler"
+      ],
+      "whenToUse": "A point or number is chosen 'at random' from a square, interval or other region, and the event is described by inequalities."
+    },
+    {
+      "title": "Expected value and linearity",
+      "body": "The expected value of a random quantity $X$ is its long-run average: $E[X]=\\sum_x x\\,P(X=x)$. For one fair die, $E[\\text{roll}]=1\\cdot\\frac16+2\\cdot\\frac16+\\cdots+6\\cdot\\frac16=\\frac72$. The expected value need not be a possible outcome: no single roll shows $\\frac72$, but over many rolls the average settles near it.\n\nThe most useful property is linearity of expectation: $E[X+Y]=E[X]+E[Y]$, and $E[cX]=cE[X]$ for any constant $c$. It holds even when $X$ and $Y$ depend on each other, which is why it is so powerful. The trick is to write a complicated count as a sum of indicators. An indicator $I$ equals 1 when an event happens and 0 otherwise, so $E[I]=P(\\text{event})$.\n\nExample: flip a fair coin ten times and let $X$ be the number of heads. Write $X=I_1+\\cdots+I_{10}$, where $I_k$ indicates heads on flip $k$. Each $E[I_k]=\\frac12$, so $E[X]=5$, and we never needed the full distribution of $X$. In a game, the expected payoff is the sum of (payoff $\\times$ probability) over all outcomes.",
+      "keyFacts": [
+        "$E[X]=\\sum_x x\\,P(X=x)$",
+        "$E[X+Y]=E[X]+E[Y]$ always, even when $X$ and $Y$ are dependent",
+        "$E[I]=P(\\text{event})$ for an indicator $I$"
+      ],
+      "whenToUse": "The question asks for an average or expected count, or the quantity is a sum of many simple pieces."
+    },
+    {
+      "title": "States and recursion for repeated games",
+      "body": "Many games repeat until something happens. Instead of listing every possible history, describe the situation by a state, such as the current score or the result of the last roll. Then write one equation per state, linking its unknown value to the values of the states it can move to in one step. Because the rest of the game looks the same from any state, these equations are often enough to solve for the answer.\n\nExample: a fair coin is flipped until the first head. Let $E$ be the expected number of flips. The first flip is a head with probability $\\frac12$, and then the game ends after one flip. Otherwise one flip has been used and we are in exactly the starting situation, so $E=\\frac12\\cdot 1+\\frac12(1+E)$. Solving gives $E=2$, which matches the rule that the expected wait for a success of probability $p$ is $\\frac1p$.\n\nFor a probability of reaching a goal before a failure, the same idea applies: the value of a state is the weighted average of the values of the states next to it, with the goal valued 1 and the failure valued 0. The resulting linear equations can be solved by substitution. Check that your answer lies between 0 and 1 and agrees with the boundary values.",
+      "keyFacts": [
+        "A state should capture everything about the future that matters",
+        "Each undecided state gives one linear equation in the values of its neighbouring states",
+        "The expected number of trials until a success of probability $p$ is $\\frac1p$"
+      ],
+      "whenToUse": "A repeated random process stops when a condition is met, and the answer depends on where you are now rather than on the whole history."
+    }
+  ],
+  "workedExamples": [
+    {
+      "title": "Two marbles of the same colour",
+      "difficulty": 2,
+      "problem": "A jar holds 2 red marbles and 3 green marbles. Two marbles are drawn at random, one after the other, without replacement. What is the probability that both marbles have the same colour?",
+      "choices": [
+        "$\\frac{1}{5}$",
+        "$\\frac{3}{10}$",
+        "$\\frac{2}{5}$",
+        "$\\frac{1}{2}$",
+        "$\\frac{3}{5}$"
+      ],
+      "answer": "C",
+      "steps": [
+        "The event 'same colour' is the union of two disjoint cases, both red and both green, so its probability is the sum of the two case probabilities.",
+        "Both red: the first draw is red with probability $\\frac25$, and then 1 red marble remains among 4, so $P(\\text{RR})=\\frac25\\cdot\\frac14=\\frac{1}{10}$.",
+        "Both green: $P(\\text{GG})=\\frac35\\cdot\\frac24=\\frac{3}{10}$, since 2 green marbles remain among 4.",
+        "Add the cases: $\\frac{1}{10}+\\frac{3}{10}=\\frac{2}{5}$."
+      ],
+      "takeaway": "For an 'or' event, split it into disjoint cases along a tree, multiply along each branch, then add the branches.",
+      "verify": "from fractions import Fraction\nfrom itertools import permutations\ncolours = ['R', 'R', 'G', 'G', 'G']\ndraws = list(permutations(range(5), 2))   # ordered draws, all equally likely\nsame = sum(1 for i, j in draws if colours[i] == colours[j])\nprint(Fraction(same, len(draws)))\n"
+    },
+    {
+      "title": "At least one success",
+      "difficulty": 3,
+      "problem": "Five players each independently win a round with probability $\\frac13$. What is the probability that at least one of the five players wins a round?",
+      "choices": [
+        "$\\frac{1}{243}$",
+        "$\\frac{32}{243}$",
+        "$\\frac{2}{3}$",
+        "$\\frac{20}{27}$",
+        "$\\frac{211}{243}$"
+      ],
+      "answer": "E",
+      "steps": [
+        "'At least one wins' has many cases, but its complement, 'nobody wins', is simple.",
+        "Each player fails with probability $\\frac23$, and the players are independent, so $P(\\text{nobody wins})=\\left(\\frac23\\right)^5=\\frac{32}{243}$.",
+        "Therefore $P(\\text{at least one wins})=1-\\frac{32}{243}=\\frac{211}{243}$.",
+        "Sanity check: the answer is larger than the single-player chance $\\frac13$ and smaller than 1."
+      ],
+      "takeaway": "For 'at least one' with independent trials, subtract the probability that every trial fails from 1.",
+      "verify": "from fractions import Fraction\nfrom itertools import product\ntotal = Fraction(0)\nhit = Fraction(0)\nfor outcome in product([True, False], repeat=5):   # True means that player wins\n    w = Fraction(1)\n    for win in outcome:\n        w *= Fraction(1, 3) if win else Fraction(2, 3)\n    total += w\n    if any(outcome):\n        hit += w\nassert total == 1\nprint(hit)\n"
+    },
+    {
+      "title": "Expected fixed points, given a condition",
+      "difficulty": 4,
+      "problem": "Let $\\sigma(1),\\sigma(2),\\dots,\\sigma(6)$ be a random arrangement of the numbers $1$ through $6$ in a row, with all $6!$ arrangements equally likely. A position $i$ is a fixed point if $\\sigma(i)=i$. Given that $\\sigma(1)\\neq 1$, what is the expected number of fixed points?",
+      "choices": [
+        "$\\frac{2}{3}$",
+        "$\\frac{4}{5}$",
+        "$1$",
+        "$\\frac{6}{5}$",
+        "$\\frac{5}{3}$"
+      ],
+      "answer": "B",
+      "steps": [
+        "Without any condition, let $I_i=1$ when position $i$ is a fixed point. Then $E[I_i]=\\frac16$, and linearity gives an expected total of $6\\cdot\\frac16=1$. Over all $720$ arrangements, the total number of fixed points is therefore $720$.",
+        "Now split the arrangements by whether $\\sigma(1)=1$. There are $120$ arrangements with $\\sigma(1)=1$. In each of them position 1 is a fixed point, and the other five entries form a random arrangement whose fixed points total $120\\cdot 1=120$. So the 120 arrangements with $\\sigma(1)=1$ contain $120+120=240$ fixed points in total.",
+        "The remaining $600$ arrangements, those with $\\sigma(1)\\neq1$, therefore contain $720-240=480$ fixed points in total.",
+        "The conditional expected value is $\\frac{480}{600}=\\frac45$."
+      ],
+      "takeaway": "When a condition is given, total the quantity over the favourable cases only, then divide by how many favourable cases there are; linearity helps inside each part.",
+      "verify": "from fractions import Fraction\nfrom itertools import permutations\ncount = 0\nfixed_total = 0\nfor p in permutations(range(1, 7)):   # p[i] is the entry in position i + 1\n    if p[0] == 1:\n        continue                        # keep only arrangements with sigma(1) != 1\n    count += 1\n    fixed_total += sum(1 for i in range(6) if p[i] == i + 1)\nprint(Fraction(fixed_total, count))\n"
+    }
+  ],
+  "problems": [
+    {
+      "id": "prob-01",
+      "difficulty": 1,
+      "problem": "Two fair six-sided dice are rolled. What is the probability that the sum of the two numbers shown is $8$?",
+      "choices": [
+        "$\\frac{1}{36}$",
+        "$\\frac{1}{12}$",
+        "$\\frac{1}{9}$",
+        "$\\frac{5}{36}$",
+        "$\\frac{1}{6}$"
+      ],
+      "answer": "D",
+      "hint": "List the ordered pairs $(a,b)$ whose sum is 8, then divide by the total number of ordered pairs.",
+      "solution": "There are $6\\cdot 6=36$ equally likely ordered pairs. The pairs with sum 8 are $(2,6),(3,5),(4,4),(5,3),(6,2)$, five in all, so the probability is $\\frac{5}{36}$. The choice $\\frac16$ would correspond to a sum of 7, which has six pairs.",
+      "verify": "from fractions import Fraction\nfrom itertools import product\npairs = list(product(range(1, 7), repeat=2))\nfav = sum(1 for a, b in pairs if a + b == 8)\nprint(Fraction(fav, len(pairs)))\n"
+    },
+    {
+      "id": "prob-02",
+      "difficulty": 1,
+      "problem": "A fair coin is flipped four times. What is the probability that at least one of the flips shows heads?",
+      "choices": [
+        "$\\frac{15}{16}$",
+        "1",
+        "$\\frac{11}{8}$",
+        "$\\frac{7}{4}$",
+        "$\\frac{29}{16}$"
+      ],
+      "answer": "A",
+      "hint": "Find the probability that no flip shows heads, then subtract it from 1.",
+      "solution": "There are $2^4=16$ equally likely sequences of H and T. Only TTTT contains no heads, so $P(\\text{no heads})=\\frac{1}{16}$ and $P(\\text{at least one head})=1-\\frac{1}{16}=\\frac{15}{16}$. The choice $\\frac{1}{16}$ is the probability of the complement, not of the event asked about.",
+      "verify": "from fractions import Fraction\nfrom itertools import product\nseqs = list(product('HT', repeat=4))\nfav = sum(1 for s in seqs if 'H' in s)\nprint(Fraction(fav, len(seqs)))\n"
+    },
+    {
+      "id": "prob-03",
+      "difficulty": 1,
+      "problem": "A fair six-sided die is rolled once. What is the probability that the number rolled is a prime number or a multiple of $3$?",
+      "choices": [
+        "$\\frac{1}{3}$",
+        "$\\frac{1}{2}$",
+        "$\\frac{2}{3}$",
+        "$\\frac{3}{4}$",
+        "$\\frac{5}{6}$"
+      ],
+      "answer": "C",
+      "hint": "Make a list of the outcomes that qualify, and be careful not to count any outcome twice.",
+      "solution": "The primes on the die are $2,3,5$, and the multiples of 3 are $3,6$. The qualifying faces are $\\{2,3,5,6\\}$, four of the six equally likely faces, so the probability is $\\frac{4}{6}=\\frac23$. Adding the two counts, $3+2=5$, counts the face 3 twice and leads to the wrong answer $\\frac56$.",
+      "verify": "from fractions import Fraction\ndef is_prime(n):\n    return n > 1 and all(n % d for d in range(2, n))\nfav = sum(1 for n in range(1, 7) if is_prime(n) or n % 3 == 0)\nprint(Fraction(fav, 6))\n"
+    },
+    {
+      "id": "prob-04",
+      "difficulty": 2,
+      "problem": "A fair coin is flipped three times. Given that the first flip shows heads, what is the probability that exactly two of the three flips show heads?",
+      "choices": [
+        "$\\frac{3}{8}$",
+        "$\\frac{1}{2}$",
+        "$\\frac{3}{4}$",
+        "$\\frac{7}{8}$",
+        "$\\frac{9}{8}$"
+      ],
+      "answer": "B",
+      "hint": "Restrict attention to the outcomes in which the first flip is heads.",
+      "solution": "Given that the first flip is heads, the remaining possibilities are HHH, HHT, HTH and HTT, which are equally likely. Exactly two heads occurs in HHT and HTH, so the conditional probability is $\\frac{2}{4}=\\frac12$. Ignoring the condition gives $\\frac38$, since exactly two heads occurs in 3 of the 8 outcomes.",
+      "verify": "from fractions import Fraction\nfrom itertools import product\ngiven = [s for s in product('HT', repeat=3) if s[0] == 'H']\nfav = [s for s in given if s.count('H') == 2]\nprint(Fraction(len(fav), len(given)))\n"
+    },
+    {
+      "id": "prob-05",
+      "difficulty": 2,
+      "problem": "Events $A$ and $B$ are independent, with $P(A)=\\frac25$ and $P(B)=\\frac14$. What is $P(A\\cup B)$, the probability that at least one of the two events occurs?",
+      "choices": [
+        "$\\frac{1}{10}$",
+        "$\\frac{1}{5}$",
+        "$\\frac{7}{20}$",
+        "$\\frac{9}{20}$",
+        "$\\frac{11}{20}$"
+      ],
+      "answer": "E",
+      "hint": "Use inclusion–exclusion. The overlap has probability $P(A)P(B)$ because the events are independent.",
+      "solution": "$P(A\\cup B)=P(A)+P(B)-P(A\\cap B)=\\frac25+\\frac14-\\frac25\\cdot\\frac14=\\frac{8}{20}+\\frac{5}{20}-\\frac{2}{20}=\\frac{11}{20}$. Forgetting to subtract the overlap gives $\\frac{13}{20}$.",
+      "verify": "from fractions import Fraction\nfrom itertools import product\npA, pB = Fraction(2, 5), Fraction(1, 4)\nprob_union = Fraction(0)\nfor a, b in product([0, 1], repeat=2):   # 1 means the event occurs\n    w = (pA if a else 1 - pA) * (pB if b else 1 - pB)   # independence: multiply\n    if a or b:\n        prob_union += w\nprint(prob_union)\n"
+    },
+    {
+      "id": "prob-06",
+      "difficulty": 2,
+      "problem": "A fair six-sided die is rolled once. If the number shown is even, you score the square of that number. If the number shown is odd, you lose $3$ points. What is your expected score?",
+      "choices": [
+        "$\\frac{1}{2}$",
+        "$\\frac{47}{6}$",
+        "$\\frac{28}{3}$",
+        "$\\frac{65}{6}$",
+        "$\\frac{47}{3}$"
+      ],
+      "answer": "B",
+      "hint": "Work out the score for each of the six faces, then average the six scores.",
+      "solution": "The scores are $4$, $16$, $36$ for the faces 2, 4, 6 and $-3$ for each of the faces 1, 3, 5. The expected score is $\\frac{4+16+36-9}{6}=\\frac{47}{6}$. Using the face values instead of their squares would give $\\frac{2+4+6-9}{6}=\\frac12$.",
+      "verify": "from fractions import Fraction\ntotal = Fraction(0)\nfor face in range(1, 7):\n    points = face * face if face % 2 == 0 else -3\n    total += Fraction(points, 6)\nprint(total)\n"
+    },
+    {
+      "id": "prob-07",
+      "difficulty": 3,
+      "problem": "A point $(x,y)$ is chosen uniformly at random from the square with vertices $(0,0)$, $(4,0)$, $(4,4)$ and $(0,4)$. What is the probability that $|x-y|<1$?",
+      "choices": [
+        "$\\frac{7}{16}$",
+        "$\\frac{1}{2}$",
+        "$\\frac{9}{16}$",
+        "$\\frac{5}{8}$",
+        "$\\frac{11}{16}$"
+      ],
+      "answer": "A",
+      "hint": "Find the area of the two corner regions where $|x-y|\\ge 1$. Each is a right triangle at one of the corners near the diagonal.",
+      "solution": "The strip $|x-y|<1$ lies between the lines $y=x-1$ and $y=x+1$. The two excluded regions are right triangles, for example the one with vertices $(1,0)$, $(4,0)$, $(4,3)$, whose legs both have length 3 and whose area is $\\frac{9}{2}$. Together they have area 9, so the strip has area $16-9=7$ and the probability is $\\frac{7}{16}$. The choice $\\frac{9}{16}$ is the probability of the excluded region.",
+      "verify": "from fractions import Fraction\ndef length(x):\n    # length of the set of y in [0, 4] with |x - y| < 1\n    lo = max(Fraction(0), x - 1)\n    hi = min(Fraction(4), x + 1)\n    return hi - lo\n# length(x) is linear between consecutive integers, so the trapezoid rule\n# applied on each unit interval gives the area exactly.\narea = sum((length(Fraction(k)) + length(Fraction(k + 1))) / 2 for k in range(4))\nprint(area / 16)\n"
+    },
+    {
+      "id": "prob-08",
+      "difficulty": 3,
+      "problem": "A bag contains 3 red balls and 2 blue balls. Two balls are drawn at random, one after the other, without replacement. Given that the second ball drawn is red, what is the probability that the first ball drawn was blue?",
+      "choices": [
+        "$\\frac{1}{5}$",
+        "$\\frac{1}{4}$",
+        "$\\frac{3}{10}$",
+        "$\\frac{2}{5}$",
+        "$\\frac{1}{2}$"
+      ],
+      "answer": "E",
+      "hint": "Count the equally likely ordered draws whose second ball is red, and then count how many of those have a blue first ball.",
+      "solution": "There are 20 equally likely ordered draws. Those whose second ball is red number $3\\cdot 4=12$, because the second ball is one of 3 red balls and the first is one of the remaining 4. Among these, the first ball is blue in $2\\cdot 3=6$ cases, so the conditional probability is $\\frac{6}{12}=\\frac12$. The choice $\\frac{3}{10}$ is $P(\\text{first blue and second red})=\\frac{6}{20}$, which forgets to divide by $P(\\text{second red})=\\frac35$.",
+      "verify": "from fractions import Fraction\nfrom itertools import permutations\ncolour = ['R', 'R', 'R', 'B', 'B']\ndraws = list(permutations(range(5), 2))   # ordered draws, all equally likely\ngiven = [(i, j) for i, j in draws if colour[j] == 'R']\nfav = [(i, j) for i, j in given if colour[i] == 'B']\nprint(Fraction(len(fav), len(given)))\n"
+    },
+    {
+      "id": "prob-09",
+      "difficulty": 3,
+      "problem": "A fair coin is flipped six times, giving a sequence of six results. Let $X$ be the number of positions $k$ with $2\\le k\\le 6$ such that flip $k$ shows the same result as flip $k-1$. What is $E[X]$?",
+      "choices": [
+        "$\\frac{3}{2}$",
+        "$\\frac{5}{2}$",
+        "$3$",
+        "$\\frac{7}{2}$",
+        "$4$"
+      ],
+      "answer": "B",
+      "hint": "Write $X$ as a sum of indicators, one for each pair of consecutive flips. Do not try to list all 64 sequences.",
+      "solution": "For each $k$ from 2 to 6, let $I_k=1$ if flips $k-1$ and $k$ match. Once the first of the two flips is known, the second matches with probability $\\frac12$, so $E[I_k]=\\frac12$. There are five such $k$, and by linearity $E[X]=5\\cdot\\frac12=\\frac52$, even though the indicators are not independent. The choice $3$ comes from $6\\cdot\\frac12$, which counts the flips instead of the pairs.",
+      "verify": "from fractions import Fraction\nfrom itertools import product\ntotal_x = 0\ncount = 0\nfor seq in product('HT', repeat=6):\n    count += 1\n    total_x += sum(1 for k in range(1, 6) if seq[k] == seq[k - 1])\nprint(Fraction(total_x, count))\n"
+    },
+    {
+      "id": "prob-10",
+      "difficulty": 3,
+      "problem": "Two real numbers $a$ and $b$ are chosen independently and uniformly at random from the interval $[0,1]$. What is the probability that $a<b$ and $a+b<1$?",
+      "choices": [
+        "$\\frac{1}{4}$",
+        "$\\frac{3}{8}$",
+        "$\\frac{1}{2}$",
+        "$\\frac{5}{8}$",
+        "$\\frac{3}{4}$"
+      ],
+      "answer": "A",
+      "hint": "Sketch the unit square in the $(a,b)$ plane and identify the region described by the two inequalities. It is a triangle.",
+      "solution": "The point $(a,b)$ is uniform on the unit square, so the answer is the area of the region where $a<b$ and $a+b<1$. That region is the triangle with corners $(0,0)$, $(0,1)$ and $\\left(\\frac12,\\frac12\\right)$. Its side along $a=0$ has length 1, and the corner $\\left(\\frac12,\\frac12\\right)$ is at horizontal distance $\\frac12$ from that side, so the area is $\\frac12\\cdot 1\\cdot\\frac12=\\frac14$. The choice $\\frac12$ comes from forgetting the condition $a+b<1$.",
+      "verify": "from fractions import Fraction\ndef length(a):\n    # b must satisfy a < b < 1 - a and 0 <= b <= 1\n    lo = max(Fraction(0), a)\n    hi = min(Fraction(1), 1 - a)\n    return max(Fraction(0), hi - lo)\n# length(a) is linear on each piece between these breakpoints\npoints = [Fraction(0), Fraction(1, 2), Fraction(1)]\narea = sum((length(x0) + length(x1)) / 2 * (x1 - x0) for x0, x1 in zip(points, points[1:]))\nprint(area)\n"
+    },
+    {
+      "id": "prob-11",
+      "difficulty": 4,
+      "problem": "A counter starts at $0$. On each turn a fair coin is flipped: heads moves the counter up by $1$ and tails moves it up by $2$. The process continues forever. What is the probability that the counter lands exactly on $5$ at some point?",
+      "choices": [
+        "$\\frac{5}{8}$",
+        "$\\frac{21}{32}$",
+        "$\\frac{11}{16}$",
+        "$\\frac{3}{4}$",
+        "$\\frac{13}{16}$"
+      ],
+      "answer": "B",
+      "hint": "Let $p_n$ be the probability that the counter ever equals $n$. Think about the move that lands on $n$: it comes from $n-1$ or from $n-2$.",
+      "solution": "Let $p_n$ be the probability that the counter ever equals $n$, with $p_0=1$ and $p_{-1}=0$. To land on $n$, the counter must be at $n-1$ and flip heads, or be at $n-2$ and flip tails. These two cases cannot overlap, because a counter that jumps from $n-2$ to $n$ never visits $n-1$. So $p_n=\\frac12p_{n-1}+\\frac12p_{n-2}$, giving $p_1=\\frac12$, $p_2=\\frac34$, $p_3=\\frac58$, $p_4=\\frac{11}{16}$ and $p_5=\\frac{21}{32}$. The value $\\frac{11}{16}$ is $p_4$, one step too early.",
+      "verify": "from fractions import Fraction\nfrom itertools import product\nhits = 0\ntotal = 0\nfor steps in product((1, 2), repeat=5):   # five equally likely sequences of moves\n    total += 1\n    position = 0\n    hit = False\n    for step in steps:\n        position += step\n        if position == 5:\n            hit = True\n    if hit:\n        hits += 1\nprint(Fraction(hits, total))\n"
+    },
+    {
+      "id": "prob-12",
+      "difficulty": 4,
+      "problem": "The numbers $1,2,3,4,5$ are arranged in a row in a random order, with all $5!$ orders equally likely. Let $N$ be the number of adjacent pairs of positions whose two entries differ by exactly $1$, in either order. What is $E[N]$?",
+      "choices": [
+        "$\\frac{8}{5}$",
+        "2",
+        "$\\frac{11}{5}$",
+        "$\\frac{12}{5}$",
+        "$\\frac{14}{5}$"
+      ],
+      "answer": "A",
+      "hint": "Use linearity. For each of the four adjacent pairs of positions, find the probability that its two entries differ by exactly 1.",
+      "solution": "Fix two adjacent positions. Their entries form an ordered pair of distinct numbers, and all 20 such ordered pairs are equally likely. The pairs whose entries differ by exactly 1 are $(1,2),(2,1),(2,3),(3,2),(3,4),(4,3),(4,5),(5,4)$, which is 8 pairs, so the probability is $\\frac{8}{20}=\\frac25$. There are four adjacent pairs of positions, so $E[N]=4\\cdot\\frac25=\\frac85$. The choice $\\frac45$ would count only the pairs in increasing order.",
+      "verify": "from fractions import Fraction\nfrom itertools import permutations\ntotal = 0\ncount = 0\nfor p in permutations(range(1, 6)):\n    count += 1\n    total += sum(1 for i in range(4) if abs(p[i] - p[i + 1]) == 1)\nprint(Fraction(total, count))\n"
+    },
+    {
+      "id": "prob-13",
+      "difficulty": 4,
+      "problem": "A fair coin is flipped repeatedly until the first head appears, but at most four flips are made in total. Let $K$ be the number of flips made. What is $P(K \\text{ is even})$?",
+      "choices": [
+        "$\\frac{3}{8}$",
+        "$\\frac{7}{16}$",
+        "$\\frac{1}{2}$",
+        "$\\frac{9}{16}$",
+        "$\\frac{5}{8}$"
+      ],
+      "answer": "A",
+      "hint": "Imagine all four flips are made in advance. The stopping rule depends only on the first few results.",
+      "solution": "$K=1$ with probability $\\frac12$, $K=2$ with probability $\\frac14$, and $K=3$ with probability $\\frac18$. Also $K=4$ when the first three flips are all tails, which has probability $\\frac18$, since the fourth flip does not change the count. The even values are $K=2$ and $K=4$, so the answer is $\\frac14+\\frac18=\\frac38$. Forgetting that $K=4$ can occur would give $\\frac14$.",
+      "verify": "from fractions import Fraction\nfrom itertools import product\neven = 0\ntotal = 0\nfor seq in product('HT', repeat=4):   # all four flips imagined in advance\n    total += 1\n    k = seq.index('H') + 1 if 'H' in seq else 4   # stop at the first head or after 4 flips\n    if k % 2 == 0:\n        even += 1\nprint(Fraction(even, total))\n"
+    },
+    {
+      "id": "prob-14",
+      "difficulty": 5,
+      "problem": "A token starts on square $1$ of the squares $0,1,2,3$. Each turn, a biased coin is flipped: with probability $\\frac23$ the token moves one square to the right, and with probability $\\frac13$ it moves one square to the left. The game ends as soon as the token reaches square $0$ or square $3$. What is the probability that the token reaches square $3$ before it reaches square $0$?",
+      "choices": [
+        "$\\frac{1}{3}$",
+        "$\\frac{3}{8}$",
+        "$\\frac{1}{2}$",
+        "$\\frac{4}{7}$",
+        "$\\frac{2}{3}$"
+      ],
+      "answer": "D",
+      "hint": "Let $w_k$ be the probability of reaching square 3 before square 0 from square $k$. Write one equation for $w_1$ and one for $w_2$, using the first move.",
+      "solution": "Let $w_k$ be the probability of reaching square 3 before square 0 starting from square $k$, so $w_0=0$ and $w_3=1$. From square 1, $w_1=\\frac23 w_2$. From square 2, $w_2=\\frac23+\\frac13 w_1$. Substituting gives $w_2=\\frac23+\\frac29 w_2$, so $w_2=\\frac67$ and $w_1=\\frac23\\cdot\\frac67=\\frac47$. The choice $\\frac23$ is the probability of moving right on a single turn, which ignores the chance of returning.",
+      "verify": "from fractions import Fraction\np = Fraction(2, 3)   # probability of moving right\nq = Fraction(1, 3)   # probability of moving left\n# Unknowns w1, w2 (probability of reaching 3 before 0), with w0 = 0 and w3 = 1:\n#   w1 - p*w2 = q*w0 = 0\n#   -q*w1 + w2 = p*w3 = p\na11, a12, b1 = Fraction(1), -p, Fraction(0)\na21, a22, b2 = -q, Fraction(1), p\ndet = a11 * a22 - a12 * a21\nw1 = (b1 * a22 - a12 * b2) / det\nprint(w1)\n"
+    },
+    {
+      "id": "prob-15",
+      "difficulty": 5,
+      "problem": "A fair six-sided die is rolled repeatedly. The process stops at the first time that two consecutive rolls both show a $6$. What is the expected total number of rolls?",
+      "choices": [
+        "$12$",
+        "30",
+        "$36$",
+        "$42$",
+        "$48$"
+      ],
+      "answer": "D",
+      "hint": "Let $E_0$ be the expected number of further rolls when the last roll was not a 6 (or there was no last roll), and $E_1$ when the last roll was a 6. Write one equation for each state.",
+      "solution": "From state 0, a 6 moves to state 1 and any other roll stays in state 0, so $E_0=1+\\frac56E_0+\\frac16E_1$. From state 1, a 6 ends the game and any other roll returns to state 0, so $E_1=1+\\frac56E_0$. The first equation simplifies to $E_0=6+E_1$. Substituting into the second gives $E_1=1+5+\\frac56E_1$, so $E_1=36$ and $E_0=42$. The process starts in state 0, so the answer is $42$. The choice $36$ is $E_1$, the expected wait when a 6 has already been rolled.",
+      "verify": "from fractions import Fraction\ns = Fraction(5, 6)   # probability of not rolling a 6\nf = Fraction(1, 6)   # probability of rolling a 6\n# Unknowns E0 (last roll not a 6) and E1 (last roll was a 6):\n#   (1 - s)*E0 - f*E1 = 1\n#   -s*E0 + E1        = 1\na, b, c, d = 1 - s, -f, -s, Fraction(1)\ndet = a * d - b * c\nE0 = (1 * d - b * 1) / det\nprint(E0)\n"
+    }
+  ]
+}

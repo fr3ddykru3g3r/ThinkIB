@@ -2,27 +2,7 @@
 
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
-import {
-  Search,
-  BookOpen,
-  FileText,
-  Calculator,
-  GraduationCap,
-  CheckSquare,
-  Award,
-  Layers,
-  MessageSquare,
-  Moon,
-  Sun,
-  ArrowRight,
-  Sparkles,
-  Command,
-  CornerDownLeft,
-  X,
-  HardDrive,
-  FlaskConical,
-  Atom
-} from 'lucide-react';
+import { Search, BookOpen, FileText, Calculator, Clock, GraduationCap, CheckSquare, Award, Layers, MessageSquare, Sparkles, CornerDownLeft, X, FlaskConical, Atom } from 'lucide-react';
 
 export interface CommandItem {
   id: string;
@@ -53,6 +33,7 @@ export default function CommandPalette() {
     try {
       localStorage.setItem('thinkib_theme', next);
     } catch {}
+    window.dispatchEvent(new CustomEvent('theme-change', { detail: next }));
   };
 
   const ITEMS: CommandItem[] = useMemo(() => [
@@ -81,10 +62,10 @@ export default function CommandPalette() {
     },
     {
       id: 'sat-exam',
-      title: 'Start Full SAT Adaptive Exam Simulation',
+      title: 'Full-length adaptive SAT practice test',
       category: 'SAT Prep',
       subtitle: 'Timed full-length exam with IRT 2-stage adaptive routing',
-      badge: 'Timed Simulation',
+      badge: 'Timed',
       href: '/sat/practice/exam',
       icon: GraduationCap,
       keywords: ['test', 'full exam', 'adaptive', 'score', 'mock', 'simulation']
@@ -337,13 +318,33 @@ export default function CommandPalette() {
     // MOCKS & TESTS
     {
       id: 'math-mocks-hub',
-      title: 'Math Mock Simulator (61 Papers)',
+      title: 'Math AA Mock Papers (61)',
       category: 'Mocks & Tests',
-      subtitle: 'Simulated Paper 1 and Paper 2 exams for AA SL and AA HL with step solutions',
+      subtitle: 'Paper 1 and Paper 2 mocks for AA SL and HL with worked solutions',
       badge: '61 Mocks',
       href: '/math-mocks',
       icon: Calculator,
       keywords: ['math mocks', 'paper 1', 'paper 2', 'aasl', 'aahl', 'simulator']
+    },
+    {
+      id: 'amc12-hub',
+      title: 'AMC 12 — Learn & Practise',
+      category: 'Mocks & Tests',
+      subtitle: 'Concept lessons, worked examples, topic drills and timed mock papers',
+      badge: 'AMC 12',
+      href: '/amc12',
+      icon: Calculator,
+      keywords: ['amc', 'amc 12', 'competition', 'olympiad', 'aops', 'contest math']
+    },
+    {
+      id: 'amc12-mock',
+      title: 'AMC 12 Mock Paper (75 min)',
+      category: 'Mocks & Tests',
+      subtitle: '25 problems ordered easy to hard, scored 6 / 1.5 / 0',
+      badge: 'Timed',
+      href: '/amc12/practice?mode=mock&n=1',
+      icon: Clock,
+      keywords: ['amc', 'mock', 'timed', 'contest', 'paper']
     },
     {
       id: 'flashcards-hub',
@@ -403,21 +404,11 @@ export default function CommandPalette() {
       id: 'theme-toggle',
       title: 'Toggle Theme (Dark / Light)',
       category: 'System',
-      subtitle: 'Switch between Deep Carbon and Warm Editorial typography themes',
+      subtitle: 'Switch between light and dark mode',
       badge: 'Theme',
       action: toggleTheme,
       icon: Sparkles,
       keywords: ['theme', 'dark mode', 'light mode', 'color']
-    },
-    {
-      id: 'system-status',
-      title: 'Digital Archive Status & Health',
-      category: 'System',
-      subtitle: 'Complete academic repository • 4,400+ past papers, 174 topicals, 3,443 SAT items',
-      badge: 'Online',
-      action: () => alert('The Archive is active and healthy.\nRepository: 4,400+ past papers\nTopicals: 174 vector booklets (Physics, Chem, Math)\nDigital SAT: 3,443 questions with Desmos & IRT scoring'),
-      icon: HardDrive,
-      keywords: ['system', 'status', 'health', 'vault', 'archive']
     }
   ], []);
 

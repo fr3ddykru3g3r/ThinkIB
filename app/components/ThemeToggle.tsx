@@ -17,6 +17,9 @@ export default function ThemeToggle() {
       setTheme('light');
       document.documentElement.removeAttribute('data-theme');
     }
+    const onChange = (e: Event) => setTheme((e as CustomEvent).detail === 'dark' ? 'dark' : 'light');
+    window.addEventListener('theme-change', onChange);
+    return () => window.removeEventListener('theme-change', onChange);
   }, []);
 
   const toggleTheme = () => {
@@ -41,7 +44,7 @@ export default function ThemeToggle() {
     <button
       type="button"
       onClick={toggleTheme}
-      title={theme === 'dark' ? 'Switch to Editorial Light' : 'Switch to Midnight OLED Dark Mode'}
+      title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
       aria-label="Toggle dark mode theme"
       style={{
         display: 'inline-flex',

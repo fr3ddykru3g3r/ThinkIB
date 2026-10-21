@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-15 19:50:23",
-  "total_questions_harvested": 2760,
-  "total_excluded_legacy": 291,
+  "generated_at": "2026-10-21 00:27:28",
+  "total_questions_harvested": 2313,
+  "total_excluded_legacy": 714,
   "themes": {
     "A": {
       "theme": "A",
@@ -9,8 +9,8 @@
       "description": "Kinematics, forces, momentum, work, energy, rigid bodies, and relativistic mechanics.",
       "color": "#0969da",
       "accent": "rgba(9, 105, 218, 0.12)",
-      "total_questions": 1338,
-      "pure_count": 1075,
+      "total_questions": 891,
+      "pure_count": 628,
       "intra_mixed_count": 60,
       "cross_synthesis_count": 203,
       "subtopics": [
@@ -111,12 +111,12 @@
       "theme_title": "Space, Time and Motion",
       "hl_only": false,
       "description": "SUVAT equations, projectile motion, graphs of motion, terminal velocity, and fluid resistance.",
-      "total_questions": 524,
-      "mcq_count": 485,
-      "frq_count": 39,
-      "sl_count": 245,
-      "hl_count": 279,
-      "pure_count": 524,
+      "total_questions": 77,
+      "mcq_count": 64,
+      "frq_count": 13,
+      "sl_count": 38,
+      "hl_count": 39,
+      "pure_count": 77,
       "mixed_count": 0,
       "qp_path": "/vault/physics-topicals/A.1_Kinematics.pdf",
       "ms_path": "/vault/physics-topicals/A.1_Kinematics_MS.pdf"

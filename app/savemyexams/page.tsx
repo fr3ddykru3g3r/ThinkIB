@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import { BookOpen, Folder, FileText, Search, Download, ExternalLink, ChevronRight, Eye, ArrowLeft } from 'lucide-react';
+import { Folder, FileText, Search, Download, ExternalLink, ChevronRight, Eye, ArrowLeft } from 'lucide-react';
 import rawMap from './map.json';
 
 interface NoteItem {
@@ -124,7 +124,7 @@ export default function SaveMyExamsPage() {
       <div className="panel" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '2rem' }}>
         <div>
           <span className="section-label">Revision Notes</span>
-          <h1 style={{ fontFamily: 'var(--display)', fontSize: '2.4rem', margin: '0.2rem 0' }}>SaveMyExams Revision Archive</h1>
+          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: '2.4rem', margin: '0.2rem 0' }}>SaveMyExams Revision Archive</h1>
           <p style={{ color: 'var(--ink-soft)', fontSize: '0.95rem', margin: 0 }}>Full high-resolution revision notes, diagrams, and topic summaries (2022–2025).</p>
         </div>
         <a href="/" className="filter-btn active" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
@@ -176,7 +176,7 @@ export default function SaveMyExamsPage() {
                 {isSearching ? `${filteredNotes.length} results found` : `${allNotes.length} revision notes available`}
               </span>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                {(isSearching ? filteredNotes : allNotes.slice(0, 100)).map((item, idx) => {
+                {(isSearching ? filteredNotes : allNotes).map((item, idx) => {
                   const isActive = selectedNote?.path === item.path;
                   return (
                     <div
@@ -320,7 +320,7 @@ export default function SaveMyExamsPage() {
           ) : (
             <div className="viewer-placeholder">
               <Eye size={44} style={{ color: 'var(--earth)', marginBottom: '1rem', opacity: 0.5 }} />
-              <h3 style={{ fontFamily: 'var(--display)', fontSize: '1.4rem' }}>No Revision Guide Selected</h3>
+              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.4rem' }}>No Revision Guide Selected</h3>
               <p style={{ maxWidth: '320px', marginTop: '0.5rem', fontSize: '0.9rem', color: 'var(--ink-soft)' }}>
                 Select a topic guide from the catalog on the left to read and review the full notes inline.
               </p>

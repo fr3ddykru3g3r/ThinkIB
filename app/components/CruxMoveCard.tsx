@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Sparkles, Check, BookmarkPlus, ArrowRight } from 'lucide-react';
+import { Sparkles, Check, BookmarkPlus } from 'lucide-react';
 import { enqueueItem, getSRSQueue, SRSSource } from '@/lib/srs-engine';
 import MathView from './MathView';
 

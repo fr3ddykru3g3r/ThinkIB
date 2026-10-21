@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { X, BookOpen, Calculator, Sparkles, CheckCircle2, Printer } from 'lucide-react';
+import { X, BookOpen, Calculator, Sparkles, Printer } from 'lucide-react';
 import MathView from './MathView';
 
 interface SATReferenceGuideModalProps {

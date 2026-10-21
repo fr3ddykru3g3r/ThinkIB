@@ -173,7 +173,10 @@ export default function DrillPage() {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       const t = e.target as HTMLElement;
-      if (!q || (t && (t.tagName === 'INPUT' || t.tagName === 'SELECT'))) return;
+      if (!q || (t && (t.tagName === 'INPUT' || t.tagName === 'SELECT' || t.tagName === 'TEXTAREA'))) return;
+      if (e.metaKey || e.ctrlKey || e.altKey) return; // don't hijack copy/select-all
+      // A focused button handles Enter itself; acting here too would grade and advance at once
+      if (e.key === 'Enter' && t?.tagName === 'BUTTON') return;
       if (!checked && !isSPR(q) && /^[a-d]$/i.test(e.key)) setAnswer(e.key.toUpperCase());
       else if (e.key === 'Enter') (checked ? move(1) : check());
     };
@@ -377,7 +380,7 @@ export default function DrillPage() {
                                 dispatchDesmosLoad(shortcut.autoLoadExpressions);
                               }}
                             >
-                              <Sparkles size={12} /> ⚡ Load in Desmos
+                              <Sparkles size={12} /> Load in Desmos
                             </button>
                           </div>
                           <p style={{ margin: 0, fontSize: '0.85rem' }}>{shortcut.proTip || shortcut.triggerPatternExplanation}</p>

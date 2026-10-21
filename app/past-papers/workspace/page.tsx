@@ -3,27 +3,7 @@
 import React, { useState, useEffect, useRef, Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { 
-  ArrowLeft, 
-  Timer, 
-  BookOpen, 
-  CheckSquare, 
-  Maximize2, 
-  Minimize2, 
-  Volume2, 
-  RotateCcw, 
-  Play, 
-  Pause, 
-  HelpCircle, 
-  Sliders, 
-  FileText,
-  Calculator,
-  Atom,
-  FlaskConical,
-  Award,
-  AlertCircle
-} from 'lucide-react';
-import MathView from '@/app/components/MathView';
+import { ArrowLeft, Timer, BookOpen, CheckSquare, RotateCcw, Play, Pause, FileText } from 'lucide-react';
 import rawPhysicsMap from '../physics_topicals_map.json';
 import rawChemistryMap from '../chemistry_topicals_map.json';
 import rawMathMap from '../math_topicals_map.json';
@@ -51,10 +31,10 @@ export interface PaperOption {
 }
 
 const CHRONOLOGICAL_PAPERS: PaperOption[] = [
-  { id: 'math-aa-hl-2024', label: 'Math AA HL P1 (May 2024)', qp: '/api/past-papers/Mathematics/2024/May/Math_AA_HL_paper_1_TZ1.pdf', ms: '/api/past-papers/Mathematics/2024/May/Math_AA_HL_paper_1_TZ1_markscheme.pdf', subject: 'math-aa', maxMarks: 110, duration: 120 },
-  { id: 'math-aa-sl-2024', label: 'Math AA SL P1 (May 2024)', qp: '/api/past-papers/Mathematics/2024/May/Math_AA_SL_paper_1_TZ1.pdf', ms: '/api/past-papers/Mathematics/2024/May/Math_AA_SL_paper_1_TZ1_markscheme.pdf', subject: 'math-aa', maxMarks: 80, duration: 90 },
-  { id: 'physics-hl-2024', label: 'Physics HL P1 (May 2024)', qp: '/api/past-papers/Physics/2024/May/Physics_HL_paper_1_TZ1.pdf', ms: '/api/past-papers/Physics/2024/May/Physics_HL_paper_1_TZ1_markscheme.pdf', subject: 'physics', maxMarks: 40, duration: 60 },
-  { id: 'chem-hl-2024', label: 'Chemistry HL P2 (May 2024)', qp: '/api/past-papers/Chemistry/2024/May/Chemistry_HL_paper_2_TZ1.pdf', ms: '/api/past-papers/Chemistry/2024/May/Chemistry_HL_paper_2_TZ1_markscheme.pdf', subject: 'chemistry', maxMarks: 90, duration: 135 },
+  { id: 'math-aa-hl-2024', label: 'Math AA HL P1 (May 2024)', qp: '/api/past-papers/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Mathematics/Mathematics_analysis_and_approaches_paper_1__TZ1_HL.pdf', ms: '/api/past-papers/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Mathematics/Mathematics_analysis_and_approaches_paper_1__TZ1_HL_markscheme.pdf', subject: 'math-aa', maxMarks: 110, duration: 120 },
+  { id: 'math-aa-sl-2024', label: 'Math AA SL P1 (May 2024)', qp: '/api/past-papers/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Mathematics/Mathematics_analysis_and_approaches_paper_1__TZ1_SL.pdf', ms: '/api/past-papers/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Mathematics/Mathematics_analysis_and_approaches_paper_1__TZ1_SL_markscheme.pdf', subject: 'math-aa', maxMarks: 80, duration: 90 },
+  { id: 'physics-hl-2024', label: 'Physics HL P1 (May 2024)', qp: '/api/past-papers/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Experimental%20sciences/Physics_paper_1__TZ1_HL.pdf', ms: '/api/past-papers/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Experimental%20sciences/Physics_paper_1__TZ1_HL_markscheme.pdf', subject: 'physics', maxMarks: 40, duration: 60 },
+  { id: 'chem-hl-2024', label: 'Chemistry HL P2 (May 2024)', qp: '/api/past-papers/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Experimental%20sciences/Chemistry_paper_2__TZ1_HL.pdf', ms: '/api/past-papers/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Experimental%20sciences/Chemistry_paper_2__TZ1_HL_markscheme.pdf', subject: 'chemistry', maxMarks: 90, duration: 135 },
 ];
 
 const PHYSICS_TOPICAL_PAPERS: PaperOption[] = [
@@ -141,7 +121,7 @@ function PastPapersWorkspaceInner() {
 
   // Right pane tab
   const [activeTab, setActiveTab] = useState<RightTab>('booklet');
-  const [bookletSubject, setBookletSubject] = useState<BookletKey>(paper.subject || 'math-aa');
+  const [bookletSubject, setBookletSubject] = useState<BookletKey>('math-aa');
 
   // Split ratio: left percent
   const [splitRatio, setSplitRatio] = useState<number>(50);
@@ -160,6 +140,12 @@ function PastPapersWorkspaceInner() {
 
   // Scratchpad Notes
   const [studentNotes, setStudentNotes] = useState<string>('');
+  useEffect(() => {
+    try { setStudentNotes(localStorage.getItem('thinkib:workspace-notes') || ''); } catch {}
+  }, []);
+  useEffect(() => {
+    try { localStorage.setItem('thinkib:workspace-notes', studentNotes); } catch {}
+  }, [studentNotes]);
 
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -197,7 +183,6 @@ function PastPapersWorkspaceInner() {
         duration: 90
       });
       setSelectedPaperId('deep-linked-custom');
-      setBookletSubject(subj);
       if (msResolved) {
         setActiveTab('markscheme');
       }
@@ -207,17 +192,16 @@ function PastPapersWorkspaceInner() {
   useEffect(() => {
     setExamTimeLeft(paper.duration * 60);
     setMaxMarks(paper.maxMarks);
-    if (paper.subject) {
-      setBookletSubject(paper.subject);
-    }
   }, [paper.duration, paper.maxMarks, paper.subject]);
 
   const handleSelectPaper = (id: string) => {
     setSelectedPaperId(id);
     setCustomPaper(null);
+    setMMarks(0);
+    setAMarks(0);
+    setRMarks(0);
     const chosen = ALL_PAPERS_MAP.get(id);
     if (chosen) {
-      setBookletSubject(chosen.subject);
       setExamTimeLeft(chosen.duration * 60);
       setMaxMarks(chosen.maxMarks);
       if (chosen.ms) {
@@ -255,7 +239,10 @@ function PastPapersWorkspaceInner() {
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [isReadingMode, isExamRunning, examTimeLeft]);
+    // examTimeLeft is read only to decide whether to start; including it as a
+    // dependency re-created the interval every tick and made the clock drift
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isReadingMode, isExamRunning]);
 
   const formatSeconds = (sec: number) => {
     const mins = Math.floor(sec / 60);
@@ -314,7 +301,7 @@ function PastPapersWorkspaceInner() {
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
           <Link 
             href="/past-papers"
-            style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', color: 'var(--text-muted, #666)', textDecoration: 'none', fontSize: '0.85rem', fontWeight: 600 }}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', color: 'var(--muted)', textDecoration: 'none', fontSize: '0.85rem', fontWeight: 600 }}
             className="hover:text-black"
           >
             <ArrowLeft size={16} /> Past Papers
@@ -338,7 +325,7 @@ function PastPapersWorkspaceInner() {
           >
             {customPaper && (
               <option value="deep-linked-custom">
-                ⚡ {customPaper.label}
+                {customPaper.label}
               </option>
             )}
             <optgroup label="Sample Full Past Papers">
@@ -526,8 +513,8 @@ function PastPapersWorkspaceInner() {
             ) : (
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', padding: '2rem', textAlign: 'center' }}>
                 <div>
-                  <FileText size={36} color="var(--text-muted, #888)" style={{ margin: '0 auto 1rem' }} />
-                  <p style={{ fontSize: '0.9rem', color: 'var(--text-muted, #666)' }}>
+                  <FileText size={36} color="var(--muted)" style={{ margin: '0 auto 1rem' }} />
+                  <p style={{ fontSize: '0.9rem', color: 'var(--muted)' }}>
                     Paste a Question Paper URL or select a paper from the top dropdown.
                   </p>
                   <input 
@@ -562,7 +549,7 @@ function PastPapersWorkspaceInner() {
                 border: 'none',
                 background: 'transparent',
                 borderBottom: activeTab === 'booklet' ? '2px solid #0969da' : '2px solid transparent',
-                color: activeTab === 'booklet' ? '#0969da' : 'var(--text-muted, #666)',
+                color: activeTab === 'booklet' ? '#0969da' : 'var(--muted)',
                 fontWeight: activeTab === 'booklet' ? 700 : 500,
                 fontSize: '0.85rem',
                 cursor: 'pointer',
@@ -581,7 +568,7 @@ function PastPapersWorkspaceInner() {
                 border: 'none',
                 background: 'transparent',
                 borderBottom: activeTab === 'markscheme' ? '2px solid #2ea043' : '2px solid transparent',
-                color: activeTab === 'markscheme' ? '#2ea043' : 'var(--text-muted, #666)',
+                color: activeTab === 'markscheme' ? '#2ea043' : 'var(--muted)',
                 fontWeight: activeTab === 'markscheme' ? 700 : 500,
                 fontSize: '0.85rem',
                 cursor: 'pointer',
@@ -600,7 +587,7 @@ function PastPapersWorkspaceInner() {
                 border: 'none',
                 background: 'transparent',
                 borderBottom: activeTab === 'notes' ? '2px solid #8250df' : '2px solid transparent',
-                color: activeTab === 'notes' ? '#8250df' : 'var(--text-muted, #666)',
+                color: activeTab === 'notes' ? '#8250df' : 'var(--muted)',
                 fontWeight: activeTab === 'notes' ? 700 : 500,
                 fontSize: '0.85rem',
                 cursor: 'pointer',
@@ -627,10 +614,11 @@ function PastPapersWorkspaceInner() {
                     background: bookletSubject === 'math-aa' ? 'rgba(9, 105, 218, 0.1)' : 'transparent',
                     fontSize: '0.78rem',
                     fontWeight: 600,
+                    color: 'var(--ink)',
                     cursor: 'pointer'
                   }}
                 >
-                  Math AA
+                  AA Formula Booklet
                 </button>
                 <button
                   onClick={() => setBookletSubject('physics')}
@@ -641,35 +629,20 @@ function PastPapersWorkspaceInner() {
                     background: bookletSubject === 'physics' ? 'rgba(9, 105, 218, 0.1)' : 'transparent',
                     fontSize: '0.78rem',
                     fontWeight: 600,
+                    color: 'var(--ink)',
                     cursor: 'pointer'
                   }}
                 >
-                  Physics
-                </button>
-                <button
-                  onClick={() => setBookletSubject('chemistry')}
-                  style={{
-                    padding: '0.25rem 0.5rem',
-                    borderRadius: '4px',
-                    border: bookletSubject === 'chemistry' ? '1px solid #0969da' : '1px solid var(--border)',
-                    background: bookletSubject === 'chemistry' ? 'rgba(9, 105, 218, 0.1)' : 'transparent',
-                    fontSize: '0.78rem',
-                    fontWeight: 600,
-                    cursor: 'pointer'
-                  }}
-                >
-                  Chemistry
+                  AA Comprehensive Sheet
                 </button>
               </div>
 
               <div style={{ flex: 1 }}>
                 <iframe
                   src={
-                    bookletSubject === 'math-aa'
-                      ? '/vault/ib-booklets/Math_AA_Formula_Booklet.pdf#toolbar=1'
-                      : bookletSubject === 'physics'
-                        ? '/vault/ib-booklets/Math_AA_Comprehensive_Sheet.pdf#toolbar=1'
-                        : '/vault/ib-booklets/Math_AA_Formula_Booklet.pdf#toolbar=1'
+                    bookletSubject === 'physics'
+                      ? '/vault/ib-booklets/Math_AA_Comprehensive_Sheet.pdf#toolbar=1'
+                      : '/vault/ib-booklets/Math_AA_Formula_Booklet.pdf#toolbar=1'
                   }
                   style={{ width: '100%', height: '100%', border: 'none' }}
                   title="Formula Booklet"
@@ -724,7 +697,7 @@ function PastPapersWorkspaceInner() {
                 {/* Score & Predicted Grade Banner */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                   <div style={{ textAlign: 'right' }}>
-                    <div style={{ fontSize: '0.75rem', color: 'var(--text-muted, #666)' }}>Total / Max:</div>
+                    <div style={{ fontSize: '0.75rem', color: 'var(--muted)' }}>Total / Max:</div>
                     <div style={{ fontWeight: 800, fontSize: '0.95rem' }}>
                       {totalScore} / {maxMarks} ({percentage.toFixed(1)}%)
                     </div>
@@ -756,8 +729,8 @@ function PastPapersWorkspaceInner() {
                 ) : (
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', padding: '2rem', textAlign: 'center' }}>
                     <div>
-                      <CheckSquare size={36} color="var(--text-muted, #888)" style={{ margin: '0 auto 1rem' }} />
-                      <p style={{ fontSize: '0.9rem', color: 'var(--text-muted, #666)' }}>
+                      <CheckSquare size={36} color="var(--muted)" style={{ margin: '0 auto 1rem' }} />
+                      <p style={{ fontSize: '0.9rem', color: 'var(--muted)' }}>
                         Select a paper above or paste a custom Markscheme URL to grade against official M1/A1 criteria.
                       </p>
                       <input 
@@ -777,7 +750,7 @@ function PastPapersWorkspaceInner() {
           {/* TAB 3: SCRATCHPAD NOTES */}
           {activeTab === 'notes' && (
             <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '1rem' }}>
-              <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-muted, #666)', marginBottom: '0.5rem' }}>
+              <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--muted)', marginBottom: '0.5rem' }}>
                 Student Working & Exam Notes (Auto-saved locally):
               </div>
               <textarea

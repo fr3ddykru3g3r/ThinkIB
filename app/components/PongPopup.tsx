@@ -232,6 +232,9 @@ export default function ArcadeSuitePopup() {
     };
 
     const handleKeyDown = (e: KeyboardEvent) => {
+      // Don't hijack typing in forms elsewhere on the page
+      const t = e.target as HTMLElement | null;
+      if (t && (t.isContentEditable || ['INPUT', 'TEXTAREA', 'SELECT'].includes(t.tagName))) return;
       const k = e.key.toLowerCase();
       keysPressed.current[k] = true;
 
@@ -518,7 +521,8 @@ export default function ArcadeSuitePopup() {
       {/* Header Inline Mini Action Trigger */}
       <button
         onClick={() => setIsOpen(prev => !prev)}
-        title="Arcade Mini-Games Collection"
+        title="Arcade mini-games"
+        aria-label="Arcade"
         style={{
           background: 'var(--panel-light)',
           border: '1px solid var(--border)',
@@ -544,7 +548,7 @@ export default function ArcadeSuitePopup() {
         }}
       >
         <Gamepad2 size={13} style={{ color: '#3b82f6' }} />
-        <span>ARCADE</span>
+        <span className="hide-sm">ARCADE</span>
       </button>
 
       {/* Floating Retro Arcade Window */}

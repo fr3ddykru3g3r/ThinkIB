@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import { PenTool, Highlighter, Eraser, RotateCcw, Trash2, X, Move } from 'lucide-react';
+import { PenTool, Highlighter, Eraser, RotateCcw, Trash2, X } from 'lucide-react';
 
 interface ScratchpadOverlayProps {
   questionId: string;

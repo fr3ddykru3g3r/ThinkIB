@@ -3,22 +3,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { getSRSQueue } from '@/lib/srs-engine';
-import {
-  ArrowLeft,
-  RotateCcw,
-  Sparkles,
-  CheckCircle2,
-  HelpCircle,
-  Shuffle,
-  ChevronLeft,
-  ChevronRight,
-  BookOpen,
-  Check,
-  X,
-  Volume2,
-  Lightbulb,
-  AlertTriangle,
-} from 'lucide-react';
+import { ArrowLeft, Shuffle, ChevronLeft, ChevronRight, Check, Lightbulb, AlertTriangle } from 'lucide-react';
 import MathView from '@/app/components/MathView';
 
 interface Flashcard {
@@ -266,7 +251,7 @@ export default function FlashcardsPage() {
               {
                 id: 'crux-intro',
                 front: '🎯 How do I save Crux Moves here?',
-                frontHint: 'FSRS active recall engine integration',
+                frontHint: 'Spaced repetition (FSRS)',
                 back: 'When reviewing SAT rationales or solving AMC 12 & AIME problems, click the "🎯 Save Crux to Flashcards" button.\n\nYour pivotal insights and crux moves will automatically sync here into your daily active recall queue!',
                 category: 'Active Recall',
                 tag: 'Getting Started',
@@ -400,8 +385,8 @@ export default function FlashcardsPage() {
         </div>
       </div>
 
-      <span className="section-label">ACTIVE RECALL ENGINE</span>
-      <h1 style={{ fontSize: '2.4rem', marginBottom: '0.5rem' }}>High-Yield Memory Decks</h1>
+      <span className="section-label">FLASHCARDS</span>
+      <h1 style={{ fontSize: '2.4rem', marginBottom: '0.5rem' }}>Flashcard decks</h1>
       <p style={{ color: 'var(--muted)', fontSize: '1.05rem', marginBottom: '2rem' }}>
         Master high-frequency formulas, grammar rules, and IB command terms through active spaced retrieval.
       </p>

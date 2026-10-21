@@ -1,25 +1,8 @@
 'use client';
 
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import {
-  MessageSquare,
-  PlusCircle,
-  ThumbsUp,
-  Tag,
-  Clock,
-  Sparkles,
-  Search,
-  ExternalLink,
-  CheckCircle2,
-  XCircle,
-  Clock4,
-  ArrowRight,
-  Filter,
-  RefreshCw,
-  Send,
-  AlertCircle,
-} from 'lucide-react';
+import { MessageSquare, PlusCircle, ThumbsUp, Sparkles, Search, ExternalLink, RefreshCw, Send, AlertCircle } from 'lucide-react';
 import { ForumThread, ForumReply, ResourceSubmission } from '@/lib/db';
 import MathView from '@/app/components/MathView';
 
@@ -69,6 +52,8 @@ export default function ForumPage() {
   const [submittingReply, setSubmittingReply] = useState(false);
   const [replyHoneypot, setReplyHoneypot] = useState('');
 
+  const [ephemeral, setEphemeral] = useState(false);
+
   // Fetch threads
   const fetchThreads = async () => {
     setLoadingThreads(true);
@@ -81,6 +66,7 @@ export default function ForumPage() {
       const data = await res.json();
       if (data.success) {
         setThreads(data.threads);
+        setEphemeral(Boolean(data.ephemeral));
       }
     } catch (e) {
       console.error('Failed to load threads', e);
@@ -270,8 +256,13 @@ export default function ForumPage() {
         <span className="section-label">COMMUNITY</span>
         <h1 style={{ marginBottom: '0.5rem' }}>Forum & Submissions</h1>
         <p style={{ color: 'var(--muted)', fontSize: '1.1rem', maxWidth: '75ch' }}>
-          Discuss exam problems, share solutions, and submit study resources for weekly review.
+          Discuss exam problems, share solutions, and submit study resources for review.
         </p>
+        {ephemeral && (
+          <p style={{ marginTop: '0.75rem', fontSize: '0.85rem', color: 'var(--muted)', padding: '0.5rem 0.8rem', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm)', display: 'inline-block' }}>
+            Heads up: new posts are stored temporarily on this host and may disappear after a while.
+          </p>
+        )}
       </div>
 
       {/* Main Tab Switcher */}
@@ -485,7 +476,7 @@ export default function ForumPage() {
                   fontSize: '0.96rem',
                 }}
               >
-                <MathView content={selectedThread.content} />
+                <MathView escapeHtml content={selectedThread.content} />
               </div>
 
               {/* Tags */}
@@ -549,7 +540,7 @@ export default function ForumPage() {
                           )}
                         </div>
                         <div style={{ fontSize: '0.92rem', lineHeight: '1.6', whiteSpace: 'pre-wrap' }}>
-                          <MathView content={r.content} />
+                          <MathView escapeHtml content={r.content} />
                         </div>
                       </div>
                     ))}
@@ -750,7 +741,7 @@ export default function ForumPage() {
                           </h3>
 
                           <div style={{ color: 'var(--muted)', fontSize: '0.9rem', marginBottom: '0.75rem', lineHeight: '1.5' }}>
-                            <MathView content={t.content.length > 170 ? t.content.substring(0, 170) + '...' : t.content} />
+                            <MathView escapeHtml content={t.content.length > 170 ? t.content.substring(0, 170) + '...' : t.content} />
                           </div>
 
                           {/* Footer Meta */}
@@ -800,13 +791,13 @@ export default function ForumPage() {
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem' }}>
               <div>
                 <span className="section-label" style={{ color: 'var(--accent)', marginBottom: '0.3rem' }}>
-                  WEEKLY AUTONOMOUS CURATION ENGINE
+                  HOW SUBMISSIONS WORK
                 </span>
                 <h3 style={{ fontSize: '1.3rem', margin: '0.2rem 0 0.5rem' }}>
                   How Resource Curation Works
                 </h3>
                 <p style={{ color: 'var(--ink)', opacity: 0.88, fontSize: '0.92rem', maxWidth: '70ch', margin: 0 }}>
-                  Any student can submit study notes, portals, or videos. Every week, our automated AI curation loop verifies the links, checks syllabus alignment with Digital SAT & IB standards, standardizes the title, and approves or rejects items into the official archive directory.
+                  Any student can submit study notes, portals, or videos. Submissions are screened for spam and duplicate links, then reviewed before being added to the archive directory. Always check a link yourself before downloading anything.
                 </p>
               </div>
 
@@ -1040,7 +1031,7 @@ export default function ForumPage() {
             }}
             onClick={(e) => e.stopPropagation()}
           >
-            <span className="section-label">NEW ACADEMIC DISCUSSION</span>
+            <span className="section-label">NEW POST</span>
             <h2 style={{ fontSize: '1.6rem', marginBottom: '1.25rem' }}>Ask a Question or Share a Breakdown</h2>
 
             {threadError && (

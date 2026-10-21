@@ -85,12 +85,12 @@ export const resourcesData: ResourceItem[] = [
     rating: '5.0 ★ Essential'
   },
   {
-    name: 'Official IBO Teacher Support Material (TSM) IA Repository',
+    name: 'Teacher Support Material (TSM) IA Repository (third-party mirror)',
     category: 'portal',
     subject: 'Multiple',
-    description: 'Moderated collection of official IBO Internal Assessment student samples across all subjects with teacher marks and examiner feedback.',
+    description: 'Unofficial third-party mirror of IBO Internal Assessment student samples across all subjects with teacher marks and examiner feedback.',
     url: 'https://repo.pirateib.sh/index.php?p=IB+TEACHER+SUPPORT+MATERIAL',
-    meta: 'Official Moderated IAs',
+    meta: 'Third-party mirror',
     rating: '5.0 ★ Essential'
   },
   {

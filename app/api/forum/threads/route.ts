@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
 
   const threads = getThreads(channel, search);
   return NextResponse.json(
-    { success: true, threads },
+    { success: true, threads, ephemeral: isUsingEphemeralStorage() },
     {
       headers: {
         'Cache-Control': 'public, max-age=10, s-maxage=30, stale-while-revalidate=60',

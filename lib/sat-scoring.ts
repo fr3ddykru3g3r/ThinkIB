@@ -169,6 +169,10 @@ export function scoreExam(
 ): SATScoreReport {
   const rw = scoreSection(rwItems, difficultyMode);
   const math = scoreSection(mathItems, difficultyMode);
+  // A section not taken (single-section practice) scores 0, not the 200 floor,
+  // so it can't inflate the total
+  if (rw.total === 0) rw.score = 0;
+  if (math.total === 0) math.score = 0;
   const totalScore = rw.score + math.score;
   const band = (s: number): [number, number] => [Math.max(200, s - 30), Math.min(800, s + 30)];
 

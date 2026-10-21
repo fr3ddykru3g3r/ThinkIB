@@ -19,6 +19,7 @@ const NAV_ITEMS: NavItem[] = [
   { label: 'SaveMyExams', href: '/savemyexams' },
   { label: 'InThinking', href: '/thinkib' },
   { label: 'Math Mocks', href: '/math-mocks' },
+  { label: 'AMC 12', href: '/amc12' },
   { label: 'Flashcards', href: '/flashcards' },
   { label: 'Exemplars', href: '/exemplars' },
   { label: 'Forum', href: '/forum' },
@@ -95,7 +96,6 @@ export default function HeaderNav() {
           className="desktop-nav"
           aria-label="Main Navigation"
           style={{
-            display: 'flex',
             alignItems: 'center',
             gap: '0.25rem',
             flexWrap: 'wrap',
@@ -154,11 +154,13 @@ export default function HeaderNav() {
               cursor: 'pointer',
               transition: 'all 0.15s ease',
             }}
-            title="Search Archive (⌘K or Ctrl+K)"
+            title="Search (⌘K or Ctrl+K)"
+            aria-label="Search"
           >
             <Search size={14} style={{ color: 'var(--accent)' }} />
-            <span style={{ fontSize: '0.78rem', fontWeight: 500, color: 'var(--ink)' }}>Search</span>
+            <span className="hide-sm" style={{ fontSize: '0.78rem', fontWeight: 500, color: 'var(--ink)' }}>Search</span>
             <kbd
+              className="hide-sm"
               style={{
                 fontSize: '0.66rem',
                 fontFamily: 'var(--font-mono)',

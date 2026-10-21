@@ -131,6 +131,10 @@ export async function GET(
       return seg;
     }
   });
+  // Each segment must be a plain name: no traversal, no embedded separators
+  if (pathSegments.some((seg) => seg === '..' || seg === '.' || /[\\/\0]/.test(seg))) {
+    return new NextResponse('Not found', { status: 404 });
+  }
   const filename = pathSegments[pathSegments.length - 1];
 
   // 0. Check if request is for a Topical Past Paper (Physics, Chemistry, Math)
@@ -145,7 +149,7 @@ export async function GET(
     }
   } else if (
     pathSegments[0] &&
-    (pathSegments[0].endsWith('-topicals') || ['physics', 'chemistry', 'math'].includes(pathSegments[0].toLowerCase()))
+    pathSegments[0].endsWith('-topicals')
   ) {
     const s = pathSegments[0].replace('-topicals', '').toLowerCase();
     if (s === 'physics' || s === 'chemistry' || s === 'math') {
@@ -159,13 +163,11 @@ export async function GET(
     const safeFilename = path.basename(topicalFilename);
 
     // Tier 1: Local Development disk check
-    const localTopicalPath = path.join(
-      process.cwd(),
-      'public',
-      'vault',
-      `${topicalSubject}-topicals`,
-      topicalFilename
-    );
+    const topicalDir = path.join(process.cwd(), 'public', 'vault', `${topicalSubject}-topicals`);
+    const localTopicalPath = path.resolve(topicalDir, topicalFilename);
+    if (!localTopicalPath.startsWith(topicalDir + path.sep)) {
+      return new NextResponse('Not found', { status: 404 });
+    }
     if (fs.existsSync(localTopicalPath) && fs.statSync(localTopicalPath).isFile()) {
       if (isDownload) {
         return new NextResponse(fs.readFileSync(localTopicalPath), {
@@ -217,8 +219,10 @@ export async function GET(
       return NextResponse.redirect(cdnUrl, 307);
     }
   }
-  if (filename) {
-    if (map2025Record[filename]) {
+  // The 2025 map only applies to 2025 papers (older sessions reuse the same filenames)
+  const is2025 = pathSegments.length === 1 || pathSegments[0].startsWith('2025');
+  if (filename && is2025) {
+    if (Object.prototype.hasOwnProperty.call(map2025Record, filename)) {
       return NextResponse.redirect(`${request.nextUrl.origin}${map2025Record[filename]}`, 307);
     }
     const normKey = normalizePaperKey(filename);
@@ -229,7 +233,7 @@ export async function GET(
 
   // Also check if joined path matches a normalized 2025 paper
   const fullNormKey = normalizePaperKey(pathSegments.join(' '));
-  if (fullNormKey.length > 5) {
+  if (is2025 && fullNormKey.length > 5) {
     for (const [normKey, targetUrl] of Array.from(normalizedMap2025.entries())) {
       if (normKey.length > 5 && (fullNormKey.includes(normKey) || normKey.includes(fullNormKey))) {
         return NextResponse.redirect(`${request.nextUrl.origin}${targetUrl}`, 307);
@@ -239,9 +243,10 @@ export async function GET(
 
   // 2. Check local static copy in public/vault/past-papers/
   const relativePath = pathSegments.join('/');
-  const localFilePath = path.join(process.cwd(), 'public', 'vault', 'past-papers', relativePath);
+  const pastPapersDir = path.join(process.cwd(), 'public', 'vault', 'past-papers');
+  const localFilePath = path.resolve(pastPapersDir, relativePath);
 
-  if (fs.existsSync(localFilePath) && fs.statSync(localFilePath).isFile()) {
+  if (localFilePath.startsWith(pastPapersDir + path.sep) && fs.existsSync(localFilePath) && fs.statSync(localFilePath).isFile()) {
     const encodedRedirect = pathSegments.map(encodeURIComponent).join('/');
     return NextResponse.redirect(`${request.nextUrl.origin}/vault/past-papers/${encodedRedirect}`, 307);
   }

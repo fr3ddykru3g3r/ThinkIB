@@ -1,0 +1,369 @@
+{
+  "id": "trig-complex",
+  "title": "Trigonometry & Complex Numbers",
+  "summary": "Trigonometry on the unit circle, the sum and double-angle formulas, the law of sines and law of cosines, and complex numbers in polar form with De Moivre's theorem and roots of unity.",
+  "examWeight": "≈3–5 problems per paper (trig and complex numbers together)",
+  "concepts": [
+    {
+      "title": "The unit circle and basic identities",
+      "body": "Place an angle $\\theta$ at the origin and measure it counterclockwise from the positive $x$-axis. Its terminal ray meets the unit circle $x^2+y^2=1$ at the point $(\\cos\\theta,\\sin\\theta)$. The $x$-coordinate is the cosine, the $y$-coordinate is the sine, and the radius has length $1$. Almost every basic identity comes from this one picture.\n\nBecause the point lies on the circle, the Pythagorean theorem gives $\\cos^2\\theta+\\sin^2\\theta=1$ for every angle. The tangent is the slope of the ray, so $\\tan\\theta=\\frac{\\sin\\theta}{\\cos\\theta}$. As the point travels around the circle, the signs of its coordinates change: in quadrant I both are positive, in quadrant II only the sine is positive, in quadrant III only the tangent is positive, and in quadrant IV only the cosine is positive.\n\nExample: if $\\cos\\theta=\\frac35$ and $\\sin\\theta<0$, then $\\sin^2\\theta=1-\\frac{9}{25}=\\frac{16}{25}$, so $\\sin\\theta=\\pm\\frac45$. The sign condition picks $\\sin\\theta=-\\frac45$. You never need the angle itself, only the identity and the sign.",
+      "keyFacts": [
+        "$\\sin^2\\theta+\\cos^2\\theta=1$",
+        "$\\tan\\theta=\\dfrac{\\sin\\theta}{\\cos\\theta}$",
+        "$\\cos(-\\theta)=\\cos\\theta$ and $\\sin(-\\theta)=-\\sin\\theta$",
+        "$\\sin(\\pi-\\theta)=\\sin\\theta$ and $\\cos(\\pi-\\theta)=-\\cos\\theta$"
+      ],
+      "whenToUse": "A problem gives one trig value plus a sign or quadrant condition, or asks you to simplify an expression that mixes $\\sin^2\\theta$ and $\\cos^2\\theta$."
+    },
+    {
+      "title": "Sum, difference and double-angle formulas",
+      "body": "Why do these formulas hold? Take two points on the unit circle at angles $A$ and $B$. The squared distance between them can be found two ways. Directly from the coordinates $(\\cos A,\\sin A)$ and $(\\cos B,\\sin B)$, it equals $2-2(\\cos A\\cos B+\\sin A\\sin B)$. Alternatively, rotate the whole picture by $-B$ so that the second point sits at $(1,0)$; the first point then sits at angle $A-B$, and the distance squared is $2-2\\cos(A-B)$. Rotation does not change distances, so the two expressions match, and $\\cos(A-B)=\\cos A\\cos B+\\sin A\\sin B$.\n\nThe other formulas follow by substitution. Replacing $B$ by $-B$ gives the formula for $\\cos(A+B)$, and writing $\\sin x=\\cos\\left(\\frac{\\pi}{2}-x\\right)$ gives the sine formulas. Setting $A=B=\\theta$ produces the double-angle formulas, which are only special cases of the sum formulas.\n\nExample: $75^\\circ=45^\\circ+30^\\circ$, so $\\sin 75^\\circ=\\sin45^\\circ\\cos30^\\circ+\\cos45^\\circ\\sin30^\\circ=\\frac{\\sqrt2}{2}\\cdot\\frac{\\sqrt3}{2}+\\frac{\\sqrt2}{2}\\cdot\\frac12=\\frac{\\sqrt6+\\sqrt2}{4}$. Splitting a non-standard angle into standard ones turns it into exact arithmetic.",
+      "keyFacts": [
+        "$\\cos(A\\pm B)=\\cos A\\cos B\\mp\\sin A\\sin B$",
+        "$\\sin(A\\pm B)=\\sin A\\cos B\\pm\\cos A\\sin B$",
+        "$\\sin 2\\theta=2\\sin\\theta\\cos\\theta$",
+        "$\\cos 2\\theta=\\cos^2\\theta-\\sin^2\\theta=1-2\\sin^2\\theta=2\\cos^2\\theta-1$"
+      ],
+      "whenToUse": "The angle is a sum or difference of standard angles such as $75^\\circ=45^\\circ+30^\\circ$, or the problem contains $\\sin 2\\theta$ or $\\cos 2\\theta$."
+    },
+    {
+      "title": "Law of sines and law of cosines",
+      "body": "Label a triangle so that side $a$ is opposite angle $A$, and similarly for $b$ and $c$. The law of cosines, $c^2=a^2+b^2-2ab\\cos C$, is the Pythagorean theorem with a correction. When $C=90^\\circ$, the cosine is $0$ and the formula becomes $c^2=a^2+b^2$. For any other angle, the term $-2ab\\cos C$ accounts for the fact that the two sides are not perpendicular.\n\nThe law of sines, $\\frac{a}{\\sin A}=\\frac{b}{\\sin B}=\\frac{c}{\\sin C}$, says that each side is proportional to the sine of the angle facing it. The common ratio equals $2R$, where $R$ is the radius of the circumscribed circle. Use the law of cosines when you know two sides and the angle between them, or all three sides. Use the law of sines when you know an angle together with the side opposite it.\n\nExample: sides $5$ and $8$ with included angle $60^\\circ$ give a third side with $c^2=25+64-2\\cdot5\\cdot8\\cdot\\frac12=49$, so $c=7$. The circumradius is then $R=\\frac{7}{2\\sin 60^\\circ}=\\frac{7}{\\sqrt3}$.",
+      "keyFacts": [
+        "$c^2=a^2+b^2-2ab\\cos C$",
+        "$\\dfrac{a}{\\sin A}=\\dfrac{b}{\\sin B}=\\dfrac{c}{\\sin C}=2R$",
+        "Area $=\\frac12 ab\\sin C$"
+      ],
+      "whenToUse": "The problem gives two sides and the included angle, or all three sides (use cosines); or it gives an angle with its opposite side and asks for another side or the circumradius (use sines)."
+    },
+    {
+      "title": "Complex numbers in polar form",
+      "body": "A complex number $z=x+iy$ is a point in the plane. Its distance from the origin is the modulus $r=|z|=\\sqrt{x^2+y^2}$, and the angle it makes with the positive real axis is its argument $\\theta$. Trigonometry gives $z=r(\\cos\\theta+i\\sin\\theta)$, which is also written $z=re^{i\\theta}$. The exponential form is shorthand, and its main job is to make multiplication easy to see.\n\nWhy does polar form make multiplication easy? The identity $i^2=-1$ says that multiplying by $i$ is a quarter turn, since $i=e^{i\\pi/2}$. More generally, multiplying by $\\cos\\varphi+i\\sin\\varphi$ rotates the plane by $\\varphi$. So multiplying two numbers multiplies their lengths and adds their angles: $|zw|=|z|\\,|w|$ and $\\arg(zw)=\\arg z+\\arg w$. Division does the reverse, and $z\\bar z=|z|^2$.\n\nExample: $1+i\\sqrt3$ has modulus $2$ and argument $60^\\circ$, so its square has modulus $4$ and argument $120^\\circ$. Check: $(1+i\\sqrt3)^2=1+2i\\sqrt3-3=-2+2i\\sqrt3=4\\left(\\cos120^\\circ+i\\sin120^\\circ\\right)$.",
+      "keyFacts": [
+        "$|zw|=|z|\\,|w|$ and $\\arg(zw)=\\arg z+\\arg w$",
+        "$z=r(\\cos\\theta+i\\sin\\theta)=re^{i\\theta}$ with $r=|z|$",
+        "$z\\bar z=|z|^2$",
+        "$e^{i\\pi/2}=i$"
+      ],
+      "whenToUse": "A problem asks for a modulus, raises a complex number to a large power, or multiplies or divides complex numbers whose angles are easy to track."
+    },
+    {
+      "title": "De Moivre's theorem and roots of unity",
+      "body": "Multiplying in polar form adds angles, so raising a number of modulus $1$ to the $n$th power multiplies its angle by $n$. This is De Moivre's theorem: $(\\cos\\theta+i\\sin\\theta)^n=\\cos n\\theta+i\\sin n\\theta$ for every integer $n$. Expanding the left side and matching real and imaginary parts produces trigonometric identities. For example, $n=3$ gives $\\cos3\\theta=4\\cos^3\\theta-3\\cos\\theta$, because the real part of $c^3+3c^2(is)-3cs^2-is^3$ is $c^3-3cs^2$ with $s^2=1-c^2$.\n\nThe solutions of $z^n=1$ are the roots of unity $\\omega_k=e^{2\\pi i k/n}$ for $k=0,1,\\dots,n-1$. They are $n$ points spaced evenly around the unit circle, starting at $1$. Evenly spaced points on a circle balance out, so for any root $\\omega\\neq1$ we get $1+\\omega+\\cdots+\\omega^{n-1}=\\frac{\\omega^n-1}{\\omega-1}=0$. Example: the cube roots of unity are $1$, $\\omega=e^{2\\pi i/3}$ and $\\omega^2$, and indeed $1+\\omega+\\omega^2=0$.\n\nWhen a problem sums or multiplies over all $n$th roots of unity, look for a geometric series, or for the factorization $x^n-1=(x-1)(x-\\omega)\\cdots(x-\\omega^{n-1})$, and then substitute a convenient value of $x$.",
+      "keyFacts": [
+        "$(\\cos\\theta+i\\sin\\theta)^n=\\cos n\\theta+i\\sin n\\theta$",
+        "$\\cos3\\theta=4\\cos^3\\theta-3\\cos\\theta$",
+        "The $n$th roots of unity are $e^{2\\pi i k/n}$ for $k=0,\\dots,n-1$",
+        "If $\\omega^n=1$ and $\\omega\\neq1$, then $1+\\omega+\\cdots+\\omega^{n-1}=0$"
+      ],
+      "whenToUse": "The problem contains a power of a complex number in polar form, an expression in $\\cos n\\theta$ or $\\sin n\\theta$, an equation $z^n=c$, or a sum or product over all $n$th roots of unity."
+    }
+  ],
+  "workedExamples": [
+    {
+      "title": "Double angle from one trig value",
+      "difficulty": 2,
+      "problem": "If $\\sin\\theta=\\frac35$ and $\\theta$ is acute, what is $\\cos 2\\theta$?",
+      "choices": [
+        "$\\frac{7}{25}$",
+        "$\\frac{16}{25}$",
+        "$\\frac{4}{5}$",
+        "$\\frac{21}{25}$",
+        "$\\frac{24}{25}$"
+      ],
+      "answer": "A",
+      "steps": [
+        "Pick the double-angle formula that uses only the sine you are given: $\\cos 2\\theta=1-2\\sin^2\\theta$.",
+        "Here $\\sin^2\\theta=\\frac{9}{25}$.",
+        "So $\\cos 2\\theta=1-\\frac{18}{25}=\\frac{7}{25}$.",
+        "Check with the other form: $\\cos\\theta=\\frac45$, and $\\cos^2\\theta-\\sin^2\\theta=\\frac{16}{25}-\\frac{9}{25}=\\frac{7}{25}$."
+      ],
+      "takeaway": "A double-angle formula comes in three forms, so choose the one that matches the value you are given.",
+      "verify": "import math\nfrom fractions import Fraction\nt = math.asin(3/5)   # acute angle with sine 3/5\nassert abs(math.sin(t) - 3/5) < 1e-12\nprint(Fraction(math.cos(2*t)).limit_denominator(100))\n"
+    },
+    {
+      "title": "Largest angle from three sides",
+      "difficulty": 3,
+      "problem": "A triangle has side lengths $3$, $5$, and $7$. What is the measure, in degrees, of its largest angle?",
+      "choices": [
+        "$60$",
+        "$90$",
+        "$100$",
+        "105",
+        "$120$"
+      ],
+      "answer": "E",
+      "steps": [
+        "The largest angle is opposite the longest side, $7$. Call that angle $C$.",
+        "Law of cosines: $7^2=3^2+5^2-2\\cdot3\\cdot5\\cos C$, so $49=34-30\\cos C$.",
+        "Therefore $30\\cos C=-15$, so $\\cos C=-\\frac12$.",
+        "The only angle between $0^\\circ$ and $180^\\circ$ with cosine $-\\frac12$ is $120^\\circ$."
+      ],
+      "takeaway": "The largest side always faces the largest angle, and a negative cosine in the law of cosines means the angle is obtuse.",
+      "verify": "import math\na, b, c = 3.0, 5.0, 7.0\nC = math.acos((a*a + b*b - c*c) / (2*a*b))   # angle opposite the side 7\nprint(round(math.degrees(C)))\n"
+    },
+    {
+      "title": "Powers of a sixth root of unity",
+      "difficulty": 4,
+      "problem": "Let $z=\\frac{1+i\\sqrt{3}}{2}$. What is the real part of $\\displaystyle\\sum_{k=0}^{2023} z^k$?",
+      "choices": [
+        "$\\frac{1}{2}$",
+        "$1$",
+        "$\\frac{3}{2}$",
+        "$2$",
+        "$\\frac{5}{2}$"
+      ],
+      "answer": "C",
+      "steps": [
+        "Since $z=\\cos\\frac{\\pi}{3}+i\\sin\\frac{\\pi}{3}$, De Moivre's theorem gives $z^6=\\cos 2\\pi+i\\sin 2\\pi=1$.",
+        "The sum has $2024$ terms, and $2024=6\\cdot 337+2$.",
+        "Each block of six consecutive powers sums to $\\frac{z^6-1}{z-1}=0$ (as $z\\neq1$), so the first $2022$ terms cancel in blocks.",
+        "The leftover terms are $z^{2022}+z^{2023}=z^0+z^1=1+z=\\frac32+\\frac{\\sqrt3}{2}i$, whose real part is $\\frac32$."
+      ],
+      "takeaway": "Powers of a root of unity repeat with a fixed period, and a full period of a nontrivial root sums to zero, so only the leftover terms matter.",
+      "verify": "import cmath\nfrom fractions import Fraction\nz = (1 + 1j*3**0.5) / 2\ns = sum(z**k for k in range(2024))\nprint(Fraction(s.real).limit_denominator(100))\n"
+    }
+  ],
+  "problems": [
+    {
+      "id": "tc-01",
+      "difficulty": 1,
+      "problem": "Let $\\theta$ be an angle with $\\cos\\theta=\\frac{3}{5}$ and $\\sin\\theta<0$. What is $\\sin\\theta$?",
+      "choices": [
+        "$-\\frac{4}{5}$",
+        "$-\\frac{3}{5}$",
+        "$-\\frac{7}{20}$",
+        "$\\frac{4}{5}$",
+        "1"
+      ],
+      "answer": "A",
+      "hint": "Use $\\sin^2\\theta+\\cos^2\\theta=1$ to find the size of $\\sin\\theta$, then use the sign condition.",
+      "solution": "$\\sin^2\\theta=1-\\frac{9}{25}=\\frac{16}{25}$, so $\\sin\\theta=\\pm\\frac45$. The condition $\\sin\\theta<0$ selects $-\\frac45$.",
+      "verify": "import math\nfrom fractions import Fraction\nt = -math.acos(3/5)   # the angle in quadrant IV with cosine 3/5\nassert abs(math.cos(t) - 3/5) < 1e-12\nprint(Fraction(math.sin(t)).limit_denominator(100))\n"
+    },
+    {
+      "id": "tc-02",
+      "difficulty": 1,
+      "problem": "The point $P=\\left(-\\frac{8}{17},\\,y\\right)$ lies on the unit circle $x^2+y^2=1$, and $y<0$. What is $y$?",
+      "choices": [
+        "$-\\frac{739}{255}$",
+        "$-\\frac{45}{17}$",
+        "$-\\frac{15}{17}$",
+        "$-\\frac{8}{17}$",
+        "$\\frac{8}{15}$"
+      ],
+      "answer": "C",
+      "hint": "Substitute the $x$-coordinate into $x^2+y^2=1$, then use the sign of $y$.",
+      "solution": "$y^2=1-\\frac{64}{289}=\\frac{225}{289}$, so $y=\\pm\\frac{15}{17}$. Since $y<0$, we get $y=-\\frac{15}{17}$.",
+      "verify": "import math\nfrom fractions import Fraction\nx = -8/17\ny = -math.sqrt(1 - x*x)          # lower half of the unit circle\nassert abs(x*x + y*y - 1) < 1e-12\nprint(Fraction(y).limit_denominator(1000))\n"
+    },
+    {
+      "id": "tc-03",
+      "difficulty": 1,
+      "problem": "Let $\\theta$ be an acute angle with $\\tan\\theta=2$. What is $\\sin\\theta\\cos\\theta$?",
+      "choices": [
+        "$\\frac{1}{5}$",
+        "$\\frac{2}{5}$",
+        "$\\frac{1}{2}$",
+        "$\\frac{4}{5}$",
+        "$\\frac{5}{2}$"
+      ],
+      "answer": "B",
+      "hint": "Write $\\sin\\theta\\cos\\theta=\\tan\\theta\\cos^2\\theta$, then find $\\cos^2\\theta$ from $\\sec^2\\theta=1+\\tan^2\\theta$.",
+      "solution": "Since $\\sin\\theta=\\tan\\theta\\cos\\theta$, we have $\\sin\\theta\\cos\\theta=\\tan\\theta\\cos^2\\theta$. Also $\\cos^2\\theta=\\frac{1}{1+\\tan^2\\theta}=\\frac15$, so the product is $2\\cdot\\frac15=\\frac25$.",
+      "verify": "import math\nfrom fractions import Fraction\nt = math.atan(2)          # acute angle with tangent 2\nassert abs(math.tan(t) - 2) < 1e-12\nprint(Fraction(math.sin(t)*math.cos(t)).limit_denominator(100))\n"
+    },
+    {
+      "id": "tc-04",
+      "difficulty": 2,
+      "problem": "Suppose $\\sin x+\\cos x=\\frac{1}{2}$. What is $\\sin 2x$?",
+      "choices": [
+        "$-\\frac{9}{4}$",
+        "$-1$",
+        "$-\\frac{3}{4}$",
+        "$-\\frac{1}{2}$",
+        "$\\frac{1}{4}$"
+      ],
+      "answer": "C",
+      "hint": "Square both sides and use $\\sin^2x+\\cos^2x=1$.",
+      "solution": "Squaring gives $\\sin^2x+2\\sin x\\cos x+\\cos^2x=\\frac14$. Since $\\sin^2x+\\cos^2x=1$ and $2\\sin x\\cos x=\\sin 2x$, we get $1+\\sin 2x=\\frac14$, so $\\sin 2x=-\\frac34$.",
+      "verify": "import math\nfrom fractions import Fraction\nf = lambda x: math.sin(x) + math.cos(x) - 0.5\nlo, hi = math.pi/2, math.pi      # f(lo) > 0 > f(hi), and f is decreasing here\nfor _ in range(200):\n    mid = (lo + hi) / 2\n    if f(lo) * f(mid) <= 0:\n        hi = mid\n    else:\n        lo = mid\nx = (lo + hi) / 2\nassert abs(math.sin(x) + math.cos(x) - 0.5) < 1e-12\nprint(Fraction(math.sin(2*x)).limit_denominator(100))\n"
+    },
+    {
+      "id": "tc-05",
+      "difficulty": 2,
+      "problem": "In triangle $ABC$, $AB=7$, $BC=8$, and $CA=9$. What is $\\cos B$?",
+      "choices": [
+        "$\\frac{2}{7}$",
+        "$\\frac{3}{7}$",
+        "$\\frac{11}{21}$",
+        "$\\frac{4}{7}$",
+        "$\\frac{2}{3}$"
+      ],
+      "answer": "A",
+      "hint": "The side opposite $B$ is $CA$. Apply the law of cosines at vertex $B$.",
+      "solution": "The side opposite $B$ is $CA=9$, so $9^2=7^2+8^2-2\\cdot7\\cdot8\\cos B$. Then $81=113-112\\cos B$, so $\\cos B=\\frac{32}{112}=\\frac{2}{7}$.",
+      "verify": "import math\nfrom fractions import Fraction\nBp = (0.0, 0.0)\nCp = (8.0, 0.0)                              # BC = 8 along the x-axis\nx = (7**2 + 8**2 - 9**2) / (2*8)             # forces |AB| = 7 and |AC| = 9\nAp = (x, math.sqrt(49 - x*x))\nassert abs(math.dist(Ap, Cp) - 9) < 1e-9\nu = (Ap[0]-Bp[0], Ap[1]-Bp[1])\nv = (Cp[0]-Bp[0], Cp[1]-Bp[1])\ncosB = (u[0]*v[0] + u[1]*v[1]) / (math.hypot(*u) * math.hypot(*v))\nprint(Fraction(cosB).limit_denominator(100))\n"
+    },
+    {
+      "id": "tc-06",
+      "difficulty": 2,
+      "problem": "Find the exact value of $\\cos\\frac{\\pi}{8}\\cos\\frac{3\\pi}{8}$.",
+      "choices": [
+        "$\\frac{1}{4}$",
+        "$\\frac{\\sqrt{2}}{4}$",
+        "$\\frac{\\sqrt{3}}{4}$",
+        "$\\frac{1}{2}$",
+        "$\\frac{\\sqrt{2}}{2}$"
+      ],
+      "answer": "B",
+      "hint": "Note that $\\cos\\frac{3\\pi}{8}=\\sin\\frac{\\pi}{8}$, then use a double-angle formula.",
+      "solution": "Since $\\cos\\frac{3\\pi}{8}=\\sin\\frac{\\pi}{8}$, the product is $\\sin\\frac{\\pi}{8}\\cos\\frac{\\pi}{8}=\\frac12\\sin\\frac{\\pi}{4}=\\frac12\\cdot\\frac{\\sqrt2}{2}=\\frac{\\sqrt2}{4}$.",
+      "verify": "import math\nv = math.cos(math.pi/8) * math.cos(3*math.pi/8)\nassert abs(v - math.sqrt(2)/4) < 1e-12\nprint(r'\\frac{\\sqrt{2}}{4}')\n"
+    },
+    {
+      "id": "tc-07",
+      "difficulty": 3,
+      "problem": "In triangle $ABC$, $AB=5$, $AC=8$, and $\\angle BAC=60^\\circ$. What is the radius of the circle circumscribed about triangle $ABC$?",
+      "choices": [
+        "$\\frac{7\\sqrt{3}}{6}$",
+        "$\\frac{7}{2}$",
+        "$\\frac{7\\sqrt{3}}{3}$",
+        "$\\frac{7\\sqrt{3}}{2}$",
+        "$\\frac{14\\sqrt{3}}{3}$"
+      ],
+      "answer": "C",
+      "hint": "First find $BC$ with the law of cosines, then use the extended law of sines $\\frac{BC}{\\sin A}=2R$.",
+      "solution": "Law of cosines: $BC^2=5^2+8^2-2\\cdot5\\cdot8\\cos60^\\circ=89-40=49$, so $BC=7$. The extended law of sines gives $2R=\\frac{BC}{\\sin 60^\\circ}=\\frac{14}{\\sqrt3}$, so $R=\\frac{7}{\\sqrt3}=\\frac{7\\sqrt3}{3}$.",
+      "verify": "import math\nA = (0.0, 0.0)\nB = (5.0, 0.0)\nC = (8*math.cos(math.pi/3), 8*math.sin(math.pi/3))   # angle BAC = 60 degrees\na = math.dist(B, C)\nb = math.dist(C, A)\nc = math.dist(A, B)\narea = abs((B[0]-A[0])*(C[1]-A[1]) - (B[1]-A[1])*(C[0]-A[0])) / 2\nR = a*b*c / (4*area)\nassert abs(R - 7*math.sqrt(3)/3) < 1e-9\nprint(r'\\frac{7\\sqrt{3}}{3}')\n"
+    },
+    {
+      "id": "tc-08",
+      "difficulty": 3,
+      "problem": "Compute $\\tan 10^\\circ\\cdot\\tan 50^\\circ\\cdot\\tan 70^\\circ$.",
+      "choices": [
+        "$\\frac{1}{4}$",
+        "$\\frac{1}{3}$",
+        "$\\frac{1}{2}$",
+        "$\\frac{\\sqrt{3}}{3}$",
+        "$\\sqrt{3}$"
+      ],
+      "answer": "D",
+      "hint": "Let $x=10^\\circ$. The angles $50^\\circ$ and $70^\\circ$ are $60^\\circ-x$ and $60^\\circ+x$. Think about how $\\tan 3x$ can be factored.",
+      "solution": "With $x=10^\\circ$, the angles are $50^\\circ=60^\\circ-x$ and $70^\\circ=60^\\circ+x$. The identities $\\sin 3x=4\\sin x\\sin(60^\\circ-x)\\sin(60^\\circ+x)$ and $\\cos 3x=4\\cos x\\cos(60^\\circ-x)\\cos(60^\\circ+x)$ hold for every $x$. Dividing them gives $\\tan x\\tan(60^\\circ-x)\\tan(60^\\circ+x)=\\tan 3x$, so the product equals $\\tan 30^\\circ=\\frac{\\sqrt3}{3}$.",
+      "verify": "import math\nt = lambda deg: math.tan(math.radians(deg))\np = t(10) * t(50) * t(70)\nassert abs(p - 1/math.sqrt(3)) < 1e-12\nprint(r'\\frac{\\sqrt{3}}{3}')\n"
+    },
+    {
+      "id": "tc-09",
+      "difficulty": 3,
+      "problem": "Let $\\theta$ be a real number with $\\cos 2\\theta=\\frac{1}{3}$. What is $\\sin^4\\theta+\\cos^4\\theta$?",
+      "choices": [
+        "$\\frac{5}{9}$",
+        "$\\frac{2}{3}$",
+        "$\\frac{7}{9}$",
+        "1",
+        "$\\frac{10}{9}$"
+      ],
+      "answer": "A",
+      "hint": "Write $\\sin^4\\theta+\\cos^4\\theta=(\\sin^2\\theta+\\cos^2\\theta)^2-2\\sin^2\\theta\\cos^2\\theta$, and relate $\\sin^2\\theta\\cos^2\\theta$ to $\\sin 2\\theta$.",
+      "solution": "$\\sin^4\\theta+\\cos^4\\theta=1-2\\sin^2\\theta\\cos^2\\theta=1-\\frac12\\sin^2 2\\theta$. Since $\\sin^2 2\\theta=1-\\cos^2 2\\theta=1-\\frac19=\\frac89$, the value is $1-\\frac49=\\frac59$.",
+      "verify": "import math\nfrom fractions import Fraction\nt = math.acos(1/3) / 2       # any theta with cos(2t) = 1/3\nassert abs(math.cos(2*t) - 1/3) < 1e-12\nval = math.sin(t)**4 + math.cos(t)**4\nprint(Fraction(val).limit_denominator(100))\n"
+    },
+    {
+      "id": "tc-10",
+      "difficulty": 3,
+      "problem": "Let $z=\\cos 20^\\circ+i\\sin 20^\\circ$. Compute $\\left|1+z+z^2+\\cdots+z^{16}\\right|$.",
+      "choices": [
+        "$0$",
+        "$\\frac{1}{2}$",
+        "$1$",
+        "$\\sqrt{2}$",
+        "$2$"
+      ],
+      "answer": "C",
+      "hint": "Sum the geometric series in closed form, then compare the moduli of $z^{17}-1$ and $z-1$.",
+      "solution": "The sum is a geometric series, so $S=\\frac{z^{17}-1}{z-1}$. For any angle $\\alpha$, $|e^{i\\alpha}-1|=2\\left|\\sin\\frac{\\alpha}{2}\\right|$, the length of a chord of the unit circle. The number $z^{17}$ has angle $340^\\circ$, so $|z^{17}-1|=2|\\sin170^\\circ|=2\\sin10^\\circ$. Also $|z-1|=2\\sin10^\\circ$, hence $|S|=1$.",
+      "verify": "import cmath, math\nz = cmath.exp(1j*math.radians(20))\nS = sum(z**k for k in range(17))\nassert abs(abs(S) - 1) < 1e-9\nprint(round(abs(S)))\n"
+    },
+    {
+      "id": "tc-11",
+      "difficulty": 4,
+      "problem": "Let $\\omega=e^{2\\pi i/7}$. Compute $\\displaystyle\\sum_{k=1}^{6}\\frac{1}{1-\\omega^k}$.",
+      "choices": [
+        "$2$",
+        "$\\frac{5}{2}$",
+        "$3$",
+        "$\\frac{7}{2}$",
+        "$4$"
+      ],
+      "answer": "C",
+      "hint": "Pair the term for $\\omega^k$ with the term for $\\omega^{7-k}$, which equals $\\omega^{-k}$.",
+      "solution": "Let $w=\\omega^k$, so $\\omega^{7-k}=w^{-1}$. Then $\\frac{1}{1-w}+\\frac{1}{1-w^{-1}}=\\frac{1}{1-w}-\\frac{w}{1-w}=1$. The six terms form three such pairs, so the sum is $3$.",
+      "verify": "import cmath, math\nw = cmath.exp(2j*math.pi/7)\nS = sum(1/(1 - w**k) for k in range(1, 7))\nassert abs(S.imag) < 1e-9\nprint(round(S.real))\n"
+    },
+    {
+      "id": "tc-12",
+      "difficulty": 4,
+      "problem": "Let $S$ be the set of complex numbers $z$ with $z^{12}=1$. How many $z\\in S$ satisfy $z^4+z^2+1\\neq 0$?",
+      "choices": [
+        "$4$",
+        "$6$",
+        "$8$",
+        "$9$",
+        "$12$"
+      ],
+      "answer": "C",
+      "hint": "Find how many $z\\in S$ make $z^4+z^2+1=0$, then subtract that count from $12$.",
+      "solution": "$z^4+z^2+1=0$ means $z^2$ is a root of $u^2+u+1=0$, so $z^2=e^{\\pm 2\\pi i/3}$. Writing $z=e^{2\\pi i k/12}$ gives $z^2=e^{2\\pi i k/6}$, which equals $e^{2\\pi i/3}$ when $k\\equiv 2\\pmod 6$ and $e^{-2\\pi i/3}$ when $k\\equiv 4\\pmod 6$. That gives $k=2,8,4,10$, four roots. So $12-4=8$ roots satisfy the inequality.",
+      "verify": "import cmath, math\nroots = [cmath.exp(2j*math.pi*k/12) for k in range(12)]\ncount = sum(1 for z in roots if abs(z**4 + z**2 + 1) > 1e-9)\nprint(count)\n"
+    },
+    {
+      "id": "tc-13",
+      "difficulty": 4,
+      "problem": "Let $\\theta$ be a real number with $\\cos\\theta=\\frac{1}{3}$. What is $\\cos 6\\theta$?",
+      "choices": [
+        "$-\\frac{329}{729}$",
+        "$-\\frac{1}{3}$",
+        "$\\frac{37}{729}$",
+        "$\\frac{329}{729}$",
+        "$\\frac{529}{729}$"
+      ],
+      "answer": "D",
+      "hint": "Use $\\cos 6\\theta=2\\cos^2 3\\theta-1$, and find $\\cos 3\\theta$ with the triple-angle formula from De Moivre's theorem.",
+      "solution": "The triple-angle formula $\\cos3\\theta=4\\cos^3\\theta-3\\cos\\theta$ gives $\\cos3\\theta=\\frac{4}{27}-1=-\\frac{23}{27}$. Then $\\cos6\\theta=2\\cos^2 3\\theta-1=2\\cdot\\frac{529}{729}-1=\\frac{329}{729}$.",
+      "verify": "import math\nfrom fractions import Fraction\nt = math.acos(1/3)\nassert abs(math.cos(t) - 1/3) < 1e-12\nprint(Fraction(math.cos(6*t)).limit_denominator(1000))\n"
+    },
+    {
+      "id": "tc-14",
+      "difficulty": 5,
+      "problem": "Let $\\omega=e^{2\\pi i/5}$. Compute the product $(2-\\omega)(2-\\omega^2)(2-\\omega^3)(2-\\omega^4)$.",
+      "choices": [
+        "$11$",
+        "$15$",
+        "$16$",
+        "$31$",
+        "$33$"
+      ],
+      "answer": "D",
+      "hint": "The numbers $1,\\omega,\\omega^2,\\omega^3,\\omega^4$ are exactly the roots of $x^5-1=0$. Factor $1+x+x^2+x^3+x^4$ using them.",
+      "solution": "Since $1,\\omega,\\dots,\\omega^4$ are the five roots of $x^5-1$, we have $1+x+x^2+x^3+x^4=\\frac{x^5-1}{x-1}=(x-\\omega)(x-\\omega^2)(x-\\omega^3)(x-\\omega^4)$. Setting $x=2$ gives the product $1+2+4+8+16=31$.",
+      "verify": "import cmath, math\nw = cmath.exp(2j*math.pi/5)\np = 1\nfor k in range(1, 5):\n    p *= (2 - w**k)\nassert abs(p.imag) < 1e-9\nprint(round(p.real))\n"
+    },
+    {
+      "id": "tc-15",
+      "difficulty": 5,
+      "problem": "In triangle $ABC$, $\\angle A=2\\angle B$, $BC=4$, and $CA=3$. What is $AB$?",
+      "choices": [
+        "$2$",
+        "$\\frac{7}{3}$",
+        "$\\frac{5}{2}$",
+        "$3$",
+        "$\\frac{16}{3}$"
+      ],
+      "answer": "B",
+      "hint": "Let $\\beta=\\angle B$. Write the law of sines for $BC/\\sin A$ and $CA/\\sin B$, and simplify to get $\\cos\\beta$.",
+      "solution": "The law of sines gives $\\frac{4}{\\sin 2B}=\\frac{3}{\\sin B}$, so $\\frac{4}{2\\cos B}=3$ and $\\cos B=\\frac23$. Then $\\cos A=\\cos 2B=2\\cos^2B-1=-\\frac19$, $\\sin A=\\frac{4\\sqrt5}{9}$, $\\sin B=\\frac{\\sqrt5}{3}$, and $\\sin C=\\sin(A+B)=\\sin A\\cos B+\\cos A\\sin B=\\frac{7\\sqrt5}{27}$. Finally $AB=\\frac{BC\\sin C}{\\sin A}=\\frac{4\\cdot\\frac{7\\sqrt5}{27}}{\\frac{4\\sqrt5}{9}}=\\frac73$.",
+      "verify": "import math\nfrom fractions import Fraction\na, b = 4.0, 3.0            # a = BC is opposite A, b = CA is opposite B\nf = lambda B: a*math.sin(B) - b*math.sin(2*B)   # law of sines with A = 2B\nlo, hi = math.pi/4, math.pi/3                    # f(lo) < 0 < f(hi)\nfor _ in range(200):\n    mid = (lo + hi) / 2\n    if f(lo) * f(mid) <= 0:\n        hi = mid\n    else:\n        lo = mid\nB = (lo + hi) / 2\nA = 2*B\nC = math.pi - A - B\nassert abs(f(B)) < 1e-9\nc = a*math.sin(C)/math.sin(A)     # law of sines gives AB, opposite C\nprint(Fraction(c).limit_denominator(100))\n"
+    }
+  ]
+}

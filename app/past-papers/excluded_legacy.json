@@ -1,12 +1,402 @@
 {
-  "total_excluded": 291,
-  "generated_at": "2026-10-15 19:48:49",
+  "total_excluded": 714,
+  "generated_at": "2026-10-21 00:26:06",
   "excluded_questions": [
+    {
+      "id": "2025_May_SL_P1_Q2",
+      "source": "May 2025 TZ2 SL Paper 1A Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t An object is sliding from rest down a frictionless inclined plane. The vertical displacement of the  object is 1.5\u2009m"
+    },
+    {
+      "id": "2025_May_SL_P1_Q8",
+      "source": "May 2025 TZ2 SL Paper 1A Q8",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "8.\t A gas is held in a container. An identical container holds the same number of more massive  molecules of another gas"
+    },
+    {
+      "id": "2025_May_SL_P1_Q10",
+      "source": "May 2025 TZ2 SL Paper 1A Q10",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "10.\t Four identical resistors are connected as shown. X Y What is current in X current in Y ? A.\t 1 2 B.\t 2 3 C.\t 3 2 D."
+    },
+    {
+      "id": "2025_May_SL_P1_Q11",
+      "source": "May 2025 TZ2 SL Paper 1A Q11",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "11.\t A pendulum of length L oscillates with an angular frequency \u03c9. The mass of the pendulum is  doubled and its length "
+    },
+    {
+      "id": "2025_May_SL_P1_Q19",
+      "source": "May 2025 TZ2 SL Paper 1A Q19",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "19.\t Two parallel wires X and Y carry the same current. There is a repulsive force per unit length F\u2009 on  each wire. The"
+    },
+    {
+      "id": "2025_May_SL_P1_Q20",
+      "source": "May 2025 TZ2 SL Paper 1A Q20",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "20.\t Gases in the atmosphere are compounds of 6 12C, 1 1H, 8 16O and 7 14N. Four of these gases are CO2, N2O, CH4 and H2"
+    },
+    {
+      "id": "2025_May_SL_P1_Q23",
+      "source": "May 2025 TZ2 SL Paper 1A Q23",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "23.\t Three statements about gamma radiation are: I.\t It travels faster than beta radiation in a vacuum. II.\t It has a gr"
+    },
+    {
+      "id": "2025_May_SL_P1B_Q1",
+      "source": "May 2025 TZ1 SL Paper 1B Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t A student is analysing a sample of water. To determine its density, the student measures  the\u00a0volume with a measurin"
+    },
+    {
+      "id": "2025_May_SL_P1_Q3",
+      "source": "May 2025 TZ3 SL Paper 1A Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t Two identical blocks, X and Y, each of mass 2.0\u2009kg are connected by a string. They move on the  same surface.  A for"
+    },
+    {
+      "id": "2025_May_SL_P1_Q4",
+      "source": "May 2025 TZ3 SL Paper 1A Q4",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "4.\t A raindrop falls from rest through air with velocity v and acceleration a. Which graph best represents the variation"
+    },
+    {
+      "id": "2025_May_SL_P1_Q6",
+      "source": "May 2025 TZ3 SL Paper 1A Q6",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "6.\t A ball of mass 0.4\u2009kg is attached to a string of length 0.8\u2009m. The ball is rotated in a vertical circle  such that t"
+    },
+    {
+      "id": "2025_May_SL_P1_Q8",
+      "source": "May 2025 TZ3 SL Paper 1A Q8",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "8.\t Star X has a surface temperature T, luminosity L and radius R. The luminosity of star Y is 4L and the surface temper"
+    },
+    {
+      "id": "2025_May_SL_P1_Q12",
+      "source": "May 2025 TZ3 SL Paper 1A Q12",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "12.\t Three identical resistors of 6\u2009\u03a9 are arranged as shown.  X Y 6 \u2126 6 \u2126 6 \u2126 What is the resistance between X and Y? A."
+    },
+    {
+      "id": "2025_May_SL_P1_Q17",
+      "source": "May 2025 TZ3 SL Paper 1A Q17",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "17.\t The relationship between the period of a planet\u2019s orbit T and the distance to the Sun R can be  expressed as T\u2009n\u00a0\u221d\u00a0"
+    },
+    {
+      "id": "2025_May_SL_P1_Q19",
+      "source": "May 2025 TZ3 SL Paper 1A Q19",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "19.\t Two isolated identical point charges, Q1 and Q2, are separated by distance d. The electrostatic  force on each char"
+    },
+    {
+      "id": "2025_May_SL_P1_Q1",
+      "source": "May 2025 TZ1 SL Paper 1A Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t Instantaneous velocity is defined as... A.\t displacement time taken . B.\t rate of change of position. C.\t distance m"
+    },
+    {
+      "id": "2025_May_SL_P1_Q2",
+      "source": "May 2025 TZ1 SL Paper 1A Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t The variation with time t of the acceleration a of an object is shown. At t\u00a0=\u00a00 the object is at rest. 2 2 4 4 6 6 8"
+    },
+    {
+      "id": "2025_May_SL_P1_Q3",
+      "source": "May 2025 TZ1 SL Paper 1A Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t A force acts on a cube of mass m that accelerates upwards along a vertical frictionless surface.  The magnitude of t"
+    },
+    {
+      "id": "2025_May_SL_P1_Q10",
+      "source": "May 2025 TZ1 SL Paper 1A Q10",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "10.\t Three combinations of resistors are shown. The resistors are identical. P Q R What is the total resistance of each "
+    },
+    {
+      "id": "2025_May_SL_P1_Q11",
+      "source": "May 2025 TZ1 SL Paper 1A Q11",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "11.\t A continuous belt of width 0.60\u2009m travels at a constant speed of 2.5\u2009m\u2009s-1. The belt has a uniform  distribution of"
+    },
+    {
+      "id": "2025_May_SL_P1_Q13",
+      "source": "May 2025 TZ1 SL Paper 1A Q13",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "13.\t A mass\u2013spring system oscillates with time period T1\u2009. Another identical spring is connected in parallel with the fi"
+    },
+    {
+      "id": "2025_May_SL_P1_Q14",
+      "source": "May 2025 TZ1 SL Paper 1A Q14",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "14.\t A wave is travelling through a medium. The variation with time t of the displacement d of a particle  in the medium"
+    },
+    {
+      "id": "2025_May_SL_P1_Q15",
+      "source": "May 2025 TZ1 SL Paper 1A Q15",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "15.\t Light passes through two parallel layers as shown. The refractive indices for light travelling between air and the "
+    },
+    {
+      "id": "2025_May_SL_P1_Q16",
+      "source": "May 2025 TZ1 SL Paper 1A Q16",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "16.\t A source emitting a sound of frequency \u00a0f\u20090 is approaching an observer. At time t\u00a0=\u00a00 the source  begins to deceler"
+    },
+    {
+      "id": "2025_May_SL_P1_Q18",
+      "source": "May 2025 TZ1 SL Paper 1A Q18",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "18.\t The unit of m\u20090\u00a0\u00d7\u00a0e\u20090 expressed in fundamental SI units is... A.\t m-2\u2009s2. B.\t T\u2009C\u2009N-1\u2009m-1\u2009s. C.\t m2\u2009s-2. D.\t T\u2009C2\u2009A"
+    },
+    {
+      "id": "2025_May_SL_P1_Q22",
+      "source": "May 2025 TZ1 SL Paper 1A Q22",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "22.\t An ion X contains the following particles: \u2022\t 53 protons \u2022\t 89 neutrons \u2022\t 54 electrons. What is the nuclear notati"
+    },
+    {
+      "id": "2025_May_SL_P1_Q25",
+      "source": "May 2025 TZ1 SL Paper 1A Q25",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "25.\t A star has a parallax angle of 1\u00a0\u00d7\u00a010-2 arc-second at the orbit of the Earth. What is the distance from the Sun to "
+    },
+    {
+      "id": "2025_May_HL_P2_Q4",
+      "source": "May 2025 TZ1 HL Paper 2 Q4",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "4.\t A system consists of ten distinguishable particles which can exchange energy in integer  multiples of a constant val"
+    },
+    {
+      "id": "2025_May_HL_P1_Q3",
+      "source": "May 2025 TZ3 HL Paper 1A Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t Two identical blocks, X and Y, each of mass 2.0\u2009kg are connected by a string. They move on the  same surface.  A for"
+    },
+    {
+      "id": "2025_May_HL_P1_Q4",
+      "source": "May 2025 TZ3 HL Paper 1A Q4",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "4.\t A raindrop falls from rest through air with velocity v and acceleration a. Which graph best represents the variation"
+    },
+    {
+      "id": "2025_May_HL_P1_Q6",
+      "source": "May 2025 TZ3 HL Paper 1A Q6",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "6.\t A ball of mass 0.4\u2009kg is attached to a string of length 0.8\u2009m. The ball is rotated in a vertical circle  such that t"
+    },
+    {
+      "id": "2025_May_HL_P1_Q9",
+      "source": "May 2025 TZ3 HL Paper 1A Q9",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "9.\t A pendulum has a period of 3.0\u2009s as measured in its inertial frame of reference. An observer is  moving with a speed"
+    },
+    {
+      "id": "2025_May_HL_P1_Q11",
+      "source": "May 2025 TZ3 HL Paper 1A Q11",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "11.\t Star X has a surface temperature T, luminosity L and radius R. The luminosity of star Y is 4L and the surface tempe"
+    },
+    {
+      "id": "2025_May_HL_P1_Q18",
+      "source": "May 2025 TZ3 HL Paper 1A Q18",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "18.\t Three identical resistors of 6\u2009\u03a9 are arranged as shown.  X Y 6 \u2126 6 \u2126 6 \u2126 What is the resistance between X and Y? A."
+    },
+    {
+      "id": "2025_May_HL_P1_Q26",
+      "source": "May 2025 TZ3 HL Paper 1A Q26",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "26.\t The relationship between the period of a planet\u2019s orbit T and the distance to the Sun R can be  expressed as T\u2009n\u00a0\u221d\u00a0"
+    },
+    {
+      "id": "2025_May_HL_P1_Q33",
+      "source": "May 2025 TZ3 HL Paper 1A Q33",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "33.\t The nucleus of an element X has radius R and density \u03c1.  The nucleon number of an element Y is 8 times that of X.  "
+    },
+    {
+      "id": "2025_May_HL_P1_Q1",
+      "source": "May 2025 TZ1 HL Paper 1A Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t Instantaneous velocity is defined as... A.\t displacement time taken . B.\t rate of change of position. C.\t distance m"
+    },
+    {
+      "id": "2025_May_HL_P1_Q2",
+      "source": "May 2025 TZ1 HL Paper 1A Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t The variation with time t of the acceleration a of an object is shown. At t\u00a0=\u00a00 the object is at rest. 2 2 4 4 6 6 8"
+    },
+    {
+      "id": "2025_May_HL_P1_Q3",
+      "source": "May 2025 TZ1 HL Paper 1A Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t A force acts on a cube of mass m that accelerates upwards along a vertical frictionless surface.  The magnitude of t"
+    },
+    {
+      "id": "2025_May_HL_P1_Q9",
+      "source": "May 2025 TZ1 HL Paper 1A Q9",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "9.\t Observer X sees a spacecraft moving in the positive \u2009x-direction at a speed of 0.50c.  Observer Y sees the same spac"
+    },
+    {
+      "id": "2025_May_HL_P1_Q14",
+      "source": "May 2025 TZ1 HL Paper 1A Q14",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "14.\t Three combinations of resistors are shown. The resistors are identical. P Q R What is the total resistance of each "
+    },
+    {
+      "id": "2025_May_HL_P1_Q15",
+      "source": "May 2025 TZ1 HL Paper 1A Q15",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "15.\t A continuous belt of width 0.60\u2009m travels at a constant speed of 2.5\u2009m\u2009s-1. The belt has a uniform  distribution of"
+    },
+    {
+      "id": "2025_May_HL_P1_Q16",
+      "source": "May 2025 TZ1 HL Paper 1A Q16",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "16.\t A cube of side 1.0\u2009cm has a resistance between opposite sides of 50\u2009W.  The material is reshaped into a block of le"
+    },
+    {
+      "id": "2025_May_HL_P1_Q17",
+      "source": "May 2025 TZ1 HL Paper 1A Q17",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "17.\t A mass\u2013spring system oscillates with time period T1 \u2009. Another identical spring is connected in parallel with the f"
+    },
+    {
+      "id": "2025_May_HL_P1_Q18",
+      "source": "May 2025 TZ1 HL Paper 1A Q18",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "18.\t A wave is travelling through a medium. The variation with time t of the displacement d of a particle  in the medium"
+    },
+    {
+      "id": "2025_May_HL_P1_Q20",
+      "source": "May 2025 TZ1 HL Paper 1A Q20",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "20.\t Light passes through two parallel layers as shown. The refractive indices for light travelling between air and the "
+    },
+    {
+      "id": "2025_May_HL_P1_Q26",
+      "source": "May 2025 TZ1 HL Paper 1A Q26",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "26.\t The unit of m\u20090\u00a0\u00d7\u00a0e\u20090 expressed in fundamental SI units is... A.\t m-2\u2009s2. B.\t T\u2009C\u2009N-1\u2009m-1\u2009s. C.\t m2\u2009s-2. D.\t T\u2009C2\u2009A"
+    },
+    {
+      "id": "2025_May_HL_P1_Q32",
+      "source": "May 2025 TZ1 HL Paper 1A Q32",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "32.\t An ion X contains the following particles: \u2022\t 53 protons \u2022\t 89 neutrons \u2022\t 54 electrons. What is the nuclear notati"
+    },
+    {
+      "id": "2025_May_HL_P1_Q33",
+      "source": "May 2025 TZ1 HL Paper 1A Q33",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "33.\t What is the variation with nucleon number of the density of nuclei? A. nuclear density nucleon number 0 0 B. nuclea"
+    },
+    {
+      "id": "2025_May_HL_P1_Q40",
+      "source": "May 2025 TZ1 HL Paper 1A Q40",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "40.\t A star has a parallax angle of 1\u00a0\u00d7\u00a010-2 arc-second at the orbit of the Earth. What is the distance from the Sun to "
+    },
+    {
+      "id": "2025_May_HL_P1B_Q1",
+      "source": "May 2025 TZ1 HL Paper 1B Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t A student is analysing a sample of water. To determine its density, the student measures  the\u00a0volume with a measurin"
+    },
+    {
+      "id": "2025_May_HL_P1_Q2",
+      "source": "May 2025 TZ2 HL Paper 1A Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t An object is sliding from rest down a frictionless inclined plane. The vertical displacement of the  object is 1.5\u2009m"
+    },
+    {
+      "id": "2025_May_HL_P1_Q11",
+      "source": "May 2025 TZ2 HL Paper 1A Q11",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "11.\t A gas is held in a container. An identical container holds the same number of more massive  molecules of another ga"
+    },
+    {
+      "id": "2025_May_HL_P1_Q14",
+      "source": "May 2025 TZ2 HL Paper 1A Q14",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "14.\t Four identical resistors are connected as shown. X Y What is current in X current in Y ? A.\t 1 2 B.\t 2 3 C.\t 3 2 D."
+    },
+    {
+      "id": "2025_May_HL_P1_Q27",
+      "source": "May 2025 TZ2 HL Paper 1A Q27",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "27.\t Two parallel wires X and Y carry the same current. There is a repulsive force per unit length F\u2009 on  each wire. The"
+    },
+    {
+      "id": "2025_May_HL_P1_Q30",
+      "source": "May 2025 TZ2 HL Paper 1A Q30",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "30.\t A magnet attached to a spring oscillates above a coil as shown. The period of the oscillation is T. N S magnet spri"
+    },
+    {
+      "id": "2025_May_HL_P1_Q31",
+      "source": "May 2025 TZ2 HL Paper 1A Q31",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "31.\t Gases in the atmosphere are compounds of 6 12C, 1 1H, 8 16O and 7 14N. Four of these gases are CO2, N2O, CH4 and H2"
+    },
+    {
+      "id": "2025_May_HL_P1_Q37",
+      "source": "May 2025 TZ2 HL Paper 1A Q37",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "37.\t Three statements about gamma radiation are: I.\t It travels faster than beta radiation in a vacuum. II.\t It has a gr"
+    },
+    {
+      "id": "2024_Nov_SL_P1_Q1",
+      "source": "Nov 2024 TZ1 SL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t The radius of a sphere is R. The absolute uncertainty in R is \uf044R. What is the fractional uncertainty in the volume o"
+    },
+    {
+      "id": "2024_Nov_SL_P1_Q3",
+      "source": "Nov 2024 TZ1 SL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t A runner accelerates from rest and reaches a constant speed at time T.  What is the variation of displacement with t"
+    },
+    {
+      "id": "2024_Nov_SL_P1_Q6",
+      "source": "Nov 2024 TZ1 SL Paper 1 Q6",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "6.\t When a horizontal spring is extended by a distance x, the force acting on the spring is F. The  extension of the spr"
+    },
+    {
+      "id": "2024_Nov_SL_P1_Q14",
+      "source": "Nov 2024 TZ1 SL Paper 1 Q14",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "14.\t A travelling wave of time period 2.0\u2009s is moving through a medium. The graph shows, for one  instant, the variation"
+    },
+    {
+      "id": "2024_Nov_SL_P1_Q25",
+      "source": "Nov 2024 TZ1 SL Paper 1 Q25",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "25.\t The four energy states for an atom are shown. E4 E3 E2 E1 energy increasing What is the lowest frequency of radiati"
+    },
+    {
+      "id": "2024_Nov_SL_P1_Q26",
+      "source": "Nov 2024 TZ1 SL Paper 1 Q26",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "26.\t Which list correctly shows three fundamental forces in increasing order of range? A.\t Weak nuclear, strong nuclear,"
+    },
     {
       "id": "2024_Nov_SL_P1_Q27",
       "source": "Nov 2024 TZ1 SL Paper 1 Q27",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: lepton, baryon)",
       "preview": "27.\t The reaction \u009b0\u00a0\uf02b\u00a0p\u00a0\uf0ae\u00a0p\u00a0\uf02b\u00a0e\uf02d\u00a0\uf02b\u00a0ve is proposed. Three conservation laws in particle reactions are: I.\t conservation "
+    },
+    {
+      "id": "2024_Nov_SL_P1_Q28",
+      "source": "Nov 2024 TZ1 SL Paper 1 Q28",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "28.\t Once research is completed, scientists gather support for the validity of their work by A.\t using common terminolog"
     },
     {
       "id": "2024_Nov_SL_P3_Q8",
@@ -25,6 +415,12 @@
       "source": "Nov 2024 TZ1 SL Paper 3 Opt C Q10",
       "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
       "preview": "10.\t Light propagates along an optic fibre that has a core of refractive index 1.59 and a cladding  of refractive index "
+    },
+    {
+      "id": "2024_Nov_HL_P2_Q1",
+      "source": "Nov 2024 TZ1 HL Paper 2 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t A train starting from rest travels from A to B with acceleration 0.20\u2009m\u2009s-2 and then decelerates  to rest from B to "
     },
     {
       "id": "2024_Nov_HL_P2_Q10",
@@ -63,6 +459,54 @@
       "preview": "16.\t In a nuclear magnetic resonance (NMR) scanner, a patient is placed in a magnetic field  formed by combining gradien"
     },
     {
+      "id": "2024_Nov_HL_P1_Q1",
+      "source": "Nov 2024 TZ1 HL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t The radius of a sphere is R. The absolute uncertainty in R is \uf044R. What is the fractional uncertainty in the volume o"
+    },
+    {
+      "id": "2024_Nov_HL_P1_Q2",
+      "source": "Nov 2024 TZ1 HL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t Astronomers have measured that the magnetic fields of some stars are of order 1010\u2009T. Physicists  have measured the "
+    },
+    {
+      "id": "2024_Nov_HL_P1_Q3",
+      "source": "Nov 2024 TZ1 HL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t A runner accelerates from rest and reaches a constant speed at time T.  What is the variation of displacement with t"
+    },
+    {
+      "id": "2024_Nov_HL_P1_Q5",
+      "source": "Nov 2024 TZ1 HL Paper 1 Q5",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "5.\t When a horizontal spring is extended by a distance x, the force acting on the spring is F. The  extension of the spr"
+    },
+    {
+      "id": "2024_Nov_HL_P1_Q7",
+      "source": "Nov 2024 TZ1 HL Paper 1 Q7",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "7.\t A trolley of mass m is moving with speed u. A load is dropped onto the trolley so that it immediately  attaches to t"
+    },
+    {
+      "id": "2024_Nov_HL_P1_Q10",
+      "source": "Nov 2024 TZ1 HL Paper 1 Q10",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "10.\t A travelling wave of time period 2.0\u2009s is moving through a medium. The graph shows, for one  instant, the variation"
+    },
+    {
+      "id": "2024_Nov_HL_P1_Q13",
+      "source": "Nov 2024 TZ1 HL Paper 1 Q13",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "13.\t A single pulse travels towards the free end of a hanging vertical string. The pulse is reflected. direction of inci"
+    },
+    {
+      "id": "2024_Nov_HL_P1_Q20",
+      "source": "Nov 2024 TZ1 HL Paper 1 Q20",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "20.\t The four energy states for an atom are shown. E4 E3 E2 E1 energy increasing What is the lowest frequency of radiati"
+    },
+    {
       "id": "2024_Nov_HL_P1_Q21",
       "source": "Nov 2024 TZ1 HL Paper 1 Q21",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: feynman diagram)",
@@ -73,6 +517,12 @@
       "source": "Nov 2024 TZ1 HL Paper 1 Q22",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: quark, baryon)",
       "preview": "22.\t The X\u20090 particle is a baryon. What is the quark structure of this particle? A.\t \u2009uus B.\t \u2009uss C.\t us D.\t \u2009us"
+    },
+    {
+      "id": "2024_Nov_HL_P1_Q23",
+      "source": "Nov 2024 TZ1 HL Paper 1 Q23",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "23.\t Once research is completed, scientists gather support for the validity of their work by A.\t using common terminolog"
     },
     {
       "id": "2024_Nov_HL_P1_Q37",
@@ -105,16 +555,52 @@
       "preview": "6.\t (a)\t Quarks are elementary particles.  (i)\t State what is meant by an elementary particle.\b [1] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
     },
     {
+      "id": "2024_May_SL_P1_Q2",
+      "source": "May 2024 TZ2 SL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t A cart accelerates from (20\u00a0\u00b1\u00a01)\u2009m\u2009s-1 to (30\u00a0\u00b1\u00a01)\u2009m\u2009s-1. What is the percentage uncertainty in the change of speed "
+    },
+    {
+      "id": "2024_May_SL_P1_Q11",
+      "source": "May 2024 TZ2 SL Paper 1 Q11",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "11.  A layer of mercury traps a volume of gas in a tube. The tube is placed in a water bath and slowly  heated. When the"
+    },
+    {
       "id": "2024_May_SL_P1_Q15",
       "source": "May 2024 TZ2 SL Paper 1 Q15",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
       "preview": "15.\t Unpolarized light is incident on two polarizers X and Y. The transmission axis of X is vertical and  that of Y is h"
     },
     {
+      "id": "2024_May_SL_P1_Q19",
+      "source": "May 2024 TZ2 SL Paper 1 Q19",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "19.\t Current \u2009I\u2009 flows in a conducting wire. What expression correctly gives the number of electrons passing through a c"
+    },
+    {
+      "id": "2024_May_SL_P1_Q20",
+      "source": "May 2024 TZ2 SL Paper 1 Q20",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "20.\t Two point charges of equal charge are separated in free space by a distance d and experience an  electric force Ffr"
+    },
+    {
+      "id": "2024_May_SL_P1_Q23",
+      "source": "May 2024 TZ2 SL Paper 1 Q23",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "23.  An old-fashioned bicycle is moving with a constant speed v. The front wheel has a radius 3 times  that of the rear "
+    },
+    {
       "id": "2024_May_SL_P1_Q24",
       "source": "May 2024 TZ2 SL Paper 1 Q24",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: meson, feynman diagram, gluon)",
       "preview": "24.\t The Feynman diagram shows a possible decay of a K- meson. K \u2212 0 \u03c0 \u03c0\u2212 u d s u u u Which particle is represented by t"
+    },
+    {
+      "id": "2024_May_SL_P1_Q23",
+      "source": "May 2024 TZ2 SL Paper 1 Q23",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "23.\t \t Clu, n.d. Penny farthing bicycle. [image online] Available at: https://www.gettyimages.co.uk/detail/illustration/"
     },
     {
       "id": "2024_May_SL_P3_Q8",
@@ -135,10 +621,94 @@
       "preview": "10.\t (a)\t \u0007Outline how dispersion affects the transmission of light in an optic fibre.\b [1] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
     },
     {
+      "id": "2024_May_SL_P1_Q1",
+      "source": "May 2024 TZ1 SL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t The diameter of a particular circle is equal to the length of the side of a square. The length of one  side of the s"
+    },
+    {
+      "id": "2024_May_SL_P1_Q2",
+      "source": "May 2024 TZ1 SL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t Which distance is the longest? A.\t 10-18\u2009Gm B.\t 10-13\u2009km C.\t 10-2\u2009mm D.\t 10-1\u2009fm"
+    },
+    {
+      "id": "2024_May_SL_P1_Q3",
+      "source": "May 2024 TZ1 SL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t When a horizontal spring is stretched, the force exerted by the spring is directly proportional to  its\u00a0extension. T"
+    },
+    {
+      "id": "2024_May_SL_P1_Q14",
+      "source": "May 2024 TZ1 SL Paper 1 Q14",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "14.\t A simple harmonic oscillation has a time period T. What is the variation with time t of the total energy ET of the "
+    },
+    {
+      "id": "2024_May_SL_P1_Q17",
+      "source": "May 2024 TZ1 SL Paper 1 Q17",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "17.\t A point source of light of amplitude Y is viewed from a distance \u2009x\u2009. The observed light intensity is I. The amplit"
+    },
+    {
+      "id": "2024_May_SL_P1_Q19",
+      "source": "May 2024 TZ1 SL Paper 1 Q19",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "19.\t What is a possible unit of electrical resistance? A.\t W\u2009A-2 B.\t A\u2009V-1 C.\t V\u2009W-2 D.\t W\u2009V-2"
+    },
+    {
+      "id": "2024_May_SL_P1_Q24",
+      "source": "May 2024 TZ1 SL Paper 1 Q24",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "24.\t What are three fundamental forces listed in decreasing order of strength? A.\t Strong nuclear, gravity, electromagne"
+    },
+    {
+      "id": "2024_May_SL_P1_Q25",
+      "source": "May 2024 TZ1 SL Paper 1 Q25",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "25.\t Which equation is an example of b\u2009+ decay? A.\t 6 14 7 14 C N e e \u001f 1 1 3 \u00fc B.\t 6 14 7 14 C N e e \u001f 1 1 1 \u00fc C.\t 12 2"
+    },
+    {
+      "id": "2024_May_HL_P1_Q1",
+      "source": "May 2024 TZ1 HL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t The diameter of a particular circle is equal to the length of the side of a square. The length of one  side of the s"
+    },
+    {
+      "id": "2024_May_HL_P1_Q6",
+      "source": "May 2024 TZ1 HL Paper 1 Q6",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "6.\t A particle X has a small positive charge and is free to move. Y has a large positive charge and is  fixed. X is init"
+    },
+    {
       "id": "2024_May_HL_P1_Q14",
       "source": "May 2024 TZ1 HL Paper 1 Q14",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
       "preview": "14.\t Unpolarized light is incident on a pair of polarizers.  The polarizing axis of the second polarizer is at 60\u00b0 to th"
+    },
+    {
+      "id": "2024_May_HL_P1_Q16",
+      "source": "May 2024 TZ1 HL Paper 1 Q16",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "16.\t What is a possible unit of electrical resistance? A.\t W\u2009A-2\t B.\t A\u2009V-1\t C.\t V\u2009W-2  D.\t W\u2009V-2"
+    },
+    {
+      "id": "2024_May_HL_P1_Q19",
+      "source": "May 2024 TZ1 HL Paper 1 Q19",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "19.\t What are three fundamental forces listed in decreasing order of strength? A.\t Strong nuclear, gravity, electromagne"
+    },
+    {
+      "id": "2024_May_HL_P1_Q20",
+      "source": "May 2024 TZ1 HL Paper 1 Q20",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "20.\t Which equation is an example of b\u2009+ decay? A.\t 6 14 7 14 C N e e \u001f 1 1 3 \u00fc B.\t 6 14 7 14 C N e e \u001f 1 1 1 \u00fc C.\t 12 2"
+    },
+    {
+      "id": "2024_May_HL_P1_Q29",
+      "source": "May 2024 TZ1 HL Paper 1 Q29",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "29.\t A microphone M on a moving train detects the sound from a stationary loudspeaker L placed on  the track. The track "
     },
     {
       "id": "2024_May_HL_P2_Q10",
@@ -177,10 +747,40 @@
       "preview": "16.\t Ultrasound imaging is usually performed at frequencies in the range of 2\u201320\u2009MHz. (a)\t Outline why frequencies of 2."
     },
     {
+      "id": "2024_May_HL_P1_Q1",
+      "source": "May 2024 TZ2 HL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t A cart accelerates from (20\u00a0\u00b1\u00a01)\u2009m\u2009s-1 to (30\u00a0\u00b1\u00a01)\u2009m\u2009s-1. What is the percentage uncertainty in the change of speed "
+    },
+    {
+      "id": "2024_May_HL_P1_Q6",
+      "source": "May 2024 TZ2 HL Paper 1 Q6",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "6.\t A stationary mass of 1\u2009kg is pulled along a frictionless 3\u2009m inclined plane by a constant force of 6\u2009N.  At the top "
+    },
+    {
+      "id": "2024_May_HL_P1_Q8",
+      "source": "May 2024 TZ2 HL Paper 1 Q8",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "8.  A layer of mercury traps a volume of gas in a tube. The tube is placed in a water bath and slowly  heated. When the "
+    },
+    {
       "id": "2024_May_HL_P1_Q10",
       "source": "May 2024 TZ2 HL Paper 1 Q10",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
       "preview": "10.\t Unpolarized light is incident on two polarizers X and Y. The transmission axis of X is vertical and  that of Y is h"
+    },
+    {
+      "id": "2024_May_HL_P1_Q11",
+      "source": "May 2024 TZ2 HL Paper 1 Q11",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "11.\t Radio waves are emitted spherically from a source. At a distance d from the source the amplitude  of the waves is X"
+    },
+    {
+      "id": "2024_May_HL_P1_Q19",
+      "source": "May 2024 TZ2 HL Paper 1 Q19",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "19.  An old-fashioned bicycle is moving with a con stan t speed v. The front wheel has a radius 3 times  that of the rea"
     },
     {
       "id": "2024_May_HL_P1_Q21",
@@ -189,10 +789,46 @@
       "preview": "21.\t The Feynman diagram shows a possible decay of a K- meson. K \u2212 0 \u03c0 \u03c0\u2212 u d s u u u Which particle is represented by t"
     },
     {
+      "id": "2024_May_HL_P1_Q26",
+      "source": "May 2024 TZ2 HL Paper 1 Q26",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "26.\t A mass M oscillates with a period T when connected to a spring with spring stiffness constant k. A  mass of 2M is c"
+    },
+    {
+      "id": "2024_May_HL_P1_Q29",
+      "source": "May 2024 TZ2 HL Paper 1 Q29",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "29.\t A radar detector is used to measure the speed of a car. The car is moving with a speed v towards  the detector.  ca"
+    },
+    {
+      "id": "2024_May_HL_P1_Q32",
+      "source": "May 2024 TZ2 HL Paper 1 Q32",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "32.\t Which new concept was required to understand action at a distance? A.\t Wave motion B.\t  Atomic theory  C.\t Tunnelli"
+    },
+    {
       "id": "2024_May_HL_P1_Q34",
       "source": "May 2024 TZ2 HL Paper 1 Q34",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
       "preview": "34.\t An ideal step-up transformer has 500 turns on the primary coil and 2000 turns on the secondary  coil. An alternatin"
+    },
+    {
+      "id": "2024_May_HL_P1_Q38",
+      "source": "May 2024 TZ2 HL Paper 1 Q38",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "38.\t The uncertainty in an electron\u2019s position is \u2009x\u2009.  What is the uncertainty in the electron\u2019s energy? A.\t h me 16\u03c0x "
+    },
+    {
+      "id": "2024_May_HL_P1_Q40",
+      "source": "May 2024 TZ2 HL Paper 1 Q40",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "40.\t High speed electrons are directed at nuclei X. A graph of the variation of electron intensity with  diffraction ang"
+    },
+    {
+      "id": "2024_May_HL_P1_Q19",
+      "source": "May 2024 TZ2 HL Paper 1 Q19",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "19.\t \t Clu, n.d. Penny farthing bicycle. [image online] Available at: https://www.gettyimages.co.uk/detail/illustration/"
     },
     {
       "id": "2024_May_HL_P2_Q6",
@@ -243,18 +879,6 @@
       "preview": "9.\t The single-dish radio telescope at Arecibo had a fixed spherical mirror M of diameter  of\u00a00.3\u2009km made up of a large "
     },
     {
-      "id": "2023_Nov_SL_P3_Q1",
-      "source": "Nov 2023 TZ1 SL Paper 3 Opt C Q1",
-      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
-      "preview": "1.\t \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
-    },
-    {
-      "id": "2023_Nov_SL_P3_Q2",
-      "source": "Nov 2023 TZ1 SL Paper 3 Opt C Q2",
-      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
-      "preview": "2.\t \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
-    },
-    {
       "id": "2023_Nov_SL_P3_Q10",
       "source": "Nov 2023 TZ1 SL Paper 3 Opt C Q10",
       "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
@@ -265,6 +889,36 @@
       "source": "Nov 2023 TZ1 SL Paper 3 Opt C Q11",
       "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
       "preview": "11.\t A step-index fibre has core refractive index of 1.47 and a cladding refractive index of\u00a01.45. (a)\t (i)\t Calculate t"
+    },
+    {
+      "id": "2023_Nov_SL_P1_Q1",
+      "source": "Nov 2023 TZ2 SL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t The resistive force F that acts on an object moving through a fluid at speed v is given  by F\u00a0=\u00a0kv where k is a cons"
+    },
+    {
+      "id": "2023_Nov_SL_P1_Q2",
+      "source": "Nov 2023 TZ2 SL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t A pendulum is displaced by angle \u03b8\u2009 and released from rest. \u03b8 L What is the initial acceleration of the pendulum? A."
+    },
+    {
+      "id": "2023_Nov_SL_P1_Q12",
+      "source": "Nov 2023 TZ2 SL Paper 1 Q12",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "12.\t What is the  0 number of atoms in 20g of Neon-20 number of atoms in 40 of Kry   pton-8 g ? A.\t 1 4 B.\t 1 2 C.\t 2 D."
+    },
+    {
+      "id": "2023_Nov_SL_P1_Q14",
+      "source": "Nov 2023 TZ2 SL Paper 1 Q14",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "14.\t A wave is travelling on a string. The graphs show the variation of the displacement of the string  with distance an"
+    },
+    {
+      "id": "2023_Nov_SL_P1_Q25",
+      "source": "Nov 2023 TZ2 SL Paper 1 Q25",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "25.\t What is the number of protons and what is the number of neutrons in a nucleus of 214 82Pb? Number of protons Number"
     },
     {
       "id": "2023_Nov_SL_P1_Q27",
@@ -285,18 +939,6 @@
       "preview": "9.\t The single-dish radio telescope at Arecibo had a fixed spherical mirror M of diameter  of\u00a00.3\u2009km made up of a large "
     },
     {
-      "id": "2023_Nov_SL_P3_Q1",
-      "source": "Nov 2023 TZ2 SL Paper 3 Opt C Q1",
-      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
-      "preview": "1.\t \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
-    },
-    {
-      "id": "2023_Nov_SL_P3_Q2",
-      "source": "Nov 2023 TZ2 SL Paper 3 Opt C Q2",
-      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
-      "preview": "2.\t \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
-    },
-    {
       "id": "2023_Nov_SL_P3_Q10",
       "source": "Nov 2023 TZ2 SL Paper 3 Opt C Q10",
       "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
@@ -309,10 +951,70 @@
       "preview": "11.\t A step-index fibre has core refractive index of 1.47 and a cladding refractive index of\u00a01.45. (a)\t (i)\t Calculate t"
     },
     {
+      "id": "2023_Nov_SL_P1_Q1",
+      "source": "Nov 2023 TZ1 SL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t The resistive force F that acts on an object moving through a fluid at speed v is given  by F\u00a0=\u00a0kv where k is a cons"
+    },
+    {
+      "id": "2023_Nov_SL_P1_Q2",
+      "source": "Nov 2023 TZ1 SL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t A pendulum is displaced by angle \u03b8\u2009 and released from rest. \u03b8 L What is the initial acceleration of the pendulum? A."
+    },
+    {
+      "id": "2023_Nov_SL_P1_Q12",
+      "source": "Nov 2023 TZ1 SL Paper 1 Q12",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "12.\t What is the  0 number of atoms in 20g of Neon-20 number of atoms in 40 of Kry   pton-8 g ? A.\t 1 4 B.\t 1 2 C.\t 2 D."
+    },
+    {
+      "id": "2023_Nov_SL_P1_Q14",
+      "source": "Nov 2023 TZ1 SL Paper 1 Q14",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "14.\t A wave is travelling on a string. The graphs show the variation of the displacement of the string  with distance an"
+    },
+    {
+      "id": "2023_Nov_SL_P1_Q25",
+      "source": "Nov 2023 TZ1 SL Paper 1 Q25",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "25.\t What is the number of protons and what is the number of neutrons in a nucleus of 214 82Pb? Number of protons Number"
+    },
+    {
       "id": "2023_Nov_SL_P1_Q27",
       "source": "Nov 2023 TZ1 SL Paper 1 Q27",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: meson, exchange particle)",
       "preview": "27.\t A \u03c0+ meson can decay as shown in the equation. \u03c0+\u00a0\u2192\u00a0X\u00a0+\u00a0\u00b5+ Which of the following is correct for particle X and the"
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q1",
+      "source": "Nov 2023 TZ1 HL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t The resistive force F that acts on an object moving through a fluid at speed v is given  by F\u00a0=\u00a0kv where k is a cons"
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q2",
+      "source": "Nov 2023 TZ1 HL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t The graph shows the variation of the acceleration a with time t\u2009 of an object moving in a  straight\u00a0line. a t Which "
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q4",
+      "source": "Nov 2023 TZ1 HL Paper 1 Q4",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "4.\t The diagram shows two blocks of mass m and M in contact on a frictionless surface. A force F is  applied on the bloc"
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q10",
+      "source": "Nov 2023 TZ1 HL Paper 1 Q10",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "10.\t What is the  0 number of atoms in 20g of Neon-20 number of atoms in 40 of Kry   pton-8 g ? A.\t 1 4 B.\t 1 2 C.\t 2 D."
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q11",
+      "source": "Nov 2023 TZ1 HL Paper 1 Q11",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "11.\t A wave is travelling on a string. The graphs show the variation of the displacement of the string  with distance an"
     },
     {
       "id": "2023_Nov_HL_P1_Q12",
@@ -321,10 +1023,22 @@
       "preview": "12.\t Unpolarized light of intensity \u2009I0\u2009 is incident on a polarizer with a vertical axis of polarization.  The\u00a0transmitt"
     },
     {
+      "id": "2023_Nov_HL_P1_Q16",
+      "source": "Nov 2023 TZ1 HL Paper 1 Q16",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "16.\t A cylinder of copper with diameter d and length L has a resistance R. What is the resistance of a  copper cylinder "
+    },
+    {
       "id": "2023_Nov_HL_P1_Q20",
       "source": "Nov 2023 TZ1 HL Paper 1 Q20",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: meson, exchange particle)",
       "preview": "20.\t A \u03c0+ meson can decay as shown in the equation. \u03c0+\u00a0\u2192\u00a0X\u00a0+\u00a0\u00b5+ Which of the following is correct for particle X and the"
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q30",
+      "source": "Nov 2023 TZ1 HL Paper 1 Q30",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "30.\t A satellite of mass m is in orbit around a planet of radius R and mass M. The total energy of the  satellite is - G"
     },
     {
       "id": "2023_Nov_HL_P1_Q33",
@@ -351,18 +1065,6 @@
       "preview": "13.\t The single-dish radio telescope at Arecibo had a fixed spherical mirror M of diameter  of\u00a00.3\u2009km made up of a large"
     },
     {
-      "id": "2023_Nov_HL_P3_Q1",
-      "source": "Nov 2023 TZ2 HL Paper 3 Opt C Q1",
-      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
-      "preview": "1.\t \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
-    },
-    {
-      "id": "2023_Nov_HL_P3_Q2",
-      "source": "Nov 2023 TZ2 HL Paper 3 Opt C Q2",
-      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
-      "preview": "2.\t \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
-    },
-    {
       "id": "2023_Nov_HL_P3_Q14",
       "source": "Nov 2023 TZ2 HL Paper 3 Opt C Q14",
       "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
@@ -381,16 +1083,58 @@
       "preview": "16.\t (a)\t (i)\t Describe how ultrasound is produced.\b [2] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
     },
     {
+      "id": "2023_Nov_HL_P1_Q1",
+      "source": "Nov 2023 TZ2 HL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t The resistive force F that acts on an object moving through a fluid at speed v is given  by F\u00a0=\u00a0kv where k is a cons"
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q2",
+      "source": "Nov 2023 TZ2 HL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t The graph shows the variation of the acceleration a with time t\u2009 of an object moving in a  straight\u00a0line. a t Which "
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q4",
+      "source": "Nov 2023 TZ2 HL Paper 1 Q4",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "4.\t The diagram shows two blocks of mass m and M in contact on a frictionless surface. A force F is  applied on the bloc"
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q10",
+      "source": "Nov 2023 TZ2 HL Paper 1 Q10",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "10.\t What is the  0 number of atoms in 20g of Neon-20 number of atoms in 40 of Kry   pton-8 g ? A.\t 1 4 B.\t 1 2 C.\t 2 D."
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q11",
+      "source": "Nov 2023 TZ2 HL Paper 1 Q11",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "11.\t A wave is travelling on a string. The graphs show the variation of the displacement of the string  with distance an"
+    },
+    {
       "id": "2023_Nov_HL_P1_Q12",
       "source": "Nov 2023 TZ2 HL Paper 1 Q12",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
       "preview": "12.\t Unpolarized light of intensity \u2009I0\u2009 is incident on a polarizer with a vertical axis of polarization.  The\u00a0transmitt"
     },
     {
+      "id": "2023_Nov_HL_P1_Q16",
+      "source": "Nov 2023 TZ2 HL Paper 1 Q16",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "16.\t A cylinder of copper with diameter d and length L has a resistance R. What is the resistance of a  copper cylinder "
+    },
+    {
       "id": "2023_Nov_HL_P1_Q20",
       "source": "Nov 2023 TZ2 HL Paper 1 Q20",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: meson, exchange particle)",
       "preview": "20.\t A \u03c0+ meson can decay as shown in the equation. \u03c0+\u00a0\u2192\u00a0X\u00a0+\u00a0\u00b5+ Which of the following is correct for particle X and the"
+    },
+    {
+      "id": "2023_Nov_HL_P1_Q30",
+      "source": "Nov 2023 TZ2 HL Paper 1 Q30",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "30.\t A satellite of mass m is in orbit around a planet of radius R and mass M. The total energy of the  satellite is - G"
     },
     {
       "id": "2023_Nov_HL_P1_Q33",
@@ -415,18 +1159,6 @@
       "source": "Nov 2023 TZ1 HL Paper 3 Opt C Q13",
       "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
       "preview": "13.\t The single-dish radio telescope at Arecibo had a fixed spherical mirror M of diameter  of\u00a00.3\u2009km made up of a large"
-    },
-    {
-      "id": "2023_Nov_HL_P3_Q1",
-      "source": "Nov 2023 TZ1 HL Paper 3 Opt C Q1",
-      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
-      "preview": "1.\t \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
-    },
-    {
-      "id": "2023_Nov_HL_P3_Q2",
-      "source": "Nov 2023 TZ1 HL Paper 3 Opt C Q2",
-      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
-      "preview": "2.\t \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
     },
     {
       "id": "2023_Nov_HL_P3_Q14",
@@ -465,6 +1197,48 @@
       "preview": "5. The magnesium nuclide 12 27Mg decays by beta-minus (\u03b2-) decay to form a nuclide of aluminium (Al). (a) Write down the"
     },
     {
+      "id": "2023_May_SL_P1_Q1",
+      "source": "May 2023 TZ2 SL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t The graph shows the variation with time of the velocity of an object. Error bars for velocity  are\u00a0included. 0 0 1 2"
+    },
+    {
+      "id": "2023_May_SL_P1_Q2",
+      "source": "May 2023 TZ2 SL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t A toy car of mass 2\u2009kg is at rest on a horizontal surface. A force of 30\u2009N is applied to the toy car  at\u00a0time t\u00a0=\u00a00."
+    },
+    {
+      "id": "2023_May_SL_P1_Q3",
+      "source": "May 2023 TZ2 SL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t A stone is thrown vertically up from the top of a cliff with a velocity v at time t\u00a0=\u00a00. Air\u00a0resistance  is\u00a0negligib"
+    },
+    {
+      "id": "2023_May_SL_P1_Q5",
+      "source": "May 2023 TZ2 SL Paper 1 Q5",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "5.\t A variable force with a maximum Fmax is applied to an object over a time interval T\u2009. The object has  a mass m and i"
+    },
+    {
+      "id": "2023_May_SL_P1_Q6",
+      "source": "May 2023 TZ2 SL Paper 1 Q6",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "6.\t The angle \u03b8\u2009 between a ramp and a horizontal surface slowly increases from zero. An object  on\u00a0the\u00a0ramp does not sli"
+    },
+    {
+      "id": "2023_May_SL_P1_Q9",
+      "source": "May 2023 TZ2 SL Paper 1 Q9",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "9.\t The temperature of a gas increases from 100\u2009K to 330\u2009K. What is the change in temperature of the  gas in degrees Cel"
+    },
+    {
+      "id": "2023_May_SL_P1_Q27",
+      "source": "May 2023 TZ2 SL Paper 1 Q27",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "27.\t A student measures the count rate of a radioactive sample with time in a laboratory.  The\u00a0background count in the l"
+    },
+    {
       "id": "2023_May_SL_P1_Q28",
       "source": "May 2023 TZ2 SL Paper 1 Q28",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: quark, lepton, baryon)",
@@ -495,10 +1269,64 @@
       "preview": "5.\t (a)\t \u0007Identify with ticks [\u2009\uf0fc\u2009] in the table, the forces that can act on electrons and the forces  that can act on q"
     },
     {
+      "id": "2023_May_SL_P1_Q2",
+      "source": "May 2023 TZ1 SL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t Masses P and Q, are measured to be (30\u00a0\u00b1\u00a01) g and (20\u00a0\u00b1\u00a01) g respectively. Which of the following  expressions gives"
+    },
+    {
+      "id": "2023_May_SL_P1_Q3",
+      "source": "May 2023 TZ1 SL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t A car travels clockwise around a circular track of radius R. What is the magnitude of displacement  from X to Y? X Y"
+    },
+    {
+      "id": "2023_May_SL_P1_Q4",
+      "source": "May 2023 TZ1 SL Paper 1 Q4",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "4.\t A car accelerates uniformly. The car passes point X at time t1 with velocity v1 and point Y at time t2  with velocit"
+    },
+    {
+      "id": "2023_May_SL_P1_Q8",
+      "source": "May 2023 TZ1 SL Paper 1 Q8",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "8.\t A block of mass 2.0\u2009kg accelerates uniformly at a rate of 1.0\u2009m\u2009s-2 when a force of 4.0\u2009N acts on it.  The force is "
+    },
+    {
+      "id": "2023_May_SL_P1_Q18",
+      "source": "May 2023 TZ1 SL Paper 1 Q18",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "18.\t Two positive charges of magnitude q and 2q are fixed as shown. At which position is the electric  field, due to the"
+    },
+    {
       "id": "2023_May_SL_P1_Q27",
       "source": "May 2023 TZ1 SL Paper 1 Q27",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: quark, baryon, strangeness)",
       "preview": "27.\t This interaction between a proton and a pion violates two or more conservation laws. p\u00a0+\u00a0\u03c0-\u00a0\u2192\u00a0K\u2009-\u00a0+\u00a0\u03c0+ Quark compos"
+    },
+    {
+      "id": "2023_May_HL_P1_Q1",
+      "source": "May 2023 TZ1 HL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t The ratio of the diameter of an atom to the diameter of its nucleus is: A.\t 101 B.\t 103 C.\t 105 D.\t 107"
+    },
+    {
+      "id": "2023_May_HL_P1_Q3",
+      "source": "May 2023 TZ1 HL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t A car travels clockwise around a circular track of radius R. What is the magnitude of displacement  from X to Y? X Y"
+    },
+    {
+      "id": "2023_May_HL_P1_Q5",
+      "source": "May 2023 TZ1 HL Paper 1 Q5",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "5.\t A car accelerates uniformly. The car passes point X at time t1 with velocity v1 and point Y at time t2  with velocit"
+    },
+    {
+      "id": "2023_May_HL_P1_Q15",
+      "source": "May 2023 TZ1 HL Paper 1 Q15",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "15.\t Two positive charges of magnitude q and 2q are fixed as shown. At which position is the electric  field, due to the"
     },
     {
       "id": "2023_May_HL_P1_Q23",
@@ -543,6 +1371,36 @@
       "preview": "15.\t The X-ray attenuation coefficient values for bone and muscle at an energy of 100\u2009keV are shown. \t Bone attenuation "
     },
     {
+      "id": "2023_May_HL_P1_Q1",
+      "source": "May 2023 TZ2 HL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t A rocket travels a distance of 3\u2009km in 10\u2009s. What is the order of magnitude of  the speed of the rocket the speed of"
+    },
+    {
+      "id": "2023_May_HL_P1_Q4",
+      "source": "May 2023 TZ2 HL Paper 1 Q4",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "4.\t An object is travelling with velocity 5\u2009m\u2009s-1. The object then accelerates to 15\u2009m\u2009s-1 in the  same\u00a0direction. What "
+    },
+    {
+      "id": "2023_May_HL_P1_Q5",
+      "source": "May 2023 TZ2 HL Paper 1 Q5",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "5.\t The angle \u03b8\u2009 between a ramp and a horizontal surface slowly increases from zero. An object  on\u00a0the\u00a0ramp does not sli"
+    },
+    {
+      "id": "2023_May_HL_P1_Q13",
+      "source": "May 2023 TZ2 HL Paper 1 Q13",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "13.\t Unpolarized light of intensity I and amplitude A passes through a polarizing filter. intensity I transmitted light "
+    },
+    {
+      "id": "2023_May_HL_P1_Q22",
+      "source": "May 2023 TZ2 HL Paper 1 Q22",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "22.\t A student measures the count rate of a radioactive sample with time in a laboratory.  The\u00a0background count in the l"
+    },
+    {
       "id": "2023_May_HL_P1_Q24",
       "source": "May 2023 TZ2 HL Paper 1 Q24",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: quark, lepton, baryon)",
@@ -559,6 +1417,18 @@
       "source": "May 2023 TZ2 HL Paper 1 Q35",
       "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: capacitance, capacitors)",
       "preview": "35.\t Two capacitors C1 and C2 are connected in series to a cell as shown. The capacitance of C1 is four  times the capac"
+    },
+    {
+      "id": "2023_May_HL_P1_Q38",
+      "source": "May 2023 TZ2 HL Paper 1 Q38",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "38.\t What is the variation of nuclear density r\u2009 with nucleon number A? 0 A \u03c1 0 A \u03c1 0 A \u03c1 0 A \u03c1 A. B. D. C."
+    },
+    {
+      "id": "2023_May_HL_P1_Q39",
+      "source": "May 2023 TZ2 HL Paper 1 Q39",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "39.\t The uncertainty in the energy required for pair production is 3\u2009MeV. What is the uncertainty in the  lifetime of th"
     },
     {
       "id": "2023_May_HL_P2_Q7",
@@ -585,6 +1455,84 @@
       "preview": "14.\t (a)\t \u0007Describe, in the context of medical diagnosis, how an ultrasound A scan is produced.\b [2] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
     },
     {
+      "id": "2022_Nov_SL_P1_Q1",
+      "source": "Nov 2022 TZ1 SL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t A rectangular sheet of paper has dimensions of (30.0\u00a0\u00b1\u00a00.5)\u2009cm and (20.0\u00a0\u00b1\u00a00.5)\u2009cm. What is the percentage uncertain"
+    },
+    {
+      "id": "2022_Nov_SL_P1_Q6",
+      "source": "Nov 2022 TZ1 SL Paper 1 Q6",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "6.\t A person lifts a total mass of 20\u2009kg through a vertical distance of 0.60\u2009m. The person repeats  the lift n times to "
+    },
+    {
+      "id": "2022_Nov_SL_P1_Q7",
+      "source": "Nov 2022 TZ1 SL Paper 1 Q7",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "7.\t A ball of mass 1.5\u2009kg strikes a force sensor and bounces. The ball experiences a change in velocity  of 10\u2009m\u2009s-1. Th"
+    },
+    {
+      "id": "2022_Nov_SL_P1_Q9",
+      "source": "Nov 2022 TZ1 SL Paper 1 Q9",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "9.\t A solid mass gains energy at a constant rate until it reaches its liquid phase. The specific heat  capacity in the s"
+    },
+    {
+      "id": "2022_Nov_SL_P1_Q11",
+      "source": "Nov 2022 TZ1 SL Paper 1 Q11",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "11.\t An object oscillates at the free end of a vertical spring. The graph shows the variation of the  object\u2019s position "
+    },
+    {
+      "id": "2022_Nov_SL_P1_Q12",
+      "source": "Nov 2022 TZ1 SL Paper 1 Q12",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "12.\t The graph shows the variation with distance \u2009x\u2009 of the displacement of the particles in a wave. The  frequency of t"
+    },
+    {
+      "id": "2022_Nov_SL_P1_Q22",
+      "source": "Nov 2022 TZ1 SL Paper 1 Q22",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "22.\t The centre of the Earth and the Moon are a distance D apart. There is a point X between them  where their gravitati"
+    },
+    {
+      "id": "2022_Nov_SL_P1_Q23",
+      "source": "Nov 2022 TZ1 SL Paper 1 Q23",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "23.\t A nucleus of krypton (Kr) decays to a nucleus of bromine (Br) according to the equation 36 84 35 84 Kr Br Y Z \u2192 + +"
+    },
+    {
+      "id": "2022_Nov_SL_P1_Q26",
+      "source": "Nov 2022 TZ1 SL Paper 1 Q26",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "26.\t Three statements about the atom are: I.\t The nucleus of the atom is positively charged. II.\t The electrons provide "
+    },
+    {
+      "id": "2022_Nov_SL_P2_Q1",
+      "source": "Nov 2022 TZ1 SL Paper 2 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t A raindrop falls vertically from rest. (a)\t State the initial acceleration of the raindrop.\b [1] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2022_Nov_SL_P2_Q4",
+      "source": "Nov 2022 TZ1 SL Paper 2 Q4",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "4.\t A mass is attached to one end of a rod and made to rotate with constant speed in a vertical circle. rod mass rotatio"
+    },
+    {
+      "id": "2022_Nov_HL_P2_Q1",
+      "source": "Nov 2022 TZ1 HL Paper 2 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t A raindrop falls vertically from rest. (a)\t State the initial acceleration of the raindrop.\b [1] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2022_Nov_HL_P2_Q4",
+      "source": "Nov 2022 TZ1 HL Paper 2 Q4",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "4.\t A mass is attached to one end of a rod and made to rotate with constant speed in a vertical circle. rod mass rotatio"
+    },
+    {
       "id": "2022_Nov_HL_P2_Q9",
       "source": "Nov 2022 TZ1 HL Paper 2 Q9",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
@@ -597,10 +1545,64 @@
       "preview": "10.\t The Feynman diagram shows a delta baryon (\u0394) decaying into a neutron and particle X.  The\u00a0exchange particle involve"
     },
     {
+      "id": "2022_Nov_HL_P1_Q2",
+      "source": "Nov 2022 TZ1 HL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t A rectangular sheet of paper has dimensions of (30.0\u00a0\u00b1\u00a00.5)\u2009cm and (20.0\u00a0\u00b1\u00a00.5)\u2009cm. What is the percentage uncertain"
+    },
+    {
+      "id": "2022_Nov_HL_P1_Q7",
+      "source": "Nov 2022 TZ1 HL Paper 1 Q7",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "7.\t A person lifts a total mass of 20\u2009kg through a vertical distance of 0.60\u2009m. The person repeats  the lift n times to "
+    },
+    {
+      "id": "2022_Nov_HL_P1_Q10",
+      "source": "Nov 2022 TZ1 HL Paper 1 Q10",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "10.\t Three samples of the same liquid are mixed in an insulated container. The masses and initial  temperatures of the s"
+    },
+    {
+      "id": "2022_Nov_HL_P1_Q11",
+      "source": "Nov 2022 TZ1 HL Paper 1 Q11",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "11.\t Gases in the atmosphere are compounds of 12 1 16 14 6 1 8 7 C, H,  O and  N . Four of these gases are CO2\u2009, N2O, CH"
+    },
+    {
+      "id": "2022_Nov_HL_P1_Q13",
+      "source": "Nov 2022 TZ1 HL Paper 1 Q13",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "13.\t An object oscillates at the free end of a vertical spring. The graph shows the variation of the  object\u2019s position "
+    },
+    {
+      "id": "2022_Nov_HL_P1_Q20",
+      "source": "Nov 2022 TZ1 HL Paper 1 Q20",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "20.\t The centre of the Earth and the Moon are a distance D apart. There is a point X between them  where their gravitati"
+    },
+    {
+      "id": "2022_Nov_HL_P1_Q28",
+      "source": "Nov 2022 TZ1 HL Paper 1 Q28",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "28.\t A telescope can just resolve images that are separated by an angle of 2\u00a0\u00d7\u00a010-7\u2009rad. Two stars are a  distance of 4\u00a0"
+    },
+    {
+      "id": "2022_Nov_HL_P1_Q29",
+      "source": "Nov 2022 TZ1 HL Paper 1 Q29",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "29.\t An ambulance emitting a sound of frequency \u00a0f\u00a0 is moving towards a point X at a velocity of  +\u200940\u2009m\u2009s-1. A car is m"
+    },
+    {
       "id": "2022_Nov_HL_P1_Q30",
       "source": "Nov 2022 TZ1 HL Paper 1 Q30",
       "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: capacitance, capacitor)",
       "preview": "30.\t A parallel-plate capacitor is fully charged using a battery. X Y d The capacitor has a capacitance C and a charge Q"
+    },
+    {
+      "id": "2022_Nov_HL_P1_Q32",
+      "source": "Nov 2022 TZ1 HL Paper 1 Q32",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "32.\t Two satellites are in circular orbits around the Earth. Both satellites have the same mass and  satellite X is clos"
     },
     {
       "id": "2022_Nov_HL_P1_Q35",
@@ -615,16 +1617,190 @@
       "preview": "36.\t A student states three facts about the time constant of a resistor-capacitor series circuit. I.\t It is the time req"
     },
     {
+      "id": "2022_Nov_HL_P1_Q39",
+      "source": "Nov 2022 TZ1 HL Paper 1 Q39",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "39. Which emission shows a continuous energy spectrum? A. Photons during energy transitions between atomic energy states"
+    },
+    {
+      "id": "2022_May_SL_P1_Q1",
+      "source": "May 2022 TZ2 SL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t The radius of a circle is measured to be (10.0\u00a0\u00b1\u00a00.5)\u2009cm. What is the area of the circle? A.\t (314.2\u00a0\u00b1\u00a00.3)\u2009cm2 B.\t "
+    },
+    {
+      "id": "2022_May_SL_P1_Q2",
+      "source": "May 2022 TZ2 SL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t Two different experiments, P and Q, generate two sets of data to confirm the proportionality  of variables x and y. "
+    },
+    {
+      "id": "2022_May_SL_P1_Q3",
+      "source": "May 2022 TZ2 SL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t The road from city X to city Y is 1000\u2009km long. The displacement is 800\u2009km from X\u00a0to\u00a0Y. city Y city X road 800 km Wh"
+    },
+    {
+      "id": "2022_May_SL_P1_Q4",
+      "source": "May 2022 TZ2 SL Paper 1 Q4",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "4.\t A car accelerates uniformly from rest to a velocity v during time t1. It then continues at  constant velocity v from"
+    },
+    {
+      "id": "2022_May_SL_P1_Q5",
+      "source": "May 2022 TZ2 SL Paper 1 Q5",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "5. An object is sliding from rest down a frictionless inclined plane. The object slides 1.0\u2009m during the first second. 1"
+    },
+    {
+      "id": "2022_May_SL_P1_Q9",
+      "source": "May 2022 TZ2 SL Paper 1 Q9",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "9. Two blocks of different masses are released from identical springs of elastic constant k\u00a0=\u00a0100\u2009Nm\u22121, initially compre"
+    },
+    {
+      "id": "2022_May_SL_P1_Q14",
+      "source": "May 2022 TZ2 SL Paper 1 Q14",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "14. A particle is moving in a straight line with an acceleration proportional to its displacement and opposite to its di"
+    },
+    {
+      "id": "2022_May_SL_P1_Q15",
+      "source": "May 2022 TZ2 SL Paper 1 Q15",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "15. Three statements about electromagnetic waves are: I. They can be polarized. II. They can be produced by accelerating"
+    },
+    {
+      "id": "2022_May_SL_P1_Q16",
+      "source": "May 2022 TZ2 SL Paper 1 Q16",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "16.\t A wave travels along a string. Graph M shows the variation with time of the displacement\u00a0of  a point X on the strin"
+    },
+    {
       "id": "2022_May_SL_P1_Q18",
       "source": "May 2022 TZ2 SL Paper 1 Q18",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
       "preview": "18.\t Unpolarized light with an intensity of 320\u2009W\u2009m\u22122 goes through a polarizer and an analyser,  originally aligned para"
     },
     {
+      "id": "2022_May_SL_P1_Q19",
+      "source": "May 2022 TZ2 SL Paper 1 Q19",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "19.\t A charge Q is at a point between two electric charges Q1 and Q2. The net electric force on Q  is zero. Charge Q1 is"
+    },
+    {
+      "id": "2022_May_SL_P1_Q25",
+      "source": "May 2022 TZ2 SL Paper 1 Q25",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "25. Three statements about electrons are: I. Electrons interact through virtual photons. II. Electrons interact through "
+    },
+    {
+      "id": "2022_May_SL_P1_Q26",
+      "source": "May 2022 TZ2 SL Paper 1 Q26",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "26.\t The energy levels of an atom are shown. How many photons of energy greater than 1.9\u2009eV  can be emitted by this atom"
+    },
+    {
+      "id": "2022_May_SL_P1_Q28",
+      "source": "May 2022 TZ2 SL Paper 1 Q28",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "28. The age of the Earth is about 4.5\u00a0\u00d7\u00a0109 years. What area of physics provides experimental evidence for this conclusi"
+    },
+    {
       "id": "2022_May_SL_P2_Q5",
       "source": "May 2022 TZ1 SL Paper 2 Q5",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: quark, baryon, meson)",
       "preview": "5.\t (a)\t Describe the quark structure of a baryon.\b [2] \b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd"
+    },
+    {
+      "id": "2022_May_SL_P1_Q2",
+      "source": "May 2022 TZ1 SL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t The magnitude of the resultant of two forces acting on a body is 12\u2009N. Which pair of forces  acting on the body can "
+    },
+    {
+      "id": "2022_May_SL_P1_Q3",
+      "source": "May 2022 TZ1 SL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t A student measures the time for 20 oscillations of a pendulum. The experiment is repeated  four times. The measureme"
+    },
+    {
+      "id": "2022_May_SL_P1_Q13",
+      "source": "May 2022 TZ1 SL Paper 1 Q13",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "13.\t A wave of period 10\u2009ms travels through a medium. The graph shows the variation of particle  displacement with dista"
+    },
+    {
+      "id": "2022_May_SL_P1_Q16",
+      "source": "May 2022 TZ1 SL Paper 1 Q16",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "16.\t A beam of unpolarized light of intensity \u2009I0 is incident on a polarizing filter. The polarizing filter  is rotated "
+    },
+    {
+      "id": "2022_May_SL_P1_Q23",
+      "source": "May 2022 TZ1 SL Paper 1 Q23",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "23.\t A ball of mass 0.3\u2009kg is attached to a light, inextensible string. It is rotated in a vertical circle.  The length "
+    },
+    {
+      "id": "2022_May_HL_P1_Q1",
+      "source": "May 2022 TZ1 HL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t The intensity of a wave can be defined as the energy per unit area per unit time. What is the  unit of intensity exp"
+    },
+    {
+      "id": "2022_May_HL_P1_Q2",
+      "source": "May 2022 TZ1 HL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t The magnitude of the resultant of two forces acting on a body is 12\u2009N. Which pair of forces  acting on the body can "
+    },
+    {
+      "id": "2022_May_HL_P1_Q3",
+      "source": "May 2022 TZ1 HL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t The uncertainty in reading a laboratory thermometer is 0.5\u2009\u00b0C. The temperature of a  liquid falls from 20\u2009\u00b0C to 10\u2009\u00b0"
+    },
+    {
+      "id": "2022_May_HL_P1_Q7",
+      "source": "May 2022 TZ1 HL Paper 1 Q7",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "7.\t A book is at rest on a table. One of the forces acting on the book is its weight. What is the other force that compl"
+    },
+    {
+      "id": "2022_May_HL_P1_Q13",
+      "source": "May 2022 TZ1 HL Paper 1 Q13",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "13.\t A wave of period 10\u2009ms travels through a medium. The graph shows the variation of particle  displacement with dista"
+    },
+    {
+      "id": "2022_May_HL_P1_Q15",
+      "source": "May 2022 TZ1 HL Paper 1 Q15",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "15.\t A beam of unpolarized light of intensity \u2009I0 is incident on a polarizing filter. The polarizing filter  is rotated "
+    },
+    {
+      "id": "2022_May_HL_P1_Q23",
+      "source": "May 2022 TZ1 HL Paper 1 Q23",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "23.\t A ball of mass 0.3\u2009kg is attached to a light, inextensible string. It is rotated in a vertical circle.  The length "
+    },
+    {
+      "id": "2022_May_HL_P1_Q24",
+      "source": "May 2022 TZ1 HL Paper 1 Q24",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "24.\t P and Q are two moons of equal densities orbiting a planet. The orbital radius of P is twice  the orbital radius of"
+    },
+    {
+      "id": "2022_May_HL_P1_Q26",
+      "source": "May 2022 TZ1 HL Paper 1 Q26",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "26.\t The diagram shows atomic transitions E1, E2 and E3 when a particular atom changes its  energy state. The wavelength"
+    },
+    {
+      "id": "2022_May_HL_P1_Q33",
+      "source": "May 2022 TZ1 HL Paper 1 Q33",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "33.\t An object of mass m is launched from the surface of the Earth. The Earth has a mass M and  radius r. The accelerati"
     },
     {
       "id": "2022_May_HL_P1_Q37",
@@ -645,10 +1821,76 @@
       "preview": "8.\t Two capacitors C1 and C2 of capacitance 28\u2009\u00b5F and 22\u2009\u00b5F respectively are connected in  a circuit with a two-way swit"
     },
     {
+      "id": "2022_May_HL_P1_Q1",
+      "source": "May 2022 TZ2 HL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t The radius of a circle is measured to be (10.0\u00a0\u00b1\u00a00.5)\u2009cm. What is the area of the circle? A.\t (314.2\u00a0\u00b1\u00a00.3)\u2009cm2 B.\t "
+    },
+    {
+      "id": "2022_May_HL_P1_Q2",
+      "source": "May 2022 TZ2 HL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t Two different experiments, P and Q, generate two sets of data to confirm the proportionality  of variables x and y. "
+    },
+    {
+      "id": "2022_May_HL_P1_Q3",
+      "source": "May 2022 TZ2 HL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t An object is sliding from rest down a frictionless inclined plane. The object slides 1.0\u2009m during  the first second."
+    },
+    {
+      "id": "2022_May_HL_P1_Q4",
+      "source": "May 2022 TZ2 HL Paper 1 Q4",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "4.\t A ball is thrown upwards at time t\u00a0=\u00a00. The graph shows the variation with time of the height  of the ball. The ball"
+    },
+    {
+      "id": "2022_May_HL_P1_Q5",
+      "source": "May 2022 TZ2 HL Paper 1 Q5",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "5. A solid metal ball is dropped from a tower. The variation with time of the velocity of the ball is\u00a0plotted. velocity "
+    },
+    {
+      "id": "2022_May_HL_P1_Q8",
+      "source": "May 2022 TZ2 HL Paper 1 Q8",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "8.\t Two blocks of different masses are released from identical springs of elastic constant  k\u00a0=\u00a0100\u2009Nm\u22121, initially comp"
+    },
+    {
+      "id": "2022_May_HL_P1_Q13",
+      "source": "May 2022 TZ2 HL Paper 1 Q13",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "13.\t A wave travels along a string. Graph M shows the variation with time of the displacement\u00a0of  a point X on the strin"
+    },
+    {
       "id": "2022_May_HL_P1_Q15",
       "source": "May 2022 TZ2 HL Paper 1 Q15",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
       "preview": "15. Unpolarized light with an intensity of 320\u2009W\u2009m\u22122 goes through a polarizer and an analyser, originally aligned parall"
+    },
+    {
+      "id": "2022_May_HL_P1_Q16",
+      "source": "May 2022 TZ2 HL Paper 1 Q16",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "16.\t Four particles, two of charge +Q and two of charge \u2212Q, are positioned on the \u2009x-axis as shown.  A particle P with a"
+    },
+    {
+      "id": "2022_May_HL_P1_Q23",
+      "source": "May 2022 TZ2 HL Paper 1 Q23",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "23. Three statements about electrons are: I. Electrons interact through virtual photons. II. Electrons interact through "
+    },
+    {
+      "id": "2022_May_HL_P1_Q27",
+      "source": "May 2022 TZ2 HL Paper 1 Q27",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "27. Three statements about fossil fuels are: I. There is a finite amount of fossil fuels on Earth. II. The transfer of e"
+    },
+    {
+      "id": "2022_May_HL_P1_Q28",
+      "source": "May 2022 TZ2 HL Paper 1 Q28",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "28. The age of the Earth is about 4.5\u00a0\u00d7\u00a0109 years. What area of physics provides experimental evidence for this conclusi"
     },
     {
       "id": "2022_May_HL_P1_Q36",
@@ -657,10 +1899,64 @@
       "preview": "36.\t A circuit consists of three identical capacitors of capacitance C and a battery of voltage V.  Two capacitors are c"
     },
     {
+      "id": "2022_May_HL_P1_Q37",
+      "source": "May 2022 TZ2 HL Paper 1 Q37",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "37. Three correct statements about the behaviour of electrons are: I. An electron beam is used to investigate the struct"
+    },
+    {
+      "id": "2022_May_HL_P2_Q1",
+      "source": "May 2022 TZ2 HL Paper 2 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t Airboats are used for transport across a river. To move the boat forward, air is propelled from  the back of the boa"
+    },
+    {
+      "id": "2021_Nov_SL_P1_Q1",
+      "source": "Nov 2021 TZ1 SL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t Which is a vector quantity? A.\t Acceleration B.\t Energy C.\t Pressure D.\t Speed"
+    },
+    {
+      "id": "2021_Nov_SL_P1_Q3",
+      "source": "Nov 2021 TZ1 SL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t The graph shows the variation with time \u2009t\u2009 of the velocity of an object. 0 0 t velocity What is the variation with "
+    },
+    {
+      "id": "2021_Nov_SL_P1_Q6",
+      "source": "Nov 2021 TZ1 SL Paper 1 Q6",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "6.\t X\u2009 and \u2009Y\u2009 are two objects on a frictionless table connected by a string. The mass of \u2009X\u2009 is 2\u2009kg  and the mass of \u2009"
+    },
+    {
+      "id": "2021_Nov_SL_P1_Q10",
+      "source": "Nov 2021 TZ1 SL Paper 1 Q10",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "10.\t A liquid is vaporized to a gas at a constant temperature. Three quantities of the substance are the I.\t total inter"
+    },
+    {
       "id": "2021_Nov_SL_P1_Q15",
       "source": "Nov 2021 TZ1 SL Paper 1 Q15",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
       "preview": "15.\t Horizontally polarized light is incident on a pair of polarizers \u2009X\u2009 and \u2009Y\u2009. The axis of  polarization of \u2009X\u2009 make"
+    },
+    {
+      "id": "2021_Nov_SL_P1_Q16",
+      "source": "Nov 2021 TZ1 SL Paper 1 Q16",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "16.\t A ray of monochromatic light is incident on the parallel interfaces between three media.  The\u00a0speeds of light in th"
+    },
+    {
+      "id": "2021_Nov_SL_P1_Q19",
+      "source": "Nov 2021 TZ1 SL Paper 1 Q19",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "19.\t Two wires, \u2009X\u2009 and \u2009Y\u2009, are made of the same material and have equal length. The diameter  of \u2009X\u2009 is twice that of "
+    },
+    {
+      "id": "2021_Nov_SL_P1_Q22",
+      "source": "Nov 2021 TZ1 SL Paper 1 Q22",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "22.\t A mass at the end of a string is moving in a horizontal circle at constant speed. The string  makes an angle \u2009\u03b8\u2009 to"
     },
     {
       "id": "2021_Nov_SL_P1_Q27",
@@ -675,10 +1971,40 @@
       "preview": "3.\t Two equal positive fixed point charges \u2009Q\u00a0=\u00a0+44\u2009\u00b5C and point \u2009P\u2009 are at the vertices of an  equilateral triangle of "
     },
     {
+      "id": "2021_Nov_HL_P1_Q2",
+      "source": "Nov 2021 TZ1 HL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t The graph shows the variation with time t of the velocity of an object.  0 0 t velocity What is the variation with t"
+    },
+    {
+      "id": "2021_Nov_HL_P1_Q3",
+      "source": "Nov 2021 TZ1 HL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t X\u2009 and \u2009Y\u2009 are two objects on a frictionless table connected by a string. The mass of \u2009X\u2009 is 2\u2009kg  and the mass of \u2009"
+    },
+    {
+      "id": "2021_Nov_HL_P1_Q8",
+      "source": "Nov 2021 TZ1 HL Paper 1 Q8",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "8.\t A liquid is vaporized to a gas at a constant temperature. Three quantities of the substance are the I.\t total interm"
+    },
+    {
       "id": "2021_Nov_HL_P1_Q12",
       "source": "Nov 2021 TZ1 HL Paper 1 Q12",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
       "preview": "12.\t Horizontally polarized light is incident on a pair of polarizers \u2009X\u2009 and \u2009Y\u2009. The axis of  polarization of \u2009X\u2009 make"
+    },
+    {
+      "id": "2021_Nov_HL_P1_Q16",
+      "source": "Nov 2021 TZ1 HL Paper 1 Q16",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "16.\t Two wires, \u2009X\u2009 and \u2009Y\u2009, are made of the same material and have equal length. The diameter  of \u2009X\u2009 is twice that of "
+    },
+    {
+      "id": "2021_Nov_HL_P1_Q19",
+      "source": "Nov 2021 TZ1 HL Paper 1 Q19",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "19.\t A mass at the end of a string is moving in a horizontal circle at constant speed. The string  makes an angle \u2009\u03b8\u2009 to"
     },
     {
       "id": "2021_Nov_HL_P1_Q22",
@@ -693,6 +2019,12 @@
       "preview": "23.\t The Higgs boson was discovered in the Large Hadron Collider at CERN. Which statements  are correct about the discov"
     },
     {
+      "id": "2021_Nov_HL_P1_Q25",
+      "source": "Nov 2021 TZ1 HL Paper 1 Q25",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "25.\t The diagram shows a simple model of the energy balance in the Earth surface-atmosphere  system. The intensities of "
+    },
+    {
       "id": "2021_Nov_HL_P1_Q34",
       "source": "Nov 2021 TZ1 HL Paper 1 Q34",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
@@ -705,10 +2037,46 @@
       "preview": "35.\t The root mean square (rms) current in the primary coil of an ideal transformer is 2.0\u2009A.  The\u00a0rms voltage in the se"
     },
     {
+      "id": "2021_May_SL_P1_Q1",
+      "source": "May 2021 TZ2 SL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t A student measures the length l and width w of a rectangular table top. What is the absolute uncertainty of the peri"
+    },
+    {
+      "id": "2021_May_SL_P1_Q5",
+      "source": "May 2021 TZ2 SL Paper 1 Q5",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "5.\t A person with a weight of 600\u2009N stands on a scale in an elevator. elevator scale What is the acceleration of the ele"
+    },
+    {
+      "id": "2021_May_SL_P1_Q10",
+      "source": "May 2021 TZ2 SL Paper 1 Q10",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "10.\t A sample of oxygen gas with a volume of 3.0\u2009m3 is at 100\u2009\u00b0C. The gas is heated so that it  expands at a constant pr"
+    },
+    {
+      "id": "2021_May_SL_P1_Q13",
+      "source": "May 2021 TZ2 SL Paper 1 Q13",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "13.\t The bob of a pendulum has an initial displacement xo to the right. The bob is released and  allowed to oscillate. T"
+    },
+    {
       "id": "2021_May_SL_P1_Q14",
       "source": "May 2021 TZ2 SL Paper 1 Q14",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
       "preview": "14.\t Unpolarized light of intensity I1 is incident on a polarizer. The light that passes through this  polarizer then pa"
+    },
+    {
+      "id": "2021_May_SL_P1_Q21",
+      "source": "May 2021 TZ2 SL Paper 1 Q21",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "21.\t Three identical resistors of resistance R are connected as shown to a battery with a potential  R"
+    },
+    {
+      "id": "2021_May_SL_P1_Q24",
+      "source": "May 2021 TZ2 SL Paper 1 Q24",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "24.\t A sphere is suspended from the end of a string and rotates in a horizontal circle. Which free- body diagram, to the"
     },
     {
       "id": "2021_May_SL_P1_Q27",
@@ -729,16 +2097,70 @@
       "preview": "7.\t Conservation of energy and conservation of momentum are two examples of conservation laws. (a)\t Outline the signific"
     },
     {
+      "id": "2021_May_SL_P1_Q2",
+      "source": "May 2021 TZ1 SL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t Two sets of data, shown below with circles and squares, are obtained in two experiments.  The size of the error bars"
+    },
+    {
+      "id": "2021_May_SL_P1_Q3",
+      "source": "May 2021 TZ1 SL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t A large stone is dropped from a tall building. What is correct about the speed of the stone after 1\u2009s? A.\t It is dec"
+    },
+    {
+      "id": "2021_May_SL_P1_Q7",
+      "source": "May 2021 TZ1 SL Paper 1 Q7",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "7.\t Two forces act on an object in different directions. The magnitudes of the forces are 18\u2009N and  27\u2009N. The mass of th"
+    },
+    {
+      "id": "2021_May_SL_P1_Q8",
+      "source": "May 2021 TZ1 SL Paper 1 Q8",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "8.\t Two identical boxes are stored in a warehouse as shown in the diagram. Two forces acting  on the top box and two for"
+    },
+    {
+      "id": "2021_May_SL_P1_Q15",
+      "source": "May 2021 TZ1 SL Paper 1 Q15",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "15.\t Two identical waves, each with amplitude X0 and intensity I, interfere constructively. What are  the amplitude and "
+    },
+    {
       "id": "2021_May_SL_P1_Q27",
       "source": "May 2021 TZ1 SL Paper 1 Q27",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: lepton, baryon)",
       "preview": "27.\t A particle reaction is p + e-\u2009+ v\u0305\u00b5\u2009\u2192 n + \u00b5+\u2009+ ve\u2009. Which conservation law is violated by the reaction? A.\t Baryon "
     },
     {
+      "id": "2021_May_HL_P1_Q1",
+      "source": "May 2021 TZ1 HL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t Two sets of data, shown below with circles and squares, are obtained in two experiments.  The size of the error bars"
+    },
+    {
+      "id": "2021_May_HL_P1_Q2",
+      "source": "May 2021 TZ1 HL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t A large stone is dropped from a tall building. What is correct about the speed of the stone after 1\u2009s? A.\t It is dec"
+    },
+    {
+      "id": "2021_May_HL_P1_Q22",
+      "source": "May 2021 TZ1 HL Paper 1 Q22",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "22.\t In a hydrogen atom, the sum of the masses of a proton and of an electron is larger than the  mass of the atom. Whic"
+    },
+    {
       "id": "2021_May_HL_P1_Q23",
       "source": "May 2021 TZ1 HL Paper 1 Q23",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: feynman diagram)",
       "preview": "23.\t Which Feynman diagram describes the annihilation of an electron and its antiparticle? A.\t time B.\t time C.\t time D."
+    },
+    {
+      "id": "2021_May_HL_P1_Q24",
+      "source": "May 2021 TZ1 HL Paper 1 Q24",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "24.\t Burning one litre of gasoline produces more energy than burning one kilogram of coal, and  the density of gasoline "
     },
     {
       "id": "2021_May_HL_P1_Q36",
@@ -759,6 +2181,42 @@
       "preview": "9.\t Conservation of energy and conservation of momentum are two examples of conservation laws. (a)\t Outline the signific"
     },
     {
+      "id": "2021_May_HL_P1_Q1",
+      "source": "May 2021 TZ2 HL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t A student measures the length l and width w of a rectangular table top. What is the absolute uncertainty of the peri"
+    },
+    {
+      "id": "2021_May_HL_P1_Q2",
+      "source": "May 2021 TZ2 HL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t The minute hand of a clock hanging on a vertical wall has length L\u00a0=\u00a030\u2009cm. L P 12 1 2 3 4 5 6 7 8 9 10 11 The minut"
+    },
+    {
+      "id": "2021_May_HL_P1_Q5",
+      "source": "May 2021 TZ2 HL Paper 1 Q5",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "5.\t A person with a weight of 600\u2009N stands on a scale in an elevator. elevator scale What is the acceleration of the ele"
+    },
+    {
+      "id": "2021_May_HL_P1_Q8",
+      "source": "May 2021 TZ2 HL Paper 1 Q8",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "8.\t A sample of oxygen gas with a volume of 3.0\u2009m3 is at 100\u2009\u00b0C. The gas is heated so that it  expands at a constant pre"
+    },
+    {
+      "id": "2021_May_HL_P1_Q11",
+      "source": "May 2021 TZ2 HL Paper 1 Q11",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "11.\t The bob of a pendulum has an initial displacement xo to the right. The bob is released and  allowed to oscillate. T"
+    },
+    {
+      "id": "2021_May_HL_P1_Q12",
+      "source": "May 2021 TZ2 HL Paper 1 Q12",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "12.\t Which graph shows the variation of amplitude with intensity for a wave? A.\u200b 0 0 amplitude intensity B.\u200b 0 0 amplitu"
+    },
+    {
       "id": "2021_May_HL_P1_Q13",
       "source": "May 2021 TZ2 HL Paper 1 Q13",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
@@ -769,6 +2227,12 @@
       "source": "May 2021 TZ2 HL Paper 1 Q23",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: lepton, meson, feynman diagram)",
       "preview": "23.\t Consider the Feynman diagram below. e+ \u00b5\u2212 e\u2212 \u00b5+ X time What is the exchange particle X? A.\t Lepton B.\t Gluon C.\t Me"
+    },
+    {
+      "id": "2021_May_HL_P1_Q32",
+      "source": "May 2021 TZ2 HL Paper 1 Q32",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "32.\t A satellite orbits planet X with a speed vx at a distance r from the centre of planet X. Another  satellite orbits "
     },
     {
       "id": "2021_May_HL_P1_Q33",
@@ -783,16 +2247,76 @@
       "preview": "36.\t A capacitor is charged with a constant current I. The graph shows the variation of potential  difference V across t"
     },
     {
+      "id": "2021_May_HL_P1_Q37",
+      "source": "May 2021 TZ2 HL Paper 1 Q37",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "37.\t A particle of energy E is incident upon a barrier and has a certain probability of quantum  tunnelling through the "
+    },
+    {
+      "id": "2021_May_HL_P1_Q38",
+      "source": "May 2021 TZ2 HL Paper 1 Q38",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "38.\t Element X has a nucleon number AX and a nuclear density \u03c1X. Element Y has a nucleon  number of 2AX. What is an esti"
+    },
+    {
+      "id": "2021_May_HL_P1_Q40",
+      "source": "May 2021 TZ2 HL Paper 1 Q40",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "40.\t An electron of non-relativistic speed v interacts with an atom. All the energy of the electron is  transferred to a"
+    },
+    {
       "id": "2021_May_HL_P2_Q7",
       "source": "May 2021 TZ2 HL Paper 2 Q7",
       "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: transformer, primary coil, secondary coil)",
       "preview": "7.\t (a)\t \u0007The primary coil of a transformer is connected to a 110\u2009V alternating current (ac) supply.  The secondary coil"
     },
     {
+      "id": "2020_Nov_SL_P1_Q2",
+      "source": "Nov 2020 TZ1 SL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t A list of four physical quantities is \u2022\t acceleration \u2022\t energy \u2022\t mass \u2022\t temperature How many scalar quantities ar"
+    },
+    {
+      "id": "2020_Nov_SL_P1_Q6",
+      "source": "Nov 2020 TZ1 SL Paper 1 Q6",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "6.\t P and Q leave the same point, travelling in the same direction. The graphs show the variation  with time t of veloci"
+    },
+    {
+      "id": "2020_Nov_SL_P1_Q12",
+      "source": "Nov 2020 TZ1 SL Paper 1 Q12",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "12.\t A substance in the gas state has a density about 1000 times less than when it is in the liquid  state. The diameter"
+    },
+    {
+      "id": "2020_Nov_SL_P1_Q20",
+      "source": "Nov 2020 TZ1 SL Paper 1 Q20",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "20.\t A current in a wire lies between the poles of a magnet. What is the direction of the  electromagnetic force on the "
+    },
+    {
+      "id": "2020_Nov_SL_P1_Q21",
+      "source": "Nov 2020 TZ1 SL Paper 1 Q21",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "21.\t Four resistors of 4\u2009\u2126 each are connected as shown. P Q What is the effective resistance between P and Q? A.\t 1.0\u2009\u2126 "
+    },
+    {
+      "id": "2020_Nov_SL_P1_Q26",
+      "source": "Nov 2020 TZ1 SL Paper 1 Q26",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "26.\t The average temperature of the surface of a planet is five times greater than the average  temperature of the surfa"
+    },
+    {
       "id": "2020_Nov_SL_P1_Q30",
       "source": "Nov 2020 TZ1 SL Paper 1 Q30",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: feynman diagram)",
       "preview": "30.\t The Feynman diagram shows some of the changes in a proton\u2013proton collision. u u d d d u time What is the equation f"
+    },
+    {
+      "id": "2020_Nov_SL_P2_Q4",
+      "source": "Nov 2020 TZ1 SL Paper 2 Q4",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "4.\t Two loudspeakers, A and B, are driven in phase and with the same amplitude at a frequency  of 850\u2009Hz. Point P is loc"
     },
     {
       "id": "2020_Nov_SL_P3_Q10",
@@ -817,6 +2341,12 @@
       "source": "Nov 2020 TZ1 SL Paper 3 Opt C Q13",
       "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
       "preview": "13.\t A single pulse of light enters an optic fibre which contains small impurities that scatter the  light. Explain the "
+    },
+    {
+      "id": "2020_Nov_HL_P2_Q4",
+      "source": "Nov 2020 TZ1 HL Paper 2 Q4",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "4.\t Two loudspeakers, A and B, are driven in phase and with the same amplitude at a frequency  of 850\u2009Hz. Point P is loc"
     },
     {
       "id": "2020_Nov_HL_P3_Q13",
@@ -855,16 +2385,112 @@
       "preview": "18.\t (a)\t \u0007Explain the cause of the radio-frequency emissions from a patient\u2019s body during  nuclear magnetic resonance ("
     },
     {
+      "id": "2020_Nov_HL_P1_Q3",
+      "source": "Nov 2020 TZ1 HL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t A body is held in translational equilibrium by three coplanar forces of magnitude 3\u2009N, 4\u2009N and  5\u2009N. Three statement"
+    },
+    {
+      "id": "2020_Nov_HL_P1_Q8",
+      "source": "Nov 2020 TZ1 HL Paper 1 Q8",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "8.\t A substance in the gas state has a density about 1000 times less than when it is in the liquid  state. The diameter "
+    },
+    {
+      "id": "2020_Nov_HL_P1_Q19",
+      "source": "Nov 2020 TZ1 HL Paper 1 Q19",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "19.\t A current in a wire lies between the poles of a magnet. What is the direction of the  electromagnetic force on the "
+    },
+    {
       "id": "2020_Nov_HL_P1_Q22",
       "source": "Nov 2020 TZ1 HL Paper 1 Q22",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: feynman diagram)",
       "preview": "22.\t The Feynman diagram shows some of the changes in a proton\u2013proton collision. u u d d d u time What is the equation f"
     },
     {
+      "id": "2020_Nov_HL_P1_Q23",
+      "source": "Nov 2020 TZ1 HL Paper 1 Q23",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "23.\t Three historical developments in physics were I.\t wave\u2013particle duality II.\t the kinetic model III.\t the equivalenc"
+    },
+    {
+      "id": "2020_Nov_HL_P1_Q26",
+      "source": "Nov 2020 TZ1 HL Paper 1 Q26",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "26.\t The average temperature of the surface of a planet is five times greater than the average  temperature of the surfa"
+    },
+    {
+      "id": "2020_Nov_HL_P1_Q29",
+      "source": "Nov 2020 TZ1 HL Paper 1 Q29",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "29.\t White light is incident normally on separate diffraction gratings X and Y. Y has a greater  number of lines per met"
+    },
+    {
       "id": "2020_Nov_HL_P1_Q36",
       "source": "Nov 2020 TZ1 HL Paper 1 Q36",
       "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: capacitance, capacitor)",
       "preview": "36.\t A capacitor of capacitance C has initial charge Q. The capacitor is discharged through a  resistor of resistance R."
+    },
+    {
+      "id": "2019_Nov_SL_P1_Q2",
+      "source": "Nov 2019 TZ1 SL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t An object is held in equilibrium by three forces of magnitude F\u2009, G and H that act at a point in  the same plane. F "
+    },
+    {
+      "id": "2019_Nov_SL_P1_Q3",
+      "source": "Nov 2019 TZ1 SL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t Two forces act along a straight line on an object that is initially at rest. One force is constant;  the second forc"
+    },
+    {
+      "id": "2019_Nov_SL_P1_Q4",
+      "source": "Nov 2019 TZ1 SL Paper 1 Q4",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "4.\t The variation with time t of the acceleration a of an object is shown. 3.0 2.0 1.0 0 0 2 4 6 a / m s\u20132 t / s What is"
+    },
+    {
+      "id": "2019_Nov_SL_P1_Q5",
+      "source": "Nov 2019 TZ1 SL Paper 1 Q5",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "5.\t A climber of mass m slides down a vertical rope with an average acceleration a. What is the  average frictional forc"
+    },
+    {
+      "id": "2019_Nov_SL_P1_Q12",
+      "source": "Nov 2019 TZ1 SL Paper 1 Q12",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "12.\t The motion of an object is described by the equation acceleration \u221d - displacement. What is the direction of the ac"
+    },
+    {
+      "id": "2019_Nov_SL_P1_Q13",
+      "source": "Nov 2019 TZ1 SL Paper 1 Q13",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "13.\t A transverse travelling wave is moving through a medium. The graph shows, for one instant,  the variation with dist"
+    },
+    {
+      "id": "2019_Nov_SL_P1_Q15",
+      "source": "Nov 2019 TZ1 SL Paper 1 Q15",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "15.\t Unpolarized light is incident on two polarizing filters X and Y. They are arranged so that light  emerging from Y h"
+    },
+    {
+      "id": "2019_Nov_SL_P1_Q25",
+      "source": "Nov 2019 TZ1 SL Paper 1 Q25",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "25.\t A proton, an electron and an alpha particle are at rest. Which particle has the smallest  magnitude of ratio of cha"
+    },
+    {
+      "id": "2019_Nov_SL_P1_Q27",
+      "source": "Nov 2019 TZ1 SL Paper 1 Q27",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "27.\t What is correct about the nature and range of the strong interaction between nuclear particles? A.\t It is attractiv"
+    },
+    {
+      "id": "2019_Nov_SL_P1_Q28",
+      "source": "Nov 2019 TZ1 SL Paper 1 Q28",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "28.\t What are the units of specific energy and energy density? Specific energy Energy density A. J\u2009m\u20131 J\u2009m\u20132 B. J\u2009kg\u20131 J"
     },
     {
       "id": "2019_Nov_SL_P3_Q7",
@@ -915,6 +2541,66 @@
       "preview": "14.\t (a)\t \u0007An X-ray beam, of intensity I0\u2009, is used to examine the flow of blood through an artery in  the leg of a pati"
     },
     {
+      "id": "2019_Nov_HL_P1_Q2",
+      "source": "Nov 2019 TZ1 HL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t Two forces act along a straight line on an object that is initially at rest. One force is constant;  the second forc"
+    },
+    {
+      "id": "2019_Nov_HL_P1_Q5",
+      "source": "Nov 2019 TZ1 HL Paper 1 Q5",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "5.\t The variation with time t of the acceleration a of an object is shown. 3.0 2.0 1.0 0 0 2 4 6 a / m s\u20132 t / s What is"
+    },
+    {
+      "id": "2019_Nov_HL_P1_Q11",
+      "source": "Nov 2019 TZ1 HL Paper 1 Q11",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "11.\t A transverse travelling wave is moving through a medium. The graph shows, for one instant,  the variation with dist"
+    },
+    {
+      "id": "2019_Nov_HL_P1_Q12",
+      "source": "Nov 2019 TZ1 HL Paper 1 Q12",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "12.\t The graph shows the variation with time for the displacement of a particle in a travelling wave. displacement / 10\u2013"
+    },
+    {
+      "id": "2019_Nov_HL_P1_Q13",
+      "source": "Nov 2019 TZ1 HL Paper 1 Q13",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "13.\t Unpolarized light is incident on two polarizing filters X and Y. They are arranged so that light  emerging from Y h"
+    },
+    {
+      "id": "2019_Nov_HL_P1_Q20",
+      "source": "Nov 2019 TZ1 HL Paper 1 Q20",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "20.\t A proton, an electron and an alpha particle are at rest. Which particle has the smallest  magnitude of ratio of cha"
+    },
+    {
+      "id": "2019_Nov_HL_P1_Q23",
+      "source": "Nov 2019 TZ1 HL Paper 1 Q23",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "23.\t What are the units of specific energy and energy density? Specific energy Energy density A. J\u2009m\u20131 J\u2009m\u20132 B. J\u2009kg\u20131 J"
+    },
+    {
+      "id": "2019_Nov_HL_P1_Q29",
+      "source": "Nov 2019 TZ1 HL Paper 1 Q29",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "29.\t Sea waves move towards a beach at a constant speed of 2.0\u2009m\u2009s\u20131. They arrive at the beach  with a frequency of 0.10"
+    },
+    {
+      "id": "2019_Nov_HL_P1_Q31",
+      "source": "Nov 2019 TZ1 HL Paper 1 Q31",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "31.\t The force acting between two point charges is F when the separation of the charges is x\u2009.  What is the force betwee"
+    },
+    {
+      "id": "2019_Nov_HL_P1_Q33",
+      "source": "Nov 2019 TZ1 HL Paper 1 Q33",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "33.\t X and Y are two plane coils parallel to each other that have a common axis. There is a  constant direct current in "
+    },
+    {
       "id": "2019_Nov_HL_P1_Q35",
       "source": "Nov 2019 TZ1 HL Paper 1 Q35",
       "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: capacitance, capacitor)",
@@ -925,6 +2611,12 @@
       "source": "Nov 2019 TZ1 HL Paper 1 Q36",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
       "preview": "36.\t A diode bridge rectification circuit is constructed as shown. An alternating potential difference  is applied betwe"
+    },
+    {
+      "id": "2019_Nov_HL_P1_Q37",
+      "source": "Nov 2019 TZ1 HL Paper 1 Q37",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "37.\t An electron of low energy is enclosed within a high potential barrier. What is the process by  which the electron c"
     },
     {
       "id": "2019_May_SL_P3_Q8",
@@ -951,6 +2643,36 @@
       "preview": "6.\t Deuterium, 2 1H, undergoes fusion according to the following reaction. 2 2 3 1 1 1 H H H X + \u2192 + (a)\t Identify parti"
     },
     {
+      "id": "2019_May_SL_P2_Q7",
+      "source": "May 2019 TZ2 SL Paper 2 Q7",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "7.\t The average temperature of ocean surface water is 289\u2009K. Oceans behave as black bodies. (a)\t Show that the intensity"
+    },
+    {
+      "id": "2019_May_SL_P1_Q1",
+      "source": "May 2019 TZ2 SL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t A student measures the radius R of a circular plate to determine its area. The absolute uncertainty  in R is \u2206R. Wha"
+    },
+    {
+      "id": "2019_May_SL_P1_Q3",
+      "source": "May 2019 TZ2 SL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t The graph shows the variation of velocity of a body with time along a straight line. velocity time 0 0 P Q What is c"
+    },
+    {
+      "id": "2019_May_SL_P1_Q4",
+      "source": "May 2019 TZ2 SL Paper 1 Q4",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "4.\t Two forces of magnitude 12\u2009N and 24\u2009N act at the same point. Which force cannot be the resultant  of these forces? A"
+    },
+    {
+      "id": "2019_May_SL_P1_Q12",
+      "source": "May 2019 TZ2 SL Paper 1 Q12",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "12.\t A container holds 20\u2009g of argon-40  40 18Ar ( ) and 40\u2009g of neon-20  20 10Ne ( ). What is number of atoms of argon-"
+    },
+    {
       "id": "2019_May_SL_P1_Q15",
       "source": "May 2019 TZ2 SL Paper 1 Q15",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
@@ -967,6 +2689,12 @@
       "source": "May 2019 TZ2 SL Paper 1 Q27",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: feynman diagram)",
       "preview": "27.\t Which Feynman diagram shows the emission of a photon by a charged antiparticle? A.\b time B.\b time C.\b time D.\b time"
+    },
+    {
+      "id": "2019_May_SL_P1_Q30",
+      "source": "May 2019 TZ2 SL Paper 1 Q30",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "30.\t The orbital radius of the Earth around the Sun is 1.5 times that of Venus. What is the intensity of  solar\u00a0radiatio"
     },
     {
       "id": "2019_May_SL_P3_Q11",
@@ -987,6 +2715,54 @@
       "preview": "2.\t (a)\t Silicon-30 ( ) 30 14Si can be formed from phosphorus-30 ( ) 30 15P by a process of beta-plus decay. (i)\t Write "
     },
     {
+      "id": "2019_May_SL_P2_Q3",
+      "source": "May 2019 TZ1 SL Paper 2 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t A beam of microwaves is incident normally on a pair of identical narrow slits S1 and S2. When a microwave receiver i"
+    },
+    {
+      "id": "2019_May_SL_P1_Q3",
+      "source": "May 2019 TZ1 SL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t A sky diver is falling at terminal speed when she opens her parachute. What are the direction of  her velocity vecto"
+    },
+    {
+      "id": "2019_May_SL_P1_Q4",
+      "source": "May 2019 TZ1 SL Paper 1 Q4",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "4.\t A stone is thrown downwards from the edge of a cliff with a speed of 5.0\u2009m\u2009s\u20131. It hits the ground  2.0\u2009s later. Wha"
+    },
+    {
+      "id": "2019_May_HL_P1_Q1",
+      "source": "May 2019 TZ1 HL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1. A student is verifying the equation x = 2\u03bbY z The percentage uncertainties are: Quantity Uncertainty \u03bb \u00b110\u2009% Y \u00b10.05\u2009"
+    },
+    {
+      "id": "2019_May_HL_P1_Q3",
+      "source": "May 2019 TZ1 HL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t A sky diver is falling at terminal speed when she opens her parachute. What are the direction of  her velocity vecto"
+    },
+    {
+      "id": "2019_May_HL_P1_Q4",
+      "source": "May 2019 TZ1 HL Paper 1 Q4",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "4.\t A sports car is accelerated from 0 to 100\u2009km per hour in 3\u2009s. What is the acceleration of the car? A.\t 0.1\u2009g\u2009 B.\t 0."
+    },
+    {
+      "id": "2019_May_HL_P1_Q18",
+      "source": "May 2019 TZ1 HL Paper 1 Q18",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "18.\t Two currents of 3\u2009A and 1\u2009A are established in the same direction through two parallel straight wires  R and S. 3 A"
+    },
+    {
+      "id": "2019_May_HL_P1_Q28",
+      "source": "May 2019 TZ1 HL Paper 1 Q28",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "28.\t The four pendulums shown have been cut from the same uniform sheet of board. They are  attached to the ceiling with"
+    },
+    {
       "id": "2019_May_HL_P1_Q36",
       "source": "May 2019 TZ1 HL Paper 1 Q36",
       "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: capacitor, capacitors)",
@@ -997,6 +2773,12 @@
       "source": "May 2019 TZ1 HL Paper 2 Q2",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: quark, quarks, hadron)",
       "preview": "2.\t (a)\t A beam of electrons each of de Broglie wavelength 2.4\u00a0\u00d7\u00a010\u201315\u2009m is incident on a  thin film of silicon-30 ( ) 3"
+    },
+    {
+      "id": "2019_May_HL_P2_Q3",
+      "source": "May 2019 TZ1 HL Paper 2 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t A beam of microwaves is incident normally on a pair of identical narrow slits S1 and S2. When a microwave receiver i"
     },
     {
       "id": "2019_May_HL_P2_Q8",
@@ -1023,10 +2805,46 @@
       "preview": "17.\t (a)\t \u0007An ultrasound A-scan is performed on a patient. (i)\t State one advantage and one disadvantage of using ultras"
     },
     {
+      "id": "2019_May_HL_P1_Q1",
+      "source": "May 2019 TZ2 HL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t A student measures the radius R of a circular plate to determine its area. The absolute uncertainty  in R is \u2206R. Wha"
+    },
+    {
+      "id": "2019_May_HL_P1_Q4",
+      "source": "May 2019 TZ2 HL Paper 1 Q4",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "4.\t A book is at rest on a table. What is a pair of action\u2013reaction forces for this situation according to  Newton\u2019s thi"
+    },
+    {
+      "id": "2019_May_HL_P1_Q13",
+      "source": "May 2019 TZ2 HL Paper 1 Q13",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "13. The equation  constant pV T =   is applied to a real gas where p is the pressure of the gas, V is its  volume and T "
+    },
+    {
+      "id": "2019_May_HL_P1_Q17",
+      "source": "May 2019 TZ2 HL Paper 1 Q17",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "17. A mass on a spring is displaced from its equilibrium position. Which graph represents the variation of acceleration "
+    },
+    {
       "id": "2019_May_HL_P1_Q18",
       "source": "May 2019 TZ2 HL Paper 1 Q18",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
       "preview": "18.\t Unpolarized light is incident on two polarizers. The axes of polarization of both polarizers  are initially paralle"
+    },
+    {
+      "id": "2019_May_HL_P1_Q21",
+      "source": "May 2019 TZ2 HL Paper 1 Q21",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "21. A train approaches a station and sounds a horn of constant frequency and constant intensity. An observer waiting at "
+    },
+    {
+      "id": "2019_May_HL_P1_Q22",
+      "source": "May 2019 TZ2 HL Paper 1 Q22",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "22. Two stars are viewed with a telescope using a green filter. The images of the stars are just resolved. What is the c"
     },
     {
       "id": "2019_May_HL_P1_Q26",
@@ -1047,6 +2865,12 @@
       "preview": "28.\t A transformer with 600 turns in the primary coil is used to change an alternating root mean square  (rms) potential"
     },
     {
+      "id": "2019_May_HL_P1_Q31",
+      "source": "May 2019 TZ2 HL Paper 1 Q31",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "31.\t A proton of velocity v enters a region of electric and magnetic fields. The proton is not deflected.  An electron a"
+    },
+    {
       "id": "2019_May_HL_P1_Q34",
       "source": "May 2019 TZ2 HL Paper 1 Q34",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: quark, meson)",
@@ -1059,6 +2883,18 @@
       "preview": "35.\t Three conservation laws in nuclear reactions are I.\t conservation of charge II.\t conservation of baryon number III."
     },
     {
+      "id": "2019_May_HL_P1_Q37",
+      "source": "May 2019 TZ2 HL Paper 1 Q37",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "37.\t The orbital radius of the Earth around the Sun is 1.5 times that of Venus. What is the intensity  of\u00a0solar radiatio"
+    },
+    {
+      "id": "2019_May_HL_P1_Q38",
+      "source": "May 2019 TZ2 HL Paper 1 Q38",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "38.\t Photons of a certain frequency incident on a metal surface cause the emission of electrons  from\u00a0the surface. The i"
+    },
+    {
       "id": "2019_May_HL_P2_Q4",
       "source": "May 2019 TZ2 HL Paper 2 Q4",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
@@ -1069,6 +2905,12 @@
       "source": "May 2019 TZ2 HL Paper 2 Q6",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: quark, strangeness)",
       "preview": "6.\t Deuterium, 2 1H, undergoes fusion according to the following reaction. 2 2 3 1 1 1 H H H X + \u2192 + (a)\t Identify parti"
+    },
+    {
+      "id": "2019_May_HL_P2_Q7",
+      "source": "May 2019 TZ2 HL Paper 2 Q7",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "7.\t The average temperature of ocean surface water is 289\u2009K. Oceans behave as black bodies. (a)\t Show that the intensity"
     },
     {
       "id": "2019_May_HL_P3_Q12",
@@ -1101,10 +2943,58 @@
       "preview": "16.\t (a)\t \u0007A parallel beam of X-rays travels through 7.8\u2009cm of tissue to reach the bowel surface.  Calculate the fractio"
     },
     {
+      "id": "2018_Nov_SL_P1_Q2",
+      "source": "Nov 2018 TZ1 SL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.  The length of the side of a cube is 2.0\u200a\u2009cm \u00b1 4\u2009%.  The mass of the cube is 24.0\u200a\u2009g \u00b1\u200a8\u2009%.  What is the  percentage "
+    },
+    {
+      "id": "2018_Nov_SL_P1_Q5",
+      "source": "Nov 2018 TZ1 SL Paper 1 Q5",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "5.\t A runner starts from rest and accelerates at a constant rate throughout a race.  Which graph shows  the variation of"
+    },
+    {
+      "id": "2018_Nov_SL_P1_Q8",
+      "source": "Nov 2018 TZ1 SL Paper 1 Q8",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "8.  A compressed spring is used to launch an object along a horizontal frictionless surface.  When the  spring is compre"
+    },
+    {
+      "id": "2018_Nov_SL_P1_Q13",
+      "source": "Nov 2018 TZ1 SL Paper 1 Q13",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "13.  A particle moving in a circle completes 5 revolutions in 3\u200a\u2009s.  What is the frequency? \t A.\t 3Hz 5 \t B.\t 5Hz 3 \t C."
+    },
+    {
+      "id": "2018_Nov_SL_P1_Q15",
+      "source": "Nov 2018 TZ1 SL Paper 1 Q15",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "15.\t The graphs show the variation of the displacement \u200ay\u200a of a medium with distance \u200ax\u200a and with time t  for a travelli"
+    },
+    {
+      "id": "2018_Nov_SL_P1_Q21",
+      "source": "Nov 2018 TZ1 SL Paper 1 Q21",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "21.  Two parallel wires are perpendicular to the page.  The wires carry equal currents in  opposite\u00a0directions.  Point S"
+    },
+    {
+      "id": "2018_Nov_SL_P1_Q25",
+      "source": "Nov 2018 TZ1 SL Paper 1 Q25",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "25.\t The graph shows the variation of the number of neutrons N\u200a with the atomic number Z\u200a for  stable\u00a0nuclei.  The same "
+    },
+    {
       "id": "2018_Nov_SL_P1_Q27",
       "source": "Nov 2018 TZ1 SL Paper 1 Q27",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: quark, baryon, strangeness)",
       "preview": "27.\t The following interaction is proposed between a proton and a pion. p\u200a+\u00a0\u00a0+\u00a0\u00a0\u200a\u03c0 \u2013\u00a0\u00a0\u200a\uf0ae\u00a0\u00a0K \u2013\u00a0\u00a0\u200a+\u00a0\u00a0\u03c0 +   The quark conte"
+    },
+    {
+      "id": "2018_Nov_SL_P2_Q5",
+      "source": "Nov 2018 TZ1 SL Paper 2 Q5",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "5.\t The diagram shows the position of the principal lines in the visible spectrum of  atomic\u00a0hydrogen and some of the co"
     },
     {
       "id": "2018_Nov_SL_P3_Q8",
@@ -1161,6 +3051,54 @@
       "preview": "16.\t A beam of ultrasound of intensity \u200aI0\u200a enters a layer of muscle of thickness 4.1\u200acm. muscle bone gel 4.1 cm beam of"
     },
     {
+      "id": "2018_Nov_HL_P1_Q1",
+      "source": "Nov 2018 TZ1 HL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.  The length of the side of a cube is 2.0\u200a\u2009cm \u00b1 4\u2009%.  The mass of the cube is 24.0\u200a\u2009g \u00b1\u200a8\u2009%.  What is the  percentage "
+    },
+    {
+      "id": "2018_Nov_HL_P1_Q3",
+      "source": "Nov 2018 TZ1 HL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.  A runner starts from rest and accelerates at a constant rate throughout a race.  Which graph shows  the variation of"
+    },
+    {
+      "id": "2018_Nov_HL_P1_Q6",
+      "source": "Nov 2018 TZ1 HL Paper 1 Q6",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "6.  A compressed spring is used to launch an object along a horizontal frictionless surface.  When the  spring is compre"
+    },
+    {
+      "id": "2018_Nov_HL_P1_Q11",
+      "source": "Nov 2018 TZ1 HL Paper 1 Q11",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "11.  A particle moving in a circle completes 5 revolutions in 3\u200a\u2009s.  What is the frequency? \t A.\t 3Hz 5 \t B.\t 5Hz 3 \t C."
+    },
+    {
+      "id": "2018_Nov_HL_P1_Q13",
+      "source": "Nov 2018 TZ1 HL Paper 1 Q13",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "13.  L is a point source of light.  The intensity of the light at a distance 2\u200ax from L is \u200aI.  What is the  intensity a"
+    },
+    {
+      "id": "2018_Nov_HL_P1_Q21",
+      "source": "Nov 2018 TZ1 HL Paper 1 Q21",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "21.  The graph shows the variation of the number of neutrons N\u200a with the atomic number Z\u200a for  stable\u00a0nuclei.  The same "
+    },
+    {
+      "id": "2018_Nov_HL_P1_Q27",
+      "source": "Nov 2018 TZ1 HL Paper 1 Q27",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "27.  The graph shows the variation with diffraction angle of the intensity of light when  monochromatic\u00a0light is inciden"
+    },
+    {
+      "id": "2018_Nov_HL_P1_Q30",
+      "source": "Nov 2018 TZ1 HL Paper 1 Q30",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "30.  Two point charges Q1\u200a and Q2\u200a are one metre apart.  The graph shows the variation of  electric\u00a0potential V\u200a with di"
+    },
+    {
       "id": "2018_Nov_HL_P1_Q35",
       "source": "Nov 2018 TZ1 HL Paper 1 Q35",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
@@ -1197,6 +3135,66 @@
       "preview": "6.\t (a)\t Rutherford constructed a model of the atom based on the results of the alpha particle  scattering experiment.  "
     },
     {
+      "id": "2018_May_SL_P1_Q1",
+      "source": "May 2018 TZ2 SL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t What is the best estimate for the diameter of a helium nucleus? \t A.\t 10\u2013\u200921\u2009\u200am \t B.\t 10\u201318\u2009\u200am \t C.\t 10\u201315\u2009\u200am \t D.\t "
+    },
+    {
+      "id": "2018_May_SL_P1_Q2",
+      "source": "May 2018 TZ2 SL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t The velocities vX and vY of two boats, X and Y, are shown. vX \t vY \t Which arrow represents the direction of the vec"
+    },
+    {
+      "id": "2018_May_SL_P1_Q5",
+      "source": "May 2018 TZ2 SL Paper 1 Q5",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "5.\t The graph shows the variation with time t of the force F acting on an object of mass\u00a015\u2009000\u2009\u200akg.   The\u00a0object is at "
+    },
+    {
+      "id": "2018_May_SL_P1_Q8",
+      "source": "May 2018 TZ2 SL Paper 1 Q8",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "8.\t A weight W is tied to a trolley of mass M by a light string passing over a frictionless pulley.   The\u00a0trolley has an"
+    },
+    {
+      "id": "2018_May_SL_P1_Q10",
+      "source": "May 2018 TZ2 SL Paper 1 Q10",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "10.\t Which is a unit of force? \t A.\t J\u2009\u200am \t B.\t J\u2009\u200am\u20131 \t C.\t J\u2009\u200am\u2009\u200as\u20131 \t D.\t J\u2009\u200am\u20131\u2009\u200as"
+    },
+    {
+      "id": "2018_May_SL_P1_Q11",
+      "source": "May 2018 TZ2 SL Paper 1 Q11",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "11.\t The graph shows how the temperature of a liquid varies with time when energy is supplied  to the liquid at a consta"
+    },
+    {
+      "id": "2018_May_SL_P1_Q13",
+      "source": "May 2018 TZ2 SL Paper 1 Q13",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "13. A sealed container contains water at 5 \u02daC and ice at 0 \u02daC.\u2009\u2009This\u2009system\u2009is\u2009thermally\u2009isolated\u2009 from its\u2009surroundings"
+    },
+    {
+      "id": "2018_May_SL_P1_Q21",
+      "source": "May 2018 TZ2 SL Paper 1 Q21",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "21.\t A beam of electrons moves between the poles of a magnet. beam of electrons \t What is the direction in which the ele"
+    },
+    {
+      "id": "2018_May_SL_P1_Q23",
+      "source": "May 2018 TZ2 SL Paper 1 Q23",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "23.\t A mass at the end of a string is swung in a horizontal circle at increasing speed until the  string\u00a0breaks. string "
+    },
+    {
+      "id": "2018_May_SL_P1_Q27",
+      "source": "May 2018 TZ2 SL Paper 1 Q27",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "27.\t Three of the fundamental forces between particles are \t \t I.\t strong nuclear \t \t II.\t weak nuclear \t \t III.\t electr"
+    },
+    {
       "id": "2018_May_SL_P3_Q8",
       "source": "May 2018 TZ2 SL Paper 3 Opt C Q8",
       "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
@@ -1215,10 +3213,82 @@
       "preview": "10.\t (a)\t An optic fibre of refractive index 1.4475 is surrounded by air.  The critical angle for  the\u00a0core\u200a\u2013\u200aair bounda"
     },
     {
+      "id": "2018_May_SL_P1_Q1",
+      "source": "May 2018 TZ1 SL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1. A student measures the radius r of a sphere with an absolute uncertainty \u2206r.  What is the fractional uncertainty in t"
+    },
+    {
+      "id": "2018_May_SL_P1_Q2",
+      "source": "May 2018 TZ1 SL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2. A river flows north.  A boat crosses the river so that it only moves in the direction east of its starting point. Wha"
+    },
+    {
+      "id": "2018_May_SL_P1_Q4",
+      "source": "May 2018 TZ1 SL Paper 1 Q4",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "4.\t A uniform ladder resting in equilibrium on rough ground leans against a smooth wall.   Which diagram correctly shows"
+    },
+    {
+      "id": "2018_May_SL_P1_Q18",
+      "source": "May 2018 TZ1 SL Paper 1 Q18",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "18.\t Three resistors are connected as shown.  What is the value of the total resistance between  X and Y? X Y 3 \u2126 3 \u2126 2 "
+    },
+    {
+      "id": "2018_May_SL_P1_Q21",
+      "source": "May 2018 TZ1 SL Paper 1 Q21",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "21.\t Two resistors X and Y are made of uniform cylinders of the same material.  X and Y  are connected in series.  X and"
+    },
+    {
+      "id": "2018_May_SL_P1_Q23",
+      "source": "May 2018 TZ1 SL Paper 1 Q23",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "23.\t Newton\u2019s law of gravitation  A.\t is equivalent to Newton\u2019s second law of motion. B.\t explains the origin of gravita"
+    },
+    {
       "id": "2018_May_SL_P1_Q24",
       "source": "May 2018 TZ1 SL Paper 1 Q24",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: feynman diagram)",
       "preview": "24.\t Which Feynman diagram shows beta-plus (\u03b2+) decay? A.\b W+ e+ d u \u03bde B.\b W+ e+ d u \u03bde C.\b d u e+ W\u2212 \u03bde D.\b e+ d u W+ "
+    },
+    {
+      "id": "2018_May_SL_P1_Q28",
+      "source": "May 2018 TZ1 SL Paper 1 Q28",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "28.\t  What is equivalent to specific energy of a fuel energy density of a fuel ? A.\t density of the fuel B.\t 1 density o"
+    },
+    {
+      "id": "2018_May_HL_P1_Q1",
+      "source": "May 2018 TZ1 HL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1. A student measures the radius r of a sphere with an absolute uncertainty \u2206r.  What is the fractional uncertainty in t"
+    },
+    {
+      "id": "2018_May_HL_P1_Q3",
+      "source": "May 2018 TZ1 HL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3. A uniform ladder resting in equilibrium on rough ground leans against a smooth wall. Which diagram correctly shows th"
+    },
+    {
+      "id": "2018_May_HL_P1_Q6",
+      "source": "May 2018 TZ1 HL Paper 1 Q6",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "6. A parachutist of total mass 70 kg is falling vertically through the air at a constant speed of 8 m s-1. What is the t"
+    },
+    {
+      "id": "2018_May_HL_P1_Q7",
+      "source": "May 2018 TZ1 HL Paper 1 Q7",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "7. A stopper of mass 8 g leaves the opening of a container that contains pressurized gas. The stopper accelerates from r"
+    },
+    {
+      "id": "2018_May_HL_P1_Q16",
+      "source": "May 2018 TZ1 HL Paper 1 Q16",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "16.\t Three resistors are connected as shown.  What is the value of the total resistance between  X and Y? X Y 3 \u2126 3 \u2126 2 "
     },
     {
       "id": "2018_May_HL_P1_Q19",
@@ -1233,6 +3303,18 @@
       "preview": "21.\t What is correct about the Higgs Boson? A.\t It was predicted before it was observed. B.\t It was difficult to detect "
     },
     {
+      "id": "2018_May_HL_P1_Q22",
+      "source": "May 2018 TZ1 HL Paper 1 Q22",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "22.\t What is equivalent to specific energy of a fuel energy density of a fuel ? A.\t density of the fuel B.\t 1 density of"
+    },
+    {
+      "id": "2018_May_HL_P1_Q28",
+      "source": "May 2018 TZ1 HL Paper 1 Q28",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "28.\t Monochromatic light is incident on 4 rectangular, parallel slits.  The first principal maximum is  observed at an a"
+    },
+    {
       "id": "2018_May_HL_P1_Q34",
       "source": "May 2018 TZ1 HL Paper 1 Q34",
       "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: transformer, primary coil, secondary coil)",
@@ -1243,6 +3325,18 @@
       "source": "May 2018 TZ1 HL Paper 1 Q35",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
       "preview": "35.\t The diagram shows a diode bridge rectification circuit and a load resistor.   load resistor output output The input"
+    },
+    {
+      "id": "2018_May_HL_P1_Q37",
+      "source": "May 2018 TZ1 HL Paper 1 Q37",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "37.\t Two radioactive nuclides, X and Y, have half-lives of 50\u2009s and 100\u2009s respectively.  At time t\u00a0=\u00a00  samples of X and"
+    },
+    {
+      "id": "2018_May_HL_P1_Q39",
+      "source": "May 2018 TZ1 HL Paper 1 Q39",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "39.\t A particle of fixed energy is close to a potential barrier. Which changes to the width of the barrier and to the he"
     },
     {
       "id": "2018_May_HL_P2_Q7",
@@ -1275,16 +3369,58 @@
       "preview": "15.  (a)  Outline the formation of a B scan in medical ultrasound imaging. [3] . . . . . . . . . . . . . . . . . . . . ."
     },
     {
+      "id": "2018_May_HL_P1_Q1",
+      "source": "May 2018 TZ2 HL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1. What is the best estimate for the diameter of a helium nucleus? A. 10\u2013\u200921\u2009\u200am B. 10\u201318\u2009\u200am C. 10\u201315\u2009\u200am D. 10\u201310\u2009\u200am"
+    },
+    {
+      "id": "2018_May_HL_P1_Q4",
+      "source": "May 2018 TZ2 HL Paper 1 Q4",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "4. The graph shows the variation with time t of the force F acting on an object of mass\u00a015\u2009000\u2009\u200akg. The\u00a0object is at res"
+    },
+    {
+      "id": "2018_May_HL_P1_Q6",
+      "source": "May 2018 TZ2 HL Paper 1 Q6",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "6. A ball starts from rest and moves horizontally.  Six positions of the ball are shown at time\u00a0intervals\u00a0of 1.0\u2009\u200ams.  T"
+    },
+    {
+      "id": "2018_May_HL_P1_Q8",
+      "source": "May 2018 TZ2 HL Paper 1 Q8",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "8. The graph shows how the temperature of a liquid varies with time when energy is supplied to the liquid at a constant "
+    },
+    {
+      "id": "2018_May_HL_P1_Q10",
+      "source": "May 2018 TZ2 HL Paper 1 Q10",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "10. Two\u2009sound\u2009waves\u2009from\u2009a\u2009point\u2009source\u2009on\u2009the\u2009ground\u2009travel\u2009through\u2009the\u2009ground\u2009to\u2009a\u2009detector.  The\u2009speed\u2009of\u2009one\u2009wave\u2009is"
+    },
+    {
       "id": "2018_May_HL_P1_Q20",
       "source": "May 2018 TZ2 HL Paper 1 Q20",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: lepton, baryon, strangeness)",
       "preview": "20. Identify the conservation law violated in the proposed reaction. p+\u00a0+\u00a0p+\u00a0\uf074\u00a0p+\u00a0+\u00a0n0 + \uf06d\u2009+ A. Strangeness B. Lepton nu"
     },
     {
+      "id": "2018_May_HL_P1_Q33",
+      "source": "May 2018 TZ2 HL Paper 1 Q33",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "33.\t The current I\u200a\u2009 flowing in loop A in a clockwise direction is increasing so as to induce a current  both\u00a0in loops B"
+    },
+    {
       "id": "2018_May_HL_P1_Q36",
       "source": "May 2018 TZ2 HL Paper 1 Q36",
       "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: capacitance, capacitors)",
       "preview": "36.\t Three capacitors, each one with a capacitance C, are connected such that their combined  capacitance is 1.5C.  How "
+    },
+    {
+      "id": "2018_May_HL_P1_Q39",
+      "source": "May 2018 TZ2 HL Paper 1 Q39",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "39.\t An electron of initial energy \u200aE\u2009 tunnels through a potential barrier.  What is the energy of the  electron after t"
     },
     {
       "id": "2018_May_HL_P2_Q8",
@@ -1317,10 +3453,46 @@
       "preview": "14.\u00a0 (a)\t Outline how ultrasound is generated for medical imaging.\b [2] \t . . . . . . . . . . . . . . . . . . . . . . . "
     },
     {
+      "id": "2017_Nov_SL_P1_Q1",
+      "source": "Nov 2017 TZ1 SL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.  How many significant figures are there in the number 0.0450?   A.  2   B.  3   C.  4   D.  5"
+    },
+    {
+      "id": "2017_Nov_SL_P1_Q4",
+      "source": "Nov 2017 TZ1 SL Paper 1 Q4",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "4.\t An object is thrown upwards.  The graph shows the variation with time t of the velocity v of  the\u00a0object. v / m\u2009\u200as\u20131"
+    },
+    {
+      "id": "2017_Nov_SL_P1_Q11",
+      "source": "Nov 2017 TZ1 SL Paper 1 Q11",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "11.  Under what conditions of pressure and temperature does a real gas approximate to an ideal\u00a0gas? Pressure Temperature"
+    },
+    {
+      "id": "2017_Nov_SL_P1_Q20",
+      "source": "Nov 2017 TZ1 SL Paper 1 Q20",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "20.  The diagram shows two current-carrying wires, P and Q, that both lie in the plane of   the paper.  The arrows show "
+    },
+    {
       "id": "2017_Nov_SL_P1_Q25",
       "source": "Nov 2017 TZ1 SL Paper 1 Q25",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: feynman diagram)",
       "preview": "25.  The Feynman diagram shows a particle interaction involving a W\u2009\u2013 boson. time \t U  X W\u2009\u2013 \t Z  Y   Which particles ar"
+    },
+    {
+      "id": "2017_Nov_SL_P1_Q27",
+      "source": "Nov 2017 TZ1 SL Paper 1 Q27",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "27.  The energy density of a substance can be calculated by multiplying its specific energy with  which\u00a0quantity?   A.  "
+    },
+    {
+      "id": "2017_Nov_SL_P1_Q30",
+      "source": "Nov 2017 TZ1 SL Paper 1 Q30",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "30.  The diagram shows an analogue meter with a mirror behind the pointer. 0 2 4 6 8 10 mA mA mirror pointer   What is t"
     },
     {
       "id": "2017_Nov_SL_P2_Q2",
@@ -1371,10 +3543,46 @@
       "preview": "16.\t An X-ray beam of intensity  0I is incident on lead.  After travelling a distance x through the  lead the intensity "
     },
     {
+      "id": "2017_Nov_HL_P1_Q1",
+      "source": "Nov 2017 TZ1 HL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t What is a correct value for the charge on an electron? \t A.\t 1.60\u2009\uf025\u200910\u201312\u2009\u200a\u00b5C \t B.\t 1.60\u2009\uf025\u200910\u201315\u2009\u200amC \t C.\t 1.60\u2009\uf025\u200910"
+    },
+    {
+      "id": "2017_Nov_HL_P1_Q2",
+      "source": "Nov 2017 TZ1 HL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t The diagram shows an analogue meter with a mirror behind the pointer. 0 2 4 6 8 10 mA mA mirror pointer \t What is th"
+    },
+    {
+      "id": "2017_Nov_HL_P1_Q5",
+      "source": "Nov 2017 TZ1 HL Paper 1 Q5",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "5.\t A sunbather is supported in water by a floating sun bed.  Which diagram represents the  magnitudes of the forces act"
+    },
+    {
+      "id": "2017_Nov_HL_P1_Q12",
+      "source": "Nov 2017 TZ1 HL Paper 1 Q12",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "12.\u2009 Unpolarized\u2009light\u2009of\u2009intensity\u2009 0I \u2009is\u2009incident\u2009on\u2009a\u2009polarizing\u2009fi\u2009lter.\u2009\u2009Light\u2009from\u2009this\u2009fi\u2009lter\u2009is\u2009incident\u2009on\u2009 a"
+    },
+    {
+      "id": "2017_Nov_HL_P1_Q17",
+      "source": "Nov 2017 TZ1 HL Paper 1 Q17",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "17.\t The diagram shows two current-carrying wires, P and Q, that both lie in the plane of   the paper.  The arrows show "
+    },
+    {
       "id": "2017_Nov_HL_P1_Q22",
       "source": "Nov 2017 TZ1 HL Paper 1 Q22",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: feynman diagram)",
       "preview": "22.\t The Feynman diagram shows a particle interaction involving a W\u2009\u2013 boson. time \t U \t X W\u2009\u2013 \t Z \tY \t Which particles a"
+    },
+    {
+      "id": "2017_Nov_HL_P1_Q33",
+      "source": "Nov 2017 TZ1 HL Paper 1 Q33",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "33.\t An isolated hollow metal sphere of radius R carries a positive charge.  Which graph shows the  variation of potenti"
     },
     {
       "id": "2017_Nov_HL_P1_Q35",
@@ -1407,16 +3615,52 @@
       "preview": "8.\t Communication signals are transmitted through optic fibres using infrared radiation. (a)\t (i)\t State two advantages "
     },
     {
+      "id": "2017_May_SL_P1_Q1",
+      "source": "May 2017 TZ2 SL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t A stone falls from rest to the bottom of a water well of depth d.  The time t\u200a taken to fall is 2.0\u00a0!\u20090.2\u2009\u200as.  The d"
+    },
+    {
+      "id": "2017_May_SL_P1_Q3",
+      "source": "May 2017 TZ2 SL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t A ball is tossed vertically upwards with a speed of 5.0\u2009\u200am\u2009\u200as\u20131.  After how many seconds will the ball  return to it"
+    },
+    {
+      "id": "2017_May_SL_P1_Q9",
+      "source": "May 2017 TZ2 SL Paper 1 Q9",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "9.\t A ball of mass 0.2\u2009\u200akg strikes a force sensor and sticks to it.  Just before impact the ball is travelling  horizont"
+    },
+    {
+      "id": "2017_May_SL_P1_Q14",
+      "source": "May 2017 TZ2 SL Paper 1 Q14",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "14.\t A girl in a stationary boat observes that 10 wave crests pass the boat every minute.  What is the  period\u00a0of the wa"
+    },
+    {
       "id": "2017_May_SL_P1_Q16",
       "source": "May 2017 TZ2 SL Paper 1 Q16",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
       "preview": "16.  A beam of unpolarized light is incident on the first of two parallel polarizers.  The transmission axes  of the two"
     },
     {
+      "id": "2017_May_SL_P1_Q24",
+      "source": "May 2017 TZ2 SL Paper 1 Q24",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "24.\t Atomic spectra are caused when a certain particle makes transitions between energy levels.   What\u00a0is this particle?"
+    },
+    {
       "id": "2017_May_SL_P1_Q27",
       "source": "May 2017 TZ2 SL Paper 1 Q27",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: lepton, baryon, strangeness)",
       "preview": "27.\t The reaction p+\u200a\u2009+\u200a\u2009n0\u200a\u2009t\u200a\u2009p+\u200a\u2009+\u200a\u2009o0 does not occur because it violates the conservation law of \t A.\t electric char"
+    },
+    {
+      "id": "2017_May_SL_P1_Q29",
+      "source": "May 2017 TZ2 SL Paper 1 Q29",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "29. A room is at a constant temperature of 300\u2009\u200aK.  A hotplate in the room is at a temperature of 400\u2009\u200aK and loses energ"
     },
     {
       "id": "2017_May_SL_P3_Q8",
@@ -1431,18 +3675,6 @@
       "preview": "9.\t Two converging lenses placed a distance 90\u2009\u200acm apart are used as a simple astronomical  refracting telescope at norm"
     },
     {
-      "id": "2017_May_SL_P3_Q1",
-      "source": "May 2017 TZ2 SL Paper 3 Opt C Q1",
-      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
-      "preview": "1.\t . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . "
-    },
-    {
-      "id": "2017_May_SL_P3_Q2",
-      "source": "May 2017 TZ2 SL Paper 3 Opt C Q2",
-      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
-      "preview": "2.\t . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . "
-    },
-    {
       "id": "2017_May_SL_P3_Q10",
       "source": "May 2017 TZ2 SL Paper 3 Opt C Q10",
       "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
@@ -1455,10 +3687,124 @@
       "preview": "5. (a)\t State the quark structures of a meson and a baryon. [2] \t Meson: . . . . . . . . . . . . . . . . . . . . . . . ."
     },
     {
+      "id": "2017_May_SL_P1_Q1",
+      "source": "May 2017 TZ1 SL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t What is the unit of electrical energy in fundamental SI units? A.\t kg\u2009m2\u2009C-1\u2009s B.\t kg\u2009m\u2009s-2 C.\t kg\u2009m2\u2009s-2 D.\t kg\u2009m2\u2009"
+    },
+    {
+      "id": "2017_May_SL_P1_Q4",
+      "source": "May 2017 TZ1 SL Paper 1 Q4",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "4.\t The graph shows the variation of speed v of an object with time t. 0 0 t v Which graph shows how the distance s trav"
+    },
+    {
+      "id": "2017_May_SL_P1_Q6",
+      "source": "May 2017 TZ1 SL Paper 1 Q6",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "6.\t An elevator (lift) and its load have a total mass of 750\u2009kg and accelerate vertically downwards  at 2.0\u2009m\u2009s-2. eleva"
+    },
+    {
+      "id": "2017_May_SL_P1_Q10",
+      "source": "May 2017 TZ1 SL Paper 1 Q10",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "10.  A liquid is initially at its freezing point.  Energy is removed at a uniform rate from the liquid until it  freezes"
+    },
+    {
+      "id": "2017_May_SL_P1_Q11",
+      "source": "May 2017 TZ1 SL Paper 1 Q11",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "11.  A thin-walled cylinder of weight W, open at both ends, rests on a flat surface.  The cylinder has  a height L, an a"
+    },
+    {
+      "id": "2017_May_SL_P1_Q15",
+      "source": "May 2017 TZ1 SL Paper 1 Q15",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "15.\t Two pulses are travelling towards each other. What is a possible pulse shape when the pulses overlap? A. \t \t B. \t C"
+    },
+    {
+      "id": "2017_May_SL_P1_Q16",
+      "source": "May 2017 TZ1 SL Paper 1 Q16",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "16.\t Unpolarized light of intensity I0 is incident on the first of two polarizing sheets.  Initially the planes of  pola"
+    },
+    {
+      "id": "2017_May_SL_P1_Q23",
+      "source": "May 2017 TZ1 SL Paper 1 Q23",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "23.\t An object of constant mass is tied to the end of a rope of length\u00a0l and made to move in a horizontal  circle.  The "
+    },
+    {
+      "id": "2017_May_SL_P1_Q27",
+      "source": "May 2017 TZ1 SL Paper 1 Q27",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "27.\t What is the energy equivalent to the mass of one proton? A.\t 9.38\u00a0\u00d7\u00a0(3\u00a0\u00d7\u00a0108)2\u00a0\u00d7\u00a0106\u2009J B.\t 9.38\u00a0\u00d7\u00a0(3\u00a0\u00d7\u00a0108)2\u00a0\u00d7\u00a01.6\u00a0"
+    },
+    {
+      "id": "2017_May_SL_P1_Q28",
+      "source": "May 2017 TZ1 SL Paper 1 Q28",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "28.\t The following are energy sources. I.\t a battery of rechargeable electric cells II.\t crude oil III.\t a pumped storag"
+    },
+    {
+      "id": "2017_May_HL_P1_Q1",
+      "source": "May 2017 TZ1 HL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t What is the unit of electrical energy in fundamental SI units? A.\t kg\u2009m2\u2009C\u20131\u2009s B.\t kg\u2009m\u2009s\u20132 C.\t kg\u2009m2\u2009s\u20132 D.\t kg\u2009m2\u2009"
+    },
+    {
+      "id": "2017_May_HL_P1_Q2",
+      "source": "May 2017 TZ1 HL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t The graph shows the variation of speed v of an object with time t. 0 0 t v Which graph shows how the distance s trav"
+    },
+    {
+      "id": "2017_May_HL_P1_Q3",
+      "source": "May 2017 TZ1 HL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t The graph shows the variation of the acceleration a of an object with time\u00a0t. 12 6 0 0 t / s a / m s\u20132 What is the c"
+    },
+    {
+      "id": "2017_May_HL_P1_Q4",
+      "source": "May 2017 TZ1 HL Paper 1 Q4",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "4.\t An elevator (lift) and its load have a total mass of 750\u2009kg and accelerate vertically downwards  at 2.0\u2009m\u2009s-2. eleva"
+    },
+    {
+      "id": "2017_May_HL_P1_Q8",
+      "source": "May 2017 TZ1 HL Paper 1 Q8",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "8.\t A liquid is initially at its freezing point.  Energy is removed at a uniform rate from the liquid until it  freezes "
+    },
+    {
+      "id": "2017_May_HL_P1_Q9",
+      "source": "May 2017 TZ1 HL Paper 1 Q9",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "9.  A thin-walled cylinder of weight W, open at both ends, rests on a flat surface.  The cylinder has a height L, an ave"
+    },
+    {
+      "id": "2017_May_HL_P1_Q14",
+      "source": "May 2017 TZ1 HL Paper 1 Q14",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "14.\t Unpolarized light of intensity I0 is incident on the first of two polarizing sheets.  Initially the planes of  pola"
+    },
+    {
+      "id": "2017_May_HL_P1_Q19",
+      "source": "May 2017 TZ1 HL Paper 1 Q19",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "19.\t An object of constant mass is tied to the end of a rope of length\u00a0l and made to move in a horizontal  circle.  The "
+    },
+    {
       "id": "2017_May_HL_P1_Q35",
       "source": "May 2017 TZ1 HL Paper 1 Q35",
       "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: capacitance, capacitor)",
       "preview": "35.\t A capacitor is charged by a constant current of 2.5\u2009\u00b5A for 100\u2009s.  As a result the potential difference  across the"
+    },
+    {
+      "id": "2017_May_HL_P1_Q37",
+      "source": "May 2017 TZ1 HL Paper 1 Q37",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "37.\t The diameter of a silver-108 ( ) 108 47Ag nucleus is approximately three times that of the diameter of a  nucleus o"
     },
     {
       "id": "2017_May_HL_P2_Q5",
@@ -1485,18 +3831,6 @@
       "preview": "13.\t Two converging lenses placed a distance 90\u2009\u200acm apart are used as a simple astronomical  refracting telescope at nor"
     },
     {
-      "id": "2017_May_HL_P3_Q1",
-      "source": "May 2017 TZ2 HL Paper 3 Opt C Q1",
-      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
-      "preview": "1.\t . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . "
-    },
-    {
-      "id": "2017_May_HL_P3_Q2",
-      "source": "May 2017 TZ2 HL Paper 3 Opt C Q2",
-      "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
-      "preview": "2.\t . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . "
-    },
-    {
       "id": "2017_May_HL_P3_Q14",
       "source": "May 2017 TZ2 HL Paper 3 Opt C Q14",
       "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
@@ -1515,16 +3849,64 @@
       "preview": "16.\t In nuclear magnetic resonance (NMR) imaging radio frequency electromagnetic radiation is  detected by the imaging s"
     },
     {
+      "id": "2017_May_HL_P1_Q1",
+      "source": "May 2017 TZ2 HL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.\t A stone falls from rest to the bottom of a water well of depth d.  The time t\u200a taken to fall is 2.0\u00a0!\u20090.2\u200a\u2009s.  The d"
+    },
+    {
+      "id": "2017_May_HL_P1_Q3",
+      "source": "May 2017 TZ2 HL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t A block of weight W\u200a\u2009 is suspended by two strings of equal length.  The strings are almost horizontal. block \t What "
+    },
+    {
+      "id": "2017_May_HL_P1_Q6",
+      "source": "May 2017 TZ2 HL Paper 1 Q6",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "6.\t A ball of mass 0.2\u200a\u2009kg strikes a force sensor and sticks to it.  Just before impact the ball is travelling  horizont"
+    },
+    {
       "id": "2017_May_HL_P1_Q13",
       "source": "May 2017 TZ2 HL Paper 1 Q13",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
       "preview": "13.  A beam of unpolarized light is incident on the first of two parallel polarizers.  The transmission axes  of the two"
     },
     {
+      "id": "2017_May_HL_P1_Q21",
+      "source": "May 2017 TZ2 HL Paper 1 Q21",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "21.\t In the nuclear reaction X\u200a\u2009+\u200a\u2009Y\u200a\u2009\uf064\u200a\u2009Z\u200a\u2009+\u200a\u2009W, involving nuclides X, Y, Z and W, energy is released.   Which\u00a0is corre"
+    },
+    {
       "id": "2017_May_HL_P1_Q22",
       "source": "May 2017 TZ2 HL Paper 1 Q22",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: lepton, baryon, strangeness)",
       "preview": "22.\t The reaction p+\u200a\u2009+\u200a\u2009n0\u200a\u2009t\u200a\u2009p+\u200a\u2009+\u200a\u2009o0 does not occur because it violates the conservation law of \t A.\t electric char"
+    },
+    {
+      "id": "2017_May_HL_P1_Q24",
+      "source": "May 2017 TZ2 HL Paper 1 Q24",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "24. A room is at a constant temperature of 300\u200a\u2009K.  A hotplate in the room is at a temperature of 400\u200a\u2009K and loses energ"
+    },
+    {
+      "id": "2017_May_HL_P1_Q29",
+      "source": "May 2017 TZ2 HL Paper 1 Q29",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "29.\t A train travelling in a straight line emits a sound of constant frequency \u2009f\u200a.  An observer at rest  very\u00a0close to "
+    },
+    {
+      "id": "2017_May_HL_P1_Q32",
+      "source": "May 2017 TZ2 HL Paper 1 Q32",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "32.\t Four uniform planets have masses and radii as shown.  Which planet has the smallest  escape\u00a0speed? A. \t M, R \t B. \t"
+    },
+    {
+      "id": "2017_May_HL_P1_Q33",
+      "source": "May 2017 TZ2 HL Paper 1 Q33",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "33.\t The diagram shows a bar magnet near an aluminium ring. aluminium ring bar magnet \t The ring is supported so that it"
     },
     {
       "id": "2017_May_HL_P1_Q35",
@@ -1555,6 +3937,42 @@
       "source": "May 2017 TZ1 HL Paper 3 Opt C Q13",
       "reason": "Legacy Paper 3 Option C (Imaging) is retired in 2025",
       "preview": "13.\t (a)\t Outline why the fracture in a broken bone can be seen in a medical X-ray image. [2] \t . . . . . . . . . . . . "
+    },
+    {
+      "id": "2016_Nov_SL_P1_Q3",
+      "source": "Nov 2016 TZ1 SL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t A car moves north at a constant speed of 3\u2009m\u2009s\u20131 for 20\u2009s and then east at a constant\u00a0speed of  4\u2009m\u2009s\u20131 for 20\u2009s.  W"
+    },
+    {
+      "id": "2016_Nov_SL_P1_Q6",
+      "source": "Nov 2016 TZ1 SL Paper 1 Q6",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "6.\t Two stationary objects of mass 1\u2009kg and 2\u2009kg are connected by a thread and suspended from  a\u00a0spring. \t spring 1\u2009kg \t"
+    },
+    {
+      "id": "2016_Nov_SL_P1_Q10",
+      "source": "Nov 2016 TZ1 SL Paper 1 Q10",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "10.\t Energy is supplied at a constant rate to a fixed mass of a material.  The material begins as a solid.   The graph s"
+    },
+    {
+      "id": "2016_Nov_SL_P1_Q16",
+      "source": "Nov 2016 TZ1 SL Paper 1 Q16",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "16.\t A spring XY lies on a frictionless table with the end Y free. direction of travel table \t A horizontal pulse travel"
+    },
+    {
+      "id": "2016_Nov_SL_P1_Q17",
+      "source": "Nov 2016 TZ1 SL Paper 1 Q17",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "17.\t A student stands a distance L from a wall and claps her hands.  Immediately on hearing the  reflection from the wal"
+    },
+    {
+      "id": "2016_Nov_SL_P1_Q24",
+      "source": "Nov 2016 TZ1 SL Paper 1 Q24",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "24.\t Photons of energy 2.3\u2009eV are incident on a low-pressure vapour.  The energy levels of the atoms in  the vapour are "
     },
     {
       "id": "2016_Nov_SL_P1_Q27",
@@ -1641,6 +4059,48 @@
       "preview": "20.\t (a)\t State the property of protons used in nuclear magnetic resonance (NMR) imaging. [1] \t . . . . . . . . . . . . "
     },
     {
+      "id": "2016_Nov_HL_P1_Q2",
+      "source": "Nov 2016 TZ1 HL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.\t A car moves north at a constant speed of 3\u2009m\u2009s\u20131 for 20\u2009s and then east at a constant\u00a0speed of  4\u2009m\u2009s\u20131 for 20\u2009s.  W"
+    },
+    {
+      "id": "2016_Nov_HL_P1_Q3",
+      "source": "Nov 2016 TZ1 HL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.\t A student draws a graph to show the variation with time t\u200a of the acceleration a of an object. a 0 0\t t \t What can t"
+    },
+    {
+      "id": "2016_Nov_HL_P1_Q4",
+      "source": "Nov 2016 TZ1 HL Paper 1 Q4",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "4.\t A mass is suspended from the ceiling of a train carriage by a string.  The string makes an angle q\u2009  with the vertic"
+    },
+    {
+      "id": "2016_Nov_HL_P1_Q6",
+      "source": "Nov 2016 TZ1 HL Paper 1 Q6",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "6.\t Two stationary objects of mass 1\u2009kg and 2\u2009kg are connected by a thread and suspended from  a\u00a0spring. \t spring 1\u2009kg \t"
+    },
+    {
+      "id": "2016_Nov_HL_P1_Q9",
+      "source": "Nov 2016 TZ1 HL Paper 1 Q9",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "9.  Energy is supplied at a constant rate to a fixed mass of a material.  The material begins as a solid.   The graph sh"
+    },
+    {
+      "id": "2016_Nov_HL_P1_Q14",
+      "source": "Nov 2016 TZ1 HL Paper 1 Q14",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "14.\t A point source of light of amplitude A0 gives rise to a particular light intensity when viewed at a  distance from "
+    },
+    {
+      "id": "2016_Nov_HL_P1_Q30",
+      "source": "Nov 2016 TZ1 HL Paper 1 Q30",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "30.\t What is the unit of Ge0, where G is the gravitational constant and e0 is the permittivity of  free\u00a0space? \t A.\t C\u2009k"
+    },
+    {
       "id": "2016_Nov_HL_P1_Q34",
       "source": "Nov 2016 TZ1 HL Paper 1 Q34",
       "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: transformer, secondary coil)",
@@ -1659,10 +4119,58 @@
       "preview": "36.\t Three capacitors are arranged as shown. \t 1.0\u2009F \t 2.0\u2009F \t 1.0\u2009F \t What is the total capacitance of the arrangement?"
     },
     {
+      "id": "2016_Nov_HL_P1_Q38",
+      "source": "Nov 2016 TZ1 HL Paper 1 Q38",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "38.\t An electron of mass m has an uncertainty in its position r\u200a.  What is the uncertainty in the speed of  this electro"
+    },
+    {
+      "id": "2016_May_SL_P1_Q1",
+      "source": "May 2016 TZ1 SL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.  A sphere fits inside a cube. The length of the cube and the diameter of the sphere are 10.0 \u00b1 0.2 cm.   What is the "
+    },
+    {
+      "id": "2016_May_SL_P1_Q3",
+      "source": "May 2016 TZ1 SL Paper 1 Q3",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "3.  An aircraft is moving horizontally.  A parachutist leaves the aircraft and a few seconds later  opens her parachute."
+    },
+    {
+      "id": "2016_May_SL_P1_Q6",
+      "source": "May 2016 TZ1 SL Paper 1 Q6",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "6.  A spring of negligible mass and length l0 hangs from a fixed point.  When a mass m is attached to  the free end of t"
+    },
+    {
+      "id": "2016_May_SL_P1_Q11",
+      "source": "May 2016 TZ1 SL Paper 1 Q11",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "11.  Which of the following is not an assumption of the kinetic model of ideal gases? A.  All particles in the gas have "
+    },
+    {
+      "id": "2016_May_SL_P1_Q14",
+      "source": "May 2016 TZ1 SL Paper 1 Q14",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "14.  A water wave moves on the surface of a lake.  P and Q are two points on the water surface.    The wave is travellin"
+    },
+    {
       "id": "2016_May_SL_P1_Q15",
       "source": "May 2016 TZ1 SL Paper 1 Q15",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
       "preview": "15.  Horizontally polarized light of intensity I0 enters a polarizer P whose polarization axis makes an  angle of \u03b8 degr"
+    },
+    {
+      "id": "2016_May_SL_P1_Q22",
+      "source": "May 2016 TZ1 SL Paper 1 Q22",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "22.  A mass connected to one end of a rigid rod rotates at constant speed in a vertical plane about the  other end of th"
+    },
+    {
+      "id": "2016_May_SL_P1_Q26",
+      "source": "May 2016 TZ1 SL Paper 1 Q26",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "26.  Which of the following lists three fundamental forces in increasing order of strength? A.  electromagnetic, gravity"
     },
     {
       "id": "2016_May_SL_P3_Q9",
@@ -1725,10 +4233,34 @@
       "preview": "16.\t (a)\t State one advantage and one disadvantage of magnetic resonance imaging (MRI)  compared to X-ray imaging. [2] A"
     },
     {
+      "id": "2016_May_HL_P1_Q1",
+      "source": "May 2016 TZ1 HL Paper 1 Q1",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "1.  A sphere fits inside a cube. The length of the cube and the diameter of the sphere are 10.0 \u00b1 0.2 cm.   What is the "
+    },
+    {
+      "id": "2016_May_HL_P1_Q2",
+      "source": "May 2016 TZ1 HL Paper 1 Q2",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "2.  An aircraft is moving horizontally.  A parachutist leaves the aircraft and a few seconds later  opens her parachute."
+    },
+    {
       "id": "2016_May_HL_P1_Q9",
       "source": "May 2016 TZ1 HL Paper 1 Q9",
       "reason": "Old Topic 7.3: Quarks, Leptons, Mesons, Baryons, Strangeness & Feynman Diagrams removed from 2025 syllabus (matched: )",
       "preview": "9.  Horizontally polarized light of intensity I0 enters a polarizer P whose polarization axis makes an  angle of \u03b8 degre"
+    },
+    {
+      "id": "2016_May_HL_P1_Q14",
+      "source": "May 2016 TZ1 HL Paper 1 Q14",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "14.  A mass connected to one end of a rigid rod rotates at constant speed in a vertical plane about the  other end of th"
+    },
+    {
+      "id": "2016_May_HL_P1_Q16",
+      "source": "May 2016 TZ1 HL Paper 1 Q16",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "16.  Which of the following lists three fundamental forces in increasing order of strength? A.  electromagnetic, gravity"
     },
     {
       "id": "2016_May_HL_P1_Q17",
@@ -1747,6 +4279,12 @@
       "source": "May 2016 TZ1 HL Paper 1 Q34",
       "reason": "Old Topic 11.2/11.3: Capacitors, RC circuits, Diode bridge rectifiers & Transformers removed from 2025 syllabus (matched: capacitance, capacitors)",
       "preview": "34.  Three identical capacitors, each of capacitance C, are connected as shown.  C C C What is the total capacitance of "
+    },
+    {
+      "id": "2016_May_HL_P1_Q40",
+      "source": "May 2016 TZ1 HL Paper 1 Q40",
+      "reason": "Unclassified: no clear syllabus keyword match",
+      "preview": "40.  Nuclear density A.  is constant because the volume of a nucleus is proportional to its nucleon number.  B.  is cons"
     }
   ]
 }

@@ -2,20 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import {
-  BookOpen,
-  ArrowRight,
-  ExternalLink,
-  Target,
-  Clock,
-  Calculator,
-  FileDown,
-  Sparkles,
-  TrendingUp,
-  Layers,
-  CheckCircle2,
-  AlertCircle,
-} from 'lucide-react';
+import { BookOpen, ArrowRight, ExternalLink, Target, FileDown, Sparkles, TrendingUp, Layers, AlertCircle } from 'lucide-react';
 import SATReferenceGuideModal from '@/app/components/SATReferenceGuideModal';
 import DesmosMasterKeyModal from '@/app/components/DesmosMasterKeyModal';
 import { getSkillStats, SkillStat, getMistakeVault, getExamHistory, ExamHistoryEntry, MistakeEntry, getMistakeErrorTagStats } from '@/lib/sat-storage';

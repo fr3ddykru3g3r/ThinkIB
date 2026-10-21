@@ -95,6 +95,13 @@ function escapeHtml(str: string): string {
 function getMimeType(filePath: string): string {
   const ext = path.extname(filePath).toLowerCase();
   switch (ext) {
+    case '.html':
+    case '.htm': return 'text/html; charset=utf-8';
+    case '.txt': return 'text/plain; charset=utf-8';
+    case '.xml': return 'application/xml';
+    case '.mp3': return 'audio/mpeg';
+    case '.mp4': return 'video/mp4';
+    case '.ico': return 'image/x-icon';
     case '.css': return 'text/css';
     case '.js': return 'application/javascript';
     case '.json': return 'application/json';
@@ -392,7 +399,7 @@ export async function GET(
 
   // Prevent directory traversal
   const subpath = path.normalize(rawSubpath).replace(/^(\.\.[\/\\])+/, '');
-  const isHtml = subpath.endsWith('.html') || !subpath.includes('.');
+  const isHtml = subpath.endsWith('.html') || subpath.endsWith('.htm') || !subpath.includes('.');
   const searchParam = request.nextUrl.searchParams.get('s');
 
   // Intercept search queries or paths containing /search
@@ -411,8 +418,8 @@ export async function GET(
   }
 
   // Check if file exists locally in ../ThinkIB 2 (for development / local-first setups)
-  const localFilePath = path.join(LOCAL_DIR, subpath);
-  if (fs.existsSync(localFilePath) && fs.statSync(localFilePath).isFile()) {
+  const localFilePath = path.resolve(LOCAL_DIR, subpath);
+  if (localFilePath.startsWith(LOCAL_DIR + path.sep) && fs.existsSync(localFilePath) && fs.statSync(localFilePath).isFile()) {
     if (isHtml) {
       let localHtml = fs.readFileSync(localFilePath, 'utf-8');
       const pathParts = subpath.split('/');

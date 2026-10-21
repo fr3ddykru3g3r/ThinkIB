@@ -7,9 +7,15 @@ interface MathViewProps {
   content: string;
   className?: string;
   style?: React.CSSProperties;
+  /** Treat `$15`-style amounts as money, not math. Turn off for content that
+   *  escapes real dollars as `\$`, so math like `$2 + x$` renders. */
+  currency?: boolean;
+  block?: boolean;
+  /** Escape <, > and & in the plain text around the math (for untrusted/plain content). */
+  escapeHtml?: boolean;
 }
 
-export default function MathView({ content, className = '', style }: MathViewProps) {
+export default function MathView({ content, className = '', style, currency = true, block = false, escapeHtml = false }: MathViewProps) {
   const renderedHtml = useMemo(() => {
     if (!content) return '';
 
@@ -22,15 +28,17 @@ export default function MathView({ content, className = '', style }: MathViewPro
     const ESCAPED_DOLLAR = '___ESCAPED_DOLLAR___';
     const CURRENCY_TOKEN = '___CURRENCY_DOLLAR___';
     let text = content.replace(/\\\$/g, ESCAPED_DOLLAR);
+    if (escapeHtml) text = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const tex = (m: string) => (escapeHtml ? m.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&') : m).trim();
 
     // Protect currency amounts: e.g. $15, $25.50, $1,000
     const CURRENCY_REGEX = /\$(\d+(?:,\d{3})*(?:\.\d{1,2})?)(?=\s|[.,;!?]|$)/g;
-    text = text.replace(CURRENCY_REGEX, `${CURRENCY_TOKEN}$1`);
+    if (currency) text = text.replace(CURRENCY_REGEX, `${CURRENCY_TOKEN}$1`);
 
     // Replace display math $$...$$
     text = text.replace(/\$\$([\s\S]+?)\$\$/g, (_, math) => {
       try {
-        return katex.renderToString(math.trim(), { displayMode: true, throwOnError: false, strict: 'ignore' });
+        return katex.renderToString(tex(math), { displayMode: true, throwOnError: false, strict: 'ignore' });
       } catch (err) {
         return `<span class="katex-error">${math}</span>`;
       }
@@ -39,7 +47,7 @@ export default function MathView({ content, className = '', style }: MathViewPro
     // Replace \[...\] display math
     text = text.replace(/\\\[([\s\S]+?)\\\]/g, (_, math) => {
       try {
-        return katex.renderToString(math.trim(), { displayMode: true, throwOnError: false, strict: 'ignore' });
+        return katex.renderToString(tex(math), { displayMode: true, throwOnError: false, strict: 'ignore' });
       } catch (err) {
         return `<span class="katex-error">${math}</span>`;
       }
@@ -48,11 +56,11 @@ export default function MathView({ content, className = '', style }: MathViewPro
     // Replace inline math $...$
     text = text.replace(/\$([^\$\n]+?)\$/g, (match, math) => {
       // If it looks purely like a price or plain number without math symbols, leave it
-      if (/^\s*\d+([.,]\d+)?\s*$/.test(math)) {
+      if (currency && /^\s*\d+([.,]\d+)?\s*$/.test(math)) {
         return match;
       }
       try {
-        return katex.renderToString(math.trim(), { displayMode: false, throwOnError: false, strict: 'ignore' });
+        return katex.renderToString(tex(math), { displayMode: false, throwOnError: false, strict: 'ignore' });
       } catch (err) {
         return `<span class="katex-error">${math}</span>`;
       }
@@ -61,7 +69,7 @@ export default function MathView({ content, className = '', style }: MathViewPro
     // Replace \(...\) inline math
     text = text.replace(/\\\(([\s\S]+?)\\\)/g, (_, math) => {
       try {
-        return katex.renderToString(math.trim(), { displayMode: false, throwOnError: false, strict: 'ignore' });
+        return katex.renderToString(tex(math), { displayMode: false, throwOnError: false, strict: 'ignore' });
       } catch (err) {
         return `<span class="katex-error">${math}</span>`;
       }
@@ -72,10 +80,11 @@ export default function MathView({ content, className = '', style }: MathViewPro
     text = text.replace(new RegExp(ESCAPED_DOLLAR, 'g'), '$');
 
     return text;
-  }, [content]);
+  }, [content, currency, escapeHtml]);
 
+  const Tag = block ? 'div' : 'span';
   return (
-    <span
+    <Tag
       className={`math-rendered-content ${className}`}
       style={style}
       dangerouslySetInnerHTML={{ __html: renderedHtml }}

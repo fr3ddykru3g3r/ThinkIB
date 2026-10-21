@@ -2,14 +2,10 @@
 
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
-import {
-  ArrowLeft, Search, Award, FileText, CheckCircle2, AlertCircle,
-  ExternalLink, ChevronRight, BookOpen, Sparkles, Filter, Download,
-  BookMarked, Eye, School, GraduationCap
-} from 'lucide-react';
+import { ArrowLeft, Search, Award, FileText, CheckCircle2, AlertCircle, ExternalLink, ChevronRight, BookOpen, Sparkles, Download, BookMarked, Eye, GraduationCap } from 'lucide-react';
 import IBBookletViewerModal from '@/app/components/IBBookletViewerModal';
 import IBCommandTermsModal from '@/app/components/IBCommandTermsModal';
-import IBPDFViewerModal, { EE_VAULT_DOCUMENTS } from '@/app/components/IBPDFViewerModal';
+import IBPDFViewerModal from '@/app/components/IBPDFViewerModal';
 
 interface RubricCriterion {
   code: string;
@@ -777,15 +773,15 @@ export default function ExemplarsPage() {
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.35rem' }}>
                 <span style={{ fontSize: '0.68rem', fontWeight: 700, padding: '1px 6px', borderRadius: '6px', background: '#8b5cf6', color: '#fff' }}>
-                  OFFICIAL IBO
+                  THIRD-PARTY
                 </span>
                 <span style={{ fontSize: '0.72rem', color: 'var(--muted)' }}>Live Public Repositories</span>
               </div>
               <h3 style={{ margin: 0, fontSize: '0.95rem', fontWeight: 700, lineHeight: '1.35' }}>
-                Official IBO TSM & Assessed Work
+                IBO TSM & Assessed Work (third-party mirror)
               </h3>
               <p style={{ margin: '0.4rem 0 0', fontSize: '0.78rem', color: 'var(--muted)', lineHeight: '1.45' }}>
-                Direct access to the IBO\'s authentic assessed student essays and the official Teacher Support Material (TSM) IA archive with moderation remarks.
+                Direct access to the IBO&apos;s authentic assessed student essays and the official Teacher Support Material (TSM) IA archive with moderation remarks.
               </p>
             </div>
             <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
@@ -805,7 +801,7 @@ export default function ExemplarsPage() {
                 className="filter-btn"
                 style={{ textDecoration: 'none', flex: 1, padding: '0.35rem', fontSize: '0.72rem', display: 'flex', alignItems: 'center', gap: '0.3rem', justifyContent: 'center' }}
               >
-                <ExternalLink size={12} /> Official TSM IAs
+                <ExternalLink size={12} /> TSM IAs (mirror)
               </a>
             </div>
           </div>
@@ -855,7 +851,7 @@ export default function ExemplarsPage() {
       </div>
 
       {/* Split Screen Master-Detail Layout */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'minmax(320px, 390px) 1fr', gap: '1.5rem', alignItems: 'start' }}>
+      <div className="exemplar-layout">
         {/* Left: List of Exemplars */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>

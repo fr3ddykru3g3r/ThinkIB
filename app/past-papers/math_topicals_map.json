@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-15 20:12:10",
-  "total_questions_harvested": 3196,
-  "total_excluded_legacy": 170,
+  "generated_at": "2026-10-21 00:34:55",
+  "total_questions_harvested": 2660,
+  "total_excluded_legacy": 706,
   "themes": {
     "T1": {
       "theme": "T1",
@@ -30,8 +30,8 @@
       "description": "Function concepts, domain, range, inverses, quadratics, inequalities, rational and composite functions, transformations, and modulus graphs.",
       "color": "#b84a39",
       "accent": "rgba(184, 74, 57, 0.12)",
-      "total_questions": 770,
-      "pure_count": 656,
+      "total_questions": 234,
+      "pure_count": 120,
       "intra_mixed_count": 4,
       "cross_synthesis_count": 110,
       "subtopics": [
@@ -214,12 +214,12 @@
       "theme_title": "Functions",
       "hl_only": false,
       "description": "Domain and range, composite functions, inverse functions, self-inverse, one-to-one, horizontal line test, odd and even functions.",
-      "total_questions": 552,
+      "total_questions": 16,
       "mcq_count": 0,
-      "frq_count": 552,
-      "sl_count": 322,
-      "hl_count": 230,
-      "pure_count": 552,
+      "frq_count": 16,
+      "sl_count": 4,
+      "hl_count": 12,
+      "pure_count": 16,
       "mixed_count": 0,
       "qp_path": "/vault/math-topicals/T2.1_Function_Concepts_Domain_Range_and_Inverses.pdf",
       "ms_path": "/vault/math-topicals/T2.1_Function_Concepts_Domain_Range_and_Inverses_MS.pdf"

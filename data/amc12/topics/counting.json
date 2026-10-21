@@ -1,0 +1,376 @@
+{
+  "id": "counting",
+  "title": "Counting & Combinatorics",
+  "summary": "Counting tools for the AMC 12: multiplying independent steps, arrangements and selections, complementary counting, inclusion-exclusion, stars and bars, and casework with symmetry.",
+  "examWeight": "≈3–4 problems per paper",
+  "concepts": [
+    {
+      "title": "The multiplication principle",
+      "body": "The multiplication principle is the foundation of most counting. Suppose a task happens in steps. If step 1 can be done in $a$ ways, and for each of those ways step 2 can be done in $b$ ways, then the whole task can be done in $a \\cdot b$ ways. Why this works: list every outcome as a pair (first choice, second choice). Each of the $a$ first choices appears with each of the $b$ second choices, so the list has $a$ rows of $b$ outcomes.\n\nExample: a shirt comes in 3 colors and 4 sizes. Picking a color (3 ways) and then a size (4 ways) gives $3 \\cdot 4 = 12$ different shirts.\n\nUse addition for 'either this or that' when the cases cannot happen at the same time. If a shirt is either short-sleeved (5 styles) or long-sleeved (4 styles), there are $5+4=9$ choices. Before multiplying, check that each later step has the same number of options no matter what happened earlier. If it does not, split into cases (see casework below).",
+      "keyFacts": [
+        "Steps done one after another: multiply the number of options at each step",
+        "Mutually exclusive cases (either/or): add their counts",
+        "If later options depend on earlier choices, count by cases"
+      ],
+      "whenToUse": "Use it whenever a problem describes choices made in sequence, such as building a code, an outfit or a route."
+    },
+    {
+      "title": "Permutations and combinations",
+      "body": "A permutation is an ordered arrangement, and a combination is an unordered selection. There are $n! = n(n-1)\\cdots 2 \\cdot 1$ ways to line up $n$ distinct objects, because the first spot has $n$ choices, the next has $n-1$, and so on. Choosing and ordering $k$ of the $n$ objects gives $P(n,k)=\\frac{n!}{(n-k)!}=n(n-1)\\cdots(n-k+1)$ arrangements.\n\nIf the order inside the chosen group does not matter, each group of $k$ objects was counted once for each of its $k!$ orderings. Dividing by $k!$ gives $\\binom{n}{k}=\\frac{n!}{k!\\,(n-k)!}$. For example, a team of 2 chosen from 4 people is $\\binom{4}{2}=6$ groups, while choosing a president and a vice-president from the same 4 people gives $P(4,2)=12$ ordered choices.\n\nWhen some letters repeat, the same word appears more than once in the list of arrangements. The word LEVEL has 5 letter positions, and swapping the two E's or the two L's changes nothing, so there are $\\frac{5!}{2!\\,2!}=30$ distinct words.",
+      "keyFacts": [
+        "$P(n,k)=\\frac{n!}{(n-k)!}$ when order matters",
+        "$\\binom{n}{k}=\\frac{n!}{k!\\,(n-k)!}$ when order does not matter",
+        "$\\binom{n}{k}=\\binom{n}{n-k}$",
+        "With repeated letters, divide by the factorial of each repeat count"
+      ],
+      "whenToUse": "Use it when you line up or select distinct objects and must decide whether the order matters."
+    },
+    {
+      "title": "Complementary counting",
+      "body": "Many problems say 'at least one' or 'not'. Counting those directly means splitting into several overlapping cases, which is error-prone. Complementary counting instead counts everything and subtracts the unwanted outcomes: good $=$ total $-$ bad. This is correct because every outcome is either bad or good, never both, so nothing is counted twice or missed.\n\nExample: how many two-digit numbers contain at least one digit 7? There are 90 two-digit numbers. The ones with no 7 have 8 choices for the tens digit (1 to 9, except 7) and 9 choices for the units digit (0 to 9, except 7), so $8 \\cdot 9 = 72$ have no 7. The answer is $90-72=18$.\n\nTo spot a complementary count, look for 'at least one' wording and ask whether the complement ('none of them') is a single, simple condition. If it is, count the complement and subtract it from the total.",
+      "keyFacts": [
+        "good $=$ total $-$ bad",
+        "'at least one' $=$ total $-$ 'none'",
+        "Works best when the complement is one simple condition"
+      ],
+      "whenToUse": "Use it when the problem says 'at least one' or 'not', and the case where none of the property holds is easy to count."
+    },
+    {
+      "title": "Inclusion-exclusion",
+      "body": "When you count a union of overlapping groups, adding the sizes counts each overlap twice. For two groups, $|A\\cup B|=|A|+|B|-|A\\cap B|$: elements in both were added twice, so subtract them once. For three groups, add the three single sizes, subtract the three pairwise overlaps, then add the triple overlap back. An element in all three groups was added 3 times, subtracted 3 times, and so needs one more.\n\nExample: how many integers from 1 to 20 are divisible by 2 or by 3? There are 10 multiples of 2 and 6 multiples of 3, but the 3 multiples of 6 (6, 12, 18) are in both lists. So the count is $10+6-3=13$. Listing 2, 3, 4, 6, 8, 9, 10, 12, 14, 15, 16, 18, 20 confirms it.\n\nA check on the whole formula: an element lying in exactly $k$ of the groups is counted $k-\\binom{k}{2}+\\binom{k}{3}-\\cdots$ times, which equals 1 for every $k\\ge 1$, so each element is counted exactly once.",
+      "keyFacts": [
+        "$|A\\cup B|=|A|+|B|-|A\\cap B|$",
+        "Three groups: subtract the pairwise overlaps, then add back the triple overlap",
+        "Divisible by both $a$ and $b$ means divisible by $\\text{lcm}(a,b)$"
+      ],
+      "whenToUse": "Use it when the count is a union of overlapping groups, such as 'divisible by 3 or 5', and the overlaps are easy to count."
+    },
+    {
+      "title": "Stars and bars",
+      "body": "Stars and bars counts the ways to split identical items into distinct groups. Line up $n$ identical stars. To form $k$ groups, insert $k-1$ bars into the gaps (bars may sit at the ends or next to each other). Each arrangement is a row of $n+k-1$ symbols, of which exactly $k-1$ are bars, and each row corresponds to exactly one way of splitting. Choosing which positions hold the bars gives $\\binom{n+k-1}{k-1}$ ways when groups may be empty.\n\nExample: 4 identical cookies go to 3 children, and a child may get none. This is $\\binom{4+3-1}{3-1}=\\binom{6}{2}=15$ ways. If every child must get at least one cookie, first hand one to each child. The remaining $4-3=1$ cookie can go to any child, giving $\\binom{1+2}{2}=3$ ways.\n\nThe equation $x_1+x_2+\\cdots+x_k=n$ has $\\binom{n+k-1}{k-1}$ solutions in nonnegative integers and $\\binom{n-1}{k-1}$ solutions in positive integers. To require $x_i\\ge m$, substitute $y_i=x_i-m$. Upper limits such as $x_i\\le 5$ are harder: subtract the solutions that break the limit, using complementary counting or inclusion-exclusion.",
+      "keyFacts": [
+        "Nonnegative solutions of $x_1+\\cdots+x_k=n$: $\\binom{n+k-1}{k-1}$",
+        "Positive solutions of the same equation: $\\binom{n-1}{k-1}$",
+        "Lower bound $x_i\\ge m$: substitute $y_i=x_i-m$",
+        "Upper bounds: subtract the cases that violate them"
+      ],
+      "whenToUse": "Use it when identical items are shared among distinct people or boxes, or when you count integer solutions of a sum equation."
+    },
+    {
+      "title": "Casework and symmetry",
+      "body": "Casework splits a problem into cases that together cover every possibility and do not overlap. Count each case separately and add the results. If the cases overlap you double count, and if they fail to cover everything you undercount. A good split is usually made on the most restricted object, because that choice changes what the other choices can be.\n\nSymmetry lets you skip repeated work. If a relabeling, such as swapping two colors, reflecting a board or rotating a necklace, turns one valid configuration into another while keeping every rule intact, then the two configurations have the same number of valid partners and can be counted together. Be careful: the symmetry must preserve every condition in the problem, or it does not apply.\n\nExample: color the three vertices of a triangle with three colors, using a different color on each vertex. Choose a color for the first vertex (3 ways), one of the remaining 2 for the second, and the last color for the third: $3\\cdot 2\\cdot 1=6$. The three colors play identical roles in the rules, so the count is the same as the number of orderings of the colors, $3!=6$.",
+      "keyFacts": [
+        "Cases must be exhaustive and mutually exclusive",
+        "Split first on the most restricted choice",
+        "Symmetry is valid only if the relabeling keeps every rule",
+        "Three vertices in three different colors: $3!=6$ colorings"
+      ],
+      "whenToUse": "Use it when the rules split the problem into different situations, or when it has rotations, reflections or interchangeable labels."
+    }
+  ],
+  "workedExamples": [
+    {
+      "title": "Codes built from steps",
+      "difficulty": 1,
+      "problem": "A code is made of two different letters chosen from $A, B, C, D, E$, written in order, followed by one digit from $0, 1, 2, 3$. How many codes are possible?",
+      "choices": [
+        "20",
+        "40",
+        "64",
+        "80",
+        "100"
+      ],
+      "answer": "D",
+      "steps": [
+        "Choose the first letter: 5 ways.",
+        "Choose the second letter, different from the first: 4 ways. The ordered pairs of different letters number $5\\cdot 4=20$.",
+        "Choose the digit: 4 ways.",
+        "Multiply the independent steps: $20\\cdot 4=80$."
+      ],
+      "takeaway": "Multiply the number of options at each step, once you have checked that each later step's options do not depend on the earlier choices in a way you have not accounted for.",
+      "verify": "from itertools import product\nprint(sum(1 for a, b, d in product('ABCDE', 'ABCDE', '0123') if a != b))"
+    },
+    {
+      "title": "Subtract the bad cases",
+      "difficulty": 2,
+      "problem": "How many four-digit positive integers contain at least one digit equal to $0$?",
+      "choices": [
+        "729",
+        "1000",
+        "2439",
+        "3000",
+        "6561"
+      ],
+      "answer": "C",
+      "steps": [
+        "There are $9000$ four-digit positive integers, from $1000$ to $9999$.",
+        "A number with no $0$ digit has 9 choices for each of its 4 digits (the digits 1 to 9), so $9^4=6561$ of them have no zero.",
+        "The complement of 'contains a zero' is 'no zero', so the answer is $9000-6561=2439$."
+      ],
+      "takeaway": "When a problem says 'at least one', count everything and subtract the case where none of the property holds.",
+      "verify": "print(sum(1 for n in range(1000, 10000) if '0' in str(n)))"
+    },
+    {
+      "title": "Identical balls in distinct boxes",
+      "difficulty": 3,
+      "problem": "In how many ways can 10 identical balls be placed into 4 distinct boxes so that every box receives at least one ball?",
+      "choices": [
+        "56",
+        "84",
+        "120",
+        "210",
+        "286"
+      ],
+      "answer": "B",
+      "steps": [
+        "Place one ball in each box first. This uses 4 balls and leaves 6 identical balls.",
+        "The 6 leftover balls can now go into the 4 boxes in any way, since every box already has its required ball.",
+        "Stars and bars: arrange 6 stars and 3 dividing bars in a row of 9 symbols. The count is $\\binom{9}{3}=84$."
+      ],
+      "takeaway": "Turn an 'at least one' condition into a plain stars-and-bars count by placing the forced items first.",
+      "verify": "from itertools import product\nprint(sum(1 for t in product(range(11), repeat=4) if sum(t) == 10 and min(t) >= 1))"
+    }
+  ],
+  "problems": [
+    {
+      "id": "cnt-01",
+      "difficulty": 1,
+      "problem": "A café offers 4 kinds of soup, 3 kinds of sandwich, and 2 kinds of drink. A lunch special consists of exactly one soup, one sandwich, and one drink. How many different lunch specials are possible?",
+      "choices": [
+        "9",
+        "13",
+        "18",
+        "24",
+        "36"
+      ],
+      "answer": "D",
+      "hint": "Treat the soup, the sandwich and the drink as three separate choices made one after another.",
+      "solution": "Choose the soup in 4 ways, the sandwich in 3 ways and the drink in 2 ways. By the multiplication principle there are $4\\cdot 3\\cdot 2=24$ lunch specials.",
+      "verify": "from itertools import product\nprint(len(list(product(range(4), range(3), range(2)))))"
+    },
+    {
+      "id": "cnt-02",
+      "difficulty": 1,
+      "problem": "How many three-digit positive integers have all three digits odd?",
+      "choices": [
+        "125",
+        "150",
+        "200",
+        "216",
+        "241"
+      ],
+      "answer": "A",
+      "hint": "Each digit place is chosen independently. Which digits count as odd?",
+      "solution": "Each of the hundreds, tens and units digits must be one of $1,3,5,7,9$, and these choices do not affect each other. That gives $5\\cdot 5\\cdot 5=125$ integers.",
+      "verify": "print(sum(1 for n in range(100, 1000) if all(int(d) % 2 == 1 for d in str(n))))"
+    },
+    {
+      "id": "cnt-03",
+      "difficulty": 1,
+      "problem": "A gold, a silver and a bronze prize are given to three different students chosen from a group of six. Each student receives at most one prize. How many ways can the prizes be awarded?",
+      "choices": [
+        "120",
+        "180",
+        "216",
+        "220",
+        "720"
+      ],
+      "answer": "A",
+      "hint": "Does it matter which prize goes to which student?",
+      "solution": "The gold prize can go to any of the 6 students, the silver to one of the remaining 5, and the bronze to one of the remaining 4. So there are $6\\cdot 5\\cdot 4=120$ ways. Choosing only the three winners, without deciding who gets which prize, would give just $\\binom{6}{3}=20$.",
+      "verify": "from itertools import permutations\nprint(len(list(permutations(range(6), 3))))"
+    },
+    {
+      "id": "cnt-04",
+      "difficulty": 2,
+      "problem": "A committee of 3 is chosen from 7 students, and then one of the 3 committee members is named chair. How many different (committee, chair) choices are possible?",
+      "choices": [
+        "105",
+        "140",
+        "175",
+        "210",
+        "245"
+      ],
+      "answer": "A",
+      "hint": "Decide the committee first. Then ask how many of its members could be chair.",
+      "solution": "There are $\\binom{7}{3}=35$ possible committees. For each committee any of its 3 members could be chair, so there are $35\\cdot 3=105$ pairs. Check the other order: choose the chair in 7 ways, then the two other committee members from the remaining 6 in $\\binom{6}{2}=15$ ways, giving $7\\cdot 15=105$.",
+      "verify": "from itertools import combinations\nprint(sum(1 for c in combinations(range(7), 3) for chair in c))"
+    },
+    {
+      "id": "cnt-05",
+      "difficulty": 2,
+      "problem": "How many three-digit positive integers contain at least one digit equal to $5$?",
+      "choices": [
+        "180",
+        "252",
+        "280",
+        "300",
+        "648"
+      ],
+      "answer": "B",
+      "hint": "Would it be easier to count the three-digit integers with no digit 5 at all?",
+      "solution": "There are $900$ three-digit integers. Those with no digit 5 have 8 choices for the hundreds digit (1 to 9, except 5) and 9 choices for each of the tens and units digits (0 to 9, except 5). That gives $8\\cdot 9\\cdot 9=648$, so $900-648=252$ integers contain at least one 5.",
+      "verify": "print(sum(1 for n in range(100, 1000) if '5' in str(n)))"
+    },
+    {
+      "id": "cnt-06",
+      "difficulty": 2,
+      "problem": "How many five-letter words can be written using only the letters $A$, $B$ and $C$, so that no two adjacent letters are the same? (The words need not be real English words.)",
+      "choices": [
+        "15",
+        "24",
+        "30",
+        "36",
+        "48"
+      ],
+      "answer": "E",
+      "hint": "Choose the letters from left to right. How many letters are forbidden at each step?",
+      "solution": "The first letter has 3 choices. Each later letter must differ from the letter just before it, so it has exactly 2 choices, no matter what came earlier. The count is $3\\cdot 2\\cdot 2\\cdot 2\\cdot 2=48$.",
+      "verify": "from itertools import product\nprint(sum(1 for w in product('ABC', repeat=5) if all(w[i] != w[i+1] for i in range(4))))"
+    },
+    {
+      "id": "cnt-07",
+      "difficulty": 3,
+      "problem": "How many integers from $1$ to $300$, inclusive, are divisible by $6$ or by $10$?",
+      "choices": [
+        "60",
+        "70",
+        "80",
+        "90",
+        "100"
+      ],
+      "answer": "B",
+      "hint": "Some numbers are divisible by both 6 and 10. Have you counted them twice?",
+      "solution": "There are $\\lfloor 300/6\\rfloor=50$ multiples of 6 and $\\lfloor 300/10\\rfloor=30$ multiples of 10. A number is divisible by both exactly when it is divisible by $\\text{lcm}(6,10)=30$, and there are 10 such numbers. By inclusion-exclusion the count is $50+30-10=70$.",
+      "verify": "print(sum(1 for n in range(1, 301) if n % 6 == 0 or n % 10 == 0))"
+    },
+    {
+      "id": "cnt-08",
+      "difficulty": 3,
+      "problem": "How many ordered quadruples $(a,b,c,d)$ of positive integers satisfy $a+b+c+d=12$, with every one of $a,b,c,d$ at most $5$?",
+      "choices": [
+        "56",
+        "85",
+        "100",
+        "120",
+        "165"
+      ],
+      "answer": "B",
+      "hint": "Count the solutions with no upper limit first, then remove the ones where some entry is too large.",
+      "solution": "Without the upper limit, the positive solutions of $a+b+c+d=12$ number $\\binom{11}{3}=165$. Suppose $a\\ge 6$. Substituting $a'=a-5$ gives positive integers with $a'+b+c+d=7$, and there are $\\binom{6}{3}=20$ of these. The same holds for $b$, $c$ or $d$. Two entries cannot both be at least 6, since then the sum would be at least $6+6+1+1=14>12$. So the answer is $165-4\\cdot 20=85$.",
+      "verify": "from itertools import product\nprint(sum(1 for t in product(range(1, 13), repeat=4) if sum(t) == 12 and max(t) <= 5))"
+    },
+    {
+      "id": "cnt-09",
+      "difficulty": 3,
+      "problem": "The four vertices of a square are each colored red, blue or green. Two vertices joined by a side of the square must receive different colors. How many colorings are possible?",
+      "choices": [
+        "12",
+        "18",
+        "24",
+        "36",
+        "48"
+      ],
+      "answer": "B",
+      "hint": "Fix the color of one vertex. Then split into cases according to the color of the vertex opposite it.",
+      "solution": "Call the vertices $A,B,C,D$ in order around the square, and fix $A$'s color (3 ways). Split on $C$, the vertex opposite $A$. If $C$ has the same color as $A$ (1 option), then $B$ and $D$ only need to differ from $A$, so each has 2 options: $2\\cdot 2=4$. If $C$ has a different color (2 options), then $B$ and $D$ must each avoid both $A$ and $C$, leaving exactly 1 color each: $2\\cdot 1\\cdot 1=2$. The total is $3\\cdot(4+2)=18$.",
+      "verify": "from itertools import product\nprint(sum(1 for c in product('RBG', repeat=4) if all(c[i] != c[(i+1) % 4] for i in range(4))))"
+    },
+    {
+      "id": "cnt-10",
+      "difficulty": 3,
+      "problem": "The six letters of the word CHAIRS are arranged in a row, using each letter exactly once. How many of these arrangements have the vowels A and I not next to each other?",
+      "choices": [
+        "240",
+        "360",
+        "480",
+        "540",
+        "600"
+      ],
+      "answer": "C",
+      "hint": "It is easier to count the arrangements where A and I are next to each other, then subtract that from the total.",
+      "solution": "There are $6!=720$ arrangements in total. Glue A and I together as one block. The block can read AI or IA, and together with the other four letters there are 5 objects to arrange, giving $2\\cdot 5!=240$ arrangements where A and I are adjacent. So $720-240=480$ arrangements keep them apart.",
+      "verify": "from itertools import permutations\nprint(sum(1 for p in permutations('CHAIRS') if abs(p.index('A') - p.index('I')) != 1))"
+    },
+    {
+      "id": "cnt-11",
+      "difficulty": 4,
+      "problem": "How many integers from $1$ to $1000$, inclusive, are divisible by at least one of $3$, $5$ or $7$?",
+      "choices": [
+        "411",
+        "486",
+        "510",
+        "533",
+        "543"
+      ],
+      "answer": "E",
+      "hint": "With three groups there are several overlap terms to account for. Which numbers are divisible by 15, 21, 35 and 105?",
+      "solution": "Let the three groups be the multiples of $3$, $5$ and $7$ up to $1000$. Their sizes are $333$, $200$ and $142$. The pairwise overlaps are the multiples of $15$ (66 of them), $21$ (47) and $35$ (28), and the triple overlap is the multiples of $105$ (9 of them). Inclusion-exclusion gives $333+200+142-66-47-28+9=543$.",
+      "verify": "print(sum(1 for n in range(1, 1001) if n % 3 == 0 or n % 5 == 0 or n % 7 == 0))"
+    },
+    {
+      "id": "cnt-12",
+      "difficulty": 4,
+      "problem": "On a $4\\times 4$ chessboard, place three identical rooks on three different squares so that no two rooks share a row or a column, and no rook sits on either of the two long diagonals (the diagonals running from corner to corner). How many placements are possible?",
+      "choices": [
+        "12",
+        "16",
+        "24",
+        "96",
+        "104"
+      ],
+      "answer": "B",
+      "hint": "First list the allowed squares. Three rooks in different rows means exactly one row is left empty, so split into cases on which row that is.",
+      "solution": "The two diagonals use 8 squares, so 8 squares are allowed. Number the rows and columns 1 to 4. Row 1 allows columns 2 and 3; row 2 allows columns 1 and 4; row 3 allows columns 1 and 4; row 4 allows columns 2 and 3. Three rooks need three different rows, so exactly one row is empty. If row 1 is empty, rows 2 and 3 must take columns 1 and 4 in 2 ways, and row 4 takes column 2 or 3 in 2 ways: 4 placements. Each of the other choices of empty row also gives 4, so the total is $4\\cdot 4=16$.",
+      "verify": "from itertools import combinations\nsquares = [(r, c) for r in range(4) for c in range(4) if r != c and r + c != 3]\nprint(sum(1 for s in combinations(squares, 3) if len({r for r, c in s}) == 3 and len({c for r, c in s}) == 3))"
+    },
+    {
+      "id": "cnt-13",
+      "difficulty": 4,
+      "problem": "Six beads are spaced evenly around a circular necklace. Each bead is colored red or blue. Two colorings count as the same if one can be turned into the other by rotating the necklace. How many different colorings are there?",
+      "choices": [
+        "4",
+        "12",
+        "14",
+        "16",
+        "20"
+      ],
+      "answer": "C",
+      "hint": "Group the colorings into families that are rotations of one another. Which colorings look unchanged after some rotation?",
+      "solution": "Sort the $2^6=64$ colorings by their repeating pattern. The all-red and all-blue colorings are unchanged by every rotation, giving 2 families of size 1. The alternating colorings RBRBRB and BRBRBR form one family of size 2. The colorings that repeat every 3 beads but are not constant number $2^3-2=6$, and form 2 families of size 3. The remaining $64-2-2-6=54$ colorings have no smaller repeat and form $54/6=9$ families of size 6. Total: $2+1+2+9=14$.",
+      "verify": "from itertools import product\nseen = set()\nfor t in product('RB', repeat=6):\n    seen.add(min(t[i:] + t[:i] for i in range(6)))\nprint(len(seen))"
+    },
+    {
+      "id": "cnt-14",
+      "difficulty": 5,
+      "problem": "A lattice path starts at $(0,0)$ and ends at $(6,6)$. Each step moves one unit right or one unit up, so every point on the path has whole-number coordinates. How many such paths stay weakly below the line $y=x$, meaning every point $(x,y)$ on the path satisfies $y\\le x$?",
+      "choices": [
+        "66",
+        "132",
+        "210",
+        "462",
+        "924"
+      ],
+      "answer": "B",
+      "hint": "Start by counting all paths from $(0,0)$ to $(6,6)$. Then count the bad paths, which touch the line $y=x+1$, by reflecting the start of each bad path across that line.",
+      "solution": "There are $\\binom{12}{6}=924$ paths in total. A path is bad exactly when it touches $y=x+1$. For a bad path, reflect the part before its first touch across $y=x+1$, using $(x,y)\\mapsto(y-1,x+1)$. The start $(0,0)$ becomes $(-1,1)$, and the reflected path runs from $(-1,1)$ to $(6,6)$ with 7 right steps and 5 up steps. This matching is one-to-one, so there are $\\binom{12}{5}=792$ bad paths and $924-792=132$ good paths. (132 is the Catalan number $C_6$.)",
+      "verify": "from itertools import combinations\ncount = 0\nfor ups in combinations(range(12), 6):\n    x = y = 0\n    ok = True\n    for i in range(12):\n        if i in ups:\n            y += 1\n        else:\n            x += 1\n        if y > x:\n            ok = False\n            break\n    count += ok\nprint(count)"
+    },
+    {
+      "id": "cnt-15",
+      "difficulty": 5,
+      "problem": "How many strings of length $8$ use the symbols $0$, $1$ and $2$, and contain no two consecutive $0$s and no two consecutive $1$s? (A string may contain $2$s freely, including two in a row.)",
+      "choices": [
+        "1393",
+        "1631",
+        "1698",
+        "2187",
+        "2209"
+      ],
+      "answer": "A",
+      "hint": "Track how each valid string ends. What is allowed to come after a $0$, and what is allowed to come after a $1$?",
+      "solution": "Let $x_n$, $y_n$, $z_n$ be the numbers of valid strings of length $n$ ending in $2$, $0$, $1$. Then $x_{n+1}=x_n+y_n+z_n$, $y_{n+1}=x_n+z_n$ and $z_{n+1}=x_n+y_n$, because a $0$ cannot follow a $0$ and a $1$ cannot follow a $1$. Starting from $(x_1,y_1,z_1)=(1,1,1)$, the triples for $n=2,\\dots,8$ are $(3,2,2)$, $(7,5,5)$, $(17,12,12)$, $(41,29,29)$, $(99,70,70)$, $(239,169,169)$ and $(577,408,408)$. The total for $n=8$ is $577+408+408=1393$.",
+      "verify": "from itertools import product\nprint(sum(1 for t in product('012', repeat=8) if all((t[i], t[i+1]) not in (('0', '0'), ('1', '1')) for i in range(7))))"
+    }
+  ]
+}
