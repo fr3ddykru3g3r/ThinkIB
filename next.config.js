@@ -16,7 +16,12 @@ const nextConfig = {
       ],
     },
   async redirects() {
-    return [{ source: '/amc-aime/:path*', destination: '/amc12', permanent: true }];
+    return [
+      { source: '/amc-aime/:path*', destination: '/amc12', permanent: true },
+      { source: '/vault/:directory(ib-booklets|2025-past-papers|savemyexams|math-mocks|sat-books|ee-guides)/:file*', destination: 'https://worlddebatecollective-prep.web.app/vault/:directory/:file*', permanent: false },
+      { source: '/sat/q/:file*', destination: 'https://worlddebatecollective-prep.web.app/sat/q/:file*', permanent: false },
+      { source: '/local-vault/:file*', destination: 'https://worlddebatecollective-prep.web.app/local-vault/:file*', permanent: false },
+    ];
   },
   async rewrites() {
     return [

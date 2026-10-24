@@ -23,3 +23,8 @@ public/vault/ee-guides/ee-oxford-2025-lekanides.pdf
 
 .env*
 /tests
+
+# Public assets are served by the existing Firebase CDN copy.
+/public/vault/
+/public/sat/q/
+/public/local-vault/

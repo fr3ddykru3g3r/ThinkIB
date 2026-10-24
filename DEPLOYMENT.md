@@ -35,3 +35,12 @@ that were never stored.
 DNS: retain one CNAME for prep -> worlddebatecollective-prep.web.app. The conflicting
 prep -> wdc-prep.pages.dev record was removed. Firebase must finish domain verification
 and certificate provisioning before the custom URL can be used safely.
+
+## Vercel storage
+
+Large public assets under `public/vault`, `public/sat/q` and `public/local-vault`
+are excluded from Vercel uploads. The IB app redirects their public URLs to the
+existing Firebase Hosting copies. Firebase allows public cross-origin PDF reads.
+Topical packs keep their existing API/GitHub-release path; they are not redirected
+to directories absent from Firebase. Keep at least the current production release
+and one verified rollback when pruning obsolete deployment outputs.
