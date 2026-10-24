@@ -1,4 +1,5 @@
 'use client';
+import { studyFetch } from '@/lib/resource-url';
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
@@ -7,6 +8,7 @@ import type { SATQuestion } from '@/lib/sat-types';
 import { isAnswerCorrect, formatCorrectAnswer, isSPR, validateSPR } from '@/lib/sat-grading';
 import { getSocraticHints } from '@/lib/socratic-hints';
 import { getDesmosShortcutForQuestion } from '@/lib/desmos-shortcuts';
+import { saveSession, makeSessionId } from '@/lib/practice-history';
 import { recordAttempts, saveMistake, getMistakeVault, markMistakeMastered, removeMistake, clearMistakeVault, MistakeEntry, updateMistakeErrorTag, SatErrorTag } from '@/lib/sat-storage';
 import QuestionBody from '@/app/components/sat/QuestionBody';
 import { Rationale } from '@/app/components/sat/SATContent';
@@ -112,7 +114,7 @@ export default function DrillPage() {
           if (type) p.set('type', type);
           url = `/api/sat/questions?${p}`;
         }
-        const res = await fetch(url, { signal: ctl.signal });
+        const res = await studyFetch(url, { signal: ctl.signal });
         if (!res.ok) throw new Error(`Server returned ${res.status}`);
         const data = await res.json();
         if (!data.success) throw new Error(data.error || 'Could not load questions');
@@ -141,6 +143,7 @@ export default function DrillPage() {
     setChecked(true);
     const ok = isAnswerCorrect(q, answer);
     setAnswered((n) => n + 1);
+    void saveSession({id:makeSessionId(),createdAt:new Date().toISOString(),kind:'sat-drill',title:`SAT drill · ${q.skill || q.domain}`,correct:ok?1:0,total:1,questions:[{id:q.questionId,prompt:q.prompt,choices:q.choices,answer,correctAnswer:q.correctAnswer,correct:ok,explanation:q.rationale,topic:q.domain,seconds:Math.round((Date.now()-qStartTime.current)/1000),sat:q}]}).catch(()=>window.alert('The answer was checked, but history could not be saved in this browser.'));
     recordAttempts([{ section: q.section || section, domain: q.domain, skill: q.skill, correct: ok }]);
     if (ok) {
       setCorrectCount((n) => n + 1);

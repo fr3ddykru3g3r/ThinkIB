@@ -11,13 +11,12 @@ export interface ResourceItem {
 export const resourcesData: ResourceItem[] = [
   // Local Vault Core Manuals & Handbooks
   {
-    name: 'IB Math AA HL Ultimate Handbook',
+    name: 'IB Math AA HL Handbook',
     category: 'local_vault',
     subject: 'Mathematics',
     description: 'Comprehensive study guide covering all topics in Mathematics Analysis and Approaches HL.',
     url: '/api/past-papers/local-vault/IB_Math_AA_HL_Ultimate_Handbook.pdf',
     meta: 'PDF • 1.3 MB',
-    rating: '5.0 ★'
   },
   {
     name: 'Mathematics AA Formula Booklet',
@@ -26,7 +25,6 @@ export const resourcesData: ResourceItem[] = [
     description: 'Official IB formula booklet for Mathematics Analysis & Approaches (SL & HL).',
     url: '/api/past-papers/local-vault/aa_formula_booklet.pdf',
     meta: 'PDF • 269 KB',
-    rating: '5.0 ★'
   },
   {
     name: 'AA HL Comprehensive Formula Sheet',
@@ -35,7 +33,6 @@ export const resourcesData: ResourceItem[] = [
     description: 'Detailed formula reference sheet for AA HL exams and study.',
     url: '/api/past-papers/local-vault/AA_HL_comprehensive_formula_sheet.pdf',
     meta: 'PDF • 245 KB',
-    rating: '4.9 ★'
   },
   {
     name: 'Mathematics Analysis & Approaches Subject Guide',
@@ -44,7 +41,6 @@ export const resourcesData: ResourceItem[] = [
     description: 'Official IB subject guide detailing the math syllabus, exam weights, and assessment guidelines.',
     url: '/api/past-papers/local-vault/Mathematics_Analysis_and_Approaches_Subject_Guide.pdf',
     meta: 'PDF • 3.3 MB',
-    rating: '4.8 ★'
   },
   {
     name: 'Sevenoaks School Prized Writing (IB Extended Essays)',
@@ -53,28 +49,9 @@ export const resourcesData: ResourceItem[] = [
     description: '10 authentic unedited 4,000-word Grade A Extended Essays across Math, Sciences, Economics, and Arts with supervisor comments.',
     url: '/vault/ee-guides/sevenoaks-prized-ees-2015.pdf',
     meta: 'PDF • 7.9 MB (284 Pages)',
-    rating: '5.0 ★ Authentic Exemplars'
-  },
-  {
-    name: 'Extended Essay: Skills for Success (Hodder 2025)',
-    category: 'local_vault',
-    subject: 'Core',
-    description: 'Complete 2025 curriculum textbook by Paul Hoang & Joseph Koszary covering the 5-phase EE process, RPPF forms, and examiner rubrics.',
-    url: '/vault/ee-guides/ee-hodder-2025-hoang.pdf',
-    meta: 'PDF • 76.7 MB (Hodder 2025)',
-    rating: '5.0 ★ Essential Textbook'
-  },
-  {
-    name: 'Oxford Extended Essay Course Companion (Oxford 2025)',
-    category: 'local_vault',
-    subject: 'Core',
-    description: 'Comprehensive 2025 guide by Kosta Lekanides on research design, supervisor dialogues, academic honesty, and achieving 34/34 Grade A.',
-    url: '/vault/ee-guides/ee-oxford-2025-lekanides.pdf',
-    meta: 'PDF • 79.1 MB (Oxford 2025)',
-    rating: '5.0 ★ Essential Guide'
   },
 
-  // Verified High-Yield Study Portals & Archives
+  // Study Study Portals & Archives
   {
     name: 'Official IBO Extended Essay Assessed Student Work',
     category: 'portal',
@@ -82,7 +59,6 @@ export const resourcesData: ResourceItem[] = [
     description: 'The International Baccalaureate Organization\'s official digital repository of real assessed student Extended Essays with examiner marks.',
     url: 'https://ibpublishing.ibo.org/extendedessay/apps/dpapp/assessment.html?doc=d_0_eeyyy_gui_1602_1_e&part=1&chapter=1',
     meta: 'Official IBO Marking Archive',
-    rating: '5.0 ★ Essential'
   },
   {
     name: 'Teacher Support Material (TSM) IA Repository (third-party mirror)',
@@ -91,7 +67,6 @@ export const resourcesData: ResourceItem[] = [
     description: 'Unofficial third-party mirror of IBO Internal Assessment student samples across all subjects with teacher marks and examiner feedback.',
     url: 'https://repo.pirateib.sh/index.php?p=IB+TEACHER+SUPPORT+MATERIAL',
     meta: 'Third-party mirror',
-    rating: '5.0 ★ Essential'
   },
   {
     name: 'IB Academy Free Revision Study Guides',
@@ -100,7 +75,6 @@ export const resourcesData: ResourceItem[] = [
     description: 'High-yield student revision study guides and topic summaries published by IB Academy.',
     url: 'https://ib-academy.nl/free-resources',
     meta: 'Free Student Guides',
-    rating: '4.9 ★'
   },
   {
     name: 'ZNotes IB Diploma Programme',
@@ -109,7 +83,6 @@ export const resourcesData: ResourceItem[] = [
     description: 'Condensed, student-contributed revision notes and cheat sheets across DP subjects.',
     url: 'https://znotes.org/ib/diploma-programme/',
     meta: 'Condensed Study Notes',
-    rating: '4.8 ★'
   },
   {
     name: 'PirateIB Official Portal & Repo',
@@ -118,7 +91,6 @@ export const resourcesData: ResourceItem[] = [
     description: 'Main mirror hub for IB subject notes, textbooks, past papers, and IA exemplars.',
     url: 'https://pirateib.su',
     meta: 'Main IB Mirror Archive',
-    rating: '5.0 ★ Top Rated'
   },
   {
     name: 'IBDone Student Notes',
@@ -126,8 +98,7 @@ export const resourcesData: ResourceItem[] = [
     subject: 'Multiple',
     description: 'Comprehensive student-created notes for IB Biology, Chemistry, English, and Humanities.',
     url: 'https://ibdone1.wordpress.com/',
-    meta: 'Top Rated Notes Archive',
-    rating: '4.9 ★'
+    meta: 'Student notes',
   },
   {
     name: 'IB Your Way Out Notes',
@@ -135,17 +106,15 @@ export const resourcesData: ResourceItem[] = [
     subject: 'Multiple',
     description: 'Detailed unit-by-unit revision summaries for IB Biology HL, Chemistry, and English A.',
     url: 'https://ibrevision.wordpress.com/',
-    meta: 'High-Yield Notes',
-    rating: '4.9 ★'
+    meta: 'Revision notes',
   },
   {
     name: 'BioNinja IB Biology',
     category: 'portal',
     subject: 'Biology',
-    description: 'The premier interactive guide for IB Biology syllabus breakdown, diagrams, and summary notes.',
+    description: 'IB Biology diagrams, syllabus guides, and summary notes.',
     url: 'https://ib.bioninja.com.au',
     meta: 'Interactive Biology Portal',
-    rating: '5.0 ★ Essential'
   },
   {
     name: 'Biology for Life',
@@ -154,7 +123,6 @@ export const resourcesData: ResourceItem[] = [
     description: 'Complete IB Biology syllabus notes, lab guidance, and IA assessment criteria.',
     url: 'https://www.biologyforlife.com',
     meta: 'Biology Syllabus & IA Guide',
-    rating: '4.9 ★'
   },
   {
     name: 'Christos Nikolaidis Math AA Exercises',
@@ -163,7 +131,6 @@ export const resourcesData: ResourceItem[] = [
     description: 'Topic-by-topic IB Math AA HL/SL practice worksheets and fully worked solutions.',
     url: 'https://www.christosnikolaidis.com/en/maa-exercise/',
     meta: 'Topic-by-Topic Exercises',
-    rating: '5.0 ★ Essential'
   },
   {
     name: 'IB English Guys',
@@ -172,7 +139,6 @@ export const resourcesData: ResourceItem[] = [
     description: 'Official site for IB English Paper 1, Paper 2, and Individual Oral (IO) analysis guides.',
     url: 'https://ibenglishguys.com',
     meta: 'English A Masterclass',
-    rating: '5.0 ★ Top Rated'
   },
   {
     name: 'MyBib Referencing Generator',
@@ -181,7 +147,6 @@ export const resourcesData: ResourceItem[] = [
     description: 'Free automatic citation and bibliography generator for APA, MLA, and Chicago styles for IA/EE.',
     url: 'https://www.mybib.com',
     meta: 'IA & EE Citation Tool',
-    rating: '5.0 ★'
   },
   {
     name: 'IBLieve Student Community',
@@ -190,18 +155,16 @@ export const resourcesData: ResourceItem[] = [
     description: 'Student-led IB tips, subject advice, study strategies, and 45-scorer guides.',
     url: 'https://iblieve.org/',
     meta: 'Student Guidance Portal',
-    rating: '4.8 ★'
   },
 
-  // 100% Verified YouTube Channels (Tested 200 OK)
+  // YouTube channels
   {
     name: 'MSJChem',
     category: 'youtube',
     subject: 'Chemistry',
     description: 'Concise, 5-minute syllabus-aligned video explanations for every IB Chemistry topic.',
     url: 'https://www.youtube.com/@MSJChem',
-    meta: '100k+ Subscribers',
-    rating: '5.0 ★ Essential'
+    meta: 'Video lessons',
   },
   {
     name: 'Richard Thornley',
@@ -209,8 +172,7 @@ export const resourcesData: ResourceItem[] = [
     subject: 'Chemistry',
     description: 'Engaging, syllabus-by-syllabus video explanations for IB Chemistry SL & HL.',
     url: 'https://www.youtube.com/@ibchemvids',
-    meta: '120k+ Subscribers',
-    rating: '5.0 ★ Essential'
+    meta: 'Video lessons',
   },
   {
     name: 'Alex Lee (Mr. Lee Science)',
@@ -218,8 +180,7 @@ export const resourcesData: ResourceItem[] = [
     subject: 'Biology',
     description: 'Fast-paced, diagram-heavy video tutorials covering core & AHL IB Biology topics.',
     url: 'https://www.youtube.com/@misterleescience',
-    meta: '50k+ Subscribers',
-    rating: '4.9 ★'
+    meta: 'Video lessons',
   },
   {
     name: 'Cheryl Hickman',
@@ -227,8 +188,7 @@ export const resourcesData: ResourceItem[] = [
     subject: 'Biology',
     description: 'Slide-by-slide complete syllabus lectures covering IB Biology SL & HL.',
     url: 'https://www.youtube.com/@cherylhickman6386',
-    meta: '80k+ Subscribers',
-    rating: '4.9 ★'
+    meta: 'Video lessons',
   },
   {
     name: 'Tim Nance (Nancenotes)',
@@ -237,7 +197,6 @@ export const resourcesData: ResourceItem[] = [
     description: 'In-depth video analysis of literary works, Paper 1 skills, and English A concepts.',
     url: 'https://www.youtube.com/@Nancenotes',
     meta: 'English Lit Master',
-    rating: '4.9 ★'
   },
   {
     name: 'IB English Guys Channel',
@@ -245,17 +204,15 @@ export const resourcesData: ResourceItem[] = [
     subject: 'English A',
     description: 'Step-by-step video walkthroughs for Paper 1, Paper 2, and IO success.',
     url: 'https://www.youtube.com/channel/UCEZHU9lVH7h2p60KI-rEbDA',
-    meta: '60k+ Subscribers',
-    rating: '5.0 ★ Top Rated'
+    meta: 'Video lessons',
   },
   {
     name: 'Chris Doner Physics',
     category: 'youtube',
     subject: 'Physics',
-    description: 'The gold-standard video lecture series covering every topic in IB Physics.',
+    description: 'IB Physics video lessons organised by topic.',
     url: 'https://www.youtube.com/@donerphysics',
-    meta: '100k+ Subscribers',
-    rating: '5.0 ★ Essential'
+    meta: 'Video lessons',
   },
   {
     name: 'Prof. Varun Physics',
@@ -264,7 +221,6 @@ export const resourcesData: ResourceItem[] = [
     description: 'Detailed past-paper question walkthroughs and problem-solving techniques for IB Physics.',
     url: 'https://www.youtube.com/@profvarun',
     meta: 'Question Walkthroughs',
-    rating: '4.9 ★'
   },
   {
     name: 'Andy Masley Physics',
@@ -273,7 +229,6 @@ export const resourcesData: ResourceItem[] = [
     description: 'Conceptual breakdowns and topic summaries tailored for IB Physics SL & HL.',
     url: 'https://www.youtube.com/@AndyMasley',
     meta: 'Physics Breakdown',
-    rating: '4.8 ★'
   },
   {
     name: 'Online Science Tutor',
@@ -282,7 +237,6 @@ export const resourcesData: ResourceItem[] = [
     description: 'Syllabus-aligned video tutorials for IB Physics and Mathematics AA/AI.',
     url: 'https://www.youtube.com/@theonlinesciencetutor2720',
     meta: 'Math & Physics',
-    rating: '4.8 ★'
   },
   {
     name: 'ChemJungle',
@@ -291,7 +245,6 @@ export const resourcesData: ResourceItem[] = [
     description: 'High-energy, focused revision videos for IB Chemistry core topics.',
     url: 'https://www.youtube.com/@ChemJungle',
     meta: 'Chemistry Revision',
-    rating: '4.8 ★'
   },
   {
     name: 'TeacherRK',
@@ -300,7 +253,6 @@ export const resourcesData: ResourceItem[] = [
     description: 'Dedicated IB Business Management video lectures, case study analysis, and exam tips.',
     url: 'https://www.youtube.com/@TeacherRK',
     meta: 'Business Management',
-    rating: '4.9 ★'
   },
   {
     name: 'Jacob Clifford',
@@ -309,7 +261,6 @@ export const resourcesData: ResourceItem[] = [
     description: 'Macroeconomics and microeconomics summary videos, diagrams, and practice problems.',
     url: 'https://www.youtube.com/@JacobAClifford',
     meta: 'Econ Diagrams & Theory',
-    rating: '4.9 ★'
   },
   {
     name: 'EZ NOMICS',
@@ -318,27 +269,24 @@ export const resourcesData: ResourceItem[] = [
     description: 'Clear, concise IB Economics diagram tutorials and Paper 1/2/3 exam technique.',
     url: 'https://www.youtube.com/@EZNOMICS',
     meta: 'IB Econ Master',
-    rating: '4.9 ★'
   },
   {
     name: '3Blue1Brown',
     category: 'youtube',
     subject: 'Mathematics',
-    description: 'Stunning visual intuition for calculus, linear algebra, and advanced mathematics.',
+    description: 'Visual explanations of calculus, linear algebra, and other mathematics topics.',
     url: 'https://www.youtube.com/@3blue1brown',
-    meta: '6M+ Subscribers',
-    rating: '5.0 ★ Essential'
+    meta: 'Video lessons',
   },
 
-  // 100% Verified Quizlet Sets
+  // Quizlet sets
   {
     name: 'IB Chemistry SL/HL Core Definitions',
     category: 'quizlet',
     subject: 'Chemistry',
-    description: 'Full verified glossary of key definitions for Chemistry Paper 1 & Paper 2.',
+    description: 'Full glossary of key definitions for Chemistry Paper 1 & Paper 2.',
     url: 'https://quizlet.com/413495810/ib-chemistry-definitions-flash-cards/',
-    meta: 'Verified Terms',
-    rating: '4.9 ★'
+    meta: 'Key terms',
   },
   {
     name: 'IB Economics Key Terms & Concepts',
@@ -346,8 +294,7 @@ export const resourcesData: ResourceItem[] = [
     subject: 'Economics',
     description: 'Essential definitions for Micro, Macro, and Global economics units.',
     url: 'https://quizlet.com/492210086/ib-economics-definitions-flash-cards/',
-    meta: '210 Verified Terms',
-    rating: '4.9 ★'
+    meta: '210 Key terms',
   },
   {
     name: 'IB Biology Syllabus Vocabulary',
@@ -355,7 +302,6 @@ export const resourcesData: ResourceItem[] = [
     subject: 'Biology',
     description: 'Comprehensive flashcards covering core IB Biology definitions.',
     url: 'https://quizlet.com/209930773/ib-biology-definitions-flash-cards/',
-    meta: '340 Verified Terms',
-    rating: '4.8 ★'
+    meta: '340 Key terms',
   }
 ];

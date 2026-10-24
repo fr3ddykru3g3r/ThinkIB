@@ -1,4 +1,5 @@
 'use client';
+import { studyFetch } from '@/lib/resource-url';
 
 import React, { useCallback, useEffect, useMemo, useRef, useState, Suspense } from 'react';
 import Link from 'next/link';
@@ -8,6 +9,7 @@ import type { SATQuestion } from '@/lib/sat-types';
 import type { FullSATExam, FullSATExamModule } from '@/lib/sat';
 import { isAnswerCorrect, formatCorrectAnswer, isSPR } from '@/lib/sat-grading';
 import { scoreExam, type ScoredItem, type SATScoreReport } from '@/lib/sat-scoring';
+import { saveSession, makeSessionId } from '@/lib/practice-history';
 import { recordAttempts, saveMistake, saveCompletedExam, getExamHistory, getSeenIds, markSeen, ExamHistoryEntry } from '@/lib/sat-storage';
 import QuestionBody from '@/app/components/sat/QuestionBody';
 import { Rationale } from '@/app/components/sat/SATContent';
@@ -173,7 +175,7 @@ function SATExamInner() {
       // Module 1 -> route the section's Module 2 from Module 1's scored items
       if (mod.moduleNumber === 1) {
         try {
-          const res = await fetch('/api/sat/exam', {
+          const res = await studyFetch('/api/sat/exam', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -271,24 +273,33 @@ function SATExamInner() {
           if (correct) d[0]++;
         }
         out.push({ q, module: m, answer, correct, flagged: !!flags[keyOf(m, q)], seconds: times.current[keyOf(m, q)] || 0 });
-        if (!correct) {
+        if (!correct && !isPre) {
           saveMistake({ questionId: q.questionId, section: m.section, domain: q.domain, skill: q.skill, difficulty: q.difficulty, correctAnswer: q.correctAnswer, userAnswer: answer || '[Omitted]' });
         }
       }
     }
     markSeen(out.map((r) => r.q.questionId));
-    recordAttempts(out.filter((r) => !r.q.pretest).map((r) => ({ section: r.module.section, domain: r.q.domain, skill: r.q.skill, correct: r.correct })));
+    recordAttempts(out.filter((r) => !r.q.pretest && !r.q.isPretest).map((r) => ({ section: r.module.section, domain: r.q.domain, skill: r.q.skill, correct: r.correct })));
     const rep = scoreExam(rw, math, finalExam.difficultyMode || difficultyMode);
     const avg = (sec: 'math' | 'rw') => {
       const list = out.filter((r) => (r.module.section === 'math') === (sec === 'math'));
       return list.length ? Math.round(list.reduce((a, r) => a + r.seconds, 0) / list.length) : 0;
     };
+    const completedSessionId = makeSessionId();
     saveCompletedExam({
+      reviewSessionId: completedSessionId,
       totalScore: rep.totalScore, rwScore: rep.rwScore, mathScore: rep.mathScore, percentile: rep.percentile,
       rwCorrect: rep.rwCorrect, totalRW: rep.totalRW, mathCorrect: rep.mathCorrect, totalMath: rep.totalMath,
       isRWHard: finalExam.modules[1]?.tier === 'hard', isMathHard: finalExam.modules[3]?.tier === 'hard',
       avgTimeRWSeconds: avg('rw'), avgTimeMathSeconds: avg('math'), rwRange: rep.rwRange, mathRange: rep.mathRange, domains,
     });
+    void saveSession({
+      id: completedSessionId, createdAt: new Date().toISOString(), kind: 'sat-exam',
+      title: 'Digital SAT practice test', score: rep.totalScore, maxScore: 1600,
+      correct: out.filter(r => r.correct && !r.q.pretest && !r.q.isPretest).length,
+      total: out.filter(r => !r.q.pretest && !r.q.isPretest).length,
+      questions: out.map(r => ({id:r.q.questionId,prompt:r.q.prompt,choices:r.q.choices,answer:r.answer,correctAnswer:r.q.correctAnswer,correct:r.correct,explanation:r.q.rationale,topic:r.q.domain,seconds:r.seconds,unscored:!!(r.q.pretest||r.q.isPretest),sat:r.q})),
+    }).catch(() => window.alert('Your test is complete, but this browser could not save its review. Keep this page open to review your answers.'));
     setHistory(getExamHistory());
     setReport(rep);
     setRows(out);
@@ -305,7 +316,7 @@ function SATExamInner() {
         difficultyMode,
         timerMode,
       };
-      const res = await fetch('/api/sat/exam', {
+      const res = await studyFetch('/api/sat/exam', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'new_exam', seenIds: getSeenIds(), config }),
@@ -800,7 +811,7 @@ function SATExamInner() {
           <div style={{ textAlign: 'center' }}>
             <span className="tech-label">TOTAL</span>
             <div style={{ fontFamily: 'var(--font-display)', fontSize: '4.2rem', fontWeight: 700, lineHeight: 1.1 }}>{report.totalScore}</div>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.78rem', color: 'var(--muted)' }}>400–1600 · about {ord(report.percentile)} percentile</span>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.78rem', color: 'var(--muted)' }}>Practice estimate · not an official SAT score</span>
           </div>
           {[['READING & WRITING', report.rwScore, report.rwRange, report.rwCorrect, report.totalRW, tiers.rw], ['MATH', report.mathScore, report.mathRange, report.mathCorrect, report.totalMath, tiers.math]].map(([label, sc, rg, c, t, tier]) => (
             <div key={label as string} style={{ textAlign: 'center' }}>

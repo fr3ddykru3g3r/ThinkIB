@@ -1,18 +1,18 @@
-bio_psych
-chem
-bm_econ
-history
-englisha
-InThinking Math mocks
-mathanalysis
-assets
-css
-img
-js
-index.html
-webcopy-origin.txt
-HH015.doc
-scripts
+/bio_psych
+/chem
+/bm_econ
+/history
+/englisha
+/InThinking Math mocks
+/mathanalysis
+/assets
+/css
+/img
+/js
+/index.html
+/webcopy-origin.txt
+/HH015.doc
+/scripts
 .env
 public/vault/past-papers/
 public/vault/physics-topicals/
@@ -20,3 +20,11 @@ public/vault/chemistry-topicals/
 public/vault/math-topicals/
 public/vault/ee-guides/ee-hodder-2025-hoang.pdf
 public/vault/ee-guides/ee-oxford-2025-lekanides.pdf
+
+.env*
+/tests
+
+# Public assets are served by the existing Firebase CDN copy.
+/public/vault/
+/public/sat/q/
+/public/local-vault/

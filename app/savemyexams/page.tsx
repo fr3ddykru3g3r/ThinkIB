@@ -1,4 +1,5 @@
 'use client';
+import PDFReader from '@/app/components/PDFReader';
 
 import React, { useState, useMemo } from 'react';
 import { Folder, FileText, Search, Download, ExternalLink, ChevronRight, Eye, ArrowLeft } from 'lucide-react';
@@ -315,7 +316,7 @@ export default function SaveMyExamsPage() {
                   </a>
                 </div>
               </div>
-              <iframe src={getCdnUrl(selectedNote.path)} className="viewer-iframe" title="SaveMyExams Notes Viewer" />
+              <PDFReader src={getCdnUrl(selectedNote.path)} title="SaveMyExams Notes Viewer"/>
             </div>
           ) : (
             <div className="viewer-placeholder">

@@ -1,4 +1,5 @@
 'use client';
+import PDFReader from '@/app/components/PDFReader';
 
 import React, { useState, useMemo, useEffect, Suspense } from 'react';
 import Link from 'next/link';
@@ -406,7 +407,7 @@ function PastPapersBrowserContent() {
   }, [currentTopicalData, activeThemeFilter, topicalSearch, hlOnlyFilter, currentConfig]);
 
   return (
-    <div>
+    <div className="papers-page">
       {/* Header Panel */}
       <div className="panel" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.5rem' }}>
         <div>
@@ -465,8 +466,8 @@ function PastPapersBrowserContent() {
             style={{
               fontSize: '0.7rem',
               fontWeight: 800,
-              background: activeTab === 'topical' ? '#ffffff' : 'rgba(9, 105, 218, 0.12)',
-              color: activeTab === 'topical' ? '#0969da' : '#0969da',
+              background: 'transparent',
+              color: 'inherit',
               padding: '1px 6px',
               borderRadius: '10px'
             }}
@@ -1218,117 +1219,11 @@ function PastPapersBrowserContent() {
       {/* ========================================================================= */}
       {activeTab === 'archive' && (
         <>
-          {/* Grid Inputs & Filters */}
-          <div className="panel" style={{ marginBottom: '1.5rem' }}>
-            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '1.25rem' }}>
-              <div className="search-wrapper">
-                <Search size={18} style={{ position: 'absolute', left: '1rem', color: 'var(--ink-faint)', pointerEvents: 'none' }} />
-                <input
-                  type="text"
-                  placeholder="Search 3,786 past papers... (e.g. Chemistry HL TZ1)"
-                  className="search-input"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
-              </div>
-            </div>
-
-            <div style={{ display: 'flex', gap: '0.8rem', flexWrap: 'wrap', alignItems: 'center' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
-                <span className="tech-label">Subject</span>
-                <select
-                  value={subjectFilter}
-                  onChange={(e) => setSubjectFilter(e.target.value)}
-                  className="select-input"
-                  style={{ width: '190px' }}
-                >
-                  {IB_SUBJECTS.map((sub, idx) => (
-                    <option key={idx} value={sub.value}>{sub.label}</option>
-                  ))}
-                </select>
-              </div>
-
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
-                <span className="tech-label">Year</span>
-                <select
-                  value={yearFilter}
-                  onChange={(e) => setYearFilter(e.target.value)}
-                  className="select-input"
-                  style={{ width: '130px' }}
-                >
-                  {YEARS.map((yr, idx) => (
-                    <option key={idx} value={yr.value}>{yr.label}</option>
-                  ))}
-                </select>
-              </div>
-
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
-                <span className="tech-label">Paper Type</span>
-                <select
-                  value={paperTypeFilter}
-                  onChange={(e) => setPaperTypeFilter(e.target.value)}
-                  className="select-input"
-                  style={{ width: '190px' }}
-                >
-                  {PAPER_TYPES.map((type, idx) => (
-                    <option key={idx} value={type.value}>{type.label}</option>
-                  ))}
-                </select>
-              </div>
-
-              <button
-                type="button"
-                onClick={() => setShowBookletModal(true)}
-                style={{
-                  alignSelf: 'flex-end',
-                  padding: '0.55rem 0.95rem',
-                  borderRadius: '8px',
-                  border: '1px solid var(--border)',
-                  background: 'var(--surface)',
-                  fontSize: '0.82rem',
-                  fontWeight: 600,
-                  color: 'var(--ink)',
-                  cursor: 'pointer',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                }}
-              >
-                <BookOpen size={14} style={{ color: 'var(--accent)' }} /> Official Formula Booklets
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setShowCommandTermsModal(true)}
-                style={{
-                  alignSelf: 'flex-end',
-                  padding: '0.55rem 0.95rem',
-                  borderRadius: '8px',
-                  border: '1px solid var(--border)',
-                  background: 'var(--surface)',
-                  fontSize: '0.82rem',
-                  fontWeight: 600,
-                  color: 'var(--ink)',
-                  cursor: 'pointer',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                }}
-              >
-                <HelpCircle size={14} style={{ color: 'var(--rust)' }} /> Command Terms & Rules
-              </button>
-
-              {isSearching && (
-                <button
-                  onClick={clearFilters}
-                  className="filter-btn active"
-                  style={{ alignSelf: 'flex-end', padding: '0.5rem 1rem' }}
-                >
-                  Clear Filters
-                </button>
-              )}
-            </div>
-          </div>
+          <section className="paper-search" aria-label="Find past papers">
+            <div className="paper-search-top"><label><span>Search the archive</span><div className="paper-search-input"><Search size={18} aria-hidden="true"/><input type="search" placeholder="Subject, level, session, or paper…" value={searchQuery} onChange={e=>setSearchQuery(e.target.value)}/></div></label></div>
+            <div className="paper-search-filters"><label><span>Subject</span><select value={subjectFilter} onChange={e=>setSubjectFilter(e.target.value)}>{IB_SUBJECTS.map((sub,i)=><option key={i} value={sub.value}>{sub.label}</option>)}</select></label><label><span>Year</span><select value={yearFilter} onChange={e=>setYearFilter(e.target.value)}>{YEARS.map((year,i)=><option key={i} value={year.value}>{year.label}</option>)}</select></label><label><span>Paper type</span><select value={paperTypeFilter} onChange={e=>setPaperTypeFilter(e.target.value)}>{PAPER_TYPES.map((type,i)=><option key={i} value={type.value}>{type.label}</option>)}</select></label>{isSearching&&<button className="btn btn-ref-outline" onClick={clearFilters}>Reset filters</button>}</div>
+            <div className="paper-search-bottom"><p role="status">{isSearching?`${filteredSearch.length} matching papers`:'Search above, or browse the folders below.'}</p><details><summary>Reference sheets</summary><div><button className="btn btn-ref-outline" onClick={()=>setShowBookletModal(true)}>Formula booklet</button><button className="btn btn-ref-outline" onClick={()=>setShowCommandTermsModal(true)}>Command terms</button></div></details></div>
+          </section>
 
           {/* Directory Split Screen */}
           <div className="split-screen">
@@ -1365,7 +1260,7 @@ function PastPapersBrowserContent() {
                           >
                             <div style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', paddingRight: '0.5rem' }}>
                               <span style={{ fontSize: '0.9rem', display: 'block', fontWeight: 600, color: isActive ? 'var(--earth)' : 'var(--ink)' }}>
-                                {file.name.replace(/_/g, ' ')}
+                                {file.name.replace(/\.pdf$/i, '').replace(/_/g, ' ')}
                               </span>
                               <span style={{ fontSize: '0.72rem', color: 'var(--ink-faint)', letterSpacing: '0.02em' }}>
                                 {file.path.slice(0, -1).join(' › ').replace(/_/g, ' ')}
@@ -1474,7 +1369,7 @@ function PastPapersBrowserContent() {
                       </a>
                     </div>
                   </div>
-                  <iframe src={selectedFile} className="viewer-iframe" title="PDF Viewer" />
+                  <PDFReader src={selectedFile} title="PDF Viewer"/>
                 </div>
               ) : (
                 <div className="viewer-placeholder">

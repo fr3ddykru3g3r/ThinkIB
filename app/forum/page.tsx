@@ -1,4 +1,5 @@
 'use client';
+import { studyFetch } from '@/lib/resource-url';
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
@@ -62,7 +63,7 @@ export default function ForumPage() {
       if (channel !== 'all') url.searchParams.set('channel', channel);
       if (search) url.searchParams.set('search', search);
 
-      const res = await fetch(url.toString());
+      const res = await studyFetch(url.toString());
       const data = await res.json();
       if (data.success) {
         setThreads(data.threads);
@@ -82,7 +83,7 @@ export default function ForumPage() {
       const url = new URL('/api/forum/submissions', window.location.origin);
       if (submissionFilter !== 'all') url.searchParams.set('status', submissionFilter);
 
-      const res = await fetch(url.toString());
+      const res = await studyFetch(url.toString());
       const data = await res.json();
       if (data.success) {
         setSubmissions(data.submissions);
@@ -109,7 +110,7 @@ export default function ForumPage() {
     setSelectedThread(t);
     setLoadingReplies(true);
     try {
-      const res = await fetch(`/api/forum/threads/${t.id}`);
+      const res = await studyFetch(`/api/forum/threads/${t.id}`);
       const data = await res.json();
       if (data.success) {
         setThreadReplies(data.replies);
@@ -125,7 +126,7 @@ export default function ForumPage() {
   const handleUpvote = async (threadId: string, e: React.MouseEvent) => {
     e.stopPropagation();
     try {
-      const res = await fetch(`/api/forum/threads/${threadId}/upvote`, { method: 'POST' });
+      const res = await studyFetch(`/api/forum/threads/${threadId}/upvote`, { method: 'POST' });
       const data = await res.json();
       if (data.success) {
         setThreads((prev) =>
@@ -148,7 +149,7 @@ export default function ForumPage() {
     setSubmittingReply(true);
 
     try {
-      const res = await fetch(`/api/forum/threads/${selectedThread.id}`, {
+      const res = await studyFetch(`/api/forum/threads/${selectedThread.id}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -193,7 +194,7 @@ export default function ForumPage() {
         .map((s) => s.trim())
         .filter(Boolean);
 
-      const res = await fetch('/api/forum/threads', {
+      const res = await studyFetch('/api/forum/threads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -232,7 +233,7 @@ export default function ForumPage() {
     setCurating(true);
     setCurateMessage(null);
     try {
-      const res = await fetch('/api/forum/curate', { method: 'POST' });
+      const res = await studyFetch('/api/forum/curate', { method: 'POST' });
       const data = await res.json();
       if (data.success) {
         setCurateMessage(

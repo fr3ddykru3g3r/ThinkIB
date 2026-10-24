@@ -1,10 +1,12 @@
+import { siteBrand } from '@/lib/site-brand';
 import Link from 'next/link';
+import { Tex } from './shared';
 import { TOPICS, ALL_PROBLEMS, MOCK_COUNT } from '@/lib/amc12';
 import { TopicProgress } from './shared';
 import { card, pill } from './styles';
 
 export const metadata = {
-  title: 'AMC 12 — Learn & Practise | The Archive',
+  title: `AMC 12 — Learn & Practise | ${siteBrand.name}`,
   description: 'AMC 12 concepts, worked examples, topic practice and timed 25-question mock papers.',
 };
 
@@ -17,9 +19,10 @@ export default function AMC12Hub() {
       </h1>
       <p style={{ color: 'var(--muted)', maxWidth: 640, fontSize: '1.05rem' }}>
         Learn each topic from the ground up, study worked examples step by step, then practise by topic
-        or sit a full timed paper. {ALL_PROBLEMS.length} original problems, each answer checked by computation.
+        or sit a full timed paper. {ALL_PROBLEMS.length} original problems, with worked solutions. The method workshops add 24 guided examples across all 12 topics.
       </p>
 
+      <section className="amc-study-route"><span className="section-label">Start here</span><h2>Know what to practise next.</h2><p>Use the eight-week route to plan your sessions, or open a topic and work through its method workshop. Each workshop explains why the technique works, gives two fully worked examples, and includes a check or variation. Saved attempts are available in your history.</p><div className="intro-links"><Link href="/amc12/study-plan" className="btn btn-ref-primary">Read the study plan →</Link><Link href="/history" className="text-link">Review previous practice →</Link></div></section>
       {/* Practice modes */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem', margin: '2.25rem 0 3rem' }}>
         <div style={{ ...card, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
@@ -66,7 +69,7 @@ export default function AMC12Hub() {
         {TOPICS.map((t, i) => (
           <Link key={t.id} href={`/amc12/${t.id}`} style={{ ...card, display: 'flex', flexDirection: 'column', gap: '0.6rem' }} className="amc-topic-card">
             <span className="tech-label" style={{ color: 'var(--accent)', fontSize: '0.72rem' }}>{String(i + 1).padStart(2, '0')}</span>
-            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.45rem', fontWeight: 500, lineHeight: 1.15 }}>{t.title}</h3>
+            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.45rem', fontWeight: 500, lineHeight: 1.15 }}><Tex>{t.title}</Tex></h3>
             <p style={{ color: 'var(--muted)', fontSize: '0.88rem', flex: 1 }}>{t.summary}</p>
             <span style={{ fontSize: '0.78rem', color: 'var(--muted)' }}>
               {t.concepts.length} lessons · {t.workedExamples.length} examples · {t.problems.length} problems{t.videos.length ? ` · ${t.videos.length} videos` : ''}

@@ -1,0 +1,422 @@
+{
+  "algebra": {
+    "focus": "Choose a useful expression before choosing an equation.",
+    "method": "An AMC algebra problem often asks for a symmetric expression rather than for the original variable. Solving for the variable may introduce radicals that cancel later. First name the requested expression and look for an identity or a recurrence that reaches it directly.\n\nWhen square roots appear, isolate them only after writing the domain. Squaring an equation preserves every original solution but can introduce extra ones. A second independent relation, such as the difference of the radicands, can avoid squaring altogether.",
+    "checks": [
+      "Write the domain before cancelling, dividing, or squaring.",
+      "If the target contains powers and reciprocals, build a recurrence rather than solving a quadratic.",
+      "Check every candidate in the original equation, not just the squared equation."
+    ],
+    "examples": [
+      {
+        "title": "A reciprocal-power recurrence",
+        "problem": "If $x+1/x=3$, find $x^5+1/x^5$.",
+        "steps": [
+          "Put $S_n=x^n+x^{-n}$. Then $S_0=2$ and $S_1=3$.",
+          "Multiply $S_n$ by $x+x^{-1}$: the four terms regroup into $S_{n+1}+S_{n-1}$.",
+          "Therefore $S_{n+1}=3S_n-S_{n-1}$. Compute $S_2=7$, $S_3=18$, $S_4=47$.",
+          "The next term is $S_5=3(47)-18=123$. No value of $x$ was needed."
+        ],
+        "answer": "123",
+        "transfer": "Try $x+1/x=4$ and ask for $x^3+1/x^3$. The same recurrence gives $64-12=52$."
+      },
+      {
+        "title": "Two radicals, two relations",
+        "problem": "Solve $\\sqrt{x+5}+\\sqrt{x-4}=9$ over the real numbers.",
+        "steps": [
+          "The domain is $x\\ge4$. Let $a=\\sqrt{x+5}$ and $b=\\sqrt{x-4}$, so $a,b\\ge0$.",
+          "We know $a+b=9$ and $a^2-b^2=(x+5)-(x-4)=9$.",
+          "Factor the second relation: $(a-b)(a+b)=9$, hence $a-b=1$.",
+          "Solving gives $a=5$ and $b=4$. Thus $x=20$. Substitution gives $5+4=9$."
+        ],
+        "answer": "20",
+        "transfer": "The difference-of-squares shortcut works because the radicands differ by a constant. If the sum were zero, dividing by it would not be valid."
+      }
+    ]
+  },
+  "polynomials": {
+    "focus": "Use the polynomial as information about its roots.",
+    "method": "A polynomial identity holds for every input; a root equation holds only at a root. Keeping those roles separate prevents many invalid substitutions. To find a remainder modulo a quadratic, reduce powers using that quadratic instead of performing a long division with thousands of terms.\n\nFor expressions involving all roots, Vieta is the first tool. If denominators contain shifted roots, the logarithmic-derivative identity converts a sum of reciprocals into two polynomial evaluations. It follows by differentiating the product form, so it does not depend on finding the individual roots.",
+    "checks": [
+      "A remainder modulo a degree-two polynomial must have degree at most one.",
+      "Use the derivative identity only at an input where the polynomial is nonzero.",
+      "Count repeated roots with their multiplicities."
+    ],
+    "examples": [
+      {
+        "title": "Reduce an enormous power",
+        "problem": "Find the remainder of $x^{2026}+2x^{1013}+3$ on division by $x^2+x+1$.",
+        "steps": [
+          "Work modulo $x^2+x+1$. The relation $x^2\\equiv-x-1$ gives $x^3\\equiv1$.",
+          "Because $2026\\equiv1\\pmod3$ and $1013\\equiv2\\pmod3$, reduce the powers to $x$ and $x^2$.",
+          "The expression is congruent to $x+2x^2+3$.",
+          "Substitute $x^2\\equiv-x-1$ to obtain $1-x$, already of degree less than two."
+        ],
+        "answer": "$1-x$",
+        "transfer": "Test the method on $x^{2025}-1$: its remainder is zero. The cycle is a consequence of this divisor, not a rule for all quadratics."
+      },
+      {
+        "title": "A sum over roots without solving",
+        "problem": "If $r_1,r_2,r_3$ are the roots of $P(x)=x^3-6x^2+11x-6$, find $\\sum_{i=1}^3\\frac1{r_i+1}$.",
+        "steps": [
+          "For a product $P(x)=\\prod(x-r_i)$, the product rule gives $P^{\\prime}(x)/P(x)=\\sum1/(x-r_i)$.",
+          "At $x=-1$, each denominator is $-1-r_i$, which is the negative of the denominator we need.",
+          "Compute $P(-1)=-24$ and $P^{\\prime}(-1)=26$.",
+          "The desired sum is $-26/(-24)=13/12$."
+        ],
+        "answer": "$13/12$",
+        "transfer": "As a check, this polynomial has roots $1,2,3$, so the sum is $1/2+1/3+1/4$. For a harder polynomial the same identity still avoids solving it."
+      }
+    ]
+  },
+  "inequalities": {
+    "focus": "Find the equality case before doing the algebra.",
+    "method": "A proposed bound is incomplete until its equality conditions are checked against the constraints. For a fixed sum, balanced variables often minimise a sum of squares or reciprocals. That is a clue, not a proof: use a square, Cauchy–Schwarz, or AM–GM to certify the bound.\n\nIn rational cyclic expressions, try Cauchy–Schwarz in the form $\\sum a_i^2/b_i\\ge(\\sum a_i)^2/(\\sum b_i)$ with positive denominators. The condition on the denominators matters. Applying it to arbitrary signed numbers is invalid.",
+    "checks": [
+      "State positivity wherever you use AM–GM or divide by a variable.",
+      "Record both the bound and the conditions for equality.",
+      "A numerical example can disprove a bound; it cannot prove one."
+    ],
+    "examples": [
+      {
+        "title": "A fixed-sum reciprocal bound",
+        "problem": "For positive $x,y$ with $x+y=10$, find the minimum of $1/x+1/y$.",
+        "steps": [
+          "Combine the fractions: $1/x+1/y=10/(xy)$.",
+          "The identity $(x-y)^2\\ge0$ implies $(x+y)^2\\ge4xy$, so $xy\\le25$.",
+          "The numerator is positive and fixed. A larger positive denominator makes the fraction smaller.",
+          "Thus $10/(xy)\\ge10/25=2/5$, attained at $x=y=5$."
+        ],
+        "answer": "$2/5$",
+        "transfer": "If the variables were allowed to be negative or zero, the denominator argument would require a fresh domain analysis."
+      },
+      {
+        "title": "A cyclic quotient",
+        "problem": "For positive $x+y+z=1$, find the minimum of $x^2/y+y^2/z+z^2/x$.",
+        "steps": [
+          "Apply Cauchy–Schwarz to $x/\\sqrt y$, $y/\\sqrt z$, $z/\\sqrt x$ paired with $\\sqrt y$, $\\sqrt z$, $\\sqrt x$.",
+          "It gives $(x^2/y+y^2/z+z^2/x)(y+z+x)\\ge(x+y+z)^2$.",
+          "The sum constraint makes the lower bound exactly $1$.",
+          "The admissible choice $x=y=z=1/3$ gives three terms of $1/3$, so the bound is attained."
+        ],
+        "answer": "1",
+        "transfer": "For $x+y+z=s>0$, the same argument gives a minimum of $s$. Scaling is a useful check on the units of a claimed bound."
+      }
+    ]
+  },
+  "functions-logs": {
+    "focus": "Treat domains and inverse operations as part of the solution.",
+    "method": "An algebraic expression can look valid after a transformation even when the original function was not defined. Logarithms need positive arguments; denominators cannot vanish; inverse functions require an appropriate branch. Write these restrictions before simplifying.\n\nWhen several logarithm bases are powers of the same number, a single new variable often makes the problem linear. For function composition, make a small input-output table before expanding: order matters, and $f(g(x))$ is usually different from $g(f(x))$.",
+    "checks": [
+      "Write each logarithm argument as a strict inequality.",
+      "Convert bases consistently before combining coefficients.",
+      "After solving the transformed equation, recheck the original domain."
+    ],
+    "examples": [
+      {
+        "title": "Three bases, one variable",
+        "problem": "Solve $\\log_2x+\\log_4x+\\log_8x=11$.",
+        "steps": [
+          "The domain is $x>0$. Put $t=\\log_2x$.",
+          "Change of base gives $\\log_4x=t/2$ and $\\log_8x=t/3$.",
+          "Then $(1+1/2+1/3)t=11$, so $11t/6=11$ and $t=6$.",
+          "Therefore $x=2^6=64$. The three logarithms are $6,3,2$, which sum to $11$."
+        ],
+        "answer": "64",
+        "transfer": "The coefficients come from the exponents in the bases. Replacing base $8$ by base $16$ changes the last coefficient to $1/4$."
+      },
+      {
+        "title": "An extraneous logarithmic solution",
+        "problem": "Solve $\\log_2(x-1)+\\log_2(x-3)=3$.",
+        "steps": [
+          "Both arguments must be positive, so $x>3$.",
+          "Combine logarithms to obtain $\\log_2((x-1)(x-3))=3$.",
+          "Thus $(x-1)(x-3)=8$, or $x^2-4x-5=0$. The algebraic candidates are $5$ and $-1$.",
+          "Only $5$ lies in the original domain. At $5$ the logs are $2$ and $1$."
+        ],
+        "answer": "5",
+        "transfer": "The product of two negative quantities can be positive even though neither original logarithm exists. That is why the domain must be retained."
+      }
+    ]
+  },
+  "sequences-series": {
+    "focus": "Look for a change of variable that removes the recurrence.",
+    "method": "A first-order recurrence with an additive constant often has a fixed point. Subtracting that fixed point leaves a geometric sequence. This is usually cleaner than expanding many terms and trying to recognise a pattern.\n\nFor sums of rational terms, inspect adjacent factors in the denominator. Partial fractions can turn the summand into the difference of consecutive terms. Write the first and last few terms explicitly: the boundary terms, rather than the middle, determine a telescoping sum.",
+    "checks": [
+      "Check whether indexing begins at zero or one.",
+      "Verify a proposed formula against the initial value and the recurrence.",
+      "After telescoping, check the last uncancelled denominator."
+    ],
+    "examples": [
+      {
+        "title": "Shift a recurrence",
+        "problem": "Let $a_1=1$ and $a_{n+1}=2a_n+3$. Find $a_{10}$.",
+        "steps": [
+          "The fixed point satisfies $L=2L+3$, hence $L=-3$.",
+          "Put $b_n=a_n+3$. Then $b_{n+1}=2b_n$ and $b_1=4$.",
+          "Therefore $b_n=4\\cdot2^{n-1}=2^{n+1}$, giving $a_n=2^{n+1}-3$.",
+          "At $n=10$, the value is $2048-3=2045$. Check $n=1$: $4-3=1$."
+        ],
+        "answer": "2045",
+        "transfer": "If the multiplier were $1$, there would be no such fixed-point division and the recurrence would be arithmetic instead."
+      },
+      {
+        "title": "Keep the endpoints",
+        "problem": "Find $\\sum_{k=1}^{20}1/(k(k+1))$.",
+        "steps": [
+          "Split each summand as $1/(k(k+1))=1/k-1/(k+1)$.",
+          "The first terms are $(1-1/2)+(1/2-1/3)+(1/3-1/4)$.",
+          "Every internal fraction cancels. The final term contributes $1/20-1/21$.",
+          "The sum is $1-1/21=20/21$."
+        ],
+        "answer": "$20/21$",
+        "transfer": "For a sum starting at $k=m$ and ending at $n$, the same cancellation leaves $1/m-1/(n+1)$."
+      }
+    ]
+  },
+  "number-theory": {
+    "focus": "Separate divisibility information from size information.",
+    "method": "Congruences describe residue classes, not unique integers. After solving a system, identify the common period and then impose a range or a smallest-positive condition. For exponent problems, find the cycle before reducing the exponent.\n\nA theorem such as Fermat’s little theorem needs its hypotheses: the modulus must be prime and the base must be coprime to it. A shorter cycle may be visible directly, and using it can be faster than applying a larger general theorem.",
+    "checks": [
+      "A residue calculation should end in a representative between zero and the modulus minus one.",
+      "Do not cancel a factor modulo $m$ unless it is invertible modulo $m$, or handle the common divisor explicitly.",
+      "Check a CRT candidate in every original congruence."
+    ],
+    "examples": [
+      {
+        "title": "Use the short cycle",
+        "problem": "Find the remainder of $5^{2026}$ when divided by $13$.",
+        "steps": [
+          "Notice $5^2=25\\equiv-1\\pmod{13}$.",
+          "Then $5^4\\equiv1$, so powers repeat with a period dividing four.",
+          "Because $2026=4(506)+2$, the power is congruent to $5^2$.",
+          "The result is $-1\\equiv12\\pmod{13}$."
+        ],
+        "answer": "12",
+        "transfer": "The next power has remainder $12\\cdot5\\equiv8\\pmod{13}$. Consecutive powers provide a quick check on the cycle."
+      },
+      {
+        "title": "Build a CRT solution in stages",
+        "problem": "Find the least positive $x$ such that $x\\equiv2\\pmod5$, $x\\equiv3\\pmod7$, and $x\\equiv4\\pmod9$.",
+        "steps": [
+          "Write $x=5a+2$. The condition modulo seven becomes $5a\\equiv1$, so $a\\equiv3\\pmod7$.",
+          "Hence $a=7b+3$ and $x=35b+17$.",
+          "Modulo nine, this is $8b+8\\equiv4$, or $8b\\equiv5$. Since $8^{-1}\\equiv8$, we get $b\\equiv4\\pmod9$.",
+          "Thus $x=157+315c$. The least positive value is $157$, which has the required three remainders."
+        ],
+        "answer": "157",
+        "transfer": "The period is $5\\cdot7\\cdot9=315$ because the moduli are pairwise coprime. Every other solution differs by a multiple of $315$."
+      }
+    ]
+  },
+  "counting": {
+    "focus": "Decide what counts as the same outcome.",
+    "method": "Before choosing a binomial coefficient, state whether the objects and boxes are labelled and whether order matters. The same words can describe very different sample spaces. If a direct count has awkward restrictions, look for a bijection to an unrestricted problem or count the complement.\n\nInclusion–exclusion is an accounting rule. Write what each event means, then add and subtract intersections with the correct sign. Small cases are useful tests: a formula that fails for two objects cannot become correct merely because the final number is large.",
+    "checks": [
+      "Choose the objects before arranging them unless the stages genuinely depend on each other.",
+      "For casework, prove the cases cover all outcomes and do not overlap.",
+      "Inclusion–exclusion terms count labelled missing categories, so include their binomial factors."
+    ],
+    "examples": [
+      {
+        "title": "No adjacent selections",
+        "problem": "How many ways can three numbers be selected from $1,2,\\ldots,10$ with no two consecutive?",
+        "steps": [
+          "Write the selected numbers as $a<b<c$ with $b\\ge a+2$ and $c\\ge b+2$.",
+          "Map the triple to $(a,b-1,c-2)$. These are three distinct increasing numbers in $1,\\ldots,8$.",
+          "The map is reversible: add zero, one, and two to the entries of any increasing triple from eight.",
+          "Therefore the count is $\\binom83=56$."
+        ],
+        "answer": "56",
+        "transfer": "On a circle, the first and last positions are adjacent too. The linear compression formula does not automatically handle that extra restriction."
+      },
+      {
+        "title": "Use every labelled box",
+        "problem": "Five distinct students are assigned to three labelled teams. How many assignments leave no team empty?",
+        "steps": [
+          "Without restrictions, each student has three choices, giving $3^5=243$ assignments.",
+          "Choose one team to be empty in three ways; all students then choose between the other two, giving $3\\cdot2^5=96$.",
+          "Those subtractions remove assignments with two empty teams twice. Add back $\\binom32\\cdot1^5=3$.",
+          "The count is $243-96+3=150$."
+        ],
+        "answer": "150",
+        "transfer": "The teams are labelled. If the task asked for an unordered partition into three nonempty groups, divide by $3!$ to obtain $25$."
+      }
+    ]
+  },
+  "probability": {
+    "focus": "Build the conditional sample space before dividing.",
+    "method": "Conditioning discards outcomes that do not satisfy the information given. It can destroy independence even when the original experiment used independent trials. List the remaining equally likely outcomes when possible; otherwise use $P(A\\mid B)=P(A\\cap B)/P(B)$.\n\nA count of favourable outcomes over total outcomes is valid only when those outcomes are equally likely. For sampling without replacement, either use ordered draws with changing denominators or use unordered subsets consistently. Mixing the two creates missing factors.",
+    "checks": [
+      "State the conditioning event in words and symbols.",
+      "Check that the denominator is the probability of the information actually given.",
+      "For expectations of counts, indicator variables avoid unnecessary independence assumptions."
+    ],
+    "examples": [
+      {
+        "title": "Conditioning on a dice sum",
+        "problem": "Two fair dice are rolled. Given that their sum is at least $10$, what is the probability of a double?",
+        "steps": [
+          "Treat outcomes as ordered pairs. Sum ten gives $(4,6),(5,5),(6,4)$.",
+          "Sum eleven gives $(5,6),(6,5)$; sum twelve gives $(6,6)$.",
+          "These six ordered outcomes are equally likely after conditioning.",
+          "Two are doubles, so the conditional probability is $2/6=1/3$."
+        ],
+        "answer": "$1/3$",
+        "transfer": "Before conditioning the probability of a double is $1/6$. Keeping that original denominator would ignore the information about the sum."
+      },
+      {
+        "title": "At least one is not exactly one",
+        "problem": "A bag has three red and two blue balls. Two are drawn in order without replacement. Given that at least one is red, what is the probability that the first is red?",
+        "steps": [
+          "Let $A$ be first-red and $B$ be at-least-one-red. Every outcome in $A$ is already in $B$.",
+          "The complement of $B$ is two blue balls, with probability $(2/5)(1/4)=1/10$. Thus $P(B)=9/10$.",
+          "$P(A\\cap B)=P(A)=3/5$.",
+          "Therefore $P(A\\mid B)=(3/5)/(9/10)=2/3$."
+        ],
+        "answer": "$2/3$",
+        "transfer": "If the information were exactly one red, symmetry between the two positions would give $1/2$. Those are different conditioning events."
+      }
+    ]
+  },
+  "geometry": {
+    "focus": "Let the diagram suggest a relation, then prove it.",
+    "method": "A sketch is not a measurement. Mark the equal angles, cyclic quadrilaterals, tangencies, and similar triangles that follow from the stated conditions. Choose a theorem that connects the requested quantity to the data you actually know.\n\nArea is often a bridge between lengths. The same triangle has area $rs$, $abc/(4R)$, and one half of a base times its altitude. Equating two correct area formulas can turn an inaccessible radius or altitude into a short calculation. For cyclic quadrilaterals, Ptolemy relates the diagonals to all four sides.",
+    "checks": [
+      "Check whether a theorem requires a point inside a segment or whether directed lengths are needed.",
+      "Keep radius, diameter, and chord length distinct.",
+      "Do not assume a quadrilateral is cyclic because the drawing resembles one."
+    ],
+    "examples": [
+      {
+        "title": "One area, two radii",
+        "problem": "A triangle has side lengths $13,14,15$. Find its area, inradius, and circumradius.",
+        "steps": [
+          "The semiperimeter is $s=(13+14+15)/2=21$.",
+          "Heron’s formula gives $K=\\sqrt{21\\cdot8\\cdot7\\cdot6}=84$.",
+          "From $K=rs$, the inradius is $r=84/21=4$.",
+          "From $K=abc/(4R)$, the circumradius is $R=(13\\cdot14\\cdot15)/(4\\cdot84)=65/8$."
+        ],
+        "answer": "$K=84$, $r=4$, $R=65/8$",
+        "transfer": "The altitude to the side of length fourteen is $2K/14=12$. This independently explains the familiar $5$–$12$–$13$ and $9$–$12$–$15$ triangles."
+      },
+      {
+        "title": "The diagonal product",
+        "problem": "A cyclic quadrilateral has consecutive side lengths $2,3,4,5$. Find the product of its diagonal lengths.",
+        "steps": [
+          "Name the vertices in circular order $A,B,C,D$, with $AB=2$, $BC=3$, $CD=4$, $DA=5$.",
+          "Ptolemy’s theorem states $AC\\cdot BD=AB\\cdot CD+BC\\cdot DA$ for a cyclic quadrilateral.",
+          "The opposite-side products are $2\\cdot4=8$ and $3\\cdot5=15$.",
+          "The required diagonal product is $23$. Individual diagonal lengths are unnecessary."
+        ],
+        "answer": "23",
+        "transfer": "For a noncyclic quadrilateral, equality in Ptolemy’s relation need not hold. The cyclic condition supplies the missing geometric information."
+      }
+    ]
+  },
+  "coordinate-3d": {
+    "focus": "Use projections to remove unnecessary coordinates.",
+    "method": "A direction vector specifies a line’s orientation; a normal vector specifies a plane’s orientation. Confusing them leads to reversed dot-product conditions. The component of a vector parallel to a direction comes from a dot product; the perpendicular residual gives a distance.\n\nCoordinates are most useful when they simplify a configuration. Place an origin at a natural intersection, use an axis along a known direction, and keep the normal vector unnormalised until the final distance calculation. Fractions introduced too early can obscure a short projection.",
+    "checks": [
+      "A plane normal is perpendicular to every direction lying in that plane.",
+      "A reflection crosses the plane by twice the signed perpendicular displacement.",
+      "Distance is nonnegative; retain the sign only while finding the foot or reflection."
+    ],
+    "examples": [
+      {
+        "title": "Reflect in a plane",
+        "problem": "Reflect $P=(1,2,3)$ in the plane $2x-y+2z=5$.",
+        "steps": [
+          "The normal vector is $n=(2,-1,2)$ and $n\\cdot n=9$.",
+          "At $P$, $n\\cdot P-5=1$. The perpendicular displacement from the plane to $P$ is $n/9$.",
+          "Reflection subtracts twice that displacement: $P^{\\prime}=P-2n/9$.",
+          "The result is $(5/9,20/9,23/9)$. Its plane expression equals four, equally far on the other side of five."
+        ],
+        "answer": "$(5/9,20/9,23/9)$",
+        "transfer": "The midpoint of $P$ and its reflection lies in the plane. Checking that midpoint is a useful independent verification."
+      },
+      {
+        "title": "Distance to a diagonal line",
+        "problem": "Find the distance from $(1,2,3)$ to the line through the origin with direction $(1,1,1)$.",
+        "steps": [
+          "Let $p=(1,2,3)$ and $v=(1,1,1)$. The projection coefficient is $(p\\cdot v)/(v\\cdot v)=6/3=2$.",
+          "The nearest point on the line is $2v=(2,2,2)$.",
+          "The perpendicular residual is $p-2v=(-1,0,1)$; its dot product with $v$ is zero.",
+          "Its length is $\\sqrt{1+0+1}=\\sqrt2$."
+        ],
+        "answer": "$\\sqrt2$",
+        "transfer": "For a line through a nonzero point $a$, first replace $p$ by $p-a$, project, and then translate the nearest point back."
+      }
+    ]
+  },
+  "trigonometry": {
+    "focus": "Factor before dividing by a trigonometric function.",
+    "method": "Trigonometric equations frequently contain a factor that can be zero. Dividing by it may remove valid solutions. Move everything to one side, factor, and solve each branch over the specified interval. Check endpoints explicitly.\n\nFor expressions involving both sine and cosine, squaring their sum reveals their product. This can reach the requested expression without finding the angle. Track quadrant information only when the requested value depends on a sign that the equation does not determine.",
+    "checks": [
+      "Use radians consistently when an interval contains $\\pi$.",
+      "Never divide by $\\sin x$ or $\\cos x$ without separately checking its zeros.",
+      "An inverse-trigonometric principal value is only one branch of a periodic equation."
+    ],
+    "examples": [
+      {
+        "title": "Reach the product without the angle",
+        "problem": "If $\\sin\\theta+\\cos\\theta=1/2$, find $\\tan\\theta+\\cot\\theta$.",
+        "steps": [
+          "Square the given sum: $1+2\\sin\\theta\\cos\\theta=1/4$.",
+          "Thus $\\sin\\theta\\cos\\theta=-3/8$, so neither factor is zero.",
+          "Combine the target fractions: $\\tan\\theta+\\cot\\theta=(\\sin^2\\theta+\\cos^2\\theta)/(\\sin\\theta\\cos\\theta)$.",
+          "The numerator is one, giving $-8/3$. No quadrant choice changes this product-based answer."
+        ],
+        "answer": "$-8/3$",
+        "transfer": "The equation does not by itself fix the sign of $\\cos2\\theta$. A target involving that sign would need additional information."
+      },
+      {
+        "title": "Keep the zero-factor branch",
+        "problem": "How many solutions does $\\sin2x=\\cos x$ have in $0\\le x<2\\pi$?",
+        "steps": [
+          "Use $\\sin2x=2\\sin x\\cos x$ and move the right side across.",
+          "The equation factors as $\\cos x(2\\sin x-1)=0$.",
+          "The first branch gives $x=\\pi/2,3\\pi/2$; the second gives $x=\\pi/6,5\\pi/6$.",
+          "The four solutions are distinct and all lie in the stated interval."
+        ],
+        "answer": "4",
+        "transfer": "Dividing by $\\cos x$ at the start would lose two of the four solutions. Factoring protects them."
+      }
+    ]
+  },
+  "complex-numbers": {
+    "focus": "Use modulus and argument for powers; use polynomials for roots.",
+    "method": "Cartesian form is convenient for addition and local algebra. Polar form is usually better for multiplication, powers, and roots. Convert only when the operation benefits from it; repeatedly switching forms creates avoidable work.\n\nThe nontrivial roots of unity are roots of a short geometric-sum polynomial. A product of terms involving all those roots can therefore be a polynomial evaluation. Always check whether the root one is included, since that changes both the degree and the product.",
+    "checks": [
+      "Arguments are defined modulo $2\\pi$; reduce them before choosing a quadrant.",
+      "Roots of unity have modulus one, but an arbitrary complex number does not.",
+      "In a product over roots, count the root one and repeated roots explicitly."
+    ],
+    "examples": [
+      {
+        "title": "A power in polar form",
+        "problem": "Evaluate $(1+i)^{10}$.",
+        "steps": [
+          "The number $1+i$ has modulus $\\sqrt2$ and argument $\\pi/4$.",
+          "By De Moivre, the tenth power has modulus $(\\sqrt2)^{10}=32$ and argument $10\\pi/4=5\\pi/2$.",
+          "Reduce the argument modulo $2\\pi$ to $\\pi/2$.",
+          "The resulting number is $32i$."
+        ],
+        "answer": "$32i$",
+        "transfer": "An algebraic check is $(1+i)^2=2i$, so $(1+i)^{10}=(2i)^5=32i$."
+      },
+      {
+        "title": "A product over nontrivial roots",
+        "problem": "Let $z_1,z_2,z_3,z_4$ be the fifth roots of unity other than $1$. Find $\\prod_{j=1}^4(2-z_j)$.",
+        "steps": [
+          "The polynomial with these four roots is $(x^5-1)/(x-1)=x^4+x^3+x^2+x+1$.",
+          "Its leading coefficient is one, so it equals $\\prod_{j=1}^4(x-z_j)$.",
+          "Evaluate at $x=2$ to obtain $16+8+4+2+1$.",
+          "The product is $31$, despite the factors being complex."
+        ],
+        "answer": "$31$",
+        "transfer": "If the root one were included, the extra factor would be $2-1=1$ in this particular problem. At another evaluation point that extra factor matters."
+      }
+    ]
+  }
+}

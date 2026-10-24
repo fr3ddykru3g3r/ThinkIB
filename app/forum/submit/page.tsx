@@ -1,4 +1,5 @@
 'use client';
+import { studyFetch } from '@/lib/resource-url';
 
 import React, { useState } from 'react';
 import Link from 'next/link';
@@ -27,7 +28,7 @@ export default function ResourceSubmitPage() {
     setSubmitting(true);
 
     try {
-      const res = await fetch('/api/forum/submissions', {
+      const res = await studyFetch('/api/forum/submissions', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

@@ -7,9 +7,9 @@ const GITHUB_RELEASE_V2 = 'https://github.com/fr3ddykru3g3r/ib-vault/releases/do
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { path: string[] } }
+  { params }: { params: Promise<{ path: string[] }> }
 ) {
-  const rawPath = (params.path || []).map((seg) => {
+  const rawPath = ((await params).path || []).map((seg) => {
     try {
       return decodeURIComponent(seg);
     } catch {

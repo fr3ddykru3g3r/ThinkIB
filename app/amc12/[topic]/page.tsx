@@ -1,3 +1,4 @@
+import { siteBrand } from '@/lib/site-brand';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { TOPICS, getTopic, DIFFICULTY_LABELS } from '@/lib/amc12';
@@ -6,21 +7,22 @@ import { card, pill } from '../styles';
 import WorkedExampleCard from './WorkedExampleCard';
 import ConceptCard from './ConceptCard';
 import VideoEmbed from './VideoEmbed';
+import DeepDive from '../DeepDive';
 
 export function generateStaticParams() {
   return TOPICS.map((t) => ({ topic: t.id }));
 }
 
-export function generateMetadata({ params }: { params: { topic: string } }) {
-  const t = getTopic(params.topic);
-  return { title: t ? `${t.title} — AMC 12 | The Archive` : 'AMC 12 | The Archive' };
+export async function generateMetadata({ params }: { params: Promise<{ topic: string }> }) {
+  const t = getTopic((await params).topic);
+  return { title: t ? `${t.title} — AMC 12 | ${siteBrand.name}` : `AMC 12 | ${siteBrand.name}` };
 }
 
 const tocLink = { color: 'var(--muted)', fontSize: '0.85rem', display: 'block', padding: '0.2rem 0' } as const;
 const tocHead = { margin: '1rem 0 0.4rem', fontWeight: 600, fontSize: '0.8rem' } as const;
 
-export default function TopicPage({ params }: { params: { topic: string } }) {
-  const topic = getTopic(params.topic);
+export default async function TopicPage({ params }: { params: Promise<{ topic: string }> }) {
+  const topic = getTopic((await params).topic);
   if (!topic) notFound();
   const next = TOPICS[TOPICS.indexOf(topic) + 1];
   const prereqs = topic.prerequisites.map((id) => getTopic(id)).filter((t) => !!t);
@@ -33,9 +35,10 @@ export default function TopicPage({ params }: { params: { topic: string } }) {
         <Link href="/amc12" className="tech-label" style={{ color: 'var(--muted)', fontSize: '0.75rem' }}>← All topics</Link>
         <div style={tocHead}>Lessons</div>
         {topic.concepts.map((c, i) => (
-          <a key={i} href={`#concept-${i}`} style={tocLink}>{i + 1}. {c.title}</a>
+          <a key={i} href={`#concept-${i}`} style={tocLink}>{i + 1}. <Tex>{c.title}</Tex></a>
         ))}
         <div style={tocHead}>More</div>
+        <a href="#deep-dive" style={tocLink}>Method workshop</a>
         <a href="#strategies" style={tocLink}>Contest strategies</a>
         <a href="#examples" style={tocLink}>Worked examples</a>
         {topic.videos.length > 0 && <a href="#videos" style={tocLink}>Videos</a>}
@@ -45,7 +48,7 @@ export default function TopicPage({ params }: { params: { topic: string } }) {
       <div style={{ minWidth: 0, display: 'grid', gap: '2.5rem' }}>
         <header>
           <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2.2rem, 5vw, 3.2rem)', fontWeight: 500, lineHeight: 1.05, margin: '0 0 0.6rem' }}>
-            {topic.title}
+            <Tex>{topic.title}</Tex>
           </h1>
           <p style={{ color: 'var(--muted)', fontSize: '1.05rem' }}>{topic.summary}</p>
           <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', margin: '1rem 0' }}>
@@ -60,7 +63,7 @@ export default function TopicPage({ params }: { params: { topic: string } }) {
             <p style={{ marginTop: '1rem', fontSize: '0.9rem', color: 'var(--muted)' }}>
               Helpful first:{' '}
               {prereqs.map((p, i) => (
-                <span key={p!.id}>{i > 0 && ', '}<Link href={`/amc12/${p!.id}`} style={{ color: 'var(--accent)' }}>{p!.title}</Link></span>
+                <span key={p!.id}>{i > 0 && ', '}<Link href={`/amc12/${p!.id}`} style={{ color: 'var(--accent)' }}><Tex>{p!.title}</Tex></Link></span>
               ))}
             </p>
           )}
@@ -74,6 +77,8 @@ export default function TopicPage({ params }: { params: { topic: string } }) {
             ))}
           </div>
         </section>
+
+        <DeepDive topicId={topic.id}/>
 
         <section id="strategies" style={{ scrollMarginTop: 90 }}>
           <span className="section-label">Contest strategies</span>
@@ -125,7 +130,7 @@ export default function TopicPage({ params }: { params: { topic: string } }) {
           </div>
           {next && (
             <p style={{ marginTop: '1.25rem', fontSize: '0.92rem' }}>
-              Next topic: <Link href={`/amc12/${next.id}`} style={{ color: 'var(--accent)' }}>{next.title} →</Link>
+              Next topic: <Link href={`/amc12/${next.id}`} style={{ color: 'var(--accent)' }}><Tex>{next.title}</Tex> →</Link>
             </p>
           )}
         </section>

@@ -1,4 +1,5 @@
 'use client';
+import PDFReader from '@/app/components/PDFReader';
 
 import React, { useState, useEffect } from 'react';
 import { X, ExternalLink, Download, BookOpen, FileText, Columns, Maximize2, Minimize2, Layers, Sparkles } from 'lucide-react';
@@ -36,22 +37,6 @@ export const EE_VAULT_DOCUMENTS: PDFDocument[] = [
     size: '7.9 MB (284 Pages)',
     category: 'student_work'
   },
-  {
-    id: 'hodder-2025',
-    title: 'Extended Essay for the IB Diploma: Skills for Success',
-    subtitle: 'Paul Hoang & Joseph Koszary • Hodder Education (2025 Edition)',
-    url: '/vault/ee-guides/ee-hodder-2025-hoang.pdf',
-    size: '76.7 MB (Official Textbook)',
-    category: 'textbook'
-  },
-  {
-    id: 'oxford-2025',
-    title: 'Extended Essay Course Companion',
-    subtitle: 'Kosta Lekanides • Oxford University Press (2025 Edition)',
-    url: '/vault/ee-guides/ee-oxford-2025-lekanides.pdf',
-    size: '79.1 MB (Official Course Companion)',
-    category: 'textbook'
-  }
 ];
 
 interface Props {
@@ -90,9 +75,9 @@ export default function IBPDFViewerModal({
     setSelectedDocId(activeDocId);
     setCurrentPage(page);
     if (customDoc?.msUrl && initialSplitView) {
-      setIsSplitView(true);
+      setIsSplitView(window.innerWidth >= 760);
     } else {
-      setIsSplitView(initialSplitView);
+      setIsSplitView(initialSplitView && window.innerWidth >= 760);
     }
     setActiveTab('qp');
   }, [activeDocId, page, customDoc, initialSplitView]);
@@ -478,16 +463,7 @@ export default function IBPDFViewerModal({
                       <ExternalLink size={11} /> Open New Tab
                     </a>
                   </div>
-                  <iframe
-                    src={qpSource}
-                    title="Question Paper"
-                    style={{
-                      width: '100%',
-                      flex: 1,
-                      border: 'none',
-                      display: 'block'
-                    }}
-                  />
+                  <PDFReader src={qpSource} title="Question Paper"/>
                 </div>
 
                 {/* Right Pane: Markscheme */}
@@ -517,31 +493,13 @@ export default function IBPDFViewerModal({
                       <ExternalLink size={11} /> Open New Tab
                     </a>
                   </div>
-                  <iframe
-                    src={msSource}
-                    title="Markscheme Solutions"
-                    style={{
-                      width: '100%',
-                      flex: 1,
-                      border: 'none',
-                      display: 'block'
-                    }}
-                  />
+                  <PDFReader src={msSource} title="Markscheme Solutions"/>
                 </div>
               </>
             ) : (
               /* Single Document Full-Width Mode */
               <div style={{ width: '100%', height: '100%' }}>
-                <iframe
-                  src={activeTab === 'ms' && msSource ? msSource : qpSource}
-                  title={currentDoc.title}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    border: 'none',
-                    display: 'block'
-                  }}
-                />
+                <PDFReader src={activeTab === 'ms' && msSource ? msSource : qpSource} title={currentDoc.title}/>
               </div>
             )}
 

@@ -2,11 +2,14 @@
 
 import React, { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
+import { resourceUrl } from '@/lib/resource-url';
+import WdcHome from './WdcHome';
+import { isWdc } from '@/lib/site-brand';
 import { Search, ArrowRight, Sparkles, X } from 'lucide-react';
 import { resourcesData } from './resources/data';
 import { getSRSStats, syncFromSATVault, syncFromAMCVault } from '@/lib/srs-engine';
 
-export default function PortalHome() {
+function ArchiveHome() {
   const [search, setSearch] = useState('');
   const [categoryFilter, setCategoryFilter] = useState<'all' | 'local_vault' | 'youtube' | 'quizlet' | 'portal'>('all');
 
@@ -514,7 +517,7 @@ export default function PortalHome() {
                   <div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.65rem' }}>
                       <span className="badge" style={{ fontSize: '0.72rem', fontWeight: 600, padding: '0.2rem 0.5rem', borderRadius: '4px', background: 'var(--surface-inset)', border: '1px solid var(--border)', color: 'var(--ink)' }}>
-                        8 Topics
+                        12 Topics
                       </span>
                     </div>
                     <h3 style={{ fontSize: '1.25rem', marginBottom: '0.45rem' }}>AMC 12</h3>
@@ -592,7 +595,7 @@ export default function PortalHome() {
                   className={`filter-btn ${categoryFilter === 'portal' ? 'active' : ''}`}
                   onClick={() => setCategoryFilter('portal')}
                 >
-                  Verified Portals
+                  Study Portals
                 </button>
                 <button
                   className={`filter-btn ${categoryFilter === 'local_vault' ? 'active' : ''}`}
@@ -634,7 +637,7 @@ export default function PortalHome() {
                   <div>
                     <div className="resource-meta">{item.meta}</div>
                     <a
-                      href={item.url}
+                      href={resourceUrl(item.url)}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="resource-link"
@@ -651,3 +654,5 @@ export default function PortalHome() {
   );
 }
 
+
+export default function PortalHome() { return isWdc ? <WdcHome/> : <ArchiveHome/>; }

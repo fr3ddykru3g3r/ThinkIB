@@ -1,3 +1,6 @@
+'use client';
+import { Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { TOPICS, getTopic, buildMock, buildMixed, MOCK_COUNT } from '@/lib/amc12';
 import { DIFFICULTY_LABELS } from '@/lib/amc12-core';
@@ -5,9 +8,10 @@ import Runner from './Runner';
 
 const topicTitles = Object.fromEntries(TOPICS.map((t) => [t.id, t.title]));
 
-export const metadata = { title: 'AMC 12 Practice | The Archive' };
 
-export default function PracticePage({ searchParams }: { searchParams: { mode?: string; t?: string; n?: string; seed?: string; min?: string; max?: string; c?: string } }) {
+
+function PracticeContent() {
+  const searchParams = Object.fromEntries(useSearchParams().entries());
   const mode = searchParams.mode ?? 'mixed';
 
   if (mode === 'topic') {
@@ -50,3 +54,5 @@ export default function PracticePage({ searchParams }: { searchParams: { mode?: 
     </div>
   );
 }
+
+export default function PracticePage() { return <Suspense fallback={<p>Loading practice…</p>}><PracticeContent/></Suspense>; }

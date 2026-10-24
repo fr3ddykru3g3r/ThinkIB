@@ -1,17 +1,18 @@
 'use client';
+import { resourceUrl } from '@/lib/resource-url';
 
 import React, { useState, useMemo, useEffect } from 'react';
-import { 
-  ArrowLeft, 
-  ExternalLink, 
-  RefreshCw, 
-  Layers, 
-  Search, 
-  BookOpen, 
-  Home, 
-  Compass, 
-  ChevronDown, 
-  ChevronUp, 
+import {
+  ArrowLeft,
+  ExternalLink,
+  RefreshCw,
+  Layers,
+  Search,
+  BookOpen,
+  Home,
+  Compass,
+  ChevronDown,
+  ChevronUp,
   GraduationCap
 } from 'lucide-react';
 import mathTopicsData from './math_topics.json';
@@ -158,8 +159,8 @@ export default function ThinkIBPage() {
     }
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
-      list = list.filter(t => 
-        t.title.toLowerCase().includes(q) || 
+      list = list.filter(t =>
+        t.title.toLowerCase().includes(q) ||
         (t.category && t.category.toLowerCase().includes(q))
       );
     }
@@ -187,13 +188,13 @@ export default function ThinkIBPage() {
             InThinking Subject Portals
           </h1>
           <p style={{ color: 'var(--muted)', fontSize: '0.95rem', margin: 0 }}>
-            Scraped InThinking interactive website archives with full syllabus guides, worked problems, and authentic question banks.
+            Browse the subject library, search for a topic, and open the resource below.
           </p>
         </div>
         <div style={{ display: 'flex', gap: '0.6rem', alignItems: 'center', flexWrap: 'wrap' }}>
-          <a 
-            href="/math-mocks" 
-            className="filter-btn" 
+          <a
+            href="/math-mocks"
+            className="filter-btn"
             style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.4rem', borderColor: 'var(--rust)', color: 'var(--rust)', fontWeight: 600 }}
           >
             <GraduationCap size={15} /> 61 Math Mocks & Solutions
@@ -211,12 +212,12 @@ export default function ThinkIBPage() {
             <Layers size={13} /> Select Subject Portal
           </span>
           <div style={{ display: 'flex', gap: '0.5rem' }}>
-            <button 
-              onClick={() => setIsExplorerOpen(!isExplorerOpen)} 
+            <button
+              onClick={() => setIsExplorerOpen(!isExplorerOpen)}
               className={`filter-btn ${isExplorerOpen ? 'active' : ''}`}
               style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.75rem', padding: '4px 10px' }}
             >
-              <Compass size={12} /> {isExplorerOpen ? 'Hide Topic Explorer' : 'Show Topic Explorer'}
+              <Compass size={12} /> {isExplorerOpen ? 'Hide topic search' : 'Find a topic'}
               {isExplorerOpen ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
             </button>
             <button onClick={resetToHome} className="filter-btn" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.75rem', padding: '4px 10px' }}>
@@ -254,197 +255,29 @@ export default function ThinkIBPage() {
         </div>
       </div>
 
-      {/* Topic Explorer & Instant Search Drawer */}
-      {isExplorerOpen && (
-        <div className="panel" style={{ marginBottom: '1.25rem', padding: '1.25rem' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '1rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <span className="tech-label" style={{ margin: 0 }}>
-                {selectedSubject.name.toUpperCase()} TOPIC EXPLORER
-              </span>
-              {selectedSubject.id === 'mathanalysis' && (
-                <span style={{ fontSize: '0.75rem', background: 'rgba(184, 74, 57, 0.1)', color: 'var(--rust)', padding: '2px 8px', borderRadius: '4px', fontWeight: 600 }}>
-                  96 Scraped Modules + 18 POTWs
-                </span>
-              )}
-            </div>
-
-            {/* Quick Search Input */}
-            <div style={{ position: 'relative', width: '320px', maxWidth: '100%' }}>
-              <Search size={14} style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', color: 'var(--muted)' }} />
-              <input
-                type="text"
-                placeholder={`Search ${selectedSubject.name} topics...`}
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                style={{
-                  width: '100%',
-                  padding: '6px 10px 6px 32px',
-                  borderRadius: '4px',
-                  border: '1px solid var(--border)',
-                  background: 'var(--panel-light)',
-                  color: 'var(--ink)',
-                  fontSize: '0.82rem',
-                  outline: 'none',
-                  fontFamily: 'var(--font-body)'
-                }}
-              />
-              {searchQuery && (
-                <button 
-                  onClick={() => setSearchQuery('')}
-                  style={{ position: 'absolute', right: '8px', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', color: 'var(--muted)', cursor: 'pointer', fontSize: '0.75rem' }}
-                >
-                  ✕
-                </button>
-              )}
-            </div>
-          </div>
-
-          {/* Math AA Specific Category Filter Pills */}
-          {selectedSubject.id === 'mathanalysis' && (
-            <div style={{ display: 'flex', gap: '0.35rem', flexWrap: 'wrap', marginBottom: '1rem', borderBottom: '1px solid var(--border)', paddingBottom: '0.75rem' }}>
-              {MATH_CATEGORIES.map((cat) => {
-                const isSelected = selectedMathCategory === cat;
-                return (
-                  <button
-                    key={cat}
-                    onClick={() => setSelectedMathCategory(cat)}
-                    style={{
-                      background: isSelected ? 'var(--rust)' : 'transparent',
-                      color: isSelected ? '#ffffff' : 'var(--muted)',
-                      border: isSelected ? '1px solid var(--rust)' : '1px solid var(--border)',
-                      padding: '3px 9px',
-                      borderRadius: '4px',
-                      fontSize: '0.72rem',
-                      cursor: 'pointer',
-                      fontWeight: isSelected ? 600 : 400,
-                      transition: 'var(--transition-smooth)'
-                    }}
-                  >
-                    {cat}
-                  </button>
-                );
-              })}
-            </div>
-          )}
-
-          {/* Math AA Topic Grid */}
-          {selectedSubject.id === 'mathanalysis' ? (
-            <div>
-              <div 
-                style={{ 
-                  display: 'grid', 
-                  gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', 
-                  gap: '0.6rem',
-                  maxHeight: '260px',
-                  overflowY: 'auto',
-                  paddingRight: '6px'
-                }}
-              >
-                {mathTopics.map((topic) => {
-                  const isCurrent = currentPath === topic.path;
-                  return (
-                    <button
-                      key={topic.path}
-                      onClick={() => loadTopic(topic.path)}
-                      style={{
-                        textAlign: 'left',
-                        padding: '0.55rem 0.75rem',
-                        background: isCurrent ? 'rgba(184, 74, 57, 0.08)' : 'var(--panel-light)',
-                        border: isCurrent ? '1px solid var(--rust)' : '1px solid var(--border)',
-                        borderRadius: '4px',
-                        cursor: 'pointer',
-                        transition: 'var(--transition-smooth)',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: '0.2rem'
-                      }}
-                    >
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span style={{ fontSize: '0.68rem', color: 'var(--rust)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.3px' }}>
-                          {topic.category}
-                        </span>
-                        {isCurrent && (
-                          <span style={{ fontSize: '0.65rem', background: 'var(--rust)', color: '#fff', padding: '1px 5px', borderRadius: '6px' }}>
-                            ACTIVE
-                          </span>
-                        )}
-                      </div>
-                      <span style={{ fontSize: '0.82rem', fontWeight: 500, color: 'var(--ink)', lineHeight: '1.25' }}>
-                        {topic.title}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
-              {mathTopics.length === 0 && (
-                <div style={{ textAlign: 'center', padding: '1.5rem', color: 'var(--muted)', fontSize: '0.85rem' }}>
-                  No matching topics found for "{searchQuery}". Try a different keyword like "calculus", "sequences", or "potw".
-                </div>
-              )}
-            </div>
-          ) : (
-            /* General Subject Search Dropdown */
-            <div>
-              {searchQuery.trim() ? (
-                <div>
-                  <span style={{ fontSize: '0.75rem', color: 'var(--muted)', display: 'block', marginBottom: '0.5rem' }}>
-                    Matching topics for "{searchQuery}":
-                  </span>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '0.5rem', maxHeight: '220px', overflowY: 'auto' }}>
-                    {generalSearchResults.map((t) => (
-                      <button
-                        key={t.path}
-                        onClick={() => loadTopic(t.path)}
-                        style={{
-                          textAlign: 'left',
-                          padding: '0.5rem 0.75rem',
-                          background: 'var(--panel-light)',
-                          border: '1px solid var(--border)',
-                          borderRadius: '4px',
-                          cursor: 'pointer',
-                          fontSize: '0.8rem',
-                          color: 'var(--ink)'
-                        }}
-                      >
-                        <BookOpen size={12} style={{ display: 'inline', marginRight: '6px', color: 'var(--rust)' }} />
-                        {t.title}
-                      </button>
-                    ))}
-                  </div>
-                  {generalSearchResults.length === 0 && (
-                    <div style={{ textAlign: 'center', padding: '1rem', color: 'var(--muted)', fontSize: '0.85rem' }}>
-                      No direct title matches found. Use the subject landing page and side tree in the viewer below.
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <div style={{ fontSize: '0.82rem', color: 'var(--muted)', padding: '0.5rem 0' }}>
-                  💡 Use the search box above to instantly jump to specific {selectedSubject.name} topics, or navigate through the official menu inside the interactive viewer below.
-                </div>
-              )}
-            </div>
-          )}
-        </div>
-      )}
+      {isExplorerOpen && <section className="topic-browser" aria-label="Find a subject topic">
+        <div className="topic-browser-controls"><label><span>Find a topic</span><input type="search" value={searchQuery} onChange={e=>setSearchQuery(e.target.value)} placeholder={`Search ${selectedSubject.name}…`}/></label>
+        {selectedSubject.id==='mathanalysis'&&<label><span>Topic area</span><select value={selectedMathCategory} onChange={e=>setSelectedMathCategory(e.target.value)}>{MATH_CATEGORIES.map(c=><option key={c}>{c}</option>)}</select></label>}</div>
+        {selectedSubject.id==='mathanalysis'?<><p className="result-count" role="status">{mathTopics.length} topics · choose one to open it below</p><div className="topic-result-list">{mathTopics.map(topic=><button key={topic.path} onClick={()=>loadTopic(topic.path)} aria-pressed={currentPath===topic.path}><span>{topic.title.replace(/^DP Maths: Analysis & Approaches: /,'')}</span><small>{topic.category} →</small></button>)}</div>{!mathTopics.length&&<p className="empty-state">No topics match this search. Try a broader term.</p>}</>:searchQuery.trim()?<div className="topic-result-list">{generalSearchResults.map(t=><button key={t.path} onClick={()=>loadTopic(t.path)}>{t.title}<span>→</span></button>)}{!generalSearchResults.length&&<p>No matches. Try the subject index below.</p>}</div>:<p className="result-count">Search by topic, or browse the subject index below.</p>}
+      </section>}
 
       {/* Full Web Page Viewer Frame */}
       <div className="panel" style={{ padding: '0.5rem', background: 'var(--surface)', borderRadius: '12px', border: '1px solid var(--border)', overflow: 'hidden' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.45rem 0.85rem', borderBottom: '1px solid var(--border)', background: 'var(--surface-raised, var(--panel-light))', marginBottom: '0.5rem', borderRadius: '10px 10px 0 0' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             <span style={{ fontSize: '0.72rem', padding: '2px 8px', background: 'var(--rust)', color: '#fff', borderRadius: '6px', fontWeight: 600 }}>
-              Active Portal
+              Viewing
             </span>
             <span style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--ink)' }}>
-              {selectedSubject.name} — InThinking Mirror
+              {selectedSubject.name}
             </span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <span style={{ fontSize: '0.75rem', color: 'var(--muted)', fontFamily: 'var(--font-mono)' }}>
               {currentPath}
             </span>
-            <button 
-              onClick={resetToHome} 
+            <button
+              onClick={resetToHome}
               style={{ background: 'none', border: 'none', color: 'var(--rust)', cursor: 'pointer', fontSize: '0.75rem', textDecoration: 'underline' }}
             >
               Reset to Home
@@ -454,7 +287,7 @@ export default function ThinkIBPage() {
 
         <iframe
           key={key}
-          src={iframeSrc}
+          src={resourceUrl(iframeSrc)}
           style={{
             width: '100%',
             height: 'calc(100vh - 280px)',

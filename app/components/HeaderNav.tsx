@@ -4,7 +4,8 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X, Search } from 'lucide-react';
-import PongPopup from './PongPopup';
+import WdcHeader from './WdcHeader';
+import { isWdc } from '@/lib/site-brand';
 import ThemeToggle from './ThemeToggle';
 import CommandPalette from './CommandPalette';
 
@@ -20,12 +21,13 @@ const NAV_ITEMS: NavItem[] = [
   { label: 'InThinking', href: '/thinkib' },
   { label: 'Math Mocks', href: '/math-mocks' },
   { label: 'AMC 12', href: '/amc12' },
+  { label: 'History', href: '/history' },
   { label: 'Flashcards', href: '/flashcards' },
   { label: 'Exemplars', href: '/exemplars' },
   { label: 'Forum', href: '/forum' },
 ];
 
-export default function HeaderNav() {
+function ArchiveHeader() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -175,7 +177,7 @@ export default function HeaderNav() {
             </kbd>
           </button>
           <ThemeToggle />
-          <PongPopup />
+
           <button
             type="button"
             className="mobile-menu-toggle"
@@ -266,3 +268,5 @@ export default function HeaderNav() {
     </header>
   );
 }
+
+export default function HeaderNav() { return isWdc ? <WdcHeader/> : <ArchiveHeader/>; }
