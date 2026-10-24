@@ -466,8 +466,8 @@ function PastPapersBrowserContent() {
             style={{
               fontSize: '0.7rem',
               fontWeight: 800,
-              background: activeTab === 'topical' ? '#ffffff' : 'rgba(9, 105, 218, 0.12)',
-              color: activeTab === 'topical' ? '#0969da' : '#0969da',
+              background: 'transparent',
+              color: 'inherit',
               padding: '1px 6px',
               borderRadius: '10px'
             }}
