@@ -122,9 +122,9 @@ for (const [key, val] of Object.entries(map2025Record)) {
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { path: string[] } }
+  { params }: { params: Promise<{ path: string[] }> }
 ) {
-  const pathSegments = (params.path || []).map((seg) => {
+  const pathSegments = ((await params).path || []).map((seg) => {
     try {
       return decodeURIComponent(seg);
     } catch {
@@ -199,15 +199,17 @@ export async function GET(
     try {
       const upstreamRes = await fetch(cdnUrl, {
         headers: {
+          ...(request.headers.get('range') ? { Range: request.headers.get('range')! } : {}),
           'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
         }
       });
       if (upstreamRes.ok && upstreamRes.body) {
         return new NextResponse(upstreamRes.body, {
-          status: 200,
+          status: upstreamRes.status,
           headers: {
             'Content-Type': 'application/pdf',
             'Content-Disposition': `inline; filename="${safeFilename}"`,
+            ...Object.fromEntries(['content-length', 'content-range', 'accept-ranges'].flatMap(key => upstreamRes.headers.has(key) ? [[key, upstreamRes.headers.get(key)!]] : [])),
             'Cache-Control': 'public, max-age=31536000, s-maxage=31536000, immutable',
             'CDN-Cache-Control': 'public, s-maxage=31536000, immutable',
             'Vercel-CDN-Cache-Control': 'public, s-maxage=31536000, immutable',
@@ -273,6 +275,7 @@ export async function GET(
   try {
     const fileRes = await fetch(targetUrl, {
       headers: {
+        ...(request.headers.get('range') ? { Range: request.headers.get('range')! } : {}),
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
       }
     });
@@ -280,10 +283,11 @@ export async function GET(
       return NextResponse.redirect(targetUrl, 307);
     }
     return new NextResponse(fileRes.body, {
-      status: 200,
+      status: fileRes.status,
       headers: {
         'Content-Type': 'application/pdf',
         'Content-Disposition': `inline; filename="${path.basename(resolved.assetName)}"`,
+            ...Object.fromEntries(['content-length', 'content-range', 'accept-ranges'].flatMap(key => fileRes.headers.has(key) ? [[key, fileRes.headers.get(key)!]] : [])),
         'Cache-Control': 'public, max-age=31536000, s-maxage=31536000, immutable',
         'CDN-Cache-Control': 'public, s-maxage=31536000, immutable',
         'Vercel-CDN-Cache-Control': 'public, s-maxage=31536000, immutable',

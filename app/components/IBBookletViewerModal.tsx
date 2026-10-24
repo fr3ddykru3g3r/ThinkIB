@@ -1,4 +1,5 @@
 'use client';
+import PDFReader from '@/app/components/PDFReader';
 
 import React, { useState } from 'react';
 import { X, FileText, Search, BookOpen, Atom, FlaskConical, Calculator, Download, Maximize2, Minimize2 } from 'lucide-react';
@@ -275,11 +276,7 @@ export default function IBBookletViewerModal({
                   <Download size={13} /> Download PDF
                 </a>
               </div>
-              <iframe
-                src="/vault/ib-booklets/Math_AA_Formula_Booklet.pdf#toolbar=1"
-                style={{ width: '100%', height: '100%', border: 'none' }}
-                title="Math AA Formula Booklet"
-              />
+              <PDFReader src="/vault/ib-booklets/Math_AA_Formula_Booklet.pdf#toolbar=1" title="Math AA Formula Booklet"/>
             </div>
           )}
 
@@ -287,7 +284,7 @@ export default function IBBookletViewerModal({
             <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
               <div style={{ padding: '0.6rem 1.5rem', background: 'var(--surface)', borderBottom: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <span style={{ fontSize: '0.8rem', color: 'var(--muted)', fontFamily: 'var(--font-mono)' }}>
-                  Mathematics AA HL Ultimate Comprehensive Formula Sheet
+                  Mathematics AA HL Formula Reference
                 </span>
                 <a
                   href="/vault/ib-booklets/Math_AA_Comprehensive_Sheet.pdf"
@@ -305,11 +302,7 @@ export default function IBBookletViewerModal({
                   <Download size={13} /> Download PDF
                 </a>
               </div>
-              <iframe
-                src="/vault/ib-booklets/Math_AA_Comprehensive_Sheet.pdf#toolbar=1"
-                style={{ width: '100%', height: '100%', border: 'none' }}
-                title="Math AA Comprehensive Sheet"
-              />
+              <PDFReader src="/vault/ib-booklets/Math_AA_Comprehensive_Sheet.pdf#toolbar=1" title="Math AA Comprehensive Sheet"/>
             </div>
           )}
 

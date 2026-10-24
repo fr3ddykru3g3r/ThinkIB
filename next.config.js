@@ -9,14 +9,12 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: false,
   },
-  experimental: {
-    outputFileTracingExcludes: {
+  outputFileTracingExcludes: {
       '*': [
         'public/vault/**/*',
         '../ThinkIB 2/**/*',
       ],
     },
-  },
   async redirects() {
     return [{ source: '/amc-aime/:path*', destination: '/amc12', permanent: true }];
   },

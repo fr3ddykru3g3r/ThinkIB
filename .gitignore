@@ -15,3 +15,5 @@ public/vault/math-topicals/
 tsconfig.tsbuildinfo
 __pycache__/
 *.py[cod]
+public/pdf.worker.min.mjs
+out/

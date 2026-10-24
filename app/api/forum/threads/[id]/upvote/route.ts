@@ -4,9 +4,9 @@ import { getClientIP, checkUpvoteSpam } from '@/lib/anti-spam';
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const { id } = params;
+  const { id } = await params;
   const ip = getClientIP(request);
 
   const spamCheck = checkUpvoteSpam(ip, id);

@@ -128,6 +128,7 @@ export default function SATHubPage() {
         </p>
       </div>
 
+      <p className="practice-history-link"><Link href="/history">Review previous tests and drills →</Link><span> Scores are practice estimates, not official SAT results.</span></p>
       {/* EXAM READINESS & SCORE PREDICTOR DASHBOARD (If student has activity) */}
       {(examHistory.length > 0 || mistakes.length > 0) && (
         <div
@@ -143,7 +144,7 @@ export default function SATHubPage() {
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <TrendingUp size={18} style={{ color: 'var(--accent)' }} />
               <span className="section-label" style={{ margin: 0 }}>
-                EXAM READINESS & PREDICTED SCORE TRAJECTORY
+                Your recent practice
               </span>
             </div>
             <span style={{ fontSize: '0.78rem', fontFamily: 'var(--font-mono)', color: 'var(--muted)' }}>
@@ -155,13 +156,13 @@ export default function SATHubPage() {
             {latestExam ? (
               <div>
                 <div style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', color: 'var(--muted)', textTransform: 'uppercase' }}>
-                  Latest Scaled Test Score
+                  Latest practice estimate
                 </div>
                 <div style={{ fontSize: '2.4rem', fontWeight: 700, fontFamily: 'var(--font-display)', color: 'var(--ink)', lineHeight: '1.1' }}>
                   {latestExam.totalScore} <span style={{ fontSize: '1rem', fontWeight: 400, color: 'var(--muted)' }}>/ 1600</span>
                 </div>
-                <div style={{ fontSize: '0.8rem', color: '#059669', fontFamily: 'var(--font-mono)', marginTop: '0.2rem' }}>
-                  RW: {latestExam.rwScore} • Math: {latestExam.mathScore} (~{latestExam.percentile}th %ile)
+                <div style={{ fontSize: '0.8rem', color: 'var(--success)', fontFamily: 'var(--font-mono)', marginTop: '0.2rem' }}>
+                  RW: {latestExam.rwScore} • Math: {latestExam.mathScore}
                 </div>
               </div>
             ) : (
@@ -173,7 +174,7 @@ export default function SATHubPage() {
                   Targeted Drills Active
                 </div>
                 <div style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>
-                  Take a full test to record your official scaled score & performance breakdown.
+                  Take a practice test to get an estimated score and a question-by-question review.
                 </div>
               </div>
             )}
@@ -192,7 +193,7 @@ export default function SATHubPage() {
 
             {weakestDomain && (
               <div style={{ background: 'var(--panel-light, #ffffff)', border: '1px solid var(--border)', padding: '0.85rem 1.1rem', borderRadius: '6px' }}>
-                <div style={{ fontSize: '0.72rem', fontFamily: 'var(--font-mono)', color: '#b91c1c', textTransform: 'uppercase', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '4px' }}>
+                <div style={{ fontSize: '0.72rem', fontFamily: 'var(--font-mono)', color: 'var(--error)', textTransform: 'uppercase', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '4px' }}>
                   <AlertCircle size={12} /> Priority Weak Spot
                 </div>
                 <div style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--ink)', marginTop: '0.2rem' }}>
@@ -226,7 +227,7 @@ export default function SATHubPage() {
             {weakSkills.map((w) => (
               <Link key={w.skill} href={`/sat/practice/drill?section=${w.section}&domain=${encodeURIComponent(w.domain)}&skill=${encodeURIComponent(w.skill)}`} style={{ textDecoration: 'none', color: 'inherit', border: '1px solid var(--border)', borderRadius: 8, padding: '0.8rem 1rem' }}>
                 <div style={{ fontWeight: 600, fontSize: '0.92rem' }}>{w.skill}</div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.78rem', color: '#b91c1c', marginTop: 4 }}>{Math.round((w.correct / w.total) * 100)}% ({w.correct}/{w.total}) · practice this →</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.78rem', color: 'var(--error)', marginTop: 4 }}>{Math.round((w.correct / w.total) * 100)}% ({w.correct}/{w.total}) · practice this →</div>
               </Link>
             ))}
           </div>
@@ -235,10 +236,10 @@ export default function SATHubPage() {
 
       {/* METACOGNITIVE ERROR TAXONOMY (Proportional Progress Bars) */}
       {/* MISTAKE BREAKDOWN (Proportional Progress Bars) */}
-      <div 
-        className="editorial-bento-card" 
-        style={{ 
-          padding: '1.75rem 2rem', 
+      <div
+        className="editorial-bento-card"
+        style={{
+          padding: '1.75rem 2rem',
           marginBottom: '2.5rem',
           background: 'var(--surface)',
         }}
@@ -250,12 +251,12 @@ export default function SATHubPage() {
               Mistake Breakdown
             </h3>
           </div>
-          <Link 
-            href="/sat/practice/drill?mode=mistakes" 
-            style={{ 
-              fontSize: '0.82rem', 
-              color: 'var(--accent)', 
-              textDecoration: 'none', 
+          <Link
+            href="/sat/practice/drill?mode=mistakes"
+            style={{
+              fontSize: '0.82rem',
+              color: 'var(--accent)',
+              textDecoration: 'none',
               fontWeight: 600,
               display: 'inline-flex',
               alignItems: 'center',
@@ -271,13 +272,13 @@ export default function SATHubPage() {
         </p>
 
         {/* Combined Proportional Horizontal Stacked Bar */}
-        <div 
-          style={{ 
-            height: '10px', 
-            borderRadius: '9999px', 
-            background: 'var(--surface-inset)', 
-            display: 'flex', 
-            overflow: 'hidden', 
+        <div
+          style={{
+            minHeight: totalErrors ? '10px' : '48px',
+            borderRadius: '9999px',
+            background: 'var(--surface-inset)',
+            display: 'flex',
+            overflow: 'hidden',
             marginBottom: '1.5rem',
             border: '1px solid var(--border)'
           }}
@@ -291,11 +292,12 @@ export default function SATHubPage() {
             </>
           ) : (
             <div style={{ width: '100%', background: 'var(--surface-inset)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <span style={{ fontSize: '0.72rem', color: 'var(--muted)' }}>No mistakes logged yet</span>
+              <span style={{ fontSize: '0.72rem', color: 'var(--muted)' }}>{mistakes.length ? `${mistakes.length} mistakes have no category yet. Categorise them in the mistake review.` : "No mistakes logged yet"}</span>
             </div>
           )}
         </div>
 
+        {mistakes.length > totalErrors && <p className="untagged-note">{mistakes.length - totalErrors} mistakes have not been categorised. The breakdown below covers {totalErrors} tagged mistakes.</p>}
         {/* Breakdown Cards */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1rem' }}>
           {/* 1. Concept Gap */}

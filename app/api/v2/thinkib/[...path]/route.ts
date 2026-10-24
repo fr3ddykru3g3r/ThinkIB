@@ -383,10 +383,10 @@ function renderServerSearchPage(query: string, subpath: string): string {
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { path: string[] } }
+  { params }: { params: Promise<{ path: string[] }> }
 ) {
-  const rawSubpath = params.path
-    ? params.path
+  const rawSubpath = (await params).path
+    ? (await params).path
         .map((seg) => {
           try {
             return decodeURIComponent(seg);

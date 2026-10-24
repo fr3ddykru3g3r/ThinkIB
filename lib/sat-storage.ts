@@ -24,6 +24,7 @@ export interface MistakeEntry {
 }
 
 export interface ExamHistoryEntry {
+  reviewSessionId?: string;
   id: string;
   date: string;
   totalScore: number;
@@ -81,18 +82,9 @@ function safeSetItem(key: string, value: string): void {
       err?.number === -2147024882;
 
     if (isQuota) {
-      console.warn('[sat-storage] Quota exceeded. Pruning oldest exam history and seen IDs...');
+      console.warn('[sat-storage] Quota exceeded. Pruning the seen-question cache...');
       try {
-        // 1. Prune exam history
-        const rawHistory = safeGetItem(EXAM_HISTORY_KEY);
-        if (rawHistory) {
-          const history = JSON.parse(rawHistory);
-          if (Array.isArray(history) && history.length > 5) {
-            localStorage.setItem(EXAM_HISTORY_KEY, JSON.stringify(history.slice(0, Math.floor(history.length / 2))));
-          } else {
-            localStorage.removeItem(EXAM_HISTORY_KEY);
-          }
-        }
+        // Preserve completed tests. Only the expendable seen-question cache may be pruned.
         // 2. Prune seen IDs (keep last 500)
         const rawSeen = safeGetItem(SEEN_KEY);
         if (rawSeen) {

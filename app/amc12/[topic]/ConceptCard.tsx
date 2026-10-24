@@ -39,7 +39,7 @@ export default function ConceptCard({ concept, index, topicId, practiceCount }: 
     <article id={`concept-${index}`} style={{ ...card, scrollMarginTop: 90 }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem', alignItems: 'baseline' }}>
         <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.6rem', fontWeight: 500, lineHeight: 1.15 }}>
-          <span style={{ color: 'var(--accent)', marginRight: 8 }}>{index + 1}.</span>{concept.title}
+          <span style={{ color: 'var(--accent)', marginRight: 8 }}>{index + 1}.</span><Tex>{concept.title}</Tex>
         </h2>
         <button
           onClick={toggleRead}

@@ -1,7 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useMemo, useState } from 'react';
+import { saveSession, makeSessionId } from '@/lib/practice-history';
+import { useEffect, useMemo, useState, useRef } from 'react';
 import type { Letter, Problem } from '@/lib/amc12-core';
 import { LETTERS, DIFFICULTY_LABELS, amcScore } from '@/lib/amc12-core';
 import { Tex, recordResults, type Result } from '../shared';
@@ -30,6 +31,7 @@ export default function Runner({ title, kind, problems, backHref, nextHref, time
   const topicTitle = (id: string) => topicTitles[id] ?? id;
   const isMock = kind === 'mock';
   const [i, setI] = useState(0);
+  const finishing = useRef(false);
   const [answers, setAnswers] = useState<Record<string, Letter>>({});
   // Practice modes check each answer immediately; mocks only at the end.
   const [checked, setChecked] = useState<Record<string, boolean>>({});
@@ -54,7 +56,7 @@ export default function Runner({ title, kind, problems, backHref, nextHref, time
   useEffect(() => {
     if (finished) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.target instanceof HTMLInputElement || e.metaKey || e.ctrlKey) return;
+      if (e.target instanceof HTMLElement && (e.target.matches('input,textarea,select,button,a') || e.target.isContentEditable) || e.metaKey || e.ctrlKey || e.altKey) return;
       const k = e.key.toUpperCase();
       if ((LETTERS as string[]).includes(k)) choose(k as Letter);
       else if (e.key === 'ArrowRight') setI((x) => Math.min(problems.length - 1, x + 1));
@@ -76,10 +78,13 @@ export default function Runner({ title, kind, problems, backHref, nextHref, time
   }
 
   function finish() {
+    if (finishing.current) return;
+    finishing.current = true;
     const results: Record<string, Result> = {};
     for (const q of problems) {
       if (answers[q.id]) results[q.id] = answers[q.id] === q.answer ? 'correct' : 'wrong';
     }
+    void saveSession({id:makeSessionId(),createdAt:new Date().toISOString(),kind:'amc',title:`AMC 12 · ${title}`,score:isMock?amcScore(stats.correct,stats.blank):undefined,maxScore:isMock?150:undefined,correct:stats.correct,total:problems.length,questions:problems.map(q=>({id:q.id,prompt:q.problem,choices:q.choices,answer:answers[q.id]||'',correctAnswer:q.answer,correct:answers[q.id]===q.answer,explanation:q.solution,topic:topicTitle(q.topicId)}))}).catch(()=>window.alert('Your answers are ready to review, but this browser could not save the session.'));
     recordResults(results);
     setFinished(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -102,7 +107,7 @@ export default function Runner({ title, kind, problems, backHref, nextHref, time
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', flexWrap: 'wrap', marginBottom: '1.25rem' }}>
         <div>
           <Link href={backHref} className="tech-label" style={{ color: 'var(--muted)', fontSize: '0.78rem' }}>← Back</Link>
-          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: '2rem', fontWeight: 500 }}>{title}</h1>
+          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: '2rem', fontWeight: 500 }}><Tex>{title}</Tex></h1>
         </div>
         <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
           {timeLimitSec ? (
@@ -234,7 +239,7 @@ function Review({ title, kind, problems, answers, stats, backHref, nextHref, top
   return (
     <div style={{ maxWidth: 820, margin: '0 auto', paddingBottom: '4rem' }}>
       <span className="section-label">Results</span>
-      <h1 style={{ fontFamily: 'var(--font-display)', fontSize: '2.2rem', fontWeight: 500, margin: '0.3rem 0 1rem' }}>{title}</h1>
+      <h1 style={{ fontFamily: 'var(--font-display)', fontSize: '2.2rem', fontWeight: 500, margin: '0.3rem 0 1rem' }}><Tex>{title}</Tex></h1>
 
       <div style={{ ...card, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '1rem', textAlign: 'center' }}>
         {kind === 'mock' && <Stat label="AMC score" value={`${score} / ${max}`} />}

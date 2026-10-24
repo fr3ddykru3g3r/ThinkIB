@@ -1,4 +1,5 @@
 'use client';
+import PDFReader from '@/app/components/PDFReader';
 
 import React, { useState, useEffect, useRef, Suspense } from 'react';
 import Link from 'next/link';
@@ -283,7 +284,7 @@ function PastPapersWorkspaceInner() {
   };
 
   return (
-    <div style={{ height: '100vh', display: 'flex', flexDirection: 'column', background: 'var(--bg, #fbfbfa)', overflow: 'hidden' }}>
+    <div className="exam-workspace" style={{ height: '100vh', display: 'flex', flexDirection: 'column', background: 'var(--bg, #fbfbfa)', overflow: 'hidden' }}>
       {/* Top Workspace Bar */}
       <header 
         style={{
@@ -476,7 +477,7 @@ function PastPapersWorkspaceInner() {
       </header>
 
       {/* Main Split Screen Area */}
-      <div style={{ flex: 1, display: 'flex', overflow: 'hidden' }}>
+      <div className="exam-workspace-panes" style={{ flex: 1, display: 'flex', overflow: 'hidden' }}>
         
         {/* LEFT PANE: Question Paper Viewer */}
         <div 
@@ -505,11 +506,7 @@ function PastPapersWorkspaceInner() {
 
           <div style={{ flex: 1, position: 'relative' }}>
             {activeQpUrl ? (
-              <iframe
-                src={`${activeQpUrl}#toolbar=1`}
-                style={{ width: '100%', height: '100%', border: 'none' }}
-                title="Question Paper"
-              />
+              <PDFReader src={`${activeQpUrl}#toolbar=1`} title="Question Paper"/>
             ) : (
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', padding: '2rem', textAlign: 'center' }}>
                 <div>
@@ -638,15 +635,11 @@ function PastPapersWorkspaceInner() {
               </div>
 
               <div style={{ flex: 1 }}>
-                <iframe
-                  src={
+                <PDFReader src={
                     bookletSubject === 'physics'
                       ? '/vault/ib-booklets/Math_AA_Comprehensive_Sheet.pdf#toolbar=1'
                       : '/vault/ib-booklets/Math_AA_Formula_Booklet.pdf#toolbar=1'
-                  }
-                  style={{ width: '100%', height: '100%', border: 'none' }}
-                  title="Formula Booklet"
-                />
+                  } title="Formula Booklet"/>
               </div>
             </div>
           )}
@@ -721,11 +714,7 @@ function PastPapersWorkspaceInner() {
               {/* Markscheme PDF Viewer */}
               <div style={{ flex: 1 }}>
                 {activeMsUrl ? (
-                  <iframe
-                    src={`${activeMsUrl}#toolbar=1`}
-                    style={{ width: '100%', height: '100%', border: 'none' }}
-                    title="Markscheme"
-                  />
+                  <PDFReader src={`${activeMsUrl}#toolbar=1`} title="Markscheme"/>
                 ) : (
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', padding: '2rem', textAlign: 'center' }}>
                     <div>

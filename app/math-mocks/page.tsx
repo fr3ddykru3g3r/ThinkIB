@@ -1,4 +1,5 @@
 'use client';
+import PDFReader from '@/app/components/PDFReader';
 
 import React, { useState, useMemo } from 'react';
 import { Search, Download, ExternalLink, FileText, Eye, ArrowLeft, BookOpen } from 'lucide-react';
@@ -220,7 +221,7 @@ export default function MathMocksBrowser() {
                   </a>
                 </div>
               </div>
-              <iframe src={selectedDoc.src} className="viewer-iframe" title="Math Mock Document Viewer" />
+              <PDFReader src={selectedDoc.src} title="Math Mock Document Viewer"/>
             </div>
           ) : (
             <div className="viewer-placeholder">

@@ -14,7 +14,7 @@ export default function WorkedExampleCard({ example, index }: { example: WorkedE
     <article style={card}>
       <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap', alignItems: 'baseline' }}>
         <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.4rem', fontWeight: 500 }}>
-          Example {index + 1}: {example.title}
+          Example {index + 1}: <Tex>{example.title}</Tex>
         </h3>
         <span style={pill}>{DIFFICULTY_LABELS[example.difficulty]}</span>
       </div>
