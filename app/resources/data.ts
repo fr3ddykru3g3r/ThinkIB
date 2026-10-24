@@ -50,24 +50,8 @@ export const resourcesData: ResourceItem[] = [
     url: '/vault/ee-guides/sevenoaks-prized-ees-2015.pdf',
     meta: 'PDF • 7.9 MB (284 Pages)',
   },
-  {
-    name: 'Extended Essay: Skills for Success (Hodder 2025)',
-    category: 'local_vault',
-    subject: 'Core',
-    description: 'Complete 2025 curriculum textbook by Paul Hoang & Joseph Koszary covering the 5-phase EE process, RPPF forms, and examiner rubrics.',
-    url: '/vault/ee-guides/ee-hodder-2025-hoang.pdf',
-    meta: 'PDF • 76.7 MB (Hodder 2025)',
-  },
-  {
-    name: 'Oxford Extended Essay Course Companion (Oxford 2025)',
-    category: 'local_vault',
-    subject: 'Core',
-    description: 'Comprehensive 2025 guide by Kosta Lekanides on research design, supervisor dialogues, academic honesty, and the assessment criteria.',
-    url: '/vault/ee-guides/ee-oxford-2025-lekanides.pdf',
-    meta: 'PDF • 79.1 MB (Oxford 2025)',
-  },
 
-  // Verified High-Yield Study Portals & Archives
+  // Study Study Portals & Archives
   {
     name: 'Official IBO Extended Essay Assessed Student Work',
     category: 'portal',
@@ -114,7 +98,7 @@ export const resourcesData: ResourceItem[] = [
     subject: 'Multiple',
     description: 'Comprehensive student-created notes for IB Biology, Chemistry, English, and Humanities.',
     url: 'https://ibdone1.wordpress.com/',
-    meta: 'Top Rated Notes Archive',
+    meta: 'Student notes',
   },
   {
     name: 'IB Your Way Out Notes',
@@ -122,13 +106,13 @@ export const resourcesData: ResourceItem[] = [
     subject: 'Multiple',
     description: 'Detailed unit-by-unit revision summaries for IB Biology HL, Chemistry, and English A.',
     url: 'https://ibrevision.wordpress.com/',
-    meta: 'High-Yield Notes',
+    meta: 'Revision notes',
   },
   {
     name: 'BioNinja IB Biology',
     category: 'portal',
     subject: 'Biology',
-    description: 'The premier interactive guide for IB Biology syllabus breakdown, diagrams, and summary notes.',
+    description: 'IB Biology diagrams, syllabus guides, and summary notes.',
     url: 'https://ib.bioninja.com.au',
     meta: 'Interactive Biology Portal',
   },
@@ -173,14 +157,14 @@ export const resourcesData: ResourceItem[] = [
     meta: 'Student Guidance Portal',
   },
 
-  // 100% Verified YouTube Channels (Tested 200 OK)
+  // YouTube channels
   {
     name: 'MSJChem',
     category: 'youtube',
     subject: 'Chemistry',
     description: 'Concise, 5-minute syllabus-aligned video explanations for every IB Chemistry topic.',
     url: 'https://www.youtube.com/@MSJChem',
-    meta: '100k+ Subscribers',
+    meta: 'Video lessons',
   },
   {
     name: 'Richard Thornley',
@@ -188,7 +172,7 @@ export const resourcesData: ResourceItem[] = [
     subject: 'Chemistry',
     description: 'Engaging, syllabus-by-syllabus video explanations for IB Chemistry SL & HL.',
     url: 'https://www.youtube.com/@ibchemvids',
-    meta: '120k+ Subscribers',
+    meta: 'Video lessons',
   },
   {
     name: 'Alex Lee (Mr. Lee Science)',
@@ -196,7 +180,7 @@ export const resourcesData: ResourceItem[] = [
     subject: 'Biology',
     description: 'Fast-paced, diagram-heavy video tutorials covering core & AHL IB Biology topics.',
     url: 'https://www.youtube.com/@misterleescience',
-    meta: '50k+ Subscribers',
+    meta: 'Video lessons',
   },
   {
     name: 'Cheryl Hickman',
@@ -204,7 +188,7 @@ export const resourcesData: ResourceItem[] = [
     subject: 'Biology',
     description: 'Slide-by-slide complete syllabus lectures covering IB Biology SL & HL.',
     url: 'https://www.youtube.com/@cherylhickman6386',
-    meta: '80k+ Subscribers',
+    meta: 'Video lessons',
   },
   {
     name: 'Tim Nance (Nancenotes)',
@@ -220,15 +204,15 @@ export const resourcesData: ResourceItem[] = [
     subject: 'English A',
     description: 'Step-by-step video walkthroughs for Paper 1, Paper 2, and IO success.',
     url: 'https://www.youtube.com/channel/UCEZHU9lVH7h2p60KI-rEbDA',
-    meta: '60k+ Subscribers',
+    meta: 'Video lessons',
   },
   {
     name: 'Chris Doner Physics',
     category: 'youtube',
     subject: 'Physics',
-    description: 'The gold-standard video lecture series covering every topic in IB Physics.',
+    description: 'IB Physics video lessons organised by topic.',
     url: 'https://www.youtube.com/@donerphysics',
-    meta: '100k+ Subscribers',
+    meta: 'Video lessons',
   },
   {
     name: 'Prof. Varun Physics',
@@ -290,19 +274,19 @@ export const resourcesData: ResourceItem[] = [
     name: '3Blue1Brown',
     category: 'youtube',
     subject: 'Mathematics',
-    description: 'Stunning visual intuition for calculus, linear algebra, and advanced mathematics.',
+    description: 'Visual explanations of calculus, linear algebra, and other mathematics topics.',
     url: 'https://www.youtube.com/@3blue1brown',
-    meta: '6M+ Subscribers',
+    meta: 'Video lessons',
   },
 
-  // 100% Verified Quizlet Sets
+  // Quizlet sets
   {
     name: 'IB Chemistry SL/HL Core Definitions',
     category: 'quizlet',
     subject: 'Chemistry',
-    description: 'Full verified glossary of key definitions for Chemistry Paper 1 & Paper 2.',
+    description: 'Full glossary of key definitions for Chemistry Paper 1 & Paper 2.',
     url: 'https://quizlet.com/413495810/ib-chemistry-definitions-flash-cards/',
-    meta: 'Verified Terms',
+    meta: 'Key terms',
   },
   {
     name: 'IB Economics Key Terms & Concepts',
@@ -310,7 +294,7 @@ export const resourcesData: ResourceItem[] = [
     subject: 'Economics',
     description: 'Essential definitions for Micro, Macro, and Global economics units.',
     url: 'https://quizlet.com/492210086/ib-economics-definitions-flash-cards/',
-    meta: '210 Verified Terms',
+    meta: '210 Key terms',
   },
   {
     name: 'IB Biology Syllabus Vocabulary',
@@ -318,6 +302,6 @@ export const resourcesData: ResourceItem[] = [
     subject: 'Biology',
     description: 'Comprehensive flashcards covering core IB Biology definitions.',
     url: 'https://quizlet.com/209930773/ib-biology-definitions-flash-cards/',
-    meta: '340 Verified Terms',
+    meta: '340 Key terms',
   }
 ];

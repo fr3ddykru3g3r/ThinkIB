@@ -224,3 +224,5 @@ body {cursor:auto;}
 .pdf-reader {overflow:hidden;min-height:0;flex:1 1 0;}
 .pdf-pages {contain:strict;flex-basis:0;}
 .exam-workspace-panes,.exam-workspace-panes>div,.exam-workspace-panes>div>div {min-height:0;min-width:0;}
+
+@media(max-width:760px){.exam-workspace>header>div{width:100%;min-width:0;gap:8px!important}.exam-workspace>header select{max-width:100%!important;min-width:0;width:100%;font-size:12px!important}.exam-workspace .split-ratio-controls{display:none!important}.exam-workspace>header button{white-space:nowrap;font-size:12px!important}.exam-workspace>header>div>div{min-width:0}}

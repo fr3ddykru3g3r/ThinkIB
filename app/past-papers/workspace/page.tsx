@@ -432,7 +432,7 @@ function PastPapersWorkspaceInner() {
           )}
 
           {/* Split Ratio Controls */}
-          <div style={{ display: 'flex', gap: '0.25rem', borderLeft: '1px solid var(--border)', paddingLeft: '0.75rem' }}>
+          <div className="split-ratio-controls" style={{ display: 'flex', gap: '0.25rem', borderLeft: '1px solid var(--border)', paddingLeft: '0.75rem' }}>
             <button
               onClick={() => setSplitRatio(40)}
               style={{

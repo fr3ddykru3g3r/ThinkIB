@@ -37,22 +37,6 @@ export const EE_VAULT_DOCUMENTS: PDFDocument[] = [
     size: '7.9 MB (284 Pages)',
     category: 'student_work'
   },
-  {
-    id: 'hodder-2025',
-    title: 'Extended Essay for the IB Diploma: Skills for Success',
-    subtitle: 'Paul Hoang & Joseph Koszary • Hodder Education (2025 Edition)',
-    url: '/vault/ee-guides/ee-hodder-2025-hoang.pdf',
-    size: '76.7 MB (Official Textbook)',
-    category: 'textbook'
-  },
-  {
-    id: 'oxford-2025',
-    title: 'Extended Essay Course Companion',
-    subtitle: 'Kosta Lekanides • Oxford University Press (2025 Edition)',
-    url: '/vault/ee-guides/ee-oxford-2025-lekanides.pdf',
-    size: '79.1 MB (Official Course Companion)',
-    category: 'textbook'
-  }
 ];
 
 interface Props {
