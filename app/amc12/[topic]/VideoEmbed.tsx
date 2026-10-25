@@ -1,5 +1,6 @@
 'use client';
 
+import WebEmbed from '../../components/WebEmbed';
 import { useState } from 'react';
 import type { Video } from '@/lib/amc12-core';
 import { card } from '../styles';
@@ -12,13 +13,8 @@ export default function VideoEmbed({ video }: { video: Video }) {
     <figure style={{ ...card, padding: '0.75rem', margin: 0, display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
       <div style={{ position: 'relative', aspectRatio: '16 / 9', borderRadius: 'var(--radius-md)', overflow: 'hidden', background: '#000' }}>
         {playing ? (
-          <iframe
-            src={`https://www.youtube-nocookie.com/embed/${video.youtubeId}?autoplay=1&rel=0`}
-            title={video.title}
-            allow="accelerometer; autoplay; encrypted-media; picture-in-picture; fullscreen"
-            allowFullScreen
-            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 0 }}
-          />
+          <WebEmbed video src={`https://www.youtube-nocookie.com/embed/${video.youtubeId}?autoplay=1&rel=0`} title={video.title}/>
+
         ) : (
           <button
             onClick={() => setPlaying(true)}

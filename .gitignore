@@ -17,3 +17,6 @@ __pycache__/
 *.py[cod]
 public/pdf.worker.min.mjs
 out/
+
+# Recovered public PDFs are hosted on Firebase, not committed to source.
+/public/vault/savemyexams/

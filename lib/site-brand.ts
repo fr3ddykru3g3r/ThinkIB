@@ -4,8 +4,8 @@ export const siteBrand = {
   description: isWdc
     ? 'The World Debate Collective study library. IB resources, SAT practice, and competition maths.'
     : 'IB resources, SAT practice, and competition maths. Pick what you need and get back to studying.',
-  url: isWdc ? 'https://prep.worlddebatecollective.org' : 'https://ibstuff28.vercel.app',
+  url: isWdc ? 'https://learn.worlddebatecollective.org' : 'https://ibstuff28.vercel.app',
 };
 
-// Public fallback while the custom Namecheap DNS record is awaiting access.
-export const learnUrl = 'https://worlddebatecollective-prep.web.app/';
+// Verified custom Firebase Hosting domain.
+export const learnUrl = 'https://learn.worlddebatecollective.org/';

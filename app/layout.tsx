@@ -1,5 +1,6 @@
 import './globals.css';
 import './study-design.css';
+import './wdc-refinement.css';
 import 'katex/dist/katex.min.css';
 import React from 'react';
 import HeaderNav from './components/HeaderNav';
@@ -18,6 +19,8 @@ export default function RootLayout({
   return (
     <html lang="en" data-brand={isWdc ? "wdc" : "archive"} suppressHydrationWarning>
       <head>
+        <link rel="preconnect" href="https://ibstuff28.vercel.app" crossOrigin="anonymous"/>
+        <link rel="preconnect" href="https://worlddebatecollective-prep.web.app" crossOrigin="anonymous"/>
         <link rel="icon" type={isWdc ? "image/png" : "image/svg+xml"} href={isWdc ? "/wdc-mark.png" : "/favicon.svg"} />
         <link rel="shortcut icon" href={isWdc ? "/wdc-mark.png" : "/favicon.svg"} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -44,7 +47,7 @@ export default function RootLayout({
         <HeaderNav />
         <main id="main-content" className="container">
           {children}
-        </main><footer className="learn-footer"><span>{siteBrand.name} · Study resources and practice</span>{isWdc ? <a href="https://www.worlddebatecollective.org/">Back to World Debate Collective ↗</a> : <a href={learnUrl}>Also on WDC Learn ↗</a>}<a href="/history">Your practice history</a></footer>
+        </main><footer className="learn-footer"><span>{siteBrand.name} · Study resources and practice</span>{isWdc ? <a href="https://www.worlddebatecollective.org/">Back to World Debate Collective ↗</a> : <a href={learnUrl}>Also on WDC Learn ↗</a>}<a href="/sat#history">Previous SAT practice</a></footer>
       </body>
     </html>
   );

@@ -1361,12 +1361,6 @@ function PastPapersBrowserContent() {
                       >
                         <Zap size={12} /> Workspace
                       </Link>
-                      <a href={selectedFile} download className="filter-btn active" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', textDecoration: 'none', padding: '4px 10px' }}>
-                        <Download size={12} /> Download
-                      </a>
-                      <a href={selectedFile} target="_blank" rel="noopener noreferrer" className="filter-btn" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', textDecoration: 'none', padding: '4px 10px' }}>
-                        <ExternalLink size={12} /> New Tab
-                      </a>
                     </div>
                   </div>
                   <PDFReader src={selectedFile} title="PDF Viewer"/>
@@ -1374,9 +1368,9 @@ function PastPapersBrowserContent() {
               ) : (
                 <div className="viewer-placeholder">
                   <Eye size={44} style={{ color: 'var(--earth)', marginBottom: '1rem', opacity: 0.5 }} />
-                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.4rem' }}>No Examination Paper Selected</h3>
+                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.4rem' }}>Choose a paper</h3>
                   <p style={{ maxWidth: '320px', marginTop: '0.5rem', fontSize: '0.9rem', color: 'var(--ink-soft)' }}>
-                    Select a past examination paper or markscheme from the directory on the left to preview and study the document inline.
+                    Choose a paper or markscheme to read it here.
                   </p>
                 </div>
               )}

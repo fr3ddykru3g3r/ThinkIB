@@ -1,4 +1,5 @@
 'use client';
+import WebEmbed from '../components/WebEmbed';
 import { resourceUrl } from '@/lib/resource-url';
 
 import React, { useState, useMemo, useEffect } from 'react';
@@ -285,19 +286,8 @@ export default function ThinkIBPage() {
           </div>
         </div>
 
-        <iframe
-          key={key}
-          src={resourceUrl(iframeSrc)}
-          style={{
-            width: '100%',
-            height: 'calc(100vh - 280px)',
-            minHeight: '720px',
-            border: 'none',
-            borderRadius: '0 0 4px 4px',
-            background: '#ffffff'
-          }}
-          title={`InThinking - ${selectedSubject.name}`}
-        />
+        <WebEmbed key={key} src={resourceUrl(iframeSrc)} title={selectedSubject.name}/>
+
       </div>
     </div>
   );

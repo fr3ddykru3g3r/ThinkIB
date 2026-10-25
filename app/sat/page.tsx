@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import PracticeHistory from '../components/PracticeHistory';
 import { BookOpen, ArrowRight, ExternalLink, Target, FileDown, Sparkles, TrendingUp, Layers, AlertCircle } from 'lucide-react';
 import SATReferenceGuideModal from '@/app/components/SATReferenceGuideModal';
 import DesmosMasterKeyModal from '@/app/components/DesmosMasterKeyModal';
@@ -89,6 +90,8 @@ const TEXTBOOKS = [
 export default function SATHubPage() {
   const [showFormulaModal, setShowFormulaModal] = useState(false);
   const [showDesmosKeyModal, setShowDesmosKeyModal] = useState(false);
+  const [view,setView]=useState<'practice'|'history'>('practice');
+  React.useEffect(()=>{const update=()=>setView(window.location.hash==='#history'?'history':'practice');update();window.addEventListener('hashchange',update);return()=>window.removeEventListener('hashchange',update);},[]);
   const [examHistory, setExamHistory] = useState<ExamHistoryEntry[]>([]);
   const [mistakes, setMistakes] = useState<MistakeEntry[]>([]);
   const [skills, setSkills] = useState<SkillStat[]>([]);
@@ -128,7 +131,8 @@ export default function SATHubPage() {
         </p>
       </div>
 
-      <p className="practice-history-link"><Link href="/history">Review previous tests and drills →</Link><span> Scores are practice estimates, not official SAT results.</span></p>
+      <nav className="study-tabs" aria-label="SAT sections"><button aria-current={view==='practice'?'page':undefined} onClick={()=>{setView('practice');window.history.replaceState(null,'',window.location.pathname);}}>Practice</button><button aria-current={view==='history'?'page':undefined} onClick={()=>{setView('history');window.history.replaceState(null,'','#history');}}>Previous tests & drills</button></nav>
+      {view==='history'?<PracticeHistory scope="sat" embedded/>:<>
       {/* EXAM READINESS & SCORE PREDICTOR DASHBOARD (If student has activity) */}
       {(examHistory.length > 0 || mistakes.length > 0) && (
         <div
@@ -766,6 +770,7 @@ export default function SATHubPage() {
         </div>
       </div>
 
+      </>}
       {/* REFERENCE GUIDE MODAL */}
       <SATReferenceGuideModal
         isOpen={showFormulaModal}

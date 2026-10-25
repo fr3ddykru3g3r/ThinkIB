@@ -54,6 +54,7 @@ export default function PDFReader({ src, title = 'Document' }: { src: string; ti
   const [zoom, setZoom] = useState(1);
   const [error, setError] = useState('');
   const [retry, setRetry] = useState(0);
+  const [progress, setProgress] = useState<number | null>(null);
   useEffect(() => {
     const observer = new ResizeObserver(([entry]) => setWidth(Math.max(160, entry.contentRect.width - 32)));
     if (host.current) observer.observe(host.current);
@@ -61,7 +62,10 @@ export default function PDFReader({ src, title = 'Document' }: { src: string; ti
   }, []);
   useEffect(() => {
     let stopped = false; let task: any;
-    setDocument(null); setError(''); setPage(1);
+    setDocument(null); setError(''); setPage(1); setProgress(null);
+    const timeout = window.setTimeout(() => {
+      if (!stopped) { stopped = true; task?.destroy(); setError('Loading took too long. Retry, or open the PDF directly.'); }
+    }, 45000);
     (async () => {
       if (!(Promise as any).withResolvers) (Promise as any).withResolvers = function () {
         let resolve: any, reject: any; const promise = new Promise((a, b) => { resolve = a; reject = b; });
@@ -70,11 +74,13 @@ export default function PDFReader({ src, title = 'Document' }: { src: string; ti
       const pdf = await import('pdfjs-dist/legacy/build/pdf.mjs');
       pdf.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
       if (stopped) return;
-      task = pdf.getDocument({ url: resourceUrl(src.split('#')[0]), isEvalSupported: false });
+      task = pdf.getDocument({ url: resourceUrl(src.split('#')[0]), isEvalSupported: false, disableAutoFetch: true, disableStream: true, rangeChunkSize: 131072 });
+      task.onProgress = ({ loaded, total }: { loaded: number; total: number }) => { if (!stopped && total > 0) setProgress(Math.min(100, Math.round(loaded / total * 100))); };
       const doc = await task.promise;
+      window.clearTimeout(timeout);
       if (!stopped) setDocument(doc);
-    })().catch(() => { if (!stopped) setError('This document could not load. Retry, or open the PDF directly.'); });
-    return () => { stopped = true; task?.destroy(); };
+    })().catch(() => { window.clearTimeout(timeout); if (!stopped) setError('This document could not load. Retry, or open the PDF directly.'); });
+    return () => { stopped = true; window.clearTimeout(timeout); task?.destroy(); };
   }, [src, retry]);
   const jump = (n: number) => {
     const target = Math.min(document?.numPages || 1, Math.max(1, n || 1));
@@ -90,7 +96,7 @@ export default function PDFReader({ src, title = 'Document' }: { src: string; ti
       <a href={resourceUrl(src)} target="_blank" rel="noopener noreferrer">Open PDF ↗</a>
     </div>
     <div ref={pages} className="pdf-pages" tabIndex={0} aria-label={`${title}, scroll through pages`}>
-      {!document && !error && <p role="status">Loading document…</p>}
+      {!document && !error && <p role="status">Loading document{progress !== null ? ` · ${progress}%` : '…'}</p>}
       {error && <div role="alert"><p>{error}</p><button onClick={() => setRetry(n => n + 1)}>Retry</button></div>}
       {document && Array.from({ length: document.numPages }, (_, i) => <PDFPage key={i} document={document} number={i + 1} width={width} zoom={zoom} scrollRoot={pages} onVisible={setPage}/>)}
     </div>

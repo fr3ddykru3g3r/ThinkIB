@@ -71,25 +71,26 @@ function resolvePastPaperAsset(pathList: string[]): { assetName: string; release
         if (subjTokens.some(st => al.includes(st))) {
           return { assetName: asset, release: releaseName };
         }
-      } else {
-        return { assetName: asset, release: releaseName };
       }
     }
   }
 
   // 4. Fallback: fuzzy match using alphanumeric filename stem
   const cleanFn = filename.replace(/\.pdf$/i, '').replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+  const requestedYear = rawPath.match(/20\d\d/)?.[0];
+  const requestedSession = rawPath.toLowerCase().match(/may|november|nov/)?.[0];
+  const sameSession = (asset: string) => (!requestedYear || asset.includes(requestedYear)) && (!requestedSession || asset.toLowerCase().includes(requestedSession));
   if (cleanFn.length > 3) {
     for (const asset of v1Assets as string[]) {
       const cleanAsset = asset.replace(/\.pdf$/i, '').replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
-      if (cleanAsset.includes(cleanFn)) {
+      if (sameSession(asset) && cleanAsset.includes(cleanFn)) {
         return { assetName: asset, release: 'v1' };
       }
     }
 
     for (const asset of v2Assets as string[]) {
       const cleanAsset = asset.replace(/\.pdf$/i, '').replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
-      if (cleanAsset.includes(cleanFn)) {
+      if (sameSession(asset) && cleanAsset.includes(cleanFn)) {
         return { assetName: asset, release: 'v2' };
       }
     }
@@ -257,7 +258,7 @@ export async function GET(
   const resolved = resolvePastPaperAsset(pathSegments);
 
   if (!resolved) {
-    return NextResponse.json({ error: 'Past paper asset not found in index' }, { status: 404 });
+    return NextResponse.json({ error: 'This paper is not available in the archive. Try another session or paper.' }, { status: 404 });
   }
 
   if (resolved.release === 'static') {
@@ -274,6 +275,7 @@ export async function GET(
 
   try {
     const fileRes = await fetch(targetUrl, {
+      signal: AbortSignal.timeout(20000),
       headers: {
         ...(request.headers.get('range') ? { Range: request.headers.get('range')! } : {}),
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'

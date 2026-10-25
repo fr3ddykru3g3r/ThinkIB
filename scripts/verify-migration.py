@@ -25,7 +25,7 @@ for base in BASES:
  try:
   with urllib.request.urlopen(req,timeout=40) as r:results.append({'url':req.full_url,'ok':r.read(5)==b'%PDF-','status':r.status})
  except Exception as e:results.append({'url':req.full_url,'ok':False,'error':str(e)})
-Path('../learn-release-evidence/migration-public-checks.json').write_text(json.dumps(results,indent=2))
+(Path(__file__).resolve().parents[2]/'learn-release-evidence/migration-public-checks.json').write_text(json.dumps(results,indent=2))
 failed=[r for r in results if not r['ok']]
 print(json.dumps({'passed':len(results)-len(failed),'failed':failed}))
 raise SystemExit(bool(failed))

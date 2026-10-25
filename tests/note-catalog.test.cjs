@@ -1,0 +1,5 @@
+const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm'),ts=require('typescript');
+const context={exports:{},Intl};vm.runInNewContext(ts.transpileModule(fs.readFileSync('lib/note-catalog.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS}}).outputText,context);
+const {cleanNoteTitle,orderNotes}=context.exports;
+test('note titles repair known encoding damage and retain mathematical numbering',()=>{assert.equal(cleanNoteTitle("5.12-further-limits-(inc-l'hã´pital's-rule).pdf"),"5.12 Further limits (inc L’Hôpital’s rule)");assert.equal(cleanNoteTitle('3.2-geometry-of-3d-shapes.pdf'),'3.2 Geometry of 3D shapes');});
+test('topic and subsection numbers sort numerically without changing the original catalog',()=>{const notes=['3.10 Vectors','3.2 Geometry','3.1 Toolkit'].map(name=>({name,subject:'Maths AA HL',folders:['3. Geometry'],path:name,size:0}));assert.equal(orderNotes(notes).map(n=>n.name).join(','),'3.1 Toolkit,3.2 Geometry,3.10 Vectors');assert.equal(notes[0].name,'3.10 Vectors');});
