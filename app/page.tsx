@@ -1,4 +1,5 @@
 'use client';
+import {resourceMatches} from '@/lib/paper-search';
 
 import React, { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
@@ -15,9 +16,7 @@ function ArchiveHome() {
 
   const filteredResources = useMemo(() => {
     return resourcesData.filter(item => {
-      const matchesSearch = item.name.toLowerCase().includes(search.toLowerCase()) ||
-                            item.subject.toLowerCase().includes(search.toLowerCase()) ||
-                            item.description.toLowerCase().includes(search.toLowerCase());
+      const matchesSearch = resourceMatches(`${item.name} ${item.subject} ${item.description}`,search);
       const matchesCategory = categoryFilter === 'all' || item.category === categoryFilter;
       return matchesSearch && matchesCategory;
     });
@@ -642,7 +641,7 @@ function ArchiveHome() {
                       rel="noopener noreferrer"
                       className="resource-link"
                     >
-                      {item.category === 'local_vault' ? 'Download PDF Document' : 'Open Resource Page'} <ArrowRight size={12} />
+                      {item.url.startsWith('/library')?'Read guide':item.url.startsWith('/past-papers')?'Browse papers':item.category==='local_vault'?'Read PDF':'Open resource'} <ArrowRight size={12} />
                     </a>
                   </div>
                 </div>

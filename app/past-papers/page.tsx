@@ -1,11 +1,14 @@
 'use client';
 import PDFReader from '@/app/components/PDFReader';
 
-import React, { useState, useMemo, useEffect, Suspense } from 'react';
+import React, { useState, useMemo, useEffect, useDeferredValue, Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { ChevronRight, FileText, Search, Download, ExternalLink, Eye, ArrowLeft, BookOpen, HelpCircle, Sparkles, Columns, Atom, FlaskConical, Calculator, Zap } from 'lucide-react';
 import rawMap from './map.json';
+import importedPaperMap from '@/lib/imported-paper-map.json';
+import {paperMatches} from '@/lib/paper-search';
+const paperUrl=(path:string[])=> (importedPaperMap as Record<string,string>)[path.join('/')]||`/api/past-papers/${path.map(encodeURIComponent).join('/')}`;
 import rawPhysicsMap from './physics_topicals_map.json';
 import rawChemistryMap from './chemistry_topicals_map.json';
 import rawMathMap from './math_topicals_map.json';
@@ -36,7 +39,12 @@ const IB_SUBJECTS = [
   { label: 'Psychology', value: 'psychology' },
   { label: 'Geography', value: 'geography' },
   { label: 'Computer Science', value: 'computer' },
-  { label: 'Environmental Systems', value: 'environmental' }
+  { label: 'Environmental Systems', value: 'environmental' },
+  { label: 'Global Politics', value: 'global politics' },
+  { label: 'French B', value: 'french b' },
+  { label: 'French ab initio', value: 'french ab initio' },
+  { label: 'Maths AA', value: 'math aa' },
+  { label: 'Maths AI', value: 'math ai' }
 ];
 
 const PAPER_TYPES = [
@@ -44,13 +52,14 @@ const PAPER_TYPES = [
   { label: 'Paper 1 (P1)', value: 'paper1' },
   { label: 'Paper 2 (P2)', value: 'paper2' },
   { label: 'Paper 3 (P3)', value: 'paper3' },
-  { label: 'Markscheme / MS', value: 'markscheme' }
+  { label: 'Markscheme / MS', value: 'markscheme' },
+  { label: 'Listening audio', value: 'audio' }
 ];
 
 const YEARS = [
   { label: 'All Years', value: '' },
-  ...Array.from({ length: 16 }, (_, i) => {
-    const year = 2025 - i;
+  ...Array.from({ length: 17 }, (_, i) => {
+    const year = 2026 - i;
     return { label: `${year}`, value: `${year}` };
   })
 ];
@@ -175,13 +184,17 @@ function PastPapersBrowserContent() {
   const searchParams = useSearchParams();
 
   // Primary Navigation Mode: 'archive' vs 'topical'
-  const [activeTab, setActiveTab] = useState<'archive' | 'topical'>('topical');
+  const [activeTab, setActiveTab] = useState<'archive' | 'topical'>('archive');
   const [topicalSubject, setTopicalSubject] = useState<TopicalSubject>('physics');
 
   // Archive Browser State
   const [currentPath, setCurrentPath] = useState<string[]>([]);
   const [selectedFile, setSelectedFile] = useState<string | null>(null);
+  const [selectedTitle,setSelectedTitle]=useState('');
+  const [levelFilter,setLevelFilter]=useState('');
+  const [searchLimit,setSearchLimit]=useState(50);
   const [searchQuery, setSearchQuery] = useState('');
+  const deferredSearch=useDeferredValue(searchQuery);
   const [subjectFilter, setSubjectFilter] = useState('');
   const [yearFilter, setYearFilter] = useState('');
   const [paperTypeFilter, setPaperTypeFilter] = useState('');
@@ -204,6 +217,8 @@ function PastPapersBrowserContent() {
     const tabParam = searchParams.get('tab');
     const subjParam = searchParams.get('subject');
     const themeParam = searchParams.get('theme');
+    if(searchParams.get('year'))setYearFilter(searchParams.get('year')!);
+    if(searchParams.get('q'))setSearchQuery(searchParams.get('q')!);
 
     if (tabParam === 'physics-topical') {
       setActiveTab('topical');
@@ -263,58 +278,15 @@ function PastPapersBrowserContent() {
       });
     }
     recurse(mapData, []);
-    return list;
+    return list.sort((a,b)=>Number(b.path.join(' ').match(/20\d\d/)?.[0]||0)-Number(a.path.join(' ').match(/20\d\d/)?.[0]||0)||a.path.join('/').localeCompare(b.path.join('/'),'en',{numeric:true}));
   }, [mapData]);
 
   // Combined Search & Multi-Filter Logic for Archive
   const filteredSearch = useMemo(() => {
-    const hasQuery = searchQuery.trim().length > 0;
-    const hasSubject = subjectFilter.length > 0;
-    const hasYear = yearFilter.length > 0;
-    const hasPaperType = paperTypeFilter.length > 0;
-
-    if (!hasQuery && !hasSubject && !hasYear && !hasPaperType) {
-      return [];
-    }
-
-    const queryClean = searchQuery.toLowerCase().replace(/[_–\-]/g, ' ').trim();
-    const queryTokens = queryClean.split(/\s+/).filter(Boolean);
-    const sub = subjectFilter.toLowerCase();
-    const yr = yearFilter.toLowerCase();
-
-    return allFiles.filter(file => {
-      const cleanName = file.name.toLowerCase().replace(/[_–\-]/g, ' ');
-      const cleanPath = file.path.join(' ').toLowerCase().replace(/[_–\-]/g, ' ');
-
-      if (hasSubject && !cleanPath.includes(sub) && !cleanName.includes(sub)) return false;
-      if (hasYear && !cleanPath.includes(yr) && !cleanName.includes(yr)) return false;
-
-      if (hasPaperType) {
-        const typeMatch = (
-          (paperTypeFilter === 'paper1' && (cleanName.includes('paper 1') || cleanName.includes('p1') || cleanName.includes('paper_1'))) ||
-          (paperTypeFilter === 'paper2' && (cleanName.includes('paper 2') || cleanName.includes('p2') || cleanName.includes('paper_2'))) ||
-          (paperTypeFilter === 'paper3' && (cleanName.includes('paper 3') || cleanName.includes('p3') || cleanName.includes('paper_3'))) ||
-          (paperTypeFilter === 'markscheme' && (cleanName.includes('markscheme') || cleanName.includes('ms') || cleanName.includes('mark scheme')))
-        );
-        if (!typeMatch) return false;
-      }
-
-      if (hasQuery) {
-        const matchesQuery = queryTokens.every(token => {
-          if (/^\d+$/.test(token)) {
-            const regex = new RegExp(`\\b${token}\\b`);
-            return regex.test(cleanName) || regex.test(cleanPath);
-          }
-          return cleanName.includes(token) || cleanPath.includes(token);
-        });
-        if (!matchesQuery) return false;
-      }
-
-      return true;
-    });
-  }, [allFiles, searchQuery, subjectFilter, yearFilter, paperTypeFilter]);
-
-  const isSearching = searchQuery.trim().length > 0 || subjectFilter.length > 0 || yearFilter.length > 0 || paperTypeFilter.length > 0;
+    return allFiles.filter(file=>paperMatches(file,deferredSearch,{subject:subjectFilter,year:yearFilter,type:paperTypeFilter,level:levelFilter}));
+  }, [allFiles,deferredSearch,subjectFilter,yearFilter,paperTypeFilter,levelFilter]);
+  const isSearching = searchQuery.trim().length>0||subjectFilter.length>0||yearFilter.length>0||paperTypeFilter.length>0||levelFilter.length>0;
+  useEffect(()=>setSearchLimit(50),[searchQuery,subjectFilter,yearFilter,paperTypeFilter,levelFilter]);
 
   // Folder navigation tree for Archive
   const currentNode = useMemo(() => {
@@ -332,7 +304,7 @@ function PastPapersBrowserContent() {
   const folders = useMemo(() => {
     return Object.keys(currentNode)
       .filter(key => key !== 'files' && key.toLowerCase() !== 'html' && !key.toLowerCase().endsWith('.html'))
-      .sort();
+      .sort((a,b)=>currentPath.length===0?b.localeCompare(a,'en',{numeric:true}):a.localeCompare(b,'en',{numeric:true}));
   }, [currentNode]);
 
   const files = useMemo(() => {
@@ -348,8 +320,8 @@ function PastPapersBrowserContent() {
   };
 
   const selectFile = (filePath: string[]) => {
-    const encoded = filePath.map(encodeURIComponent).join('/');
-    setSelectedFile(`/api/past-papers/${encoded}`);
+    setSelectedFile(paperUrl(filePath));
+    setSelectedTitle(filePath[filePath.length-1].replace(/\.(pdf|mp3)$/i,'').replace(/_/g,' '));
   };
 
   const clearFilters = () => {
@@ -357,6 +329,7 @@ function PastPapersBrowserContent() {
     setSubjectFilter('');
     setYearFilter('');
     setPaperTypeFilter('');
+    setLevelFilter('');
   };
 
   // Open viewer modal helper
@@ -493,7 +466,7 @@ function PastPapersBrowserContent() {
             transition: 'all 0.15s ease'
           }}
         >
-          <FileText size={16} /> By year (2010–2025)
+          <FileText size={16} /> By year (2010–2026)
         </button>
       </div>
 
@@ -1215,13 +1188,14 @@ function PastPapersBrowserContent() {
       )}
 
       {/* ========================================================================= */}
-      {/* VIEW 2: CHRONOLOGICAL ARCHIVE (2010–2025)                                 */}
+      {/* VIEW 2: CHRONOLOGICAL ARCHIVE (2010–2026)                                 */}
       {/* ========================================================================= */}
       {activeTab === 'archive' && (
         <>
+          <div className="recent-paper-shortcut"><button className="filter-btn" onClick={()=>{setYearFilter('2026');setCurrentPath([]);}}>May 2026 · 332 papers & listening audio →</button><Link href="/library">English exam & oral guides →</Link></div>
           <section className="paper-search" aria-label="Find past papers">
-            <div className="paper-search-top"><label><span>Search the archive</span><div className="paper-search-input"><Search size={18} aria-hidden="true"/><input type="search" placeholder="Subject, level, session, or paper…" value={searchQuery} onChange={e=>setSearchQuery(e.target.value)}/></div></label></div>
-            <div className="paper-search-filters"><label><span>Subject</span><select value={subjectFilter} onChange={e=>setSubjectFilter(e.target.value)}>{IB_SUBJECTS.map((sub,i)=><option key={i} value={sub.value}>{sub.label}</option>)}</select></label><label><span>Year</span><select value={yearFilter} onChange={e=>setYearFilter(e.target.value)}>{YEARS.map((year,i)=><option key={i} value={year.value}>{year.label}</option>)}</select></label><label><span>Paper type</span><select value={paperTypeFilter} onChange={e=>setPaperTypeFilter(e.target.value)}>{PAPER_TYPES.map((type,i)=><option key={i} value={type.value}>{type.label}</option>)}</select></label>{isSearching&&<button className="btn btn-ref-outline" onClick={clearFilters}>Reset filters</button>}</div>
+            <div className="paper-search-top"><label><span>Search the archive</span><div className="paper-search-input"><Search size={18} aria-hidden="true"/><input type="search" placeholder="Try: maths AA HL p1 m26, French SL audio, or global politics" value={searchQuery} onChange={e=>setSearchQuery(e.target.value)}/></div></label>{searchQuery&&<button type="button" className="filter-btn" onClick={()=>setSearchQuery('')} aria-label="Clear paper search">Clear</button>}</div>
+            <div className="paper-search-filters"><label><span>Subject</span><select value={subjectFilter} onChange={e=>setSubjectFilter(e.target.value)}>{IB_SUBJECTS.map((sub,i)=><option key={i} value={sub.value}>{sub.label}</option>)}</select></label><label><span>Year</span><select value={yearFilter} onChange={e=>setYearFilter(e.target.value)}>{YEARS.map((year,i)=><option key={i} value={year.value}>{year.label}</option>)}</select></label><label><span>Paper type</span><select value={paperTypeFilter} onChange={e=>setPaperTypeFilter(e.target.value)}>{PAPER_TYPES.map((type,i)=><option key={i} value={type.value}>{type.label}</option>)}</select></label><label><span>Level</span><select aria-label="Level" value={levelFilter} onChange={e=>setLevelFilter(e.target.value)}><option value="">HL & SL</option><option value="hl">HL</option><option value="sl">SL</option></select></label>{isSearching&&<button className="btn btn-ref-outline" onClick={clearFilters}>Reset filters</button>}</div>
             <div className="paper-search-bottom"><p role="status">{isSearching?`${filteredSearch.length} matching papers`:'Search above, or browse the folders below.'}</p><details><summary>Reference sheets</summary><div><button className="btn btn-ref-outline" onClick={()=>setShowBookletModal(true)}>Formula booklet</button><button className="btn btn-ref-outline" onClick={()=>setShowCommandTermsModal(true)}>Command terms</button></div></details></div>
           </section>
 
@@ -1239,12 +1213,12 @@ function PastPapersBrowserContent() {
                         No papers matching search parameters.
                       </div>
                     ) : (
-                      filteredSearch.slice(0, 100).map((file, idx) => {
-                        const isActive = selectedFile === `/api/past-papers/${file.path.map(encodeURIComponent).join('/')}`;
+                      filteredSearch.slice(0, searchLimit).map((file, idx) => {
+                        const isActive = selectedFile === paperUrl(file.path);
                         return (
                           <div
                             key={idx}
-                            onClick={() => selectFile(file.path)}
+                            role="button" tabIndex={0} onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();selectFile(file.path);}}} onClick={() => selectFile(file.path)}
                             style={{
                               display: 'flex',
                               justifyContent: 'space-between',
@@ -1271,9 +1245,9 @@ function PastPapersBrowserContent() {
                         );
                       })
                     )}
-                    {filteredSearch.length > 100 && (
+                    {filteredSearch.length > searchLimit && (
                       <div style={{ textAlign: 'center', marginTop: '0.75rem', fontSize: '0.75rem', color: 'var(--muted)' }}>
-                        + {filteredSearch.length - 100} more papers. Refine search filters.
+                        <button className="filter-btn" onClick={()=>setSearchLimit(n=>n+50)}>Show 50 more ({filteredSearch.length-searchLimit} remaining)</button>
                       </div>
                     )}
                   </div>
@@ -1314,11 +1288,11 @@ function PastPapersBrowserContent() {
                     ))}
 
                     {files.map((file, idx) => {
-                      const isActive = selectedFile === `/api/past-papers/${[...currentPath, file].map(encodeURIComponent).join('/')}`;
+                      const isActive = selectedFile === paperUrl([...currentPath,file]);
                       return (
                         <div
                           key={idx}
-                          onClick={() => selectFile([...currentPath, file])}
+                          role="button" tabIndex={0} onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();selectFile([...currentPath,file]);}}} onClick={() => selectFile([...currentPath, file])}
                           style={{
                             display: 'flex',
                             justifyContent: 'space-between',
@@ -1350,20 +1324,20 @@ function PastPapersBrowserContent() {
                 <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.85rem 1rem', background: 'var(--paper-panel)', borderBottom: '1px solid var(--hairline)' }}>
                     <span className="tech-label" style={{ maxWidth: '60%', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', color: 'var(--ink)' }}>
-                      {decodeURIComponent(selectedFile.split('/').pop() || '')}
+                      {selectedTitle||decodeURIComponent(selectedFile.split('/').pop()||'')}
                     </span>
                     <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                      <Link
+                      {!selectedFile.endsWith('.mp3')&&<Link
                         href={`/past-papers/workspace?paper=${encodeURIComponent(selectedFile)}&title=${encodeURIComponent(decodeURIComponent(selectedFile.split('/').pop() || ''))}`}
                         className="filter-btn"
                         style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', textDecoration: 'none', padding: '4px 10px' }}
                         title="Open timed split-screen workspace"
                       >
                         <Zap size={12} /> Workspace
-                      </Link>
+                      </Link>}
                     </div>
                   </div>
-                  <PDFReader src={selectedFile} title="PDF Viewer"/>
+                  {selectedFile.split('?')[0].endsWith('.mp3')?<div className="audio-reader"><h2>{selectedTitle}</h2><p>May 2026 · French ab initio SL · listening comprehension</p><audio controls preload="metadata" src={selectedFile}>Your browser does not support audio.</audio><a href={selectedFile} target="_blank" rel="noopener noreferrer">Open audio ↗</a></div>:<PDFReader src={selectedFile} title={selectedTitle||'Exam paper'}/>}
                 </div>
               ) : (
                 <div className="viewer-placeholder">

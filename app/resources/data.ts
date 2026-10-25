@@ -1,3 +1,4 @@
+import englishGuides from '@/data/english-guides.json';
 export interface ResourceItem {
   name: string;
   category: 'youtube' | 'quizlet' | 'local_vault' | 'portal';
@@ -9,6 +10,8 @@ export interface ResourceItem {
 }
 
 export const resourcesData: ResourceItem[] = [
+  ...englishGuides.map(({name,category,subject,description,url,meta})=>({name,category:category as ResourceItem['category'],subject,description,url,meta})),
+  {name:'May 2026 exam papers',category:'local_vault',subject:'Multiple',description:'332 papers and markschemes, plus French ab initio listening audio. Organised by subject, level and time zone.',url:'/past-papers?tab=archive&year=2026',meta:'May 2026 · 12 subjects'},
   // Local Vault Core Manuals & Handbooks
   {
     name: 'IB Math AA HL Handbook',

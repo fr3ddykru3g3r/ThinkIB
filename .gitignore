@@ -20,3 +20,5 @@ out/
 
 # Recovered public PDFs are hosted on Firebase, not committed to source.
 /public/vault/savemyexams/
+
+/public/vault/imported/

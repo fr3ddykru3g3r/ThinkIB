@@ -2,7 +2,7 @@
 
 The Archive keeps its original design at https://ibstuff28.vercel.app.
 WDC Learn is the separate branded frontend on Firebase Hosting:
-https://worlddebatecollective-prep.web.app (custom domain: prep.worlddebatecollective.org).
+https://learn.worlddebatecollective.org (Firebase site: worlddebatecollective-prep).
 Do not deploy WDC Learn as a Vercel project.
 
 ## Build and verify
@@ -44,3 +44,7 @@ existing Firebase Hosting copies. Firebase allows public cross-origin PDF reads.
 Topical packs keep their existing API/GitHub-release path; they are not redirected
 to directories absent from Firebase. Keep at least the current production release
 and one verified rollback when pruning obsolete deployment outputs.
+
+## User resource import — 25 October 2026
+
+The 332 May 2026 PDFs, one listening MP3, and three English guides are served from `/vault/imported/` on Firebase. Vercel excludes this directory. Catalogs live in `lib/imported-paper-map.json`, `data/imported-papers-2026.json` and `data/english-guides.json`. Original media copies and SHA-256 receipts are in the sibling `resource-imports/2026-10-25/` directory on T7. Exported HTML/CSS/JS/font bundles were excluded.

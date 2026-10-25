@@ -1,0 +1,35 @@
+[
+  {
+    "id": "english-exam-guide",
+    "name": "Paper 1 and Paper 2 exam study guide",
+    "subject": "English",
+    "category": "local_vault",
+    "description": "Exam preparation for English A, including approaches to the two written papers.",
+    "url": "/library?doc=english-exam-guide",
+    "pdfUrl": "https://learn.worlddebatecollective.org/vault/imported/63aff3e34495002a2eaf3f17.pdf",
+    "source": "IB English Guys",
+    "meta": "PDF · 3.8 MB"
+  },
+  {
+    "id": "english-io-planning",
+    "name": "Course text and Individual Oral planning guide",
+    "subject": "English",
+    "category": "local_vault",
+    "description": "A planning resource for working with course texts and preparing the Individual Oral.",
+    "url": "/library?doc=english-io-planning",
+    "pdfUrl": "https://learn.worlddebatecollective.org/vault/imported/053b1d29fbede7c64811b31e.pdf",
+    "source": "IB English Guys",
+    "meta": "PDF · 76.4 MB"
+  },
+  {
+    "id": "english-individual-oral",
+    "name": "Individual Oral: whole-school resource",
+    "subject": "English",
+    "category": "local_vault",
+    "description": "Guidance and classroom material for preparing the English Individual Oral.",
+    "url": "/library?doc=english-individual-oral",
+    "pdfUrl": "https://learn.worlddebatecollective.org/vault/imported/a146cd7699903372aacd73c5.pdf",
+    "source": "IB English Guys",
+    "meta": "PDF · 69.9 MB"
+  }
+]

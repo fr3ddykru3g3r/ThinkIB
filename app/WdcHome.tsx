@@ -1,4 +1,5 @@
 'use client';
+import {resourceMatches} from '@/lib/paper-search';
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import { resourceUrl } from '@/lib/resource-url';
@@ -15,7 +16,7 @@ export default function PortalHome() {
   const [query,setQuery]=useState('');
   const [subject,setSubject]=useState('All subjects');
   const subjects=useMemo(()=>['All subjects',...Array.from(new Set(resourcesData.map(r=>r.subject))).sort()],[]);
-  const filtered=useMemo(()=>resourcesData.filter(r=>(subject==='All subjects'||r.subject===subject)&&`${r.name} ${r.subject} ${r.description}`.toLowerCase().includes(query.trim().toLowerCase())),[query,subject]);
+  const filtered=useMemo(()=>resourcesData.filter(r=>(subject==='All subjects'||r.subject===subject)&&resourceMatches(`${r.name} ${r.subject} ${r.description}`,query)),[query,subject]);
   return <div className="study-home">
     <section className="study-intro"><div><span className="section-label">{isWdc?'A World Debate Collective project':'Your study library'}</span><h1>{siteBrand.name}</h1><p>{siteBrand.description}</p><div className="intro-links"><Link href="/past-papers" className="btn btn-ref-primary">Find a paper →</Link><Link href="/sat#history" className="text-link">Review your practice →</Link></div></div><aside><span className="section-label">Start with a task</span><p>Find the topic you’re studying. Try a few questions. Review what you missed.</p>{isWdc && <a href="https://www.worlddebatecollective.org/" className="text-link">Back to WDC ↗</a>}</aside></section>
     <section className="workspace-links" aria-label="Study workspaces">{workspaces.map(([title,desc,url],i)=><Link key={url} href={url}><span className="section-label">0{i+1}</span><h2>{title} <span aria-hidden="true">↗</span></h2><p>{desc}</p></Link>)}</section>

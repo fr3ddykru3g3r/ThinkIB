@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
+import importedPaperMap from '@/lib/imported-paper-map.json';
 import path from 'path';
 import v1Assets from '../../../../public/past_papers_assets.json';
 import v2Assets from '../../../../public/savemyexams_assets.json';
@@ -136,6 +137,8 @@ export async function GET(
   if (pathSegments.some((seg) => seg === '..' || seg === '.' || /[\\/\0]/.test(seg))) {
     return new NextResponse('Not found', { status: 404 });
   }
+  const imported=(importedPaperMap as Record<string,string>)[pathSegments.join('/')];
+  if(imported)return NextResponse.redirect(imported,307);
   const filename = pathSegments[pathSegments.length - 1];
 
   // 0. Check if request is for a Topical Past Paper (Physics, Chemistry, Math)
